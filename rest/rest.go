@@ -4,36 +4,36 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func EntryAPI(address string) error {
+func RunAPI(address string) error {
+	h, err := NewHandler()
+	if err != nil {
+		return err
+	}
+
+	return RunAPIWithHandler(address, h)
+}
+
+// RunAPIWithHandler is entry point of all API
+func RunAPIWithHandler(address string, h HandlerInterface) error {
 	r := gin.Default()
 
-	r.GET("/products", func(c *gin.Context) {
-		// list of products
-	})
+	r.GET("/products", h.GetProducts)
 
-	r.GET("/promos", func(c *gin.Context) {
-		// list of promos
-	})
+	r.GET("/promos", h.GetPromos)
 
-	r.POST("/users/signin", func(c *gin.Context) {
-		// sign in a user
-	})
+	userGroup := r.Group("/user")
+	{
+		r.GET("/user/:id/orders", h.GetOrders)
+		r.POST("/user/:id/singout", h.SignOut)
+	}
 
-	r.POST("/users", func(c *gin.Context) {
-		// add a user
-	})
-
-	r.POST("/user/:id/singout", func(c *gin.Context) {
-		// sign out
-	})
-
-	r.GET("/user/:id/orders", func(c *gin.Context) {
-		// get all orders of user by id
-	})
-
-	r.POST("/users/charge", func(c *gin.Context) {
+	usersGroup := r.Group("/users")
+	{
 		// send credit card token information to the backend
+		r.POST("/users/charge", h.Charge)
+		r.POST("/users/signin", h.SignIn)
+		r.POST("/users", h.AddUser)
+	}
 
-	})
-
+	return r.Run(address)
 }
