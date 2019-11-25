@@ -1,12 +1,12 @@
 import React from "react"
+import {Switch, Route} from "react-router-dom"
+import Login from "./container/Login/Login"
 
 const App = props => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1 style={{color: "limegreen"}}>App</h1>
-      </header>
-    </div>
+    <Switch>
+      <Route exact path="/" component={Login} />
+    </Switch>
   )
 }
 
