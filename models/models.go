@@ -1,9 +1,14 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"github.com/jinzhu/gorm"
+)
 
 // Product - describe JSON which returned for client
 type Product struct {
+	gorm.Model
 	Image       string  `json:"img"`
 	Price       float64 `json:"price"`
 	Promotion   float64 `json:"promotion"`
@@ -13,6 +18,7 @@ type Product struct {
 
 // Customer - describe JSON which returned for client
 type Customer struct {
+	gorm.Model
 	FirstName string `json:"firstname"`
 	LastName  string `json:"lastname"`
 	Email     string `json:"email"`
@@ -21,6 +27,7 @@ type Customer struct {
 
 // Order - describe JSON all data which returned for client
 type Order struct {
+	gorm.Model
 	Product
 	Customer
 	CustomerID   int       `json:"customer_id"`
