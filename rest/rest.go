@@ -21,13 +21,13 @@ func RunAPIWithHandler(address string, h HandlerInterface) error {
 
 	r.GET("/promos", h.GetPromos)
 
-	userGroup := r.Group("/user")
+	r.Group("/user")
 	{
 		r.GET("/user/:id/orders", h.GetOrders)
 		r.POST("/user/:id/singout", h.SignOut)
 	}
 
-	usersGroup := r.Group("/users")
+	r.Group("/users")
 	{
 		// send credit card token information to the backend
 		r.POST("/users/charge", h.Charge)
