@@ -1,10 +1,10 @@
-import { createMuiTheme } from "@material-ui/core/styles"
+import { createMuiTheme } from "@material-ui/core/styles";
 
 const appColors = {
   primary: "#4776E6",
   black: "#111111",
-  lightBackground: "rgb(254, 254, 254)"
-}
+  lightBackground: "#fefefe"
+};
 
 export default createMuiTheme({
   palette: {
@@ -14,7 +14,7 @@ export default createMuiTheme({
   },
   typography: {
     fontFamily: [
-      "IBM Plex Sans",
+      "Open Sans",
       "Roboto",
       "Arial",
       "sans-serif",
@@ -23,4 +23,4 @@ export default createMuiTheme({
       '"Segoe UI Symbol"'
     ].join(",")
   }
-})
+});
