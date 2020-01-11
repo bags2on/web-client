@@ -1,5 +1,9 @@
-const routes = {
-  signin: "/signin"
-};
+interface RoutesMap {
+  [name: string]: string
+}
 
-export default routes;
+const routes: RoutesMap = {
+  signin: '/signin',
+}
+
+export default routes
