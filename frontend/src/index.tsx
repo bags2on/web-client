@@ -15,4 +15,4 @@ const application = (
   </Router>
 )
 
-ReactDOM.render(application, document.getElementById('root'))
+ReactDOM.render(application, document.querySelector('#astro-bank'))
