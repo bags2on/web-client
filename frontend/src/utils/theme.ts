@@ -3,17 +3,17 @@ import { createMuiTheme } from '@material-ui/core/styles'
 const appColors = {
   primary: '#ffa800',
   black: '#111111',
-  lightBackground: '#fefefe',
+  lightBackground: '#fefefe'
 }
 
 export default createMuiTheme({
   palette: {
     primary: {
-      main: appColors.primary,
+      main: appColors.primary
     },
     background: {
-      default: '#fff',
-    },
+      default: '#303030'
+    }
   },
   typography: {
     fontFamily: [
@@ -23,7 +23,7 @@ export default createMuiTheme({
       'sans-serif',
       '"Apple Color Emoji"',
       '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"',
-    ].join(','),
-  },
+      '"Segoe UI Symbol"'
+    ].join(',')
+  }
 })

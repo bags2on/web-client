@@ -12,17 +12,20 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 600,
     color: '#fff',
     boxShadow: '0px 8px 17px rgba(0, 0, 0, .3)',
-    borderRadius: '20px',
+    borderRadius: '16px'
   },
   text: {
-    lineHeight: '24px',
+    lineHeight: '24px'
   },
   main: {
-    backgroundImage: `linear-gradient(to right, ${theme.palette.primary.main} 0%, #8E54E9  51%, #4776E6  100%)`,
+    background: '#363636',
+    '&:hover': {
+      background: '#323232'
+    }
   },
   secondary: {
-    background: '#ff0000',
-  },
+    background: '#ff0000'
+  }
 }))
 
 type CardColors = 'main' | 'secondary'

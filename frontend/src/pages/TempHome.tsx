@@ -6,8 +6,8 @@ import { makeStyles } from '@material-ui/core'
 const useStyles = makeStyles(theme => ({
   hiButton: {
     margin: 10,
-    maxWidth: 250,
-  },
+    maxWidth: 250
+  }
 }))
 
 const TempHome: React.FC = () => {
@@ -20,8 +20,12 @@ const TempHome: React.FC = () => {
   }
 
   return (
-    <main>
-      <h1>TypeScript</h1>
+    <main
+      style={{
+        marginLeft: 30
+      }}
+    >
+      <h1 style={{ color: '#fff' }}>TypeScript</h1>
       <ScaleLoader />
       <div className={classes.hiButton}>
         <Button loading={loading} color="main" fullWidth onClick={handleClick}>
@@ -30,7 +34,7 @@ const TempHome: React.FC = () => {
       </div>
       <div className={classes.hiButton}>
         <Button loading={!loading} color="main" fullWidth onClick={handleClick}>
-          Hello
+          TypeScript
         </Button>
       </div>
     </main>
