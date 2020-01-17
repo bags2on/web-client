@@ -3,7 +3,7 @@ interface RoutesMap {
 }
 
 const routes: RoutesMap = {
-  signin: '/signin',
+  signin: '/login',
   root: '/'
 }
 

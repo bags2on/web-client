@@ -2,7 +2,7 @@ import React, { lazy, Suspense } from 'react'
 import { Switch, Route } from 'react-router-dom'
 import routes from './utils/routes'
 
-const Login = lazy(() => import('./pages/Signin/Signin'))
+const Login = lazy(() => import('./pages/Login/Login'))
 const TempHome = lazy(() => import('./pages/TempHome'))
 
 const App: React.FC = () => {

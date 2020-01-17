@@ -34,6 +34,7 @@ interface BottonProps {
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void
   children: React.ReactNode
   loading?: boolean
+  disabled?: boolean
   fullWidth?: boolean
   color: CardColors
 }
