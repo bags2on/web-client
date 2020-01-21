@@ -62,6 +62,7 @@ const TempHome: React.FC = () => {
           TypeScript
         </Button>
       </div>
+      <ScaleLoader fallback />
     </main>
   )
 }
