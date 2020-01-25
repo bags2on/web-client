@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     color: '#fff',
     '& .MuiOutlinedInput-input': {
       fontWeight: '600',
-      padding: '15px 10px'
+      padding: '14px 10px'
     }
   },
   notchedOutline: {
@@ -25,6 +25,7 @@ interface TextInputProps {
   disabled?: boolean
   label?: string
   placeholder?: string
+  type?: string
 }
 
 const TextInput: React.FC<TextInputProps> = ({ ...otherProps }) => {

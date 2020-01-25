@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
     fontWeight: 600,
     color: '#fff',
     boxShadow: '0px 8px 17px rgba(0, 0, 0, .3)',
-    borderRadius: '16px'
+    borderRadius: '6px'
   },
   text: {
     lineHeight: '24px'
@@ -24,7 +24,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   secondary: {
-    background: '#ff0000'
+    background: theme.palette.primary.main,
+    color: theme.palette.primary.dark,
+    '&:hover': {
+      background: '#ff8416'
+    }
   }
 }))
 
@@ -36,15 +40,23 @@ interface BottonProps {
   loading?: boolean
   disabled?: boolean
   fullWidth?: boolean
+  type?: any
   color: CardColors
+  darkLoader?: boolean
 }
 
-const Button: React.FC<BottonProps> = ({ color = 'main', children, loading, ...otherProps }: BottonProps) => {
+const Button: React.FC<BottonProps> = ({
+  color = 'main',
+  children,
+  darkLoader,
+  loading,
+  ...otherProps
+}: BottonProps) => {
   const classes = useStyles()
 
   return (
     <ButtonUI className={clsx(classes[color], classes.root)} {...otherProps}>
-      {loading ? <ScaleLoader /> : <span className={classes.text}>{children}</span>}
+      {loading ? <ScaleLoader dark={darkLoader} /> : <span className={classes.text}>{children}</span>}
     </ButtonUI>
   )
 }

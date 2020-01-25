@@ -10,13 +10,25 @@ i18n
     resources: {
       en: {
         translations: {
+          email: 'email',
+          password: 'password',
           send: 'Submit',
           ts: 'TypeScript'
         }
       },
       ru: {
         translations: {
+          email: 'эл. почта',
+          password: 'пароль',
           send: 'Отправить',
+          ts: 'Тайп Скрипт'
+        }
+      },
+      ua: {
+        translations: {
+          email: 'ел. пошта',
+          password: 'пароль',
+          send: 'Увійти',
           ts: 'Тайп Скрипт'
         }
       }

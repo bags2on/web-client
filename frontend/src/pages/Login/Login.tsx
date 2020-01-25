@@ -1,21 +1,23 @@
 import React from 'react'
-import Button from '../../common/Button'
-import TextInput from '../../common/TextInput'
+
+import LoginForm from './LoginForm/LoginForm'
+import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
+import { makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: '0 20px 10px 20px'
+  }
+}))
 
 const Login: React.FC = () => {
+  const classes = useStyles()
+
   return (
-    <div
-      style={{
-        margin: 20
-      }}
-    >
-      <div style={{ marginBottom: 100 }}>
-        <TextInput placeholder="Hello" />
-      </div>
-      <Button color="main" fullWidth>
-        Hello
-      </Button>
-    </div>
+    <main className={classes.root}>
+      <LangSwitcher />
+      <LoginForm />
+    </main>
   )
 }
 

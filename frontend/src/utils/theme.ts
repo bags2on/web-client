@@ -9,7 +9,8 @@ const appColors = {
 export default createMuiTheme({
   palette: {
     primary: {
-      main: appColors.primary
+      main: appColors.primary,
+      dark: appColors.black
     },
     background: {
       default: '#303030'

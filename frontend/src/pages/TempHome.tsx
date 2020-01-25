@@ -2,7 +2,9 @@ import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import ScaleLoader from '../common/loaders/ScaleLoader'
 import Button from '../common/Button'
+import LangSwitcher from '../components/LangSwitcher/LangSwitcher'
 import { makeStyles } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 
 const useStyles = makeStyles(theme => ({
   hiButton: {
@@ -27,17 +29,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const TempHome: React.FC = () => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const [loading, setLoading] = useState(false)
 
   const classes = useStyles()
 
   const handleClick = () => {
     setLoading(!loading)
-  }
-
-  const handleChangeI18n = (lang: any) => {
-    i18n.changeLanguage(lang)
   }
 
   return (
@@ -47,11 +45,16 @@ const TempHome: React.FC = () => {
       }}
     >
       <h1 style={{ color: '#fff' }}>{t('ts')}</h1>
-      <div className={classes.locWrapper}>
-        <button onClick={() => handleChangeI18n('en')}>en</button>
-        <button onClick={() => handleChangeI18n('ru')}>ru</button>
-      </div>
-      <ScaleLoader />
+      <Link
+        style={{
+          color: 'orange',
+          fontWeight: 600
+        }}
+        to="/login"
+      >
+        Login
+      </Link>
+      <LangSwitcher />
       <div className={classes.hiButton}>
         <Button loading={loading} color="main" fullWidth onClick={handleClick}>
           {t('send')}
