@@ -1,11 +1,11 @@
-package rest
+package internal
 
 import (
 	"github.com/gin-gonic/gin"
 )
 
 func RunAPI(address string) error {
-	h, err := NewHandler()
+	h, err := ApplicationHandler()
 	if err != nil {
 		return err
 	}
@@ -13,12 +13,20 @@ func RunAPI(address string) error {
 	return RunAPIWithHandler(address, h)
 }
 
+const (
+	gqlPath = "/"
+	gqlPgPath = "/graphql"
+)
+
 // RunAPIWithHandler is entry point of all API
 func RunAPIWithHandler(address string, h HandlerInterface) error {
 	r := gin.Default()
 
-	r.GET("/products", h.GetProducts)
+	r.GET("/ping", h.Pong)
 
+	r.GET(gqlPgPath, PlaygroundHandler(gqlPath))
+	r.POST(gqlPath, GraphqlHandler())
+	/*
 	r.GET("/promos", h.GetPromos)
 
 	r.Group("/user")
@@ -34,6 +42,8 @@ func RunAPIWithHandler(address string, h HandlerInterface) error {
 		r.POST("/users/signin", h.SignIn)
 		r.POST("/users", h.AddUser)
 	}
+	*/
 
 	return r.Run(address)
 }
+

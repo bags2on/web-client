@@ -1,6 +1,6 @@
 package dblayer
 
-import "../models"
+import "github.com/Vlad-Shevliakov/astro-bank/models"
 
 type DBLayer interface {
 	GetAllProducts() ([]models.Product, error)

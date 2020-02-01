@@ -4,10 +4,10 @@ import (
 	"fmt"
 	"log"
 
-	"./rest"
+	"github.com/Vlad-Shevliakov/astro-bank/internal"
 )
 
 func main() {
 	fmt.Println("Start")
-	log.Fatal(rest.RunAPI("127.0.0.1:8080"))
+	log.Fatal(internal.RunAPI("127.0.0.1:8080"))
 }

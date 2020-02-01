@@ -1,0 +1,16 @@
+type User {
+    id: ID!
+    nickname: String!
+    email: String!
+    role: Int!
+    langs: [Lang]!
+}
+
+type Lang {
+    name: String!
+    ext: String!
+}
+
+type Query {
+    user: User!
+}
