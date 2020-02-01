@@ -1,6 +1,9 @@
 import React from 'react'
-import TextField from '@material-ui/core/TextField'
+import { useField } from 'formik'
 import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Typography from '@material-ui/core/Typography'
+import Fade from '@material-ui/core/Fade'
 
 //  &:hover:not($disabled):not($cssFocused):not($error) $notchedOutline
 
@@ -12,7 +15,19 @@ const useStyles = makeStyles(() => ({
     '& .MuiOutlinedInput-input': {
       fontWeight: '600',
       padding: '14px 10px'
+    },
+    '& label.Mui-focused': {
+      color: 'green'
     }
+  },
+  box: {
+    height: 24
+  },
+  message: {
+    height: 24,
+    color: '#ff182e',
+    opacity: 0,
+    transition: 'all 0.33s linear'
   },
   notchedOutline: {
     borderWidth: '1px',
@@ -26,25 +41,36 @@ interface TextInputProps {
   label?: string
   placeholder?: string
   type?: string
+  name: string
 }
 
-const TextInput: React.FC<TextInputProps> = ({ ...otherProps }) => {
+const TextInput: React.FC<TextInputProps> = props => {
+  const [field, meta] = useField(props)
+
   const classes = useStyles()
 
   return (
-    <TextField
-      {...otherProps}
-      variant="outlined"
-      InputProps={{
-        classes: {
-          root: classes.root,
-          notchedOutline: classes.notchedOutline
-        }
-      }}
-      InputLabelProps={{
-        shrink: true
-      }}
-    />
+    <>
+      <TextField
+        {...field}
+        {...props}
+        variant="outlined"
+        InputProps={{
+          classes: {
+            root: classes.root,
+            notchedOutline: classes.notchedOutline
+          }
+        }}
+        InputLabelProps={{
+          shrink: true
+        }}
+      />
+      <Fade in={meta.touched && !!meta.error}>
+        <Typography component="p" className={classes.message}>
+          {meta.touched && meta.error}
+        </Typography>
+      </Fade>
+    </>
   )
 }
 
