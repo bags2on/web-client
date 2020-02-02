@@ -20,6 +20,7 @@ const (
 
 // RunAPIWithHandler is entry point of all API
 func RunAPIWithHandler(address string, h HandlerInterface) error {
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 
 	r.GET("/ping", h.Pong)

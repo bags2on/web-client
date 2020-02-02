@@ -9,5 +9,5 @@ import (
 
 func main() {
 	fmt.Println("Start")
-	log.Fatal(internal.RunAPI("127.0.0.1:8080"))
+	log.Fatal(internal.RunAPI(":8080"))
 }
