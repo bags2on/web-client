@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import ScaleLoader from '../common/loaders/ScaleLoader'
 import Button from '../common/Button'
 import LangSwitcher from '../components/LangSwitcher/LangSwitcher'
+import Advantages from '../components/Advantages/Advantages'
 import { makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
@@ -39,11 +40,7 @@ const TempHome: React.FC = () => {
   }
 
   return (
-    <main
-      style={{
-        marginLeft: 30
-      }}
-    >
+    <main>
       <h1 style={{ color: '#fff' }}>{t('ts')}</h1>
       <Link
         style={{
@@ -65,7 +62,16 @@ const TempHome: React.FC = () => {
           TypeScript
         </Button>
       </div>
-      <ScaleLoader fallback />
+      <div
+        style={{
+          padding: '20px 0',
+          display: 'flex',
+          justifyContent: 'center'
+        }}
+      >
+        <ScaleLoader fallback />
+      </div>
+      <Advantages />
     </main>
   )
 }
