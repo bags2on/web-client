@@ -1,10 +1,10 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
 import Typography from '@material-ui/core/Typography'
-import gift from '../../assets/svg/gift.svg'
-import truck from '../../assets/svg/truck.svg'
-import money from '../../assets/svg/money.svg'
-import clock from '../../assets/svg/clock.svg'
+import gift from '../../../assets/svg/gift.svg'
+import truck from '../../../assets/svg/truck.svg'
+import money from '../../../assets/svg/money.svg'
+import clock from '../../../assets/svg/clock.svg'
 
 const items = [
   {
