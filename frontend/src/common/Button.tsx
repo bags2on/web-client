@@ -41,8 +41,10 @@ interface BottonProps {
   disabled?: boolean
   fullWidth?: boolean
   type?: any
+  to?: string
   color: CardColors
   darkLoader?: boolean
+  component?: React.ReactNode
 }
 
 const Button: React.FC<BottonProps> = ({
