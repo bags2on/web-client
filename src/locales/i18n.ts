@@ -6,10 +6,10 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    // we init with resources
     resources: {
       en: {
         translations: {
+          headerSearch: 'search',
           email: 'email',
           password: 'password',
           send: 'Submit',
@@ -18,6 +18,7 @@ i18n
       },
       ru: {
         translations: {
+          headerSearch: 'Я ищу ...',
           email: 'эл. почта',
           password: 'пароль',
           send: 'Отправить',
@@ -26,6 +27,7 @@ i18n
       },
       ua: {
         translations: {
+          headerSearch: 'Я шукаю ...',
           email: 'ел. пошта',
           password: 'пароль',
           send: 'Увійти',

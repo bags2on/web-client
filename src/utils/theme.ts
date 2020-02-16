@@ -1,19 +1,19 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 
 const appColors = {
-  primary: '#ffa800',
-  black: '#111111',
-  lightBackground: '#fefefe'
+  main: '#ffa800',
+  lightBackground: '#fefefe',
+  appBackground: '#303030'
 }
 
 export default createMuiTheme({
   palette: {
     primary: {
-      main: appColors.primary,
-      dark: appColors.black
+      main: appColors.main,
+      dark: appColors.appBackground
     },
     background: {
-      default: '#303030'
+      default: appColors.appBackground
     }
   },
   typography: {

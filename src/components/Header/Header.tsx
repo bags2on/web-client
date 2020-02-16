@@ -7,6 +7,10 @@ import PersonIcon from '@material-ui/icons/Person'
 import Search from '../../components/Search/Search'
 import { makeStyles } from '@material-ui/core'
 
+interface HeaderProps {
+  onDrawerOpen(): void
+}
+
 const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
@@ -22,19 +26,19 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Header: React.FC = () => {
+const Header: React.FC<HeaderProps> = ({ onDrawerOpen }) => {
   const classes = useStyles()
 
   return (
     <header className={classes.root}>
-      <IconButton color="primary" className={classes.btns}>
+      <IconButton onClick={onDrawerOpen} disableRipple color="primary" className={classes.btns}>
         <MenuIcon fontSize="large" />
       </IconButton>
       <Search />
-      <IconButton color="primary" className={clsx(classes.btns, classes.midBtn)}>
+      <IconButton color="primary" disableRipple className={clsx(classes.btns, classes.midBtn)}>
         <ShoppingCartIcon fontSize="large" />
       </IconButton>
-      <IconButton color="primary" className={classes.btns}>
+      <IconButton color="primary" disableRipple className={classes.btns}>
         <PersonIcon fontSize="large" />
       </IconButton>
     </header>

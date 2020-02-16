@@ -7,7 +7,7 @@ import Button from '../../../common/Button'
 import { makeStyles } from '@material-ui/core'
 import { LoginSchema, LoginSchemaType } from '../../../utils/validationSchema'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {},
   emailField: {},
   passwordField: {},
@@ -16,16 +16,11 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-interface FormInitialValues {
-  email: string
-  password: string
-}
-
 const LoginForm: React.FC = () => {
   const classes = useStyles()
   const { t } = useTranslation()
 
-  const handleSubmit = (values: LoginSchemaType) => {
+  const handleSubmit = (values: LoginSchemaType): void => {
     console.log(values)
   }
 
@@ -33,7 +28,7 @@ const LoginForm: React.FC = () => {
 
   return (
     <Formik onSubmit={handleSubmit} initialValues={initialValues} validationSchema={LoginSchema}>
-      {() => (
+      {(): React.ReactElement => (
         <Form noValidate>
           <FormControl fullWidth className={classes.emailField}>
             <TextInput name="email" type="email" placeholder={t('email')} />

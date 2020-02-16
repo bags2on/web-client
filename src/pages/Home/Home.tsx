@@ -6,9 +6,15 @@ import Button from '../../common/Button'
 const Home: React.FC = () => {
   return (
     <div>
-      <Button color="main" to="/login" component={Link} fullWidth>
-        to login
-      </Button>
+      <div
+        style={{
+          margin: '20px 0'
+        }}
+      >
+        <Button color="main" to="/login" component={Link} fullWidth>
+          to login
+        </Button>
+      </div>
       <Advantages />
     </div>
   )

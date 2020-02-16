@@ -40,7 +40,7 @@ interface BottonProps {
   loading?: boolean
   disabled?: boolean
   fullWidth?: boolean
-  type?: any
+  type?: 'button' | 'reset' | 'submit' | undefined
   to?: string
   color: CardColors
   darkLoader?: boolean

@@ -1,6 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
+  "homepage": "https://github.com/bags2on/web-client",
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",

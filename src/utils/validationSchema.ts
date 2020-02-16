@@ -1,7 +1,5 @@
 import * as yup from 'yup'
 
-export type LoginSchemaType = yup.InferType<typeof LoginSchema>
-
 export const LoginSchema = yup.object({
   email: yup
     .string()
@@ -9,3 +7,10 @@ export const LoginSchema = yup.object({
     .required(),
   password: yup.string().required()
 })
+
+export const TopSearchSchema = yup.object({
+  searchQuery: yup.string()
+})
+
+export type LoginSchemaType = yup.InferType<typeof LoginSchema>
+export type TopSearchType = yup.InferType<typeof TopSearchSchema>
