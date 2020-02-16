@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import * as serviceWorker from './serviceWorker'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { Router } from 'react-router-dom'
 import { ThemeProvider, CssBaseline } from '@material-ui/core'
@@ -25,5 +24,3 @@ const application = (
 )
 
 ReactDOM.render(application, document.querySelector('#root'))
-
-serviceWorker.unregister()

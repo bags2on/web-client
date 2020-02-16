@@ -1,7 +1,6 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "homepage": "https://github.com/bags2on/web-client",
   "private": true,
   "dependencies": {
     "@apollo/react-hooks": "^3.1.3",
@@ -37,9 +36,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src*/**/*.{js,ts,tsx}",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "lint": "eslint src*/**/*.{js,ts,tsx}"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -62,7 +59,6 @@
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.17.0",
-    "gh-pages": "^2.2.0",
     "prettier": "^1.19.1"
   }
 }
