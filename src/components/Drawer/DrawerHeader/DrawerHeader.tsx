@@ -1,5 +1,5 @@
 import React from 'react'
-import Logo from './Logo'
+import logo from '../../../assets/svg/small-logo.svg'
 import IconButton from '@material-ui/core/IconButton'
 import Close from '@material-ui/icons/Close'
 import Divider from '@material-ui/core/Divider'
@@ -38,7 +38,7 @@ const DrawerHeader: React.FC<DrawerHeaderProps> = ({ onClose }) => {
     <>
       <div className={classes.root}>
         <div className={classes.logo}>
-          <Logo />
+          <img src={logo} alt="Bags2on" />
         </div>
         <div>
           <IconButton className={classes.close} disableRipple color="primary" onClick={onClose}>
