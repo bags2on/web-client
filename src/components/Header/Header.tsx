@@ -1,11 +1,13 @@
 import React from 'react'
 import clsx from 'clsx'
-import logo from '../../assets/svg/small-logo.svg'
+import { Link } from 'react-router-dom'
+import logo from '../../assets/rastr/small-logo.png'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import PersonIcon from '@material-ui/icons/Person'
 import Search from '../../components/Search/Search'
+import NightToggleSwith from '../../common/NightToggleSwith/NightToggleSwith'
 import { makeStyles } from '@material-ui/core'
 
 interface HeaderProps {
@@ -15,11 +17,16 @@ interface HeaderProps {
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
-    alignItems: 'center'
+    alignItems: 'center',
+    padding: '0 80px'
   },
   logo: {
     width: 180,
-    margin: '8px 20px 0 20px',
+    margin: '8px 20px 0 10px',
+    '& > img': {
+      width: '100%',
+      height: '100%'
+    },
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
@@ -50,8 +57,13 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen }) => {
       <IconButton onClick={onDrawerOpen} disableRipple color="primary" className={clsx(classes.btns, classes.menuBtn)}>
         <MenuIcon fontSize="large" />
       </IconButton>
-      <div className={classes.logo}>
-        <img src={logo} alt="Bags2on" />
+      <Link to="/">
+        <div className={classes.logo}>
+          <img src={logo} alt="Bags2on" />
+        </div>
+      </Link>
+      <div>
+        <NightToggleSwith />
       </div>
       <Search />
       <IconButton color="primary" disableRipple className={clsx(classes.btns, classes.cart)}>

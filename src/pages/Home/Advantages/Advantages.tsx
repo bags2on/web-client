@@ -37,11 +37,12 @@ const items = [
 const useStyles = makeStyles(theme => ({
   root: {
     background: '#232121',
-    padding: '24px 0',
+    padding: '20px 0',
     color: theme.palette.primary.main
   },
   list: {
-    margin: 0,
+    maxWidth: 1500,
+    margin: '0 auto',
     padding: 0,
     listStyle: 'none',
     '& li': {
