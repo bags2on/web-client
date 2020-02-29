@@ -1,14 +1,15 @@
 import React from 'react'
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
-import logo from '../../assets/rastr/small-logo.png'
+import { makeStyles } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import PersonIcon from '@material-ui/icons/Person'
+import logo from '../../assets/rastr/small-logo.png'
 import Search from '../../components/Search/Search'
 import NightToggleSwith from '../../common/NightToggleSwith/NightToggleSwith'
-import { makeStyles } from '@material-ui/core'
+import routes from '../../utils/routes'
 
 interface HeaderProps {
   onDrawerOpen(): void
@@ -18,10 +19,9 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    // padding: '0 80px',
-    // backgroundColor: 'gold',
-    [theme.breakpoints.up('xl')]: {
-      padding: '0 80px'
+    backgroundColor: '#282828',
+    [theme.breakpoints.up('lg')]: {
+      padding: '4px 20px'
     }
   },
   logo: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
       height: '100%'
     },
-    [theme.breakpoints.down('lg')]: {
+    [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
   },
@@ -49,6 +49,8 @@ const useStyles = makeStyles(theme => ({
     paddingRight: 0
   },
   toggl: {
+    marginLeft: 7,
+    paddingRight: 20,
     [theme.breakpoints.down('sm')]: {
       display: 'none'
     }
@@ -72,7 +74,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen }) => {
       <IconButton color="primary" disableRipple className={clsx(classes.btns, classes.cart)}>
         <ShoppingCartIcon fontSize="large" />
       </IconButton>
-      <IconButton color="primary" disableRipple className={classes.btns}>
+      <IconButton to={routes.login} color="primary" disableRipple className={classes.btns} component={Link}>
         <PersonIcon fontSize="large" />
       </IconButton>
       <div className={classes.toggl}>

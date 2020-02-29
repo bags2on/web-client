@@ -49,8 +49,6 @@
 
 .toggleBg {
   position: absolute;
-  width: 100%;
-  height: 100%;
   width: 20px;
   height: 20px;
   transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -67,6 +65,9 @@
   border-radius: 40px;
   z-index: 2;
   opacity: 0;
+  -webkit-tap-highlight-color: transparent;
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }
 
 .toggleSwitch {
@@ -74,16 +75,16 @@
   width: 20px;
   height: 20px;
   margin-left: 0px;
-  background-color: #fffdf2;
-  border: 2px solid #cacdad;
+  background-color: #f5eb42;
+  border: 2px solid #e4c74d;
   border-radius: 50%;
   transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .cloud {
-  opacity: 0;
+  opacity: 1;
   position: absolute;
-  margin-left: 40px;
+  margin-left: 0px;
   bottom: -10px;
   left: -30px;
   display: block;
@@ -92,7 +93,7 @@
   border: 4px solid #d4d4d2;
   border-radius: 20px;
   background-color: #fff;
-  transform: scale(0.1);
+  transform: scale(0.4);
   transition: all 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   &:after {
     @include cloudBubble(-34px, -25px, 10px, 10px, 70deg);
@@ -103,7 +104,7 @@
 }
 
 .figure {
-  transform: scale(1);
+  transform: scale(0);
   transition: all 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -116,16 +117,16 @@
 }
 
 .toggleInput:checked ~ .toggleSwitch {
-  border-color: #e4c74d;
-  background-color: #f5eb42;
+  background-color: #fffdf2;
+  border-color: #cacdad;
 }
 
 .toggleInput:checked ~ .toggleSwitch .cloud {
-  margin-left: 0px;
-  opacity: 1;
-  transform: scale(0.4);
+  margin-left: 40px;
+  opacity: 0;
+  transform: scale(0.1);
 }
 
 .toggleInput:checked ~ .toggleSwitch .figure {
-  transform: scale(0);
+  transform: scale(1);
 }

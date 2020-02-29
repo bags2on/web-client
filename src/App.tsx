@@ -12,7 +12,7 @@ const App: React.FC = () => {
     <Suspense fallback={<Fallback />}>
       <RootLayout>
         <Switch>
-          <Route path={routes.signin} component={Login} />
+          <Route path={routes.login} component={Login} />
           <Route path={routes.root} component={Home} />
         </Switch>
       </RootLayout>

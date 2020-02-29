@@ -1,5 +1,6 @@
 import React from 'react'
 import logo from '../../../assets/svg/small-logo.svg'
+import { Link } from 'react-router-dom'
 import IconButton from '@material-ui/core/IconButton'
 import Close from '@material-ui/icons/Close'
 import Divider from '@material-ui/core/Divider'
@@ -37,9 +38,11 @@ const DrawerHeader: React.FC<DrawerHeaderProps> = ({ onClose }) => {
   return (
     <>
       <div className={classes.root}>
-        <div className={classes.logo}>
-          <img src={logo} alt="Bags2on" />
-        </div>
+        <Link to="/">
+          <div className={classes.logo}>
+            <img src={logo} alt="Bags2on" />
+          </div>
+        </Link>
         <div>
           <IconButton className={classes.close} disableRipple color="primary" onClick={onClose}>
             <Close fontSize="large" />
