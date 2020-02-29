@@ -18,7 +18,11 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    padding: '0 80px'
+    // padding: '0 80px',
+    // backgroundColor: 'gold',
+    [theme.breakpoints.up('xl')]: {
+      padding: '0 80px'
+    }
   },
   logo: {
     width: 180,
@@ -27,7 +31,7 @@ const useStyles = makeStyles(theme => ({
       width: '100%',
       height: '100%'
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('lg')]: {
       display: 'none'
     }
   },
@@ -42,9 +46,11 @@ const useStyles = makeStyles(theme => ({
     }
   },
   cart: {
-    paddingRight: 0,
-    [theme.breakpoints.up('lg')]: {
-      paddingRight: '12px'
+    paddingRight: 0
+  },
+  toggl: {
+    [theme.breakpoints.down('sm')]: {
+      display: 'none'
     }
   }
 }))
@@ -62,9 +68,6 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen }) => {
           <img src={logo} alt="Bags2on" />
         </div>
       </Link>
-      <div>
-        <NightToggleSwith />
-      </div>
       <Search />
       <IconButton color="primary" disableRipple className={clsx(classes.btns, classes.cart)}>
         <ShoppingCartIcon fontSize="large" />
@@ -72,6 +75,9 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen }) => {
       <IconButton color="primary" disableRipple className={classes.btns}>
         <PersonIcon fontSize="large" />
       </IconButton>
+      <div className={classes.toggl}>
+        <NightToggleSwith />
+      </div>
     </header>
   )
 }

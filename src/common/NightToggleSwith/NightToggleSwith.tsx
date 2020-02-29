@@ -8,8 +8,8 @@ const NightToggleSwith: React.FC = () => {
         <input className={classes.toggleInput} type="checkbox" />
         <div className={classes.toggleBg} />
         <div className={classes.toggleSwitch}>
-          <div className={classes.toggleFigure} />
-          <div className={classes.toggleFigureAlt} />
+          <div className={classes.cloud} />
+          <div className={classes.figure} />
         </div>
       </div>
     </div>
