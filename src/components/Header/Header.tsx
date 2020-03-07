@@ -3,11 +3,12 @@ import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
-import MenuIcon from '@material-ui/icons/Menu'
+import Icon from '@material-ui/core/Icon'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import PersonIcon from '@material-ui/icons/Person'
 import logo from '../../assets/rastr/small-logo.png'
 import Search from '../../components/Search/Search'
+import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
 import NightToggleSwith from '../../common/NightToggleSwith/NightToggleSwith'
 import routes from '../../utils/routes'
 
@@ -45,6 +46,9 @@ const useStyles = makeStyles(theme => ({
       display: 'none'
     }
   },
+  menuIcon: {
+    fill: theme.palette.primary.main
+  },
   cart: {
     paddingRight: 0
   },
@@ -62,8 +66,14 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen }) => {
 
   return (
     <header className={classes.root}>
-      <IconButton onClick={onDrawerOpen} disableRipple color="primary" className={clsx(classes.btns, classes.menuBtn)}>
-        <MenuIcon fontSize="large" />
+      <IconButton onClick={onDrawerOpen} disableRipple className={clsx(classes.btns, classes.menuBtn)}>
+        <Icon
+          classes={{
+            root: classes.menuIcon
+          }}
+        >
+          <MenuIcon />
+        </Icon>
       </IconButton>
       <Link to="/">
         <div className={classes.logo}>
