@@ -18,7 +18,7 @@ i18n
       },
       ru: {
         translations: {
-          headerSearch: 'Я ищу ...',
+          headerSearch: 'Найти',
           email: 'эл. почта',
           password: 'пароль',
           send: 'Отправить',
@@ -27,7 +27,7 @@ i18n
       },
       ua: {
         translations: {
-          headerSearch: 'Я шукаю ...',
+          headerSearch: 'Знайти',
           email: 'ел. пошта',
           password: 'пароль',
           send: 'Увійти',

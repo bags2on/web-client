@@ -14,13 +14,14 @@ import routes from '../../utils/routes'
 
 interface HeaderProps {
   onDrawerOpen(): void
+  themeChanger(checked: boolean): void
 }
 
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: '#282828',
+    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#282828',
     [theme.breakpoints.up('lg')]: {
       padding: '4px 20px'
     }
@@ -61,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Header: React.FC<HeaderProps> = ({ onDrawerOpen }) => {
+const Header: React.FC<HeaderProps> = ({ onDrawerOpen, themeChanger }) => {
   const classes = useStyles()
 
   return (
@@ -88,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen }) => {
         <PersonIcon fontSize="large" />
       </IconButton>
       <div className={classes.toggl}>
-        <NightToggleSwith />
+        <NightToggleSwith themeChanger={themeChanger} />
       </div>
     </header>
   )

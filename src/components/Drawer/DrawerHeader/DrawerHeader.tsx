@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
     padding: '40px 15px 30px 15px'
   },
   logo: {
-    width: 210
+    width: 190
   },
   close: {
     padding: 0,

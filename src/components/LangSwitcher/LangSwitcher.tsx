@@ -14,6 +14,9 @@ const useStyles = makeStyles(theme => ({
   lang: {
     cursor: 'pointer',
     marginLeft: '8px',
+    '-webkit-tap-highlight-color': 'transparent',
+    '-moz-appearance': 'none',
+    '-webkit-appearance': 'none',
     '&:hover': {
       textDecoration: 'underline'
     }
@@ -33,7 +36,7 @@ const LangSwitcher: React.FC = () => {
   const [current, setCurrent] = useState<string>(i18n.language)
   const classes = useStyles()
 
-  const langHandler = (lang: string) => {
+  const langHandler = (lang: string): void => {
     i18n.changeLanguage(lang)
     setCurrent(lang)
   }
@@ -47,7 +50,7 @@ const LangSwitcher: React.FC = () => {
             [classes.lang]: true,
             [classes.activeLang]: lang === current
           })}
-          onClick={() => langHandler(lang)}
+          onClick={(): void => langHandler(lang)}
         >
           {lang}
         </span>

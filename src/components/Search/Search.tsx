@@ -25,7 +25,8 @@ const useStyles = makeStyles(theme => ({
     }
   },
   inp: {
-    backgroundColor: '#272323',
+    backgroundColor: theme.palette.primary.dark,
+    // backgroundColor: '#272323',
     color: '#fff',
     '& .MuiOutlinedInput-input': {
       fontWeight: '600',
@@ -64,7 +65,6 @@ const Search: React.FC = () => {
                       //   onClick={handleClickShowPassword}
                       edge="end"
                     >
-                      {console.log(values)}
                       {!values.searchQuery ? <SearchIcon color="primary" /> : <CloseIcon color="primary" />}
                     </IconButton>
                   </InputAdornment>

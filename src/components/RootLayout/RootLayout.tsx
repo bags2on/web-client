@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import Header from '../Header/Header'
 import Drawer from '../Drawer/Drawer'
 
-const RootLayout: React.FC = ({ children }) => {
+interface RootLayoutProps {
+  themeChanger(checked: boolean): void
+}
+
+const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
   const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
 
   const handleOpenDrawer = (): void => {
@@ -16,7 +20,7 @@ const RootLayout: React.FC = ({ children }) => {
   return (
     <>
       <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer} />
-      <Header onDrawerOpen={handleOpenDrawer} />
+      <Header onDrawerOpen={handleOpenDrawer} themeChanger={themeChanger} />
       <main>{children}</main>
     </>
   )

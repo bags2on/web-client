@@ -7,10 +7,14 @@ import Fallback from './common/Fallback'
 const Login = lazy(() => import('./pages/Login/Login'))
 const Home = lazy(() => import('./pages/Home/Home'))
 
-const App: React.FC = () => {
+interface AppProps {
+  themeChanger(checked: boolean): void
+}
+
+const App: React.FC<AppProps> = ({ themeChanger }) => {
   return (
     <Suspense fallback={<Fallback />}>
-      <RootLayout>
+      <RootLayout themeChanger={themeChanger}>
         <Switch>
           <Route path={routes.login} component={Login} />
           <Route path={routes.root} component={Home} />

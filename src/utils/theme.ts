@@ -1,12 +1,8 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 
-const appColors = {
-  main: '#ffa800',
-  lightBackground: '#fefefe',
-  appBackground: '#303030'
-}
+// lightBackground: '#fefefe'
 
-export default createMuiTheme({
+export const darkTheme = createMuiTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -17,12 +13,47 @@ export default createMuiTheme({
     }
   },
   palette: {
+    type: 'dark',
     primary: {
-      main: appColors.main,
-      dark: appColors.appBackground
+      main: '#ff9900',
+      // main: appColors.main,
+      dark: '#303030'
     },
     background: {
-      default: appColors.appBackground
+      default: '#303030'
+    }
+  },
+  typography: {
+    fontFamily: [
+      'Montserrat',
+      'Roboto',
+      'Arial',
+      'sans-serif',
+      '"Apple Color Emoji"',
+      '"Segoe UI Emoji"',
+      '"Segoe UI Symbol"'
+    ].join(',')
+  }
+})
+
+export const lightTheme = createMuiTheme({
+  breakpoints: {
+    values: {
+      xs: 0,
+      sm: 450,
+      md: 600,
+      lg: 900,
+      xl: 1200
+    }
+  },
+  palette: {
+    type: 'light',
+    primary: {
+      main: '#383838',
+      dark: '#fff'
+    },
+    background: {
+      default: '#fff'
     }
   },
   typography: {

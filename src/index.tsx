@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import { ApolloProvider } from '@apollo/react-hooks'
@@ -7,20 +7,37 @@ import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import { I18nextProvider } from 'react-i18next'
 import client from './utils/apollo'
 import i18n from './locales/i18n'
-import theme from './utils/theme'
+import { darkTheme, lightTheme } from './utils/theme'
 import history from './utils/history'
 
-const application = (
-  <Router history={history}>
-    <ThemeProvider theme={theme}>
-      <ApolloProvider client={client}>
-        <I18nextProvider i18n={i18n}>
-          <CssBaseline />
-          <App />
-        </I18nextProvider>
-      </ApolloProvider>
-    </ThemeProvider>
-  </Router>
-)
+const useTheme = (): [string, (checked: boolean) => void] => {
+  const defaultTheme = localStorage.getItem('theme') || 'dark'
 
-ReactDOM.render(application, document.querySelector('#root'))
+  const [theme, setTheme] = useState<string>(defaultTheme)
+
+  const toggleThemeMode = (checked: boolean): void => {
+    setTheme(checked ? 'light' : 'dark')
+    localStorage.setItem('theme', checked ? 'light' : 'dark')
+  }
+
+  return [theme, toggleThemeMode]
+}
+
+const Application: React.FC = () => {
+  const [theme, changeTheme] = useTheme()
+
+  return (
+    <Router history={history}>
+      <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+        <ApolloProvider client={client}>
+          <I18nextProvider i18n={i18n}>
+            <CssBaseline />
+            <App themeChanger={changeTheme} />
+          </I18nextProvider>
+        </ApolloProvider>
+      </ThemeProvider>
+    </Router>
+  )
+}
+
+ReactDOM.render(<Application />, document.querySelector('#root'))
