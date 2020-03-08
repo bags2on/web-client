@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   menuIcon: {
-    fill: theme.palette.primary.main
+    fill: '#ff9900'
   },
   cart: {
     paddingRight: 0

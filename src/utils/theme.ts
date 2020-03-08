@@ -50,6 +50,8 @@ export const lightTheme = createMuiTheme({
     type: 'light',
     primary: {
       main: '#383838',
+      // main: '#ff9900',
+
       dark: '#fff'
     },
     background: {

@@ -19,7 +19,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
 
   return (
     <>
-      <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer} />
+      <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer} themeChanger={themeChanger} />
       <Header onDrawerOpen={handleOpenDrawer} themeChanger={themeChanger} />
       <main>{children}</main>
     </>

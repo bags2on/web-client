@@ -1,11 +1,13 @@
 import React from 'react'
 import DrawerUI from '@material-ui/core/Drawer'
 import DrawerHeader from './DrawerHeader/DrawerHeader'
+import NightToggleSwith from '../../common/NightToggleSwith/NightToggleSwith'
 import { makeStyles } from '@material-ui/core'
 
 interface DrawerProps {
   isOpen: boolean
   onClose(): void
+  themeChanger(checked: boolean): void
 }
 
 const useStyles = makeStyles(theme => ({
@@ -17,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose }) => {
+const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
   const classes = useStyles()
 
   return (
@@ -31,6 +33,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose }) => {
     >
       <div className={classes.root}>
         <DrawerHeader onClose={onClose} />
+        <NightToggleSwith themeChanger={themeChanger} />
       </div>
     </DrawerUI>
   )
