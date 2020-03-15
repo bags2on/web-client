@@ -4,9 +4,10 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from '@popmotion/popcorn'
 import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     position: 'relative',
+    overflow: 'hidden',
     height: '100vh',
     maxHeight: '450px'
   },
@@ -19,14 +20,14 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export const images = [
-  'https://d33wubrfki0l68.cloudfront.net/dd23708ebc4053551bb33e18b7174e73b6e1710b/dea24/static/images/wallpapers/shared-colors@2x.png',
-  'https://d33wubrfki0l68.cloudfront.net/49de349d12db851952c5556f3c637ca772745316/cfc56/static/images/wallpapers/bridge-02@2x.png',
-  'https://d33wubrfki0l68.cloudfront.net/594de66469079c21fc54c14db0591305a1198dd6/3f4b1/static/images/wallpapers/bridge-01@2x.png'
+const images: string[] = [
+  'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/list_lazmfm.jpg',
+  'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/morozhenoe_zqzcj0.jpg',
+  'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/zveri_pattern_z3blcb.jpg'
 ]
 
 const variants = {
-  enter: (direction: number) => {
+  enter: (direction: number): object => {
     return {
       x: direction > 0 ? 1000 : -1000,
       opacity: 0
@@ -37,7 +38,7 @@ const variants = {
     x: 0,
     opacity: 1
   },
-  exit: (direction: number) => {
+  exit: (direction: number): object => {
     return {
       zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
@@ -53,11 +54,11 @@ const variants = {
  * just distance thresholds and velocity > 0.
  */
 const swipeConfidenceThreshold = 10000
-const swipePower = (offset: number, velocity: number) => {
+const swipePower = (offset: number, velocity: number): number => {
   return Math.abs(offset) * velocity
 }
 
-const Example = () => {
+const Example: React.FC = () => {
   const [[page, direction], setPage] = useState([0, 0])
 
   const classes = useStyles()
@@ -68,13 +69,14 @@ const Example = () => {
   // detect it as an entirely new image. So you can infinitely paginate as few as 1 images.
   const imageIndex = wrap(0, images.length, page)
 
-  const paginate = (newDirection: number) => {
+  const paginate = (newDirection: number): void => {
     setPage([page + newDirection, newDirection])
   }
 
   return (
     <div className={classes.root}>
-      <AnimatePresence initial={false} custom={direction}>
+      {/* initial={false} - without mount styles */}
+      <AnimatePresence custom={direction}>
         <motion.img
           key={page}
           src={images[imageIndex]}
@@ -83,9 +85,6 @@ const Example = () => {
           initial="enter"
           animate="center"
           exit="exit"
-          // style={{
-          //   maxWidth
-          // }}
           className={classes.image}
           transition={{
             x: { type: 'spring', stiffness: 300, damping: 200 },
@@ -94,7 +93,7 @@ const Example = () => {
           drag="x"
           dragConstraints={{ left: 0, right: 0 }}
           dragElastic={1}
-          onDragEnd={(e, { offset, velocity }) => {
+          onDragEnd={(e, { offset, velocity }): void => {
             const swipe = swipePower(offset.x, velocity.x)
 
             if (swipe < -swipeConfidenceThreshold) {
