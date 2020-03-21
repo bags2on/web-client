@@ -6,24 +6,34 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
   root: {
+    maxHeight: 300,
+    minHeight: '240px'
+  },
+  box: {
+    display: 'flex',
+    justifyContent: 'center',
     position: 'relative',
     overflow: 'hidden',
-    height: '100vh',
-    maxHeight: '450px'
+    width: '100%',
+    paddingTop: '30%',
+    minHeight: '240px'
   },
   image: {
-    maxWidth: '100%',
+    width: '100%', // m
+    maxHeight: 300,
+    minHeight: '240px',
+    top: 0,
     padding: 15,
-    maxHeight: '450px',
+    height: '100%',
     position: 'absolute',
     borderRadius: '40px'
   }
 }))
 
 const images: string[] = [
+  'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/zveri_pattern_z3blcb.jpg',
   'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/list_lazmfm.jpg',
-  'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/morozhenoe_zqzcj0.jpg',
-  'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/zveri_pattern_z3blcb.jpg'
+  'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/morozhenoe_zqzcj0.jpg'
 ]
 
 const variants = {
@@ -74,37 +84,39 @@ const Example: React.FC = () => {
   }
 
   return (
-    <div className={classes.root}>
-      {/* initial={false} - without mount styles */}
-      <AnimatePresence custom={direction}>
-        <motion.img
-          key={page}
-          src={images[imageIndex]}
-          custom={direction}
-          variants={variants}
-          initial="enter"
-          animate="center"
-          exit="exit"
-          className={classes.image}
-          transition={{
-            x: { type: 'spring', stiffness: 300, damping: 200 },
-            opacity: { duration: 0.2 }
-          }}
-          drag="x"
-          dragConstraints={{ left: 0, right: 0 }}
-          dragElastic={1}
-          onDragEnd={(e, { offset, velocity }): void => {
-            const swipe = swipePower(offset.x, velocity.x)
+    <section className={classes.root}>
+      <div className={classes.box}>
+        {/* initial={false} - without mount styles */}
+        <AnimatePresence custom={direction}>
+          <motion.img
+            key={page}
+            src={images[imageIndex]}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            className={classes.image}
+            transition={{
+              x: { type: 'spring', stiffness: 300, damping: 200 },
+              opacity: { duration: 0.2 }
+            }}
+            drag="x"
+            dragConstraints={{ left: 0, right: 0 }}
+            dragElastic={1}
+            onDragEnd={(e, { offset, velocity }): void => {
+              const swipe = swipePower(offset.x, velocity.x)
 
-            if (swipe < -swipeConfidenceThreshold) {
-              paginate(1)
-            } else if (swipe > swipeConfidenceThreshold) {
-              paginate(-1)
-            }
-          }}
-        />
-      </AnimatePresence>
-    </div>
+              if (swipe < -swipeConfidenceThreshold) {
+                paginate(1)
+              } else if (swipe > swipeConfidenceThreshold) {
+                paginate(-1)
+              }
+            }}
+          />
+        </AnimatePresence>
+      </div>
+    </section>
   )
 }
 
