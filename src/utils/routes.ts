@@ -4,7 +4,8 @@ interface RoutesMap {
 
 const routes: RoutesMap = {
   login: '/login',
-  root: '/'
+  root: '/',
+  catalog: '/catalog'
 }
 
 export default routes
