@@ -1,37 +1,44 @@
 import React from 'react'
 import Icon from '@material-ui/core/Icon'
 import IconButton from '@material-ui/core/IconButton'
-
 import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
-import { ReactComponent as TestIcon } from '../../../assets/svg/baggage.svg'
-
+import { ReactComponent as BaggageIcon } from '../../../assets/svg/baggage.svg'
+import { ReactComponent as WalletIcon } from '../../../assets/svg/wallet.svg'
+import { ReactComponent as BagIcon } from '../../../assets/svg/shopping-bag.svg'
+import { ReactComponent as OtherIcon } from '../../../assets/svg/other.svg'
 import { makeStyles } from '@material-ui/core'
 
-const categoriesValues: any[] = [
+interface CategoryItem {
+  icon: React.ElementType
+  to: string
+  text: string
+}
+
+const categoriesValues: CategoryItem[] = [
   {
-    icon: TestIcon,
-    text: 'Suitcase'
+    icon: BaggageIcon,
+    to: '#',
+    text: 'Suitcases'
   },
   {
-    icon: TestIcon,
-    text: 'Suitcase'
+    icon: BagIcon,
+    to: '#',
+    text: 'Bags'
   },
   {
-    icon: TestIcon,
-    text: 'Suitcase'
+    icon: WalletIcon,
+    to: '#',
+    text: 'Wallets'
   },
   {
-    icon: TestIcon,
-    text: 'Suitcase'
-  },
-  {
-    icon: TestIcon,
-    text: 'Suitcase'
+    icon: OtherIcon,
+    to: '#',
+    text: 'Other...'
   }
 ]
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     padding: '3px 5px 10px 5px',
     marginBottom: '15px',
@@ -50,7 +57,7 @@ const useStyles = makeStyles(theme => ({
   },
   item: {
     margin: '0 5px',
-    flexBasis: '20%',
+    flexBasis: '25%',
     textAlign: 'center'
   },
   icon: {

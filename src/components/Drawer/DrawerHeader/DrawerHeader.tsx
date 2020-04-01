@@ -1,52 +1,57 @@
 import React from 'react'
-import logo from '../../../assets/svg/small-logo.svg'
-import { Link } from 'react-router-dom'
-import IconButton from '@material-ui/core/IconButton'
-import Close from '@material-ui/icons/Close'
 import Divider from '@material-ui/core/Divider'
+import Link from '@material-ui/core/Link'
+import Typography from '@material-ui/core/Typography'
+import NightToggleSwith from '../../../common/NightToggleSwith/NightToggleSwith'
+
 import { makeStyles } from '@material-ui/core'
 
 interface DrawerHeaderProps {
-  onClose(): void
+  themeChanger(checked: boolean): void
 }
 
 const useStyles = makeStyles(() => ({
   root: {
     position: 'relative',
-    padding: '40px 15px 30px 15px'
+    padding: '40px 0 30px 20px'
   },
   logo: {
-    width: 190
+    fontSize: '40px',
+    fontWeight: 500,
+    color: 'transparent',
+    background: 'linear-gradient(to right, #fc4a1a, #FFDD00, #f7b733)',
+    '-webkit-background-clip': 'text'
   },
   close: {
     padding: 0,
     position: 'absolute',
-    top: 10,
-    right: 10
+    top: 15,
+    right: 18
   },
   dline: {
     padding: '0 10px'
   },
   divider: {
-    backgroundColor: '#d8bbbb80'
+    backgroundColor: '#d8bbbb80',
+    marginBottom: '10px'
   }
 }))
 
-const DrawerHeader: React.FC<DrawerHeaderProps> = ({ onClose }) => {
+const DrawerHeader: React.FC<DrawerHeaderProps> = ({ themeChanger }) => {
   const classes = useStyles()
 
   return (
     <>
       <div className={classes.root}>
-        <Link to="/">
-          <div className={classes.logo}>
-            <img src={logo} alt="Bags2on" />
-          </div>
-        </Link>
-        <div>
-          <IconButton className={classes.close} disableRipple color="primary" onClick={onClose}>
-            <Close fontSize="large" />
-          </IconButton>
+        <Typography className={classes.logo} component="h1">
+          <Link color="inherit">
+            Bags
+            <sup>2</sup>
+            on
+          </Link>
+        </Typography>
+        <div className={classes.close}>
+          <NightToggleSwith themeChanger={themeChanger} />
         </div>
       </div>
       <div className={classes.dline}>

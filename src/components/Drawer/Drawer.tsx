@@ -1,14 +1,25 @@
 import React from 'react'
 import DrawerUI from '@material-ui/core/Drawer'
 import DrawerHeader from './DrawerHeader/DrawerHeader'
-import NightToggleSwith from '../../common/NightToggleSwith/NightToggleSwith'
-import { Link } from 'react-router-dom'
-import { makeStyles } from '@material-ui/core'
+import List from '@material-ui/core/List'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import { makeStyles, SvgIcon } from '@material-ui/core'
+import { ReactComponent as PercentIcon } from '../../assets/svg/sale.svg'
+import { ReactComponent as HistoryIcon } from '../../assets/svg/history.svg'
+import { ReactComponent as LookIcon } from '../../assets/svg/look.svg'
 
 interface DrawerProps {
   isOpen: boolean
   onClose(): void
   themeChanger(checked: boolean): void
+}
+
+interface DrawerItem {
+  icon: React.ElementType
+  to: string
+  text: string
 }
 
 const useStyles = makeStyles(theme => ({
@@ -17,8 +28,39 @@ const useStyles = makeStyles(theme => ({
     width: '100%',
     maxWidth: 300,
     backgroundColor: theme.palette.primary.dark
+  },
+  drawerItem: {
+    margin: '5px 0',
+    paddingLeft: '19px'
+  },
+  icon: {
+    height: 'auto',
+    color: '#ff9900'
+  },
+  text: {
+    '& > span': {
+      fontSize: '18px'
+    }
   }
 }))
+
+const drawerItems: DrawerItem[] = [
+  {
+    icon: PercentIcon,
+    to: '/discounts',
+    text: 'Sales'
+  },
+  {
+    icon: HistoryIcon,
+    to: '/catalog',
+    text: 'Catalog'
+  },
+  {
+    icon: LookIcon,
+    to: '/history',
+    text: 'Watch history'
+  }
+]
 
 const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
   const classes = useStyles()
@@ -33,13 +75,19 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
       }}
     >
       <div className={classes.root}>
-        <DrawerHeader onClose={onClose} />
-        <NightToggleSwith themeChanger={themeChanger} />
-        <ul>
-          <li>
-            <Link to="/catalog">Catalog</Link>
-          </li>
-        </ul>
+        <DrawerHeader themeChanger={themeChanger} />
+        <List component="ul" aria-label="shop's content">
+          {drawerItems.map(item => (
+            <ListItem key={item.text} className={classes.drawerItem} button component="li">
+              <ListItemIcon>
+                <SvgIcon fontSize="large" className={classes.icon}>
+                  <item.icon />
+                </SvgIcon>
+              </ListItemIcon>
+              <ListItemText primary={item.text} className={classes.text} />
+            </ListItem>
+          ))}
+        </List>
       </div>
     </DrawerUI>
   )

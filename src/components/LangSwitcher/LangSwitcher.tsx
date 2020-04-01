@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
     '-webkit-tap-highlight-color': 'transparent',
     '-moz-appearance': 'none',
     '-webkit-appearance': 'none',
-    '&:hover': {
+    '&:hover,&:focus': {
       textDecoration: 'underline'
     }
   },
