@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { ApolloProvider } from '@apollo/react-hooks'
 import { Router } from 'react-router-dom'
 import { ThemeProvider, CssBaseline } from '@material-ui/core'
 import { I18nextProvider } from 'react-i18next'
-import client from './utils/apollo'
 import i18n from './locales/i18n'
 import { darkTheme, lightTheme } from './utils/theme'
 import history from './utils/history'
@@ -29,12 +27,10 @@ const Application: React.FC = () => {
   return (
     <Router history={history}>
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-        <ApolloProvider client={client}>
-          <I18nextProvider i18n={i18n}>
-            <CssBaseline />
-            <App themeChanger={changeTheme} />
-          </I18nextProvider>
-        </ApolloProvider>
+        <I18nextProvider i18n={i18n}>
+          <CssBaseline />
+          <App themeChanger={changeTheme} />
+        </I18nextProvider>
       </ThemeProvider>
     </Router>
   )
