@@ -5,7 +5,9 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
+import history from '../../utils/history'
 import { makeStyles, SvgIcon } from '@material-ui/core'
+import { ReactComponent as HomeIcon } from '../../assets/svg/home.svg'
 import { ReactComponent as PercentIcon } from '../../assets/svg/sale.svg'
 import { ReactComponent as HistoryIcon } from '../../assets/svg/history.svg'
 import { ReactComponent as LookIcon } from '../../assets/svg/look.svg'
@@ -46,6 +48,11 @@ const useStyles = makeStyles(theme => ({
 
 const drawerItems: DrawerItem[] = [
   {
+    icon: HomeIcon,
+    to: '/',
+    text: 'Home'
+  },
+  {
     icon: PercentIcon,
     to: '/discounts',
     text: 'Sales'
@@ -65,6 +72,14 @@ const drawerItems: DrawerItem[] = [
 const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
   const classes = useStyles()
 
+
+  const goTo = (path: string): void => {
+    onClose()
+    setTimeout(() => {
+      history.push(path)
+    }, 250)
+  }
+
   return (
     <DrawerUI
       anchor="left"
@@ -78,7 +93,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
         <DrawerHeader themeChanger={themeChanger} />
         <List component="ul" aria-label="shop's content">
           {drawerItems.map(item => (
-            <ListItem key={item.text} className={classes.drawerItem} button component="li">
+            <ListItem key={item.text} onClick={() => goTo(item.to)} className={classes.drawerItem} button component="li">
               <ListItemIcon>
                 <SvgIcon fontSize="large" className={classes.icon}>
                   <item.icon />
