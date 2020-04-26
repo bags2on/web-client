@@ -8,6 +8,7 @@ import { ReactComponent as WalletIcon } from '../../../assets/svg/wallet.svg'
 import { ReactComponent as BagIcon } from '../../../assets/svg/shopping-bag.svg'
 import { ReactComponent as OtherIcon } from '../../../assets/svg/other.svg'
 import { makeStyles } from '@material-ui/core'
+import routes from '../../../utils/routes'
 
 interface CategoryItem {
   icon: React.ElementType
@@ -33,7 +34,7 @@ const categoriesValues: CategoryItem[] = [
   },
   {
     icon: OtherIcon,
-    to: '#',
+    to: routes.catalog,
     text: 'Other...'
   }
 ]
@@ -93,7 +94,7 @@ const Categories: React.FC = () => {
           {categoriesValues.map((category, ind) => (
             <li key={ind} className={classes.item}>
               <div className={classes.icon}>
-                <Link to="#">
+                <Link to={category.to}>
                   <IconButton aria-label={category.text}>
                     <Icon>
                       <category.icon />
