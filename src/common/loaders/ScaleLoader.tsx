@@ -6,7 +6,7 @@ interface StyleProps {
   dark?: boolean
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     '& div:nth-child(1)': {
       animation: '$scale-loader 1s -.4s infinite cubic-bezier(.2, .68, .18, 1.08)'
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   dot: {
     display: 'inline-block',
     animationFillMode: 'both',
-    backgroundColor: (props: StyleProps) => (props.dark ? theme.palette.primary.dark : theme.palette.primary.main),
+    backgroundColor: '#ff9900',
     width: (props: StyleProps) => (props.fallback ? 5 : 3),
     height: (props: StyleProps) => (props.fallback ? 70 : 20),
     margin: (props: StyleProps) => (props.fallback ? '0 3px' : '0 2px'),
