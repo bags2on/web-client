@@ -27,8 +27,11 @@ interface Product {
 
 const useStyles = makeStyles(() => ({
   root: {
+    // background: '#ff9900'
+  },
+  list: {
     margin: 0,
-    padding: 0,
+    padding: 5,
     listStyle: 'none'
   },
   title: {
@@ -48,11 +51,11 @@ const Catalog: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className={classes.root}>
       <Typography className={classes.title} component="h2">
         Catalog
       </Typography>
-      <Grid container component="ul" className={classes.root}>
+      <Grid container component="ul" className={classes.list}>
         {data.products.map((product: Product) => (
           <Grid key={product.id} component="li" item xs={6}>
             <CatalogItem url={product.images[0]} title={product.title} price={product.price} />

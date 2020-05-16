@@ -34,9 +34,10 @@ const items = [
   }
 ]
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    background: '#232121',
+    // background: '#232121',
+    background: '#fff',
     padding: '20px 0',
     color: theme.palette.primary.main
   },

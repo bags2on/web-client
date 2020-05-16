@@ -17,11 +17,11 @@ interface HeaderProps {
   themeChanger(checked: boolean): void
 }
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#282828',
+    backgroundColor: theme.palette.type === 'light' ? '#ff9900' : '#282828',
     [theme.breakpoints.up('lg')]: {
       padding: '4px 20px'
     }
@@ -48,7 +48,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   menuIcon: {
-    fill: '#ff9900'
+    fill: theme.palette.type === 'light' ? '#303030' : '#ff9900'
   },
   cart: {
     paddingRight: 0

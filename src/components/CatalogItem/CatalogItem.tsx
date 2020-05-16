@@ -9,7 +9,15 @@ interface CatalogItemProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {},
+  root: {
+    background: '#fff',
+    margin: '8px 3px',
+    borderRadius: '8px',
+    boxShadow: '0px 1px 9px -1px rgba(0,0,0,0.1)',
+    '&:hover': {
+      // boxShadow: '0px 1px 9px 1px rgba(0,0,0,0.1)'
+    }
+  },
   image: {
     padding: 10,
     '& > img': {

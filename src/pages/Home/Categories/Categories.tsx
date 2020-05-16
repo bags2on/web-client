@@ -74,8 +74,12 @@ const useStyles = makeStyles(() => ({
     boxShadow: '0 2px 10px -1px rgba(0, 0, 0, 0.15)',
     '-webkit-tap-highlight-color': 'transparent',
     '-moz-appearance': 'none',
-    '-webkit-appearance': 'none'
+    '-webkit-appearance': 'none',
+    '&:hover': {
+      boxShadow: '0 2px 10px 1px rgba(0, 0, 0, 0.15)'
+    }
   },
+
   text: {
     fontSize: '14px'
   }
@@ -95,7 +99,7 @@ const Categories: React.FC = () => {
             <li key={ind} className={classes.item}>
               <div className={classes.icon}>
                 <Link to={category.to}>
-                  <IconButton aria-label={category.text}>
+                  <IconButton disableRipple aria-label={category.text} style={{ backgroundColor: 'transparent' }}>
                     <Icon>
                       <category.icon />
                     </Icon>
