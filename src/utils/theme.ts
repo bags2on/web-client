@@ -55,8 +55,9 @@ export const lightTheme = createMuiTheme({
       dark: '#fff'
     },
     background: {
+      default: '#fff'
       // default: '#f8fafa'
-      default: '#F8F8F8'
+      // default: '#F8F8F8'
       // default: '#D8D8D8' // maybe search?
     }
   },

@@ -37,7 +37,7 @@ const items = [
 const useStyles = makeStyles((theme) => ({
   root: {
     // background: '#232121',
-    background: '#fff',
+    background: '#f8fafa',
     padding: '20px 0',
     color: theme.palette.primary.main
   },

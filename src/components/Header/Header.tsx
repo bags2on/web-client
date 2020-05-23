@@ -5,10 +5,11 @@ import { makeStyles } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
 import Icon from '@material-ui/core/Icon'
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
-import PersonIcon from '@material-ui/icons/Person'
 import logo from '../../assets/rastr/small-logo.png'
 import Search from '../../components/Search/Search'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
+import { ReactComponent as CartIcon } from '../../assets/svg/cart.svg'
+
 import NightToggleSwith from '../../common/NightToggleSwith/NightToggleSwith'
 import routes from '../../utils/routes'
 
@@ -21,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    backgroundColor: theme.palette.type === 'light' ? '#ff9900' : '#282828',
+    padding: '5px 0',
+    // backgroundColor: theme.palette.type === 'light' ? '#ff9900' : '#282828',
     [theme.breakpoints.up('lg')]: {
       padding: '4px 20px'
     }
@@ -51,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     fill: theme.palette.type === 'light' ? '#303030' : '#ff9900'
   },
   cart: {
-    paddingRight: 0
+    // paddingRight: 0
   },
   toggl: {
     marginLeft: 7,
@@ -82,11 +84,8 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, themeChanger }) => {
         </div>
       </Link>
       <Search />
-      <IconButton color="primary" disableRipple className={clsx(classes.btns, classes.cart)}>
+      <IconButton color="primary" disableRipple className={classes.btns}>
         <ShoppingCartIcon fontSize="large" />
-      </IconButton>
-      <IconButton to={routes.login} color="primary" disableRipple className={classes.btns} component={Link}>
-        <PersonIcon fontSize="large" />
       </IconButton>
       <div className={classes.toggl}>
         <NightToggleSwith themeChanger={themeChanger} />

@@ -2,17 +2,14 @@ import React from 'react'
 import { Formik, Form } from 'formik'
 import { TopSearchSchema, TopSearchType } from '../../utils/validationSchema'
 import FormControl from '@material-ui/core/FormControl'
-import OutlinedInput from '@material-ui/core/OutlinedInput'
-import InputAdornment from '@material-ui/core/InputAdornment'
-import IconButton from '@material-ui/core/IconButton'
-import SearchIcon from '@material-ui/icons/Search'
-import CloseIcon from '@material-ui/icons/Close'
 import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@material-ui/core'
+import Field from './Field'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    boxShadow: '0px 1px 9px -1px rgba(0,0,0,0.1)'
   },
   control: {
     width: '100%',
@@ -48,29 +45,16 @@ const Search: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <Formik onSubmit={handleSearch} initialValues={initialValues} validationSchema={TopSearchSchema}>
-        {({ values }): React.ReactElement => (
+      <Formik
+        onSubmit={handleSearch}
+        // enableReinitialize
+        initialValues={initialValues}
+        validationSchema={TopSearchSchema}
+      >
+        {(): React.ReactElement => (
           <Form noValidate>
             <FormControl variant="outlined" className={classes.control}>
-              <OutlinedInput
-                name="searchQuery"
-                className={classes.inp}
-                // type="text"
-                placeholder={t('headerSearch')}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      type="submit"
-                      aria-label="search"
-                      //   onClick={handleClickShowPassword}
-                      edge="end"
-                    >
-                      {!values.searchQuery ? <SearchIcon color="primary" /> : <CloseIcon color="primary" />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                labelWidth={0}
-              />
+              <Field name="searchQuery" placeholder={t('headerSearch')} />
             </FormControl>
           </Form>
         )}
