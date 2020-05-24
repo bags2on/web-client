@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
     color: '#fff',
     background: '#303030',
     textAlign: 'center',
-    padding: '20px 0'
+    padding: '15px 0'
   },
   logo: {
     color: 'transparent',
