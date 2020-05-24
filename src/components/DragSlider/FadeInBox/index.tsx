@@ -27,7 +27,7 @@ export const FadeInBox: React.FC<FadeInBoxProps> = ({
 
   const transition = useMemo(
     () => ({
-      duration: 0.4,
+      duration: 0.4, // mount animation
       delay,
       ease: easing
     }),

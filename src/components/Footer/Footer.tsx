@@ -21,12 +21,10 @@ const Footer: React.FC = () => {
 
   return (
     <footer className={classes.root}>
-      <Typography component="p">
-        <Typography component="span" className={classes.logo}>
-          bags2on
-        </Typography>
-        &nbsp; 2020
+      <Typography component="p" className={classes.logo}>
+        bags2on
       </Typography>
+      <Typography component="p">2020</Typography>
     </footer>
   )
 }

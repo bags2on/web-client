@@ -49,6 +49,11 @@ const DragSlider: React.FC<DragSliderProps> = ({ children }) => {
 
     calcSliderConstraints()
     window.addEventListener('resize', calcSliderConstraints)
+
+    return (): void => {
+      window.removeEventListener('resize', calcSliderWidth)
+      window.removeEventListener('resize', calcSliderConstraints)
+    }
   }, [ref, sliderChildrenWidth, sliderWidth])
 
   return (

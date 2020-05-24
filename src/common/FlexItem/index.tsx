@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center',
     alignItems: 'center',
     background: '#ff9900',
-    height: 300,
+    height: 200,
     marginRight: 10,
     fontSize: 30,
     fontWeight: 2,
