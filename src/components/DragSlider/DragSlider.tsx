@@ -51,29 +51,6 @@ const DragSlider: React.FC<DragSliderProps> = ({ children }) => {
     window.addEventListener('resize', calcSliderConstraints)
   }, [ref, sliderChildrenWidth, sliderWidth])
 
-  //   const SliderWrapper: React.FC = ({ children }) => {
-  //     return (
-  //       <div style={{ overflowX: 'hidden' }}>
-  //         <motion.div
-  //           ref={ref}
-  //           drag="x"
-  //           initial={{ x: 0 }}
-  //           style={{ x }}
-  //           dragConstraints={{
-  //             left: -constraintsCount,
-  //             right: 0
-  //           }}
-  //           dragTransition={{
-  //             bounceStiffness,
-  //             bounceDamping
-  //           }}
-  //         >
-  //           {children}
-  //         </motion.div>
-  //       </div>
-  //     )
-  //   }
-
   return (
     <motion.div
       className={classes.root}

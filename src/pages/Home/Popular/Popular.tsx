@@ -25,7 +25,11 @@ const Popular: React.FC = () => {
       <Typography className={classes.title} component="h2">
         Also you may like
       </Typography>
-      <div>
+      <div
+        style={{
+          overflowX: 'hidden'
+        }}
+      >
         <DragSlider>
           {[...Array(10).keys()].map((item, key) => (
             <FlexItem key={key} width={270}>
