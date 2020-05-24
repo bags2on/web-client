@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
+import clsx from 'clsx'
 import Typography from '@material-ui/core/Typography'
+import IconButton from '@material-ui/core/IconButton'
+import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core'
+import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
+import { ReactComponent as AddToCartIcon } from '../../assets/svg/trolley.svg'
 
 interface CatalogItemProps {
+  id: string
   url: string
   title: string
   price: number
@@ -10,6 +16,7 @@ interface CatalogItemProps {
 
 const useStyles = makeStyles(() => ({
   root: {
+    position: 'relative',
     background: '#fff',
     margin: '8px 3px',
     borderRadius: '8px',
@@ -34,11 +41,32 @@ const useStyles = makeStyles(() => ({
     '& > span': {
       fontWeight: 500
     }
+  },
+  likeButton: {
+    color: '#f44336',
+    position: 'absolute',
+    top: 4,
+    right: 4
+  },
+  heartIcon: {
+    stroke: '#f44336',
+    fill: 'none'
+  },
+  liked: {
+    fill: '#f44336'
   }
 }))
 
-const CatalogItem: React.FC<CatalogItemProps> = ({ url, title, price }) => {
+const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
   const classes = useStyles()
+
+  console.log(id)
+
+  const [isLiked, setLiked] = useState<boolean>(false)
+
+  const handleLikeClick = (): void => {
+    setLiked(!isLiked)
+  }
 
   return (
     <div className={classes.root}>
@@ -53,6 +81,19 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ url, title, price }) => {
         <Typography component="span">{price}</Typography>
         <Typography component="span">&nbsp;₴</Typography>
       </Typography>
+      <IconButton onClick={handleLikeClick} className={classes.likeButton}>
+        <Icon
+          fontSize="small"
+          classes={{
+            root: clsx({
+              [classes.heartIcon]: true,
+              [classes.liked]: isLiked
+            })
+          }}
+        >
+          <HeartIcon />
+        </Icon>
+      </IconButton>
     </div>
   )
 }

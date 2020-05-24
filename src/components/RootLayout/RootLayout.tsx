@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Header from '../Header/Header'
 import Drawer from '../Drawer/Drawer'
+import Footer from '../Footer/Footer'
 
 interface RootLayoutProps {
   themeChanger(checked: boolean): void
@@ -22,6 +23,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
       <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer} themeChanger={themeChanger} />
       <Header onDrawerOpen={handleOpenDrawer} themeChanger={themeChanger} />
       <main>{children}</main>
+      <Footer />
     </>
   )
 }

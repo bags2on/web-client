@@ -58,7 +58,7 @@ const Catalog: React.FC = () => {
       <Grid container component="ul" className={classes.list}>
         {data.products.map((product: Product) => (
           <Grid key={product.id} component="li" item xs={6}>
-            <CatalogItem url={product.images[0]} title={product.title} price={product.price} />
+            <CatalogItem url={product.images[0]} title={product.title} price={product.price} id={product.id} />
           </Grid>
         ))}
       </Grid>

@@ -1,6 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with React
 
-## Usage
+# Usage
+
+### Make sure that all backend services has been started!
 
 ```bash
 npm run start // it will be start on 3000 port

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core'
 import IconButton from '@material-ui/core/IconButton'
 import Icon from '@material-ui/core/Icon'
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart'
 import logo from '../../assets/rastr/small-logo.png'
 import Search from '../../components/Search/Search'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
@@ -49,6 +48,10 @@ const useStyles = makeStyles((theme) => ({
       display: 'none'
     }
   },
+  cartIcon: {
+    fontSize: 30,
+    fill: '#303030'
+  },
   menuIcon: {
     fill: theme.palette.type === 'light' ? '#303030' : '#ff9900'
   },
@@ -85,7 +88,9 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, themeChanger }) => {
       </Link>
       <Search />
       <IconButton color="primary" disableRipple className={classes.btns}>
-        <ShoppingCartIcon fontSize="large" />
+        <Icon className={classes.cartIcon}>
+          <CartIcon />
+        </Icon>
       </IconButton>
       <div className={classes.toggl}>
         <NightToggleSwith themeChanger={themeChanger} />
