@@ -13,7 +13,7 @@ const GET_ALL_PRODUCTS = gql`
       id
       price
       title
-      images
+      preview
     }
   }
 `
@@ -22,6 +22,7 @@ interface Product {
   id: string
   price: number
   title: string
+  preview: string
   images: string
 }
 
@@ -58,7 +59,7 @@ const Catalog: React.FC = () => {
       <Grid container component="ul" className={classes.list}>
         {data.products.map((product: Product) => (
           <Grid key={product.id} component="li" item xs={6}>
-            <CatalogItem url={product.images[0]} title={product.title} price={product.price} id={product.id} />
+            <CatalogItem url={product.preview} title={product.title} price={product.price} id={product.id} />
           </Grid>
         ))}
       </Grid>
