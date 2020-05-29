@@ -8,9 +8,8 @@ import logo from '../../assets/rastr/small-logo.png'
 import Search from '../../components/Search/Search'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
 import { ReactComponent as CartIcon } from '../../assets/svg/cart.svg'
-
 import NightToggleSwith from '../../common/NightToggleSwith/NightToggleSwith'
-import routes from '../../utils/routes'
+// import routes from '../../utils/routes'
 
 interface HeaderProps {
   onDrawerOpen(): void

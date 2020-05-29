@@ -12,12 +12,16 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Summary: React.FC = props => {
+interface SummaryProps {
+  title: string
+}
+
+const Summary: React.FC<SummaryProps> = ({ title }) => {
   const classes = useStyles()
 
   return (
     <div className={classes.root}>
-      <Typography className={classes.productTitle}>Product Title</Typography>
+      <Typography className={classes.productTitle}>{title}</Typography>
     </div>
   )
 }

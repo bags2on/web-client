@@ -1,7 +1,8 @@
 import React from 'react'
+import Drag from '../Drag'
 import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {},
   tmp: {
     margin: 10,
@@ -10,12 +11,16 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const PreviewBox: React.FC = () => {
+interface PreviewBoxProps {
+  images: string[]
+}
+
+const PreviewBox: React.FC<PreviewBoxProps> = ({ images }) => {
   const classes = useStyles()
 
   return (
     <div className={classes.root}>
-      <div className={classes.tmp} />
+      <Drag images={images} />
     </div>
   )
 }

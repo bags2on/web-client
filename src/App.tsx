@@ -7,7 +7,7 @@ import Fallback from './common/Fallback'
 const Login = lazy(() => import('./pages/Login'))
 const Home = lazy(() => import('./pages/Home'))
 const Catalog = lazy(() => import('./pages/Catalog'))
-const ProductDetails = lazy(() => import('./pages/ProductDetails/ProductDetails'))
+const ProductDetails = lazy(() => import('./pages/ProductDetails'))
 
 interface AppProps {
   themeChanger(checked: boolean): void
@@ -21,7 +21,7 @@ const App: React.FC<AppProps> = ({ themeChanger }) => {
           <Route exact path={routes.root} component={Home} />
           <Route path={routes.catalog} component={Catalog} />
           <Route path={routes.login} component={Login} />
-          <Route path={routes.product} component={ProductDetails} />
+          <Route exact path={routes.product} component={ProductDetails} />
         </Switch>
       </RootLayout>
     </Suspense>

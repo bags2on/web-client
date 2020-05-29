@@ -4,8 +4,10 @@ import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core'
+import { Link } from 'react-router-dom'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
-import { ReactComponent as AddToCartIcon } from '../../assets/svg/trolley.svg'
+import routes from '../../utils/routes'
+import { generateLink } from '../../utils/links'
 
 interface CatalogItemProps {
   id: string
@@ -60,8 +62,6 @@ const useStyles = makeStyles(() => ({
 const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
   const classes = useStyles()
 
-  console.log(id)
-
   const [isLiked, setLiked] = useState<boolean>(false)
 
   const handleLikeClick = (): void => {
@@ -70,9 +70,11 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.image}>
-        <img src={url} alt={title} />
-      </div>
+      <Link to={generateLink(routes.product, id)}>
+        <div className={classes.image}>
+          <img src={url} alt={title} />
+        </div>
+      </Link>
       <Typography component="p" className={classes.title}>
         {title}
       </Typography>
