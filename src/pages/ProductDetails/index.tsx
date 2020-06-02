@@ -33,10 +33,12 @@ const ProductDetails: React.FC = () => {
 
   console.log(product)
 
+  const tmp: string[] = ['new', 'best price']
+
   return (
     <div>
       <PreviewBox images={product.images} />
-      <Summary title={product.title} />
+      <Summary title={product.title} price={product.price} tags={tmp} />
     </div>
   )
 }

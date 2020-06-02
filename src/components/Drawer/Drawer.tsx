@@ -9,7 +9,7 @@ import history from '../../utils/history'
 import { makeStyles, SvgIcon } from '@material-ui/core'
 import { ReactComponent as HomeIcon } from '../../assets/svg/home.svg'
 import { ReactComponent as PercentIcon } from '../../assets/svg/sale.svg'
-import { ReactComponent as HistoryIcon } from '../../assets/svg/history.svg'
+import { ReactComponent as ListIcon } from '../../assets/svg/list.svg'
 import { ReactComponent as LookIcon } from '../../assets/svg/look.svg'
 
 interface DrawerProps {
@@ -61,7 +61,7 @@ const drawerItems: DrawerItem[] = [
     text: 'Sales'
   },
   {
-    icon: HistoryIcon,
+    icon: ListIcon,
     to: '/catalog',
     text: 'Catalog'
   },
