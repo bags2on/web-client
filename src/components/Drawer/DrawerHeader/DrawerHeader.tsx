@@ -2,7 +2,7 @@ import React from 'react'
 import Divider from '@material-ui/core/Divider'
 import Link from '@material-ui/core/Link'
 import Typography from '@material-ui/core/Typography'
-import NightToggleSwith from '../../../common/NightToggleSwith/NightToggleSwith'
+import NightToggleSwith from '../../../shared/NightToggleSwith/NightToggleSwith'
 
 import { makeStyles } from '@material-ui/core'
 

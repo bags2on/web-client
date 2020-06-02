@@ -4,7 +4,7 @@ import { Button as ButtonUI } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import ScaleLoader from './loaders/ScaleLoader'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     lineHeight: 'normal',
     fontSize: '16px',

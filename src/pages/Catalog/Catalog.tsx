@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import { gql } from 'apollo-boost'
 import { makeStyles } from '@material-ui/core'
 import { useQuery } from '@apollo/react-hooks'
-import ScaleLoader from '../../common/loaders/ScaleLoader'
+import ScaleLoader from '../../shared/loaders/ScaleLoader'
 import CatalogItem from '../../components/CatalogItem/CatalogItem'
 
 const GET_ALL_PRODUCTS = gql`

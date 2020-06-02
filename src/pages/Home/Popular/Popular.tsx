@@ -2,7 +2,7 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core'
 import DragSlider from '../../../components/DragSlider/DragSlider'
-import FlexItem from '../../../common/FlexItem'
+import FlexItem from '../../../shared/FlexItem'
 
 const useStyles = makeStyles(() => ({
   root: {
