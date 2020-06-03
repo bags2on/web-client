@@ -39,7 +39,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint src*/**/*.{js,ts,tsx}"
+    "lint": "eslint src*/**/*.{js,ts,tsx}",
+    "apollo:schema": "apollo client:download-schema --endpoint=http://localhost:8080/ schema.graphql",
+    "apollo:gen": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/**/*.tsx' --tagName=gql"
   },
   "eslintConfig": {
     "extends": "react-app"

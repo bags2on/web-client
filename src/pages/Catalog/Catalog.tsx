@@ -8,7 +8,7 @@ import ScaleLoader from '../../shared/loaders/ScaleLoader'
 import CatalogItem from '../../components/CatalogItem/CatalogItem'
 
 const GET_ALL_PRODUCTS = gql`
-  {
+  query allProducts {
     products {
       id
       price

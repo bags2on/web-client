@@ -12,13 +12,32 @@ const GET_PRODUCT_BY_ID = gql`
       id
       title
       price
+      tags
       images
+      description
     }
   }
 `
 
+interface Product {
+  id: string
+  title: string
+  price: number
+  tags: string[]
+  images: string[]
+  description: string
+}
+
+interface ProductData {
+  product: Product
+}
+
+interface ProductID {
+  id: string
+}
+
 const ProductDetails: React.FC = () => {
-  const { id } = useParams()
+  const { id } = useParams<ProductID>()
 
   const { loading, data } = useQuery(GET_PRODUCT_BY_ID, {
     variables: { id },
@@ -29,7 +48,7 @@ const ProductDetails: React.FC = () => {
     return <ScaleLoader />
   }
 
-  const { product } = data
+  const { product }: ProductData = data
 
   console.log(product)
 
