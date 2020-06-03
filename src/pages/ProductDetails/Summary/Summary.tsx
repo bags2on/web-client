@@ -6,7 +6,7 @@ import SvgIcon from '@material-ui/core/SvgIcon'
 import { makeStyles } from '@material-ui/core'
 import { ReactComponent as CheckIcon } from '../../../assets/svg/check_mark.svg'
 import Tags from './Tags'
-import Rating from '../../../components/Rating/Rating'
+import Rating from '../../../shared/Rating'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -39,22 +39,37 @@ const useStyles = makeStyles(() => ({
   },
   description: {
     marginTop: '20px',
-    fontWeight: 500
+    fontWeight: 500,
+    '& .title': {
+      paddingBottom: 6,
+      fontWeight: 600
+    }
   },
+
+  subSection: {
+    marginTop: 20
+  },
+
   stock: {
     display: 'inline-flex',
     borderRadius: 10,
     width: 'auto',
-    padding: '8px',
+    padding: '7px 8px',
     background: '#32CD32',
     color: '#fff',
     '& > span': {
+      fontSize: 13,
       fontWeight: 600
     }
   },
   stockIcon: {
     fill: '#fff',
+    fontSize: 20,
     marginRight: 3
+  },
+  ratingBox: {
+    display: 'flex',
+    alignItems: 'center'
   }
 }))
 
@@ -88,30 +103,27 @@ const Summary: React.FC<SummaryProps> = ({ title, price, tags, description, inSt
             <Typography component="span">&nbsp;₴</Typography>
           </Typography>
         </Grid>
-        <Grid item xs={12}>
+        <Grid item xs={12} className={classes.subSection}>
           <Grid container>
             <Grid item xs={6}>
               <div className={classes.stock}>
-                {/* <div> */}
                 <SvgIcon className={classes.stockIcon}>
                   <CheckIcon />
                 </SvgIcon>
-                {inStock ? (
-                  <Typography component="span">in stock</Typography>
-                ) : (
-                  <Typography component="span">not in stock</Typography>
-                )}
-                {/* </div> */}
+                <Typography component="span">{inStock ? 'in stock' : 'not in stock'}</Typography>
               </div>
             </Grid>
-            <Grid item xs={6}>
-              <Rating />
+            <Grid item xs={6} className={classes.ratingBox}>
+              <Rating starsAmount={5} />
             </Grid>
           </Grid>
         </Grid>
       </Grid>
       <div className={classes.description}>
-        <Typography component="p">{description}</Typography>
+        <Typography component="p" className="title">
+          Description:
+        </Typography>
+        <Typography component="span">{description}</Typography>
       </div>
     </section>
   )

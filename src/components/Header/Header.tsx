@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cartIcon: {
     fontSize: 30,
-    fill: '#303030'
+    fill: theme.palette.type === 'light' ? '#303030' : '#ff9900'
   },
   menuIcon: {
     fill: theme.palette.type === 'light' ? '#303030' : '#ff9900'
