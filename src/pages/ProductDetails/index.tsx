@@ -52,12 +52,19 @@ const ProductDetails: React.FC = () => {
 
   console.log(product)
 
-  const tmp: string[] = ['new', 'best price']
+  const tmp = true
 
   return (
     <div>
       <PreviewBox images={product.images} />
-      <Summary title={product.title} price={product.price} tags={tmp} />
+      <Summary
+        id={product.id}
+        title={product.title}
+        price={product.price}
+        description={product.description}
+        tags={product.tags}
+        inStock={tmp}
+      />
     </div>
   )
 }

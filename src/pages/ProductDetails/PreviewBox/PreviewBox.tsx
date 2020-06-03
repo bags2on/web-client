@@ -14,7 +14,7 @@ const useStyles = makeStyles((theme) => ({
     border: `5px solid ${theme.palette.primary.main}`,
     height: 300
   },
-  icon: {
+  cart: {
     position: 'absolute',
     bottom: '-27px',
     right: '40px',
@@ -42,7 +42,7 @@ const PreviewBox: React.FC<PreviewBoxProps> = ({ images }) => {
   return (
     <div className={classes.root}>
       <Drag images={images} />
-      <IconButton className={classes.icon}>
+      <IconButton className={classes.cart}>
         <Icon className={classes.cartIcon}>
           <AddToCartIcon />
         </Icon>
