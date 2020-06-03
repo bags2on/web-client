@@ -2,11 +2,12 @@ import React from 'react'
 import DrawerUI from '@material-ui/core/Drawer'
 import DrawerHeader from './DrawerHeader/DrawerHeader'
 import List from '@material-ui/core/List'
+import SvgIcon from '@material-ui/core/SvgIcon'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import history from '../../utils/history'
-import { makeStyles, SvgIcon } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core'
 import { ReactComponent as HomeIcon } from '../../assets/svg/home.svg'
 import { ReactComponent as PercentIcon } from '../../assets/svg/sale.svg'
 import { ReactComponent as ListIcon } from '../../assets/svg/list.svg'
@@ -38,9 +39,12 @@ const useStyles = makeStyles((theme) => ({
     margin: '5px 0',
     paddingLeft: '19px'
   },
+  listItemIcon: {
+    display: 'inline'
+  },
   icon: {
     height: 'auto',
-    color: '#ff9900'
+    fill: '#ff9900'
   },
   text: {
     '& > span': {
@@ -103,7 +107,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
               button
               component="li"
             >
-              <ListItemIcon>
+              <ListItemIcon className={classes.listItemIcon}>
                 <SvgIcon fontSize="large" className={classes.icon}>
                   <item.icon />
                 </SvgIcon>
