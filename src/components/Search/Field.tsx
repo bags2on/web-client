@@ -11,7 +11,7 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   input: {
-    backgroundColor: theme.palette.primary.dark,
+    backgroundColor: theme.palette.background.default,
     // backgroundColor: '#272323',
     color: '#272323',
     '& .MuiOutlinedInput-input': {
@@ -20,12 +20,6 @@ const useStyles = makeStyles((theme) => ({
     }
   }
 }))
-
-// const Search = () => (
-//   <SvgIcon>
-//     <SearchIcon />
-//   </SvgIcon>
-// )
 
 interface FieldProps {
   name: string

@@ -8,7 +8,7 @@ import { I18nextProvider } from 'react-i18next'
 import i18n from './locales/i18n'
 import { darkTheme, lightTheme } from './utils/theme'
 import history from './utils/history'
-import client from './apollo'
+import client from './apollo/apollo'
 
 const useTheme = (): [string, (checked: boolean) => void] => {
   const defaultTheme = localStorage.getItem('theme') || 'dark'

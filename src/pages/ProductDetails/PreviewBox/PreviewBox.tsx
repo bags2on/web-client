@@ -1,9 +1,17 @@
 import React from 'react'
-import Drag from '../Drag'
 import IconButton from '@material-ui/core/IconButton'
 import Icon from '@material-ui/core/Icon'
+import { gql } from 'apollo-boost'
 import { makeStyles } from '@material-ui/core'
+import { useMutation } from '@apollo/react-hooks'
+import Drag from '../Drag'
 import { ReactComponent as AddToCartIcon } from '../../../assets/svg/cart_add.svg'
+
+const ADD_PRODUCT_TO_CART = gql`
+  mutation AddtoCart($id: String!) {
+    addtoCart(id: $id) @client
+  }
+`
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,16 +41,23 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 interface PreviewBoxProps {
+  id: string
   images: string[]
 }
 
-const PreviewBox: React.FC<PreviewBoxProps> = ({ images }) => {
+const PreviewBox: React.FC<PreviewBoxProps> = ({ images, id }) => {
+  const [addToCart] = useMutation(ADD_PRODUCT_TO_CART, { variables: { id } })
+
+  const handleAddToCart = (): void => {
+    addToCart()
+  }
+
   const classes = useStyles()
 
   return (
     <div className={classes.root}>
       <Drag images={images} />
-      <IconButton className={classes.cart}>
+      <IconButton className={classes.cart} onClick={handleAddToCart}>
         <Icon className={classes.cartIcon}>
           <AddToCartIcon />
         </Icon>

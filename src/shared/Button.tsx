@@ -24,10 +24,11 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   secondary: {
-    background: theme.palette.primary.main,
-    color: theme.palette.primary.dark,
+    background: theme.palette.secondary.main,
+    color: theme.palette.primary.light,
     '&:hover': {
-      background: '#ff8416'
+      opacity: '0.9',
+      background: theme.palette.secondary.main // override .MuiButton-root:hover
     }
   }
 }))

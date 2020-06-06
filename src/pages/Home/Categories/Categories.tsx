@@ -35,7 +35,7 @@ const categoriesValues: CategoryItem[] = [
   {
     icon: OtherIcon,
     to: routes.catalog,
-    text: 'Other...'
+    text: 'All...'
   }
 ]
 

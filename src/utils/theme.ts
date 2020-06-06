@@ -17,7 +17,11 @@ export const darkTheme = createMuiTheme({
     primary: {
       main: '#ff9900',
       // main: appColors.main,
+      light: '#fff',
       dark: '#303030'
+    },
+    secondary: {
+      main: '#ff9900'
     },
     background: {
       default: '#303030'
@@ -51,8 +55,10 @@ export const lightTheme = createMuiTheme({
     primary: {
       main: '#383838',
       // main: '#ff9900',
-
-      dark: '#fff'
+      light: '#fff'
+    },
+    secondary: {
+      main: '#00a347'
     },
     background: {
       default: '#fff'

@@ -7,6 +7,8 @@ import { makeStyles } from '@material-ui/core'
 import { ReactComponent as CheckIcon } from '../../../assets/svg/check_mark.svg'
 import Tags from './Tags'
 import Rating from '../../../shared/Rating'
+import Features from '../Features/Features'
+import ProductBuy from '../ProductBuy/ProductBuy'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -82,7 +84,7 @@ interface SummaryProps {
   inStock: boolean
 }
 
-const Summary: React.FC<SummaryProps> = ({ title, price, tags, description, inStock }) => {
+const Summary: React.FC<SummaryProps> = ({ id, title, price, tags, description, inStock }) => {
   const classes = useStyles()
 
   return (
@@ -110,11 +112,11 @@ const Summary: React.FC<SummaryProps> = ({ title, price, tags, description, inSt
                 <SvgIcon className={classes.stockIcon}>
                   <CheckIcon />
                 </SvgIcon>
-                <Typography component="span">{inStock ? 'in stock' : 'not in stock'}</Typography>
+                <Typography component="span">{inStock ? 'in stock' : 'out of stock'}</Typography>
               </div>
             </Grid>
             <Grid item xs={6} className={classes.ratingBox}>
-              <Rating starsAmount={5} />
+              <Rating starsAmount={5} /> (10)
             </Grid>
           </Grid>
         </Grid>
@@ -125,6 +127,8 @@ const Summary: React.FC<SummaryProps> = ({ title, price, tags, description, inSt
         </Typography>
         <Typography component="span">{description}</Typography>
       </div>
+      <ProductBuy id={id} />
+      <Features />
     </section>
   )
 }
