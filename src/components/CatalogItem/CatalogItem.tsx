@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
+import ProgressiveImage from 'react-progressive-graceful-image'
 import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
@@ -29,6 +30,7 @@ const useStyles = makeStyles(() => ({
   },
   image: {
     padding: 10,
+    position: 'relative',
     '& > img': {
       width: '100%',
       height: '100%'
@@ -56,6 +58,33 @@ const useStyles = makeStyles(() => ({
   },
   liked: {
     fill: '#f44336'
+  },
+
+  //
+
+  f_sopt: {
+    position: 'relative'
+  },
+  ek_pic: {
+    display: 'block',
+    position: 'relative',
+    paddingTop: '100%',
+    overflow: 'hidden',
+    transform: 'translatez(0)'
+  },
+  ek_img: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    maxWidth: '100%',
+    maxHeight: '100%',
+    margin: 'auto',
+    outline: 'none',
+    objectFit: 'cover',
+    borderTopLeftRadius: '8px',
+    borderTopRightRadius: '8px'
   }
 }))
 
@@ -68,13 +97,36 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
     setLiked(!isLiked)
   }
 
+  const Lcp: JSX.Element = (
+    <div
+      style={{
+        width: '100%',
+        height: 'auto',
+        paddingTop: '100%'
+      }}
+    >
+      loading
+    </div>
+  )
+
   return (
     <div className={classes.root}>
-      <Link to={generateLink(routes.product, id)}>
+      {/* <Link to={generateLink(routes.product, id)}>
         <div className={classes.image}>
-          <img src={url} alt={title} />
+          <ProgressiveImage src={url} delay={3000} placeholder="">
+            {(src: string, loading: boolean): JSX.Element => {
+              return loading ? Lcp : <img src={src} alt={title} />
+            }}
+          </ProgressiveImage>
         </div>
-      </Link>
+      </Link> */}
+      <div className={classes.f_sopt}>
+        <Link to={generateLink(routes.product, id)}>
+          <picture className={classes.ek_pic}>
+            <img src={url} alt={title} className={classes.ek_img} />
+          </picture>
+        </Link>
+      </div>
       <Typography component="p" className={classes.title}>
         {title}
       </Typography>
