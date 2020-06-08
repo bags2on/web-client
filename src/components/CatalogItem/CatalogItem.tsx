@@ -7,8 +7,10 @@ import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
-import routes from '../../utils/routes'
 import { generateLink } from '../../utils/links'
+import { waveStyle } from '../../utils/styling'
+import { ReactComponent as Plc } from '../../assets/svg/image_placeholder.svg'
+import routes from '../../utils/routes'
 
 interface CatalogItemProps {
   id: string
@@ -22,6 +24,7 @@ const useStyles = makeStyles(() => ({
     position: 'relative',
     background: '#fff',
     margin: '8px 3px',
+    padding: '5px',
     borderRadius: '8px',
     boxShadow: '0px 1px 9px -1px rgba(0,0,0,0.1)',
     '&:hover': {
@@ -59,20 +62,17 @@ const useStyles = makeStyles(() => ({
   liked: {
     fill: '#f44336'
   },
-
-  //
-
-  f_sopt: {
+  box: {
     position: 'relative'
   },
-  ek_pic: {
+  picBox: {
     display: 'block',
     position: 'relative',
     paddingTop: '100%',
     overflow: 'hidden',
     transform: 'translatez(0)'
   },
-  ek_img: {
+  pImage: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -85,6 +85,37 @@ const useStyles = makeStyles(() => ({
     objectFit: 'cover',
     borderTopLeftRadius: '8px',
     borderTopRightRadius: '8px'
+  },
+  pBox: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  shine: {
+    ...waveStyle,
+    '-webkit-animation': '$shine 1.3s infinite',
+    animation: '$shine 1.3s infinite'
+  },
+  '@keyframes shine': {
+    '0%': {
+      backgroundPosition: '0% 0%'
+    },
+    '100%': {
+      backgroundPosition: ' -135% 0%'
+    }
+  },
+  '@-webkit-keyframes shine': {
+    '0%': {
+      backgroundPosition: '0% 0%'
+    },
+    '100%': {
+      backgroundPosition: ' -135% 0%'
+    }
   }
 }))
 
@@ -98,32 +129,24 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
   }
 
   const Lcp: JSX.Element = (
-    <div
-      style={{
-        width: '100%',
-        height: 'auto',
-        paddingTop: '100%'
-      }}
-    >
-      loading
+    <div className={classes.pImage}>
+      <div className={classes.shine} />
+      <div className={classes.pBox}>
+        <Plc height={50} width={50} />
+      </div>
     </div>
   )
 
   return (
     <div className={classes.root}>
-      {/* <Link to={generateLink(routes.product, id)}>
-        <div className={classes.image}>
-          <ProgressiveImage src={url} delay={3000} placeholder="">
-            {(src: string, loading: boolean): JSX.Element => {
-              return loading ? Lcp : <img src={src} alt={title} />
-            }}
-          </ProgressiveImage>
-        </div>
-      </Link> */}
-      <div className={classes.f_sopt}>
+      <div className={classes.box}>
         <Link to={generateLink(routes.product, id)}>
-          <picture className={classes.ek_pic}>
-            <img src={url} alt={title} className={classes.ek_img} />
+          <picture className={classes.picBox}>
+            <ProgressiveImage src={url} placeholder="">
+              {(src: string, loading: boolean): JSX.Element => {
+                return loading ? Lcp : <img src={src} alt={title} className={classes.pImage} />
+              }}
+            </ProgressiveImage>
           </picture>
         </Link>
       </div>

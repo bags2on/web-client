@@ -39,6 +39,12 @@ const useStyles = makeStyles(() => ({
     fontSize: '26px',
     fontWeight: 600,
     margin: '15px 0 15px 10px'
+  },
+  loaderWapper: {
+    height: '100vh',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 }))
 
@@ -48,7 +54,11 @@ const Catalog: React.FC = () => {
   const classes = useStyles()
 
   if (loading) {
-    return <ScaleLoader />
+    return (
+      <div className={classes.loaderWapper}>
+        <ScaleLoader fallback />
+      </div>
+    )
   }
 
   return (

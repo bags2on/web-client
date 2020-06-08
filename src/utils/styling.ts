@@ -23,3 +23,14 @@ export const hiddenStyles: CSSProperties = {
   clip: 'rect(0 0 0 0)',
   overflow: 'hidden'
 }
+
+export const waveStyle: CSSProperties = {
+  width: '100%',
+  height: '100%',
+  borderTopLeftRadius: '8px',
+  borderTopRightRadius: '8px',
+  transition: '0.3s',
+  background: 'linear-gradient(-90deg, #efefef 0%, #fcfcfc 50%, #efefef 100%)',
+  backgroundSize: '400% 400%',
+  opacity: 0.8
+}
