@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { generateLink } from '../../utils/links'
 import { waveStyle } from '../../utils/styling'
-import { ReactComponent as Plc } from '../../assets/svg/image_placeholder.svg'
+import { ReactComponent as PlaceholderImage } from '../../assets/svg/image_placeholder.svg'
 import routes from '../../utils/routes'
 
 interface CatalogItemProps {
@@ -19,7 +19,7 @@ interface CatalogItemProps {
   price: number
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     background: '#fff',
@@ -27,8 +27,12 @@ const useStyles = makeStyles(() => ({
     padding: '5px',
     borderRadius: '8px',
     boxShadow: '0px 1px 9px -1px rgba(0,0,0,0.1)',
-    '&:hover': {
-      // boxShadow: '0px 1px 9px 1px rgba(0,0,0,0.1)'
+    transition: 'all .3s',
+    [theme.breakpoints.up('md')]: {
+      margin: '8px 4px',
+      '&:hover': {
+        boxShadow: '0 5px 15px 1px rgba(0,0,0,0.1)'
+      }
     }
   },
   image: {
@@ -40,7 +44,22 @@ const useStyles = makeStyles(() => ({
     }
   },
   title: {
-    textAlign: 'center'
+    fontSize: '14px',
+    textAlign: 'center',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
+    textOverflow: 'ellipsis',
+    '& > a': {
+      color: 'inherit',
+      textDecoration: 'none',
+      transition: 'color .2s',
+      '&:hover': {
+        color: 'orange'
+      }
+    },
+    [theme.breakpoints.up('sm')]: {
+      fontSize: '16px'
+    }
   },
   price: {
     textAlign: 'center',
@@ -55,6 +74,11 @@ const useStyles = makeStyles(() => ({
     top: 4,
     right: 4
   },
+  cartButton: {
+    position: 'absolute',
+    right: 0,
+    top: 37
+  },
   heartIcon: {
     stroke: '#f44336',
     fill: 'none'
@@ -63,7 +87,8 @@ const useStyles = makeStyles(() => ({
     fill: '#f44336'
   },
   box: {
-    position: 'relative'
+    position: 'relative',
+    marginBottom: 10
   },
   picBox: {
     display: 'block',
@@ -72,7 +97,7 @@ const useStyles = makeStyles(() => ({
     overflow: 'hidden',
     transform: 'translatez(0)'
   },
-  pImage: {
+  productImage: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -86,7 +111,7 @@ const useStyles = makeStyles(() => ({
     borderTopLeftRadius: '8px',
     borderTopRightRadius: '8px'
   },
-  pBox: {
+  productBox: {
     position: 'absolute',
     top: 0,
     left: 0,
@@ -129,10 +154,10 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
   }
 
   const Lcp: JSX.Element = (
-    <div className={classes.pImage}>
+    <div className={classes.productImage}>
       <div className={classes.shine} />
-      <div className={classes.pBox}>
-        <Plc height={50} width={50} />
+      <div className={classes.productBox}>
+        <PlaceholderImage height={50} width={50} />
       </div>
     </div>
   )
@@ -144,14 +169,14 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
           <picture className={classes.picBox}>
             <ProgressiveImage src={url} placeholder="">
               {(src: string, loading: boolean): JSX.Element => {
-                return loading ? Lcp : <img src={src} alt={title} className={classes.pImage} />
+                return loading ? Lcp : <img src={src} alt={title} className={classes.productImage} />
               }}
             </ProgressiveImage>
           </picture>
         </Link>
       </div>
       <Typography component="p" className={classes.title}>
-        {title}
+        <Link to={generateLink(routes.product, id)}>{title}</Link>
       </Typography>
 
       <Typography component="p" className={classes.price}>

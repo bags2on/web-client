@@ -68,7 +68,7 @@ const Catalog: React.FC = () => {
       </Typography>
       <Grid container component="ul" className={classes.list}>
         {data.products.map((product: Product) => (
-          <Grid key={product.id} component="li" item xs={6}>
+          <Grid key={product.id} component="li" item xs={6} md={4} lg={3} xl={2}>
             <CatalogItem url={product.preview} title={product.title} price={product.price} id={product.id} />
           </Grid>
         ))}
