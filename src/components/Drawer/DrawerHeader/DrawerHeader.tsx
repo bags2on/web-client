@@ -20,6 +20,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: 500,
     color: 'transparent',
     background: 'linear-gradient(to right, #fc4a1a, #FFDD00, #f7b733)',
+    userSelect: 'none',
     '-webkit-background-clip': 'text'
   },
   close: {

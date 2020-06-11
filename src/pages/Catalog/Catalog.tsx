@@ -3,9 +3,11 @@ import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { gql } from 'apollo-boost'
 import { makeStyles } from '@material-ui/core'
+import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
 import ScaleLoader from '../../shared/loaders/ScaleLoader'
 import CatalogItem from '../../components/CatalogItem/CatalogItem'
+import Pagination from '../../components/Pagination/Pagination'
 
 const GET_ALL_PRODUCTS = gql`
   query allProducts {
@@ -49,7 +51,11 @@ const useStyles = makeStyles(() => ({
 }))
 
 const Catalog: React.FC = () => {
+  const { page } = useParams()
+
   const { loading, data } = useQuery(GET_ALL_PRODUCTS)
+
+  const numOfPage = page ? Number(page) : 1
 
   const classes = useStyles()
 
@@ -73,6 +79,7 @@ const Catalog: React.FC = () => {
           </Grid>
         ))}
       </Grid>
+      <Pagination total={20} currentPage={isNaN(numOfPage) ? 1 : numOfPage} />
     </div>
   )
 }

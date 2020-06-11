@@ -123,8 +123,8 @@ const useStyles = makeStyles((theme) => ({
   },
   shine: {
     ...waveStyle,
-    '-webkit-animation': '$shine 1.3s infinite',
     animation: '$shine 1.3s infinite'
+    // '-webkit-animation': '$shine 1.3s infinite',
   },
   '@keyframes shine': {
     '0%': {
@@ -133,15 +133,15 @@ const useStyles = makeStyles((theme) => ({
     '100%': {
       backgroundPosition: ' -135% 0%'
     }
-  },
-  '@-webkit-keyframes shine': {
-    '0%': {
-      backgroundPosition: '0% 0%'
-    },
-    '100%': {
-      backgroundPosition: ' -135% 0%'
-    }
   }
+  // '@-webkit-keyframes shine': {
+  //   '0%': {
+  //     backgroundPosition: '0% 0%'
+  //   },
+  //   '100%': {
+  //     backgroundPosition: ' -135% 0%'
+  //   }
+  // }
 }))
 
 const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {

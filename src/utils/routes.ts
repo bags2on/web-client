@@ -5,7 +5,7 @@ interface RoutesMap {
 const routes: RoutesMap = {
   login: '/login',
   root: '/',
-  catalog: '/catalog',
+  catalog: '/catalog/:page?',
   product: '/:id'
 }
 

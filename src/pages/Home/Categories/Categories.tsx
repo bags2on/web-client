@@ -8,7 +8,7 @@ import { ReactComponent as WalletIcon } from '../../../assets/svg/wallet.svg'
 import { ReactComponent as BagIcon } from '../../../assets/svg/shopping-bag.svg'
 import { ReactComponent as OtherIcon } from '../../../assets/svg/other.svg'
 import { makeStyles } from '@material-ui/core'
-import routes from '../../../utils/routes'
+// import routes from '../../../utils/routes'
 
 interface CategoryItem {
   icon: React.ElementType
@@ -34,7 +34,7 @@ const categoriesValues: CategoryItem[] = [
   },
   {
     icon: OtherIcon,
-    to: routes.catalog,
+    to: '/catalog',
     text: 'All...'
   }
 ]
@@ -109,18 +109,6 @@ const Categories: React.FC = () => {
               <Typography component="span">{category.text}</Typography>
             </li>
           ))}
-          {/* <li className={classes.item}>
-            <Link to="#">
-              <div className={classes.icon}>
-                <IconButton>
-                  <Icon>
-                    <TestIcon />
-                  </Icon>
-                </IconButton>
-              </div>
-            </Link>
-            <Typography component="span">Text</Typography>
-          </li> */}
         </ul>
       </div>
     </section>

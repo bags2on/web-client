@@ -12,7 +12,7 @@ interface ProductBuyProps {
   id: string
 }
 
-const ProductBuy: React.FC<ProductBuyProps> = ({}) => {
+const ProductBuy: React.FC<ProductBuyProps> = () => {
   const classes = useStyles()
 
   return (
