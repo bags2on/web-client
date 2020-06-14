@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       margin: '8px 4px',
       '&:hover': {
-        boxShadow: '0 5px 15px 1px rgba(0,0,0,0.1)'
+        boxShadow: '0 5px 15px 1px rgba(0,0,0,0.15)'
       }
     }
   },
