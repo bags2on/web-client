@@ -31,6 +31,8 @@ interface Product {
 const useStyles = makeStyles(() => ({
   root: {
     // background: '#ff9900'
+    maxWidth: '1600px',
+    margin: '0 auto'
   },
   list: {
     margin: 0,

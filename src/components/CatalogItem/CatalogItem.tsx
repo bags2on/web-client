@@ -35,14 +35,6 @@ const useStyles = makeStyles((theme) => ({
       }
     }
   },
-  image: {
-    padding: 10,
-    position: 'relative',
-    '& > img': {
-      width: '100%',
-      height: '100%'
-    }
-  },
   title: {
     fontSize: '14px',
     textAlign: 'center',
@@ -53,8 +45,9 @@ const useStyles = makeStyles((theme) => ({
       color: 'inherit',
       textDecoration: 'none',
       transition: 'color .2s',
-      '&:hover': {
-        color: 'orange'
+      '&:hover, &:focus': {
+        color: 'orange',
+        outline: 'none'
       }
     },
     [theme.breakpoints.up('sm')]: {
@@ -92,10 +85,15 @@ const useStyles = makeStyles((theme) => ({
   },
   picBox: {
     display: 'block',
+    outline: 'none',
+
     position: 'relative',
     paddingTop: '100%',
     overflow: 'hidden',
     transform: 'translatez(0)'
+  },
+  linkWrapper: {
+    outline: 'none'
   },
   productImage: {
     position: 'absolute',
@@ -113,6 +111,7 @@ const useStyles = makeStyles((theme) => ({
   },
   productBox: {
     position: 'absolute',
+    outline: 'none',
     top: 0,
     left: 0,
     right: 0,
@@ -165,7 +164,7 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
   return (
     <div className={classes.root}>
       <div className={classes.box}>
-        <Link to={generateLink(routes.product, id)}>
+        <Link className={classes.linkWrapper} to={generateLink(routes.product, id)}>
           <picture className={classes.picBox}>
             <ProgressiveImage src={url} placeholder="">
               {(src: string, loading: boolean): JSX.Element => {
