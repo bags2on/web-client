@@ -4,11 +4,12 @@ import Typography from '@material-ui/core/Typography'
 import Grid from '@material-ui/core/Grid'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import { makeStyles } from '@material-ui/core'
-import { ReactComponent as CheckIcon } from '../../../assets/svg/check_mark.svg'
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
 import Tags from './Tags'
 import Rating from '../../../shared/Rating'
 import Features from '../Features/Features'
 import ProductBuy from '../ProductBuy/ProductBuy'
+import { ReactComponent as CheckIcon } from '../../../assets/svg/check_mark.svg'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -57,12 +58,17 @@ const useStyles = makeStyles(() => ({
     borderRadius: 10,
     width: 'auto',
     padding: '7px 8px',
-    background: '#32CD32',
     color: '#fff',
     '& > span': {
       fontSize: 13,
       fontWeight: 600
     }
+  },
+  inStock: {
+    background: '#32CD32'
+  },
+  outOfStock: {
+    background: '#c0c0c0'
   },
   stockIcon: {
     fill: '#fff',
@@ -108,9 +114,9 @@ const Summary: React.FC<SummaryProps> = ({ id, title, price, tags, description, 
         <Grid item xs={12} className={classes.subSection}>
           <Grid container>
             <Grid item xs={6}>
-              <div className={classes.stock}>
+              <div className={clsx(classes.stock, inStock ? classes.inStock : classes.outOfStock)}>
                 <SvgIcon className={classes.stockIcon}>
-                  <CheckIcon />
+                    { inStock ? <CheckIcon /> : <ErrorOutlineIcon /> } 
                 </SvgIcon>
                 <Typography component="span">{inStock ? 'in stock' : 'out of stock'}</Typography>
               </div>
