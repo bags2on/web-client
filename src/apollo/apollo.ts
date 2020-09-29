@@ -12,10 +12,26 @@ const client = new ApolloClient({
   uri: 'http://localhost:8080/',
   resolvers: {
     Mutation: {
-      addtoCart: (_root, args, { cache }): void => {
+      syncCartWithLocalStorage: (_root, _, { cache }): void => {
+        const ids = window.localStorage.getItem('cartIDs')
+        if (!ids) return
+        client.writeData({ data: { cartItems: JSON.parse(ids) } })
+      },
+      addToCart: (_root, args, { cache }): void => {
+        const res = window.localStorage.getItem('cartIDs')
+        console.log(res)
         const { cartItems } = cache.readQuery({ query: GET_CART_ITEMS })
         const newCartItems = [...cartItems, args.id]
+        window.localStorage.setItem('cartIDs', JSON.stringify(newCartItems))
         client.writeData({ data: { cartItems: newCartItems } })
+      },
+      removeFromCart: (_root, args, { cache }): void => {},
+      clearCart: (_root, args, { cache }): void => {
+        client.writeData({ data: { cartItems: [] } })
+        const savedItems = window.localStorage.getItem('cartIDs')
+        if (savedItems) {
+          window.localStorage.setItem('cartIDs', JSON.stringify([]))
+        }
       }
     },
     Query: {

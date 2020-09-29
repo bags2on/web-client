@@ -8,8 +8,8 @@ import Drag from '../Drag'
 import { ReactComponent as AddToCartIcon } from '../../../assets/svg/cart_add.svg'
 
 const ADD_PRODUCT_TO_CART = gql`
-  mutation AddtoCart($id: String!) {
-    addtoCart(id: $id) @client
+  mutation AddToCart($id: String!) {
+    addToCart(id: $id) @client
   }
 `
 

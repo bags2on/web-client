@@ -8,7 +8,7 @@ cache.writeData({
 })
 
 const cacheResolvers = {
-  addtoCart: null
+  addToCart: null
 }
 
 export { cache, cacheResolvers }
