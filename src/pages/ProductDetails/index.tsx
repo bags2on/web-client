@@ -68,7 +68,7 @@ const ProductDetails: React.FC = () => {
 
   console.log(product)
 
-  const tmp = true
+  const tmp = Boolean(Math.round(Math.random()))
 
   return (
     <div>

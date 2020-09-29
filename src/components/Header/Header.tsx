@@ -1,13 +1,12 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Link } from 'react-router-dom'
+// import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core'
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 import IconButton from '@material-ui/core/IconButton'
 import Badge from '@material-ui/core/Badge'
 import Icon from '@material-ui/core/Icon'
-import logo from '../../assets/rastr/small-logo.png'
 import Search from '../../components/Search/Search'
 import history from '../../utils/history'
 import routes from '../../utils/routes'
@@ -109,11 +108,11 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, themeChanger }) => {
           <MenuIcon />
         </Icon>
       </IconButton>
-      <Link to="/">
+      {/* <Link to="/">
         <div className={classes.logo}>
           <img src={logo} alt="Bags2on" />
         </div>
-      </Link>
+      </Link> */}
       <Search />
       <IconButton color="primary" onClick={handleCartClick} disableRipple className={classes.btns}>
         <Badge badgeContent={data?.cartItems.length} max={999} color="error">

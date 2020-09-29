@@ -8,8 +8,8 @@ import Field from './Field'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    boxShadow: '0px 1px 9px -1px rgba(0,0,0,0.1)'
+    flexGrow: 1
+    // boxShadow: '0px 1px 9px -1px rgba(0,0,0,0.1)'
   },
   control: {
     width: '100%',
