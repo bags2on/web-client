@@ -9,6 +9,8 @@ import Badge from '@material-ui/core/Badge'
 import Icon from '@material-ui/core/Icon'
 import logo from '../../assets/rastr/small-logo.png'
 import Search from '../../components/Search/Search'
+import history from '../../utils/history'
+import routes from '../../utils/routes'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
 import { ReactComponent as CartIcon } from '../../assets/svg/cart.svg'
 import NightToggleSwith from '../../shared/NightToggleSwith/NightToggleSwith'
@@ -90,6 +92,10 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, themeChanger }) => {
 
   const { data } = useQuery<CartTotals>(GET_CART_TOTALS)
 
+  const handleCartClick = (): void => {
+    history.push(routes.cart)
+  }
+
   console.log(data?.cartItems)
 
   return (
@@ -109,7 +115,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, themeChanger }) => {
         </div>
       </Link>
       <Search />
-      <IconButton color="primary" disableRipple className={classes.btns}>
+      <IconButton color="primary" onClick={handleCartClick} disableRipple className={classes.btns}>
         <Badge badgeContent={data?.cartItems.length} max={999} color="error">
           <Icon className={classes.cartIcon}>
             <CartIcon />
