@@ -15,12 +15,12 @@ const Cart: React.FC<CartProps> = () => {
   const classes = useStyles()
 
   return (
-    <Box>
+    <Box className={classes.root}>
       <Grid container>
-        <Grid item xs={6}>
+        <Grid item xs={12}>
           <CartItems />
         </Grid>
-        <Grid item xs={6}></Grid>
+        <Grid item xs={12}></Grid>
       </Grid>
     </Box>
   )

@@ -28,6 +28,7 @@ const CLEAR_CART = gql`
 const GET_ALL_PRODUCTS_BY_ID = gql`
   query productsByID($ids: [String!]) {
     productsByID(ids: $ids) {
+      id
       title
       price
       amount
@@ -38,7 +39,11 @@ const GET_ALL_PRODUCTS_BY_ID = gql`
 
 const useStyles = makeStyles(() => ({
   root: {},
-  list: {}
+  list: {
+    margin: 0,
+    padding: 0,
+    listStyle: 'none'
+  }
 }))
 
 const CartItems: React.FC<CartItemsProps> = () => {
