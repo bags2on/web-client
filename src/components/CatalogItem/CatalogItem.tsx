@@ -2,14 +2,12 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
-import ProgressiveImage from 'react-progressive-graceful-image'
+import ImagePlaceholder from '../../shared/ImagePlaceholder/ImagePlaceholder'
 import Icon from '@material-ui/core/Icon'
 import { makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { generateLink } from '../../utils/links'
-import { waveStyle } from '../../utils/styling'
-import { ReactComponent as PlaceholderImage } from '../../assets/svg/image_placeholder.svg'
 import routes from '../../utils/routes'
 
 interface CatalogItemProps {
@@ -83,64 +81,9 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     marginBottom: 10
   },
-  picBox: {
-    display: 'block',
-    outline: 'none',
-
-    position: 'relative',
-    paddingTop: '100%',
-    overflow: 'hidden',
-    transform: 'translatez(0)'
-  },
   linkWrapper: {
     outline: 'none'
-  },
-  productImage: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    maxWidth: '100%',
-    maxHeight: '100%',
-    margin: 'auto',
-    outline: 'none',
-    objectFit: 'cover',
-    borderTopLeftRadius: '8px',
-    borderTopRightRadius: '8px'
-  },
-  productBox: {
-    position: 'absolute',
-    outline: 'none',
-    top: 0,
-    left: 0,
-    right: 0,
-    bottom: 0,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  shine: {
-    ...waveStyle,
-    animation: '$shine 1.3s infinite'
-    // '-webkit-animation': '$shine 1.3s infinite',
-  },
-  '@keyframes shine': {
-    '0%': {
-      backgroundPosition: '0% 0%'
-    },
-    '100%': {
-      backgroundPosition: ' -135% 0%'
-    }
   }
-  // '@-webkit-keyframes shine': {
-  //   '0%': {
-  //     backgroundPosition: '0% 0%'
-  //   },
-  //   '100%': {
-  //     backgroundPosition: ' -135% 0%'
-  //   }
-  // }
 }))
 
 const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
@@ -152,32 +95,16 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
     setLiked(!isLiked)
   }
 
-  const Lcp: JSX.Element = (
-    <div className={classes.productImage}>
-      <div className={classes.shine} />
-      <div className={classes.productBox}>
-        <PlaceholderImage height={50} width={50} />
-      </div>
-    </div>
-  )
-
   return (
     <div className={classes.root}>
       <div className={classes.box}>
         <Link className={classes.linkWrapper} to={generateLink(routes.product, id)}>
-          <picture className={classes.picBox}>
-            <ProgressiveImage src={url} placeholder="">
-              {(src: string, loading: boolean): JSX.Element => {
-                return loading ? Lcp : <img src={src} alt={title} className={classes.productImage} />
-              }}
-            </ProgressiveImage>
-          </picture>
+          <ImagePlaceholder previewImage={url} altText={title} />
         </Link>
       </div>
       <Typography component="p" className={classes.title}>
         <Link to={generateLink(routes.product, id)}>{title}</Link>
       </Typography>
-
       <Typography component="p" className={classes.price}>
         <Typography component="span">{price}</Typography>
         <Typography component="span">&nbsp;₴</Typography>
