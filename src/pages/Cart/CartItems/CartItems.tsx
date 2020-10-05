@@ -2,8 +2,9 @@ import React from 'react'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
-import { makeStyles } from '@material-ui/core'
 import Button from '@material-ui/core/Button'
+import { makeStyles } from '@material-ui/core'
+import Summary from '../Summary/Summary'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 
@@ -73,12 +74,19 @@ const CartItems: React.FC<CartItemsProps> = () => {
       {loading ? (
         <p>Loading</p>
       ) : (
-        <Grid container component="ul" className={classes.list}>
-          {data?.productsByID.map((product: CartItemType, ind: number) => (
-            <Grid key={ind} component="li" item xs={12}>
-              <CartItem item={product} />
+        <Grid container>
+          <Grid item>
+            <Summary />
+          </Grid>
+          <Grid item>
+            <Grid container component="ul" className={classes.list}>
+              {data?.productsByID.map((product: CartItemType, ind: number) => (
+                <Grid key={ind} component="li" item xs={12}>
+                  <CartItem item={product} />
+                </Grid>
+              ))}
             </Grid>
-          ))}
+          </Grid>
         </Grid>
       )}
     </Box>
