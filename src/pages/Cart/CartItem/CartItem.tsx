@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
-import ImagePlaceholder, { ImagePlaceholderProps } from '../../../shared/ImagePlaceholder/ImagePlaceholder'
+import ImagePlaceholder from '../../../shared/ImagePlaceholder'
+import AmountController from '../../../shared/AmountController'
 import routes from '../../../utils/routes'
 import { generateLink } from '../../../utils/links'
 import { makeStyles } from '@material-ui/core'
@@ -35,9 +36,6 @@ const useStyles = makeStyles(() => ({
       bottom: '-12px',
       left: '50%',
       transform: 'translate(-50%, -50%)'
-
-      // top: 0,
-      // right: 0,
     }
   },
   box: {
@@ -76,6 +74,15 @@ const useStyles = makeStyles(() => ({
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const classes = useStyles()
+
+  const [count, setCount] = useState<number>(item.amount)
+
+  console.log(count)
+
+  const handleCountChange = (n: number): void => {
+    setCount(n)
+  }
+
   const { id, title, preview } = item
 
   return (
@@ -99,6 +106,9 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
             <Typography component="span">{item.amount}&nbsp;шт.</Typography>
           </Grid>
         </Grid>
+        <div>
+          <AmountController min={1} value={count} startValue={item.amount} onChange={handleCountChange} />
+        </div>
       </div>
     </Box>
   )
