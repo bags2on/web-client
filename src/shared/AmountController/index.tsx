@@ -62,8 +62,8 @@ const AddSubInput: React.FC<AddSubInput> = ({ startValue, min, value, onChange }
 
   return (
     <div className={classes.root}>
-      <IconButton onClick={handleAddClick} aria-label="add the same product">
-        <AddIcon />
+      <IconButton onClick={handleSubClick} disabled={value <= 1} aria-label="remove one product">
+        <RemoveIcon />
       </IconButton>
       <TextField
         type="number"
@@ -75,8 +75,8 @@ const AddSubInput: React.FC<AddSubInput> = ({ startValue, min, value, onChange }
           root: classes.inputRoot
         }}
       />
-      <IconButton onClick={handleSubClick} disabled={value <= 1} aria-label="remove one product">
-        <RemoveIcon />
+      <IconButton onClick={handleAddClick} aria-label="add the same product">
+        <AddIcon />
       </IconButton>
     </div>
   )
