@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import CloseIcon from '@material-ui/icons/Close'
 import { Link } from 'react-router-dom'
 import ImagePlaceholder from '../../../shared/ImagePlaceholder'
 import AmountController from '../../../shared/AmountController'
@@ -29,7 +31,7 @@ const useStyles = makeStyles(() => ({
     '&::after': {
       content: "''",
       position: 'absolute',
-      width: '47%',
+      width: '55%',
       height: '2px',
       borderRadius: 'inherit',
       background: '#dcdcdc',
@@ -44,22 +46,24 @@ const useStyles = makeStyles(() => ({
     maxWidth: '180px',
     position: 'relative',
     // marginRight: 15
-    marginRight: 30
+    marginRight: 25
   },
   linkWrapper: {},
   productInfoBox: {
     width: '100%',
     maxWidth: '900px',
-    paddingTop: '10%'
+    paddingTop: '7%'
     // paddingTop: 20 // 35
   },
   title: {
-    fontSize: 18,
+    maxWidth: 200,
+    paddingRight: 16,
+    fontSize: 22,
     fontWeight: 500,
-    whiteSpace: 'nowrap',
-    paddingBottom: 5,
-    overflow: 'hidden',
+    paddingBottom: 3,
     textOverflow: 'ellipsis',
+    whiteSpace: 'nowrap',
+    overflow: 'hidden',
     '& > a': {
       color: 'inherit',
       textDecoration: 'none',
@@ -68,6 +72,27 @@ const useStyles = makeStyles(() => ({
         color: 'orange',
         outline: 'none'
       }
+    }
+  },
+  priceTitle: {
+    color: '#707070',
+    fontSize: 16,
+    fontWeight: 500
+  },
+  amountTitle: {
+    paddingLeft: 1,
+    fontSize: 16,
+    fontWeight: 500
+  },
+  btn: {
+    padding: 0,
+    color: '#DC143C',
+    fontSize: 12,
+    '& .MuiButton-startIcon': {
+      margin: 0
+    },
+    '&:active': {
+      textDecoration: 'underline'
     }
   }
 }))
@@ -95,20 +120,32 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
       <div className={classes.productInfoBox}>
         <Grid container>
           <Grid item xs={12} sm={6} md={8}>
-            <Typography component="p" className={classes.title}>
-              <Link to={generateLink(routes.product, id)}>{title}</Link>
+            <Box minWidth="0">
+              <Typography component="p" className={classes.title}>
+                <Link to={generateLink(routes.product, id)}>3rdruy2t7rygbyr3t4frvdegwv456fvejbhbr75</Link>
+                {/* <Link title={title} to={generateLink(routes.product, id)}>{title}</Link> */}
+              </Typography>
+            </Box>
+          </Grid>
+          <Grid item xs={12} sm={3} md={2}>
+            <Typography component="span" className={classes.priceTitle}>
+              Цена:&nbsp;&nbsp;{item.price}&nbsp;₴
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3} md={2}>
-            <Typography component="span">{item.price}&nbsp;₴</Typography>
-          </Grid>
-          <Grid item xs={12} sm={3} md={2}>
-            <Typography component="span">{item.amount}&nbsp;шт.</Typography>
+            <Typography component="p" className={classes.amountTitle}>
+              {count}&nbsp;шт:&nbsp;&nbsp;{count * item.price}₴
+            </Typography>
+            <Box marginTop="10px">
+              <Button className={classes.btn} disableRipple startIcon={<CloseIcon fontSize="small" />}>
+                удалить
+              </Button>
+            </Box>
           </Grid>
         </Grid>
-        <div>
+        <Box marginTop="20px" display="flex" justifyContent="flex-end" paddingRight="10px">
           <AmountController min={1} value={count} startValue={item.amount} onChange={handleCountChange} />
-        </div>
+        </Box>
       </div>
     </Box>
   )
