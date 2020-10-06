@@ -84,7 +84,7 @@ const useStyles = makeStyles(() => ({
     fontSize: 16,
     fontWeight: 500
   },
-  btn: {
+  removeButton: {
     padding: 0,
     color: '#DC143C',
     fontSize: 12,
@@ -93,6 +93,9 @@ const useStyles = makeStyles(() => ({
     },
     '&:active': {
       textDecoration: 'underline'
+    },
+    '&:focus': {
+      outline: 'auto'
     }
   }
 }))
@@ -108,7 +111,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
     setCount(n)
   }
 
-  const { id, title, preview } = item
+  const { id, title, preview, price, amount } = item
 
   return (
     <Box display="flex" className={classes.root}>
@@ -122,29 +125,35 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           <Grid item xs={12} sm={6} md={8}>
             <Box minWidth="0">
               <Typography component="p" className={classes.title}>
-                <Link to={generateLink(routes.product, id)}>3rdruy2t7rygbyr3t4frvdegwv456fvejbhbr75</Link>
-                {/* <Link title={title} to={generateLink(routes.product, id)}>{title}</Link> */}
+                <Link title={title} to={generateLink(routes.product, id)}>
+                  {title}
+                </Link>
               </Typography>
             </Box>
           </Grid>
           <Grid item xs={12} sm={3} md={2}>
             <Typography component="span" className={classes.priceTitle}>
-              Цена:&nbsp;&nbsp;{item.price}&nbsp;₴
+              Цена:&nbsp;&nbsp;{price}&nbsp;₴
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3} md={2}>
             <Typography component="p" className={classes.amountTitle}>
-              {count}&nbsp;шт:&nbsp;&nbsp;{count * item.price}₴
+              {count}&nbsp;шт:&nbsp;&nbsp;{count * price}&nbsp;грн.
             </Typography>
             <Box marginTop="10px">
-              <Button className={classes.btn} disableRipple startIcon={<CloseIcon fontSize="small" />}>
+              <Button
+                className={classes.removeButton}
+                disableRipple
+                startIcon={<CloseIcon fontSize="small" />}
+                aria-label={`Удалить этот (${title}) товар`}
+              >
                 удалить
               </Button>
             </Box>
           </Grid>
         </Grid>
         <Box marginTop="20px" display="flex" justifyContent="flex-end" paddingRight="10px">
-          <AmountController min={1} value={count} startValue={item.amount} onChange={handleCountChange} />
+          <AmountController min={1} max={100} value={count} startValue={amount} onChange={handleCountChange} />
         </Box>
       </div>
     </Box>

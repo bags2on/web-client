@@ -5,20 +5,17 @@ import RemoveIcon from '@material-ui/icons/Remove'
 import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core'
 
-interface AddSubInput {
+interface AddSubInputProps {
   value: number
   min: number
+  max?: number
   startValue: number
   onChange(n: number): void
 }
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: 'inline-block',
-    // background: 'orange',
-    '& button': {
-      //   background: 'red'
-    }
+    display: 'inline-block'
   },
   button: {},
   input: {
@@ -39,12 +36,12 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const AddSubInput: React.FC<AddSubInput> = ({ startValue, min, value, onChange }) => {
+const AmountController: React.FC<AddSubInputProps> = ({ startValue, min, max, value, onChange }) => {
   const classes = useStyles()
 
   const handleInputChange = (event: any): void => {
     const value = Number(event.target.value)
-    if (value < min) {
+    if (value < min || value >= Number(max)) {
       onChange(startValue)
     } else {
       onChange(value)
@@ -52,11 +49,12 @@ const AddSubInput: React.FC<AddSubInput> = ({ startValue, min, value, onChange }
   }
 
   const handleAddClick = (): void => {
+    if (value >= Number(max)) return
     onChange(value + 1)
   }
 
   const handleSubClick = (): void => {
-    if (value <= 1) return
+    if (value <= min) return
     onChange(value - 1)
   }
 
@@ -75,11 +73,11 @@ const AddSubInput: React.FC<AddSubInput> = ({ startValue, min, value, onChange }
           root: classes.inputRoot
         }}
       />
-      <IconButton onClick={handleAddClick} aria-label="add the same product">
+      <IconButton onClick={handleAddClick} disabled={!!max && value >= max} aria-label="add the same product">
         <AddIcon />
       </IconButton>
     </div>
   )
 }
 
-export default AddSubInput
+export default AmountController
