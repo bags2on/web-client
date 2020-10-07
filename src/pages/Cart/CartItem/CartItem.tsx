@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom'
 import ImagePlaceholder from '../../../shared/ImagePlaceholder'
 import AmountController from '../../../shared/AmountController'
 import routes from '../../../utils/routes'
+import { formatPrice } from '../../../utils/helpers'
 import { generateLink } from '../../../utils/links'
 import { makeStyles } from '@material-ui/core'
 
@@ -133,12 +134,12 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           </Grid>
           <Grid item xs={12} sm={3} md={2}>
             <Typography component="span" className={classes.priceTitle}>
-              Цена:&nbsp;&nbsp;{price}&nbsp;₴
+              Цена:&nbsp;&nbsp;{formatPrice(price)}&nbsp;₴
             </Typography>
           </Grid>
           <Grid item xs={12} sm={3} md={2}>
             <Typography component="p" className={classes.amountTitle}>
-              {count}&nbsp;шт:&nbsp;&nbsp;{count * price}&nbsp;грн.
+              {count}&nbsp;шт:&nbsp;&nbsp;{formatPrice(count * price)}&nbsp;грн.
             </Typography>
             <Box marginTop="10px">
               <Button

@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { generateLink } from '../../utils/links'
+import { formatPrice } from '../../utils/helpers'
 import routes from '../../utils/routes'
 
 interface CatalogItemProps {
@@ -106,7 +107,7 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
         <Link to={generateLink(routes.product, id)}>{title}</Link>
       </Typography>
       <Typography component="p" className={classes.price}>
-        <Typography component="span">{price}</Typography>
+        <Typography component="span">{formatPrice(price)}</Typography>
         <Typography component="span">&nbsp;₴</Typography>
       </Typography>
       <IconButton onClick={handleLikeClick} className={classes.likeButton}>
