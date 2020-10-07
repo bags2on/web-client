@@ -8,6 +8,8 @@ import { Link } from 'react-router-dom'
 import ImagePlaceholder from '../../../shared/ImagePlaceholder'
 import AmountController from '../../../shared/AmountController'
 import routes from '../../../utils/routes'
+import { gql } from 'apollo-boost'
+import { useMutation } from '@apollo/react-hooks'
 import { formatPrice } from '../../../utils/helpers'
 import { generateLink } from '../../../utils/links'
 import { makeStyles } from '@material-ui/core'
@@ -101,18 +103,28 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
+const REMOVE_PRODUCT_FROM_CART = gql`
+  mutation RemoveFromCart($id: String!) {
+    removeFromCart(id: $id) @client
+  }
+`
+
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
+  const { id, title, preview, price, amount } = item
+
   const classes = useStyles()
-
   const [count, setCount] = useState<number>(item.amount)
+  const [removeFromCart] = useMutation(REMOVE_PRODUCT_FROM_CART, { variables: { id } })
 
-  console.log(count)
+  // console.log(count)
 
   const handleCountChange = (n: number): void => {
     setCount(n)
   }
 
-  const { id, title, preview, price, amount } = item
+  const handleProductRemove = (): void => {
+    removeFromCart()
+  }
 
   return (
     <Box display="flex" className={classes.root}>
@@ -143,6 +155,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
             </Typography>
             <Box marginTop="10px">
               <Button
+                onClick={handleProductRemove}
                 className={classes.removeButton}
                 disableRipple
                 startIcon={<CloseIcon fontSize="small" />}

@@ -19,13 +19,29 @@ const client = new ApolloClient({
       },
       addToCart: (_root, args, { cache }): void => {
         const res = window.localStorage.getItem('cartIDs')
-        console.log(res)
         const { cartItems } = cache.readQuery({ query: GET_CART_ITEMS })
         const newCartItems = [...cartItems, args.id]
         window.localStorage.setItem('cartIDs', JSON.stringify(newCartItems))
         client.writeData({ data: { cartItems: newCartItems } })
       },
-      removeFromCart: (_root, args, { cache }): void => {},
+      removeFromCart: (_root, args, { cache }): void => {
+        const productIds = window.localStorage.getItem('cartIDs')
+
+        const filterItems = (arr: string[]): string[] => {
+          return arr.filter((productId: string): boolean => productId != args.id)
+        }
+
+        if (productIds) {
+          const parsedIds: string[] = JSON.parse(productIds)
+          const res = filterItems(parsedIds)
+          window.localStorage.setItem('cartIDs', JSON.stringify(res))
+        }
+
+        const { cartItems } = cache.readQuery({ query: GET_CART_ITEMS })
+
+        const updatedItems = filterItems(cartItems)
+        client.writeData({ data: { cartItems: updatedItems } })
+      },
       clearCart: (_root, args, { cache }): void => {
         client.writeData({ data: { cartItems: [] } })
         const savedItems = window.localStorage.getItem('cartIDs')
