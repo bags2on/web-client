@@ -10,9 +10,6 @@ import { gql } from 'apollo-boost'
 
 interface CartItemsProps {}
 
-interface CartTotals {
-  cartItems: string[]
-}
 
 const GET_CART_IDS = gql`
   {
@@ -49,15 +46,15 @@ const useStyles = makeStyles(() => ({
 
 const CartItems: React.FC<CartItemsProps> = () => {
   const classes = useStyles()
-  const savedIDS = useQuery<CartTotals>(GET_CART_IDS)
+  const savedIDS = useQuery(GET_CART_IDS)
   const { data, loading } = useQuery(GET_ALL_PRODUCTS_BY_ID, {
     variables: {
-      ids: savedIDS.data?.cartItems
+      ids: savedIDS.data.cartItems
     },
-    fetchPolicy: 'network-only'
+    fetchPolicy: 'network-only',
+    skip: savedIDS.data.cartItems.length === 0
   })
 
-  console.log(data)
 
   const [onClearCart] = useMutation(CLEAR_CART)
 
