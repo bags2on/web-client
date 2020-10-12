@@ -6,14 +6,20 @@ import CartItem, { CartItemType } from '../CartItem/CartItem'
 import { ReactComponent as EmptyCartIcon } from '../../../assets/svg/emptycart.svg'
 import { makeStyles } from '@material-ui/core'
 import Summary from '../Summary/Summary'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 
 interface CartItemsProps {}
 
 const GET_CART_IDS = gql`
   {
-    cartItems @client
+    cartIDs @client
+  }
+`
+
+const SET_CART_ITEMS = gql`
+  mutation SetFetchedCartItems {
+    setFetchedCartItems @client
   }
 `
 
@@ -62,26 +68,34 @@ const useStyles = makeStyles(() => ({
 const CartItems: React.FC<CartItemsProps> = () => {
   const classes = useStyles()
   const savedIDS = useQuery(GET_CART_IDS)
+  const client = useApolloClient()
 
-  const isCartEmpty = savedIDS.data.cartItems.length === 0
+  const isCartEmpty = savedIDS.data.cartIDs.length === 0
 
-  const { data, loading } = useQuery(GET_ALL_PRODUCTS_BY_ID, {
+  const { data, loading, error } = useQuery(GET_ALL_PRODUCTS_BY_ID, {
     variables: {
-      ids: savedIDS.data.cartItems
+      ids: savedIDS.data.cartIDs
     },
     fetchPolicy: 'network-only',
-    skip: isCartEmpty
+    skip: isCartEmpty,
+    onCompleted: (data) => {
+      if (data) {
+        const totalSumm = data.productsByID.reduce((previousValue: number, item: CartItemType) => {
+          return previousValue + item.price * item.amount
+        }, 0)
+
+        client.writeData({ data: { cartTotalPrice: totalSumm } })
+      }
+    }
   })
 
   if (loading) {
-    return <p>Loading</p>
+    return <p>Loading</p> // ui
   }
 
-  const totalSumm = data?.productsByID.reduce((previousValue: number, currentValue: CartItemType) => {
-    return previousValue + currentValue.price * currentValue.amount
-  }, 0)
-
-  console.log(totalSumm)
+  if (error) {
+    return <p>Error</p> // ui
+  }
 
   return (
     <Box>
@@ -95,7 +109,7 @@ const CartItems: React.FC<CartItemsProps> = () => {
       ) : (
         <Grid container>
           <Grid item xs={12}>
-            <Summary totalSum={totalSumm} />
+            <Summary />
           </Grid>
           <Grid item>
             <Grid container component="ul" className={classes.list}>

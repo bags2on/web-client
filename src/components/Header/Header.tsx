@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import clsx from 'clsx'
 // import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core'
@@ -17,7 +17,7 @@ import NightToggleSwith from '../../shared/NightToggleSwith/NightToggleSwith'
 
 const GET_CART_TOTALS = gql`
   {
-    cartItems @client
+    cartIDs @client
   }
 `
 
@@ -83,7 +83,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 interface CartTotals {
-  cartItems: string[]
+  cartIDs: string[]
 }
 
 const Header: React.FC<HeaderProps> = ({ onDrawerOpen, themeChanger }) => {
@@ -91,7 +91,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, themeChanger }) => {
   const { data } = useQuery<CartTotals>(GET_CART_TOTALS)
   const [updateTotals] = useMutation(UPDATE_CART_TOTALS)
 
-  React.useEffect(() => {
+  useEffect(() => {
     updateTotals()
   }, [])
 
@@ -117,7 +117,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, themeChanger }) => {
       </Link> */}
       <Search />
       <IconButton color="primary" onClick={handleCartClick} disableRipple className={classes.btns}>
-        <Badge badgeContent={data?.cartItems.length} max={999} color="error">
+        <Badge badgeContent={data?.cartIDs.length} max={999} color="error">
           <Icon className={classes.cartIcon}>
             <CartIcon />
           </Icon>

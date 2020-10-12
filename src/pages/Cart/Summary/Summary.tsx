@@ -4,13 +4,11 @@ import Grid from '@material-ui/core/Grid'
 import Button from '@material-ui/core/Button'
 import Typography from '@material-ui/core/Typography'
 import { gql } from 'apollo-boost'
-import { useMutation } from '@apollo/react-hooks'
+import { useQuery, useMutation } from '@apollo/react-hooks'
 import { makeStyles } from '@material-ui/core'
 import { formatPrice } from '../../../utils/helpers'
 
-interface SummaryProps {
-  totalSum: number
-}
+interface SummaryProps {}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -40,10 +38,17 @@ const CLEAR_CART = gql`
   }
 `
 
-const Summary: React.FC<SummaryProps> = ({ totalSum }) => {
+const GET_CART_TOTAL_SUMM = gql`
+  {
+    cartTotalPrice @client
+  }
+`
+
+const Summary: React.FC<SummaryProps> = () => {
   const classes = useStyles()
 
   const [onClearCart] = useMutation(CLEAR_CART)
+  const { data } = useQuery(GET_CART_TOTAL_SUMM)
 
   const handleClearAllClick = (): void => {
     onClearCart()
@@ -62,7 +67,7 @@ const Summary: React.FC<SummaryProps> = ({ totalSum }) => {
             <Typography component="p">
               Итого:&nbsp;
               <Typography component="span" className={classes.totalTitle}>
-                {formatPrice(totalSum)}&nbsp;грн.
+                {formatPrice(data.cartTotalPrice)}&nbsp;грн.
               </Typography>
             </Typography>
           </Box>
