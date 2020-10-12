@@ -3,7 +3,8 @@ import { InMemoryCache } from 'apollo-boost'
 const cache = new InMemoryCache()
 cache.writeData({
   data: {
-    cartItems: []
+    cartItems: [],
+    cartTotalPrice: 0
   }
 })
 

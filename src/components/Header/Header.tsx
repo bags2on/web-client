@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     padding: '5px 0',
-    // backgroundColor: theme.palette.type === 'light' ? '#ff9900' : '#282828',
+    backgroundColor: theme.palette.type === 'light' ? '#ff9900' : '#282828',
     [theme.breakpoints.up('lg')]: {
       padding: '4px 20px'
     }

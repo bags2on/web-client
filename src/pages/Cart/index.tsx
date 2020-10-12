@@ -2,7 +2,7 @@ import React from 'react'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import CartItems from './CartItems/CartItems'
-import ItemsHeader from './ItemsHeader/ItemsHeader'
+// import ItemsHeader from './ItemsHeader/ItemsHeader'
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
