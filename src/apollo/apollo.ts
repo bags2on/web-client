@@ -50,6 +50,11 @@ const client = new ApolloClient({
           window.localStorage.setItem('cartIDs', JSON.stringify([]))
         }
       },
+      updateCartTotalPrice: (_root, args, { cache }): void => {
+        console.log(args)
+        client.writeData({ data: { cartTotalPrice: args.input } })
+
+      },
       setFetchedCartItems: (_root, args, { cache }): void => {
         console.log(args)
         client.writeData({ data: { cartItems: [] } })

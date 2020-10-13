@@ -17,12 +17,6 @@ const GET_CART_IDS = gql`
   }
 `
 
-const SET_CART_ITEMS = gql`
-  mutation SetFetchedCartItems {
-    setFetchedCartItems @client
-  }
-`
-
 const GET_ALL_PRODUCTS_BY_ID = gql`
   query productsByID($ids: [String!]) {
     productsByID(ids: $ids) {

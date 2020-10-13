@@ -9,7 +9,7 @@ import ImagePlaceholder from '../../../shared/ImagePlaceholder'
 import AmountController from '../../../shared/AmountController'
 import routes from '../../../utils/routes'
 import { gql } from 'apollo-boost'
-import { useMutation } from '@apollo/react-hooks'
+import { useQuery, useMutation } from '@apollo/react-hooks'
 import { formatPrice } from '../../../utils/helpers'
 import { generateLink } from '../../../utils/links'
 import { makeStyles } from '@material-ui/core'
@@ -28,7 +28,6 @@ interface CartItemProps {
 
 const useStyles = makeStyles(() => ({
   root: {
-    // background: 'orange',
     position: 'relative',
     marginBottom: 20,
     '&::after': {
@@ -109,16 +108,51 @@ const REMOVE_PRODUCT_FROM_CART = gql`
   }
 `
 
+const UPDATE_CART_TOTALS = gql`
+  mutation UpdateTotalCartPrice($input: Number!) {
+    updateCartTotalPrice(input: $input) @client
+  }
+`
+
+const GET_CART_TOTAL_SUMM = gql`
+  {
+    cartTotalPrice @client
+  }
+`
+
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const { id, title, preview, price, amount } = item
 
   const classes = useStyles()
   const [count, setCount] = useState<number>(item.amount)
+  const { data } = useQuery(GET_CART_TOTAL_SUMM)
   const [removeFromCart] = useMutation(REMOVE_PRODUCT_FROM_CART, { variables: { id } })
+  const [updateTotals] = useMutation(UPDATE_CART_TOTALS)
 
-  // console.log(count)
 
-  const handleCountChange = (n: number): void => {
+  const handleCountChange = (type: string, n: number): void => {
+    const currentPrice = data.cartTotalPrice
+
+    switch (type) {
+      case "add":
+        updateTotals({ variables: { input: currentPrice + price}});
+        break;
+      case "sub":
+        updateTotals({ variables: { input: currentPrice - price}});
+        break;
+      // case "prevent":
+      //   updateTotals({ variables: { input: currentPrice + (count * price) + n * price}});
+      //   break;
+      // case "change":
+      //   console.log('change')
+      //   updateTotals({ variables: { input: x}});
+      //   // updateTotals({ variables: { input: currentPrice + x}});
+        
+      //   break;
+      default:
+        break;
+    }
+
     setCount(n)
   }
 

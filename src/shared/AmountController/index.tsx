@@ -10,7 +10,7 @@ interface AddSubInputProps {
   min: number
   max?: number
   startValue: number
-  onChange(n: number): void
+  onChange(type: "add" | "sub" | 'prevent'| "change", n: number): void
 }
 
 const useStyles = makeStyles(() => ({
@@ -42,20 +42,20 @@ const AmountController: React.FC<AddSubInputProps> = ({ startValue, min, max, va
   const handleInputChange = (event: any): void => {
     const value = Number(event.target.value)
     if (value < min || value >= Number(max)) {
-      onChange(startValue)
+      onChange("prevent", startValue)
     } else {
-      onChange(value)
+      onChange("change", value)
     }
   }
 
   const handleAddClick = (): void => {
     if (value >= Number(max)) return
-    onChange(value + 1)
+    onChange("add", value + 1)
   }
 
   const handleSubClick = (): void => {
     if (value <= min) return
-    onChange(value - 1)
+    onChange("sub", value - 1)
   }
 
   return (
