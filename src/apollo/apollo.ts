@@ -7,9 +7,11 @@ const GET_CART_ITEMS = gql`
   }
 `
 
+const API_URL = process.env.REACT_APP_API_URL
+
 const client = new ApolloClient({
   cache,
-  uri: 'http://localhost:8080/',
+  uri: API_URL,
   resolvers: {
     Mutation: {
       syncCartWithLocalStorage: (_root, _, { cache }): void => {
