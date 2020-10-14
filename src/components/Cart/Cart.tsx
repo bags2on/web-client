@@ -36,7 +36,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose, themeChanger }) => {
       }}
     >
       <div className={classes.root}>
-        <CartItems />
+        <CartItems onClose={onClose} />
       </div>
     </DrawerUI>
   )

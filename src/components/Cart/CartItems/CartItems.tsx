@@ -2,6 +2,8 @@ import React from 'react'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
+import Button from '@material-ui/core/Button'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
 import { ReactComponent as EmptyCartIcon } from '../../../assets/svg/emptycart.svg'
 import { makeStyles } from '@material-ui/core'
@@ -9,7 +11,9 @@ import Summary from '../Summary/Summary'
 import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 
-interface CartItemsProps {}
+interface CartItemsProps {
+  onClose(): void
+}
 
 const GET_CART_IDS = gql`
   {
@@ -56,10 +60,19 @@ const useStyles = makeStyles(() => ({
       fontWeight: 500,
       textAlign: 'center'
     }
+  },
+  backButton: {
+    margin: '0 auto',
+    marginTop: 50
+  },
+  buttonText: {
+    fontWeight: 700,
+    fontSize: 16,
+    color: '#fff'
   }
 }))
 
-const CartItems: React.FC<CartItemsProps> = () => {
+const CartItems: React.FC<CartItemsProps> = ({ onClose }) => {
   const classes = useStyles()
   const savedIDS = useQuery(GET_CART_IDS)
   const client = useApolloClient()
@@ -99,6 +112,16 @@ const CartItems: React.FC<CartItemsProps> = () => {
             <EmptyCartIcon />
             <Typography component="p">Корзина пуста</Typography>
           </div>
+          <Button
+            onClick={onClose}
+            variant="contained"
+            color="secondary"
+            classes={{ label: classes.buttonText }}
+            className={classes.backButton}
+            startIcon={<ArrowBackIosIcon />}
+          >
+            Назад
+          </Button>
         </Box>
       ) : (
         <Grid container>
