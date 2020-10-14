@@ -93,11 +93,9 @@ const useStyles = makeStyles(() => ({
     '& .MuiButton-startIcon': {
       margin: 0
     },
-    '&:active': {
+    '&:hover': {
+      background: 'none',
       textDecoration: 'underline'
-    },
-    '&:focus': {
-      outline: 'auto'
     }
   }
 }))
@@ -188,9 +186,9 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
             </Typography>
             <Box marginTop="10px">
               <Button
+                disableRipple
                 onClick={handleProductRemove}
                 className={classes.removeButton}
-                disableRipple
                 startIcon={<CloseIcon fontSize="small" />}
                 aria-label={`Удалить этот (${title}) товар`}
               >

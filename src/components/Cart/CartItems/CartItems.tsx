@@ -3,6 +3,7 @@ import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
+import AppButton from '../../../shared/Button'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
 import { ReactComponent as EmptyCartIcon } from '../../../assets/svg/emptycart.svg'
@@ -33,13 +34,35 @@ const GET_ALL_PRODUCTS_BY_ID = gql`
   }
 `
 
-const useStyles = makeStyles(() => ({
-  root: {},
+const CLEAR_CART = gql`
+  mutation ClearCart {
+    clearCart @client
+  }
+`
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    position: 'relative'
+  },
   list: {
     margin: 0,
     padding: 0,
     listStyle: 'none',
     paddingTop: '20px'
+  },
+  clearCartButton: {
+    display: 'block',
+    fontSize: 16,
+    padding: 10,
+    fontWeight: 400,
+    textTransform: 'none',
+    marginLeft: 'auto',
+    [theme.breakpoints.up('md')]: {
+      '&:hover': {
+        backgroundColor: 'transparent',
+        textDecoration: 'underline'
+      }
+    }
   },
   emptyContainer: {
     height: 'calc(100vh - 142px)',
@@ -60,22 +83,14 @@ const useStyles = makeStyles(() => ({
       fontWeight: 500,
       textAlign: 'center'
     }
-  },
-  backButton: {
-    margin: '0 auto',
-    marginTop: 50
-  },
-  buttonText: {
-    fontWeight: 700,
-    fontSize: 16,
-    color: '#fff'
   }
 }))
 
 const CartItems: React.FC<CartItemsProps> = ({ onClose }) => {
   const classes = useStyles()
-  const savedIDS = useQuery(GET_CART_IDS)
   const client = useApolloClient()
+  const savedIDS = useQuery(GET_CART_IDS)
+  const [onClearCart] = useMutation(CLEAR_CART)
 
   const isCartEmpty = savedIDS.data.cartIDs.length === 0
 
@@ -96,6 +111,10 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose }) => {
     }
   })
 
+  const handleClearAllClick = (): void => {
+    onClearCart()
+  }
+
   if (loading) {
     return <p>Loading</p> // ui
   }
@@ -112,23 +131,23 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose }) => {
             <EmptyCartIcon />
             <Typography component="p">Корзина пуста</Typography>
           </div>
-          <Button
-            onClick={onClose}
-            variant="contained"
-            color="secondary"
-            classes={{ label: classes.buttonText }}
-            className={classes.backButton}
-            startIcon={<ArrowBackIosIcon />}
-          >
-            Назад
-          </Button>
+          <Box margin="0 auto" width="130px" marginTop="50px">
+            <AppButton fullWidth onClick={onClose} color="secondary" startIcon={<ArrowBackIosIcon />}>
+              Назад
+            </AppButton>
+          </Box>
         </Box>
       ) : (
         <Grid container>
           <Grid item xs={12}>
-            <Summary />
+            <Summary onClose={onClose} />
           </Grid>
-          <Grid item>
+          <Grid item xs={12}>
+            <Button onClick={handleClearAllClick} className={classes.clearCartButton}>
+              Очистить корзину
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
             <Grid container component="ul" className={classes.list}>
               {data?.productsByID.map((product: CartItemType, ind: number) => (
                 <Grid key={ind} component="li" item xs={12}>

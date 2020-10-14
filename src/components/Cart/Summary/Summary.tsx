@@ -1,42 +1,50 @@
 import React from 'react'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import Button from '@material-ui/core/Button'
+import IconButton from '@material-ui/core/IconButton'
+import CloseIcon from '@material-ui/icons/Close'
+import AppButton from '../../../shared/Button'
 import Typography from '@material-ui/core/Typography'
 import { gql } from 'apollo-boost'
-import { useQuery, useMutation } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/react-hooks'
 import { makeStyles } from '@material-ui/core'
 import { formatPrice } from '../../../utils/helpers'
 
-interface SummaryProps {}
+interface SummaryProps {
+  onClose(): void
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    padding: '15px 10px',
+    padding: '15px 10px 25px 15px',
     backgroundColor: theme.palette.type === 'light' ? '#f3f3f3' : '#282828'
   },
-  clearCartButton: {
-    textTransform: 'none'
+  closeCartButton: {
+    marginRight: 30
   },
   checkoutButton: {
+    overflow: 'hidden',
+    position: 'relative',
+    display: 'block',
     width: '100%',
     fontWeight: 500,
     fontSize: 18,
     color: '#fff',
     padding: '10px 0',
     marginTop: 10,
-    backgroundColor: theme.palette.secondary.main
+    backgroundColor: theme.palette.secondary.main,
+    '&:hover': {
+      backgroundColor: '#ffa51e'
+    }
   },
   totalTitle: {
-    fontWeight: 500
+    fontSize: 18,
+    '& > span': {
+      fontSize: 16,
+      fontWeight: 500
+    }
   }
 }))
-
-const CLEAR_CART = gql`
-  mutation ClearCart {
-    clearCart @client
-  }
-`
 
 const GET_CART_TOTAL_SUMM = gql`
   {
@@ -44,15 +52,10 @@ const GET_CART_TOTAL_SUMM = gql`
   }
 `
 
-const Summary: React.FC<SummaryProps> = () => {
+const Summary: React.FC<SummaryProps> = ({ onClose }) => {
   const classes = useStyles()
 
-  const [onClearCart] = useMutation(CLEAR_CART)
   const { data } = useQuery(GET_CART_TOTAL_SUMM)
-
-  const handleClearAllClick = (): void => {
-    onClearCart()
-  }
 
   const handleCheckoutClick = (): void => {
     console.log('order')
@@ -61,21 +64,21 @@ const Summary: React.FC<SummaryProps> = () => {
   return (
     <section className={classes.root}>
       <Grid container>
-        <Grid container>
-          <Button onClick={handleClearAllClick}>очистить корзину</Button>
-          <Box flexBasis="50%" display="flex" alignItems="center" justifyContent="center">
-            <Typography component="p">
+        <Box display="flex" flexWrap="wrap" width="100%" marginBottom="10px">
+          <IconButton onClick={onClose} className={classes.closeCartButton}>
+            <CloseIcon />
+          </IconButton>
+          <Box display="flex" alignItems="center" justifyContent="center">
+            <Typography component="p" className={classes.totalTitle}>
               Итого:&nbsp;
-              <Typography component="span" className={classes.totalTitle}>
-                {formatPrice(data.cartTotalPrice)}&nbsp;грн.
-              </Typography>
+              <Typography component="span">{formatPrice(data.cartTotalPrice)}&nbsp;грн.</Typography>
             </Typography>
           </Box>
-        </Grid>
+        </Box>
         <Grid container>
-          <Button className={classes.checkoutButton} onClick={handleCheckoutClick}>
+          <AppButton fullWidth withShadow={false} color="secondary" onClick={handleCheckoutClick}>
             Оформить заказ
-          </Button>
+          </AppButton>
         </Grid>
       </Grid>
     </section>

@@ -37,6 +37,9 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: theme.palette.type === 'light' ? '#ff9900' : '#282828',
     [theme.breakpoints.up('lg')]: {
       padding: '4px 20px'
+    },
+    [theme.breakpoints.up('md')]: {
+      backgroundColor: theme.palette.type === 'light' ? 'transparent' : '#282828'
     }
   },
   logo: {
@@ -67,9 +70,7 @@ const useStyles = makeStyles((theme) => ({
   menuIcon: {
     fill: theme.palette.type === 'light' ? '#303030' : '#ff9900'
   },
-  cart: {
-    // paddingRight: 0
-  },
+  cart: {},
   toggl: {
     marginLeft: 7,
     paddingRight: 20,

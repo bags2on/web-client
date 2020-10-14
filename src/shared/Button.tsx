@@ -1,8 +1,12 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Button as ButtonUI } from '@material-ui/core'
+import { Button as ButtonUI, colors } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import ScaleLoader from './loaders/ScaleLoader'
+
+interface BottonStyleTypes {
+  withShadow: boolean
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -11,8 +15,8 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px 0',
     fontWeight: 600,
     color: '#fff',
-    boxShadow: '0px 8px 17px rgba(0, 0, 0, .3)',
-    borderRadius: '6px'
+    borderRadius: '6px',
+    boxShadow: (props: BottonStyleTypes) => (props.withShadow ? '0px 8px 17px rgba(0, 0, 0, .3)' : 'none')
   },
   text: {
     lineHeight: '24px'
@@ -36,26 +40,29 @@ const useStyles = makeStyles((theme) => ({
 type CardColors = 'main' | 'secondary'
 
 interface BottonProps {
-  onClick?(event: React.MouseEvent<HTMLButtonElement>): void
+  to?: string
+  type?: 'button' | 'reset' | 'submit' | undefined
+  color?: CardColors
   children: React.ReactNode
+  component?: React.ReactNode
+  startIcon?: React.ReactNode
   loading?: boolean
   disabled?: boolean
   fullWidth?: boolean
-  type?: 'button' | 'reset' | 'submit' | undefined
-  to?: string
-  color: CardColors
+  withShadow?: boolean
   darkLoader?: boolean
-  component?: React.ReactNode
+  onClick?(event: React.MouseEvent<HTMLButtonElement>): void
 }
 
 const Button: React.FC<BottonProps> = ({
-  color = 'main',
+  loading,
   children,
   darkLoader,
-  loading,
+  color = 'main',
+  withShadow = true,
   ...otherProps
 }: BottonProps) => {
-  const classes = useStyles()
+  const classes = useStyles({ withShadow })
 
   return (
     <ButtonUI className={clsx(classes[color], classes.root)} {...otherProps}>
