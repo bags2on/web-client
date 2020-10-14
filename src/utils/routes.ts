@@ -7,7 +7,6 @@ const routes: RoutesMap = {
   root: '/',
   catalog: '/catalog/:page?',
   product: '/p/:id',
-  cart: '/cart'
 }
 
 export default routes

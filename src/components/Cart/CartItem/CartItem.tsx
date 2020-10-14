@@ -129,17 +129,16 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const [removeFromCart] = useMutation(REMOVE_PRODUCT_FROM_CART, { variables: { id } })
   const [updateTotals] = useMutation(UPDATE_CART_TOTALS)
 
-
   const handleCountChange = (type: string, n: number): void => {
     const currentPrice = data.cartTotalPrice
 
     switch (type) {
-      case "add":
-        updateTotals({ variables: { input: currentPrice + price}});
-        break;
-      case "sub":
-        updateTotals({ variables: { input: currentPrice - price}});
-        break;
+      case 'add':
+        updateTotals({ variables: { input: currentPrice + price } })
+        break
+      case 'sub':
+        updateTotals({ variables: { input: currentPrice - price } })
+        break
       // case "prevent":
       //   updateTotals({ variables: { input: currentPrice + (count * price) + n * price}});
       //   break;
@@ -147,10 +146,10 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
       //   console.log('change')
       //   updateTotals({ variables: { input: x}});
       //   // updateTotals({ variables: { input: currentPrice + x}});
-        
+
       //   break;
       default:
-        break;
+        break
     }
 
     setCount(n)
@@ -169,7 +168,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
       </Box>
       <div className={classes.productInfoBox}>
         <Grid container>
-          <Grid item xs={12} sm={6} md={8}>
+          <Grid item xs={12}>
             <Box minWidth="0">
               <Typography component="p" className={classes.title}>
                 <Link title={title} to={generateLink(routes.product, id)}>
@@ -178,12 +177,12 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
               </Typography>
             </Box>
           </Grid>
-          <Grid item xs={12} sm={3} md={2}>
+          <Grid item xs={12}>
             <Typography component="span" className={classes.priceTitle}>
               Цена:&nbsp;&nbsp;{formatPrice(price)}&nbsp;₴
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={3} md={2}>
+          <Grid item xs={12}>
             <Typography component="p" className={classes.amountTitle}>
               {count}&nbsp;шт:&nbsp;&nbsp;{formatPrice(count * price)}&nbsp;грн.
             </Typography>
