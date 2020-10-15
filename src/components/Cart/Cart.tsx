@@ -1,5 +1,5 @@
 import React from 'react'
-import DrawerUI from '@material-ui/core/Drawer'
+import Drawer from '@material-ui/core/Drawer'
 import CartItems from './CartItems/CartItems'
 import { makeStyles } from '@material-ui/core'
 
@@ -26,7 +26,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose, themeChanger }) => {
   const classes = useStyles()
 
   return (
-    <DrawerUI
+    <Drawer
       anchor="right"
       onClose={onClose}
       open={isOpen}
@@ -38,7 +38,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose, themeChanger }) => {
       <div className={classes.root}>
         <CartItems onClose={onClose} />
       </div>
-    </DrawerUI>
+    </Drawer>
   )
 }
 

@@ -18,30 +18,30 @@ interface CategoryItem {
 
 const categoriesValues: CategoryItem[] = [
   {
-    icon: BaggageIcon,
-    to: '#',
-    text: 'Suitcases'
-  },
-  {
     icon: BagIcon,
     to: '#',
-    text: 'Bags'
+    text: 'Сумки' // Bags
+  },
+  {
+    icon: BaggageIcon,
+    to: '#',
+    text: 'Чемоданы' // Suitcases
   },
   {
     icon: WalletIcon,
     to: '#',
-    text: 'Wallets'
+    text: 'Кошельки' // Wallets
   },
   {
     icon: OtherIcon,
     to: '/catalog',
-    text: 'All...'
+    text: 'Все'
   }
 ]
 
 const useStyles = makeStyles(() => ({
   root: {
-    padding: '3px 5px 10px 5px',
+    padding: '3px 5px 10px 10px',
     marginBottom: '15px',
     '& ul': {
       listStyle: 'none',
@@ -79,7 +79,9 @@ const useStyles = makeStyles(() => ({
       boxShadow: '0 2px 10px 1px rgba(0, 0, 0, 0.15)'
     }
   },
-
+  itemTitle: {
+    fontWeight: 500
+  },
   text: {
     fontSize: '14px'
   }
@@ -91,7 +93,8 @@ const Categories: React.FC = () => {
   return (
     <section className={classes.root}>
       <Typography className={classes.title} component="h2">
-        Categories
+        Категории
+        {/* Categories */}
       </Typography>
       <div>
         <ul>
@@ -106,7 +109,9 @@ const Categories: React.FC = () => {
                   </IconButton>
                 </Link>
               </div>
-              <Typography component="span">{category.text}</Typography>
+              <Typography className={classes.itemTitle} component="span">
+                {category.text}
+              </Typography>
             </li>
           ))}
         </ul>

@@ -37,7 +37,7 @@ const items = [
 const useStyles = makeStyles((theme) => ({
   root: {
     // background: '#232121',
-    background: '#f8fafa',
+    background: theme.palette.type === 'light' ? '#f8fafa' : '#282828',
     padding: '20px 0',
     color: theme.palette.primary.main
   },
@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
       padding: 1,
       margin: '18px 0'
     },
-    [theme.breakpoints.up('sm')]: {
+    [theme.breakpoints.up('md')]: {
       display: 'flex',
       '& li': {
         flexGrow: 1,

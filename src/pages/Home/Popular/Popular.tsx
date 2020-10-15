@@ -23,7 +23,7 @@ const Popular: React.FC = () => {
   return (
     <section className={classes.root}>
       <Typography className={classes.title} component="h2">
-        Also you may like
+        Популярное
       </Typography>
       <div
         style={{
