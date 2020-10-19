@@ -8,7 +8,8 @@ import Badge from '@material-ui/core/Badge'
 import Icon from '@material-ui/core/Icon'
 import Search from '../../components/Search/Search'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
-import { ReactComponent as CartIcon } from '../../assets/svg/cart.svg'
+import { ReactComponent as CartIcon } from '../../assets/svg/new_cart.svg'
+import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import NightToggleSwith from '../../shared/NightToggleSwith/NightToggleSwith'
 
 const GET_CART_TOTALS = gql`
@@ -34,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     padding: '5px 0',
-    backgroundColor: theme.palette.type === 'light' ? '#ff9900' : '#282828',
+    backgroundColor: theme.palette.type === 'light' ? 'transparent' : '#282828',
     [theme.breakpoints.up('lg')]: {
       padding: '4px 20px'
     },
@@ -59,12 +60,24 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   menuBtn: {
-    [theme.breakpoints.up('xl')]: {
+    [theme.breakpoints.up('lg')]: {
       display: 'none'
     }
   },
+  heartButton: {
+    display: 'none',
+    [theme.breakpoints.up('lg')]: {
+      display: 'block'
+    }
+  },
+  heartIcon: {
+    fontSize: 23,
+    fill: 'none',
+    stroke: '#000'
+  },
   cartIcon: {
-    fontSize: 30,
+    fontSize: 23,
+    marginTop: -4,
     fill: theme.palette.type === 'light' ? '#303030' : '#ff9900'
   },
   menuIcon: {
@@ -97,6 +110,8 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
     onCartOpen()
   }
 
+  const handleFavoritesClick = (): void => {}
+
   return (
     <header className={classes.root}>
       <IconButton onClick={onDrawerOpen} disableRipple className={clsx(classes.btns, classes.menuBtn)}>
@@ -114,6 +129,18 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
         </div>
       </Link> */}
       <Search />
+      <IconButton
+        color="primary"
+        onClick={handleFavoritesClick}
+        disableRipple
+        className={clsx(classes.btns, classes.heartButton)}
+      >
+        <Badge badgeContent={0} max={999} color="error">
+          <Icon className={classes.heartIcon}>
+            <HeartIcon />
+          </Icon>
+        </Badge>
+      </IconButton>
       <IconButton color="primary" onClick={handleCartClick} disableRipple className={classes.btns}>
         <Badge badgeContent={data?.cartIDs.length} max={999} color="error">
           <Icon className={classes.cartIcon}>
