@@ -9,15 +9,15 @@ import Badge from '@material-ui/core/Badge'
 import Icon from '@material-ui/core/Icon'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
-import Search from '../../components/Search/Search'
+import Search from '../../components/Search_v2/Search'
 import HeaderUnderline from './HeaderUnderline'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
 import { ReactComponent as CartIcon } from '../../assets/svg/new_cart.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/svg/profile.svg'
-import { ReactComponent as SearchIcon } from '../../assets/svg/search.svg'
 import logo from '../../assets/svg/logo.svg'
-import NightToggleSwith from '../../shared/NightToggleSwith/NightToggleSwith'
+// import { ReactComponent as SearchIcon } from '../../assets/svg/search.svg'
+// import NightToggleSwith from '../../shared/NightToggleSwith/NightToggleSwith'
 
 const GET_CART_TOTALS = gql`
   {
@@ -181,9 +181,9 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
         <img src={logo} alt="Bags2on" />
       </Link>
       {/*  */}
-      {/* <Search /> */}
+      <Search />
       {/*  */}
-      <IconButton
+      {/* <IconButton
         color="primary"
         onClick={handleFavoritesClick}
         disableRipple
@@ -197,7 +197,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
             <SearchIcon />
           </Icon>
         </Badge>
-      </IconButton>
+      </IconButton> */}
       <IconButton
         color="primary"
         onClick={handleFavoritesClick}

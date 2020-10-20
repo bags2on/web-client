@@ -9,7 +9,7 @@ i18n
     resources: {
       en: {
         translations: {
-          headerSearch: 'search',
+          headerSearch: 'Я ищу...',
           email: 'email',
           password: 'password',
           send: 'Submit',
@@ -18,7 +18,7 @@ i18n
       },
       ru: {
         translations: {
-          headerSearch: 'Найти',
+          headerSearch: 'Я ищу...',
           email: 'эл. почта',
           password: 'пароль',
           send: 'Отправить',
