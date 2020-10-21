@@ -1,44 +1,91 @@
 import React from 'react'
-import { Formik, Form } from 'formik'
-import { TopSearchSchema, TopSearchType } from '../../utils/validationSchema'
-import FormControl from '@material-ui/core/FormControl'
-import { useTranslation } from 'react-i18next'
+import IconButton from '@material-ui/core/IconButton'
+import SvgIcon from '@material-ui/core/SvgIcon'
 import { makeStyles } from '@material-ui/core'
-import Field from './Field'
+import { Formik, Form, Field } from 'formik'
+import { TopSearchSchema, TopSearchType } from '../../utils/validationSchema'
+import { ReactComponent as SearchIcon } from '../../assets/svg/search.svg'
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
-    // boxShadow: '0px 1px 9px -1px rgba(0,0,0,0.1)',
-    // [theme.breakpoints.up('lg')]: {
-    //   display: 'none'
-    // }
-  },
-  control: {
-    width: '100%',
-    display: 'flex',
-    marginRight: 5,
-    [theme.breakpoints.up('md')]: {
-      maxWidth: 350,
-      marginRight: 10,
+    flexGrow: 1,
+    [theme.breakpoints.up('lg')]: {
+      flexGrow: 'initial',
       marginLeft: 'auto'
     }
   },
-  inp: {
-    backgroundColor: theme.palette.primary.dark,
-    // backgroundColor: '#272323',
-    color: '#fff',
-    '& .MuiOutlinedInput-input': {
-      fontWeight: '600',
-      padding: '14px 0 14px 10px'
+  searchBox: {
+    width: '100%',
+    position: 'relative',
+    tabIndex: 0,
+    verticalAlign: 'bottom',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    [theme.breakpoints.up('lg')]: {
+      width: 'auto',
+      display: 'inline-block',
+      '&:focus, &:hover': {
+        '& $searchInput': {
+          width: 333,
+          border: '1px solid #c4c4c4',
+          padding: '10px 46px 10px 15px'
+        }
+      }
     }
   },
-  notchedOutline: {}
+  searchInput: {
+    fontSize: 14,
+    fontWeight: 600,
+    position: 'absolute',
+    right: 0,
+    backgroundColor: '#fff',
+    outline: 'none',
+    width: '100%',
+    left: 'auto',
+    height: '100%',
+    zIndex: 9,
+    transitionDuration: '0.4s',
+    borderRadius: 8,
+    border: '1px solid',
+    padding: '10px 46px 10px 15px',
+    '-moz-transition-duration': '0.4s',
+    '-webkit-transition-duration': '0.4s',
+    '-o-transition-duration': '0.4s',
+    [theme.breakpoints.up('lg')]: {
+      width: 0,
+      padding: 0,
+      borderRadius: 10,
+      border: 'none',
+      borderColor: '#c4c4c4'
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: 333,
+      padding: '10px 46px 10px 15px',
+      borderRadius: 10,
+      border: '1px solid',
+      borderColor: '#c4c4c4'
+    }
+  },
+  searchButton: {
+    zIndex: 10,
+    '& svg': {
+      fontSize: 20
+    },
+    [theme.breakpoints.up('lg')]: {
+      '& svg': {
+        fontSize: 23
+      }
+    },
+    '&:hover': {
+      background: 'none'
+    }
+  }
 }))
 
 const Search: React.FC = () => {
   const classes = useStyles()
-  const { t } = useTranslation()
+  const { t } = useTranslation() // from header??
 
   const handleSearch = (values: TopSearchType): void => {
     console.log(values)
@@ -55,10 +102,19 @@ const Search: React.FC = () => {
         validationSchema={TopSearchSchema}
       >
         {(): React.ReactElement => (
-          <Form noValidate>
-            <FormControl variant="outlined" className={classes.control}>
-              <Field name="searchQuery" placeholder={t('headerSearch')} />
-            </FormControl>
+          <Form className={classes.searchBox} noValidate>
+            <Field
+              type="text"
+              autoComplete="off"
+              name="searchQuery"
+              placeholder={t('headerSearch')}
+              className={classes.searchInput}
+            />
+            <IconButton className={classes.searchButton} color="primary" type="submit">
+              <SvgIcon>
+                <SearchIcon />
+              </SvgIcon>
+            </IconButton>
           </Form>
         )}
       </Formik>

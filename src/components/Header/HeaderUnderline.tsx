@@ -6,11 +6,14 @@ interface HeaderUnderlineProps {}
 const useStyles = makeStyles((theme) => ({
   root: {
     [theme.breakpoints.up('lg')]: {
-      marginTop: 20,
       flexBasis: '100%',
       width: '100%',
       height: 1.5,
-      background: '#dcbcbc'
+      background: '#dcbcbc',
+      marginTop: 15
+    },
+    [theme.breakpoints.up('xl')]: {
+      marginTop: 20
     }
   }
 }))
@@ -18,11 +21,7 @@ const useStyles = makeStyles((theme) => ({
 const HeaderUnderline: React.FC<HeaderUnderlineProps> = () => {
   const classes = useStyles()
 
-  return (
-    <div className={classes.root}>
-      <div></div>
-    </div>
-  )
+  return <div className={classes.root} />
 }
 
 export default HeaderUnderline

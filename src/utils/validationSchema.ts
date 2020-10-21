@@ -9,7 +9,7 @@ export const LoginSchema = yup.object({
 })
 
 export const TopSearchSchema = yup.object({
-  searchQuery: yup.string()
+  searchQuery: yup.string().required()
 })
 
 export type LoginSchemaType = yup.InferType<typeof LoginSchema>

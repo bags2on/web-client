@@ -9,14 +9,13 @@ import Badge from '@material-ui/core/Badge'
 import Icon from '@material-ui/core/Icon'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
-import Search from '../../components/Search_v2/Search'
+import Search from '../../components/Search/Search'
 import HeaderUnderline from './HeaderUnderline'
+import logo from '../../assets/svg/logo.svg'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
 import { ReactComponent as CartIcon } from '../../assets/svg/new_cart.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/svg/profile.svg'
-import logo from '../../assets/svg/logo.svg'
-// import { ReactComponent as SearchIcon } from '../../assets/svg/search.svg'
 // import NightToggleSwith from '../../shared/NightToggleSwith/NightToggleSwith'
 
 const GET_CART_TOTALS = gql`
@@ -46,9 +45,7 @@ const useStyles = makeStyles((theme) => ({
     padding: '5px 0',
     backgroundColor: theme.palette.type === 'light' ? 'transparent' : '#282828',
     [theme.breakpoints.up('lg')]: {
-      padding: '4px 20px'
-    },
-    [theme.breakpoints.up('xl')]: {
+      // padding: '4px 20px'
       padding: '27px 50px'
     },
     [theme.breakpoints.up('md')]: {
@@ -58,12 +55,8 @@ const useStyles = makeStyles((theme) => ({
   logo: {
     display: 'none',
     [theme.breakpoints.up('lg')]: {
-      display: 'block',
-      position: 'absolute',
-      transform: 'translateX(-50%)',
-      left: '50%',
-      width: 189,
-      top: 26,
+      display: 'flex',
+      width: 177,
       '& > img': {
         width: '100%',
         height: '100%'
@@ -71,7 +64,9 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   nav: {
-    // marginLeft: 50
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: 50
+    }
   },
   navList: {
     display: 'none',
@@ -104,14 +99,14 @@ const useStyles = makeStyles((theme) => ({
   },
   heartButton: {
     display: 'none',
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up('md')]: {
       display: 'block'
     }
   },
   heartIcon: {
-    fontSize: 23,
+    fontSize: 24,
     fill: 'none',
-    stroke: '#000'
+    stroke: theme.palette.type === 'light' ? '#303030' : '#ff9900'
   },
   cartIcon: {
     fontSize: 26,
@@ -164,6 +159,9 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
           <MenuIcon />
         </Icon>
       </IconButton>
+      <Link to="/" className={classes.logo}>
+        <img src={logo} alt="Bags2on" />
+      </Link>
       <nav className={classes.nav}>
         <List className={classes.navList}>
           <ListItem component="li">
@@ -177,27 +175,12 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
           </ListItem>
         </List>
       </nav>
-      <Link to="/" className={classes.logo}>
+      {/* <Link to="/" className={classes.logo}>
         <img src={logo} alt="Bags2on" />
-      </Link>
+      </Link> */}
       {/*  */}
       <Search />
       {/*  */}
-      {/* <IconButton
-        color="primary"
-        onClick={handleFavoritesClick}
-        disableRipple
-        style={{
-          marginLeft: 'auto'
-        }}
-        className={clsx(classes.btns, classes.heartButton)}
-      >
-        <Badge badgeContent={0} max={999} color="error">
-          <Icon className={classes.cartIcon}>
-            <SearchIcon />
-          </Icon>
-        </Badge>
-      </IconButton> */}
       <IconButton
         color="primary"
         onClick={handleFavoritesClick}
