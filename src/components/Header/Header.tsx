@@ -11,11 +11,11 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import Search from '../../components/Search/Search'
 import HeaderUnderline from './HeaderUnderline'
-import logo from '../../assets/svg/logo.svg'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
 import { ReactComponent as CartIcon } from '../../assets/svg/new_cart.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/svg/profile.svg'
+// import logo from '../../assets/svg/logo.svg'
 // import NightToggleSwith from '../../shared/NightToggleSwith/NightToggleSwith'
 
 const GET_CART_TOTALS = gql`
@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   },
   nav: {
     [theme.breakpoints.up('lg')]: {
-      marginLeft: 50
+      // marginLeft: 50
     }
   },
   navList: {
@@ -85,7 +85,6 @@ const useStyles = makeStyles((theme) => ({
       }
     }
   },
-
   btns: {
     '&:hover': {
       background: 'none',
@@ -166,9 +165,9 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
           <MenuIcon />
         </Icon>
       </IconButton>
-      <Link to="/" className={classes.logo}>
+      {/* <Link to="/" className={classes.logo}>
         <img src={logo} alt="Bags2on" />
-      </Link>
+      </Link> */}
       <nav className={classes.nav}>
         <List className={classes.navList}>
           <ListItem component="li">
