@@ -33,7 +33,7 @@ const useStyles = makeStyles(() => ({
 const images: string[] = [
   'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/zveri_pattern_z3blcb.jpg',
   'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/list_lazmfm.jpg',
-  'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/morozhenoe_zqzcj0.jpg'
+  'https://res.cloudinary.com/dct4oinuz/image/upload/v1603389661/bags2on/third_vspxox.jpg'
 ]
 
 const variants = {
