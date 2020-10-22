@@ -45,7 +45,6 @@ const useStyles = makeStyles((theme) => ({
     padding: '5px 0',
     backgroundColor: theme.palette.type === 'light' ? 'transparent' : '#282828',
     [theme.breakpoints.up('lg')]: {
-      // padding: '4px 20px'
       padding: '27px 50px'
     },
     [theme.breakpoints.up('md')]: {
@@ -89,7 +88,10 @@ const useStyles = makeStyles((theme) => ({
 
   btns: {
     '&:hover': {
-      background: 'none'
+      background: 'none',
+      '& svg:hover': {
+        fill: '#ff9900'
+      }
     }
   },
   menuBtn: {
@@ -108,11 +110,15 @@ const useStyles = makeStyles((theme) => ({
     fill: 'none',
     stroke: theme.palette.type === 'light' ? '#303030' : '#ff9900'
   },
+  profileIcon: {
+    fontSize: 22,
+    marginTop: -4
+  },
   cartIcon: {
     fontSize: 26,
     fill: theme.palette.type === 'light' ? '#303030' : '#ff9900',
     [theme.breakpoints.up('md')]: {
-      fontSize: 23,
+      fontSize: 22,
       marginTop: -4
     }
   },
@@ -140,6 +146,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
 
   useEffect(() => {
     updateTotals()
+    // eslint-disable-next-line
   }, [])
 
   const handleCartClick = (): void => {
@@ -175,9 +182,6 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
           </ListItem>
         </List>
       </nav>
-      {/* <Link to="/" className={classes.logo}>
-        <img src={logo} alt="Bags2on" />
-      </Link> */}
       {/*  */}
       <Search />
       {/*  */}
@@ -200,7 +204,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
         className={clsx(classes.btns, classes.heartButton)}
       >
         <Badge badgeContent={0} max={999} color="error">
-          <Icon className={classes.cartIcon}>
+          <Icon className={classes.profileIcon}>
             <ProfileIcon />
           </Icon>
         </Badge>

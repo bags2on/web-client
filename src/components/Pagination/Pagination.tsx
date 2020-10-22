@@ -100,6 +100,7 @@ const Pagination: React.FC<PaginationProps> = ({ total, currentPage }) => {
       }
     }
     setItems(stageItems)
+    // eslint-disable-next-line
   }, [current])
 
   return (

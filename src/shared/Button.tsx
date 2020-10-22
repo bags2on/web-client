@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Button as ButtonUI, colors } from '@material-ui/core'
+import { Button as ButtonUI } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import ScaleLoader from './loaders/ScaleLoader'
 

@@ -70,11 +70,11 @@ const useStyles = makeStyles((theme) => ({
   searchButton: {
     zIndex: 10,
     '& svg': {
-      fontSize: 20
+      fontSize: 19
     },
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up('md')]: {
       '& svg': {
-        fontSize: 23
+        fontSize: 22
       }
     },
     '&:hover': {
