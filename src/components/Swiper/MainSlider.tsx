@@ -1,7 +1,6 @@
 import React from 'react'
 import SwiperCore, { Autoplay, Scrollbar, EffectFade, Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { makeStyles } from '@material-ui/core'
 
 import 'swiper/swiper.scss'
 import 'swiper/components/scrollbar/scrollbar.scss'
@@ -9,10 +8,6 @@ import 'swiper/components/navigation/navigation.scss'
 import './MainSlider.scss'
 
 interface MainSliderProps {}
-
-const useStyles = makeStyles(() => ({
-  root: {}
-}))
 
 const images: {
   url: string
@@ -39,33 +34,32 @@ const images: {
 SwiperCore.use([Navigation, Autoplay, Scrollbar, EffectFade])
 
 const MainSlider: React.FC<MainSliderProps> = () => {
-  const classes = useStyles()
-
   return (
     <div className="root-container">
       <Swiper
-        autoplay
-        navigation
-        speed={1300}
         loop
-        scrollbar={{ draggable: true }}
+        navigation
         effect="fade"
-        // className={classes.root}
-        //   onSlideChange={() => console.log('slide change')}
-        //   onSwiper={(swiper) => console.log(swiper)}
+        tag="section"
+        speed={1300}
+        scrollbar={{ draggable: true }}
+        autoplay={{
+          disableOnInteraction: false
+        }}
+        wrapperTag="ul"
+        // onSwiper={(swiper) => console.dir(swiper)}
       >
-        {images.map((slide, index) => {
-          const image = {
-            backgroundImage: `url(${slide.imageUrl})`
-          }
-
-          return (
-            <SwiperSlide key={slide.text} virtualIndex={index}>
-              <div style={image} className="slide-image__box" />
-              {/* <img src={slide.imageUrl} alt={slide.text} className="slide-image" /> */}
-            </SwiperSlide>
-          )
-        })}
+        {images.map((slide, index) => (
+          <SwiperSlide tag="li" key={slide.text} virtualIndex={index}>
+            <div
+              aria-label={slide.text}
+              style={{
+                backgroundImage: `url(${slide.imageUrl})`
+              }}
+              className="slide-image-box"
+            />
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   )
