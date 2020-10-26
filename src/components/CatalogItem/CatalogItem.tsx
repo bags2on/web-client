@@ -16,6 +16,7 @@ interface CatalogItemProps {
   url: string
   title: string
   price: number
+  discountPrice?: number
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     background: '#fff',
     margin: '8px 3px',
     padding: '5px',
-    borderRadius: '8px',
+    borderRadius: 8,
     boxShadow: '0px 1px 9px -1px rgba(0,0,0,0.1)',
     transition: 'all .3s',
     [theme.breakpoints.up('md')]: {
@@ -53,10 +54,28 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '16px'
     }
   },
+  priceStroke: {
+    textAlign: 'center'
+  },
   price: {
     textAlign: 'center',
     color: '#ff9900',
     '& > span': {
+      fontSize: 18,
+      fontWeight: 500
+    }
+  },
+  priceWithDiscount: {
+    textDecoration: 'line-through',
+    '& > span': {
+      fontSize: 14
+    }
+  },
+  discountPrice: {
+    color: '#d81e1e',
+    paddingLeft: 10,
+    '& > span': {
+      fontSize: 18,
       fontWeight: 500
     }
   },
@@ -66,10 +85,20 @@ const useStyles = makeStyles((theme) => ({
     top: 4,
     right: 4
   },
-  cartButton: {
+  saleBox: {
     position: 'absolute',
-    right: 0,
-    top: 37
+    top: 0,
+    left: 0,
+    backgroundColor: '#d81e1e',
+    borderTopLeftRadius: 8,
+    borderBottomRightRadius: 8,
+    padding: '7px',
+    userSelect: 'none',
+    '& > span': {
+      color: '#fff',
+      fontWeight: 500,
+      fontSize: 14
+    }
   },
   heartIcon: {
     stroke: '#f44336',
@@ -87,7 +116,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
+const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, discountPrice }) => {
   const classes = useStyles()
 
   const [isLiked, setLiked] = useState<boolean>(false)
@@ -106,9 +135,25 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
       <Typography component="p" className={classes.title}>
         <Link to={generateLink(routes.product, id)}>{title}</Link>
       </Typography>
-      <Typography component="p" className={classes.price}>
-        <Typography component="span">{formatPrice(price)}</Typography>
-        <Typography component="span">&nbsp;₴</Typography>
+      <Typography component="p" className={classes.priceStroke}>
+        <Typography
+          component="span"
+          className={clsx({
+            [classes.price]: true,
+            [classes.priceWithDiscount]: Boolean(discountPrice)
+          })}
+        >
+          <Typography component="span">{formatPrice(price)}</Typography>
+          <Typography component="span">&nbsp;₴</Typography>
+        </Typography>
+        {!!discountPrice && (
+          <>
+            <Typography component="span" className={classes.discountPrice}>
+              <Typography component="span">{formatPrice(discountPrice)}</Typography>
+              <Typography component="span">&nbsp;₴</Typography>
+            </Typography>
+          </>
+        )}
       </Typography>
       <IconButton onClick={handleLikeClick} className={classes.likeButton}>
         <Icon
@@ -123,6 +168,11 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price }) => {
           <HeartIcon />
         </Icon>
       </IconButton>
+      {!!discountPrice && (
+        <div className={classes.saleBox}>
+          <Typography component="span">Акция</Typography>
+        </div>
+      )}
     </div>
   )
 }

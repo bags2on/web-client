@@ -11,6 +11,7 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import Search from '../../components/Search/Search'
 import HeaderUnderline from './HeaderUnderline'
+import routes from '../../utils/routes'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
 import { ReactComponent as CartIcon } from '../../assets/svg/new_cart.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
@@ -171,13 +172,13 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
       <nav className={classes.nav}>
         <List className={classes.navList}>
           <ListItem component="li">
-            <Link to={'#'}>Главная</Link>
+            <Link to={routes.root}>Главная</Link>
           </ListItem>
           <ListItem component="li">
-            <Link to={'#'}>Каталог</Link>
+            <Link to={routes.allCatalog}>Каталог</Link>
           </ListItem>
           <ListItem component="li">
-            <Link to={'#'}>Акции</Link>
+            <Link to={routes.discounts}>Акции</Link>
           </ListItem>
         </List>
       </nav>

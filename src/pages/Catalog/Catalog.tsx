@@ -41,7 +41,7 @@ const useStyles = makeStyles(() => ({
   },
   title: {
     fontSize: '26px',
-    fontWeight: 600,
+    fontWeight: 500,
     margin: '15px 0 15px 10px'
   },
   loaderWapper: {
@@ -69,15 +69,25 @@ const Catalog: React.FC = () => {
     )
   }
 
+  const TEMPgenerator = (m: number, n: number): number => {
+    return m + Math.floor((n - m + 1) * Math.random())
+  }
+
   return (
     <div className={classes.root}>
       <Typography className={classes.title} component="h2">
-        Catalog
+        Каталог
       </Typography>
       <Grid container component="ul" className={classes.list}>
         {data.products.map((product: Product) => (
           <Grid key={product.id} component="li" item xs={6} md={4} lg={3} xl={2}>
-            <CatalogItem url={product.preview} title={product.title} price={product.price} id={product.id} />
+            <CatalogItem
+              url={product.preview}
+              title={product.title}
+              price={product.price}
+              id={product.id}
+              discountPrice={Math.round(Math.random() * 10) === 7 ? TEMPgenerator(350, 550) : 0}
+            />
           </Grid>
         ))}
       </Grid>
