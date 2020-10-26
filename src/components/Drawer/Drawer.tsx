@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     '& > span': {
+      fontWeight: 500,
       fontSize: '18px'
     }
   }
@@ -57,22 +58,22 @@ const drawerItems: DrawerItem[] = [
   {
     icon: HomeIcon,
     to: '/',
-    text: 'Home'
+    text: 'Главная' // Home
   },
   {
     icon: PercentIcon,
     to: '/discounts',
-    text: 'Sales'
+    text: 'Скидки и Акции' // Sales
   },
   {
     icon: ListIcon,
     to: '/catalog',
-    text: 'Catalog'
+    text: 'Каталог' // Catalog
   },
   {
     icon: LookIcon,
     to: '/history',
-    text: 'Watch history'
+    text: 'История просмотра' // Watch history
   }
 ]
 
@@ -98,7 +99,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
     >
       <div className={classes.root}>
         <DrawerHeader themeChanger={themeChanger} />
-        <List component="ul" aria-label="shop's content">
+        <List component="ul" aria-label="Навигация по магазину">
           {drawerItems.map((item) => (
             <ListItem
               key={item.text}
