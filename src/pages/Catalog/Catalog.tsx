@@ -5,6 +5,7 @@ import { gql } from 'apollo-boost'
 import { makeStyles } from '@material-ui/core'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/react-hooks'
+import Filters from './Filters/Filters'
 import ScaleLoader from '../../shared/loaders/ScaleLoader'
 import CatalogItem from '../../components/CatalogItem/CatalogItem'
 import Pagination from '../../components/Pagination/Pagination'
@@ -49,6 +50,10 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  pageContainer: {
+    padding: '0 20px',
+    backgroundColor: 'limegreen'
   }
 }))
 
@@ -78,18 +83,25 @@ const Catalog: React.FC = () => {
       <Typography className={classes.title} component="h2">
         Каталог
       </Typography>
-      <Grid container component="ul" className={classes.list}>
-        {data.products.map((product: Product) => (
-          <Grid key={product.id} component="li" item xs={6} md={4} lg={3} xl={2}>
-            <CatalogItem
-              url={product.preview}
-              title={product.title}
-              price={product.price}
-              id={product.id}
-              discountPrice={Math.round(Math.random() * 10) === 7 ? TEMPgenerator(350, 550) : 0}
-            />
+      <Grid container className={classes.pageContainer}>
+        <Grid item xs={2}>
+          <Filters />
+        </Grid>
+        <Grid item xs={10}>
+          <Grid container component="ul" className={classes.list}>
+            {data.products.map((product: Product) => (
+              <Grid key={product.id} component="li" item xs={6} md={4} lg={3} xl={2}>
+                <CatalogItem
+                  url={product.preview}
+                  title={product.title}
+                  price={product.price}
+                  id={product.id}
+                  discountPrice={Math.round(Math.random() * 10) === 7 ? TEMPgenerator(350, 550) : 0}
+                />
+              </Grid>
+            ))}
           </Grid>
-        ))}
+        </Grid>
       </Grid>
       <Pagination total={20} currentPage={isNaN(numOfPage) ? 1 : numOfPage} />
     </div>
