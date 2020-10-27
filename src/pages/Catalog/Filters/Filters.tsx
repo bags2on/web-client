@@ -3,7 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import { Formik, Form } from 'formik'
 import { makeStyles } from '@material-ui/core'
 import CheckBoxGroup from '../../../shared/FormFields/CheckBoxGroup'
-import GenderFilter from './Filters/GenderFilter'
+import { gender, availability } from './temp'
 
 interface FiltersProps {}
 
@@ -18,33 +18,20 @@ const Filters: React.FC<FiltersProps> = () => {
 
   const handleSubmit = () => {}
 
-  const x1 = [
-    {
-      label: 'Женский',
-      value: 'female'
-    },
-    {
-      label: 'Мужской',
-      value: 'male'
-    },
-    {
-      label: 'Унисекс',
-      value: 'unisex'
-    }
-  ]
-
   return (
     <aside className={classes.root}>
       <Typography component="p">Параметры</Typography>
       <Formik
         onSubmit={handleSubmit}
         initialValues={{
-          gender: ''
+          gender: '',
+          availability: ''
         }}
       >
         {() => (
           <Form>
-            <GenderFilter title="Тип" name="gender" options={x1} />
+            <CheckBoxGroup title="Тип" name="gender" options={gender.options} />
+            <CheckBoxGroup title="Наличие" name="availability" options={availability.options} />
           </Form>
         )}
       </Formik>

@@ -52,8 +52,8 @@ const useStyles = makeStyles(() => ({
     justifyContent: 'center'
   },
   pageContainer: {
-    padding: '0 20px',
-    backgroundColor: 'limegreen'
+    padding: '0 20px'
+    // backgroundColor: 'limegreen' //
   }
 }))
 
