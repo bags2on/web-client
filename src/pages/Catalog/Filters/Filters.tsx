@@ -3,8 +3,9 @@ import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import { Formik, Form } from 'formik'
 import { makeStyles } from '@material-ui/core'
-import CheckBoxGroup from '../../../shared/FormFields/CheckBoxGroup'
 import RadioGroup from '../../../shared/FormFields/RadioGroup'
+import CheckBoxGroup from '../../../shared/FormFields/CheckBoxGroup'
+import PriceRange from '../../../shared/FormFields/PriceRange/PriceRange'
 import { gender, availability, radioGroup } from './temp'
 
 interface FiltersProps {}
@@ -38,6 +39,7 @@ const Filters: React.FC<FiltersProps> = () => {
             <Box padding="8px 10px">
               <RadioGroup name="general" size="medium" options={radioGroup.options} />
             </Box>
+            <PriceRange title="Цена" min={1500} max={4500} step={1} defaultValue={[2250, 3350]} />
           </Form>
         )}
       </Formik>
