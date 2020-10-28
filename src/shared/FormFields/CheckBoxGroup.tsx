@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
-import Grid from '@material-ui/core/Grid'
-import IconButton from '@material-ui/core/IconButton'
 import ListItem from '@material-ui/core/ListItem'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Collapse from '@material-ui/core/Collapse'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
-import { FieldArray, useFormikContext } from 'formik'
+import { FieldArray } from 'formik'
 import { makeStyles } from '@material-ui/core'
 
 import Checkbox from '../Checkbox/Checkbox'
@@ -36,7 +33,6 @@ const useStyles = makeStyles(() => ({
 const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, name, options }) => {
   const classes = useStyles()
 
-  const { values } = useFormikContext()
   const [isCollapsed, setCollapsed] = useState<boolean>(true)
 
   const handleCollapse = (): void => {

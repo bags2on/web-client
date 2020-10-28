@@ -28,3 +28,23 @@ export const availability = {
         
     ]
 }
+
+export const radioGroup = {
+    options: [
+        {
+            label: 'Все',
+            value: "all",
+            disabled: false
+        },
+        {
+            label: 'Новинки',
+            value: 'new',
+            disabled: false
+        },
+        {
+            label: 'Акции',
+            value: 'discounts',
+            disabled: false
+        },
+    ]
+}
