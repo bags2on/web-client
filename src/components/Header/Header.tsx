@@ -82,15 +82,19 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 600,
         textDecoration: 'none',
         textTransform: 'uppercase',
-        color: theme.palette.type === 'light' ? '#303030' : '#ff9900'
+        color: theme.palette.type === 'light' ? '#303030' : '#ff9900',
+        transition: 'color 0.3s',
+        '&:hover': {
+          color: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc'
+        }
       }
     }
   },
   btns: {
     '&:hover': {
       background: 'none',
-      '& svg:hover': {
-        fill: '#ff9900'
+      '& svg': {
+        transition: 'all 0.3s'
       }
     }
   },
@@ -108,18 +112,30 @@ const useStyles = makeStyles((theme) => ({
   heartIcon: {
     fontSize: 24,
     fill: 'none',
-    stroke: theme.palette.type === 'light' ? '#303030' : '#ff9900'
+    stroke: theme.palette.type === 'light' ? '#303030' : '#ff9900',
+    '& svg:hover': {
+      stroke: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc'
+    }
   },
   profileIcon: {
     fontSize: 22,
-    marginTop: -4
+    marginTop: -4,
+    fill: theme.palette.type === 'light' ? '#303030' : '#ff9900',
+
+    '& svg:hover': {
+      fill: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc'
+    }
   },
   cartIcon: {
     fontSize: 26,
     fill: theme.palette.type === 'light' ? '#303030' : '#ff9900',
+
     [theme.breakpoints.up('md')]: {
       fontSize: 22,
-      marginTop: -4
+      marginTop: -4,
+      '& svg:hover': {
+        fill: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc'
+      }
     }
   },
   menuIcon: {
