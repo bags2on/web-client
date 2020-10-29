@@ -48,3 +48,26 @@ export const radioGroup = {
         },
     ]
 }
+
+
+export const categories = {
+    options: [
+        {
+            label: 'Все',
+            value: "all",
+        },
+        {
+            label: 'Чемоданы',
+            value: "suitcases",
+        },
+        {
+            label: 'Сумки',
+            value: "bags",
+        },
+        {
+            label: 'Кошельки',
+            value: "wallets",
+        }, 
+        
+    ]
+}

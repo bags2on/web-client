@@ -26,7 +26,7 @@ const useStyles = makeStyles(() => ({
   },
   collapseBox: {
     width: '100%',
-    padding: '20px 15px 0 13px'
+    padding: '20px 15px 35px 13px'
   },
   controlsBox: {
     marginBottom: 20
@@ -38,7 +38,7 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, min, max, step, defaultV
 
   const [isCollapsed, setCollapsed] = useState<boolean>(true)
 
-  const [globalValues, setGlobalValues] = useState<[number, number]>(defaultValue)
+  // const [globalValues, setGlobalValues] = useState<[number, number]>(defaultValue)
 
   const [minInput, setMinInput] = useState<number>(defaultValue[0])
   const [maxInput, setmMaxInput] = useState<number>(defaultValue[1])
