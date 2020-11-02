@@ -6,6 +6,7 @@ import { useQuery } from '@apollo/react-hooks'
 import Grid from '@material-ui/core/Grid'
 import ScaleLoader from '../../shared/loaders/ScaleLoader'
 import Preview from './Preview/Preview'
+import Details from './Details'
 
 const GET_PRODUCT_BY_ID = gql`
   query getProductByID($id: ID!) {
@@ -74,7 +75,9 @@ const ProductDetails: React.FC = () => {
         <Grid item xs={12} lg={6}>
           <Preview />
         </Grid>
-        <Grid item xs={12} lg={6}></Grid>
+        <Grid item xs={12} lg={6}>
+          <Details />
+        </Grid>
       </Grid>
     </div>
   )
