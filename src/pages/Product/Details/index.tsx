@@ -61,6 +61,7 @@ const useStyles = makeStyles(() => ({
     color: '#fff',
     '& > span': {
       fontSize: 13,
+      marginLeft: 5,
       fontWeight: 600
     }
   },
@@ -116,7 +117,8 @@ const Details: React.FC<SummaryProps> = ({ id, title, price, tags, description, 
             <Grid item xs={6}>
               <div className={clsx(classes.stock, inStock ? classes.inStock : classes.outOfStock)}>
                 <SvgIcon className={classes.stockIcon}>{inStock ? <CheckIcon /> : <ErrorOutlineIcon />}</SvgIcon>
-                <Typography component="span">{inStock ? 'in stock' : 'out of stock'}</Typography>
+                {/* 'in stock' : 'out of stock' */}
+                <Typography component="span">{inStock ? 'В наличии' : 'Нет в наличии'}</Typography>
               </div>
             </Grid>
             <Grid item xs={6} className={classes.ratingBox}>
@@ -127,7 +129,7 @@ const Details: React.FC<SummaryProps> = ({ id, title, price, tags, description, 
       </Grid>
       <div className={classes.description}>
         <Typography component="p" className="title">
-          Description:
+          Описание:
         </Typography>
         <Typography component="span">{description}</Typography>
       </div>

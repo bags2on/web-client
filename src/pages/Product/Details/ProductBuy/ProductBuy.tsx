@@ -18,7 +18,7 @@ const ProductBuy: React.FC<ProductBuyProps> = () => {
   return (
     <div className={classes.root}>
       <Button color="secondary" fullWidth>
-        Buy
+        Купить
       </Button>
     </div>
   )

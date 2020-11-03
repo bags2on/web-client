@@ -50,7 +50,7 @@ const Features: React.FC<FeaturesProps> = () => {
       <ExpansionPanel expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
           <Typography component="p" className={classes.title}>
-            Features:
+            O товаре:
           </Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
@@ -58,23 +58,23 @@ const Features: React.FC<FeaturesProps> = () => {
             <Table>
               <TableBody className={classes.tbody}>
                 <TableRow>
-                  <TableCell className="table-row-name">Color:</TableCell>
+                  <TableCell className="table-row-name">Цвет:</TableCell>
                   <TableCell>yellow</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell className="table-row-name">Category:</TableCell>
+                  <TableCell className="table-row-name">Категория:</TableCell>
                   <TableCell>suitcases</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell className="table-row-name">Gender:</TableCell>
+                  <TableCell className="table-row-name">Тип:</TableCell>
                   <TableCell>unisex</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell className="table-row-name">Material:</TableCell>
+                  <TableCell className="table-row-name">Материал:</TableCell>
                   <TableCell>nylon</TableCell>
                 </TableRow>
                 <TableRow>
-                  <TableCell className="table-row-name">Size:</TableCell>
+                  <TableCell className="table-row-name">Размер:</TableCell>
                   <TableCell>33cm x 18cm x 48cm</TableCell>
                 </TableRow>
               </TableBody>
