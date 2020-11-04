@@ -2,9 +2,35 @@ import React from 'react'
 import Button from '../../../../shared/Button'
 import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
+    display: 'flex',
+    flexWrap: 'wrap',
     padding: '20px 5px'
+  },
+  buyBox: {
+    width: '100%',
+    maxWidth: 135,
+    marginRight: 10
+  },
+  cartBox: {},
+  buyButton: {
+    background: '#2ecc40',
+    fontWeight: 600,
+    color: '#fff',
+    marginRight: 10,
+    '&:hover': {
+      background: '#30e244'
+    }
+  },
+  cartButton: {
+    background: '#ff9900',
+    fontWeight: 600,
+    color: '#fff',
+    '&:hover': {
+      opacity: 0.9,
+      background: '#ff9900'
+    }
   }
 }))
 
@@ -14,12 +40,20 @@ interface ProductBuyProps {
 
 const ProductBuy: React.FC<ProductBuyProps> = () => {
   const classes = useStyles()
+  console.log(classes.buyButton)
 
   return (
     <div className={classes.root}>
-      <Button color="secondary" fullWidth>
-        Купить
-      </Button>
+      <div className={classes.buyBox}>
+        <Button className={classes.buyButton} fullWidth>
+          Купить
+        </Button>
+      </div>
+      <div>
+        <Button className={classes.cartButton} fullWidth>
+          Добавить в корзину
+        </Button>
+      </div>
     </div>
   )
 }

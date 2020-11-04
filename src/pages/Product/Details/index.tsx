@@ -13,7 +13,6 @@ import { ReactComponent as CheckIcon } from '../../../assets/svg/check_mark.svg'
 
 const useStyles = makeStyles(() => ({
   root: {
-    // padding: '10px 20px'
     padding: '10px 10px 15px 10px'
   },
   title: {

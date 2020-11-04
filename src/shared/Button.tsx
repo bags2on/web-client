@@ -1,8 +1,24 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Button as ButtonUI } from '@material-ui/core'
+import { Button as MaterialButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
 import ScaleLoader from './loaders/ScaleLoader'
+
+interface BottonProps {
+  to?: string
+  type?: 'button' | 'reset' | 'submit' | undefined
+  color?: 'main' | 'secondary'
+  children: React.ReactNode
+  component?: React.ReactNode
+  startIcon?: React.ReactNode
+  loading?: boolean
+  disabled?: boolean
+  fullWidth?: boolean
+  withShadow?: boolean
+  darkLoader?: boolean
+  className?: string
+  onClick?(event: React.MouseEvent<HTMLButtonElement>): void
+}
 
 interface BottonStyleTypes {
   withShadow: boolean
@@ -37,23 +53,6 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-type CardColors = 'main' | 'secondary'
-
-interface BottonProps {
-  to?: string
-  type?: 'button' | 'reset' | 'submit' | undefined
-  color?: CardColors
-  children: React.ReactNode
-  component?: React.ReactNode
-  startIcon?: React.ReactNode
-  loading?: boolean
-  disabled?: boolean
-  fullWidth?: boolean
-  withShadow?: boolean
-  darkLoader?: boolean
-  onClick?(event: React.MouseEvent<HTMLButtonElement>): void
-}
-
 const Button: React.FC<BottonProps> = ({
   loading,
   children,
@@ -65,9 +64,9 @@ const Button: React.FC<BottonProps> = ({
   const classes = useStyles({ withShadow })
 
   return (
-    <ButtonUI className={clsx(classes[color], classes.root)} {...otherProps}>
+    <MaterialButton className={clsx(classes[color], classes.root)} {...otherProps}>
       {loading ? <ScaleLoader dark={darkLoader} /> : <span className={classes.text}>{children}</span>}
-    </ButtonUI>
+    </MaterialButton>
   )
 }
 
