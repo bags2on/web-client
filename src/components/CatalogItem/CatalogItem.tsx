@@ -37,7 +37,6 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontSize: '14px',
-    textAlign: 'center',
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -54,11 +53,10 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '16px'
     }
   },
-  priceStroke: {
-    textAlign: 'center'
+  infoContainer: {
+    marginLeft: 10
   },
   price: {
-    textAlign: 'center',
     color: '#ff9900',
     '& > span': {
       fontSize: 18,
@@ -132,29 +130,31 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, discou
           <ImagePlaceholder previewImage={url} altText={title} />
         </Link>
       </div>
-      <Typography component="p" className={classes.title}>
-        <Link to={generateLink(routes.product, id)}>{title}</Link>
-      </Typography>
-      <Typography component="p" className={classes.priceStroke}>
-        <Typography
-          component="span"
-          className={clsx({
-            [classes.price]: true,
-            [classes.priceWithDiscount]: Boolean(discountPrice)
-          })}
-        >
-          <Typography component="span">{formatPrice(price)}</Typography>
-          <Typography component="span">&nbsp;₴</Typography>
+      <div className={classes.infoContainer}>
+        <Typography component="p" className={classes.title}>
+          <Link to={generateLink(routes.product, id)}>{title}</Link>
         </Typography>
-        {!!discountPrice && (
-          <>
-            <Typography component="span" className={classes.discountPrice}>
-              <Typography component="span">{formatPrice(discountPrice)}</Typography>
-              <Typography component="span">&nbsp;₴</Typography>
-            </Typography>
-          </>
-        )}
-      </Typography>
+        <Typography component="p">
+          <Typography
+            component="span"
+            className={clsx({
+              [classes.price]: true,
+              [classes.priceWithDiscount]: Boolean(discountPrice)
+            })}
+          >
+            <Typography component="span">{formatPrice(price)}</Typography>
+            <Typography component="span">&nbsp;₴</Typography>
+          </Typography>
+          {!!discountPrice && (
+            <>
+              <Typography component="span" className={classes.discountPrice}>
+                <Typography component="span">{formatPrice(discountPrice)}</Typography>
+                <Typography component="span">&nbsp;₴</Typography>
+              </Typography>
+            </>
+          )}
+        </Typography>
+      </div>
       <IconButton onClick={handleLikeClick} className={classes.likeButton}>
         <Icon
           fontSize="small"
