@@ -6,8 +6,7 @@ import FlexItem from '../../../shared/FlexItem'
 
 const useStyles = makeStyles(() => ({
   root: {
-    padding: '3px 10px 10px 10px',
-    marginBottom: '15px'
+    marginBottom: 15
   },
   title: {
     fontSize: '23px',

@@ -1,6 +1,9 @@
 import React from 'react'
-import Icon from '@material-ui/core/Icon'
-import IconButton from '@material-ui/core/IconButton'
+import Icon from '@material-ui/core/SvgIcon'
+import Grid from '@material-ui/core/Grid'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemIcon from '@material-ui/core/ListItemIcon'
+import ListItemText from '@material-ui/core/ListItemText'
 import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
 import { ReactComponent as BaggageIcon } from '../../../assets/svg/baggage.svg'
@@ -10,39 +13,50 @@ import { ReactComponent as OtherIcon } from '../../../assets/svg/other.svg'
 import { makeStyles } from '@material-ui/core'
 // import routes from '../../../utils/routes'
 
-interface CategoryItem {
+interface CategoriesProps {}
+
+type CategoryItemType = {
   icon: React.ElementType
   to: string
   text: string
 }
 
-const categoriesValues: CategoryItem[] = [
+const categoriesValues: {
+  group: CategoryItemType[]
+}[] = [
   {
-    icon: BagIcon,
-    to: '#',
-    text: 'Сумки' // Bags
+    group: [
+      {
+        icon: BagIcon,
+        to: '#',
+        text: 'Сумки' // Bags
+      },
+      {
+        icon: BaggageIcon,
+        to: '#',
+        text: 'Чемоданы' // Suitcases
+      }
+    ]
   },
   {
-    icon: BaggageIcon,
-    to: '#',
-    text: 'Чемоданы' // Suitcases
-  },
-  {
-    icon: WalletIcon,
-    to: '#',
-    text: 'Кошельки' // Wallets
-  },
-  {
-    icon: OtherIcon,
-    to: '/catalog',
-    text: 'Все'
+    group: [
+      {
+        icon: WalletIcon,
+        to: '#',
+        text: 'Кошельки' // Wallets
+      },
+      {
+        icon: OtherIcon,
+        to: '/catalog',
+        text: 'Все'
+      }
+    ]
   }
 ]
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    padding: '3px 5px 10px 10px',
-    marginBottom: '15px',
+    marginBottom: 15,
     '& ul': {
       listStyle: 'none',
       display: 'flex',
@@ -57,64 +71,77 @@ const useStyles = makeStyles(() => ({
     marginBottom: '15px'
   },
   item: {
-    margin: '0 5px',
-    flexBasis: '25%',
-    textAlign: 'center'
+    margin: 5
+  },
+  link: {
+    textDecoration: 'none',
+    color: 'inherit'
   },
   icon: {
+    width: '100%',
     margin: '0 auto',
     backgroundColor: '#fff',
-    borderRadius: '12px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    width: 55,
-    height: 55,
-    marginBottom: '6px',
+    borderRadius: 12,
+    height: 75,
     boxShadow: '0 2px 10px -1px rgba(0, 0, 0, 0.15)',
     '-webkit-tap-highlight-color': 'transparent',
     '-moz-appearance': 'none',
     '-webkit-appearance': 'none',
     '&:hover': {
       boxShadow: '0 2px 10px 1px rgba(0, 0, 0, 0.15)'
+    },
+    [theme.breakpoints.up('md')]: {
+      borderRadius: 8
     }
   },
-  itemTitle: {
-    fontWeight: 500
+  itemIcon: {
+    color: 'inherit',
+    minWidth: 'auto',
+    marginRight: 8
   },
-  text: {
-    fontSize: '14px'
+  itemText: {
+    margin: 0,
+    '& > span': {
+      paddingTop: 3,
+      fontWeight: 500
+    }
+  },
+  groupBox: {
+    [theme.breakpoints.up('lg')]: {
+      flexWrap: 'nowrap'
+    }
   }
 }))
 
-const Categories: React.FC = () => {
+const Categories: React.FC<CategoriesProps> = () => {
   const classes = useStyles()
 
   return (
     <section className={classes.root}>
       <Typography className={classes.title} component="h2">
         Категории
-        {/* Categories */}
       </Typography>
       <div>
-        <ul>
+        <Grid component="ul" container>
           {categoriesValues.map((category, ind) => (
-            <li key={ind} className={classes.item}>
-              <div className={classes.icon}>
-                <Link to={category.to}>
-                  <IconButton disableRipple aria-label={category.text} style={{ backgroundColor: 'transparent' }}>
-                    <Icon>
-                      <category.icon />
-                    </Icon>
-                  </IconButton>
-                </Link>
-              </div>
-              <Typography className={classes.itemTitle} component="span">
-                {category.text}
-              </Typography>
-            </li>
+            <Grid container item key={ind} xs={6} lg={6} component="li" className={classes.groupBox}>
+              {category.group.map((group, ind) => (
+                <Grid key={ind} item xs={12} lg={6} className={classes.item}>
+                  <Link className={classes.link} to={group.to}>
+                    <ListItem component="div" className={classes.icon}>
+                      <ListItemIcon className={classes.itemIcon}>
+                        <Icon>
+                          <group.icon />
+                        </Icon>
+                      </ListItemIcon>
+                      <ListItemText className={classes.itemText} primary={group.text} />
+                    </ListItem>
+                  </Link>
+                </Grid>
+              ))}
+            </Grid>
           ))}
-        </ul>
+        </Grid>
       </div>
     </section>
   )
