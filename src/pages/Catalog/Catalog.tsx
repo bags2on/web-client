@@ -41,9 +41,9 @@ const useStyles = makeStyles(() => ({
     listStyle: 'none'
   },
   title: {
-    fontSize: '26px',
+    fontSize: 20,
     fontWeight: 500,
-    margin: '15px 0 15px 10px'
+    margin: '15px 0 5px 10px'
   },
   loaderWapper: {
     height: '100vh',

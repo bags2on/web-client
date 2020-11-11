@@ -65,8 +65,8 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   title: {
-    fontSize: '23px',
-    fontWeight: 600,
+    fontSize: 20,
+    fontWeight: 500,
     marginLeft: '10px',
     marginBottom: '15px'
   },

@@ -36,13 +36,13 @@ const items = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // background: '#232121',
+    width: '100%',
     background: theme.palette.type === 'light' ? '#f8fafa' : '#282828',
     padding: '20px 0',
     color: theme.palette.primary.main
   },
   list: {
-    maxWidth: 1500,
+    maxWidth: 1400,
     margin: '0 auto',
     padding: 0,
     listStyle: 'none',
