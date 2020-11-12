@@ -5,6 +5,7 @@ import MainSlider from '../../components/Swiper/MainSlider'
 import Categories from './Categories/Categories'
 import Popular from './Popular/Popular'
 import Featured from './Featured/Featured'
+import Promo from './Promo/Promo'
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
@@ -91,6 +92,7 @@ const Home: React.FC = () => {
         <div className={classes.subBoxTwo}>
           <Categories />
           <Featured products={TEMP_FEATURED_DATA} />
+          <Promo />
         </div>
       </div>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
