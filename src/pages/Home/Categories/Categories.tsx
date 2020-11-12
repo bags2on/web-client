@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     fontWeight: 500,
     marginLeft: '10px',
-    marginBottom: '15px'
+    marginBottom: 5
   },
   item: {
     margin: 5
@@ -80,10 +80,11 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     width: '100%',
     margin: '0 auto',
-    backgroundColor: '#fff',
-    borderRadius: 12,
+    backgroundColor: '#F0F0F0',
+    borderRadius: 8,
     height: 75,
-    boxShadow: '0 2px 10px -1px rgba(0, 0, 0, 0.15)',
+    // boxShadow: '0 2px 10px -1px rgba(0, 0, 0, 0.15)',
+    transition: 'all 0.3s',
     '-webkit-tap-highlight-color': 'transparent',
     '-moz-appearance': 'none',
     '-webkit-appearance': 'none',
@@ -91,7 +92,7 @@ const useStyles = makeStyles((theme) => ({
       boxShadow: '0 2px 10px 1px rgba(0, 0, 0, 0.15)'
     },
     [theme.breakpoints.up('md')]: {
-      borderRadius: 8
+      borderRadius: 0
     }
   },
   itemIcon: {

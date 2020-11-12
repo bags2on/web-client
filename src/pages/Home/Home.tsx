@@ -23,16 +23,16 @@ const useStyles = makeStyles((theme) => ({
   subBoxOne: {
     flexBasis: '100%',
     [theme.breakpoints.up('md')]: {
-      flexBasis: '35%'
+      flexBasis: '25%'
     }
   },
   subBoxTwo: {
     // backgroundColor: '#0f4c81',
 
-    padding: '10px 15px',
     flexBasis: '100%',
     [theme.breakpoints.up('md')]: {
-      flexBasis: '65%'
+      padding: '10px 15px',
+      flexBasis: '75%'
     }
   }
 }))
