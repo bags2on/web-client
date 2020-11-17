@@ -11,7 +11,7 @@ import { ReactComponent as WalletIcon } from '../../../assets/svg/wallet.svg'
 import { ReactComponent as BagIcon } from '../../../assets/svg/shopping-bag.svg'
 import { ReactComponent as OtherIcon } from '../../../assets/svg/other.svg'
 import { makeStyles } from '@material-ui/core'
-// import routes from '../../../utils/routes'
+import routes from '../../../utils/routes'
 
 interface CategoriesProps {}
 
@@ -28,12 +28,12 @@ const categoriesValues: {
     group: [
       {
         icon: BagIcon,
-        to: '#',
+        to: routes.allCatalog,
         text: 'Сумки' // Bags
       },
       {
         icon: BaggageIcon,
-        to: '#',
+        to: routes.allCatalog,
         text: 'Чемоданы' // Suitcases
       }
     ]
@@ -42,12 +42,12 @@ const categoriesValues: {
     group: [
       {
         icon: WalletIcon,
-        to: '#',
+        to: routes.allCatalog,
         text: 'Кошельки' // Wallets
       },
       {
         icon: OtherIcon,
-        to: '/catalog',
+        to: routes.allCatalog,
         text: 'Все'
       }
     ]
@@ -80,16 +80,15 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     width: '100%',
     margin: '0 auto',
-    backgroundColor: '#F0F0F0',
     borderRadius: 8,
     height: 75,
-    // boxShadow: '0 2px 10px -1px rgba(0, 0, 0, 0.15)',
     transition: 'all 0.3s',
+    boxShadow: '0 2px 8px -1px rgba(0, 0, 0, 0.15)',
     '-webkit-tap-highlight-color': 'transparent',
     '-moz-appearance': 'none',
     '-webkit-appearance': 'none',
     '&:hover': {
-      boxShadow: '0 2px 10px 1px rgba(0, 0, 0, 0.15)'
+      boxShadow: '0 2px 12px 0px rgba(0, 0, 0, 0.20)'
     },
     [theme.breakpoints.up('md')]: {
       borderRadius: 0

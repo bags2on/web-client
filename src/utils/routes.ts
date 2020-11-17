@@ -6,7 +6,7 @@ const routes: RoutesMap = {
   login: '/login',
   root: '/',
   catalog: '/catalog/:page?',
-  allCatalog: '/catalog?',
+  allCatalog: '/catalog',
   product: '/p/:id',
   discounts: '/discounts'
 }
