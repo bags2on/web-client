@@ -70,12 +70,13 @@ const useStyles = makeStyles((theme) => ({
   },
   navList: {
     display: 'none',
+    paddingBottom: 0,
+
     [theme.breakpoints.up('lg')]: {
       display: 'flex',
       '& > li': {
         paddingLeft: 20,
-        paddingRight: 20,
-        paddingBottom: 0
+        paddingRight: 20
       },
       '& a': {
         fontSize: 14,
@@ -84,8 +85,32 @@ const useStyles = makeStyles((theme) => ({
         textTransform: 'uppercase',
         color: theme.palette.type === 'light' ? '#303030' : '#ff9900',
         transition: 'color 0.3s',
+        position: 'relative',
+        '&::after': {
+          content: "''",
+          position: 'absolute',
+          borderBottom: '2px solid',
+          borderBottomColor: theme.palette.type === 'light' ? '#808080' : '#A0A0A0',
+          bottom: -7,
+          left: 0,
+          right: 0,
+          opacity: 0,
+          visibility: 'hidden',
+          width: 0,
+          zIndex: 1,
+          transition: 'all .3s ease',
+          '-moz-transition': 'all .3s ease 0s',
+          '-webkit-transition': 'all .3s ease 0s',
+          '-o-transition': 'all .3s ease 0s',
+          '-ms-transition': 'all .3s ease 0s'
+        },
         '&:hover': {
-          color: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc'
+          // color: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc',
+          '&::after': {
+            width: '45%',
+            opacity: 1,
+            visibility: 'visible'
+          }
         }
       }
     }

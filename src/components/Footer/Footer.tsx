@@ -1,6 +1,11 @@
 import React from 'react'
+import NightToggleSwith from '../../shared/NightToggleSwith/NightToggleSwith'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core'
+
+interface FooterProps {
+  themeChanger(checked: boolean): void
+}
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -16,7 +21,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Footer: React.FC = () => {
+const Footer: React.FC<FooterProps> = ({ themeChanger }) => {
   const classes = useStyles()
 
   return (
@@ -25,6 +30,9 @@ const Footer: React.FC = () => {
         bags2on
       </Typography>
       <Typography component="p">2020</Typography>
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <NightToggleSwith themeChanger={themeChanger} />
+      </div>
     </footer>
   )
 }

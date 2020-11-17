@@ -34,7 +34,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
       <Cart isOpen={isCartOpen} onClose={handleCartClose} themeChanger={themeChanger} />
       <Header onDrawerOpen={handleOpenDrawer} onCartOpen={handleCartOpen} themeChanger={themeChanger} />
       <main>{children}</main>
-      <Footer />
+      <Footer themeChanger={themeChanger} />
     </>
   )
 }
