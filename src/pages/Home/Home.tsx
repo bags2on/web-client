@@ -29,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
   },
   subBoxTwo: {
     // backgroundColor: '#0f4c81',
-
     flexBasis: '100%',
     [theme.breakpoints.up('md')]: {
       padding: '10px 15px',
@@ -84,7 +83,7 @@ const Home: React.FC = () => {
           <div
             style={{
               width: '100%',
-              height: 300,
+              height: 500,
               background: 'limegreen'
             }}
           />
