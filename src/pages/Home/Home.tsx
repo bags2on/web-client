@@ -2,6 +2,7 @@ import React from 'react'
 import Advantages from './Advantages/Advantages'
 // import MainSlider from '../../components/MainSlider/MainSlider'
 import MainSlider from '../../components/Swiper/MainSlider'
+import MainProduct from '../../components/MainProduct/MainProduct'
 import Categories from './Categories/Categories'
 import Popular from './Popular/Popular'
 import Featured from './Featured/Featured'
@@ -10,6 +11,13 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   root: {},
+  sliderContainer: {
+    maxWidth: 1400,
+    margin: '0 auto',
+    display: 'flex',
+    flexWrap: 'wrap',
+    padding: '16px 25px 0 0'
+  },
   homeContainer: {
     maxWidth: 1400,
     margin: '0 auto',
@@ -74,10 +82,10 @@ const Home: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+      <div className={classes.sliderContainer}>
         <MainSlider />
+        <MainProduct id={'eh345vs'} title={'#товарДня'} price={1990} />
       </div>
-
       <div className={classes.homeContainer}>
         <div className={classes.subBoxOne}>
           <div

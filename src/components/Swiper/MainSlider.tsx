@@ -35,7 +35,7 @@ SwiperCore.use([Navigation, Autoplay, Scrollbar, EffectFade])
 
 const MainSlider: React.FC<MainSliderProps> = () => {
   return (
-    <div className="root-container">
+    <section className="root-container">
       <Swiper
         loop
         navigation
@@ -61,7 +61,7 @@ const MainSlider: React.FC<MainSliderProps> = () => {
           </SwiperSlide>
         ))}
       </Swiper>
-    </div>
+    </section>
   )
 }
 
