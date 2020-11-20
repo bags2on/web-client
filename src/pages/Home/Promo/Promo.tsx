@@ -16,7 +16,8 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px 0',
     '& > img': {
       width: '100%',
-      height: '100%'
+      height: '100%',
+      userSelect: 'none'
     },
     [theme.breakpoints.up('md')]: {
       flexBasis: '49%',
