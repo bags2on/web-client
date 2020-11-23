@@ -10,26 +10,22 @@ const items = [
   {
     heading: 'Акции',
     description: 'Наличие товаров по акции',
-    to: '',
     icon: gift
   },
   {
     heading: 'Доставка по Украине',
     description: 'В любой город наложенным платежом',
-    to: '',
     icon: truck
   },
 
   {
     heading: 'Работаем всю неделю',
     description: '9.00 - 18.00',
-    to: '',
     icon: clock
   },
   {
     heading: 'Оплата При Получении',
     description: 'Курьеру или в отделении Новой Почты',
-    to: '',
     icon: money
   }
 ]
@@ -38,8 +34,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     background: theme.palette.type === 'light' ? '#f8fafa' : '#282828',
-    padding: '20px 0',
-    color: theme.palette.primary.main
+    padding: '20px 0'
   },
   list: {
     maxWidth: 1400,
@@ -73,7 +68,8 @@ const useStyles = makeStyles((theme) => ({
     marginTop: '17px',
     marginBottom: '10px',
     textAlign: 'center',
-    fontWeight: 600
+    fontWeight: 600,
+    color: theme.palette.primary.main
   },
   description: {
     textAlign: 'center',
