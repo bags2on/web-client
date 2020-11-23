@@ -5,6 +5,7 @@ import MainSlider from '../../components/Swiper/MainSlider'
 import MainProduct from '../../components/MainProduct/MainProduct'
 import Categories from './Categories/Categories'
 import Popular from './Popular/Popular'
+import SideList from './SideList/SideList'
 import Featured from './Featured/Featured'
 import Promo from './Promo/Promo'
 import { makeStyles } from '@material-ui/core'
@@ -77,6 +78,50 @@ const TEMP_FEATURED_DATA: {
   }
 ]
 
+const TEMP_SIDE_LIST_DATA: {
+  id: string
+  title: string
+  price: number
+  imageURL: string
+}[] = [
+  {
+    id: 'b64rsa',
+    price: 410,
+    title: 'Brand Bucket',
+    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1606135113/bags2on/products/side/w1_xccmio.jpg'
+  },
+  {
+    id: 'e21s23',
+    price: 617,
+    title: 'Perimeter Wallet',
+    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1606135113/bags2on/products/side/w2_inefvy.jpg'
+  },
+  {
+    id: 'kwh734',
+    price: 399,
+    title: 'Canvas Wallet',
+    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1606135113/bags2on/products/side/w3_rexqlj.jpg'
+  },
+  {
+    id: 'g74tjc',
+    price: 500,
+    title: 'Wallet Scouts',
+    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1606135113/bags2on/products/side/w4_mq2h3v.jpg'
+  },
+  {
+    id: 'gh37634nd',
+    price: 250,
+    title: 'Connection Wallet',
+    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1606135113/bags2on/products/side/w2_inefvy.jpg'
+  },
+  {
+    id: 'bvg5393e',
+    price: 300,
+    title: 'Mini Wallet',
+    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1606135113/bags2on/products/side/w1_xccmio.jpg'
+  }
+]
+
 const Home: React.FC = () => {
   const classes = useStyles()
 
@@ -88,13 +133,7 @@ const Home: React.FC = () => {
       </div>
       <div className={classes.homeContainer}>
         <div className={classes.subBoxOne}>
-          <div
-            style={{
-              width: '100%',
-              height: 500,
-              background: 'limegreen'
-            }}
-          />
+          <SideList products={TEMP_SIDE_LIST_DATA} />
         </div>
         <div className={classes.subBoxTwo}>
           <Categories />
@@ -105,7 +144,6 @@ const Home: React.FC = () => {
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
         <Popular />
       </div>
-      {/* <Categories /> */}
       <Advantages />
     </div>
   )
