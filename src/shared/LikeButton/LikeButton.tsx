@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core'
 interface LikeButtonProps {
   liked: boolean
   onClick: (e: React.MouseEvent) => void
+  disableRipple?: boolean
 }
 
 const useStyles = makeStyles(() => ({
@@ -20,14 +21,26 @@ const useStyles = makeStyles(() => ({
   },
   liked: {
     fill: '#f44336'
+  },
+  ripleDisabled: {
+    '&:hover': {
+      background: 'none'
+    }
   }
 }))
 
-const LikeButton: React.FC<LikeButtonProps> = ({ liked, ...restProps }) => {
+const LikeButton: React.FC<LikeButtonProps> = ({ liked, disableRipple, ...restProps }) => {
   const classes = useStyles()
 
   return (
-    <IconButton className={classes.root} {...restProps}>
+    <IconButton
+      className={clsx({
+        [classes.root]: true,
+        [classes.ripleDisabled]: disableRipple
+      })}
+      disableRipple={disableRipple}
+      {...restProps}
+    >
       <Icon
         fontSize="small"
         classes={{

@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('md')]: {
       margin: '8px 4px',
       '&:hover': {
-        boxShadow: '0 5px 15px 1px rgba(0,0,0,0.15)'
+        boxShadow: 'rgba(0, 0, 0, 0.1) -4px 9px 25px -6px'
       }
     }
   },
@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     '& > a': {
-      color: 'inherit',
+      color: '#343434',
       textDecoration: 'none',
       transition: 'color .2s',
       '&:hover, &:focus': {

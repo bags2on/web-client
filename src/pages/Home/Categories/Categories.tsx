@@ -83,12 +83,12 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 8,
     height: 75,
     transition: 'all 0.3s',
-    boxShadow: '0 2px 8px -1px rgba(0, 0, 0, 0.15)',
+    boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
     '-webkit-tap-highlight-color': 'transparent',
     '-moz-appearance': 'none',
     '-webkit-appearance': 'none',
     '&:hover': {
-      boxShadow: '0 2px 12px 0px rgba(0, 0, 0, 0.20)'
+      boxShadow: 'rgba(0, 0, 0, 0.08) 0px 4px 12px'
     },
     [theme.breakpoints.up('md')]: {
       borderRadius: 0
