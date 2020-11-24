@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography'
 import CatalogItem from '../../../components/CatalogItem/CatalogItem'
 import { makeStyles } from '@material-ui/core'
 
-interface Product {
+interface ProductType {
   id: string
   price: number
   title: string
@@ -12,7 +12,7 @@ interface Product {
 }
 
 interface FeaturedProps {
-  products: Product[]
+  products: Array<ProductType>
 }
 
 const useStyles = makeStyles(() => ({
@@ -45,7 +45,7 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
         Рекомендуемые
       </Typography>
       <Grid container component="ul" className={classes.list}>
-        {products.map((product: Product) => (
+        {products.map((product: ProductType) => (
           <Grid key={product.id} component="li" className={classes.item} item xs={6} md={4} lg={3}>
             <CatalogItem
               url={product.preview}

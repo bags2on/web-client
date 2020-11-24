@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid'
 import FlatProductItem from '../../../components/FlatProductItem/FlatProductItem'
 import { makeStyles } from '@material-ui/core'
 
-type Product = {
+type ProductType = {
   id: string
   price: number
   title: string
@@ -11,7 +11,7 @@ type Product = {
 }
 
 interface SideListProps {
-  products: Product[]
+  products: Array<ProductType>
 }
 
 const useStyles = makeStyles(() => ({
@@ -36,7 +36,7 @@ const SideList: React.FC<SideListProps> = ({ products }) => {
   return (
     <div className={classes.root}>
       <Grid container component="ul" className={classes.list}>
-        {products.map((product: Product) => (
+        {products.map((product: ProductType) => (
           <Grid key={product.id} item component="li" className={classes.item} xs={12}>
             <FlatProductItem
               id={product.id}

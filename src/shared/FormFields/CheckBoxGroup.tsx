@@ -9,7 +9,7 @@ import { makeStyles } from '@material-ui/core'
 
 import Checkbox from '../Checkbox/Checkbox'
 
-type option = {
+type optionType = {
   value: string
   label: string
 }
@@ -17,7 +17,7 @@ type option = {
 interface CheckBoxGroupProps {
   name: string
   title: string
-  options: option[]
+  options: Array<optionType>
 }
 
 const useStyles = makeStyles(() => ({
