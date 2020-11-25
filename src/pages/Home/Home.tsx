@@ -17,7 +17,9 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
     display: 'flex',
     flexWrap: 'wrap',
-    padding: '16px 25px 0 0'
+    [theme.breakpoints.up('lg')]: {
+      padding: '16px 25px 0 0'
+    }
   },
   homeContainer: {
     maxWidth: 1400,

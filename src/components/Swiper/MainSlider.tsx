@@ -40,7 +40,7 @@ const MainSlider: React.FC<MainSliderProps> = () => {
         loop
         navigation
         effect="fade"
-        tag="section"
+        tag="div"
         speed={1300}
         scrollbar={{ draggable: true }}
         autoplay={{

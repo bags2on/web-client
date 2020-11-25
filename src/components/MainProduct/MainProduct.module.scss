@@ -1,6 +1,7 @@
+$md: 600px;
+
 .root {
-  width: 310px;
-  margin-left: auto;
+  width: 100%;
   padding: 30px 10px 10px 10px;
   position: relative;
   height: inherit;
@@ -70,4 +71,11 @@
 .moreButton {
   display: inline-block;
   background-color: #fff;
+}
+
+@media (min-width: $md) {
+  .root {
+    width: 310px;
+    margin-left: auto;
+  }
 }
