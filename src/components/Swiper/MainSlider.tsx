@@ -35,33 +35,31 @@ SwiperCore.use([Navigation, Autoplay, Scrollbar, EffectFade])
 
 const MainSlider: React.FC<MainSliderProps> = () => {
   return (
-    <section className="root-container">
-      <Swiper
-        loop
-        navigation
-        effect="fade"
-        tag="div"
-        speed={1300}
-        scrollbar={{ draggable: true }}
-        autoplay={{
-          disableOnInteraction: false
-        }}
-        wrapperTag="ul"
-        // onSwiper={(swiper) => console.dir(swiper)}
-      >
-        {images.map((slide, index) => (
-          <SwiperSlide tag="li" key={slide.text} virtualIndex={index}>
-            <div
-              aria-label={slide.text}
-              style={{
-                backgroundImage: `url(${slide.imageUrl})`
-              }}
-              className="slide-image-box"
-            />
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    </section>
+    <Swiper
+      loop
+      navigation
+      effect="fade"
+      tag="section"
+      speed={1300}
+      scrollbar={{ draggable: true }}
+      autoplay={{
+        disableOnInteraction: false
+      }}
+      wrapperTag="ul"
+      // onSwiper={(swiper) => console.dir(swiper)}
+    >
+      {images.map((slide, index) => (
+        <SwiperSlide tag="li" key={slide.text} virtualIndex={index}>
+          <div
+            aria-label={slide.text}
+            style={{
+              backgroundImage: `url(${slide.imageUrl})`
+            }}
+            className="slide-image-box"
+          />
+        </SwiperSlide>
+      ))}
+    </Swiper>
   )
 }
 

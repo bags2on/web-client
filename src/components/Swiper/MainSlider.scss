@@ -1,22 +1,10 @@
 $md: 600px;
 $lg: 900px;
 
-.root-container {
-  padding: 0 10px;
-  width: 100%;
-  max-width: 1000px;
-}
-
-.slide-image-box {
-  width: 100%;
-  padding-bottom: 50%;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-}
-
 .swiper-container {
-  width: 100%;
+  position: relative;
+  flex-basis: 100%;
+  padding: 10px;
   height: 100%;
   overflow: hidden;
   margin: 0;
@@ -34,6 +22,14 @@ $lg: 900px;
   }
 }
 
+.slide-image-box {
+  width: inherit;
+  padding-bottom: 50%;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .swiper-wrapper {
   margin: 0;
   list-style: none;
@@ -44,13 +40,19 @@ $lg: 900px;
   display: none;
 }
 
-@media screen and (min-width: $md) {
+@media screen and (min-width: 800px) {
   .swiper-container {
+    flex-basis: 70%;
+    padding: 0;
+    padding-right: 10px;
+
     & .swiper-scrollbar {
       display: none;
     }
   }
+}
 
+@media screen and (min-width: $md) {
   .slide-image-box {
     border-radius: 0;
   }
@@ -67,18 +69,18 @@ $lg: 900px;
   }
 
   .swiper-button-prev {
-    left: -50%;
+    left: -10%;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
   }
 
   & .swiper-button-next {
-    right: -50%;
+    right: -10%;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
   }
 
-  .root-container:hover {
+  .swiper-container:hover {
     & .swiper-button-prev {
       left: 10px;
     }

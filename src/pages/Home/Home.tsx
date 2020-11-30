@@ -17,8 +17,11 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
     display: 'flex',
     flexWrap: 'wrap',
-    [theme.breakpoints.up('lg')]: {
-      padding: '16px 25px 0 0'
+    [theme.breakpoints.up('tablet')]: {
+      padding: '0 10px'
+    },
+    [theme.breakpoints.up('xl')]: {
+      padding: '16px 25px 0 10px'
     }
   },
   homeContainer: {

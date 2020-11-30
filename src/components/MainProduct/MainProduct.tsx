@@ -14,16 +14,18 @@ interface MainProductProps {
 const MainProduct: React.FC<MainProductProps> = ({ id, title, price }) => {
   return (
     <section className={classes.root}>
-      <Link to={generateLink(routes.product, id)}>
-        <img className={classes.image} src={imgTEMPsrc} alt="самый рекомендуемый товар" />
-        <div className={classes.priceBox}>
-          <p className={classes.price}>
-            {price}
-            <span>грн.</span>
-          </p>
-        </div>
-        {title && <p className={classes.title}>{title}</p>}
-      </Link>
+      <div className={classes.container}>
+        <Link to={generateLink(routes.product, id)}>
+          <img className={classes.image} src={imgTEMPsrc} alt="самый рекомендуемый товар" />
+          <div className={classes.priceBox}>
+            <p className={classes.price}>
+              {price}
+              <span>грн.</span>
+            </p>
+          </div>
+          {title && <p className={classes.title}>{title}</p>}
+        </Link>
+      </div>
     </section>
   )
 }

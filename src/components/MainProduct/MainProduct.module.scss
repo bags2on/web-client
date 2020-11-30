@@ -1,10 +1,15 @@
 $md: 600px;
+$lg: 900px;
+$xl: 1200px;
 
 .root {
-  width: 100%;
+  flex-basis: 30%;
+}
+
+.container {
+  height: 100%;
   padding: 30px 10px 10px 10px;
   position: relative;
-  height: inherit;
   background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
   border-radius: 4px;
   animation: animatedgradient 4s ease alternate infinite;
@@ -47,13 +52,13 @@ $md: 600px;
 .price {
   text-align: center;
   color: #fff;
-  font-size: 48px;
+  font-size: 1.9rem;
   margin: 0;
   & span {
     color: #f5e700;
     font-weight: 500;
     margin-left: 3px;
-    font-size: 24px;
+    font-size: 18px;
     vertical-align: super;
   }
 }
@@ -73,9 +78,18 @@ $md: 600px;
   background-color: #fff;
 }
 
-@media (min-width: $md) {
-  .root {
-    width: 310px;
+@media (min-width: 1100px) {
+  .container {
+    width: 300px;
     margin-left: auto;
+  }
+}
+
+@media (min-width: $xl) {
+  .price {
+    font-size: 48px;
+    & span {
+      font-size: 24px;
+    }
   }
 }
