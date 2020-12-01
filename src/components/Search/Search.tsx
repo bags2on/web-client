@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
   searchInput: {
     fontSize: 14,
-    fontWeight: 600,
+    fontWeight: 500,
     position: 'absolute',
     right: 0,
     backgroundColor: '#fff',
@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     zIndex: 9,
     transitionDuration: '0.4s',
-    borderRadius: 8,
+    borderRadius: 6,
     border: '1px solid',
     padding: '10px 46px 10px 15px',
     '-moz-transition-duration': '0.4s',
@@ -68,6 +68,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   searchButton: {
+    color: '#343434',
     zIndex: 10,
     '& svg': {
       fontSize: 19
