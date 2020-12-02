@@ -1,6 +1,14 @@
 import React from 'react'
 import Button from '../../../../shared/Button'
+import { gql } from 'apollo-boost'
+import { useMutation } from '@apollo/react-hooks'
 import { makeStyles } from '@material-ui/core'
+
+const ADD_PRODUCT_TO_CART = gql`
+  mutation AddToCart($id: String!) {
+    addToCart(id: $id) @client
+  }
+`
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,9 +46,14 @@ interface ProductBuyProps {
   id: string
 }
 
-const ProductBuy: React.FC<ProductBuyProps> = () => {
+const ProductBuy: React.FC<ProductBuyProps> = ({ id }) => {
   const classes = useStyles()
-  console.log(classes.buyButton)
+
+  const [addToCart] = useMutation(ADD_PRODUCT_TO_CART, { variables: { id } })
+
+  const handleAddToCart = (): void => {
+    addToCart()
+  }
 
   return (
     <div className={classes.root}>
@@ -50,7 +63,7 @@ const ProductBuy: React.FC<ProductBuyProps> = () => {
         </Button>
       </div>
       <div>
-        <Button className={classes.cartButton} fullWidth>
+        <Button onClick={handleAddToCart} className={classes.cartButton} fullWidth>
           Добавить в корзину
         </Button>
       </div>
