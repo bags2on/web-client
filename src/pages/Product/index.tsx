@@ -52,13 +52,6 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const sideImages = [
-  'https://res.cloudinary.com/dct4oinuz/image/upload/v1604332029/bags2on/products/temp/product_1_fuyaph.jpg',
-  'https://res.cloudinary.com/dct4oinuz/image/upload/v1604332029/bags2on/products/temp/product_2_nzlwmc.jpg',
-  'https://res.cloudinary.com/dct4oinuz/image/upload/v1604332030/bags2on/products/temp/product_3_o97szw.jpg',
-  'https://res.cloudinary.com/dct4oinuz/image/upload/v1604332029/bags2on/products/temp/product_4_no1o5b.jpg'
-]
-
 const ProductDetails: React.FC = () => {
   const { id } = useParams<ProductID>()
 
@@ -87,7 +80,7 @@ const ProductDetails: React.FC = () => {
     <div className={classes.root}>
       <Grid container>
         <Grid item xs={12} lg={6}>
-          <Preview images={sideImages} />
+          <Preview images={product.images} />
         </Grid>
         <Grid item xs={12} lg={6}>
           <Details
