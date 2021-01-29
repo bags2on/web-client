@@ -61,25 +61,26 @@ const TEMP_FEATURED_DATA: {
     id: '001',
     title: 'Suitcase JR',
     price: 2920,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1588350776/bags2on/products/3141b_k67pzc.webp'
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608120280/bags2on/products/suitc_dr_jrrcks.jpg'
   },
   {
     id: '002',
     title: 'A-1 Suitcase',
     price: 3617,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1588350890/bags2on/products/coreim_mdbdmh.png'
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608119984/bags2on/products/test-bag_1_dr_d12fjf.jpg'
   },
   {
     id: '003',
     title: 'Suitcase BM',
     price: 2182,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1569928348/bags2on/products/test-bag_1_d07zy6.jpg'
+    preview:
+      'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121424/bags2on/products/test-bag_2_hz75wn_b6f281.jpg'
   },
   {
     id: '004',
     title: 'Light SSR-1',
     price: 2629,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1588350776/bags2on/products/3440b_izlckz.webp'
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121006/bags2on/products/3141b_k67pzc_zretlj.jpg'
   }
 ]
 
