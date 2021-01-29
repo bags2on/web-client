@@ -80,8 +80,16 @@ $xl: 1200px;
 
 @media (min-width: 1100px) {
   .container {
-    width: 300px;
     margin-left: auto;
+    & > a {
+      margin: 0 auto;
+      width: 80%;
+    }
+  }
+
+  .priceBox {
+    right: 10%;
+    left: 10%;
   }
 }
 
