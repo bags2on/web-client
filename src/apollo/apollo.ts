@@ -53,7 +53,6 @@ const client = new ApolloClient({
       updateCartTotalPrice: (_root, args, { cache }): void => {
         console.log(args)
         client.writeData({ data: { cartTotalPrice: args.input } })
-
       },
       setFetchedCartItems: (_root, args, { cache }): void => {
         console.log(args)
