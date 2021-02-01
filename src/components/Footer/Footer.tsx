@@ -1,6 +1,7 @@
 import React from 'react'
 import NightToggleSwith from '../../shared/NightToggleSwith/NightToggleSwith'
 import Typography from '@material-ui/core/Typography'
+import Japer from './Japer/Japer'
 import { makeStyles } from '@material-ui/core'
 
 interface FooterProps {
@@ -26,6 +27,7 @@ const Footer: React.FC<FooterProps> = ({ themeChanger }) => {
 
   return (
     <footer className={classes.root}>
+      <Japer />
       <Typography component="p" className={classes.logo}>
         bags2on
       </Typography>
