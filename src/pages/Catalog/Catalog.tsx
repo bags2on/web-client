@@ -101,9 +101,9 @@ const Catalog: React.FC = () => {
               </Grid>
             ))}
           </Grid>
+          <Pagination total={20} currentPage={isNaN(numOfPage) ? 1 : numOfPage} />
         </Grid>
       </Grid>
-      <Pagination total={20} currentPage={isNaN(numOfPage) ? 1 : numOfPage} />
     </div>
   )
 }
