@@ -29,9 +29,8 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
     display: 'flex',
     flexDirection: 'column-reverse',
-    flexWrap: 'wrap', //
     padding: '20px 10px 0 10px',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('laptop')]: {
       flexDirection: 'initial'
     }
   },
@@ -94,37 +93,37 @@ const TEMP_SIDE_LIST_DATA: {
     id: 'b64rsa',
     price: 410,
     title: 'Brand Bucket',
-    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1606135113/bags2on/products/side/w1_xccmio.jpg'
+    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/265_l29mmc.jpg'
   },
   {
     id: 'e21s23',
     price: 617,
     title: 'Perimeter Wallet',
-    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1606135113/bags2on/products/side/w2_inefvy.jpg'
+    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/2_xoaduj.jpg'
   },
   {
     id: 'kwh734',
     price: 399,
     title: 'Canvas Wallet',
-    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1606135113/bags2on/products/side/w3_rexqlj.jpg'
+    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/3_flal1d.jpg'
   },
   {
     id: 'g74tjc',
     price: 500,
     title: 'Wallet Scouts',
-    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1606135113/bags2on/products/side/w4_mq2h3v.jpg'
+    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/4_g7mct3.jpg'
   },
   {
     id: 'gh37634nd',
     price: 250,
-    title: 'Connection Wallet',
-    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1606135113/bags2on/products/side/w2_inefvy.jpg'
+    title: 'Connection Wallet Loream ipsum some text',
+    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/265_l29mmc.jpg'
   },
   {
     id: 'bvg5393e',
     price: 300,
     title: 'Mini Wallet',
-    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1606135113/bags2on/products/side/w1_xccmio.jpg'
+    imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/4_g7mct3.jpg'
   }
 ]
 

@@ -17,7 +17,7 @@ interface FlatProductItemProps {
   discountPrice?: number
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     display: 'flex',
@@ -30,21 +30,27 @@ const useStyles = makeStyles(() => ({
     }
   },
   textContainer: {
-    paddingTop: 20
+    paddingTop: 20,
+    position: 'relative',
+    [theme.breakpoints.up('laptop')]: {
+      position: 'static'
+    }
   },
   link: {
     textDecoration: 'none',
-    color: 'inherit'
+    color: 'inherit',
+    marginRight: 15
   },
   linkWrapper: {
-    marginRight: 15
+    width: '100%',
+    maxWidth: 117
   },
   title: {
     fontSize: 16,
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    maxWidth: 173,
+    maxWidth: 115,
     '& > a': {
       color: 'inherit',
       textDecoration: 'none',
@@ -53,6 +59,9 @@ const useStyles = makeStyles(() => ({
         outline: 'none',
         color: '#909090'
       }
+    },
+    [theme.breakpoints.up('xl')]: {
+      maxWidth: 170
     }
   },
   price: {
@@ -78,9 +87,21 @@ const useStyles = makeStyles(() => ({
     }
   },
   likeButton: {
-    position: 'absolute',
-    top: 10,
-    right: 4
+    '& > button': {
+      padding: 0
+    },
+    [theme.breakpoints.up('xl')]: {
+      position: 'absolute',
+      top: 43,
+      right: 14,
+      left: 'initial',
+      '& > button': {
+        padding: 5
+      }
+    },
+    [theme.breakpoints.up('desktop')]: {
+      top: 15
+    }
   }
 }))
 
@@ -95,11 +116,11 @@ const FlatProductItem: React.FC<FlatProductItemProps> = ({ id, price, title, ima
 
   return (
     <div className={classes.root}>
-      <Link to={generateLink(routes.product, id)} className={clsx(classes.link, classes.linkWrapper)}>
-        <div style={{ width: 117, height: 'auto' }}>
+      <div className={classes.linkWrapper}>
+        <Link to={generateLink(routes.product, id)} className={classes.link}>
           <ImagePlaceholder previewImage={imageURL} altText={title} />
-        </div>
-      </Link>
+        </Link>
+      </div>
       <div className={classes.textContainer}>
         <Typography component="p" className={classes.title}>
           <Link to={generateLink(routes.product, id)} className={classes.link}>
@@ -126,9 +147,9 @@ const FlatProductItem: React.FC<FlatProductItemProps> = ({ id, price, title, ima
             </>
           )}
         </Typography>
-      </div>
-      <div className={classes.likeButton}>
-        <LikeButton liked={isLiked} onClick={handleLikeClick} disableRipple />
+        <div className={classes.likeButton}>
+          <LikeButton liked={isLiked} onClick={handleLikeClick} disableRipple />
+        </div>
       </div>
     </div>
   )
