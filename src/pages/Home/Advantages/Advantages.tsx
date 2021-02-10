@@ -20,7 +20,7 @@ const items = [
 
   {
     heading: 'Работаем всю неделю',
-    description: '9.00 - 18.00',
+    description: 'Пн-Вс, 9:00-20:00',
     icon: clock
   },
   {
