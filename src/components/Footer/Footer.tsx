@@ -13,20 +13,33 @@ interface FooterProps {
   themeChanger(checked: boolean): void
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     background: '#333',
-    padding: '30px 10% 15px 10%'
+    padding: '30px 5% 15px 5%',
+    flexWrap: 'wrap',
+    [theme.breakpoints.up('xl')]: {
+      padding: '30px 10% 15px 10%'
+    }
   },
-  wrapper: {},
   contact: {
-    width: 450,
-    marginRight: 20,
     color: '#fff',
+    textAlign: 'center',
     '& h5': {
       fontSize: 15,
       marginBottom: 25
+    },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: 420,
+      textAlign: 'start',
+      flexBasis: '50%'
+    },
+    [theme.breakpoints.up('xl')]: {
+      marginRight: 50
+    },
+    [theme.breakpoints.up('laptop')]: {
+      flexBasis: 'auto'
     }
   },
   contactMessage: {
@@ -54,6 +67,9 @@ const useStyles = makeStyles(() => ({
     }
   },
   information: {
+    width: '100%',
+    textAlign: 'center',
+    marginTop: 30,
     color: '#fff',
     '& h5': {
       fontSize: 15,
@@ -70,12 +86,27 @@ const useStyles = makeStyles(() => ({
       '&:hover': {
         color: '#ff9900'
       }
+    },
+    [theme.breakpoints.up('md')]: {
+      width: 'auto',
+      flexBasis: '50%',
+      margin: 0,
+      textAlign: 'end'
+    },
+    [theme.breakpoints.up('laptop')]: {
+      textAlign: 'start',
+      flexBasis: 'auto'
     }
   },
   brandSection: {
-    marginLeft: 'auto',
+    margin: '0 auto',
     '& > a': {
       textDecoration: 'none'
+    },
+    [theme.breakpoints.up('laptop')]: {
+      margin: 0,
+      marginLeft: 'auto',
+      paddingTop: 20
     }
   },
   logo: {
@@ -139,9 +170,8 @@ const Footer: React.FC<FooterProps> = ({ themeChanger }) => {
   const classes = useStyles()
 
   return (
-    <div className={classes.wrapper}>
+    <div>
       <footer className={classes.root}>
-        {/* <Japer /> */}
         {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
         <NightToggleSwith themeChanger={themeChanger} />
       </div> */}
