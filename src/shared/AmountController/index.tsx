@@ -2,15 +2,14 @@ import React from 'react'
 import AddIcon from '@material-ui/icons/Add'
 import IconButton from '@material-ui/core/IconButton'
 import RemoveIcon from '@material-ui/icons/Remove'
-import TextField from '@material-ui/core/TextField'
 import { makeStyles } from '@material-ui/core'
 
 interface AddSubInputProps {
-  value: number
+  amount: number
   min: number
   max?: number
-  startValue: number
-  onChange(type: "add" | "sub" | 'prevent'| "change", n: number): void
+  //   startValue: number
+  onChange(type: 'add' | 'sub', n: number): void
 }
 
 const useStyles = makeStyles(() => ({
@@ -18,62 +17,40 @@ const useStyles = makeStyles(() => ({
     display: 'inline-block'
   },
   button: {},
-  input: {
-    width: 30,
-    '& .MuiInput-input': {
-      paddingTop: 13,
-      textAlign: 'center'
-    }
-  },
-  inputRoot: {
-    '& input::-webkit-inner-spin-button, & input::-webkit-outer-spin-button': {
-      '-webkit-appearance': 'none',
-      margin: 0
-    },
-    '& input[type=number]': {
-      '-moz-appearance': 'textfield'
-    }
+  show: {
+    width: 20,
+    display: 'inline-block',
+    textAlign: 'center',
+    userSelect: 'none'
   }
 }))
 
-const AmountController: React.FC<AddSubInputProps> = ({ startValue, min, max, value, onChange }) => {
+const AmountController: React.FC<AddSubInputProps> = ({ min, max, amount, onChange }) => {
   const classes = useStyles()
 
-  const handleInputChange = (event: any): void => {
-    const value = Number(event.target.value)
-    if (value < min || value >= Number(max)) {
-      onChange("prevent", startValue)
-    } else {
-      onChange("change", value)
-    }
-  }
-
   const handleAddClick = (): void => {
-    if (value >= Number(max)) return
-    onChange("add", value + 1)
+    if (amount >= Number(max)) return
+    onChange('add', amount + 1)
   }
 
   const handleSubClick = (): void => {
-    if (value <= min) return
-    onChange("sub", value - 1)
+    if (amount <= min) return
+    onChange('sub', amount - 1)
   }
 
   return (
     <div className={classes.root}>
-      <IconButton onClick={handleSubClick} disabled={value <= 1} aria-label="remove one product">
+      <IconButton onClick={handleSubClick} disabled={amount <= 1} aria-label="удалить одну единицу данного продукта">
         <RemoveIcon />
       </IconButton>
-      <TextField
-        type="number"
-        value={value}
-        inputProps={{ min: 1 }}
-        onChange={handleInputChange}
-        className={classes.input}
-        classes={{
-          root: classes.inputRoot
-        }}
-      />
-      <IconButton onClick={handleAddClick} disabled={!!max && value >= max} aria-label="add the same product">
+      <div className={classes.show}>
+        <span>{amount}</span>
+      </div>
+      <IconButton
+        onClick={handleAddClick}
+        disabled={!!max && amount >= max}
+        aria-label="добавить одну единицу данного продукта"
+      >
         <AddIcon />
       </IconButton>
     </div>

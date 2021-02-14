@@ -122,7 +122,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const { id, title, preview, price, amount } = item
 
   const classes = useStyles()
-  const [count, setCount] = useState<number>(item.amount)
+  const [count, setCount] = useState<number>(amount)
   const { data } = useQuery(GET_CART_TOTAL_SUMM)
   const [removeFromCart] = useMutation(REMOVE_PRODUCT_FROM_CART, { variables: { id } })
   const [updateTotals] = useMutation(UPDATE_CART_TOTALS)
@@ -130,24 +130,10 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const handleCountChange = (type: string, n: number): void => {
     const currentPrice = data.cartTotalPrice
 
-    switch (type) {
-      case 'add':
-        updateTotals({ variables: { input: currentPrice + price } })
-        break
-      case 'sub':
-        updateTotals({ variables: { input: currentPrice - price } })
-        break
-      // case "prevent":
-      //   updateTotals({ variables: { input: currentPrice + (count * price) + n * price}});
-      //   break;
-      // case "change":
-      //   console.log('change')
-      //   updateTotals({ variables: { input: x}});
-      //   // updateTotals({ variables: { input: currentPrice + x}});
-
-      //   break;
-      default:
-        break
+    if (type === 'add') {
+      updateTotals({ variables: { input: currentPrice + price } })
+    } else {
+      updateTotals({ variables: { input: currentPrice - price } })
     }
 
     setCount(n)
@@ -198,7 +184,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
           </Grid>
         </Grid>
         <Box marginTop="20px" display="flex" justifyContent="flex-end" paddingRight="10px">
-          <AmountController min={1} max={100} value={count} startValue={amount} onChange={handleCountChange} />
+          <AmountController min={1} max={100} amount={count} onChange={handleCountChange} />
         </Box>
       </div>
     </Box>
