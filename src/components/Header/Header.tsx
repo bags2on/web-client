@@ -131,7 +131,8 @@ const useStyles = makeStyles((theme) => ({
   heartButton: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
-      display: 'block'
+      display: 'block',
+      padding: 11
     }
   },
   heartIcon: {
