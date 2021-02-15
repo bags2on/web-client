@@ -1,0 +1,72 @@
+$light: #fff;
+$dark: #fff;
+$time: 200ms linear;
+$line-size: 3px;
+
+@mixin shape {
+  fill: none;
+  stroke-width: $line-size;
+  stroke-miterlimit: 10px;
+}
+
+.root {
+  label {
+    cursor: pointer;
+  }
+}
+
+svg .moon {
+  @include shape();
+  stroke: $light;
+  transition: transform $time, stroke $time;
+  transform: translateX(0px);
+}
+
+input:checked + svg .moon {
+  transform: translateX(12px);
+  stroke: $dark;
+}
+
+svg .moonmask {
+  transition: transform $time;
+  transform: translateX(0px);
+}
+
+input:checked + svg .moonmask {
+  transform: translateX(-12px);
+}
+
+svg .sunmask {
+  transition: transform $time;
+  transform: translateX(0px);
+}
+
+input:checked + svg .sunmask {
+  transform: translateX(12px);
+}
+
+.beams {
+  stroke: $light;
+  stroke-dasharray: 10px;
+  stroke-dashoffset: 0px;
+  transition: stroke-dashoffset $time, stroke $time;
+}
+
+.beams line {
+  @include shape();
+}
+
+input:checked + svg .beams {
+  stroke-dashoffset: 10px;
+  stroke: $dark;
+}
+
+svg .sun {
+  @include shape();
+  transition: stroke $time;
+  stroke: $light;
+}
+
+input:checked + svg .sun {
+  stroke: $dark;
+}

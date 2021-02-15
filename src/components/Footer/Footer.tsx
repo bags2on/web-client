@@ -1,5 +1,5 @@
 import React from 'react'
-// import NightToggleSwith from '../../shared/NightToggleSwith/NightToggleSwith' // TODO
+import NightToggle from '../../shared/NightToggle/NightToggle'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import { Link } from 'react-router-dom'
@@ -172,9 +172,10 @@ const Footer: React.FC<FooterProps> = ({ themeChanger }) => {
   return (
     <div>
       <footer className={classes.root}>
-        {/* <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <NightToggleSwith themeChanger={themeChanger} />
-      </div> */}
+        {/* TODO */}
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <NightToggle themeChanger={themeChanger} />
+        </div>
         <div className={classes.contact}>
           <Typography component="h5">Связь с нами</Typography>
           <p className={classes.contactMessage}>

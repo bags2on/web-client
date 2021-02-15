@@ -2,7 +2,7 @@ import React from 'react'
 import Divider from '@material-ui/core/Divider'
 import Link from '@material-ui/core/Link'
 import Typography from '@material-ui/core/Typography'
-import NightToggleSwith from '../../../shared/NightToggleSwith/NightToggleSwith'
+import NightToggle from '../../../shared/NightToggle/NightToggle'
 
 import { makeStyles } from '@material-ui/core'
 
@@ -52,7 +52,7 @@ const DrawerHeader: React.FC<DrawerHeaderProps> = ({ themeChanger }) => {
           </Link>
                 </Typography>
                 <div className={classes.close}>
-                    <NightToggleSwith themeChanger={themeChanger} />
+                    <NightToggle themeChanger={themeChanger} />
                 </div>
             </div>
             <div className={classes.dline}>
