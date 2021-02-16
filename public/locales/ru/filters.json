@@ -1,0 +1,20 @@
+{
+    "names": {
+        "type": "Тип",
+        "availability": "Наличие"
+    },
+    "gender": {
+        "female": "Женский",
+        "male": "Мужской",
+        "unisex": "Унисекс"
+    },
+    "availability": {
+        "inStock": "В наличии",
+        "byOrder": "Под заказ"
+    },
+    "radioGroup": {
+        "all": "Все",
+        "new": "Новинки",
+        "discounts": "Акции"
+    }
+}

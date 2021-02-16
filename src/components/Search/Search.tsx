@@ -108,7 +108,7 @@ const Search: React.FC = () => {
               type="text"
               autoComplete="off"
               name="searchQuery"
-              placeholder={t('headerSearch')}
+              placeholder={t('header.search')}
               className={classes.searchInput}
             />
             <IconButton className={classes.searchButton} color="primary" type="submit">

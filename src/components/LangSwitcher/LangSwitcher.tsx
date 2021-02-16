@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: 92,
     float: 'right',
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const langs: string[] = ['en', 'ru', 'ua']
+const langs: string[] = ['ru', 'ua']
 
 const LangSwitcher: React.FC = () => {
   const { i18n } = useTranslation()
@@ -43,7 +43,7 @@ const LangSwitcher: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      {langs.map(lang => (
+      {langs.map((lang) => (
         <span
           key={lang}
           className={clsx({

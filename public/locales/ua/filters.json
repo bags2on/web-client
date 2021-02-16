@@ -1,0 +1,20 @@
+{
+    "names": {
+        "type": "Тип",
+        "availability": "Наявність"
+    },
+    "gender": {
+        "female": "Жіночий",
+        "male": "Чоловічий",
+        "unisex": "Унісекс"
+    },
+    "availability": {
+        "inStock": "В наявності",
+        "byOrder": "Під замовлення"
+    },
+    "radioGroup": {
+        "all": "Усе",
+        "new": "Новинки",
+        "discounts": "Акції"
+    }
+}

@@ -11,13 +11,13 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import Search from '../../components/Search/Search'
 import HeaderUnderline from './HeaderUnderline'
+import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
 import routes from '../../utils/routes'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
 import { ReactComponent as CartIcon } from '../../assets/svg/new_cart.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/svg/profile.svg'
 // import logo from '../../assets/svg/logo.svg'
-// import NightToggleSwith from '../../shared/NightToggleSwith/NightToggleSwith'
 
 const GET_CART_TOTALS = gql`
   {
@@ -225,6 +225,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
         </List>
       </nav>
       {/*  */}
+      <LangSwitcher />
       <Search />
       {/*  */}
       <IconButton
@@ -258,9 +259,6 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger 
           </Icon>
         </Badge>
       </IconButton>
-      {/* <div className={classes.toggl}>
-        <NightToggleSwith themeChanger={themeChanger} />
-      </div> */}
       <HeaderUnderline />
     </header>
   )

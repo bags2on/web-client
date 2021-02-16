@@ -1,56 +1,38 @@
 import i18n from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
+import Backend from 'i18next-http-backend'
 import { initReactI18next } from 'react-i18next'
 
+const isDebugMode = process.env.NODE_ENV === 'development'
+
 i18n
+  .use(Backend)
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    resources: {
-      en: {
-        translations: {
-          headerSearch: 'Я ищу...',
-          email: 'email',
-          password: 'password',
-          send: 'Submit',
-          ts: 'TypeScript'
-        }
-      },
-      ru: {
-        translations: {
-          headerSearch: 'Я ищу...',
-          email: 'эл. почта',
-          password: 'пароль',
-          send: 'Отправить',
-          ts: 'Тайп Скрипт'
-        }
-      },
-      ua: {
-        translations: {
-          headerSearch: 'Знайти',
-          email: 'ел. пошта',
-          password: 'пароль',
-          send: 'Увійти',
-          ts: 'Тайп Скрипт'
-        }
-      }
-    },
-    fallbackLng: 'en',
-    debug: true,
+    initImmediate: false,
+    // fallbackLng - can affect which language will be downloaded first from the server
+    fallbackLng: 'ru',
+    debug: isDebugMode,
 
-    // have a common namespace used around the full app
-    ns: ['translations'],
-    defaultNS: 'translations',
-
-    keySeparator: false, // we use content as keys
-
+    // common namespace used around the full app
+    ns: ['filters'],
+    defaultNS: 'translation',
     interpolation: {
-      escapeValue: false, // not needed for react!!
+      escapeValue: false,
       formatSeparator: ','
     },
-
     react: {
       wait: true
+    },
+    backend: {
+      //   allowMultiLoading: false,
+      loadPath: './locales/{{lng}}/{{ns}}.json'
+    },
+    detection: {
+      order: ['localStorage'],
+      caches: ['localStorage', 'cookie'],
+      cookieMinutes: 80
     }
   })
 
