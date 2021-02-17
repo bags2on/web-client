@@ -12,7 +12,7 @@ i18n
   .init({
     initImmediate: false,
     // fallbackLng - can affect which language will be downloaded first from the server
-    fallbackLng: 'ru',
+    fallbackLng: false,
     debug: isDebugMode,
 
     // common namespace used around the full app

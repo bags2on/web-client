@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core'
@@ -36,14 +36,24 @@ const LangSwitcher: React.FC = () => {
   const [current, setCurrent] = useState<string>('')
   const classes = useStyles()
 
-  useEffect(() => {
-    setCurrent(i18n.language)
-  }, [i18n.language])
-
   const langHandler = (lang: string): void => {
     i18n.changeLanguage(lang)
     setCurrent(lang)
   }
+
+  const cbLangHandler = useCallback((): void => {
+    langHandler('ru')
+    // eslint-disable-next-line
+  }, [])
+
+  useEffect(() => {
+    if (!i18n.language) {
+      cbLangHandler()
+      return
+    }
+
+    setCurrent(i18n.language)
+  }, [i18n.language, cbLangHandler])
 
   return (
     <div className={classes.root}>
