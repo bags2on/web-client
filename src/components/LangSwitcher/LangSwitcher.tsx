@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core'
@@ -33,8 +33,12 @@ const langs: string[] = ['ru', 'ua']
 
 const LangSwitcher: React.FC = () => {
   const { i18n } = useTranslation()
-  const [current, setCurrent] = useState<string>(i18n.language)
+  const [current, setCurrent] = useState<string>('')
   const classes = useStyles()
+
+  useEffect(() => {
+    setCurrent(i18n.language)
+  }, [i18n.language])
 
   const langHandler = (lang: string): void => {
     i18n.changeLanguage(lang)
