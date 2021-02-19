@@ -1,7 +1,10 @@
 {
+    "title": "Параметри",
     "names": {
         "type": "Тип",
-        "availability": "Наявність"
+        "availability": "Наявність",
+        "price": "Ціна",
+        "category": "Категорія"
     },
     "gender": {
         "female": "Жіночий",
@@ -16,5 +19,11 @@
         "all": "Усе",
         "new": "Новинки",
         "discounts": "Акції"
+    },
+    "categories": {
+        "all": "Усе",
+        "suitcases": "Валізи",
+        "bags": "Сумки",
+        "wallets": "Гаманці"
     }
 }

@@ -25,7 +25,7 @@ const Filters: React.FC = () => {
 
   return (
     <aside className={classes.root}>
-      <Typography component="p">Параметры</Typography>
+      <Typography component="p">{t('filters:title')}</Typography>
       <Formik
         onSubmit={handleSubmit}
         initialValues={{
@@ -42,8 +42,8 @@ const Filters: React.FC = () => {
               <RadioGroup name="general" size="medium" options={radioGroup.options} />
             </Box>
             {/* TODO: input background color */}
-            <PriceRange title="Цена" min={1500} max={4500} step={1} defaultValue={[2250, 3350]} />
-            <CheckBoxGroup title="Категории" name="category" options={categories.options} />
+            <PriceRange title={t('filters:names.price')} min={1500} max={4500} step={1} defaultValue={[2250, 3350]} />
+            <CheckBoxGroup title={t('filters:names.category')} name="category" options={categories.options} />
           </Form>
         )}
       </Formik>

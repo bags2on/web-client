@@ -29,25 +29,13 @@ const radioGroup: {
   options: []
 }
 
-const categories = {
-  options: [
-    {
-      label: 'Все',
-      value: 'all'
-    },
-    {
-      label: 'Чемоданы',
-      value: 'suitcases'
-    },
-    {
-      label: 'Сумки',
-      value: 'bags'
-    },
-    {
-      label: 'Кошельки',
-      value: 'wallets'
-    }
-  ]
+const categories: {
+  options: Array<{
+    label: string
+    value: string
+  }>
+} = {
+  options: []
 }
 
 function fillUpValues(): void {
@@ -94,11 +82,30 @@ function fillUpValues(): void {
       disabled: false
     }
   ]
+
+  categories.options = [
+    {
+      label: i18n.t('filters:categories.all'),
+      value: 'all'
+    },
+    {
+      label: i18n.t('filters:categories.suitcases'),
+      value: 'suitcases'
+    },
+    {
+      label: i18n.t('filters:categories.bags'),
+      value: 'bags'
+    },
+    {
+      label: i18n.t('filters:categories.wallets'),
+      value: 'wallets'
+    }
+  ]
 }
 
 fillUpValues()
 
-i18n.on('languageChanged', () => {
+i18n.on('languageChanged', (): void => {
   fillUpValues()
 })
 
