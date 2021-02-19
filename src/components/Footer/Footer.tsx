@@ -1,6 +1,5 @@
 import React from 'react'
 import NightToggle from '../../shared/NightToggle/NightToggle'
-import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import { Link } from 'react-router-dom'
@@ -18,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     background: '#333',
+    position: 'relative',
     padding: '30px 5% 15px 5%',
     flexWrap: 'wrap',
     [theme.breakpoints.up('xl')]: {
@@ -99,7 +99,17 @@ const useStyles = makeStyles((theme) => ({
       flexBasis: 'auto'
     }
   },
+  theme: {
+    position: 'absolute',
+    top: -10,
+    right: -35,
+    [theme.breakpoints.up('laptop')]: {
+      top: 5,
+      right: -30
+    }
+  },
   brandSection: {
+    position: 'relative',
     margin: '0 auto',
     '& > a': {
       textDecoration: 'none'
@@ -149,14 +159,17 @@ const useStyles = makeStyles((theme) => ({
     listStyle: 'none',
     display: 'flex',
     justifyContent: 'center',
-    marginTop: 5
+    marginTop: 5,
+    [theme.breakpoints.up('desktop')]: {
+      paddingLeft: 5,
+      justifyContent: 'flex-start'
+    }
   },
   socialMediaIcon: {
     fontSize: '15px',
     fill: '#A0A0A0',
     marginRight: 8,
     transition: 'fill 0.2s',
-
     '&:hover': {
       fill: '#ff9900'
     },
@@ -173,11 +186,6 @@ const Footer: React.FC<FooterProps> = ({ themeChanger }) => {
   return (
     <div>
       <footer className={classes.root}>
-        {/* TODO */}
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <NightToggle themeChanger={themeChanger} />
-          <LangSwitcher />
-        </div>
         <div className={classes.contact}>
           <Typography component="h5">Связь с нами</Typography>
           <p className={classes.contactMessage}>
@@ -256,6 +264,9 @@ const Footer: React.FC<FooterProps> = ({ themeChanger }) => {
               </Link>
             </li>
           </ul>
+          <div className={classes.theme}>
+            <NightToggle themeChanger={themeChanger} />
+          </div>
         </div>
       </footer>
       <div className={classes.subFooter}>

@@ -3,13 +3,21 @@ import { useTranslation } from 'react-i18next'
 import clsx from 'clsx'
 import { makeStyles } from '@material-ui/core'
 
+interface LangSwitcherProps {
+  light?: boolean
+}
+
+interface StyleProps {
+  light?: boolean
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 92,
     float: 'right',
     fontWeight: 'normal',
     fontSize: '18px',
-    color: theme.palette.primary.main
+    color: (props: StyleProps): string => (props.light ? '#fff' : theme.palette.primary.main)
   },
   lang: {
     cursor: 'pointer',
@@ -31,10 +39,10 @@ const useStyles = makeStyles((theme) => ({
 
 const langs: string[] = ['ru', 'ua']
 
-const LangSwitcher: React.FC = () => {
+const LangSwitcher: React.FC<LangSwitcherProps> = ({ light }) => {
   const { i18n } = useTranslation()
   const [current, setCurrent] = useState<string>('')
-  const classes = useStyles()
+  const classes = useStyles({ light })
 
   const langHandler = (lang: string): void => {
     i18n.changeLanguage(lang)
