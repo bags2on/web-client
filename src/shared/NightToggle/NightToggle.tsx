@@ -25,14 +25,7 @@ const NightToggle: React.FC<NightToggleProps> = ({ themeChanger }) => {
           checked={defaultTheme === 'light'}
           style={hiddenStyles}
         />
-        <svg
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          width="50px"
-          height="50px"
-          viewBox="0 0 83 70"
-          //   enableBackground="new 0 0 83 70" // TODO
-        >
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 83 70">
           <defs>
             <clipPath id="moonmask" className={classes.moonmask}>
               <circle cx="48" cy="35" r="15" />
