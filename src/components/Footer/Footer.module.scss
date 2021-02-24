@@ -1,0 +1,187 @@
+@import '../../utils/shared.scss';
+
+.root {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  background: #333;
+  padding: 30px 5% 15px 5%;
+}
+
+.contact {
+  color: #fff;
+  text-align: center;
+  & h5 {
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+}
+
+.contactMessage {
+  color: #9ea29e;
+  font-size: 12px;
+  margin: 0;
+  margin-bottom: 14px;
+}
+
+.contactDetails {
+  @include reset-list;
+  display: flex;
+  flex-wrap: wrap;
+  & li {
+    flex-basis: 50%;
+    margin-bottom: 15px;
+  }
+  & p {
+    font-size: 15px;
+    color: #a29e9e;
+  }
+  & span {
+    font-size: 14px;
+  }
+}
+
+.info {
+  width: 100%;
+  color: #fff;
+  text-align: center;
+  margin-top: 30px;
+  & h5 {
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+  & a {
+    text-decoration: none;
+  }
+  & p {
+    font-size: 15px;
+    color: #a29e9e;
+    margin-bottom: 5px;
+    transition: color 0.2s;
+    &:hover {
+      color: #ff9900;
+    }
+  }
+}
+
+.theme {
+  position: absolute;
+  top: -10px;
+  right: -35px;
+}
+
+.brand {
+  position: relative;
+  margin: 0 auto;
+  & a {
+    text-decoration: none;
+  }
+}
+
+.logo {
+  @include logo;
+}
+
+.logoBox {
+  display: flex;
+  padding-left: 4px;
+}
+
+.icon {
+  padding-top: 4px;
+  margin-right: 14px;
+  height: 42px !important;
+  font-size: 20px !important;
+  fill: #a29e9e;
+}
+
+.phone {
+  color: #fff;
+  font-weight: 500 !important;
+  font-size: 20px !important;
+}
+
+.socialMedia {
+  @include reset-list;
+  display: flex;
+  justify-content: center;
+  margin-top: 5px;
+}
+
+.socialMediaIcon {
+  font-size: 15px;
+  fill: #a0a0a0;
+  margin-right: 8px;
+  transition: fill 0.2s;
+  &:hover {
+    fill: #ff9900;
+  }
+  & svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.subFooter {
+  background-color: #252121;
+  padding: 10px 10%;
+  color: #a29e9e;
+  text-align: center;
+  & > span {
+    font-size: 12px;
+  }
+}
+
+@media screen and (min-width: $md) {
+  .contact {
+    max-width: 420px;
+    text-align: start;
+    flex-basis: 50%;
+  }
+
+  .info {
+    width: auto;
+    flex-basis: 50%;
+    margin: 0;
+    text-align: end;
+  }
+}
+
+@media screen and (min-width: $laptop) {
+  .contact {
+    flex-basis: auto;
+  }
+
+  .info {
+    text-align: start;
+    flex-basis: auto;
+  }
+
+  .theme {
+    top: 5px;
+    right: -30px;
+  }
+
+  .brand {
+    margin: 0;
+    margin-left: auto;
+    padding-top: 20px;
+  }
+}
+
+@media screen and (min-width: $xl) {
+  .root {
+    padding: 30px 10% 15px 10%;
+  }
+
+  .contact {
+    margin-right: 50px;
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .socialMedia {
+    padding-left: 5px;
+    justify-content: flex-start;
+  }
+}
