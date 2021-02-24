@@ -1,5 +1,14 @@
 @import '../../utils/shared.scss';
 
+$text-color: #a29e9e;
+
+@mixin h5-title {
+  & h5 {
+    font-size: 15px;
+    margin-bottom: 25px;
+  }
+}
+
 .root {
   display: flex;
   flex-wrap: wrap;
@@ -11,10 +20,7 @@
 .contact {
   color: #fff;
   text-align: center;
-  & h5 {
-    font-size: 15px;
-    margin-bottom: 25px;
-  }
+  @include h5-title;
 }
 
 .contactMessage {
@@ -34,7 +40,7 @@
   }
   & p {
     font-size: 15px;
-    color: #a29e9e;
+    color: $text-color;
   }
   & span {
     font-size: 14px;
@@ -46,20 +52,17 @@
   color: #fff;
   text-align: center;
   margin-top: 30px;
-  & h5 {
-    font-size: 15px;
-    margin-bottom: 25px;
-  }
+  @include h5-title;
   & a {
     text-decoration: none;
   }
   & p {
     font-size: 15px;
-    color: #a29e9e;
+    color: $text-color;
     margin-bottom: 5px;
     transition: color 0.2s;
     &:hover {
-      color: #ff9900;
+      color: $main-color;
     }
   }
 }
@@ -92,7 +95,7 @@
   margin-right: 14px;
   height: 42px !important;
   font-size: 20px !important;
-  fill: #a29e9e;
+  fill: $text-color;
 }
 
 .phone {
@@ -114,7 +117,7 @@
   margin-right: 8px;
   transition: fill 0.2s;
   &:hover {
-    fill: #ff9900;
+    fill: $main-color;
   }
   & svg {
     width: 20px;
@@ -125,7 +128,7 @@
 .subFooter {
   background-color: #252121;
   padding: 10px 10%;
-  color: #a29e9e;
+  color: $text-color;
   text-align: center;
   & > span {
     font-size: 12px;
