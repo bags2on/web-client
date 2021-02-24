@@ -1,5 +1,4 @@
 import React from 'react'
-import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import { useTranslation } from 'react-i18next'
 import { Formik, Form } from 'formik'
@@ -10,7 +9,10 @@ import PriceRange from '../../../shared/FormFields/PriceRange/PriceRange'
 import fieldProps from './fields-data'
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
+  generalWrapper: {
+    padding: '8px 10px'
+  }
 }))
 
 const Filters: React.FC = () => {
@@ -34,14 +36,14 @@ const Filters: React.FC = () => {
           general: ''
         }}
       >
+        {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
         {() => (
           <Form>
             <CheckBoxGroup title={t('filters:names.type')} name="gender" options={gender.options} />
             <CheckBoxGroup title={t('filters:names.availability')} name="availability" options={availability.options} />
-            <Box padding="8px 10px">
+            <div className={classes.generalWrapper}>
               <RadioGroup name="general" size="medium" options={radioGroup.options} />
-            </Box>
-            {/* TODO: input background color */}
+            </div>
             <PriceRange title={t('filters:names.price')} min={1500} max={4500} step={1} defaultValue={[2250, 3350]} />
             <CheckBoxGroup title={t('filters:names.category')} name="category" options={categories.options} />
           </Form>
