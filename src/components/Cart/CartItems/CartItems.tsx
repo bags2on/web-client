@@ -116,11 +116,11 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose }) => {
   }
 
   if (loading) {
-    return <p>Loading</p> // ui
+    return <p>Loading</p> // TODO: better UI
   }
 
   if (error) {
-    return <p>Error</p> // ui
+    return <p>Error</p> // TODO: better UI
   }
 
   return (

@@ -105,7 +105,7 @@ const Search: React.FC = () => {
         {(): React.ReactElement => (
           <Form className={classes.searchBox} noValidate>
             <Field
-              type="text"
+              type="search"
               autoComplete="off"
               name="searchQuery"
               placeholder={t('header.search')}

@@ -5,64 +5,60 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Fade from '@material-ui/core/Fade'
 
-//  &:hover:not($disabled):not($cssFocused):not($error) $notchedOutline
-
 const useStyles = makeStyles(() => ({
   root: {
-    backgroundColor: '#383838',
-    boxShadow: '0px 4px 10px rgba(0, 0, 0, .3)',
-    color: '#fff',
+    backgroundColor: '#fff',
+    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;',
+    color: '#343434',
     '& .MuiOutlinedInput-input': {
-      fontWeight: '600',
-      padding: '14px 10px'
-    },
-    '& label.Mui-focused': {
-      color: 'green'
+      fontWeight: 400, // TODO: ???
+      padding: 14
     }
-  },
-  box: {
-    height: 24
   },
   message: {
     height: 24,
+    fontSize: 14,
     color: '#ff182e',
+    paddingLeft: 10,
     opacity: 0,
     transition: 'all 0.33s linear'
   },
   notchedOutline: {
-    borderWidth: '1px',
-    borderColor: '#424242'
+    borderWidth: '1px'
   }
 }))
 
 interface TextInputProps {
-  onChange?(event: React.ChangeEvent<HTMLInputElement>): void
-  disabled?: boolean
-  label?: string
-  placeholder?: string
-  type?: string
   name: string
+  type?: string
+  rows?: number
+  label?: string
+  disabled?: boolean
+  multiline?: boolean
+  fullWidth?: boolean
+  placeholder?: string
+  autoComplete?: string
+  onChange?(event: React.ChangeEvent<HTMLInputElement>): void
 }
 
-const TextInput: React.FC<TextInputProps> = props => {
-  const [field, meta] = useField(props)
+const TextInput: React.FC<TextInputProps> = ({ autoComplete = 'off', ...restProps }) => {
+  const [field, meta] = useField(restProps)
 
   const classes = useStyles()
 
   return (
-    <>
+    <div>
       <TextField
         {...field}
-        {...props}
+        {...restProps}
         variant="outlined"
+        autoComplete={autoComplete}
+        error={meta.touched && !!meta.error}
         InputProps={{
           classes: {
             root: classes.root,
             notchedOutline: classes.notchedOutline
           }
-        }}
-        InputLabelProps={{
-          shrink: true
         }}
       />
       <Fade in={meta.touched && !!meta.error}>
@@ -70,7 +66,7 @@ const TextInput: React.FC<TextInputProps> = props => {
           {meta.touched && meta.error}
         </Typography>
       </Fade>
-    </>
+    </div>
   )
 }
 

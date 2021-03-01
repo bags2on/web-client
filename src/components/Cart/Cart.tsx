@@ -1,6 +1,7 @@
 import React from 'react'
 import Drawer from '@material-ui/core/Drawer'
 import CartItems from './CartItems/CartItems'
+import Checkout from './Checkout/Checkout'
 import { makeStyles } from '@material-ui/core'
 
 interface CartProps {
@@ -29,14 +30,16 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose, themeChanger }) => {
     <Drawer
       anchor="right"
       onClose={onClose}
-      open={isOpen}
+      //   open={isOpen}
+      open
       classes={{
         root: classes.root,
         paper: classes.drawer
       }}
     >
       <div className={classes.root}>
-        <CartItems onClose={onClose} />
+        {/* <CartItems onClose={onClose} /> */}
+        <Checkout />
       </div>
     </Drawer>
   )

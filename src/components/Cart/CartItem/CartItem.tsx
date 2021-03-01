@@ -29,7 +29,7 @@ interface CartItemProps {
 const useStyles = makeStyles(() => ({
   root: {
     position: 'relative',
-    marginBottom: 20,
+    marginBottom: 30,
     '&::after': {
       content: "''",
       position: 'absolute',
