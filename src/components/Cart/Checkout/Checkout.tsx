@@ -17,6 +17,7 @@ const CREATE_ORDER_MUTATION = gql`
     $phone: String!
     $cityId: String!
     $postOfficeId: String!
+    $productsId: [String!]!
   ) {
     cartIDs @client @export(as: "productsId")
     createOrder(
