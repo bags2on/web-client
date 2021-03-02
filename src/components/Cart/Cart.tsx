@@ -1,6 +1,6 @@
 import React from 'react'
 import Drawer from '@material-ui/core/Drawer'
-import CartItems from './CartItems/CartItems'
+// import CartItems from './CartItems/CartItems'
 import Checkout from './Checkout/Checkout'
 import { makeStyles } from '@material-ui/core'
 

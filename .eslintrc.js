@@ -11,8 +11,7 @@ module.exports = {
     sourceType: 'module' // Allows for the use of imports
   },
   rules: {
-    'react/prop-types': 0,
-    'linebreak-style': ['error', 'windows']
+    'react/prop-types': 0
   },
   settings: {
     react: {
