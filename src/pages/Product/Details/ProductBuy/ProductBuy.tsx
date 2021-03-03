@@ -1,16 +1,10 @@
 import React from 'react'
 import Button from '../../../../shared/Button'
-import { gql } from 'apollo-boost'
 import { useMutation } from '@apollo/react-hooks'
 import { makeStyles } from '@material-ui/core'
+import { ADD_PRODUCT_TO_CART } from '../../../../graphql/cart'
 
-const ADD_PRODUCT_TO_CART = gql`
-  mutation AddToCart($id: String!) {
-    addToCart(id: $id) @client
-  }
-`
-
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     flexWrap: 'wrap',

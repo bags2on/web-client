@@ -6,39 +6,16 @@ import Button from '@material-ui/core/Button'
 import AppButton from '../../../shared/Button'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
+import Summary from '../Summary/Summary'
 import { ReactComponent as EmptyCartIcon } from '../../../assets/svg/emptycart.svg'
 import { makeStyles } from '@material-ui/core'
-import Summary from '../Summary/Summary'
 import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
-import { gql } from 'apollo-boost'
+import { GET_CART_ITEMS, CLEAR_CART } from '../../../graphql/cart'
+import { GET_PRODUCTS_BY_IDS } from '../../../graphql/product'
 
 interface CartItemsProps {
   onClose(): void
 }
-
-const GET_CART_IDS = gql`
-  {
-    cartIDs @client
-  }
-`
-
-const GET_ALL_PRODUCTS_BY_ID = gql`
-  query productsByID($ids: [String!]) {
-    productsByID(ids: $ids) {
-      id
-      title
-      price
-      amount
-      preview
-    }
-  }
-`
-
-const CLEAR_CART = gql`
-  mutation ClearCart {
-    clearCart @client
-  }
-`
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -89,12 +66,12 @@ const useStyles = makeStyles((theme) => ({
 const CartItems: React.FC<CartItemsProps> = ({ onClose }) => {
   const classes = useStyles()
   const client = useApolloClient()
-  const savedIDS = useQuery(GET_CART_IDS)
+  const savedIDS = useQuery(GET_CART_ITEMS)
   const [onClearCart] = useMutation(CLEAR_CART)
 
   const isCartEmpty = savedIDS.data.cartIDs.length === 0
 
-  const { data, loading, error } = useQuery(GET_ALL_PRODUCTS_BY_ID, {
+  const { data, loading, error } = useQuery(GET_PRODUCTS_BY_IDS, {
     variables: {
       ids: savedIDS.data.cartIDs
     },

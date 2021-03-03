@@ -1,11 +1,6 @@
-import ApolloClient, { gql } from 'apollo-boost'
+import ApolloClient from 'apollo-boost'
+import { GET_CART_ITEMS } from '../graphql/cart'
 import { cache } from './cache'
-
-const GET_CART_ITEMS = gql`
-  query GetCartIDs {
-    cartIDs @client
-  }
-`
 
 const API_URL = process.env.REACT_APP_API_URL
 

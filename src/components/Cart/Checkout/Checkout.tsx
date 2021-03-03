@@ -1,40 +1,13 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
-import { CheckoutOrderSchema } from '../../../utils/validationSchema'
-import { Formik, Form } from 'formik'
-import { makeStyles } from '@material-ui/core'
-import { gql } from 'apollo-boost'
-import { useMutation } from '@apollo/react-hooks'
 import TextInput from '../../../shared/TextInput'
 import Button from '../../../shared/Button'
-
-const CREATE_ORDER_MUTATION = gql`
-  mutation CreateProduct(
-    $name: String!
-    $surname: String!
-    $email: String!
-    $phone: String!
-    $cityId: String!
-    $postOfficeId: String!
-    $productsId: [String!]!
-  ) {
-    cartIDs @client @export(as: "productsId")
-    createOrder(
-      input: {
-        name: $name
-        surname: $surname
-        email: $email
-        phone: $phone
-        cityId: $cityId
-        postOfficeId: $postOfficeId
-        productsId: $productsId
-      }
-    ) {
-      message
-    }
-  }
-`
+import { useMutation } from '@apollo/react-hooks'
+import { Formik, Form } from 'formik'
+import { CheckoutOrderSchema } from '../../../utils/validationSchema'
+import { makeStyles } from '@material-ui/core'
+import { CREATE_ORDER } from '../../../graphql/order'
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -89,7 +62,7 @@ const useStyles = makeStyles(() => ({
 
 const Checkout: React.FC = () => {
   const classes = useStyles()
-  const [createOrder, { loading }] = useMutation(CREATE_ORDER_MUTATION)
+  const [createOrder, { loading }] = useMutation(CREATE_ORDER)
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = (values: any) => {

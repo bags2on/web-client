@@ -1,9 +1,5 @@
 import React, { useEffect } from 'react'
 import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core'
-import { Link } from 'react-router-dom'
-import { useQuery, useMutation } from '@apollo/react-hooks'
-import { gql } from 'apollo-boost'
 import IconButton from '@material-ui/core/IconButton'
 import Badge from '@material-ui/core/Badge'
 import Icon from '@material-ui/core/Icon'
@@ -13,28 +9,19 @@ import Search from '../../components/Search/Search'
 import HeaderUnderline from './HeaderUnderline'
 import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
 import routes from '../../utils/routes'
+// import logo from '../../assets/svg/logo.svg'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
 import { ReactComponent as CartIcon } from '../../assets/svg/new_cart.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/svg/profile.svg'
-// import logo from '../../assets/svg/logo.svg'
-
-const GET_CART_TOTALS = gql`
-  {
-    cartIDs @client
-  }
-`
-
-const UPDATE_CART_TOTALS = gql`
-  mutation GetSavedID {
-    syncCartWithLocalStorage @client
-  }
-`
+import { Link } from 'react-router-dom'
+import { useQuery, useMutation } from '@apollo/react-hooks'
+import { makeStyles } from '@material-ui/core'
+import { GET_CART_ITEMS, SYNC_CART_FROM_STORAGE } from '../../graphql/cart'
 
 interface HeaderProps {
   onDrawerOpen(): void
   onCartOpen(): void
-  themeChanger(checked: boolean): void
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -181,13 +168,13 @@ interface CartTotals {
   cartIDs: string[]
 }
 
-const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen, themeChanger }) => {
+const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   const classes = useStyles()
-  const { data } = useQuery<CartTotals>(GET_CART_TOTALS)
-  const [updateTotals] = useMutation(UPDATE_CART_TOTALS)
+  const { data } = useQuery<CartTotals>(GET_CART_ITEMS)
+  const [syncCart] = useMutation(SYNC_CART_FROM_STORAGE)
 
   useEffect(() => {
-    updateTotals()
+    syncCart()
     // eslint-disable-next-line
   }, [])
 

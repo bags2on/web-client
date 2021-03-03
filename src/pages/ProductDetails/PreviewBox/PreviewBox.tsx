@@ -1,17 +1,11 @@
 import React from 'react'
 import IconButton from '@material-ui/core/IconButton'
 import Icon from '@material-ui/core/Icon'
-import { gql } from 'apollo-boost'
-import { makeStyles } from '@material-ui/core'
-import { useMutation } from '@apollo/react-hooks'
 import Drag from '../Drag'
 import { ReactComponent as AddToCartIcon } from '../../../assets/svg/cart_add.svg'
-
-const ADD_PRODUCT_TO_CART = gql`
-  mutation AddToCart($id: String!) {
-    addToCart(id: $id) @client
-  }
-`
+import { useMutation } from '@apollo/react-hooks'
+import { makeStyles } from '@material-ui/core'
+import { ADD_PRODUCT_TO_CART } from '../../../graphql/cart'
 
 const useStyles = makeStyles((theme) => ({
   root: {

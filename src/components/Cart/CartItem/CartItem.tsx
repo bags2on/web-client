@@ -8,11 +8,11 @@ import { Link } from 'react-router-dom'
 import ImagePlaceholder from '../../../shared/ImagePlaceholder'
 import AmountController from '../../../shared/AmountController'
 import routes from '../../../utils/routes'
-import { gql } from 'apollo-boost'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { formatPrice } from '../../../utils/helpers'
 import { generateLink } from '../../../utils/links'
 import { makeStyles } from '@material-ui/core'
+import { GET_CART_TOTAL_SUMM, UPDATE_CART_TOTALS, REMOVE_PRODUCT_FROM_CART } from '../../../graphql/cart'
 
 export type CartItemType = {
   id: string
@@ -99,24 +99,6 @@ const useStyles = makeStyles(() => ({
     }
   }
 }))
-
-const REMOVE_PRODUCT_FROM_CART = gql`
-  mutation RemoveFromCart($id: String!) {
-    removeFromCart(id: $id) @client
-  }
-`
-
-const UPDATE_CART_TOTALS = gql`
-  mutation UpdateTotalCartPrice($input: Number!) {
-    updateCartTotalPrice(input: $input) @client
-  }
-`
-
-const GET_CART_TOTAL_SUMM = gql`
-  {
-    cartTotalPrice @client
-  }
-`
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
   const { id, title, preview, price, amount } = item

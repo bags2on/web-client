@@ -1,25 +1,12 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core'
 import { useParams } from 'react-router-dom'
-import { gql } from 'apollo-boost'
 import { useQuery } from '@apollo/react-hooks'
 import Grid from '@material-ui/core/Grid'
 import ScaleLoader from '../../shared/loaders/ScaleLoader'
 import Preview from './Preview/Preview'
 import Details from './Details'
-
-const GET_PRODUCT_BY_ID = gql`
-  query getProductByID($id: ID!) {
-    product(id: $id) {
-      id
-      title
-      price
-      tags
-      images
-      description
-    }
-  }
-`
+import { makeStyles } from '@material-ui/core'
+import { GET_PRODUCT_BY_ID } from '../../graphql/product'
 
 interface Product {
   id: string
