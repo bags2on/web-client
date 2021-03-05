@@ -132,7 +132,9 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, discou
       </div>
       <div className={classes.infoContainer}>
         <Typography component="p" className={classes.title}>
-          <Link to={generateLink(routes.product, id)}>{title}</Link>
+          <Link title={title} to={generateLink(routes.product, id)}>
+            {title}
+          </Link>
         </Typography>
         <Typography component="p">
           <Typography
