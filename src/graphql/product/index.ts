@@ -34,6 +34,7 @@ export const GET_PRODUCT_BY_ID = gql`
       tags
       images
       description
+      availability
     }
   }
 `

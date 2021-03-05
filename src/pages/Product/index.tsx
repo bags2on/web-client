@@ -15,6 +15,7 @@ interface Product {
   tags: string[]
   images: string[]
   description: string
+  availability: boolean
 }
 
 interface ProductData {
@@ -59,8 +60,6 @@ const ProductDetails: React.FC = () => {
 
   const { product }: ProductData = data
 
-  const tmp = Boolean(Math.round(Math.random()))
-
   console.log(product)
 
   return (
@@ -76,7 +75,7 @@ const ProductDetails: React.FC = () => {
             price={product.price}
             description={product.description}
             tags={product.tags}
-            inStock={tmp}
+            inStock={product.availability}
           />
         </Grid>
       </Grid>
