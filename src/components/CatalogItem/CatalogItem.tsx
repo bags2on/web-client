@@ -9,6 +9,8 @@ import { Link } from 'react-router-dom'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { generateLink } from '../../utils/links'
 import { formatPrice } from '../../utils/helpers'
+import { getColorForMainTagName } from '../../utils/styling'
+import { useTranslation } from 'react-i18next'
 import routes from '../../utils/routes'
 
 interface CatalogItemProps {
@@ -17,6 +19,7 @@ interface CatalogItemProps {
   title: string
   price: number
   discountPrice?: number
+  mainTag: 'new' | 'top' | 'stock' | ''
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -83,14 +86,15 @@ const useStyles = makeStyles((theme) => ({
     top: 4,
     right: 4
   },
-  saleBox: {
+  mainTag: {
     position: 'absolute',
     top: 0,
     left: 0,
-    backgroundColor: '#d81e1e',
+    width: 75,
     borderTopLeftRadius: 8,
     borderBottomRightRadius: 8,
-    padding: '7px',
+    textAlign: 'center',
+    padding: '7px 4px',
     userSelect: 'none',
     '& > span': {
       color: '#fff',
@@ -114,8 +118,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, discountPrice }) => {
+const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, mainTag, discountPrice }) => {
   const classes = useStyles()
+  const { t } = useTranslation() // from header??
 
   const [isLiked, setLiked] = useState<boolean>(false)
 
@@ -170,9 +175,14 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, discou
           <HeartIcon />
         </Icon>
       </IconButton>
-      {!!discountPrice && (
-        <div className={classes.saleBox}>
-          <Typography component="span">Акция</Typography>
+      {!!mainTag && (
+        <div
+          className={classes.mainTag}
+          style={{
+            backgroundColor: getColorForMainTagName(mainTag)
+          }}
+        >
+          <Typography component="span">{t(`product.mainTag.${mainTag}`)}</Typography>
         </div>
       )}
     </div>

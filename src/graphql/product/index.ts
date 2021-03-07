@@ -8,6 +8,7 @@ export const GET_PRODUCTS = gql`
       id
       price
       title
+      mainTag
       preview
     }
   }

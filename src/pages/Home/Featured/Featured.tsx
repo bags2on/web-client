@@ -9,6 +9,7 @@ interface ProductType {
   price: number
   title: string
   preview: string
+  mainTag: 'new' | 'top' | 'stock' | ''
 }
 
 interface FeaturedProps {
@@ -52,7 +53,8 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
               title={product.title}
               price={product.price}
               id={product.id}
-              discountPrice={Math.round(Math.random() * 10) === 7 ? TEMPgenerator(350, 550) : 0}
+              discountPrice={Math.round(Math.random() * 10) === 7 ? TEMPgenerator(350, 550) : 0} // TODO
+              mainTag="" // TODO
             />
           </Grid>
         ))}

@@ -16,6 +16,7 @@ interface Product {
   title: string
   preview: string
   images: string
+  mainTag: 'new' | 'top' | 'stock' | ''
 }
 
 const useStyles = makeStyles(() => ({
@@ -86,6 +87,7 @@ const Catalog: React.FC = () => {
                   price={product.price}
                   id={product.id}
                   discountPrice={Math.round(Math.random() * 10) === 7 ? TEMPgenerator(350, 550) : 0}
+                  mainTag={product.mainTag}
                 />
               </Grid>
             ))}

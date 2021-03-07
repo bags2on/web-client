@@ -15,6 +15,19 @@ export const getColorByTagName = (name: string): string => {
   }
 }
 
+export const getColorForMainTagName = (name: 'new' | 'top' | 'stock'): string => {
+  switch (name) {
+    case 'new':
+      return '#6EBE90'
+    case 'top':
+      return '#FFC63D'
+    case 'stock':
+      return '#d81e1e'
+    default:
+      return 'lightgray' // default shouldn't be visible
+  }
+}
+
 export const hiddenStyles: CSSProperties = {
   position: 'absolute',
   width: '1px',

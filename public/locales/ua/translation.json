@@ -1,5 +1,12 @@
 {
     "header": {
         "search": "Я шукаю..."
+    },
+    "product": {
+        "mainTag": {
+            "new": "---",
+            "top": "---",
+            "stock": "---"
+        }
     }
 }
