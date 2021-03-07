@@ -33,12 +33,13 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 20
   },
   input: {
-    color: theme.palette.type === 'light' ? '#343434' : '#aeaeae',
-    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#353340',
-    borderColor: '#a0a0a0'
+    border: '1px solid',
+    color: theme.palette.type === 'light' ? '#343434' : '#fff',
+    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
+    borderColor: theme.palette.type === 'light' ? '#c4c4c4' : '#3c4144'
   },
   submitButton: {
-    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#353340',
+    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
     color: theme.palette.type === 'light' ? '#343434' : '#fff',
     '&:hover': {
       backgroundColor: theme.palette.type === 'dark' ? '#ff9900' : '#f8f8f8',
