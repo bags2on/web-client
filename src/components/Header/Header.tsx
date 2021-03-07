@@ -6,9 +6,8 @@ import Icon from '@material-ui/core/Icon'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import Search from '../../components/Search/Search'
-import HeaderUnderline from './HeaderUnderline'
-import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
 import routes from '../../utils/routes'
+// import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
 // import logo from '../../assets/svg/logo.svg'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
 import { ReactComponent as CartIcon } from '../../assets/svg/new_cart.svg'
@@ -31,12 +30,10 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
     flexWrap: 'wrap',
     padding: '5px 0',
-    backgroundColor: theme.palette.type === 'light' ? 'transparent' : '#282828',
+    backgroundColor: theme.palette.type === 'light' ? '#fafafb' : '#242729',
+    boxShadow: '0 1px 2px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.05)',
     [theme.breakpoints.up('lg')]: {
-      padding: '27px 50px'
-    },
-    [theme.breakpoints.up('md')]: {
-      backgroundColor: theme.palette.type === 'light' ? 'transparent' : '#282828'
+      padding: '15px 50px'
     }
   },
   logo: {
@@ -50,21 +47,13 @@ const useStyles = makeStyles((theme) => ({
       }
     }
   },
-  nav: {
-    [theme.breakpoints.up('lg')]: {
-      // marginLeft: 50
-    }
-  },
   navList: {
     display: 'none',
     paddingBottom: 0,
-
+    paddingTop: 3,
     [theme.breakpoints.up('lg')]: {
       display: 'flex',
-      '& > li': {
-        paddingLeft: 20,
-        paddingRight: 20
-      },
+      alignItems: 'center',
       '& a': {
         fontSize: 14,
         fontWeight: 600,
@@ -198,7 +187,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
       {/* <Link to="/" className={classes.logo}>
         <img src={logo} alt="Bags2on" />
       </Link> */}
-      <nav className={classes.nav}>
+      <nav>
         <List className={classes.navList}>
           <ListItem component="li">
             <Link to={routes.root}>Главная</Link>
@@ -212,7 +201,6 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
         </List>
       </nav>
       {/*  */}
-      <LangSwitcher />
       <Search />
       {/*  */}
       <IconButton
@@ -246,7 +234,6 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
           </Icon>
         </Badge>
       </IconButton>
-      <HeaderUnderline />
     </header>
   )
 }

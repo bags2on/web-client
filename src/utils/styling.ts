@@ -1,5 +1,9 @@
 import { CSSProperties } from '@material-ui/core/styles/withStyles'
 
+/*
+  boxShadow: '0 1px 0 rgb(12 13 14 / 15%)', // simple undeline
+*/
+
 export const getColorByTagName = (name: string): string => {
   switch (name) {
     case 'new':

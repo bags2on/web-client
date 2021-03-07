@@ -21,54 +21,39 @@ const useStyles = makeStyles((theme) => ({
     tabIndex: 0,
     verticalAlign: 'bottom',
     display: 'flex',
-    justifyContent: 'flex-end',
-    [theme.breakpoints.up('lg')]: {
-      width: 'auto',
-      display: 'inline-block',
-      '&:focus, &:hover': {
-        '& $searchInput': {
-          width: 333,
-          border: '1px solid #c4c4c4',
-          padding: '10px 46px 10px 15px'
-        }
-      }
-    }
+    justifyContent: 'flex-end'
   },
   searchInput: {
     fontSize: 14,
     fontWeight: 500,
     position: 'absolute',
     right: 0,
-    backgroundColor: '#fff',
     outline: 'none',
     width: '100%',
     left: 'auto',
     height: '100%',
     zIndex: 9,
     transitionDuration: '0.4s',
-    borderRadius: 6,
+    borderRadius: 4,
     border: '1px solid',
+    color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
+    borderColor: theme.palette.type === 'light' ? '#c4c4c4' : '#3c4144',
+    backgroundColor: theme.palette.type === 'light' ? 'transparent' : '#3c4144',
     padding: '10px 46px 10px 15px',
     '-moz-transition-duration': '0.4s',
     '-webkit-transition-duration': '0.4s',
     '-o-transition-duration': '0.4s',
     [theme.breakpoints.up('lg')]: {
-      width: 0,
-      padding: 0,
-      borderRadius: 10,
-      border: 'none',
-      borderColor: '#c4c4c4'
-    },
-    [theme.breakpoints.up('xl')]: {
       width: 333,
-      padding: '10px 46px 10px 15px',
       borderRadius: 10,
-      border: '1px solid',
-      borderColor: '#c4c4c4'
+      BorderColor: 'transparent'
+    },
+    '&::placeholder': {
+      color: theme.palette.type === 'light' ? '#3c4144' : '#c4c4c4'
     }
   },
   searchButton: {
-    color: '#343434',
+    color: theme.palette.type === 'light' ? '#3c4144' : '#bbc0c4',
     zIndex: 10,
     '& svg': {
       fontSize: 19
@@ -105,9 +90,8 @@ const Search: React.FC = () => {
         {(): React.ReactElement => (
           <Form className={classes.searchBox} noValidate>
             <Field
-              type="search"
-              autoComplete="off"
               name="searchQuery"
+              autoComplete="off"
               placeholder={t('header.search')}
               className={classes.searchInput}
             />
