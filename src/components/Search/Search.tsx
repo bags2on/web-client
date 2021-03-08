@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
     borderColor: theme.palette.type === 'light' ? '#c4c4c4' : '#3c4144',
-    backgroundColor: theme.palette.type === 'light' ? 'transparent' : '#3c4144',
+    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
     padding: '10px 46px 10px 15px',
     '-moz-transition-duration': '0.4s',
     '-webkit-transition-duration': '0.4s',
