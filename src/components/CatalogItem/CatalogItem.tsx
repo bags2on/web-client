@@ -39,21 +39,21 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   title: {
-    fontSize: '14px',
-    whiteSpace: 'nowrap',
+    height: 40,
+    display: 'block',
+    lineHeight: '18px',
+    color: '#343434',
+    fontSize: 14,
     overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    '& > a': {
-      color: '#343434',
-      textDecoration: 'none',
-      transition: 'color .2s',
-      '&:hover, &:focus': {
-        color: 'orange',
-        outline: 'none'
-      }
+    textDecoration: 'none',
+    transition: 'color .2s',
+    marginBottom: 5,
+    '&:hover, &:focus': {
+      color: 'orange',
+      outline: 'none'
     },
     [theme.breakpoints.up('sm')]: {
-      fontSize: '16px'
+      fontSize: 15
     }
   },
   infoContainer: {
@@ -120,7 +120,7 @@ const useStyles = makeStyles((theme) => ({
 
 const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, mainTag, discountPrice }) => {
   const classes = useStyles()
-  const { t } = useTranslation() // from header??
+  const { t } = useTranslation()
 
   const [isLiked, setLiked] = useState<boolean>(false)
 
@@ -136,11 +136,9 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, mainTa
         </Link>
       </div>
       <div className={classes.infoContainer}>
-        <Typography component="p" className={classes.title}>
-          <Link title={title} to={generateLink(routes.product, id)}>
-            {title}
-          </Link>
-        </Typography>
+        <Link className={classes.title} title={title} to={generateLink(routes.product, id)}>
+          {title}
+        </Link>
         <Typography component="p">
           <Typography
             component="span"
