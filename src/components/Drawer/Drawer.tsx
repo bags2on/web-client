@@ -6,6 +6,8 @@ import SvgIcon from '@material-ui/core/SvgIcon'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
+import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
+import Typography from '@material-ui/core/Typography'
 import history from '../../utils/history'
 import { makeStyles } from '@material-ui/core'
 import { ReactComponent as HomeIcon } from '../../assets/svg/home.svg'
@@ -37,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawerItem: {
     margin: '5px 0',
-    paddingLeft: '19px'
+    paddingLeft: 19
   },
   listItemIcon: {
     display: 'inline'
@@ -48,8 +50,18 @@ const useStyles = makeStyles((theme) => ({
   },
   text: {
     '& > span': {
+      fontSize: 18,
+      fontWeight: 500
+    }
+  },
+  languageBox: {
+    display: 'flex',
+    alignItems: 'center',
+    '& > span': {
       fontWeight: 500,
-      fontSize: '18px'
+      fontSize: 18,
+      marginLeft: 20,
+      marginRight: 5
     }
   }
 }))
@@ -103,7 +115,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
           {drawerItems.map((item) => (
             <ListItem
               key={item.text}
-              onClick={() => goTo(item.to)}
+              onClick={(): void => goTo(item.to)}
               className={classes.drawerItem}
               button
               component="li"
@@ -117,6 +129,10 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
             </ListItem>
           ))}
         </List>
+        <div className={classes.languageBox}>
+          <Typography component="span">Язык:</Typography>
+          <LangSwitcher />
+        </div>
       </div>
     </DrawerUI>
   )

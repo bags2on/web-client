@@ -39,7 +39,7 @@
   display: none;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: $md) {
   .swiper-container {
     flex-basis: 70%;
     padding: 0;
@@ -49,9 +49,7 @@
       display: none;
     }
   }
-}
 
-@media screen and (min-width: $md) {
   .slide-image-box {
     border-radius: 0;
   }

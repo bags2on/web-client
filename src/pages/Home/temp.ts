@@ -6,22 +6,22 @@ export const TEMP_FEATURED_DATA: {
   mainTag: 'new' | 'top' | 'stock' | ''
 }[] = [
   {
-    id: '001',
-    title: 'Suitcase JR',
+    id: '1',
+    title: '[draft] Чемодан BM-black дорожный пластик',
     mainTag: '',
     price: 2920,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608120280/bags2on/products/suitc_dr_jrrcks.jpg'
   },
   {
     id: '002',
-    title: 'A-1 Suitcase',
+    title: '[draft] Чемодан A-1 Suitcase дорожный пластик',
     mainTag: '',
     price: 3617,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608119984/bags2on/products/test-bag_1_dr_d12fjf.jpg'
   },
   {
     id: '003',
-    title: 'Suitcase BM',
+    title: '[draft] Чемодан Suitcase BM дорожный пластик',
     mainTag: '',
     price: 2182,
     preview:
@@ -29,7 +29,7 @@ export const TEMP_FEATURED_DATA: {
   },
   {
     id: '004',
-    title: 'Light SSR-1',
+    title: '[draft] Чемодан Light SSR-1 дорожный пластик',
     mainTag: '',
     price: 2629,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121006/bags2on/products/3141b_k67pzc_zretlj.jpg'

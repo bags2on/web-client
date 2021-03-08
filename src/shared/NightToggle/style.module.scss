@@ -1,5 +1,5 @@
 $light: #fff;
-$dark: #fff;
+$dark: #343434;
 $time: 200ms linear;
 $line-size: 3px;
 
@@ -10,6 +10,7 @@ $line-size: 3px;
 }
 
 .root {
+  -webkit-tap-highlight-color: transparent;
   label {
     cursor: pointer;
   }

@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
+import { useTranslation } from 'react-i18next'
 import Header from '../Header/Header'
 import Drawer from '../Drawer/Drawer'
 import Cart from '../Cart/Cart'
@@ -9,6 +10,8 @@ interface RootLayoutProps {
 }
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
+  const { i18n } = useTranslation()
+
   const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
   const [isCartOpen, setCartOpen] = useState<boolean>(false)
 
@@ -27,6 +30,23 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
   const handleCartClose = (): void => {
     setCartOpen(false)
   }
+
+  const langHandler = (lang: string): void => {
+    i18n.changeLanguage(lang)
+  }
+
+  // TODO: create your own HOOK
+  const cbLangHandler = useCallback((): void => {
+    langHandler('ru')
+    // eslint-disable-next-line
+  }, [])
+
+  useEffect(() => {
+    if (!i18n.language) {
+      cbLangHandler()
+      return
+    }
+  }, [i18n.language, cbLangHandler])
 
   return (
     <>

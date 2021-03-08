@@ -83,6 +83,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 8,
     height: 75,
     transition: 'all 0.3s',
+    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#363636',
     boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
     '-webkit-tap-highlight-color': 'transparent',
     '-moz-appearance': 'none',

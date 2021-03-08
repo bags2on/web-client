@@ -18,11 +18,20 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
     display: 'flex',
     flexWrap: 'wrap',
+    [theme.breakpoints.up('md')]: {
+      padding: '0 5px'
+    },
     [theme.breakpoints.up('tablet')]: {
       padding: '0 10px'
     },
     [theme.breakpoints.up('xl')]: {
       padding: '16px 25px 0 10px'
+    },
+    '& section:nth-of-type(2)': {
+      display: 'none',
+      [theme.breakpoints.up('md')]: {
+        display: 'block'
+      }
     }
   },
   homeContainer: {
@@ -42,11 +51,15 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   subBoxTwo: {
-    // backgroundColor: '#0f4c81',
     flexBasis: '100%',
     [theme.breakpoints.up('md')]: {
       padding: '10px 15px',
       flexBasis: '75%'
+    }
+  },
+  mainProductBox: {
+    [theme.breakpoints.up('md')]: {
+      display: 'none'
     }
   }
 }))
@@ -54,11 +67,17 @@ const useStyles = makeStyles((theme) => ({
 const Home: React.FC = () => {
   const classes = useStyles()
 
+  const mainProduct = {
+    id: 'eh345vs',
+    title: '#товарДня',
+    price: 990
+  }
+
   return (
     <div className={classes.root}>
       <div className={classes.sliderContainer}>
         <MainSlider />
-        <MainProduct id={'eh345vs'} title={'#товарДня'} price={1990} />
+        <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
       </div>
       <div className={classes.homeContainer}>
         <div className={classes.subBoxOne}>
@@ -66,6 +85,9 @@ const Home: React.FC = () => {
         </div>
         <div className={classes.subBoxTwo}>
           <Categories />
+          <div className={classes.mainProductBox}>
+            <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
+          </div>
           <Featured products={TEMP_FEATURED_DATA} />
           <Promo />
         </div>
