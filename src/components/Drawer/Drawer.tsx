@@ -10,6 +10,7 @@ import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
 import Typography from '@material-ui/core/Typography'
 import history from '../../utils/history'
 import { makeStyles } from '@material-ui/core'
+import { useTranslation } from 'react-i18next'
 import { ReactComponent as HomeIcon } from '../../assets/svg/home.svg'
 import { ReactComponent as PercentIcon } from '../../assets/svg/sale.svg'
 import { ReactComponent as ListIcon } from '../../assets/svg/list.svg'
@@ -24,7 +25,7 @@ interface DrawerProps {
 interface DrawerItem {
   icon: React.ElementType
   to: string
-  text: string
+  i18n: string
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -70,27 +71,29 @@ const drawerItems: DrawerItem[] = [
   {
     icon: HomeIcon,
     to: '/',
-    text: 'Главная' // Home
+    i18n: 'home'
   },
   {
     icon: PercentIcon,
     to: '/discounts',
-    text: 'Скидки и Акции' // Sales
+    i18n: 'sales'
   },
   {
     icon: ListIcon,
     to: '/catalog',
-    text: 'Каталог' // Catalog
+    i18n: 'catalog'
   },
   {
     icon: LookIcon,
     to: '/history',
-    text: 'История просмотра' // Watch history
+    i18n: 'history'
   }
 ]
 
 const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
   const classes = useStyles()
+
+  const { t } = useTranslation()
 
   const goTo = (path: string): void => {
     onClose()
@@ -114,7 +117,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
         <List component="ul" aria-label="Навигация по магазину">
           {drawerItems.map((item) => (
             <ListItem
-              key={item.text}
+              key={item.to}
               onClick={(): void => goTo(item.to)}
               className={classes.drawerItem}
               button
@@ -125,12 +128,12 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
                   <item.icon />
                 </SvgIcon>
               </ListItemIcon>
-              <ListItemText primary={item.text} className={classes.text} />
+              <ListItemText primary={t(`drawer.${item.i18n}`)} className={classes.text} />
             </ListItem>
           ))}
         </List>
         <div className={classes.languageBox}>
-          <Typography component="span">Язык:</Typography>
+          <Typography component="span">{t('drawer.lang')}:</Typography>
           <LangSwitcher />
         </div>
       </div>
