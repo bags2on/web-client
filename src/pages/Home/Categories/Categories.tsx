@@ -6,6 +6,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
 import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { ReactComponent as BaggageIcon } from '../../../assets/svg/baggage.svg'
 import { ReactComponent as WalletIcon } from '../../../assets/svg/wallet.svg'
 import { ReactComponent as BagIcon } from '../../../assets/svg/shopping-bag.svg'
@@ -13,12 +14,10 @@ import { ReactComponent as OtherIcon } from '../../../assets/svg/other.svg'
 import { makeStyles } from '@material-ui/core'
 import routes from '../../../utils/routes'
 
-interface CategoriesProps {}
-
 type CategoryItemType = {
   icon: React.ElementType
   to: string
-  text: string
+  i18n: string
 }
 
 const categoriesValues: {
@@ -27,14 +26,14 @@ const categoriesValues: {
   {
     group: [
       {
-        icon: BagIcon,
-        to: routes.allCatalog,
-        text: 'Сумки' // Bags
-      },
-      {
         icon: BaggageIcon,
         to: routes.allCatalog,
-        text: 'Чемоданы' // Suitcases
+        i18n: 'suitcases'
+      },
+      {
+        icon: BagIcon,
+        to: routes.allCatalog,
+        i18n: 'bags'
       }
     ]
   },
@@ -43,12 +42,12 @@ const categoriesValues: {
       {
         icon: WalletIcon,
         to: routes.allCatalog,
-        text: 'Кошельки' // Wallets
+        i18n: 'wallets'
       },
       {
         icon: OtherIcon,
         to: routes.allCatalog,
-        text: 'Все'
+        i18n: 'all'
       }
     ]
   }
@@ -114,8 +113,10 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Categories: React.FC<CategoriesProps> = () => {
+const Categories: React.FC = () => {
   const classes = useStyles()
+
+  const { t } = useTranslation()
 
   return (
     <section className={classes.root}>
@@ -135,7 +136,7 @@ const Categories: React.FC<CategoriesProps> = () => {
                           <group.icon />
                         </Icon>
                       </ListItemIcon>
-                      <ListItemText className={classes.itemText} primary={group.text} />
+                      <ListItemText className={classes.itemText} primary={t(`categories.${group.i18n}`)} />
                     </ListItem>
                   </Link>
                 </Grid>

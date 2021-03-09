@@ -30,7 +30,7 @@ interface DrawerItem {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // background: '#303030'
+    // background: '#303030' TODO
     color: theme.palette.type === 'dark' ? '#fff' : '#000'
   },
   drawer: {
