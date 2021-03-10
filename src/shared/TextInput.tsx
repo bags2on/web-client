@@ -5,11 +5,11 @@ import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
 import Fade from '@material-ui/core/Fade'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
     boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;',
-    color: '#343434',
+    color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
     '& .MuiOutlinedInput-input': {
       fontWeight: 400, // TODO: ???
       padding: 14

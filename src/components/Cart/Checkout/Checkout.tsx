@@ -18,10 +18,10 @@ const useStyles = makeStyles(() => ({
     textAlign: 'center'
   },
   wrapper: {
-    padding: '30px 20px 0 18px'
+    padding: '30px 20px 0 25px'
   },
   deliveryWrapper: {
-    padding: '15px 10px 0 18px'
+    padding: '10px 10px 0 18px'
   },
 
   levelFormField: {
@@ -30,6 +30,7 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     '& > p': {
+      color: '#5a5a5a',
       flexBasis: '20%',
       paddingBottom: 24,
       alignSelf: 'center'
@@ -38,6 +39,7 @@ const useStyles = makeStyles(() => ({
   formField: {
     display: 'flex',
     '& > p': {
+      color: '#5a5a5a',
       paddingBottom: 5
     }
   },
@@ -93,7 +95,7 @@ const Checkout: React.FC = () => {
           postOfficeId: 'sfh34i'
         }}
       >
-        {() => (
+        {(): React.ReactElement => (
           <Form>
             <Typography component="h3" className={classes.title}>
               Заполните форму
