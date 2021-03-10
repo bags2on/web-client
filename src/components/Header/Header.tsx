@@ -27,12 +27,17 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
-    position: 'relative',
+    position: 'fixed',
+    zIndex: 500,
+    top: 0,
+    left: 0,
+    right: 0,
     flexWrap: 'wrap',
     padding: '5px 0',
     backgroundColor: theme.palette.type === 'light' ? '#fafafb' : '#242729',
     boxShadow: '0 1px 2px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.05)',
     [theme.breakpoints.up('lg')]: {
+      position: 'static',
       padding: '15px 50px'
     }
   },

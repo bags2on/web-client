@@ -4,12 +4,23 @@ import Header from '../Header/Header'
 import Drawer from '../Drawer/Drawer'
 import Cart from '../Cart/Cart'
 import Footer from '../Footer/Footer'
+import { makeStyles } from '@material-ui/core'
 
 interface RootLayoutProps {
   themeChanger(checked: boolean): void
 }
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: 65,
+    [theme.breakpoints.up('lg')]: {
+      marginTop: 15
+    }
+  }
+}))
+
 const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
+  const classes = useStyles()
   const { i18n } = useTranslation()
 
   const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
@@ -53,7 +64,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
       <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer} themeChanger={themeChanger} />
       <Cart isOpen={isCartOpen} onClose={handleCartClose} />
       <Header onDrawerOpen={handleOpenDrawer} onCartOpen={handleCartOpen} />
-      <main>{children}</main>
+      <main className={classes.root}>{children}</main>
       <Footer themeChanger={themeChanger} />
     </>
   )
