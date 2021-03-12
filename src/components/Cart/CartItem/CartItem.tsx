@@ -12,7 +12,7 @@ import { useQuery, useMutation } from '@apollo/react-hooks'
 import { formatPrice } from '../../../utils/helpers'
 import { generateLink } from '../../../utils/links'
 import { makeStyles } from '@material-ui/core'
-import { GET_CART_TOTAL_SUMM, UPDATE_CART_TOTALS, REMOVE_PRODUCT_FROM_CART } from '../../../graphql/cart'
+import { GET_CART_TOTAL_SUMM, UPDATE_CART_TOTALS, REMOVE_PRODUCT_FROM_CART } from '../../../apollo/cache/queries/cart'
 
 export type CartItemType = {
   id: string

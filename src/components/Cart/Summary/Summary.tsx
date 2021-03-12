@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography'
 import { useQuery } from '@apollo/react-hooks'
 import { makeStyles } from '@material-ui/core'
 import { formatPrice } from '../../../utils/helpers'
-import { GET_CART_TOTAL_SUMM } from '../../../graphql/cart'
+import { GET_CART_TOTAL_SUMM } from '../../../apollo/cache/queries/cart'
 
 interface SummaryProps {
   onClose(): void

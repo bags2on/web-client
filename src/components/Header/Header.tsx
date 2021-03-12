@@ -16,7 +16,7 @@ import { ReactComponent as ProfileIcon } from '../../assets/svg/profile.svg'
 import { Link } from 'react-router-dom'
 import { useQuery, useMutation } from '@apollo/react-hooks'
 import { makeStyles } from '@material-ui/core'
-import { GET_CART_ITEMS, SYNC_CART_FROM_STORAGE } from '../../graphql/cart'
+import { GET_CART_ITEMS, SYNC_CART_FROM_STORAGE } from '../../apollo/cache/queries/cart'
 
 interface HeaderProps {
   onDrawerOpen(): void

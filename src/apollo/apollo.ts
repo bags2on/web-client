@@ -1,6 +1,6 @@
 import ApolloClient from 'apollo-boost'
-import { GET_CART_ITEMS } from '../graphql/cart'
-import { cache } from './cache'
+import { GET_CART_ITEMS } from './cache/queries/cart'
+import { cache } from './cache/cache'
 
 const API_URL = process.env.REACT_APP_API_URL
 

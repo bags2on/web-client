@@ -70,9 +70,11 @@ type Product {
   title: String!
   price: Int!
   amount: Int!
+  availability: Boolean!
   preview: String!
   images: [String!]
   tags: [String!]
+  mainTag: String!
   description: String!
 }
 

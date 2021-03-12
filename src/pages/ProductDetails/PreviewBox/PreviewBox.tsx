@@ -5,7 +5,7 @@ import Drag from '../Drag'
 import { ReactComponent as AddToCartIcon } from '../../../assets/svg/cart_add.svg'
 import { useMutation } from '@apollo/react-hooks'
 import { makeStyles } from '@material-ui/core'
-import { ADD_PRODUCT_TO_CART } from '../../../graphql/cart'
+import { ADD_PRODUCT_TO_CART } from '../../../apollo/cache/queries/cart'
 
 const useStyles = makeStyles((theme) => ({
   root: {

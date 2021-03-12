@@ -2,7 +2,7 @@ import React from 'react'
 import Button from '../../../../shared/Button'
 import { useMutation } from '@apollo/react-hooks'
 import { makeStyles } from '@material-ui/core'
-import { ADD_PRODUCT_TO_CART } from '../../../../graphql/cart'
+import { ADD_PRODUCT_TO_CART } from '../../../../apollo/cache/queries/cart'
 
 const useStyles = makeStyles(() => ({
   root: {

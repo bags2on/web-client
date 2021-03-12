@@ -10,7 +10,7 @@ import Summary from '../Summary/Summary'
 import { ReactComponent as EmptyCartIcon } from '../../../assets/svg/emptycart.svg'
 import { makeStyles } from '@material-ui/core'
 import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
-import { GET_CART_ITEMS, CLEAR_CART } from '../../../graphql/cart'
+import { GET_CART_ITEMS, CLEAR_CART } from '../../../apollo/cache/queries/cart'
 import { GET_PRODUCTS_BY_IDS } from '../../../graphql/product'
 
 interface CartItemsProps {
