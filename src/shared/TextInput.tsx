@@ -11,8 +11,8 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;',
     color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
     '& .MuiOutlinedInput-input': {
-      fontWeight: 400, // TODO: ???
-      padding: 14
+      padding: 14,
+      fontWeight: 500
     }
   },
   message: {

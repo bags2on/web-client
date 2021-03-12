@@ -9,6 +9,7 @@ interface ProductType {
   price: number
   title: string
   preview: string
+  discountPrice: number
   mainTag: 'new' | 'top' | 'stock' | ''
 }
 
@@ -36,10 +37,6 @@ const useStyles = makeStyles(() => ({
 const Featured: React.FC<FeaturedProps> = ({ products }) => {
   const classes = useStyles()
 
-  const TEMPgenerator = (m: number, n: number): number => {
-    return m + Math.floor((n - m + 1) * Math.random())
-  }
-
   return (
     <section>
       <Typography className={classes.title} component="h2">
@@ -49,12 +46,12 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
         {products.map((product: ProductType) => (
           <Grid key={product.id} component="li" className={classes.item} item xs={6} md={4} lg={3}>
             <CatalogItem
+              id={product.id}
               url={product.preview}
               title={product.title}
               price={product.price}
-              id={product.id}
-              discountPrice={Math.round(Math.random() * 10) === 7 ? TEMPgenerator(350, 550) : 0} // TODO
-              mainTag="" // TODO
+              mainTag={product.mainTag}
+              discountPrice={product.discountPrice}
             />
           </Grid>
         ))}

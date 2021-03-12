@@ -8,6 +8,7 @@ type ProductType = {
   price: number
   title: string
   imageURL: string
+  discountPrice: number
 }
 
 interface SideListProps {
@@ -31,8 +32,6 @@ const useStyles = makeStyles(() => ({
 const SideList: React.FC<SideListProps> = ({ products }) => {
   const classes = useStyles()
 
-  const TEMPgenerator = (m: number, n: number): number => m + Math.floor((n - m + 1) * Math.random())
-
   return (
     <div className={classes.root}>
       <Grid container component="ul" className={classes.list}>
@@ -43,7 +42,7 @@ const SideList: React.FC<SideListProps> = ({ products }) => {
               title={product.title}
               price={product.price}
               imageURL={product.imageURL}
-              discountPrice={Math.round(Math.random() * 10) === 7 ? TEMPgenerator(350, 550) : 0}
+              discountPrice={product.discountPrice}
             />
           </Grid>
         ))}

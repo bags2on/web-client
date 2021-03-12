@@ -11,18 +11,19 @@ export const useLang = (): [string, (lang: string) => void] => {
     setLang(lang)
   }
 
-  const cbLangHandler = useCallback((): void => {
+  const setDefaultLang = useCallback((): void => {
     langHandler('ru')
+    // eslint-disable-next-line
   }, [])
 
   useEffect(() => {
     if (!i18n.language) {
-      cbLangHandler()
+      setDefaultLang()
       return
     }
 
     setLang(i18n.language)
-  }, [i18n.language, cbLangHandler])
+  }, [i18n.language, setDefaultLang])
 
   return [lang, langHandler]
 }
