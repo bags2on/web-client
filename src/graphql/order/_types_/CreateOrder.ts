@@ -4,19 +4,19 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: CreateProduct
+// GraphQL mutation operation: CreateOrder
 // ====================================================
 
-export interface CreateProduct_createOrder {
+export interface CreateOrder_createOrder {
   __typename: "OrderResponse";
   message: string;
 }
 
-export interface CreateProduct {
-  createOrder: CreateProduct_createOrder | null;
+export interface CreateOrder {
+  createOrder: CreateOrder_createOrder | null;
 }
 
-export interface CreateProductVariables {
+export interface CreateOrderVariables {
   name: string;
   surname: string;
   email: string;

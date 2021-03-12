@@ -8,6 +8,7 @@ import { Formik, Form } from 'formik'
 import { CheckoutOrderSchema } from '../../../utils/validationSchema'
 import { makeStyles } from '@material-ui/core'
 import { CREATE_ORDER } from '../../../graphql/order'
+import { CreateOrder, CreateOrderVariables } from '../../../graphql/order/_types_/CreateOrder'
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -64,15 +65,15 @@ const useStyles = makeStyles(() => ({
 
 const Checkout: React.FC = () => {
   const classes = useStyles()
-  const [createOrder, { loading }] = useMutation(CREATE_ORDER)
+  const [createOrder, { loading }] = useMutation<CreateOrder, CreateOrderVariables>(CREATE_ORDER)
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSubmit = (values: any) => {
+  const handleSubmit = async (values: any): Promise<void> => {
     console.log(values)
 
     try {
-      const req = createOrder({
-        variables: { ...values }
+      const req = await createOrder({
+        variables: { ...values, x: 10 }
       })
 
       console.log(req)

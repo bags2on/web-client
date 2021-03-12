@@ -3,7 +3,7 @@ import { gql } from 'apollo-boost'
 /* --- Queries --- */
 
 export const CREATE_ORDER = gql`
-  mutation CreateProduct(
+  mutation CreateOrder(
     $name: String!
     $surname: String!
     $email: String!
