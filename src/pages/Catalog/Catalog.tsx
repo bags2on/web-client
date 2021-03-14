@@ -50,7 +50,7 @@ const useStyles = makeStyles(() => ({
 const Catalog: React.FC = () => {
   const { page } = useParams()
 
-  const { loading, data } = useQuery(GET_PRODUCTS)
+  const { loading, data, error } = useQuery(GET_PRODUCTS)
 
   const numOfPage = page ? Number(page) : 1
 
@@ -60,6 +60,14 @@ const Catalog: React.FC = () => {
     return (
       <div className={classes.loaderWapper}>
         <ScaleLoader fallback />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className={classes.loaderWapper}>
+        <h1>Access denied</h1>
       </div>
     )
   }

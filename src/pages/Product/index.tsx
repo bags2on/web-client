@@ -43,7 +43,7 @@ const useStyles = makeStyles(() => ({
 const ProductDetails: React.FC = () => {
   const { id } = useParams<ProductID>()
 
-  const { loading, data } = useQuery(GET_PRODUCT_BY_ID, {
+  const { loading, data, error } = useQuery(GET_PRODUCT_BY_ID, {
     variables: { id },
     fetchPolicy: 'network-only' // temp props
   })
@@ -54,6 +54,14 @@ const ProductDetails: React.FC = () => {
     return (
       <div className={classes.loaderWapper}>
         <ScaleLoader fallback />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className={classes.loaderWapper}>
+        <h1>Access denied</h1>
       </div>
     )
   }
