@@ -2,6 +2,7 @@ import React from 'react'
 import SwiperCore, { Autoplay, Scrollbar, EffectFade, Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
+// TODO: up
 import 'swiper/swiper.scss'
 import 'swiper/components/scrollbar/scrollbar.scss'
 import 'swiper/components/navigation/navigation.scss'
