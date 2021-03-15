@@ -1,7 +1,7 @@
 import React from 'react'
 import Advantages from './Advantages/Advantages'
-import MainSlider from '../../components/MainSlider/MainSlider'
 import MainProduct from '../../components/MainProduct/MainProduct'
+import Carousel from '../../components/Carousel/Carousel'
 import Categories from './Categories/Categories'
 import Popular from './Popular/Popular'
 import SideList from './SideList/SideList'
@@ -75,7 +75,7 @@ const Home: React.FC = () => {
   return (
     <div className={classes.root}>
       <div className={classes.sliderContainer}>
-        <MainSlider />
+        <Carousel />
         <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
       </div>
       <div className={classes.homeContainer}>

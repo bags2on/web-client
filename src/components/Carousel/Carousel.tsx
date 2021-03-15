@@ -5,15 +5,18 @@ import { Swiper, SwiperSlide } from 'swiper/react'
 import 'swiper/swiper.scss'
 import 'swiper/components/scrollbar/scrollbar.scss'
 import 'swiper/components/navigation/navigation.scss'
-import './MainSlider.scss'
+import './Carousel.scss'
 
-interface MainSliderProps {}
-
-const images: {
+export type CarouselItem = {
   url: string
   text: string
   imageUrl: string
-}[] = [
+}
+interface CarouselProps {
+  items?: CarouselItem[] // TODO: remove "?"
+}
+
+const images: CarouselItem[] = [
   {
     url: '#',
     text: 'first slide',
@@ -33,7 +36,7 @@ const images: {
 
 SwiperCore.use([Navigation, Autoplay, Scrollbar, EffectFade])
 
-const MainSlider: React.FC<MainSliderProps> = () => {
+const Carousel: React.FC<CarouselProps> = () => {
   return (
     <Swiper
       loop
@@ -63,4 +66,4 @@ const MainSlider: React.FC<MainSliderProps> = () => {
   )
 }
 
-export default MainSlider
+export default Carousel
