@@ -1,7 +1,6 @@
 import React from 'react'
 import Advantages from './Advantages/Advantages'
-// import MainSlider from '../../components/MainSlider/MainSlider'
-import MainSlider from '../../components/Swiper/MainSlider'
+import MainSlider from '../../components/MainSlider/MainSlider'
 import MainProduct from '../../components/MainProduct/MainProduct'
 import Categories from './Categories/Categories'
 import Popular from './Popular/Popular'
