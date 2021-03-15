@@ -1,7 +1,7 @@
 import React from 'react'
 import Drawer from '@material-ui/core/Drawer'
-// import CartItems from './CartItems/CartItems'
-// import Checkout from './Checkout/Checkout'
+import CartItems from './CartItems/CartItems'
+import Checkout from './Checkout/Checkout'
 import OrderSuccess from './OrderSuccess/OrderSuccess'
 import { makeStyles } from '@material-ui/core'
 
@@ -38,8 +38,8 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
       }}
     >
       <div className={classes.root}>
-        {/* <CartItems onClose={onClose} /> */}
-        {/* <Checkout /> */}
+        <CartItems onClose={onClose} />
+        <Checkout />
         <OrderSuccess onClose={onClose} />
       </div>
     </Drawer>
