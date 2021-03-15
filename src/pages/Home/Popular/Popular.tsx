@@ -1,8 +1,6 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core'
-import DragSlider from '../../../components/DragSlider/DragSlider'
-import FlexItem from '../../../shared/FlexItem'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -24,19 +22,6 @@ const Popular: React.FC = () => {
       <Typography className={classes.title} component="h2">
         Популярное
       </Typography>
-      <div
-        style={{
-          overflowX: 'hidden'
-        }}
-      >
-        <DragSlider>
-          {[...Array(10).keys()].map((item, key) => (
-            <FlexItem key={key} width={270}>
-              {item + 1}
-            </FlexItem>
-          ))}
-        </DragSlider>
-      </div>
     </section>
   )
 }
