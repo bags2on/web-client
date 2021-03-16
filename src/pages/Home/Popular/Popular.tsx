@@ -25,7 +25,11 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     fontWeight: 500,
-    fontSize: 25
+    fontSize: 25,
+    transition: 'opacity 0.2s',
+    '&:hover': {
+      opacity: 0.9
+    }
   }
 }))
 

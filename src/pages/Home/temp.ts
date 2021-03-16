@@ -91,3 +91,25 @@ export const TEMP_SIDE_LIST_DATA: {
     imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/4_g7mct3.jpg'
   }
 ]
+
+export const TEMP_MAIN_SLIDER_IMAGES: {
+  url: string
+  text: string
+  imageUrl: string
+}[] = [
+  {
+    url: '#',
+    text: 'first slide',
+    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/zveri_pattern_z3blcb.jpg'
+  },
+  {
+    url: '#',
+    text: 'second slide',
+    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/list_lazmfm.jpg'
+  },
+  {
+    url: '#',
+    text: 'third slide',
+    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1603389661/bags2on/third_vspxox.jpg'
+  }
+]

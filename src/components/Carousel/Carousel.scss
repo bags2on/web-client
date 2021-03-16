@@ -10,15 +10,6 @@
   max-width: 1000px;
   max-height: 545px;
   border-radius: 4px;
-  & .swiper-scrollbar {
-    left: 50%;
-    width: 80%;
-    transform: translateX(-50%);
-  }
-
-  .swiper-scrollbar-drag {
-    background: rgba(0, 0, 0, 0.6);
-  }
 }
 
 .slide-image-box {
@@ -44,10 +35,6 @@
     flex-basis: 70%;
     padding: 0;
     padding-right: 10px;
-
-    & .swiper-scrollbar {
-      display: none;
-    }
   }
 
   .slide-image-box {

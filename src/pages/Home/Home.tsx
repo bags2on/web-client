@@ -8,7 +8,7 @@ import SideList from './SideList/SideList'
 import Featured from './Featured/Featured'
 import Promo from './Promo/Promo'
 import { makeStyles } from '@material-ui/core'
-import { TEMP_SIDE_LIST_DATA, TEMP_FEATURED_DATA } from './temp'
+import { TEMP_SIDE_LIST_DATA, TEMP_FEATURED_DATA, TEMP_MAIN_SLIDER_IMAGES } from './temp'
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -75,7 +75,7 @@ const Home: React.FC = () => {
   return (
     <div className={classes.root}>
       <div className={classes.sliderContainer}>
-        <Carousel />
+        <Carousel items={TEMP_MAIN_SLIDER_IMAGES} />
         <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
       </div>
       <div className={classes.homeContainer}>

@@ -1,11 +1,7 @@
 import React from 'react'
-import SwiperCore, { Autoplay, Scrollbar, EffectFade, Navigation } from 'swiper'
 import { Swiper, SwiperSlide } from 'swiper/react'
+import { makeStyles } from '@material-ui/core'
 
-// TODO: up
-import 'swiper/swiper.scss'
-import 'swiper/components/scrollbar/scrollbar.scss'
-import 'swiper/components/navigation/navigation.scss'
 import './Carousel.scss'
 
 export type CarouselItem = {
@@ -14,45 +10,46 @@ export type CarouselItem = {
   imageUrl: string
 }
 interface CarouselProps {
-  items?: CarouselItem[] // TODO: remove "?"
+  items: CarouselItem[]
 }
 
-const images: CarouselItem[] = [
-  {
-    url: '#',
-    text: 'first slide',
-    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/zveri_pattern_z3blcb.jpg'
+const useStyles = makeStyles(() => ({
+  bullet: {
+    backgroundColor: '#000',
+    width: 8,
+    height: 8,
+    display: 'inline-block',
+    borderRadius: '50%',
+    margin: '0 4px',
+    opacity: 0.2
   },
-  {
-    url: '#',
-    text: 'second slide',
-    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/list_lazmfm.jpg'
-  },
-  {
-    url: '#',
-    text: 'third slide',
-    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1603389661/bags2on/third_vspxox.jpg'
+  bulletActive: {
+    opacity: 1,
+    backgroundColor: '#efefef'
   }
-]
+}))
 
-SwiperCore.use([Navigation, Autoplay, Scrollbar, EffectFade])
+const Carousel: React.FC<CarouselProps> = ({ items }) => {
+  const classes = useStyles()
 
-const Carousel: React.FC<CarouselProps> = () => {
   return (
     <Swiper
       loop
       navigation
       effect="fade"
       tag="section"
+      wrapperTag="ul"
       speed={1300}
-      scrollbar={{ draggable: true }}
+      pagination={{
+        clickable: true,
+        bulletClass: classes.bullet,
+        bulletActiveClass: classes.bulletActive
+      }}
       autoplay={{
         disableOnInteraction: false
       }}
-      wrapperTag="ul"
-      // onSwiper={(swiper) => console.dir(swiper)}
     >
-      {images.map((slide, index) => (
+      {items.map((slide, index) => (
         <SwiperSlide tag="li" key={slide.text} virtualIndex={index}>
           <div
             aria-label={slide.text}

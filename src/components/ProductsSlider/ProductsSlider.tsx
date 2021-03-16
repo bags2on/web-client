@@ -7,7 +7,7 @@ const useStyles = makeStyles(() => ({
     maxWidth: '100% !important',
     borderRadius: '0 !important',
     padding: '0 !important',
-    '& > ul': {
+    '& > .swiper-wrapper': {
       padding: 0
     }
   }
@@ -19,7 +19,6 @@ const ProductsSlider: React.FC = ({ children }) => {
   return (
     <Swiper
       loop
-      tag="div"
       wrapperTag="ul"
       grabCursor
       speed={1000}

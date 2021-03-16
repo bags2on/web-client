@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+import SwiperCore, { Autoplay, EffectFade, Navigation, Pagination } from 'swiper'
 import App from './App'
 import { ApolloProvider } from '@apollo/react-hooks'
 import { Router } from 'react-router-dom'
@@ -8,6 +9,12 @@ import './locales/i18n'
 import { darkTheme, lightTheme } from './utils/theme'
 import history from './utils/history'
 import client from './apollo/apollo'
+
+import 'swiper/swiper.scss'
+import 'swiper/components/navigation/navigation.scss'
+import 'swiper/components/pagination/pagination.scss'
+
+SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade])
 
 const useTheme = (): [string, (checked: boolean) => void] => {
   const defaultTheme = localStorage.getItem('theme') || 'dark'
