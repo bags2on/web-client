@@ -9,23 +9,30 @@ $text-color: #a29e9e;
   }
 }
 
+.wrapper {
+  background: #333;
+}
+
 .root {
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  background: #333;
   padding: 30px 5% 15px 5%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .contact {
   color: #fff;
-  text-align: center;
+  flex-basis: 100%;
+  max-width: 420px;
+  padding-top: 30px;
   @include h5-title;
 }
 
 .contactMessage {
   color: #9ea29e;
-  font-size: 12px;
+  font-size: 15px;
   margin: 0;
   margin-bottom: 14px;
 }
@@ -36,23 +43,27 @@ $text-color: #a29e9e;
   flex-wrap: wrap;
   & li {
     flex-basis: 50%;
-    margin-bottom: 15px;
+    margin-bottom: 14px;
   }
   & p {
-    font-size: 15px;
+    font-size: 14px;
     color: $text-color;
   }
   & span {
-    font-size: 14px;
+    font-size: 13px;
   }
 }
 
-.info {
-  width: 100%;
-  color: #fff;
-  text-align: center;
-  margin-top: 30px;
+.column {
   @include h5-title;
+  margin: 0;
+  padding: 0;
+  flex-basis: 50%;
+  color: #fff;
+  margin-top: 30px;
+  & ul {
+    @include reset-list;
+  }
   & a {
     text-decoration: none;
   }
@@ -67,15 +78,14 @@ $text-color: #a29e9e;
   }
 }
 
+// TODO: temp solution
 .theme {
-  position: absolute;
-  top: -10px;
-  right: -35px;
+  display: none;
 }
 
 .brand {
+  width: 100%;
   position: relative;
-  margin: 0 auto;
   & a {
     text-decoration: none;
   }
@@ -101,13 +111,12 @@ $text-color: #a29e9e;
 .phone {
   color: #fff;
   font-weight: 500 !important;
-  font-size: 20px !important;
+  font-size: 21px !important;
 }
 
 .socialMedia {
   @include reset-list;
   display: flex;
-  justify-content: center;
   margin-top: 5px;
 }
 
@@ -135,56 +144,64 @@ $text-color: #a29e9e;
   }
 }
 
-@media screen and (min-width: $md) {
+@media screen and (min-width: $lg) {
+  .column {
+    flex-basis: 25%;
+    max-width: 200px;
+  }
+
   .contact {
-    max-width: 420px;
-    text-align: start;
     flex-basis: 50%;
-  }
-
-  .info {
-    width: auto;
-    flex-basis: 50%;
-    margin: 0;
-    text-align: end;
-  }
-}
-
-@media screen and (min-width: $laptop) {
-  .contact {
-    flex-basis: auto;
-  }
-
-  .info {
-    text-align: start;
-    flex-basis: auto;
-  }
-
-  .theme {
-    top: 5px;
-    right: -30px;
-  }
-
-  .brand {
-    margin: 0;
     margin-left: auto;
-    padding-top: 20px;
   }
 }
 
 @media screen and (min-width: $xl) {
   .root {
-    padding: 30px 10% 15px 10%;
+    padding: 35px 20px 20px 20px;
+  }
+
+  .brand {
+    width: auto;
+    margin-right: auto;
+  }
+
+  .column {
+    margin-top: 0;
+    flex-basis: initial;
   }
 
   .contact {
-    margin-right: 50px;
+    padding-top: 0;
+    margin-left: 0;
+  }
+
+  .info {
+    margin-right: 30px;
+  }
+
+  .category {
+    margin-right: 85px;
+  }
+
+  .theme {
+    display: block;
+    position: absolute;
+    top: -10px;
+    right: -35px;
   }
 }
 
 @media screen and (min-width: $desktop) {
+  .info {
+    margin-right: 45px;
+  }
+
+  .category {
+    margin-right: 110px;
+  }
+
   .socialMedia {
     padding-left: 5px;
-    justify-content: flex-start;
   }
 }
