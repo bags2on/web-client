@@ -80,7 +80,10 @@ $text-color: #a29e9e;
 
 // TODO: temp solution
 .theme {
-  display: none;
+  display: block;
+  position: absolute;
+  top: -10px;
+  right: 25px;
 }
 
 .brand {
@@ -136,7 +139,7 @@ $text-color: #a29e9e;
 
 .subFooter {
   background-color: #252121;
-  padding: 10px 10%;
+  padding: 10px 0;
   color: $text-color;
   text-align: center;
   & > span {
@@ -185,10 +188,7 @@ $text-color: #a29e9e;
   }
 
   .theme {
-    display: block;
-    position: absolute;
-    top: -10px;
-    right: -35px;
+    right: -25px;
   }
 }
 

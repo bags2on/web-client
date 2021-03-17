@@ -22,7 +22,7 @@ const NightToggle: React.FC<NightToggleProps> = ({ themeChanger }) => {
           type="checkbox"
           autoComplete="off"
           onChange={handleSwitch}
-          checked={defaultTheme === 'light'}
+          checked={defaultTheme === 'dark'}
           style={hiddenStyles}
         />
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 83 70">
