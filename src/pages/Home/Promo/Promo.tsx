@@ -1,6 +1,7 @@
 import React from 'react'
 import mBannerImage from '../../../assets/rastr/m-banner.jpeg'
 import wBannerImage from '../../../assets/rastr/w-banner.jpeg'
+import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
@@ -69,13 +70,14 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const Promo: React.FC = () => {
+  const { t } = useTranslation()
   const classes = useStyles()
 
   return (
     <section className={classes.root}>
       <div className={classes.wrapper}>
         <div className={classes.overlay}>
-          <p className={classes.title}>Для Женщины</p>
+          <p className={classes.title}>{t('home.promo.female')}</p>
         </div>
         <div className={classes.box}>
           <img src={wBannerImage} className={classes.image} alt="банер 'Для Женщины'" />
@@ -83,7 +85,7 @@ const Promo: React.FC = () => {
       </div>
       <div className={classes.wrapper}>
         <div className={classes.overlay}>
-          <p className={classes.title}>Для Мужчины</p>
+          <p className={classes.title}>{t('home.promo.male')}</p>
         </div>
         <div className={classes.box}>
           <img src={mBannerImage} className={classes.image} alt="банер 'Для Мужчины'" />
