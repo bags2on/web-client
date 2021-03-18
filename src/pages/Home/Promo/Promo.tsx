@@ -11,58 +11,81 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap'
   },
   wrapper: {
+    cursor: 'pointer',
     overflow: 'hidden',
     padding: '10px 0',
     flexBasis: '100%',
+    position: 'relative',
+    '&:hover': {
+      '& $image': {
+        transform: 'scale(1.2)'
+      },
+      '& $overlay': {
+        background: 'rgba(255,255,255,0.7)',
+        mixBlendMode: 'screen'
+      },
+      '& $title': {
+        color: '#000',
+        fontSize: 40
+      }
+    },
     [theme.breakpoints.up('md')]: {
       flexBasis: '49%',
       padding: 0
     }
   },
+  overlay: {
+    display: 'flex',
+    zIndex: 10,
+    position: 'absolute',
+    background: 'rgba(0,0,0,0)',
+    bottom: 0,
+    top: 0,
+    left: 0,
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    transition: 'all 0.3s'
+  },
   box: {
     width: '100%',
     height: '100%',
-    cursor: 'pointer',
-    overflow: 'hidden',
-    '&:hover': {
-      '& > $image': {
-        transform: 'scale(1.2)'
-      }
-    }
+    overflow: 'hidden'
   },
   title: {
-    color: 'orange',
     fontWeight: 600,
-    fontSize: 25
+    fontSize: 28,
+    margin: 0,
+    color: '#fff',
+    userSelect: 'none'
   },
   image: {
     width: '100%',
     height: '100%',
     userSelect: 'none',
-    transition: 'all 0.3s'
+    transition: 'all 0.2s'
   }
 }))
 
 const Promo: React.FC = () => {
   const classes = useStyles()
-  {
-    /*
-      <p className={classes.title}>Для Мужчин</p>
-      <p className={classes.title}>Для Женщин</p>
-      <img src={wBannerImage} className={classes.image} alt="one" />
-    */
-  }
 
   return (
     <section className={classes.root}>
       <div className={classes.wrapper}>
+        <div className={classes.overlay}>
+          <p className={classes.title}>Для Женщины</p>
+        </div>
         <div className={classes.box}>
-          <img src={wBannerImage} className={classes.image} alt="one" />
+          <img src={wBannerImage} className={classes.image} alt="банер 'Для Женщины'" />
         </div>
       </div>
       <div className={classes.wrapper}>
+        <div className={classes.overlay}>
+          <p className={classes.title}>Для Мужчины</p>
+        </div>
         <div className={classes.box}>
-          <img src={mBannerImage} className={classes.image} alt="one" />
+          <img src={mBannerImage} className={classes.image} alt="банер 'Для Мужчины'" />
         </div>
       </div>
     </section>
