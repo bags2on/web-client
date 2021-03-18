@@ -1,8 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 import { BreakpointOverrides } from '@material-ui/core/styles/createBreakpoints'
 
-// lightBackground: '#fefefe'
-
 declare module '@material-ui/core/styles/createBreakpoints' {
   interface BreakpointOverrides {
     xs: true
@@ -32,6 +30,16 @@ declare module '@material-ui/core/styles/createMuiTheme' {
   }
 }
 
+const FONTS = [
+  'Montserrat',
+  'Roboto',
+  'Arial',
+  'sans-serif',
+  '"Apple Color Emoji"',
+  '"Segoe UI Emoji"',
+  '"Segoe UI Symbol"'
+].join(',')
+
 export const darkTheme = createMuiTheme({
   breakpoints: {
     values: {
@@ -49,7 +57,6 @@ export const darkTheme = createMuiTheme({
     type: 'dark',
     primary: {
       main: '#ff9900',
-      // main: appColors.main,
       light: '#fff',
       dark: '#303030'
     },
@@ -60,16 +67,24 @@ export const darkTheme = createMuiTheme({
       default: '#303030'
     }
   },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '*::-webkit-scrollbar': {
+          width: 10
+        },
+        '*::-webkit-scrollbar-track': {
+          backgroundColor: '#e8e8e8'
+        },
+        '*::-webkit-scrollbar-thumb': {
+          backgroundColor: '#888',
+          outline: '1px solid slategrey'
+        }
+      }
+    }
+  },
   typography: {
-    fontFamily: [
-      'Montserrat',
-      'Roboto',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(',')
+    fontFamily: FONTS
   }
 })
 
@@ -93,25 +108,29 @@ export const lightTheme = createMuiTheme({
       light: '#fff'
     },
     secondary: {
-      // main: '#00a347',
       main: '#ff9900'
     },
     background: {
       default: '#fff'
-      // default: '#f8fafa'
-      // default: '#F8F8F8'
-      // default: '#D8D8D8' // maybe search?
+    }
+  },
+  overrides: {
+    MuiCssBaseline: {
+      '@global': {
+        '*::-webkit-scrollbar': {
+          width: 10
+        },
+        '*::-webkit-scrollbar-track': {
+          backgroundColor: '#e8e8e8'
+        },
+        '*::-webkit-scrollbar-thumb': {
+          backgroundColor: '#888',
+          outline: '1px solid slategrey'
+        }
+      }
     }
   },
   typography: {
-    fontFamily: [
-      'Montserrat',
-      'Roboto',
-      'Arial',
-      'sans-serif',
-      '"Apple Color Emoji"',
-      '"Segoe UI Emoji"',
-      '"Segoe UI Symbol"'
-    ].join(',')
+    fontFamily: FONTS
   }
 })
