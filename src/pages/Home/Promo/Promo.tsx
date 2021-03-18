@@ -21,7 +21,8 @@ const useStyles = makeStyles((theme) => ({
         transform: 'scale(1.2)'
       },
       '& $overlay': {
-        background: 'rgba(255,255,255,0.7)',
+        background: 'rgba(255,255,255,0.8)',
+        backdropFilter: 'blur(1px)',
         mixBlendMode: 'screen'
       },
       '& $title': {
