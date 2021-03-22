@@ -1,8 +1,13 @@
 import React from 'react'
 import Drawer from '@material-ui/core/Drawer'
 import CartItems from './CartItems/CartItems'
-import Checkout from './Checkout/Checkout'
-import OrderSuccess from './OrderSuccess/OrderSuccess'
+// import Checkout from './Checkout/Checkout'
+// import OrderSuccess from './OrderSuccess/OrderSuccess'
+import { useQuery, useApolloClient } from '@apollo/react-hooks'
+import { GET_CART_ITEMS } from '../../apollo/cache/queries/cart'
+import { GET_PRODUCTS_BY_IDS } from '../../graphql/product'
+import { CartItemType } from './CartItem/CartItem'
+import { productsByID, productsByIDVariables } from '../../graphql/product/_types_/productsByID'
 import { makeStyles } from '@material-ui/core'
 
 interface CartProps {
@@ -25,6 +30,41 @@ const useStyles = makeStyles((theme) => ({
 
 const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const classes = useStyles()
+  const client = useApolloClient()
+  const savedIDS = useQuery(GET_CART_ITEMS)
+  const isCartEmpty = savedIDS.data.cartIDs.length === 0
+
+  console.log('Cart render')
+
+  console.log('skip: ', isCartEmpty || isOpen)
+
+  const { data } = useQuery<productsByID, productsByIDVariables>(GET_PRODUCTS_BY_IDS, {
+    variables: {
+      ids: savedIDS.data.cartIDs
+    },
+    fetchPolicy: 'network-only',
+    skip: isCartEmpty,
+    onCompleted: (data) => {
+      if (data) {
+        const totalSumm = data.productsByID.reduce((previousValue: number, item: CartItemType) => {
+          return previousValue + item.price * item.amount
+        }, 0)
+
+        client.writeData({ data: { cartTotalPrice: totalSumm } })
+      }
+    }
+  })
+
+  // if (loading) {
+  //   return <p>Loading</p> // TODO: better UI
+  // }
+
+  // if (error) {
+  //   return <p>Error</p> // TODO: better UI
+  // }
+
+  const mutatedData = React.useMemo(() => data?.productsByID, [data?.productsByID])
+  const res = mutatedData as CartItemType[]
 
   return (
     <Drawer
@@ -38,12 +78,12 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
       }}
     >
       <div className={classes.root}>
-        <CartItems onClose={onClose} />
-        <Checkout />
-        <OrderSuccess onClose={onClose} />
+        <CartItems data={res} isEmpty={isCartEmpty} onClose={onClose} />
+        {/* <Checkout />
+        <OrderSuccess onClose={onClose} /> */}
       </div>
     </Drawer>
   )
 }
 
-export default Cart
+export default React.memo(Cart)

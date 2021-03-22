@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -8,12 +8,14 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
 import Summary from '../Summary/Summary'
 import { ReactComponent as EmptyCartIcon } from '../../../assets/svg/emptycart.svg'
+import { TransitionMotion, spring, presets } from 'react-motion'
 import { makeStyles } from '@material-ui/core'
-import { useQuery, useMutation, useApolloClient } from '@apollo/react-hooks'
-import { GET_CART_ITEMS, CLEAR_CART } from '../../../apollo/cache/queries/cart'
-import { GET_PRODUCTS_BY_IDS } from '../../../graphql/product'
+import { useMutation } from '@apollo/react-hooks'
+import { REMOVE_PRODUCT_FROM_CART, CLEAR_CART } from '../../../apollo/cache/queries/cart'
 
 interface CartItemsProps {
+  data: CartItemType[]
+  isEmpty: boolean
   onClose(): void
 }
 
@@ -63,46 +65,49 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const CartItems: React.FC<CartItemsProps> = ({ onClose }) => {
+const CartItems: React.FC<CartItemsProps> = ({ data, isEmpty, onClose }) => {
   const classes = useStyles()
-  const client = useApolloClient()
-  const savedIDS = useQuery(GET_CART_ITEMS)
   const [onClearCart] = useMutation(CLEAR_CART)
+  const [removeFromCart] = useMutation(REMOVE_PRODUCT_FROM_CART)
 
-  const isCartEmpty = savedIDS.data.cartIDs.length === 0
-
-  const { data, loading, error } = useQuery(GET_PRODUCTS_BY_IDS, {
-    variables: {
-      ids: savedIDS.data.cartIDs
-    },
-    fetchPolicy: 'network-only',
-    skip: isCartEmpty,
-    onCompleted: (data) => {
-      if (data) {
-        const totalSumm = data.productsByID.reduce((previousValue: number, item: CartItemType) => {
-          return previousValue + item.price * item.amount
-        }, 0)
-
-        client.writeData({ data: { cartTotalPrice: totalSumm } })
-      }
-    }
-  })
+  const [products, setProducts] = useState(data)
 
   const handleClearAllClick = (): void => {
+    setProducts([])
     onClearCart()
   }
 
-  if (loading) {
-    return <p>Loading</p> // TODO: better UI
+  console.log(products)
+
+  const handleProductRemove = (id: string): void => {
+    // setProducts()
+    const updated = products.filter((product) => product.id !== id)
+    setProducts(updated)
+    console.log(updated)
+    removeFromCart({
+      variables: {
+        id
+      }
+    })
   }
 
-  if (error) {
-    return <p>Error</p> // TODO: better UI
-  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onWillLeave = (): any => ({
+    height: spring(0),
+    opacity: spring(0)
+  })
+
+  // if (isLoading) {
+  //   return <p>Loading</p> // TODO: better UI
+  // }
+
+  // if (error) {
+  //   return <p>Error</p> // TODO: better UI
+  // }
 
   return (
     <Box>
-      {isCartEmpty ? (
+      {isEmpty ? (
         <Box className={classes.emptyContainer}>
           <div className={classes.imageBox}>
             <EmptyCartIcon />
@@ -125,13 +130,34 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose }) => {
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <Grid container component="ul" className={classes.list}>
-              {data?.productsByID.map((product: CartItemType, ind: number) => (
-                <Grid key={ind} component="li" item xs={12}>
-                  <CartItem item={product} />
+            <TransitionMotion
+              defaultStyles={products.map((product: CartItemType) => ({
+                key: product.id,
+                style: {
+                  height: 260,
+                  opacity: 1
+                }
+              }))}
+              styles={products.map((product: CartItemType) => ({
+                data: product,
+                key: product.id,
+                style: {
+                  height: spring(260, presets.wobbly),
+                  opacity: spring(1, presets.wobbly)
+                }
+              }))}
+              willLeave={onWillLeave}
+            >
+              {(interpolatedStyles): React.ReactElement => (
+                <Grid container component="ul" className={classes.list}>
+                  {interpolatedStyles.map(({ key, style, data }) => (
+                    <Grid key={key} style={style} component="li" item xs={12}>
+                      <CartItem product={data} onRemove={handleProductRemove} />
+                    </Grid>
+                  ))}
                 </Grid>
-              ))}
-            </Grid>
+              )}
+            </TransitionMotion>
           </Grid>
         </Grid>
       )}
@@ -139,4 +165,4 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose }) => {
   )
 }
 
-export default CartItems
+export default React.memo(CartItems)

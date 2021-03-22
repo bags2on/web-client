@@ -4,6 +4,9 @@ import Header from '../Header/Header'
 import Drawer from '../Drawer/Drawer'
 import Cart from '../Cart/Cart'
 import Footer from '../Footer/Footer'
+// import { useMutation } from '@apollo/react-hooks'
+// import { ADD_PRODUCT_TO_CART } from '../../apollo/cache/queries/cart'
+
 import { makeStyles } from '@material-ui/core'
 
 interface RootLayoutProps {
@@ -22,6 +25,27 @@ const useStyles = makeStyles((theme) => ({
 const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
   useLang()
   const classes = useStyles()
+  // const [addToCart] = useMutation(ADD_PRODUCT_TO_CART)
+
+  // React.useEffect(() => {
+  //   setTimeout(() => {
+  //     addToCart({
+  //       variables: {
+  //         id: 'jSqOXRb'
+  //       }
+  //     })
+  //     addToCart({
+  //       variables: {
+  //         id: 'JBtPsDu'
+  //       }
+  //     })
+  //     addToCart({
+  //       variables: {
+  //         id: 'PV5zoo1'
+  //       }
+  //     })
+  //   }, 3000)
+  // }, [])
 
   const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
   const [isCartOpen, setCartOpen] = useState<boolean>(false)
