@@ -138,8 +138,8 @@ const CartItems: React.FC<CartItemsProps> = ({ data, isEmpty, onClose }) => {
                 data: product,
                 key: product.id,
                 style: {
-                  height: spring(260, presets.wobbly),
-                  opacity: spring(1, presets.wobbly)
+                  height: spring(260, presets.gentle),
+                  opacity: spring(1, presets.gentle)
                 }
               }))}
               willLeave={onWillLeave}
