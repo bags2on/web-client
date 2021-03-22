@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Drawer from '@material-ui/core/Drawer'
 import CartItems from './CartItems/CartItems'
 // import Checkout from './Checkout/Checkout'
@@ -8,6 +8,7 @@ import { GET_CART_ITEMS } from '../../apollo/cache/queries/cart'
 import { GET_PRODUCTS_BY_IDS } from '../../graphql/product'
 import { CartItemType } from './CartItem/CartItem'
 import { productsByID, productsByIDVariables } from '../../graphql/product/_types_/productsByID'
+import Fallback from '../../shared/Fallback'
 import { makeStyles } from '@material-ui/core'
 
 interface CartProps {
@@ -34,16 +35,14 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const savedIDS = useQuery(GET_CART_ITEMS)
   const isCartEmpty = savedIDS.data.cartIDs.length === 0
 
-  console.log('Cart render')
+  const [skip, setSkip] = useState<boolean>(true)
 
-  console.log('skip: ', isCartEmpty || isOpen)
-
-  const { data } = useQuery<productsByID, productsByIDVariables>(GET_PRODUCTS_BY_IDS, {
+  const { data, loading } = useQuery<productsByID, productsByIDVariables>(GET_PRODUCTS_BY_IDS, {
     variables: {
       ids: savedIDS.data.cartIDs
     },
     fetchPolicy: 'network-only',
-    skip: isCartEmpty,
+    skip,
     onCompleted: (data) => {
       if (data) {
         const totalSumm = data.productsByID.reduce((previousValue: number, item: CartItemType) => {
@@ -51,9 +50,22 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
         }, 0)
 
         client.writeData({ data: { cartTotalPrice: totalSumm } })
+        setSkip(true)
       }
     }
   })
+
+  useEffect(() => {
+    if (isOpen) {
+      if (isCartEmpty) {
+        setSkip(true)
+      } else {
+        setSkip(false)
+      }
+    }
+
+    // eslint-disable-next-line
+  }, [isOpen])
 
   // if (loading) {
   //   return <p>Loading</p> // TODO: better UI
@@ -63,7 +75,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   //   return <p>Error</p> // TODO: better UI
   // }
 
-  const mutatedData = React.useMemo(() => data?.productsByID, [data?.productsByID])
+  const mutatedData = React.useMemo(() => data?.productsByID, [data])
   const res = mutatedData as CartItemType[]
 
   return (
@@ -78,9 +90,10 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
       }}
     >
       <div className={classes.root}>
-        <CartItems data={res} isEmpty={isCartEmpty} onClose={onClose} />
+        {/* <CartItems data={res} isEmpty={isCartEmpty} onClose={onClose} /> */}
         {/* <Checkout />
         <OrderSuccess onClose={onClose} /> */}
+        {loading ? <Fallback /> : <CartItems data={res} isEmpty={isCartEmpty} onClose={onClose} />}
       </div>
     </Drawer>
   )

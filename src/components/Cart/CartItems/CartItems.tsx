@@ -77,13 +77,9 @@ const CartItems: React.FC<CartItemsProps> = ({ data, isEmpty, onClose }) => {
     onClearCart()
   }
 
-  console.log(products)
-
   const handleProductRemove = (id: string): void => {
-    // setProducts()
     const updated = products.filter((product) => product.id !== id)
     setProducts(updated)
-    console.log(updated)
     removeFromCart({
       variables: {
         id
