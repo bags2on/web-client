@@ -75,8 +75,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   //   return <p>Error</p> // TODO: better UI
   // }
 
-  const mutatedData = React.useMemo(() => data?.productsByID, [data])
-  const res = mutatedData as CartItemType[]
+  const mutatedData = React.useMemo(() => data?.productsByID, [data]) as CartItemType[]
 
   return (
     <Drawer
@@ -93,7 +92,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
         {/* <CartItems data={res} isEmpty={isCartEmpty} onClose={onClose} /> */}
         {/* <Checkout />
         <OrderSuccess onClose={onClose} /> */}
-        {loading ? <Fallback /> : <CartItems data={res} isEmpty={isCartEmpty} onClose={onClose} />}
+        {loading ? <Fallback /> : <CartItems data={mutatedData} isEmpty={isCartEmpty} onClose={onClose} />}
       </div>
     </Drawer>
   )
