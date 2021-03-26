@@ -45,14 +45,14 @@ const Footer: React.FC<FooterProps> = ({ themeChanger }) => {
             <li>
               <Link to="#">
                 <Icon className={classes.socialMediaIcon}>
-                  <TelegramIcon />
+                  <FacebookIcon />
                 </Icon>
               </Link>
             </li>
             <li>
               <Link to="#">
                 <Icon className={classes.socialMediaIcon}>
-                  <FacebookIcon />
+                  <TelegramIcon />
                 </Icon>
               </Link>
             </li>
@@ -123,19 +123,19 @@ const Footer: React.FC<FooterProps> = ({ themeChanger }) => {
           </p>
           <ul className={classes.contactDetails}>
             <li>
-              <Typography component="p">Телефон</Typography>
-              <Typography component="span">380 ** *** ****</Typography>
+              <Typography component="p">Телефон:</Typography>
+              <Typography component="span">099 123 45 67</Typography>
             </li>
             <li>
-              <Typography component="p">Эл. почта</Typography>
+              <Typography component="p">Эл. почта:</Typography>
               <Typography component="span">test-mail@some.com</Typography>
             </li>
             <li>
-              <Typography component="p">Рабочие часы</Typography>
+              <Typography component="p">Рабочие часы:</Typography>
               <Typography component="span">Пн-Вс, 9:00-20:00</Typography>
             </li>
             <li>
-              <Typography component="p">Мы находимся</Typography>
+              <Typography component="p">Мы находимся:</Typography>
               <Typography component="span">г. Харьков</Typography>
             </li>
           </ul>

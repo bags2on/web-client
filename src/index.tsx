@@ -11,6 +11,7 @@ import history from './utils/history'
 import client from './apollo/apollo'
 
 import './locales/i18n'
+import './index.css'
 import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
 import 'swiper/components/pagination/pagination.scss'

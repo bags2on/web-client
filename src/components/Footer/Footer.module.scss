@@ -1,16 +1,18 @@
 @import '../../utils/shared.scss';
 
-$text-color: #a29e9e;
+$text-color: #939191;
 
 @mixin h5-title {
   & h5 {
     font-size: 15px;
     margin-bottom: 25px;
+    font-weight: 600;
+    color: var(--font-color);
   }
 }
 
 .wrapper {
-  background: #333;
+  background: var(--footer-bg);
 }
 
 .root {
@@ -23,7 +25,7 @@ $text-color: #a29e9e;
 }
 
 .contact {
-  color: #fff;
+  color: var(--font-color);
   flex-basis: 100%;
   max-width: 420px;
   padding-top: 30px;
@@ -31,7 +33,7 @@ $text-color: #a29e9e;
 }
 
 .contactMessage {
-  color: #9ea29e;
+  color: var(--sub-title-color);
   font-size: 15px;
   margin: 0;
   margin-bottom: 14px;
@@ -59,7 +61,6 @@ $text-color: #a29e9e;
   margin: 0;
   padding: 0;
   flex-basis: 50%;
-  color: #fff;
   margin-top: 30px;
   & ul {
     @include reset-list;
@@ -69,7 +70,7 @@ $text-color: #a29e9e;
   }
   & p {
     font-size: 15px;
-    color: $text-color;
+    color: var(--sub-title-color);
     margin-bottom: 5px;
     transition: color 0.2s;
     &:hover {
@@ -108,11 +109,11 @@ $text-color: #a29e9e;
   margin-right: 14px;
   height: 42px !important;
   font-size: 20px !important;
-  fill: $text-color;
+  fill: var(--sub-title-color);
 }
 
 .phone {
-  color: #fff;
+  color: var(--font-color);
   font-weight: 500 !important;
   font-size: 21px !important;
 }
@@ -124,21 +125,20 @@ $text-color: #a29e9e;
 }
 
 .socialMediaIcon {
-  font-size: 15px;
-  fill: #a0a0a0;
-  margin-right: 8px;
+  fill: var(--sub-title-color);
+  margin-right: 15px;
   transition: fill 0.2s;
   &:hover {
     fill: $main-color;
   }
   & svg {
-    width: 20px;
-    height: 20px;
+    width: 19px;
+    height: 19px;
   }
 }
 
 .subFooter {
-  background-color: #252121;
+  background-color: var(--sub-footer-bg);
   padding: 10px 0;
   color: $text-color;
   text-align: center;
