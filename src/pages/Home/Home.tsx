@@ -8,7 +8,7 @@ import SideList from './SideList/SideList'
 import Featured from './Featured/Featured'
 import Promo from './Promo/Promo'
 import { makeStyles } from '@material-ui/core'
-import { TEMP_SIDE_LIST_DATA, TEMP_FEATURED_DATA, TEMP_MAIN_SLIDER_IMAGES } from './temp'
+import { TEMP_SIDE_LIST_DATA, TEMP_FEATURED_DATA, TEMP_MAIN_SLIDER_IMAGES, TEMP_POPULAR_DATA } from './temp'
 
 const useStyles = makeStyles((theme) => ({
   root: {},
@@ -92,7 +92,7 @@ const Home: React.FC = () => {
         </div>
       </div>
       <div style={{ maxWidth: 1400, margin: '0 auto' }}>
-        <Popular />
+        <Popular products={TEMP_POPULAR_DATA} />
       </div>
       <Advantages />
     </div>

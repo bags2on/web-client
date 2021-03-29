@@ -113,3 +113,71 @@ export const TEMP_MAIN_SLIDER_IMAGES: {
     imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1603389661/bags2on/third_vspxox.jpg'
   }
 ]
+
+export const TEMP_POPULAR_DATA: {
+  id: string
+  title: string
+  price: number
+  preview: string
+  discountPrice: number
+  mainTag: 'new' | 'top' | 'stock' | ''
+}[] = [
+  {
+    id: '1',
+    title: '[draft] Чемодан BM-lime дорожный пластик',
+    mainTag: '',
+    price: 2920,
+    discountPrice: 0,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_3_rz8rko.jpg'
+  },
+  {
+    id: '002',
+    title: '[draft] Чемодан A-1 light Suitcase дорожный',
+    mainTag: 'stock',
+    price: 3617,
+    discountPrice: 3100,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_1_hd5u9o.jpg'
+  },
+  {
+    id: '003',
+    title: '[draft] Чемодан Light SSR-1 дорожный пластик',
+    mainTag: 'new',
+    price: 2629,
+    discountPrice: 0,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121006/bags2on/products/3141b_k67pzc_zretlj.jpg'
+  },
+  {
+    id: '004',
+    title: '[draft] Чемодан City Walk серый',
+    mainTag: '',
+    price: 2182,
+    discountPrice: 0,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_2_qo2mlm.jpg'
+  },
+  {
+    id: '005',
+    title: '[draft] Чемодан Light Green JJK дорожный пластик',
+    mainTag: 'new',
+    price: 2101,
+    discountPrice: 0,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_3_rz8rko.jpg'
+  },
+  {
+    id: '006',
+    title: '[draft] Чемодан SUD-BM дорожный пластик',
+    mainTag: '',
+    price: 1300,
+    discountPrice: 0,
+    preview:
+      'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121424/bags2on/products/test-bag_2_hz75wn_b6f281.jpg'
+  },
+  {
+    id: '007',
+    title: '[draft] Чемодан KJJ-BM дорожный пластик',
+    mainTag: '',
+    price: 1500,
+    discountPrice: 0,
+    preview:
+      'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121424/bags2on/products/test-bag_2_hz75wn_b6f281.jpg'
+  }
+]

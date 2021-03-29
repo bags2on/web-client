@@ -2,18 +2,22 @@ import React from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { makeStyles } from '@material-ui/core'
 
+interface ProductsSliderProps {
+  speed?: number
+}
+
 const useStyles = makeStyles(() => ({
   root: {
     maxWidth: '100% !important',
     borderRadius: '0 !important',
-    padding: '0 !important',
+    padding: '5px 0 20px 0 !important',
     '& > .swiper-wrapper': {
       padding: 0
     }
   }
 }))
 
-const ProductsSlider: React.FC = ({ children }) => {
+const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children }) => {
   const classes = useStyles()
 
   return (
@@ -21,7 +25,7 @@ const ProductsSlider: React.FC = ({ children }) => {
       loop
       wrapperTag="ul"
       grabCursor
-      speed={1000}
+      speed={speed}
       slidesPerView={1}
       className={classes.root}
       spaceBetween={15}
