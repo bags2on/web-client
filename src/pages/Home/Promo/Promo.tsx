@@ -1,6 +1,8 @@
 import React from 'react'
-import mBannerImage from '../../../assets/rastr/m-banner.jpeg'
-import wBannerImage from '../../../assets/rastr/w-banner.jpeg'
+import maleBanner from '../../../assets/rastr/m-banner.jpeg'
+import femaleBanner from '../../../assets/rastr/f-banner.jpeg'
+import routes from '../../../utils/routes'
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@material-ui/core'
 
@@ -12,9 +14,8 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap'
   },
   wrapper: {
-    cursor: 'pointer',
     overflow: 'hidden',
-    padding: '10px 0',
+    margin: '10px 0',
     flexBasis: '100%',
     position: 'relative',
     '&:hover': {
@@ -22,13 +23,11 @@ const useStyles = makeStyles((theme) => ({
         transform: 'scale(1.2)'
       },
       '& $overlay': {
-        background: 'rgba(255,255,255,0.8)',
-        backdropFilter: 'blur(1px)',
-        mixBlendMode: 'screen'
+        background: 'rgba(0,0,0,0.3)'
       },
-      '& $title': {
-        color: '#000',
-        fontSize: 40
+      '& $fakeButton': {
+        color: '#fff',
+        backgroundColor: theme.palette.secondary.main
       }
     },
     [theme.breakpoints.up('md')]: {
@@ -37,26 +36,23 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   overlay: {
-    display: 'flex',
     zIndex: 10,
     position: 'absolute',
-    background: 'rgba(0,0,0,0)',
     bottom: 0,
     top: 0,
     left: 0,
     right: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    transition: 'all 0.3s'
+    background: 'rgba(0,0,0,0.1)',
+    textDecoration: 'none',
+    '-webkit-tap-highlight-color': 'transparent'
   },
-  box: {
-    width: '100%',
-    height: '100%',
-    overflow: 'hidden'
+  contentBox: {
+    marginLeft: 20,
+    marginTop: '43%'
   },
   title: {
-    fontWeight: 600,
-    fontSize: 28,
+    fontWeight: 500,
+    fontSize: 23,
     margin: 0,
     color: '#fff',
     userSelect: 'none'
@@ -65,6 +61,17 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100%',
     userSelect: 'none',
+    transition: 'all 0.2s'
+  },
+  fakeButton: {
+    display: 'inline-block',
+    marginTop: 7,
+    fontWeight: 600,
+    padding: '8px 10px',
+    borderRadius: 16,
+    color: '#343434',
+    backgroundColor: '#fff',
+    textTransform: 'uppercase',
     transition: 'all 0.2s'
   }
 }))
@@ -76,20 +83,22 @@ const Promo: React.FC = () => {
   return (
     <section className={classes.root}>
       <div className={classes.wrapper}>
-        <div className={classes.overlay}>
-          <p className={classes.title}>{t('home.promo.female')}</p>
-        </div>
-        <div className={classes.box}>
-          <img src={wBannerImage} className={classes.image} alt="банер 'Для Женщины'" />
-        </div>
+        <Link to={routes.allCatalog} className={classes.overlay}>
+          <div className={classes.contentBox}>
+            <p className={classes.title}>{t('home.promo.male')}</p>
+            <div className={classes.fakeButton}>{t('home.promo.action')}</div>
+          </div>
+        </Link>
+        <img src={maleBanner} className={classes.image} alt="банер" />
       </div>
       <div className={classes.wrapper}>
-        <div className={classes.overlay}>
-          <p className={classes.title}>{t('home.promo.male')}</p>
-        </div>
-        <div className={classes.box}>
-          <img src={mBannerImage} className={classes.image} alt="банер 'Для Мужчины'" />
-        </div>
+        <Link to={routes.allCatalog} className={classes.overlay}>
+          <div className={classes.contentBox}>
+            <p className={classes.title}>{t('home.promo.female')}</p>
+            <div className={classes.fakeButton}>{t('home.promo.action')}</div>
+          </div>
+        </Link>
+        <img src={femaleBanner} className={classes.image} alt="банер" />
       </div>
     </section>
   )
