@@ -7,6 +7,7 @@ import Popular from './Popular/Popular'
 import SideList from './SideList/SideList'
 import Featured from './Featured/Featured'
 import Promo from './Promo/Promo'
+import JoinUs from './JoinUs/JoinUs'
 import { makeStyles } from '@material-ui/core'
 import { TEMP_SIDE_LIST_DATA, TEMP_FEATURED_DATA, TEMP_MAIN_SLIDER_IMAGES, TEMP_POPULAR_DATA } from './temp'
 
@@ -95,6 +96,7 @@ const Home: React.FC = () => {
         <Popular products={TEMP_POPULAR_DATA} />
       </div>
       <Advantages />
+      <JoinUs />
     </div>
   )
 }

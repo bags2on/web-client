@@ -59,12 +59,13 @@ const Button: React.FC<BottonProps> = ({
   darkLoader,
   color = 'main',
   withShadow = true,
+  className,
   ...otherProps
 }: BottonProps) => {
   const classes = useStyles({ withShadow })
 
   return (
-    <MaterialButton className={clsx(classes[color], classes.root)} {...otherProps}>
+    <MaterialButton className={clsx(classes[color], classes.root, className)} {...otherProps}>
       {loading ? <ScaleLoader dark={darkLoader} /> : <span className={classes.text}>{children}</span>}
     </MaterialButton>
   )

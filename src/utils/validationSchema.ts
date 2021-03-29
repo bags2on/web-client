@@ -18,6 +18,11 @@ export const CheckoutOrderSchema = yup.object({
   postOfficeId: yup.string().required('* обязательное поле')
 })
 
+export const JoinUsSchema = yup.object({
+  email: yup.string().email().required()
+})
+
 export type LoginSchemaType = yup.InferType<typeof LoginSchema>
 export type TopSearchType = yup.InferType<typeof TopSearchSchema>
 export type CheckoutOrderType = yup.InferType<typeof CheckoutOrderSchema>
+export type JoinUsSchemaType = yup.InferType<typeof JoinUsSchema>
