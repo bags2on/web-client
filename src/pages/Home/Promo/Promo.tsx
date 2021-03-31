@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         transform: 'scale(1.2)'
       },
       '& $overlay': {
-        background: 'rgba(0,0,0,0.3)'
+        background: 'linear-gradient(to top, hsla(0, 0%, 0%, 0.9) 6%, hsla(0, 0%, 0%, 0) 50%)'
       },
       '& $fakeButton': {
         color: '#fff',
@@ -42,12 +42,12 @@ const useStyles = makeStyles((theme) => ({
     top: 0,
     left: 0,
     right: 0,
-    background: 'rgba(0,0,0,0.1)',
+    background: 'linear-gradient(to top, hsla(0, 0%, 0%, 0.6) 6%, hsla(0, 0%, 0%, 0) 50%)',
     textDecoration: 'none',
     '-webkit-tap-highlight-color': 'transparent'
   },
   contentBox: {
-    marginLeft: 20,
+    marginLeft: 25,
     marginTop: '43%'
   },
   title: {
