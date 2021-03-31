@@ -19,7 +19,7 @@ export const CheckoutOrderSchema = yup.object({
 })
 
 export const JoinUsSchema = yup.object({
-  email: yup.string().email().required()
+  email: yup.string().email().max(70).required()
 })
 
 export type LoginSchemaType = yup.InferType<typeof LoginSchema>
