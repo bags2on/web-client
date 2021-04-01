@@ -96,13 +96,13 @@ const OrderSuccess: React.FC<OrderSuccessProps> = ({ onClose }) => {
         </div>
         <ul className={classes.detailsList}>
           <li className={classes.orderInfo}>
-            <SvgIcon fontSize="large">
+            <SvgIcon fontSize="large" component="span">
               <MailImage />
             </SvgIcon>
             <Typography component="p">Проверьте свой почтовый ящик для уточнения деталей</Typography>
           </li>
           <li className={classes.orderInfo}>
-            <SvgIcon fontSize="large">
+            <SvgIcon fontSize="large" component="span">
               <PinImage />
             </SvgIcon>
             {/* TODO: with link */}

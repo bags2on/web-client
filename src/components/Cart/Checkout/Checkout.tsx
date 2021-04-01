@@ -1,8 +1,9 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
-import FormControl from '@material-ui/core/FormControl'
-import TextInput from '../../../shared/TextInput'
-import Button from '../../../shared/Button'
+// import Typography from '@material-ui/core/Typography'
+// import FormControl from '@material-ui/core/FormControl'
+// import TextInput from '../../../shared/TextInput'
+// import Button from '../../../shared/Button'
+import ClientInfo from './ClientInfo/ClientInfo'
 import { useMutation } from '@apollo/react-hooks'
 import { Formik, Form } from 'formik'
 import { CheckoutOrderSchema } from '../../../utils/validationSchema'
@@ -98,7 +99,8 @@ const Checkout: React.FC = () => {
       >
         {(): React.ReactElement => (
           <Form>
-            <Typography component="h3" className={classes.title}>
+            <ClientInfo />
+            {/* <Typography component="h3" className={classes.title}>
               Заполните форму
             </Typography>
             <div className={classes.wrapper}>
@@ -121,7 +123,7 @@ const Checkout: React.FC = () => {
             </div>
             <div className={classes.deliveryWrapper}>
               <Typography component="p" className={classes.deliveryInfoTitle}>
-                {/* TODO: ! - icon */}! Доставка осуществляется в отделения&nbsp;
+                ! Доставка осуществляется в отделения&nbsp;
                 <Typography component="strong">«Новая Почта»</Typography>
               </Typography>
               <FormControl className={classes.formField}>
@@ -140,7 +142,7 @@ const Checkout: React.FC = () => {
               <Typography component="p" className={classes.submitTitle}>
                 Подтверждая заказ, я принимаю условия пользовательского соглашения
               </Typography>
-            </div>
+            </div> */}
           </Form>
         )}
       </Formik>
