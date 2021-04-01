@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Drawer from '@material-ui/core/Drawer'
 // import CartItems from './CartItems/CartItems'
 import Checkout from './Checkout/Checkout'
-import OrderSuccess from './OrderSuccess/OrderSuccess'
+// import OrderSuccess from './OrderSuccess/OrderSuccess'
 import { useQuery, useApolloClient } from '@apollo/react-hooks'
 import { GET_CART_ITEMS } from '../../apollo/cache/queries/cart'
 import { GET_PRODUCTS_BY_IDS } from '../../graphql/product'
@@ -81,8 +81,8 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
     <Drawer
       anchor="right"
       onClose={onClose}
-      open={isOpen}
-      // open
+      // open={isOpen}
+      open
       classes={{
         root: classes.root,
         paper: classes.drawer
@@ -91,7 +91,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
       <div className={classes.root}>
         {/* <CartItems data={res} isEmpty={isCartEmpty} onClose={onClose} /> */}
         <Checkout />
-        <OrderSuccess onClose={onClose} />
+        {/* <OrderSuccess onClose={onClose} /> */}
         {/* {loading ? <Fallback /> : <CartItems data={mutatedData} isEmpty={isCartEmpty} onClose={onClose} />} */}
       </div>
     </Drawer>
