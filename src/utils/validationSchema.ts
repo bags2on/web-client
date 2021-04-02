@@ -10,10 +10,10 @@ export const TopSearchSchema = yup.object({
 })
 
 export const CheckoutOrderSchema = yup.object({
-  name: yup.string().required('* обязательное поле'),
-  surname: yup.string().required('* обязательное поле'),
-  email: yup.string().email().required('* обязательное поле'),
-  phone: yup.number().required('* обязательное поле'),
+  name: yup.string().max(30, '* максимум 30 символов').required('* обязательное поле'),
+  surname: yup.string().max(30, '* максимум 30 символов').required('* обязательное поле'),
+  email: yup.string().email('* некорректный email').required('* обязательное поле'),
+  phone: yup.string().min(10, '* недостаточно значений').required('* обязательное поле'),
   cityId: yup.string().required('* обязательное поле'),
   postOfficeId: yup.string().required('* обязательное поле')
 })

@@ -1,8 +1,4 @@
 import React from 'react'
-// import Typography from '@material-ui/core/Typography'
-// import FormControl from '@material-ui/core/FormControl'
-// import TextInput from '../../../shared/TextInput'
-// import Button from '../../../shared/Button'
 import ClientInfo from './ClientInfo/ClientInfo'
 import { useMutation } from '@apollo/react-hooks'
 import { Formik, Form } from 'formik'
@@ -13,30 +9,8 @@ import { CreateOrder, CreateOrderVariables } from '../../../graphql/order/_types
 
 const useStyles = makeStyles(() => ({
   root: {},
-  title: {
-    margin: 18,
-    fontSize: 22,
-    fontWeight: 500,
-    textAlign: 'center'
-  },
-  wrapper: {
-    padding: '30px 20px 0 25px'
-  },
   deliveryWrapper: {
     padding: '10px 10px 0 18px'
-  },
-
-  levelFormField: {
-    display: 'flex',
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    '& > p': {
-      color: '#5a5a5a',
-      flexBasis: '20%',
-      paddingBottom: 24,
-      alignSelf: 'center'
-    }
   },
   formField: {
     display: 'flex',
@@ -86,6 +60,8 @@ const Checkout: React.FC = () => {
   return (
     <div className={classes.root}>
       <Formik
+        validateOnBlur
+        validateOnChange={false}
         onSubmit={handleSubmit}
         validationSchema={CheckoutOrderSchema}
         initialValues={{
@@ -100,27 +76,7 @@ const Checkout: React.FC = () => {
         {(): React.ReactElement => (
           <Form>
             <ClientInfo />
-            {/* <Typography component="h3" className={classes.title}>
-              Заполните форму
-            </Typography>
-            <div className={classes.wrapper}>
-              <FormControl className={classes.levelFormField}>
-                <Typography component="p">Фамилия</Typography>
-                <TextInput name="surname" />
-              </FormControl>
-              <FormControl className={classes.levelFormField}>
-                <Typography component="p">Имя</Typography>
-                <TextInput name="name" />
-              </FormControl>
-              <FormControl className={classes.levelFormField}>
-                <Typography component="p">Email</Typography>
-                <TextInput name="email" type="email" />
-              </FormControl>
-              <FormControl className={classes.levelFormField}>
-                <Typography component="p">Телефон</Typography>
-                <TextInput name="phone" />
-              </FormControl>
-            </div>
+            {/*
             <div className={classes.deliveryWrapper}>
               <Typography component="p" className={classes.deliveryInfoTitle}>
                 ! Доставка осуществляется в отделения&nbsp;

@@ -1,9 +1,13 @@
 import React from 'react'
 import { useField } from 'formik'
-import { makeStyles } from '@material-ui/core/styles'
-import TextField from '@material-ui/core/TextField'
+import NumberFormat, { NumberFormatValues } from 'react-number-format'
 import Typography from '@material-ui/core/Typography'
 import Fade from '@material-ui/core/Fade'
+import { makeStyles } from '@material-ui/core/styles'
+
+interface PhoneInputProps {
+  name: string
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -28,42 +32,32 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-interface TextInputProps {
-  name: string
-  type?: string
-  rows?: number
-  label?: string
-  disabled?: boolean
-  multiline?: boolean
-  maxLength?: number
-  fullWidth?: boolean
-  placeholder?: string
-  autoComplete?: string
-  onChange?(event: React.ChangeEvent<HTMLInputElement>): void
-}
+const PhoneInput: React.FC<PhoneInputProps> = ({ name }) => {
+  const [field, meta] = useField({ name })
 
-const TextInput: React.FC<TextInputProps> = ({ autoComplete = 'off', maxLength = 50, ...restProps }) => {
-  const [field, meta] = useField(restProps)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { onChange, ...fieldOther } = field
 
   const classes = useStyles()
 
+  //   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  //     console.log(event.target.value)
+  //   }
+
+  const handleValueChange = (values: NumberFormatValues): void => {
+    console.log(values)
+    field.onChange(name)(values.value)
+  }
+
   return (
     <div>
-      <TextField
-        {...field}
-        {...restProps}
-        variant="outlined"
-        autoComplete={autoComplete}
-        error={meta.touched && !!meta.error}
-        InputProps={{
-          classes: {
-            root: classes.root,
-            notchedOutline: classes.notchedOutline
-          }
-        }}
-        inputProps={{
-          maxLength
-        }}
+      <NumberFormat
+        {...fieldOther}
+        format="+38 (###) ###-####"
+        mask="_"
+        allowEmptyFormatting
+        // onChange={handleChange}
+        onValueChange={handleValueChange}
       />
       <Fade in={meta.touched && !!meta.error}>
         <Typography component="p" className={classes.message}>
@@ -74,4 +68,4 @@ const TextInput: React.FC<TextInputProps> = ({ autoComplete = 'off', maxLength =
   )
 }
 
-export default TextInput
+export default PhoneInput

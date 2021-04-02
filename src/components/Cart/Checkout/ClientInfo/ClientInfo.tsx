@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
+import clsx from 'clsx'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import Icon from '@material-ui/core/SvgIcon'
 import FormControl from '@material-ui/core/FormControl'
 import TextInput from '../../../../shared/TextInput'
+import PhoneInput from '../../../../shared/PhoneInput'
 import Button from '../../../../shared/Button'
 import { CheckoutOrderType } from '../../../../utils/validationSchema'
-import { formatPhone } from '../../../../utils/helpers'
 import { useFormikContext } from 'formik'
 import { Motion, spring, presets } from 'react-motion'
 import { ReactComponent as EditIcon } from '../../../../assets/svg/edit.svg'
@@ -15,6 +16,7 @@ import { ReactComponent as ProfileIcon } from '../../../../assets/svg/contact.sv
 import { ReactComponent as PhoneIcon } from '../../../../assets/svg/phone.svg'
 // import { ReactComponent as PinIcon } from '../../../../assets/svg/pin.svg'
 import { ReactComponent as MailIcon } from '../../../../assets/svg/mail.svg'
+import NumberFormat from 'react-number-format'
 
 import { makeStyles } from '@material-ui/core'
 
@@ -77,19 +79,31 @@ const useStyles = makeStyles(() => ({
       flexBasis: '70%'
     }
   },
+  plug: {
+    fontSize: 17,
+    fontWeight: 700,
+    color: '#888888'
+  },
   clear: {
     display: 'block',
     fontSize: 14,
     padding: '3px 4px',
     margin: '0 auto',
     marginTop: 10
+  },
+  error: {
+    color: '#FF502B'
   }
 }))
 
 const ClientInfo: React.FC = () => {
+  const classes = useStyles()
+
   const [isEdit, setEdit] = useState<boolean>(true)
 
-  const { values, setFieldValue } = useFormikContext<CheckoutOrderType>()
+  const { values, errors, touched, setFieldValue } = useFormikContext<CheckoutOrderType>()
+
+  console.log(errors)
 
   const handleEditClick = (): void => {
     setEdit(!isEdit)
@@ -102,7 +116,10 @@ const ClientInfo: React.FC = () => {
     setFieldValue('phone', '')
   }
 
-  const classes = useStyles()
+  function plug(n: number): React.ReactElement {
+    return <span className={classes.plug}>{'-'.repeat(n)}</span>
+  }
+
   return (
     <div className={classes.root}>
       <Typography component="h5" className={classes.title}>
@@ -122,8 +139,13 @@ const ClientInfo: React.FC = () => {
             <Icon component="span" className={classes.listIcon}>
               <ProfileIcon />
             </Icon>
-            <Typography component="span">
-              {values.name ? values.name : '----'}&nbsp;{values.surname ? values.surname : '----'}
+            <Typography
+              component="p"
+              className={clsx({
+                [classes.error]: !!errors.name && touched.name
+              })}
+            >
+              {values.name ? values.name : plug(5)}&nbsp;{values.surname ? values.surname : plug(5)}
             </Typography>
           </li>
           {/* <li>
@@ -136,13 +158,38 @@ const ClientInfo: React.FC = () => {
             <Icon component="span" className={classes.listIcon}>
               <MailIcon />
             </Icon>
-            <Typography component="span">{values.email ? values.email : '----------'}</Typography>
+            <Typography
+              component="span"
+              className={clsx({
+                [classes.error]: !!errors.email && touched.email
+              })}
+            >
+              {values.email ? values.email : plug(10)}
+            </Typography>
           </li>
           <li>
             <Icon component="span" className={classes.listIcon}>
               <PhoneIcon />
             </Icon>
-            <Typography component="span">{values.phone ? formatPhone(values.phone) : '--- --- ----'}</Typography>
+            <Typography
+              component="span"
+              className={clsx({
+                [classes.error]: !!errors.phone && touched.phone
+              })}
+            >
+              {/* {values.phone ? (
+                <NumberFormat value={values.phone} displayType={'text'} format="+38 (###) ###-####" />
+              ) : (
+                <span className={classes.plug}>--- --- ----</span>
+              )} */}
+              <NumberFormat
+                value={values.phone}
+                mask="-"
+                displayType={'text'}
+                format="+38 (###) ###-####"
+                allowEmptyFormatting
+              />
+            </Typography>
           </li>
         </ul>
         <Motion
@@ -152,7 +199,7 @@ const ClientInfo: React.FC = () => {
                   opacity: spring(1),
                   height: spring(340, presets.wobbly)
                 }
-              : { opacity: 0, height: spring(0) }
+              : { opacity: 0, height: 0 }
           }
         >
           {(interpolatedStyles): React.ReactElement => {
@@ -164,12 +211,12 @@ const ClientInfo: React.FC = () => {
                 }}
               >
                 <FormControl className={classes.levelFormField}>
-                  <Typography component="p">Фамилия</Typography>
-                  <TextInput name="surname" />
-                </FormControl>
-                <FormControl className={classes.levelFormField}>
                   <Typography component="p">Имя</Typography>
                   <TextInput name="name" />
+                </FormControl>
+                <FormControl className={classes.levelFormField}>
+                  <Typography component="p">Фамилия</Typography>
+                  <TextInput name="surname" />
                 </FormControl>
                 <FormControl className={classes.levelFormField}>
                   <Typography component="p">Email</Typography>
@@ -177,7 +224,7 @@ const ClientInfo: React.FC = () => {
                 </FormControl>
                 <FormControl className={classes.levelFormField}>
                   <Typography component="p">Телефон</Typography>
-                  <TextInput name="phone" />
+                  <PhoneInput name="phone" />
                 </FormControl>
                 <Button onClick={handleClearClick} withShadow={false} className={classes.clear}>
                   очистить
@@ -192,4 +239,3 @@ const ClientInfo: React.FC = () => {
 }
 
 export default React.memo(ClientInfo)
-// export default ClientInfo
