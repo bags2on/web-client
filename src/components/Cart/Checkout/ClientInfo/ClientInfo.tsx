@@ -4,16 +4,19 @@ import IconButton from '@material-ui/core/IconButton'
 import Icon from '@material-ui/core/SvgIcon'
 import FormControl from '@material-ui/core/FormControl'
 import TextInput from '../../../../shared/TextInput'
+import Button from '../../../../shared/Button'
+import { CheckoutOrderType } from '../../../../utils/validationSchema'
+import { formatPhone } from '../../../../utils/helpers'
+import { useFormikContext } from 'formik'
 import { Motion, spring, presets } from 'react-motion'
 import { ReactComponent as EditIcon } from '../../../../assets/svg/edit.svg'
 import { ReactComponent as CheckIcon } from '../../../../assets/svg/check_mark.svg'
 import { ReactComponent as ProfileIcon } from '../../../../assets/svg/contact.svg'
 import { ReactComponent as PhoneIcon } from '../../../../assets/svg/phone.svg'
-import { ReactComponent as PinIcon } from '../../../../assets/svg/pin.svg'
+// import { ReactComponent as PinIcon } from '../../../../assets/svg/pin.svg'
+import { ReactComponent as MailIcon } from '../../../../assets/svg/mail.svg'
 
 import { makeStyles } from '@material-ui/core'
-
-interface ClientInfoProps {}
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -73,14 +76,30 @@ const useStyles = makeStyles(() => ({
     '& > div': {
       flexBasis: '70%'
     }
+  },
+  clear: {
+    display: 'block',
+    fontSize: 14,
+    padding: '3px 4px',
+    margin: '0 auto',
+    marginTop: 10
   }
 }))
 
-const ClientInfo: React.FC<ClientInfoProps> = () => {
+const ClientInfo: React.FC = () => {
   const [isEdit, setEdit] = useState<boolean>(true)
+
+  const { values, setFieldValue } = useFormikContext<CheckoutOrderType>()
 
   const handleEditClick = (): void => {
     setEdit(!isEdit)
+  }
+
+  const handleClearClick = (): void => {
+    setFieldValue('surname', '')
+    setFieldValue('name', '')
+    setFieldValue('email', '')
+    setFieldValue('phone', '')
   }
 
   const classes = useStyles()
@@ -92,7 +111,7 @@ const ClientInfo: React.FC<ClientInfoProps> = () => {
       <div className={classes.contentBox}>
         <div className={classes.header}>
           <Typography component="span" className={classes.subTitle}>
-            Информация о доставке
+            Покупатель
           </Typography>
           <IconButton component="button" onClick={handleEditClick} className={classes.editButton}>
             {isEdit ? <CheckIcon /> : <EditIcon />}
@@ -103,19 +122,27 @@ const ClientInfo: React.FC<ClientInfoProps> = () => {
             <Icon component="span" className={classes.listIcon}>
               <ProfileIcon />
             </Icon>
-            <Typography component="span">Jessi Pharn</Typography>
+            <Typography component="span">
+              {values.name ? values.name : '----'}&nbsp;{values.surname ? values.surname : '----'}
+            </Typography>
           </li>
-          <li>
+          {/* <li>
             <Icon component="span" className={classes.listIcon}>
               <PinIcon />
             </Icon>
             <Typography component="span">Loss Angeles, California, USA</Typography>
+          </li> */}
+          <li>
+            <Icon component="span" className={classes.listIcon}>
+              <MailIcon />
+            </Icon>
+            <Typography component="span">{values.email ? values.email : '----------'}</Typography>
           </li>
           <li>
             <Icon component="span" className={classes.listIcon}>
               <PhoneIcon />
             </Icon>
-            <Typography component="span">066 111 1113</Typography>
+            <Typography component="span">{values.phone ? formatPhone(values.phone) : '--- --- ----'}</Typography>
           </li>
         </ul>
         <Motion
@@ -123,7 +150,7 @@ const ClientInfo: React.FC<ClientInfoProps> = () => {
             isEdit
               ? {
                   opacity: spring(1),
-                  height: spring(300, presets.wobbly)
+                  height: spring(340, presets.wobbly)
                 }
               : { opacity: 0, height: spring(0) }
           }
@@ -152,6 +179,9 @@ const ClientInfo: React.FC<ClientInfoProps> = () => {
                   <Typography component="p">Телефон</Typography>
                   <TextInput name="phone" />
                 </FormControl>
+                <Button onClick={handleClearClick} withShadow={false} className={classes.clear}>
+                  очистить
+                </Button>
               </div>
             )
           }}
@@ -161,4 +191,5 @@ const ClientInfo: React.FC<ClientInfoProps> = () => {
   )
 }
 
-export default ClientInfo
+export default React.memo(ClientInfo)
+// export default ClientInfo
