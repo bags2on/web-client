@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
+import Typography from '@material-ui/core/Typography'
 import ClientInfo from './ClientInfo/ClientInfo'
+import Button from '../../../shared/Button'
+import Delivery from './Delivery/Delivery'
 import { useMutation } from '@apollo/react-hooks'
 import { Formik, Form } from 'formik'
 import { CheckoutOrderSchema } from '../../../utils/validationSchema'
@@ -9,23 +12,11 @@ import { CreateOrder, CreateOrderVariables } from '../../../graphql/order/_types
 
 const useStyles = makeStyles(() => ({
   root: {},
-  deliveryWrapper: {
-    padding: '10px 10px 0 18px'
-  },
-  formField: {
-    display: 'flex',
-    '& > p': {
-      color: '#5a5a5a',
-      paddingBottom: 5
-    }
-  },
-  deliveryInfoTitle: {
-    fontSize: 13,
-    color: '#6c757d',
-    paddingBottom: 10,
-    '& > strong': {
-      fontSize: 'inherit'
-    }
+  title: {
+    fontSize: 20,
+    fontWeight: 600,
+    marginBottom: 7,
+    textAlign: 'center'
   },
   submitTitle: {
     fontSize: 13,
@@ -40,6 +31,13 @@ const useStyles = makeStyles(() => ({
 
 const Checkout: React.FC = () => {
   const classes = useStyles()
+
+  const [isEdit, setEdit] = useState<boolean>(false)
+
+  const handleEditChange = (): void => {
+    setEdit(!isEdit)
+  }
+
   const [createOrder, { loading }] = useMutation<CreateOrder, CreateOrderVariables>(CREATE_ORDER)
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -75,22 +73,12 @@ const Checkout: React.FC = () => {
       >
         {(): React.ReactElement => (
           <Form>
-            <ClientInfo />
-            {/*
-            <div className={classes.deliveryWrapper}>
-              <Typography component="p" className={classes.deliveryInfoTitle}>
-                ! Доставка осуществляется в отделения&nbsp;
-                <Typography component="strong">«Новая Почта»</Typography>
-              </Typography>
-              <FormControl className={classes.formField}>
-                <Typography component="p">Ваш город</Typography>
-                <TextInput name="cityId" />
-              </FormControl>
-              <FormControl className={classes.formField}>
-                <Typography component="p">Выберите отделение</Typography>
-                <TextInput name="postOfficeId" />
-              </FormControl>
-            </div>
+            <Typography component="h5" className={classes.title}>
+              Заполните форму
+            </Typography>
+            <ClientInfo edit={isEdit} onEdit={handleEditChange} />
+            <Delivery edit={isEdit} onEdit={handleEditChange} />
+
             <div className={classes.submitContainer}>
               <Button fullWidth type="submit" loading={loading} color="secondary">
                 Заказ подтверждаю
@@ -98,7 +86,7 @@ const Checkout: React.FC = () => {
               <Typography component="p" className={classes.submitTitle}>
                 Подтверждая заказ, я принимаю условия пользовательского соглашения
               </Typography>
-            </div> */}
+            </div>
           </Form>
         )}
       </Formik>

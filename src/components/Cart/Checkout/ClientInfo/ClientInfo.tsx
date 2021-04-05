@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import clsx from 'clsx'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
@@ -17,21 +17,20 @@ import { ReactComponent as PhoneIcon } from '../../../../assets/svg/phone.svg'
 // import { ReactComponent as PinIcon } from '../../../../assets/svg/pin.svg'
 import { ReactComponent as MailIcon } from '../../../../assets/svg/mail.svg'
 import NumberFormat from 'react-number-format'
-
 import { makeStyles } from '@material-ui/core'
+
+interface ClientInfoProps {
+  edit: boolean
+  onEdit(): void
+}
 
 const useStyles = makeStyles(() => ({
   root: {
     padding: '0 15px'
   },
   contentBox: {
-    padding: '0 13px', // 10
+    padding: '0 13px',
     boxShadow: '0px 1px 9px -1px rgba(0,0,0,0.1)'
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 600,
-    marginBottom: 7
   },
   subTitle: {
     fontWeight: 500
@@ -64,7 +63,7 @@ const useStyles = makeStyles(() => ({
     color: '#979797',
     marginRight: 10
   },
-  levelFormField: {
+  formField: {
     display: 'flex',
     width: '100%',
     flexDirection: 'row',
@@ -96,18 +95,12 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const ClientInfo: React.FC = () => {
+const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
   const classes = useStyles()
-
-  const [isEdit, setEdit] = useState<boolean>(true)
 
   const { values, errors, touched, setFieldValue } = useFormikContext<CheckoutOrderType>()
 
   console.log(errors)
-
-  const handleEditClick = (): void => {
-    setEdit(!isEdit)
-  }
 
   const handleClearClick = (): void => {
     setFieldValue('surname', '')
@@ -122,16 +115,13 @@ const ClientInfo: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <Typography component="h5" className={classes.title}>
-        Доставка
-      </Typography>
       <div className={classes.contentBox}>
         <div className={classes.header}>
           <Typography component="span" className={classes.subTitle}>
             Покупатель
           </Typography>
-          <IconButton component="button" onClick={handleEditClick} className={classes.editButton}>
-            {isEdit ? <CheckIcon /> : <EditIcon />}
+          <IconButton component="button" onClick={onEdit} className={classes.editButton}>
+            {!edit ? <CheckIcon /> : <EditIcon />}
           </IconButton>
         </div>
         <ul className={classes.previewList}>
@@ -177,11 +167,6 @@ const ClientInfo: React.FC = () => {
                 [classes.error]: !!errors.phone && touched.phone
               })}
             >
-              {/* {values.phone ? (
-                <NumberFormat value={values.phone} displayType={'text'} format="+38 (###) ###-####" />
-              ) : (
-                <span className={classes.plug}>--- --- ----</span>
-              )} */}
               <NumberFormat
                 value={values.phone}
                 mask="-"
@@ -194,7 +179,7 @@ const ClientInfo: React.FC = () => {
         </ul>
         <Motion
           style={
-            isEdit
+            !edit
               ? {
                   opacity: spring(1),
                   height: spring(340, presets.wobbly)
@@ -210,19 +195,19 @@ const ClientInfo: React.FC = () => {
                   opacity: interpolatedStyles.opacity
                 }}
               >
-                <FormControl className={classes.levelFormField}>
+                <FormControl className={classes.formField}>
                   <Typography component="p">Имя</Typography>
                   <TextInput name="name" />
                 </FormControl>
-                <FormControl className={classes.levelFormField}>
+                <FormControl className={classes.formField}>
                   <Typography component="p">Фамилия</Typography>
                   <TextInput name="surname" />
                 </FormControl>
-                <FormControl className={classes.levelFormField}>
+                <FormControl className={classes.formField}>
                   <Typography component="p">Email</Typography>
                   <TextInput name="email" type="email" />
                 </FormControl>
-                <FormControl className={classes.levelFormField}>
+                <FormControl className={classes.formField}>
                   <Typography component="p">Телефон</Typography>
                   <PhoneInput name="phone" />
                 </FormControl>
