@@ -76,8 +76,8 @@ const Checkout: React.FC = () => {
             <Typography component="h5" className={classes.title}>
               Заполните форму
             </Typography>
+            <Delivery />
             <ClientInfo edit={isEdit} onEdit={handleEditChange} />
-            <Delivery edit={isEdit} onEdit={handleEditChange} />
 
             <div className={classes.submitContainer}>
               <Button fullWidth type="submit" loading={loading} color="secondary">

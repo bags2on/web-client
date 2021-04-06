@@ -1,19 +1,13 @@
 import React from 'react'
-import IconButton from '@material-ui/core/IconButton'
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
 import TextInput from '../../../../shared/TextInput'
 import novaPoshtaImage from '../../../../assets/svg/nova_poshta.svg'
 import justinImage from '../../../../assets/svg/justin.svg'
-import { Motion, spring, presets } from 'react-motion'
-import { ReactComponent as EditIcon } from '../../../../assets/svg/edit.svg'
-import { ReactComponent as CheckIcon } from '../../../../assets/svg/check_mark.svg'
 import { makeStyles } from '@material-ui/core'
 
-interface DeliveryProps {
-  edit: boolean
-  onEdit(): void
-}
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
+interface DeliveryProps {}
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -31,7 +25,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    padding: '10px 0',
+    padding: '20px 0',
     borderBottom: '1px solid #d2d2d7'
   },
   editButton: {
@@ -70,7 +64,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Delivery: React.FC<DeliveryProps> = ({ edit, onEdit }) => {
+const Delivery: React.FC<DeliveryProps> = () => {
   const classes = useStyles()
 
   return (
@@ -80,9 +74,6 @@ const Delivery: React.FC<DeliveryProps> = ({ edit, onEdit }) => {
           <Typography component="span" className={classes.subTitle}>
             Служба доставки
           </Typography>
-          <IconButton component="button" onClick={onEdit} className={classes.editButton}>
-            {edit ? <CheckIcon /> : <EditIcon />}
-          </IconButton>
         </div>
         <ul className={classes.deliveriesList}>
           <li className={classes.deliveryItem}>
@@ -94,37 +85,14 @@ const Delivery: React.FC<DeliveryProps> = ({ edit, onEdit }) => {
             <img src={justinImage} alt="Justin logo" />
           </li>
         </ul>
-
-        <Motion
-          style={
-            edit
-              ? {
-                  opacity: spring(1),
-                  height: spring(220, presets.wobbly)
-                }
-              : { opacity: 0, height: 0 }
-          }
-        >
-          {(interpolatedStyles): React.ReactElement => {
-            return (
-              <div
-                style={{
-                  height: `${interpolatedStyles.height}px`,
-                  opacity: interpolatedStyles.opacity
-                }}
-              >
-                <FormControl className={classes.formField}>
-                  <Typography component="p">Ваш город</Typography>
-                  <TextInput name="cityId" />
-                </FormControl>
-                <FormControl className={classes.formField}>
-                  <Typography component="p">Выберите отделение</Typography>
-                  <TextInput name="postOfficeId" />
-                </FormControl>
-              </div>
-            )
-          }}
-        </Motion>
+        <FormControl className={classes.formField}>
+          <Typography component="p">Ваш город</Typography>
+          <TextInput name="cityId" />
+        </FormControl>
+        <FormControl className={classes.formField}>
+          <Typography component="p">Выберите отделение</Typography>
+          <TextInput name="postOfficeId" />
+        </FormControl>
       </div>
     </div>
   )
