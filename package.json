@@ -48,7 +48,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint src*/**/*.{js,ts,tsx}",
     "apollo:schema": "apollo client:download-schema --endpoint=http://localhost:8080/ schema.graphql",
-    "apollo:gen": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/graphql/**' --tagName=gql _types_"
+    "apollo:gen": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/graphql/**' --tagName=gql _types_",
+    "generate": "graphql-codegen --config codegen.yml"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -66,6 +67,10 @@
     ]
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "1.21.3",
+    "@graphql-codegen/typescript": "1.21.1",
+    "@graphql-codegen/typescript-operations": "1.17.15",
+    "@graphql-codegen/typescript-react-apollo": "2.2.3",
     "@typescript-eslint/eslint-plugin": "^2.27.0",
     "@typescript-eslint/parser": "^2.27.0",
     "eslint-config-prettier": "^6.10.1",
