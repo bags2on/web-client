@@ -1,28 +1,26 @@
 import { InMemoryCache, makeVar } from '@apollo/client'
-import { GET_CART_ITEMS } from './queries/cart'
 
 interface CartItem {
   id: string
   amount: number
 }
 
-const cartItemsVar = makeVar<CartItem[]>([
-  // {
-  //   id: '12123',
-  //   amount: 1
-  // }
-])
+export const cartItemsVar = makeVar<CartItem[]>([])
 
+// TODO: __typename???
 const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {
-    // cartItems: {
-    //   keyFields: [],
-    //   queryType: true,
-    //   fields: {
-    //     id: {},
-    //     amount: {}
-    //   }
-    // }
+    cartItems: {
+      keyFields: [],
+      queryType: true,
+      fields: {
+        cartItems: {
+          read(): CartItem[] {
+            return cartItemsVar()
+          }
+        }
+      }
+    }
     // Query: {
     //   fields: {
     //     cartItems: {
@@ -32,13 +30,6 @@ const cache: InMemoryCache = new InMemoryCache({
     //     }
     //   }
     // }
-  }
-})
-
-cache.writeQuery({
-  query: GET_CART_ITEMS,
-  data: {
-    cartItems: cartItemsVar()
   }
 })
 

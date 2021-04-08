@@ -3,7 +3,8 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import Backend from 'i18next-http-backend'
 import { initReactI18next } from 'react-i18next'
 
-const isDebugMode = process.env.NODE_ENV === 'development'
+// const isDebugMode = process.env.NODE_ENV === 'development'
+const isDebugMode = false
 
 i18n
   .use(Backend)

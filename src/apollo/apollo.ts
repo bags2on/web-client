@@ -3,46 +3,18 @@ import { GET_CART_ITEMS } from './cache/queries/cart'
 import { cache } from './cache/cache'
 
 const API_URL = process.env.REACT_APP_API_URL
+const withDevTools = process.env.NODE_ENV === 'development'
 
 const client = new ApolloClient({
   cache,
   uri: API_URL,
+  connectToDevTools: withDevTools,
   resolvers: {
     Mutation: {
       syncCartWithLocalStorage: (_root, _, { cache }): void => {
         const ids = window.localStorage.getItem('cartIDs')
         if (!ids) return
         // client.writeData({ data: { cartIDs: JSON.parse(ids) } })
-      },
-      addToCart: (_root, args, { cache }): void => {
-        const { cartIDs } = cache.readQuery({ query: GET_CART_ITEMS })
-        const newCartIDs = [...cartIDs, args.id]
-
-        function saveNextLocal(): void {
-          const data = JSON.parse(window.localStorage.getItem('cart_products') || '[]')
-
-          const newCartIDs = [...data]
-
-          console.log('New id:', args.id)
-          console.log('saved ids:', data)
-
-          const isExist = newCartIDs.findIndex((product: any) => product.id === args.id)
-          if (isExist === -1) {
-            newCartIDs.push({
-              id: args.id,
-              amount: 1
-            })
-          } else {
-            newCartIDs[isExist].amount += 1
-          }
-
-          window.localStorage.setItem('cart_products', JSON.stringify(newCartIDs))
-        }
-
-        saveNextLocal()
-
-        window.localStorage.setItem('cartIDs', JSON.stringify(newCartIDs))
-        // client.writeData({ data: { cartIDs: newCartIDs } })
       },
       removeFromCart: (_root, args, { cache }): void => {
         const productIds = window.localStorage.getItem('cartIDs')

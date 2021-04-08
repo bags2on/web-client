@@ -1,8 +1,7 @@
 import React from 'react'
 import Button from '../../../../shared/Button'
-import { useMutation } from '@apollo/react-hooks'
 import { makeStyles } from '@material-ui/core'
-import { ADD_PRODUCT_TO_CART } from '../../../../apollo/cache/queries/cart'
+import { CartMutations } from '../../../../apollo/cache/mutations'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -43,10 +42,11 @@ interface ProductBuyProps {
 const ProductBuy: React.FC<ProductBuyProps> = ({ id }) => {
   const classes = useStyles()
 
-  const [addToCart] = useMutation(ADD_PRODUCT_TO_CART, { variables: { id } })
-
   const handleAddToCart = (): void => {
-    addToCart()
+    CartMutations.addProduct({
+      id,
+      amount: 1
+    })
   }
 
   return (
