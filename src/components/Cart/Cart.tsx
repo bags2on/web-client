@@ -33,13 +33,17 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const classes = useStyles()
   const client = useApolloClient()
   const savedIDS = useQuery(GET_CART_ITEMS)
-  const isCartEmpty = savedIDS.data.cartIDs.length === 0
+  console.log(savedIDS.data)
+  // const isCartEmpty = savedIDS.data.cartIDs.length === 0
+
+  const isCartEmpty = true
 
   const [skip, setSkip] = useState<boolean>(true)
 
   const { data, loading } = useQuery<productsByID, productsByIDVariables>(GET_PRODUCTS_BY_IDS, {
     variables: {
-      ids: savedIDS.data.cartIDs
+      // ids: savedIDS.data.cartIDs
+      ids: []
     },
     fetchPolicy: 'network-only',
     skip,

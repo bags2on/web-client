@@ -165,7 +165,7 @@ interface CartTotals {
 
 const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   const classes = useStyles()
-  const { data } = useQuery<CartTotals>(GET_CART_ITEMS)
+  const { data } = useQuery(GET_CART_ITEMS)
   const [syncCart] = useMutation(SYNC_CART_FROM_STORAGE)
 
   useEffect(() => {
@@ -234,7 +234,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
         </Badge>
       </IconButton>
       <IconButton color="primary" onClick={handleCartClick} disableRipple className={classes.btns}>
-        <Badge badgeContent={data?.cartIDs.length} max={999} color="error">
+        <Badge badgeContent={data?.cartItems.length} max={999} color="error">
           <Icon className={classes.cartIcon}>
             <CartIcon />
           </Icon>

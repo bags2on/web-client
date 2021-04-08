@@ -1,4 +1,4 @@
-import ApolloClient from 'apollo-boost'
+import { ApolloClient } from '@apollo/client'
 import { GET_CART_ITEMS } from './cache/queries/cart'
 import { cache } from './cache/cache'
 
@@ -12,7 +12,7 @@ const client = new ApolloClient({
       syncCartWithLocalStorage: (_root, _, { cache }): void => {
         const ids = window.localStorage.getItem('cartIDs')
         if (!ids) return
-        client.writeData({ data: { cartIDs: JSON.parse(ids) } })
+        // client.writeData({ data: { cartIDs: JSON.parse(ids) } })
       },
       addToCart: (_root, args, { cache }): void => {
         const { cartIDs } = cache.readQuery({ query: GET_CART_ITEMS })
@@ -42,7 +42,7 @@ const client = new ApolloClient({
         saveNextLocal()
 
         window.localStorage.setItem('cartIDs', JSON.stringify(newCartIDs))
-        client.writeData({ data: { cartIDs: newCartIDs } })
+        // client.writeData({ data: { cartIDs: newCartIDs } })
       },
       removeFromCart: (_root, args, { cache }): void => {
         const productIds = window.localStorage.getItem('cartIDs')
@@ -60,10 +60,10 @@ const client = new ApolloClient({
         const { cartIDs } = cache.readQuery({ query: GET_CART_ITEMS })
 
         const updatedItems = filterItems(cartIDs)
-        client.writeData({ data: { cartIDs: updatedItems } })
+        // client.writeData({ data: { cartIDs: updatedItems } })
       },
       clearCart: (_root, args, { cache }): void => {
-        client.writeData({ data: { cartIDs: [] } })
+        // client.writeData({ data: { cartIDs: [] } })
         const savedItems = window.localStorage.getItem('cartIDs')
         if (savedItems) {
           window.localStorage.setItem('cartIDs', JSON.stringify([]))
@@ -71,11 +71,11 @@ const client = new ApolloClient({
       },
       updateCartTotalPrice: (_root, args, { cache }): void => {
         console.log(args)
-        client.writeData({ data: { cartTotalPrice: args.input } })
+        // client.writeData({ data: { cartTotalPrice: args.input } })
       },
       setFetchedCartItems: (_root, args, { cache }): void => {
         console.log(args)
-        client.writeData({ data: { cartItems: [] } })
+        // client.writeData({ data: { cartItems: [] } })
       }
     },
     Query: {
