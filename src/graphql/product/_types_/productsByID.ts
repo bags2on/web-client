@@ -8,18 +8,21 @@
 // ====================================================
 
 export interface productsByID_productsByID {
-  __typename: "Product";
-  id: string;
-  title: string;
-  price: number;
-  amount: number;
-  preview: string;
+  __typename: 'Product'
+  id: string
+  title: string
+  price: number
+  amount: number
+  preview: string
 }
 
 export interface productsByID {
-  productsByID: productsByID_productsByID[];
+  productsByID: productsByID_productsByID[]
 }
 
 export interface productsByIDVariables {
-  ids?: string[] | null;
+  input?: Array<{
+    id: string
+    amount: number
+  }>
 }

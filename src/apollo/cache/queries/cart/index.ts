@@ -27,9 +27,3 @@ export const UPDATE_CART_TOTALS = gql`
     updateCartTotalPrice(input: $input) @client
   }
 `
-
-export const CLEAR_CART = gql`
-  mutation ClearCart {
-    clearCart @client
-  }
-`

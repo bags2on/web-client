@@ -3,7 +3,7 @@ import Drawer from '@material-ui/core/Drawer'
 import CartItems from './CartItems/CartItems'
 // import Checkout from './Checkout/Checkout'
 // import OrderSuccess from './OrderSuccess/OrderSuccess'
-import { useQuery, useApolloClient } from '@apollo/client'
+import { useQuery } from '@apollo/client'
 import { GET_CART_ITEMS } from '../../apollo/cache/queries/cart'
 import { GET_PRODUCTS_BY_IDS } from '../../graphql/product'
 import { CartItemType } from './CartItem/CartItem'
@@ -31,19 +31,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const classes = useStyles()
-  const client = useApolloClient()
-  const savedIDS = useQuery(GET_CART_ITEMS)
-  console.log(savedIDS.data)
-  // const isCartEmpty = savedIDS.data.cartIDs.length === 0
-
-  const isCartEmpty = true
+  const cart = useQuery(GET_CART_ITEMS)
+  console.log(cart.data)
+  const isCartEmpty = cart.data.cartItems.length === 0
 
   const [skip, setSkip] = useState<boolean>(true)
 
   const { data, loading } = useQuery<productsByID, productsByIDVariables>(GET_PRODUCTS_BY_IDS, {
     variables: {
-      // ids: savedIDS.data.cartIDs
-      ids: []
+      input: cart.data.cartItems
     },
     fetchPolicy: 'network-only',
     skip,

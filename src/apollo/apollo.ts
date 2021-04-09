@@ -29,20 +29,9 @@ const client = new ApolloClient({
         const updatedItems = filterItems(cartIDs)
         // client.writeData({ data: { cartIDs: updatedItems } })
       },
-      clearCart: (_root, args, { cache }): void => {
-        // client.writeData({ data: { cartIDs: [] } })
-        const savedItems = window.localStorage.getItem('cartIDs')
-        if (savedItems) {
-          window.localStorage.setItem('cartIDs', JSON.stringify([]))
-        }
-      },
       updateCartTotalPrice: (_root, args, { cache }): void => {
         console.log(args)
         // client.writeData({ data: { cartTotalPrice: args.input } })
-      },
-      setFetchedCartItems: (_root, args, { cache }): void => {
-        console.log(args)
-        // client.writeData({ data: { cartItems: [] } })
       }
     },
     Query: {

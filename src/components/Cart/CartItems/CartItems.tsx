@@ -11,7 +11,8 @@ import { ReactComponent as EmptyCartIcon } from '../../../assets/svg/emptycart.s
 import { TransitionMotion, spring, presets } from 'react-motion'
 import { makeStyles } from '@material-ui/core'
 import { useMutation } from '@apollo/client'
-import { REMOVE_PRODUCT_FROM_CART, CLEAR_CART } from '../../../apollo/cache/queries/cart'
+import { REMOVE_PRODUCT_FROM_CART } from '../../../apollo/cache/queries/cart'
+import { CartMutations } from '../../../apollo/cache/mutations'
 
 interface CartItemsProps {
   data: CartItemType[]
@@ -67,14 +68,13 @@ const useStyles = makeStyles((theme) => ({
 
 const CartItems: React.FC<CartItemsProps> = ({ data, isEmpty, onClose }) => {
   const classes = useStyles()
-  const [onClearCart] = useMutation(CLEAR_CART)
   const [removeFromCart] = useMutation(REMOVE_PRODUCT_FROM_CART)
 
   const [products, setProducts] = useState(data)
 
   const handleClearAllClick = (): void => {
     setProducts([])
-    onClearCart()
+    CartMutations.clearCart()
   }
 
   const handleProductRemove = (id: string): void => {

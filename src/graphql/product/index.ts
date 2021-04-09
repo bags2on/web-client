@@ -15,8 +15,8 @@ export const GET_PRODUCTS = gql`
 `
 
 export const GET_PRODUCTS_BY_IDS = gql`
-  query productsByID($ids: [String!]) {
-    productsByID(ids: $ids) {
+  query productsByID($input: [CartItem!]) {
+    productsByID(input: $input) {
       id
       title
       price

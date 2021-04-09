@@ -5,10 +5,10 @@ import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
 import AppButton from '../../../shared/Button'
 import Typography from '@material-ui/core/Typography'
-import { useQuery } from '@apollo/client'
+// import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
 import { formatPrice } from '../../../utils/helpers'
-import { GET_CART_TOTAL_SUMM } from '../../../apollo/cache/queries/cart'
+// import { GET_CART_TOTAL_SUMM } from '../../../apollo/cache/queries/cart'
 
 interface SummaryProps {
   onClose(): void
@@ -49,7 +49,10 @@ const useStyles = makeStyles((theme) => ({
 const Summary: React.FC<SummaryProps> = ({ onClose }) => {
   const classes = useStyles()
 
-  const { data } = useQuery(GET_CART_TOTAL_SUMM)
+  // TODO: do!
+  const data = {
+    cartTotalPrice: 1000
+  }
 
   const handleCheckoutClick = (): void => {
     console.log('order')
