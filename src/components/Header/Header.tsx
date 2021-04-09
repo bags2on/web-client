@@ -14,7 +14,7 @@ import { ReactComponent as CartIcon } from '../../assets/svg/new_cart.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/svg/profile.svg'
 import { Link } from 'react-router-dom'
-import { useQuery, useMutation } from '@apollo/react-hooks'
+import { useQuery, useMutation } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
 import { GET_CART_ITEMS, SYNC_CART_FROM_STORAGE } from '../../apollo/cache/queries/cart'
 

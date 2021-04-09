@@ -6,7 +6,7 @@ import ScaleLoader from '../../shared/loaders/ScaleLoader'
 import CatalogItem from '../../components/CatalogItem/CatalogItem'
 import Pagination from '../../components/Pagination/Pagination'
 import { useParams } from 'react-router-dom'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
 import { GET_PRODUCTS } from '../../graphql/product'
 

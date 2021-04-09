@@ -3,7 +3,7 @@ import Drawer from '@material-ui/core/Drawer'
 import CartItems from './CartItems/CartItems'
 // import Checkout from './Checkout/Checkout'
 // import OrderSuccess from './OrderSuccess/OrderSuccess'
-import { useQuery, useApolloClient } from '@apollo/react-hooks'
+import { useQuery, useApolloClient } from '@apollo/client'
 import { GET_CART_ITEMS } from '../../apollo/cache/queries/cart'
 import { GET_PRODUCTS_BY_IDS } from '../../graphql/product'
 import { CartItemType } from './CartItem/CartItem'
@@ -53,7 +53,8 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
           return previousValue + item.price * item.amount
         }, 0)
 
-        client.writeData({ data: { cartTotalPrice: totalSumm } })
+        // client.writeData({ data: { cartTotalPrice: totalSumm } })
+        console.log(totalSumm)
         setSkip(true)
       }
     }

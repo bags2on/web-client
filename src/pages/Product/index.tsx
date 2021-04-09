@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useQuery } from '@apollo/react-hooks'
+import { useQuery } from '@apollo/client'
 import Grid from '@material-ui/core/Grid'
 import ScaleLoader from '../../shared/loaders/ScaleLoader'
 import Preview from './Preview/Preview'

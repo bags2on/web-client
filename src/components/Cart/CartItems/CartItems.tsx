@@ -10,7 +10,7 @@ import Summary from '../Summary/Summary'
 import { ReactComponent as EmptyCartIcon } from '../../../assets/svg/emptycart.svg'
 import { TransitionMotion, spring, presets } from 'react-motion'
 import { makeStyles } from '@material-ui/core'
-import { useMutation } from '@apollo/react-hooks'
+import { useMutation } from '@apollo/client'
 import { REMOVE_PRODUCT_FROM_CART, CLEAR_CART } from '../../../apollo/cache/queries/cart'
 
 interface CartItemsProps {
