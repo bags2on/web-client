@@ -6,7 +6,6 @@ interface CartItem {
 }
 
 export default (cartItemsVar: ReactiveVar<CartItem[]>): ((id: string) => void) => {
-  // TODO: What if data with __typename?
   function saveLocal(updatedItems: CartItem[]): void {
     window.localStorage.setItem('cart_products', JSON.stringify(updatedItems))
   }

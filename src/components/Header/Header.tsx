@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import clsx from 'clsx'
 import IconButton from '@material-ui/core/IconButton'
 import Badge from '@material-ui/core/Badge'
@@ -160,16 +160,18 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 interface CartTotals {
-  cartIDs: string[]
+  cartItems: Array<{
+    id: string
+    amount: number
+  }>
 }
 
 const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   const classes = useStyles()
-  const { data } = useQuery(GET_CART_ITEMS)
+  const { data } = useQuery<CartTotals>(GET_CART_ITEMS)
 
-  useEffect(() => {
-    // eslint-disable-next-line
-  }, [])
+  // TODO: do not re-render at the same product in cart
+  const productsAmount = data?.cartItems.reduce((acc, p) => acc + p.amount, 0)
 
   const handleCartClick = (): void => {
     onCartOpen()
@@ -232,7 +234,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
         </Badge>
       </IconButton>
       <IconButton color="primary" onClick={handleCartClick} disableRipple className={classes.btns}>
-        <Badge badgeContent={data?.cartItems.length} max={999} color="error">
+        <Badge badgeContent={productsAmount} max={999} color="error">
           <Icon className={classes.cartIcon}>
             <CartIcon />
           </Icon>

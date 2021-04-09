@@ -8,11 +8,10 @@ import { Link } from 'react-router-dom'
 import ImagePlaceholder from '../../../shared/ImagePlaceholder'
 import AmountController from '../../../shared/AmountController'
 import routes from '../../../utils/routes'
-import { useQuery, useMutation } from '@apollo/client'
 import { formatPrice } from '../../../utils/helpers'
 import { generateLink } from '../../../utils/links'
 import { makeStyles } from '@material-ui/core'
-import { GET_CART_TOTAL_SUMM, UPDATE_CART_TOTALS } from '../../../apollo/cache/queries/cart'
+import { CartMutations } from '../../../apollo/cache/mutations'
 
 export type CartItemType = {
   id: string
@@ -106,18 +105,9 @@ const CartItem: React.FC<CartItemProps> = ({ product, onRemove }) => {
 
   const classes = useStyles()
   const [count, setCount] = useState<number>(amount)
-  const { data } = useQuery(GET_CART_TOTAL_SUMM)
-  const [updateTotals] = useMutation(UPDATE_CART_TOTALS)
 
-  const handleCountChange = (type: string, n: number): void => {
-    const currentPrice = data.cartTotalPrice
-
-    if (type === 'add') {
-      updateTotals({ variables: { input: currentPrice + price } })
-    } else {
-      updateTotals({ variables: { input: currentPrice - price } })
-    }
-
+  const handleAmountChange = (_: string, n: number): void => {
+    CartMutations.updateProductAmount(id, n)
     setCount(n)
   }
 
@@ -166,7 +156,7 @@ const CartItem: React.FC<CartItemProps> = ({ product, onRemove }) => {
           </Grid>
         </Grid>
         <Box marginTop="20px" display="flex" justifyContent="flex-end" paddingRight="10px">
-          <AmountController min={1} max={100} amount={count} onChange={handleCountChange} />
+          <AmountController min={1} max={100} amount={count} onChange={handleAmountChange} />
         </Box>
       </div>
     </Box>

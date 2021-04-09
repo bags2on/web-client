@@ -12,12 +12,12 @@ export default (cartItemsVar: ReactiveVar<CartItem[]>): ((arg0: CartItem) => voi
   }
 
   function merege(items: CartItem[], newItem: CartItem): CartItem[] {
-    const isExist = items.findIndex((cartItem) => cartItem.id === newItem.id)
+    const itemIndex = items.findIndex((cartItem) => cartItem.id === newItem.id)
 
-    if (isExist === -1) {
+    if (itemIndex === -1) {
       items.push(newItem)
     } else {
-      items[isExist].amount += newItem.amount
+      items[itemIndex].amount += newItem.amount
     }
 
     return items

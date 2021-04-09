@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import Drawer from '@material-ui/core/Drawer'
 import CartItems from './CartItems/CartItems'
 // import Checkout from './Checkout/Checkout'
 // import OrderSuccess from './OrderSuccess/OrderSuccess'
 import { useQuery } from '@apollo/client'
 import { GET_CART_ITEMS } from '../../apollo/cache/queries/cart'
+import { CartMutations } from '../../apollo/cache/mutations'
 import { GET_PRODUCTS_BY_IDS } from '../../graphql/product'
 import { CartItemType } from './CartItem/CartItem'
 import { productsByID, productsByIDVariables } from '../../graphql/product/_types_/productsByID'
@@ -32,41 +33,27 @@ const useStyles = makeStyles((theme) => ({
 const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const classes = useStyles()
   const cart = useQuery(GET_CART_ITEMS)
-  console.log(cart.data)
   const isCartEmpty = cart.data.cartItems.length === 0
-
-  const [skip, setSkip] = useState<boolean>(true)
 
   const { data, loading } = useQuery<productsByID, productsByIDVariables>(GET_PRODUCTS_BY_IDS, {
     variables: {
       input: cart.data.cartItems
     },
     fetchPolicy: 'network-only',
-    skip,
+    skip: !isOpen || isCartEmpty,
+    notifyOnNetworkStatusChange: true,
     onCompleted: (data) => {
       if (data) {
         const totalSumm = data.productsByID.reduce((previousValue: number, item: CartItemType) => {
           return previousValue + item.price * item.amount
         }, 0)
 
-        // client.writeData({ data: { cartTotalPrice: totalSumm } })
-        console.log(totalSumm)
-        setSkip(true)
+        console.log('ts', totalSumm)
+
+        CartMutations.updateCartPrice(totalSumm)
       }
     }
   })
-
-  useEffect(() => {
-    if (isOpen) {
-      if (isCartEmpty) {
-        setSkip(true)
-      } else {
-        setSkip(false)
-      }
-    }
-
-    // eslint-disable-next-line
-  }, [isOpen])
 
   // if (loading) {
   //   return <p>Loading</p> // TODO: better UI
