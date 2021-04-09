@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useLang } from '../../hooks'
 import Header from '../Header/Header'
 import Drawer from '../Drawer/Drawer'
 import Cart from '../Cart/Cart'
 import Footer from '../Footer/Footer'
+import { CartMutations } from '../../apollo/cache/mutations'
 import { makeStyles } from '@material-ui/core'
 
 interface RootLayoutProps {
@@ -21,7 +22,12 @@ const useStyles = makeStyles((theme) => ({
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
   useLang()
+
   const classes = useStyles()
+
+  useEffect(() => {
+    CartMutations.syncCart()
+  }, [])
 
   const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
   const [isCartOpen, setCartOpen] = useState<boolean>(false)

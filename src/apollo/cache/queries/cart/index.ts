@@ -33,9 +33,3 @@ export const CLEAR_CART = gql`
     clearCart @client
   }
 `
-
-export const SYNC_CART_FROM_STORAGE = gql`
-  mutation SyncCartFromStorage {
-    syncCartWithLocalStorage @client
-  }
-`

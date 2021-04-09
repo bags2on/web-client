@@ -11,11 +11,6 @@ const client = new ApolloClient({
   connectToDevTools: withDevTools,
   resolvers: {
     Mutation: {
-      syncCartWithLocalStorage: (_root, _, { cache }): void => {
-        const ids = window.localStorage.getItem('cartIDs')
-        if (!ids) return
-        // client.writeData({ data: { cartIDs: JSON.parse(ids) } })
-      },
       removeFromCart: (_root, args, { cache }): void => {
         const productIds = window.localStorage.getItem('cartIDs')
 
