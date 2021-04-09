@@ -18,7 +18,6 @@
     "@types/react-motion": "0.0.29",
     "@types/react-router-dom": "^5.1.3",
     "@types/yup": "^0.26.34",
-    "apollo-boost": "^0.4.7",
     "clsx": "^1.1.0",
     "formik": "^2.1.4",
     "graphql": "^15.0.0",

@@ -1,6 +1,4 @@
-import { gql } from 'apollo-boost'
-
-/* --- Queries --- */
+import { gql } from '@apollo/client'
 
 export const GET_PRODUCTS = gql`
   query allProducts {
@@ -39,5 +37,3 @@ export const GET_PRODUCT_BY_ID = gql`
     }
   }
 `
-
-/* --- Mutations --- */

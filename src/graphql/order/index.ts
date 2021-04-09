@@ -1,6 +1,4 @@
-import { gql } from 'apollo-boost'
-
-/* --- Queries --- */
+import { gql } from '@apollo/client'
 
 export const CREATE_ORDER = gql`
   mutation CreateOrder(
@@ -12,7 +10,7 @@ export const CREATE_ORDER = gql`
     $postOfficeId: String!
     $productsId: [String!]!
   ) {
-    cartIDs @client @export(as: "productsId")
+    cartItems @client @export(as: "productsId")
     createOrder(
       input: {
         name: $name
