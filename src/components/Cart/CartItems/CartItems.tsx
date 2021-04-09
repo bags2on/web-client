@@ -10,8 +10,6 @@ import Summary from '../Summary/Summary'
 import { ReactComponent as EmptyCartIcon } from '../../../assets/svg/emptycart.svg'
 import { TransitionMotion, spring, presets } from 'react-motion'
 import { makeStyles } from '@material-ui/core'
-import { useMutation } from '@apollo/client'
-import { REMOVE_PRODUCT_FROM_CART } from '../../../apollo/cache/queries/cart'
 import { CartMutations } from '../../../apollo/cache/mutations'
 
 interface CartItemsProps {
@@ -68,8 +66,6 @@ const useStyles = makeStyles((theme) => ({
 
 const CartItems: React.FC<CartItemsProps> = ({ data, isEmpty, onClose }) => {
   const classes = useStyles()
-  const [removeFromCart] = useMutation(REMOVE_PRODUCT_FROM_CART)
-
   const [products, setProducts] = useState(data)
 
   const handleClearAllClick = (): void => {
@@ -80,11 +76,7 @@ const CartItems: React.FC<CartItemsProps> = ({ data, isEmpty, onClose }) => {
   const handleProductRemove = (id: string): void => {
     const updated = products.filter((product) => product.id !== id)
     setProducts(updated)
-    removeFromCart({
-      variables: {
-        id
-      }
-    })
+    CartMutations.removeProduct(id)
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -16,11 +16,6 @@ export const GET_CART_TOTAL_SUMM = gql`
 
 /* --- Mutations --- */
 
-export const REMOVE_PRODUCT_FROM_CART = gql`
-  mutation RemoveProductFromCart($id: String!) {
-    removeFromCart(id: $id) @client
-  }
-`
 // TODO: rename
 export const UPDATE_CART_TOTALS = gql`
   mutation UpdateTotalCartPrice($input: Number!) {
