@@ -6,7 +6,6 @@ interface CartItem {
 }
 
 export default (cartItemsVar: ReactiveVar<CartItem[]>): ((arg0: CartItem) => void) => {
-  // TODO: What if data with __typename?
   function saveLocal(updatedItems: CartItem[]): void {
     window.localStorage.setItem('cart_products', JSON.stringify(updatedItems))
   }
@@ -15,7 +14,7 @@ export default (cartItemsVar: ReactiveVar<CartItem[]>): ((arg0: CartItem) => voi
     const itemIndex = items.findIndex((cartItem) => cartItem.id === newItem.id)
 
     if (itemIndex === -1) {
-      items.push(newItem)
+      items.push({ ...newItem })
     } else {
       items[itemIndex].amount += newItem.amount
     }

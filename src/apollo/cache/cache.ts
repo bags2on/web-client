@@ -8,22 +8,6 @@ interface CartItem {
 export const cartItemsVar = makeVar<CartItem[]>([])
 export const cartPriceVar = makeVar<number>(0)
 
-// TODO: set __typename???
-
-/*
-  [FIELD]: {
-    keyFields: [],
-    queryType: true,
-    fields: {
-      [FIELD]: {
-        read(): CartItem[] {
-          return cartItemsVar()
-        }
-      }
-    }
-  }
-*/
-
 const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {
     Query: {
@@ -31,6 +15,13 @@ const cache: InMemoryCache = new InMemoryCache({
         cartItems: {
           read(): CartItem[] {
             return cartItemsVar()
+          }
+        },
+        cartAmount: {
+          read(_, options): number {
+            const res = options.readField<CartItem[]>('cartItems')
+            if (!res?.length) return 0
+            return res?.reduce((acc, p) => acc + p.amount, 0)
           }
         },
         cartPrice: {

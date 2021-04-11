@@ -11,3 +11,9 @@ export const GET_CART_PRICE = gql`
     cartPrice @client
   }
 `
+
+export const GET_CART_AMOUNT = gql`
+  query GetCartAmount {
+    cartAmount @client
+  }
+`

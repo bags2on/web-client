@@ -16,7 +16,7 @@ import { ReactComponent as ProfileIcon } from '../../assets/svg/profile.svg'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
-import { GET_CART_ITEMS } from '../../apollo/cache/queries/cart'
+import { GET_CART_AMOUNT } from '../../apollo/cache/queries/cart'
 
 interface HeaderProps {
   onDrawerOpen(): void
@@ -159,19 +159,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-interface CartTotals {
-  cartItems: Array<{
-    id: string
-    amount: number
-  }>
+interface CartAmount {
+  cartAmount: number
 }
 
 const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   const classes = useStyles()
-  const { data } = useQuery<CartTotals>(GET_CART_ITEMS)
+  const { data } = useQuery<CartAmount>(GET_CART_AMOUNT)
 
-  // TODO: do not re-render at the same product in cart
-  const productsAmount = data?.cartItems.reduce((acc, p) => acc + p.amount, 0)
+  const cartAmount = data?.cartAmount
 
   const handleCartClick = (): void => {
     onCartOpen()
@@ -234,7 +230,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
         </Badge>
       </IconButton>
       <IconButton color="primary" onClick={handleCartClick} disableRipple className={classes.btns}>
-        <Badge badgeContent={productsAmount} max={999} color="error">
+        <Badge badgeContent={cartAmount} max={999} color="error">
           <Icon className={classes.cartIcon}>
             <CartIcon />
           </Icon>
