@@ -8,7 +8,6 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
 import Summary from '../Summary/Summary'
 import { ReactComponent as EmptyCartIcon } from '../../../assets/svg/emptycart.svg'
-import { TransitionMotion, spring, presets } from 'react-motion'
 import { makeStyles } from '@material-ui/core'
 import { CartMutations } from '../../../apollo/cache/mutations'
 
@@ -79,12 +78,6 @@ const CartItems: React.FC<CartItemsProps> = ({ data, isEmpty, onClose }) => {
     CartMutations.removeProduct(id)
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const onWillLeave = (): any => ({
-    height: spring(0),
-    opacity: spring(0)
-  })
-
   // if (isLoading) {
   //   return <p>Loading</p> // TODO: better UI
   // }
@@ -118,34 +111,13 @@ const CartItems: React.FC<CartItemsProps> = ({ data, isEmpty, onClose }) => {
             </Button>
           </Grid>
           <Grid item xs={12}>
-            <TransitionMotion
-              defaultStyles={products.map((product: CartItemType) => ({
-                key: product.id,
-                style: {
-                  height: 260,
-                  opacity: 1
-                }
-              }))}
-              styles={products.map((product: CartItemType) => ({
-                data: product,
-                key: product.id,
-                style: {
-                  height: spring(260, presets.gentle),
-                  opacity: spring(1, presets.gentle)
-                }
-              }))}
-              willLeave={onWillLeave}
-            >
-              {(interpolatedStyles): React.ReactElement => (
-                <Grid container component="ul" className={classes.list}>
-                  {interpolatedStyles.map(({ key, style, data }) => (
-                    <Grid key={key} style={style} component="li" item xs={12}>
-                      <CartItem product={data} onRemove={handleProductRemove} />
-                    </Grid>
-                  ))}
+            <Grid container component="ul" className={classes.list}>
+              {products.map((product: CartItemType, index) => (
+                <Grid key={index} component="li" item xs={12}>
+                  <CartItem product={product} onRemove={handleProductRemove} />
                 </Grid>
-              )}
-            </TransitionMotion>
+              ))}
+            </Grid>
           </Grid>
         </Grid>
       )}
