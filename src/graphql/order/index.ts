@@ -8,7 +8,7 @@ export const CREATE_ORDER = gql`
     $phone: String!
     $cityId: String!
     $postOfficeId: String!
-    $productsId: [String!]!
+    $productsId: [CartItem!]!
   ) {
     cartItems @client @export(as: "productsId")
     createOrder(

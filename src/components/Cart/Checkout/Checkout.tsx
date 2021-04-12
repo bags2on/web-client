@@ -8,7 +8,10 @@ import { Formik, Form } from 'formik'
 import { CheckoutOrderSchema } from '../../../utils/validationSchema'
 import { makeStyles } from '@material-ui/core'
 import { CREATE_ORDER } from '../../../graphql/order'
-import { CreateOrder, CreateOrderVariables } from '../../../graphql/order/_types_/CreateOrder'
+
+interface CheckoutProps {
+  onConfirm(): void
+}
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -29,7 +32,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Checkout: React.FC = () => {
+const Checkout: React.FC<CheckoutProps> = ({ onConfirm }) => {
   const classes = useStyles()
 
   const [isEdit, setEdit] = useState<boolean>(false)
@@ -38,7 +41,7 @@ const Checkout: React.FC = () => {
     setEdit(!isEdit)
   }
 
-  const [createOrder, { loading }] = useMutation<CreateOrder, CreateOrderVariables>(CREATE_ORDER)
+  const [createOrder, { loading }] = useMutation(CREATE_ORDER)
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSubmit = async (values: any): Promise<void> => {
@@ -46,8 +49,10 @@ const Checkout: React.FC = () => {
 
     try {
       const req = await createOrder({
-        variables: { ...values, x: 10 }
+        variables: { ...values }
       })
+
+      onConfirm()
 
       console.log(req)
     } catch (error) {

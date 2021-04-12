@@ -15,6 +15,7 @@ interface CartItemsProps {
   data: CartItemType[]
   isEmpty: boolean
   onClose(): void
+  onCheckout(): void
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -63,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const CartItems: React.FC<CartItemsProps> = ({ data, isEmpty, onClose }) => {
+const CartItems: React.FC<CartItemsProps> = ({ data, isEmpty, onClose, onCheckout }) => {
   const classes = useStyles()
   const [products, setProducts] = useState(data)
 
@@ -103,7 +104,7 @@ const CartItems: React.FC<CartItemsProps> = ({ data, isEmpty, onClose }) => {
       ) : (
         <Grid container>
           <Grid item xs={12}>
-            <Summary onClose={onClose} />
+            <Summary onClose={onClose} onCheckout={onCheckout} />
           </Grid>
           <Grid item xs={12}>
             <Button onClick={handleClearAllClick} className={classes.clearCartButton}>

@@ -12,6 +12,7 @@ import { GET_CART_PRICE } from '../../../apollo/cache/queries/cart'
 
 interface SummaryProps {
   onClose(): void
+  onCheckout(): void
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -46,12 +47,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Summary: React.FC<SummaryProps> = ({ onClose }) => {
+const Summary: React.FC<SummaryProps> = ({ onClose, onCheckout }) => {
   const classes = useStyles()
   const { data } = useQuery(GET_CART_PRICE)
 
   const handleCheckoutClick = (): void => {
     console.log('order')
+    onCheckout()
   }
 
   return (
