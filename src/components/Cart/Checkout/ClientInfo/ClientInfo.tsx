@@ -9,7 +9,6 @@ import PhoneInput from '../../../../shared/PhoneInput'
 import Button from '../../../../shared/Button'
 import { CheckoutOrderType } from '../../../../utils/validationSchema'
 import { useFormikContext } from 'formik'
-import { Motion, spring, presets } from 'react-motion'
 import { ReactComponent as EditIcon } from '../../../../assets/svg/edit.svg'
 import { ReactComponent as CheckIcon } from '../../../../assets/svg/check_mark.svg'
 import { ReactComponent as ProfileIcon } from '../../../../assets/svg/contact.svg'
@@ -177,47 +176,25 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
             </Typography>
           </li>
         </ul>
-        <Motion
-          style={
-            !edit
-              ? {
-                  opacity: spring(1),
-                  height: spring(340, presets.wobbly)
-                }
-              : { opacity: 0, height: 0 }
-          }
-        >
-          {(interpolatedStyles): React.ReactElement => {
-            return (
-              <div
-                style={{
-                  height: `${interpolatedStyles.height}px`,
-                  opacity: interpolatedStyles.opacity
-                }}
-              >
-                <FormControl className={classes.formField}>
-                  <Typography component="p">Имя</Typography>
-                  <TextInput name="name" />
-                </FormControl>
-                <FormControl className={classes.formField}>
-                  <Typography component="p">Фамилия</Typography>
-                  <TextInput name="surname" />
-                </FormControl>
-                <FormControl className={classes.formField}>
-                  <Typography component="p">Email</Typography>
-                  <TextInput name="email" type="email" />
-                </FormControl>
-                <FormControl className={classes.formField}>
-                  <Typography component="p">Телефон</Typography>
-                  <PhoneInput name="phone" />
-                </FormControl>
-                <Button onClick={handleClearClick} withShadow={false} className={classes.clear}>
-                  очистить
-                </Button>
-              </div>
-            )
-          }}
-        </Motion>
+        <FormControl className={classes.formField}>
+          <Typography component="p">Имя</Typography>
+          <TextInput name="name" />
+        </FormControl>
+        <FormControl className={classes.formField}>
+          <Typography component="p">Фамилия</Typography>
+          <TextInput name="surname" />
+        </FormControl>
+        <FormControl className={classes.formField}>
+          <Typography component="p">Email</Typography>
+          <TextInput name="email" type="email" />
+        </FormControl>
+        <FormControl className={classes.formField}>
+          <Typography component="p">Телефон</Typography>
+          <PhoneInput name="phone" />
+        </FormControl>
+        <Button onClick={handleClearClick} withShadow={false} className={classes.clear}>
+          очистить
+        </Button>
       </div>
     </div>
   )
