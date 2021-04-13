@@ -71,7 +71,7 @@ export const darkTheme = createMuiTheme({
     MuiCssBaseline: {
       '@global': {
         '*::-webkit-scrollbar': {
-          width: 10
+          width: 7
         },
         '*::-webkit-scrollbar-track': {
           backgroundColor: '#e8e8e8'
@@ -118,7 +118,7 @@ export const lightTheme = createMuiTheme({
     MuiCssBaseline: {
       '@global': {
         '*::-webkit-scrollbar': {
-          width: 10
+          width: 7
         },
         '*::-webkit-scrollbar-track': {
           backgroundColor: '#e8e8e8'

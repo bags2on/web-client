@@ -3,6 +3,7 @@ import Typography from '@material-ui/core/Typography'
 import ClientInfo from './ClientInfo/ClientInfo'
 import Button from '../../../shared/Button'
 import Delivery from './Delivery/Delivery'
+import ArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
 import { useMutation } from '@apollo/client'
 import { Formik, Form } from 'formik'
 import { CheckoutOrderSchema } from '../../../utils/validationSchema'
@@ -11,6 +12,7 @@ import { CREATE_ORDER } from '../../../graphql/order'
 
 interface CheckoutProps {
   onConfirm(): void
+  onBack(): void
 }
 
 const useStyles = makeStyles(() => ({
@@ -21,18 +23,29 @@ const useStyles = makeStyles(() => ({
     marginBottom: 7,
     textAlign: 'center'
   },
-  submitTitle: {
-    fontSize: 13,
-    color: '#6c757d',
-    marginTop: 15,
-    paddingLeft: 3
-  },
   submitContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
     padding: '10px 20px'
+  },
+  submitButton: {
+    flexBasis: '65%'
+  },
+  backButton: {
+    flexBasis: '30%'
+  },
+  conditions: {
+    padding: '0 20px',
+    '& > p': {
+      textAlign: 'center',
+      fontSize: 13,
+      color: '#6c757d',
+      paddingLeft: 3
+    }
   }
 }))
 
-const Checkout: React.FC<CheckoutProps> = ({ onConfirm }) => {
+const Checkout: React.FC<CheckoutProps> = ({ onConfirm, onBack }) => {
   const classes = useStyles()
 
   const [isEdit, setEdit] = useState<boolean>(false)
@@ -81,16 +94,26 @@ const Checkout: React.FC<CheckoutProps> = ({ onConfirm }) => {
             <Typography component="h5" className={classes.title}>
               Заполните форму
             </Typography>
-            <Delivery />
             <ClientInfo edit={isEdit} onEdit={handleEditChange} />
-
+            <Delivery />
             <div className={classes.submitContainer}>
-              <Button fullWidth type="submit" loading={loading} color="secondary">
+              <Button onClick={onBack} withShadow={false} className={classes.backButton} startIcon={<ArrowLeftIcon />}>
+                Назад
+              </Button>
+              <Button
+                type="submit"
+                withShadow={false}
+                loading={loading}
+                disabled={loading}
+                darkLoader
+                className={classes.submitButton}
+                color="secondary"
+              >
                 Заказ подтверждаю
               </Button>
-              <Typography component="p" className={classes.submitTitle}>
-                Подтверждая заказ, я принимаю условия пользовательского соглашения
-              </Typography>
+            </div>
+            <div className={classes.conditions}>
+              <Typography component="p">Подтверждая заказ, я принимаю условия пользовательского соглашения</Typography>
             </div>
           </Form>
         )}

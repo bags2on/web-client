@@ -61,8 +61,6 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
           return previousValue + item.price * item.amount
         }, 0)
 
-        console.log('ts', totalSumm)
-
         CartMutations.updateCartPrice(totalSumm)
       }
     }
@@ -79,6 +77,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const mutatedData = React.useMemo(() => data?.productsByID, [data]) as CartItemType[]
 
   const [index, set] = useState(0)
+
   // const onClick = useCallback(() => set((state) => (state + 1) % 3), [])
   const transitions = useTransition(index, (p) => p, {
     from: { transform: 'translate3d(100%,0,0)' },
@@ -94,6 +93,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const onCheckoutConfirm = (): void => {
     set(2)
   }
+  const onBack = (): void => {
+    set(index - 1)
+  }
 
   const pages = [
     (x: any): any => (
@@ -103,7 +105,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
     ),
     (x: any): any => (
       <animated.div style={{ ...x.style }}>
-        <Checkout onConfirm={onCheckoutConfirm} />
+        <Checkout onConfirm={onCheckoutConfirm} onBack={onBack} />
       </animated.div>
     ),
     (x: any): any => (

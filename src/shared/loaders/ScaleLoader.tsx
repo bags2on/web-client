@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
 
@@ -27,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
   dot: {
     display: 'inline-block',
     animationFillMode: 'both',
-    backgroundColor: '#ff9900',
+    backgroundColor: (props: StyleProps) => (props.dark ? '#fff' : '#ff9900'),
     width: (props: StyleProps) => (props.fallback ? 5 : 3),
     height: (props: StyleProps) => (props.fallback ? 70 : 20),
     margin: (props: StyleProps) => (props.fallback ? '0 3px' : '0 2px'),

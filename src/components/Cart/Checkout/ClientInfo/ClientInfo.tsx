@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import clsx from 'clsx'
 import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
@@ -13,7 +13,7 @@ import { ReactComponent as EditIcon } from '../../../../assets/svg/edit.svg'
 import { ReactComponent as CheckIcon } from '../../../../assets/svg/check_mark.svg'
 import { ReactComponent as ProfileIcon } from '../../../../assets/svg/contact.svg'
 import { ReactComponent as PhoneIcon } from '../../../../assets/svg/phone.svg'
-// import { ReactComponent as PinIcon } from '../../../../assets/svg/pin.svg'
+import { animated, useSpring } from 'react-spring'
 import { ReactComponent as MailIcon } from '../../../../assets/svg/mail.svg'
 import NumberFormat from 'react-number-format'
 import { makeStyles } from '@material-ui/core'
@@ -97,6 +97,8 @@ const useStyles = makeStyles(() => ({
 const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
   const classes = useStyles()
 
+  const ref = useRef(null)
+
   const { values, errors, touched, setFieldValue } = useFormikContext<CheckoutOrderType>()
 
   console.log(errors)
@@ -111,6 +113,15 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
   function plug(n: number): React.ReactElement {
     return <span className={classes.plug}>{'-'.repeat(n)}</span>
   }
+
+  const slideInStyles = useSpring({
+    config: { duration: 250 },
+    from: { opacity: 0, height: 0 },
+    to: {
+      opacity: edit ? 1 : 0,
+      height: edit ? 317 : 0
+    }
+  })
 
   return (
     <div className={classes.root}>
@@ -137,12 +148,6 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
               {values.name ? values.name : plug(5)}&nbsp;{values.surname ? values.surname : plug(5)}
             </Typography>
           </li>
-          {/* <li>
-            <Icon component="span" className={classes.listIcon}>
-              <PinIcon />
-            </Icon>
-            <Typography component="span">Loss Angeles, California, USA</Typography>
-          </li> */}
           <li>
             <Icon component="span" className={classes.listIcon}>
               <MailIcon />
@@ -176,25 +181,29 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
             </Typography>
           </li>
         </ul>
-        <FormControl className={classes.formField}>
-          <Typography component="p">Имя</Typography>
-          <TextInput name="name" />
-        </FormControl>
-        <FormControl className={classes.formField}>
-          <Typography component="p">Фамилия</Typography>
-          <TextInput name="surname" />
-        </FormControl>
-        <FormControl className={classes.formField}>
-          <Typography component="p">Email</Typography>
-          <TextInput name="email" type="email" />
-        </FormControl>
-        <FormControl className={classes.formField}>
-          <Typography component="p">Телефон</Typography>
-          <PhoneInput name="phone" />
-        </FormControl>
-        <Button onClick={handleClearClick} withShadow={false} className={classes.clear}>
-          очистить
-        </Button>
+        <animated.div style={{ ...slideInStyles, overflow: 'hidden' }}>
+          <div ref={ref}>
+            <FormControl className={classes.formField}>
+              <Typography component="p">Имя</Typography>
+              <TextInput name="name" />
+            </FormControl>
+            <FormControl className={classes.formField}>
+              <Typography component="p">Фамилия</Typography>
+              <TextInput name="surname" />
+            </FormControl>
+            <FormControl className={classes.formField}>
+              <Typography component="p">Email</Typography>
+              <TextInput name="email" type="email" />
+            </FormControl>
+            <FormControl className={classes.formField}>
+              <Typography component="p">Телефон</Typography>
+              <PhoneInput name="phone" />
+            </FormControl>
+            <Button onClick={handleClearClick} withShadow={false} className={classes.clear}>
+              очистить
+            </Button>
+          </div>
+        </animated.div>
       </div>
     </div>
   )
