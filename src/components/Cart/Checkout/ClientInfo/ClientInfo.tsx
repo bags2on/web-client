@@ -6,7 +6,7 @@ import Icon from '@material-ui/core/SvgIcon'
 import FormControl from '@material-ui/core/FormControl'
 import TextInput from '../../../../shared/TextInput'
 import PhoneInput from '../../../../shared/PhoneInput'
-import Button from '../../../../shared/Button'
+import Button from '../../../../shared/Button/Button'
 import { CheckoutOrderType } from '../../../../utils/validationSchema'
 import { useFormikContext } from 'formik'
 import { ReactComponent as EditIcon } from '../../../../assets/svg/edit.svg'
@@ -199,7 +199,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
               <Typography component="p">Телефон</Typography>
               <PhoneInput name="phone" />
             </FormControl>
-            <Button onClick={handleClearClick} withShadow={false} className={classes.clear}>
+            <Button onClick={handleClearClick} disableShadow className={classes.clear}>
               очистить
             </Button>
           </div>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Typography from '@material-ui/core/Typography'
 import ClientInfo from './ClientInfo/ClientInfo'
-import Button from '../../../shared/Button'
+import Button from '../../../shared/Button/Button'
 import Delivery from './Delivery/Delivery'
 import ArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft'
 import { useMutation } from '@apollo/client'
@@ -97,12 +97,12 @@ const Checkout: React.FC<CheckoutProps> = ({ onConfirm, onBack }) => {
             <ClientInfo edit={isEdit} onEdit={handleEditChange} />
             <Delivery />
             <div className={classes.submitContainer}>
-              <Button onClick={onBack} withShadow={false} className={classes.backButton} startIcon={<ArrowLeftIcon />}>
+              <Button onClick={onBack} disableShadow className={classes.backButton} startIcon={<ArrowLeftIcon />}>
                 Назад
               </Button>
               <Button
                 type="submit"
-                withShadow={false}
+                disableShadow
                 loading={loading}
                 disabled={loading}
                 darkLoader

@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import IconButton from '@material-ui/core/IconButton'
 import CloseIcon from '@material-ui/icons/Close'
-import AppButton from '../../../shared/Button'
+import Button from '../../../shared/Button/Button'
 import Typography from '@material-ui/core/Typography'
 import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
@@ -71,9 +71,9 @@ const Summary: React.FC<SummaryProps> = ({ onClose, onCheckout }) => {
           </Box>
         </Box>
         <Grid container>
-          <AppButton fullWidth withShadow={false} color="secondary" onClick={handleCheckoutClick}>
+          <Button fullWidth disableShadow color="secondary" onClick={handleCheckoutClick}>
             Оформить заказ
-          </AppButton>
+          </Button>
         </Grid>
       </Grid>
     </section>

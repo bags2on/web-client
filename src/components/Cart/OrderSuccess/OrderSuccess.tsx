@@ -1,7 +1,7 @@
 import React from 'react'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import Typography from '@material-ui/core/Typography'
-import Button from '../../../shared/Button'
+import Button from '../../../shared/Button/Button'
 import { ReactComponent as LetterCheckImage } from '../../../assets/svg/letter-check.svg'
 import { ReactComponent as MailImage } from '../../../assets/svg/mail.svg'
 import { ReactComponent as PinImage } from '../../../assets/svg/pin.svg'

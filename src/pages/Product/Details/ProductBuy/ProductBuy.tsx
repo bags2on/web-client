@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '../../../../shared/Button'
+import Button from '../../../../shared/Button/Button'
 import { makeStyles } from '@material-ui/core'
 import { CartMutations } from '../../../../apollo/cache/mutations'
 

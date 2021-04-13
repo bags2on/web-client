@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import Button from '../../../shared/Button'
+import Button from '../../../shared/Button/Button'
 import { JoinUsSchema, JoinUsSchemaType } from '../../../utils/validationSchema'
 import { Formik, Form, Field } from 'formik'
 import { makeStyles } from '@material-ui/core'
@@ -142,7 +142,7 @@ const JoinUs: React.FC = () => {
                   [classes.inputError]: errors.email && touched.email
                 })}
               />
-              <Button type="submit" className={classes.submitButton} withShadow={false} loading={false}>
+              <Button type="submit" className={classes.submitButton} disableShadow loading={false}>
                 Присоединиться
               </Button>
             </Form>

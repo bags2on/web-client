@@ -2,7 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import { Button as MaterialButton } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core'
-import ScaleLoader from './loaders/ScaleLoader'
+import ScaleLoader from '../loaders/ScaleLoader'
 
 interface BottonProps {
   to?: string
@@ -14,14 +14,14 @@ interface BottonProps {
   loading?: boolean
   disabled?: boolean
   fullWidth?: boolean
-  withShadow?: boolean
+  disableShadow?: boolean
   darkLoader?: boolean
   className?: string
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void
 }
 
 interface BottonStyleTypes {
-  withShadow: boolean
+  disableShadow: boolean
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     color: '#fff',
     borderRadius: '6px',
-    boxShadow: (props: BottonStyleTypes) => (props.withShadow ? '0px 8px 17px rgba(0, 0, 0, .3)' : 'none')
+    boxShadow: (props: BottonStyleTypes): string => (props.disableShadow ? 'none' : '0px 8px 17px rgba(0, 0, 0, .3)')
   },
   text: {
     lineHeight: '24px'
@@ -58,11 +58,11 @@ const Button: React.FC<BottonProps> = ({
   children,
   darkLoader,
   color = 'main',
-  withShadow = true,
+  disableShadow = false,
   className,
   ...otherProps
 }: BottonProps) => {
-  const classes = useStyles({ withShadow })
+  const classes = useStyles({ disableShadow })
 
   return (
     <MaterialButton className={clsx(classes[color], classes.root, className)} {...otherProps}>
