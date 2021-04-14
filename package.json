@@ -27,6 +27,7 @@
     "node-sass": "^4.13.1",
     "rc-slider": "^9.5.4",
     "react": "^16.13.1",
+    "react-content-loader": "^6.0.3",
     "react-dom": "^16.13.1",
     "react-i18next": "^11.3.4",
     "react-image-magnifiers": "^1.4.0",

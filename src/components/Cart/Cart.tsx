@@ -4,14 +4,7 @@ import Drawer from '@material-ui/core/Drawer'
 import CartItems from './CartItems/CartItems'
 import Checkout from './Checkout/Checkout'
 import OrderSuccess from './OrderSuccess/OrderSuccess'
-import { useQuery } from '@apollo/client'
-import { GET_CART_ITEMS } from '../../apollo/cache/queries/cart'
-import { CartMutations } from '../../apollo/cache/mutations'
-import { GET_PRODUCTS_BY_IDS } from '../../graphql/product'
 import { useTransition, animated, config } from 'react-spring'
-import { CartItemType } from './CartItem/CartItem'
-import { productsByID, productsByIDVariables } from '../../graphql/product/_types_/productsByID'
-import Fallback from '../../shared/Fallback'
 import { makeStyles } from '@material-ui/core'
 
 interface CartProps {
@@ -44,72 +37,41 @@ const useStyles = makeStyles((theme) => ({
 
 const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const classes = useStyles()
-  const cart = useQuery(GET_CART_ITEMS)
 
-  const isCartEmpty = cart.data.cartItems.length === 0
-
-  const { data, loading } = useQuery<productsByID, productsByIDVariables>(GET_PRODUCTS_BY_IDS, {
-    variables: {
-      input: cart.data.cartItems
-    },
-    fetchPolicy: 'network-only',
-    skip: !isOpen || isCartEmpty,
-    notifyOnNetworkStatusChange: true,
-    onCompleted: (data) => {
-      if (data) {
-        const totalSumm = data.productsByID.reduce((previousValue: number, item: CartItemType) => {
-          return previousValue + item.price * item.amount
-        }, 0)
-
-        CartMutations.updateCartPrice(totalSumm)
-      }
-    }
-  })
-
-  // if (loading) {
-  //   return <p>Loading</p> // TODO: better UI
-  // }
-
-  // if (error) {
-  //   return <p>Error</p> // TODO: better UI
-  // }
-
-  const mutatedData = React.useMemo(() => data?.productsByID, [data]) as CartItemType[]
-
-  const [index, set] = useState(0)
+  const [currentPage, setCurrentPage] = useState<number>(0)
 
   // const onClick = useCallback(() => set((state) => (state + 1) % 3), [])
-  const transitions = useTransition(index, (p) => p, {
+  const transitions = useTransition(currentPage, (p) => p, {
     from: { transform: 'translate3d(100%,0,0)' },
     enter: { transform: 'translate3d(0%,0,0)' },
     leave: { transform: 'translate3d(-100%,0,0)' },
     config: config.default
   })
 
-  const onCheckout = (): void => {
-    set(1)
+  const handleCheckout = (): void => {
+    setCurrentPage(1)
   }
 
-  const onCheckoutConfirm = (): void => {
-    set(2)
+  const handleConfirm = (): void => {
+    setCurrentPage(2)
   }
-  const onBack = (): void => {
-    set(index - 1)
+  const handleToPrev = (): void => {
+    setCurrentPage(currentPage - 1)
   }
 
   const pages = [
-    (x: any): any => (
-      <animated.div style={{ ...x.style }}>
-        <CartItems data={mutatedData} isEmpty={isCartEmpty} onClose={onClose} onCheckout={onCheckout} />
+    (args: any): any => (
+      <animated.div style={{ ...args.style }}>
+        <CartItems onClose={onClose} onCheckout={handleCheckout} />
       </animated.div>
     ),
-    (x: any): any => (
-      <animated.div style={{ ...x.style }}>
-        <Checkout onConfirm={onCheckoutConfirm} onBack={onBack} />
+    (args: any): any => (
+      <animated.div style={{ ...args.style }}>
+        <Checkout onConfirm={handleConfirm} onBack={handleToPrev} />
       </animated.div>
     ),
-    (x: any): any => (
-      <animated.div style={{ ...x.style }}>
+    (args: any): any => (
+      <animated.div style={{ ...args.style }}>
         <OrderSuccess onClose={onClose} />
       </animated.div>
     )
@@ -127,16 +89,12 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
       }}
     >
       <div className={classes.root}>
-        {loading ? (
-          <Fallback />
-        ) : (
-          <div className={classes.box}>
-            {transitions.map(({ item, props, key }) => {
-              const Page = pages[item]
-              return <Page key={key} style={props} />
-            })}
-          </div>
-        )}
+        <div className={classes.box}>
+          {transitions.map(({ item, props, key }) => {
+            const Page = pages[item]
+            return <Page key={key} style={props} />
+          })}
+        </div>
       </div>
     </Drawer>
   )

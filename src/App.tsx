@@ -12,9 +12,9 @@ interface AppProps {
   themeChanger(checked: boolean): void
 }
 
-const TEMP: React.FC = () => {
-  return <div>clear</div>
-}
+const isDev = process.env.NODE_ENV === 'development'
+
+const TEMP: React.FC = () => <div />
 
 const App: React.FC<AppProps> = ({ themeChanger }) => {
   return (
@@ -24,7 +24,7 @@ const App: React.FC<AppProps> = ({ themeChanger }) => {
           <Route exact path={routes.root} component={Home} />
           <Route path={routes.catalog} component={Catalog} />
           <Route exact path={routes.product} component={Product} />
-          <Route exact path={'/clear'} component={TEMP} />
+          {isDev && <Route exact path={'/clear'} component={TEMP} />}
           <Redirect to={routes.root} />
         </Switch>
       </RootLayout>

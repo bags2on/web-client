@@ -1,19 +1,19 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
-import Button from '@material-ui/core/Button'
-import AppButton from '../../../shared/Button/Button'
-import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
-import CartItem, { CartItemType } from '../CartItem/CartItem'
 import Summary from '../Summary/Summary'
-import { ReactComponent as EmptyCartIcon } from '../../../assets/svg/emptycart.svg'
-import { makeStyles } from '@material-ui/core'
+import Button from '../../../shared/Button/Button'
+import Fallback from '../../../shared/Fallback'
+import ResponsePlug from './ResponsePlug'
+import CartItem, { CartItemType } from '../CartItem/CartItem'
+import { useQuery } from '@apollo/client'
+import { GET_CART_ITEMS } from '../../../apollo/cache/queries/cart'
 import { CartMutations } from '../../../apollo/cache/mutations'
+import { GET_PRODUCTS_BY_IDS } from '../../../graphql/product'
+import { productsByID, productsByIDVariables } from '../../../graphql/product/_types_/productsByID'
+import { makeStyles } from '@material-ui/core'
 
 interface CartItemsProps {
-  data: CartItemType[]
-  isEmpty: boolean
   onClose(): void
   onCheckout(): void
 }
@@ -28,12 +28,14 @@ const useStyles = makeStyles((theme) => ({
     listStyle: 'none',
     paddingTop: '20px'
   },
-  clearCartButton: {
+  clearButton: {
     display: 'block',
     fontSize: 16,
     padding: 10,
     fontWeight: 400,
     textTransform: 'none',
+    background: 'none',
+    color: '#343434',
     marginLeft: 'auto',
     [theme.breakpoints.up('md')]: {
       '&:hover': {
@@ -42,86 +44,88 @@ const useStyles = makeStyles((theme) => ({
       }
     }
   },
-  emptyContainer: {
-    height: 'calc(100vh - 142px)',
+  fallbackBox: {
+    width: '100%',
+    height: 340,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'column'
-  },
-  imageBox: {
-    padding: '0 15px',
-    '& > svg': {
-      width: '100%',
-      height: 'auto',
-      fill: 'gray'
-    },
-    '& > p': {
-      fontSize: 20,
-      fontWeight: 500,
-      textAlign: 'center'
-    }
   }
 }))
 
-const CartItems: React.FC<CartItemsProps> = ({ data, isEmpty, onClose, onCheckout }) => {
+const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   const classes = useStyles()
-  const [products, setProducts] = useState(data)
+  const cart = useQuery(GET_CART_ITEMS)
+  const isCartEmpty = cart.data.cartItems.length === 0
+
+  const { data, loading, error } = useQuery<productsByID, productsByIDVariables>(GET_PRODUCTS_BY_IDS, {
+    variables: {
+      input: cart.data.cartItems
+    },
+    fetchPolicy: 'network-only',
+    skip: isCartEmpty,
+    notifyOnNetworkStatusChange: true,
+    onCompleted: (data) => {
+      if (data) {
+        const totalSumm = data.productsByID.reduce((previousValue: number, item: CartItemType) => {
+          return previousValue + item.price * item.amount
+        }, 0)
+
+        CartMutations.updateCartPrice(totalSumm)
+      }
+    }
+  })
+
+  console.log('empty: ', isCartEmpty)
+
+  console.log('data: ', data)
+
+  if (isCartEmpty) {
+    return <ResponsePlug text="Корзина пуста" onClose={onClose} />
+  }
+
+  if (error) {
+    return <ResponsePlug text="Не удалось получить данные" onClose={onClose} />
+  }
 
   const handleClearAllClick = (): void => {
-    setProducts([])
     CartMutations.clearCart()
   }
 
   const handleProductRemove = (id: string): void => {
-    const updated = products.filter((product) => product.id !== id)
-    setProducts(updated)
     CartMutations.removeProduct(id)
   }
 
-  // if (isLoading) {
-  //   return <p>Loading</p> // TODO: better UI
-  // }
-
-  // if (error) {
-  //   return <p>Error</p> // TODO: better UI
-  // }
-
   return (
     <Box>
-      {isEmpty ? (
-        <Box className={classes.emptyContainer}>
-          <div className={classes.imageBox}>
-            <EmptyCartIcon />
-            <Typography component="p">Корзина пуста</Typography>
-          </div>
-          <Box margin="0 auto" width="130px" marginTop="50px">
-            <AppButton fullWidth onClick={onClose} color="secondary" startIcon={<ArrowBackIosIcon />}>
-              Назад
-            </AppButton>
-          </Box>
-        </Box>
-      ) : (
-        <Grid container>
-          <Grid item xs={12}>
-            <Summary onClose={onClose} onCheckout={onCheckout} />
-          </Grid>
-          <Grid item xs={12}>
-            <Button onClick={handleClearAllClick} className={classes.clearCartButton}>
-              Очистить корзину
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container component="ul" className={classes.list}>
-              {products.map((product: CartItemType, index) => (
-                <Grid key={index} component="li" item xs={12}>
-                  <CartItem product={product} onRemove={handleProductRemove} />
-                </Grid>
-              ))}
-            </Grid>
-          </Grid>
+      <Grid container>
+        <Grid item xs={12}>
+          <Summary isLoading={loading} onClose={onClose} onCheckout={onCheckout} />
         </Grid>
-      )}
+        {loading ? (
+          <div className={classes.fallbackBox}>
+            <Fallback />
+          </div>
+        ) : (
+          <>
+            <Grid item xs={12}>
+              <Button onClick={handleClearAllClick} disableShadow className={classes.clearButton}>
+                Очистить корзину
+              </Button>
+            </Grid>
+            <Grid item xs={12}>
+              <Grid container component="ul" className={classes.list}>
+                {data?.productsByID.map((product: CartItemType, index) => (
+                  <Grid key={index} component="li" item xs={12}>
+                    <CartItem product={product} onRemove={handleProductRemove} />
+                  </Grid>
+                ))}
+              </Grid>
+            </Grid>
+          </>
+        )}
+      </Grid>
     </Box>
   )
 }

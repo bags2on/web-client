@@ -110,7 +110,7 @@ const OrderSuccess: React.FC<OrderSuccessProps> = ({ onClose }) => {
         </ul>
         <div className={classes.buttonWrapper}>
           <Button fullWidth color="secondary" onClick={onClose}>
-            Готово
+            ok
           </Button>
         </div>
       </div>
