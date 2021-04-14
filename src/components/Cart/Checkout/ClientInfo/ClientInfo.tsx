@@ -90,7 +90,10 @@ const useStyles = makeStyles(() => ({
     marginTop: 10
   },
   error: {
-    color: '#FF502B'
+    fill: '#FF502B'
+  },
+  done: {
+    fill: 'limegreen'
   }
 }))
 
@@ -136,41 +139,43 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
         </div>
         <ul className={classes.previewList}>
           <li>
-            <Icon component="span" className={classes.listIcon}>
-              <ProfileIcon />
-            </Icon>
-            <Typography
-              component="p"
+            <Icon
+              component="span"
               className={clsx({
+                [classes.listIcon]: true,
                 [classes.error]: !!errors.name && touched.name
               })}
             >
+              <ProfileIcon />
+            </Icon>
+            <Typography component="p">
               {values.name ? values.name : plug(5)}&nbsp;{values.surname ? values.surname : plug(5)}
             </Typography>
           </li>
           <li>
-            <Icon component="span" className={classes.listIcon}>
-              <MailIcon />
-            </Icon>
-            <Typography
+            <Icon
               component="span"
               className={clsx({
-                [classes.error]: !!errors.email && touched.email
+                [classes.listIcon]: true,
+                [classes.error]: !!errors.email && touched.email,
+                [classes.done]: touched.email && !errors.email && values.email // TODO: do on every item
               })}
             >
-              {values.email ? values.email : plug(10)}
-            </Typography>
+              <MailIcon />
+            </Icon>
+            <Typography component="span">{values.email ? values.email : plug(10)}</Typography>
           </li>
           <li>
-            <Icon component="span" className={classes.listIcon}>
-              <PhoneIcon />
-            </Icon>
-            <Typography
+            <Icon
               component="span"
               className={clsx({
+                [classes.listIcon]: true,
                 [classes.error]: !!errors.phone && touched.phone
               })}
             >
+              <PhoneIcon />
+            </Icon>
+            <Typography component="span">
               <NumberFormat
                 value={values.phone}
                 mask="-"
