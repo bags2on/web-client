@@ -12,6 +12,10 @@ interface AppProps {
   themeChanger(checked: boolean): void
 }
 
+const TEMP: React.FC = () => {
+  return <div>clear</div>
+}
+
 const App: React.FC<AppProps> = ({ themeChanger }) => {
   return (
     <Suspense fallback={<Fallback />}>
@@ -20,6 +24,7 @@ const App: React.FC<AppProps> = ({ themeChanger }) => {
           <Route exact path={routes.root} component={Home} />
           <Route path={routes.catalog} component={Catalog} />
           <Route exact path={routes.product} component={Product} />
+          <Route exact path={'/clear'} component={TEMP} />
           <Redirect to={routes.root} />
         </Switch>
       </RootLayout>

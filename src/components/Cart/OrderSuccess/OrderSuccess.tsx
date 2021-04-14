@@ -2,17 +2,17 @@ import React from 'react'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import Typography from '@material-ui/core/Typography'
 import Button from '../../../shared/Button/Button'
+import { Link } from 'react-router-dom'
 import { ReactComponent as LetterCheckImage } from '../../../assets/svg/letter-check.svg'
 import { ReactComponent as MailImage } from '../../../assets/svg/mail.svg'
 import { ReactComponent as PinImage } from '../../../assets/svg/pin.svg'
-import ForestImage from '../../../assets/svg/forest.svg'
 import { makeStyles } from '@material-ui/core'
 
 interface OrderSuccessProps {
   onClose(): void
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     height: '100vh',
     position: 'relative',
@@ -63,24 +63,19 @@ const useStyles = makeStyles(() => ({
   buttonWrapper: {
     width: 130,
     margin: '0 auto',
-    position: 'relative', // Chrome fix
-    zIndex: 10,
     paddingTop: 21
   },
-  forest: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0
+  profileLink: {
+    color: theme.palette.secondary.main,
+    textDecoration: 'none',
+    '&:hover': {
+      textDecoration: 'underline'
+    }
   }
 }))
 
 const OrderSuccess: React.FC<OrderSuccessProps> = ({ onClose }) => {
   const classes = useStyles()
-
-  const handleDoneClick = (): void => {
-    onClose()
-  }
 
   return (
     <div className={classes.root}>
@@ -105,17 +100,20 @@ const OrderSuccess: React.FC<OrderSuccessProps> = ({ onClose }) => {
             <SvgIcon fontSize="large" component="span">
               <PinImage />
             </SvgIcon>
-            {/* TODO: with link */}
-            <Typography component="p">Вы можете отследить его статус в личном кабинете</Typography>
+            <Typography component="p">
+              Вы можете отследить статус покупки в&nbsp;
+              <Link to="#" className={classes.profileLink}>
+                личном кабинете
+              </Link>
+            </Typography>
           </li>
         </ul>
         <div className={classes.buttonWrapper}>
-          <Button fullWidth color="secondary" onClick={handleDoneClick}>
+          <Button fullWidth color="secondary" onClick={onClose}>
             Готово
           </Button>
         </div>
       </div>
-      <img className={classes.forest} src={ForestImage} alt="decore" />
     </div>
   )
 }
