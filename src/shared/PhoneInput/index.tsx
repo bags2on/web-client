@@ -11,12 +11,16 @@ interface PhoneInputProps {
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    padding: 13,
+    fontWeight: 500,
     backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
-    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;',
+    borderRadius: 4,
+    border: '1px solid rgba(0, 0, 0, 0.23)',
+    fontSize: '1rem',
+    boxShadow: 'rgb(0 0 0 / 10%) 0px 4px 6px -1px, rgb(0 0 0 / 6%) 0px 2px 4px -1px',
     color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
-    '& .MuiOutlinedInput-input': {
-      padding: 14,
-      fontWeight: 500
+    '&:hover': {
+      borderColor: '#343434'
     }
   },
   message: {
@@ -53,6 +57,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name }) => {
     <div>
       <NumberFormat
         {...fieldOther}
+        className={classes.root}
         format="+38 (###) ###-####"
         mask="_"
         allowEmptyFormatting
