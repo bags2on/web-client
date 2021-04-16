@@ -11,6 +11,7 @@ interface PhoneInputProps {
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    width: 214,
     padding: 13,
     fontWeight: 500,
     backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
@@ -44,12 +45,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name }) => {
 
   const classes = useStyles()
 
-  //   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-  //     console.log(event.target.value)
-  //   }
-
   const handleValueChange = (values: NumberFormatValues): void => {
-    console.log(values)
     field.onChange(name)(values.value)
   }
 
@@ -61,7 +57,6 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name }) => {
         format="+38 (###) ###-####"
         mask="_"
         allowEmptyFormatting
-        // onChange={handleChange}
         onValueChange={handleValueChange}
       />
       <Fade in={meta.touched && !!meta.error}>

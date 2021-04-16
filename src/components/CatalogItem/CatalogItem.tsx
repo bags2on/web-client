@@ -132,7 +132,7 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, mainTa
     <div className={classes.root}>
       <div className={classes.box}>
         <Link className={classes.linkWrapper} to={generateLink(routes.product, id)}>
-          <ImagePlaceholder previewImage={url} altText={title} />
+          <ImagePlaceholder src={url} altText={title} />
         </Link>
       </div>
       <div className={classes.infoContainer}>

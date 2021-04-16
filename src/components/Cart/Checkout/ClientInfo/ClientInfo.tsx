@@ -122,7 +122,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
     from: { opacity: 0, height: 0 },
     to: {
       opacity: edit ? 1 : 0,
-      height: edit ? 317 : 0
+      height: edit ? 340 : 0
     }
   })
 
@@ -143,7 +143,8 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
               component="span"
               className={clsx({
                 [classes.listIcon]: true,
-                [classes.error]: !!errors.name && touched.name
+                [classes.error]: (!!errors.name || !!errors.surname) && (touched.name || touched.surname),
+                [classes.done]: touched.name && values.surname && values.name
               })}
             >
               <ProfileIcon />
@@ -170,7 +171,8 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
               component="span"
               className={clsx({
                 [classes.listIcon]: true,
-                [classes.error]: !!errors.phone && touched.phone
+                [classes.error]: !!errors.phone && touched.phone,
+                [classes.done]: touched.phone && !errors.phone && values.phone
               })}
             >
               <PhoneIcon />

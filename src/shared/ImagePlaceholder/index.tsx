@@ -5,19 +5,24 @@ import { waveStyle } from '../../utils/styling'
 import { makeStyles } from '@material-ui/core'
 
 export interface ImagePlaceholderProps {
-  previewImage: string
+  plain?: boolean
+  src: string
   altText: string
 }
 
+interface StyleProps {
+  plain: boolean
+}
+
 const useStyles = makeStyles(() => ({
-  root: {},
-  picBox: {
+  root: {
     display: 'block',
     outline: 'none',
     position: 'relative',
-    paddingTop: '100%',
     overflow: 'hidden',
-    transform: 'translatez(0)'
+    transform: 'translatez(0)',
+    paddingTop: (props: StyleProps): string => (props.plain ? '0px' : '100%'),
+    height: (props: StyleProps): string => (props.plain ? '100%' : 'auto')
   },
   productImage: {
     position: 'absolute',
@@ -36,7 +41,9 @@ const useStyles = makeStyles(() => ({
   },
   shine: {
     ...waveStyle,
-    animation: '$shine 1.3s infinite'
+    animation: '$shine 1.3s infinite',
+    borderTopLeftRadius: (props: StyleProps): string => (props.plain ? '0' : '8px'),
+    borderTopRightRadius: (props: StyleProps): string => (props.plain ? '0' : '8px')
   },
   productBox: {
     position: 'absolute',
@@ -59,10 +66,10 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ previewImage, altText }) => {
-  const classes = useStyles()
+const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ plain = false, src, altText }) => {
+  const classes = useStyles({ plain })
 
-  const plug = (
+  const placeholderPlug = (
     <div className={classes.productImage}>
       <div className={classes.shine} />
       <div className={classes.productBox}>
@@ -71,9 +78,13 @@ const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ previewImage, altTe
     </div>
   )
 
+  const plainPlug = <div className={classes.shine} />
+
+  const plug = plain ? plainPlug : placeholderPlug
+
   return (
-    <picture className={classes.picBox}>
-      <ProgressiveImage src={previewImage} placeholder="">
+    <picture className={classes.root}>
+      <ProgressiveImage src={src} placeholder="">
         {(src: string, loading: boolean): JSX.Element => {
           return loading ? plug : <img src={src} alt={altText} className={classes.productImage} />
         }}

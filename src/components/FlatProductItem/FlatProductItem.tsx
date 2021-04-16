@@ -118,7 +118,7 @@ const FlatProductItem: React.FC<FlatProductItemProps> = ({ id, price, title, ima
     <div className={classes.root}>
       <div className={classes.linkWrapper}>
         <Link to={generateLink(routes.product, id)} className={classes.link}>
-          <ImagePlaceholder previewImage={imageURL} altText={title} />
+          <ImagePlaceholder src={imageURL} altText={title} />
         </Link>
       </div>
       <div className={classes.textContainer}>

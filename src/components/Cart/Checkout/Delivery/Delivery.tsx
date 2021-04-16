@@ -2,12 +2,10 @@ import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
 import TextInput from '../../../../shared/TextInput'
+import ImagePlaceholder from '../../../../shared/ImagePlaceholder'
 import novaPoshtaImage from '../../../../assets/svg/nova_poshta.svg'
 import justinImage from '../../../../assets/svg/justin.svg'
 import { makeStyles } from '@material-ui/core'
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface DeliveryProps {}
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -42,15 +40,13 @@ const useStyles = makeStyles(() => ({
   },
   deliveryItem: {
     cursor: 'pointer',
-    padding: 10,
+    height: 83,
     flexBasis: '47%',
     border: '1px solid #eeeeee',
     '&:hover': {
       borderColor: '#b0b0b0'
     }
   },
-  novaIcon: {},
-  justinIcon: {},
   deliveryWrapper: {
     padding: '10px 10px 0 18px'
   },
@@ -64,7 +60,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Delivery: React.FC<DeliveryProps> = () => {
+const Delivery: React.FC = () => {
   const classes = useStyles()
 
   return (
@@ -77,12 +73,10 @@ const Delivery: React.FC<DeliveryProps> = () => {
         </div>
         <ul className={classes.deliveriesList}>
           <li className={classes.deliveryItem}>
-            {/*  className={classes.novaIcon}> */}
-            <img src={novaPoshtaImage} alt="Nova Poshta logo" />
+            <ImagePlaceholder plain src={novaPoshtaImage} altText="Nova Poshta logo" />
           </li>
           <li className={classes.deliveryItem}>
-            {/*  className={classes.justinIcon}> */}
-            <img src={justinImage} alt="Justin logo" />
+            <ImagePlaceholder plain src={justinImage} altText="Justin logo" />
           </li>
         </ul>
         <FormControl className={classes.formField}>
