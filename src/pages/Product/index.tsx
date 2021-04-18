@@ -6,21 +6,11 @@ import ScaleLoader from '../../shared/loaders/ScaleLoader'
 import Preview from './Preview/Preview'
 import Details from './Details'
 import { makeStyles } from '@material-ui/core'
-import { GET_PRODUCT_BY_ID } from '../../graphql/product'
-
-interface Product {
-  id: string
-  title: string
-  price: number
-  tags: string[]
-  images: string[]
-  description: string
-  availability: boolean
-}
-
-interface ProductData {
-  product: Product
-}
+import {
+  GetProductByIdDocument,
+  GetProductByIdQuery,
+  GetProductByIdVariables
+} from '../../graphql/product/_gen_/productByID.query'
 
 interface ProductID {
   id: string
@@ -43,9 +33,9 @@ const useStyles = makeStyles(() => ({
 const ProductDetails: React.FC = () => {
   const { id } = useParams<ProductID>()
 
-  const { loading, data, error } = useQuery(GET_PRODUCT_BY_ID, {
+  const { loading, data, error } = useQuery<GetProductByIdQuery, GetProductByIdVariables>(GetProductByIdDocument, {
     variables: { id },
-    fetchPolicy: 'network-only' // temp props
+    fetchPolicy: 'network-only'
   })
 
   const classes = useStyles()
@@ -66,7 +56,15 @@ const ProductDetails: React.FC = () => {
     )
   }
 
-  const { product }: ProductData = data
+  if (!data?.product) {
+    return (
+      <div className={classes.loaderWapper}>
+        <h1>Access denied</h1>
+      </div>
+    )
+  }
+
+  const { product } = data
 
   console.log(product)
 

@@ -32,6 +32,11 @@ directive @connection(
   filter: [String!]
 ) on FIELD
 
+input CartItem {
+  id: String!
+  amount: Int!
+}
+
 type Mutation {
   createProduct(input: NewProductInput): NewProductResponse
   createOrder(input: OrderInput): OrderResponse
@@ -58,7 +63,7 @@ input OrderInput {
   phone: String!
   cityId: String!
   postOfficeId: String!
-  productsId: [String!]!
+  productsId: [CartItem!]!
 }
 
 type OrderResponse {
@@ -72,8 +77,8 @@ type Product {
   amount: Int!
   availability: Boolean!
   preview: String!
-  images: [String!]
-  tags: [String!]
+  images: [String!]!
+  tags: [String!]!
   mainTag: String!
   description: String!
 }
@@ -81,7 +86,7 @@ type Product {
 type Query {
   products: [Product!]!
   product(id: ID!): Product
-  productsByID(ids: [String!]): [Product!]!
+  productsByID(input: [CartItem!]): [Product!]!
 }
 
 scalar Upload

@@ -9,8 +9,11 @@ import CartItem, { CartItemType } from '../CartItem/CartItem'
 import { useQuery } from '@apollo/client'
 import { GET_CART_ITEMS } from '../../../apollo/cache/queries/cart'
 import { CartMutations } from '../../../apollo/cache/mutations'
-import { GET_PRODUCTS_BY_IDS } from '../../../graphql/product'
-import { productsByID, productsByIDVariables } from '../../../graphql/product/_types_/productsByID'
+import {
+  ProductsByIDsDocument,
+  ProductsByIDsQuery,
+  ProductsByIDsVariables
+} from '../../../graphql/product/_gen_/productsByIds.query'
 import { makeStyles } from '@material-ui/core'
 
 interface CartItemsProps {
@@ -59,7 +62,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   const cart = useQuery(GET_CART_ITEMS)
   const isCartEmpty = cart.data.cartItems.length === 0
 
-  const { data, loading, error } = useQuery<productsByID, productsByIDVariables>(GET_PRODUCTS_BY_IDS, {
+  const { data, loading, error } = useQuery<ProductsByIDsQuery, ProductsByIDsVariables>(ProductsByIDsDocument, {
     variables: {
       input: cart.data.cartItems
     },

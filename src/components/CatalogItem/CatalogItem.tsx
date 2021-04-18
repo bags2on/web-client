@@ -19,7 +19,8 @@ interface CatalogItemProps {
   title: string
   price: number
   discountPrice?: number
-  mainTag: 'new' | 'top' | 'stock' | ''
+  // mainTag: 'new' | 'top' | 'stock' | '' TODO: iplement on the server
+  mainTag: string
 }
 
 const useStyles = makeStyles((theme) => ({

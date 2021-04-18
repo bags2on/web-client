@@ -15,7 +15,8 @@ export const getColorByTagName = (name: string): string => {
   }
 }
 
-export const getColorForMainTagName = (name: 'new' | 'top' | 'stock'): string => {
+// name: 'new' | 'top' | 'stock' TODO: iplement on the server
+export const getColorForMainTagName = (name: string): string => {
   switch (name) {
     case 'new':
       return '#6EBE90'

@@ -8,16 +8,7 @@ import Pagination from '../../components/Pagination/Pagination'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
-import { GET_PRODUCTS } from '../../graphql/product'
-
-interface Product {
-  id: string
-  price: number
-  title: string
-  preview: string
-  images: string
-  mainTag: 'new' | 'top' | 'stock' | ''
-}
+import { AllProductsDocument, AllProductsQuery, AllProductsVariables } from '../../graphql/product/_gen_/products.query'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -47,10 +38,14 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Catalog: React.FC = () => {
-  const { page } = useParams()
+interface ParamTypes {
+  page: string
+}
 
-  const { loading, data, error } = useQuery(GET_PRODUCTS)
+const Catalog: React.FC = () => {
+  const { page } = useParams<ParamTypes>()
+
+  const { loading, data, error } = useQuery<AllProductsQuery, AllProductsVariables>(AllProductsDocument)
 
   const numOfPage = page ? Number(page) : 1
 
@@ -91,7 +86,7 @@ const Catalog: React.FC = () => {
         </Grid>
         <Grid item xs={10}>
           <Grid container component="ul" className={classes.list}>
-            {data.products.map((product: Product) => (
+            {data?.products.map((product) => (
               <Grid key={product.id} component="li" item xs={6} md={4} lg={3} xl={2}>
                 <CatalogItem
                   url={product.preview}
