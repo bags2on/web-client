@@ -5,30 +5,7 @@ import gift from '../../../assets/svg/gift.svg'
 import truck from '../../../assets/svg/truck.svg'
 import money from '../../../assets/svg/money.svg'
 import clock from '../../../assets/svg/clock.svg'
-
-const items = [
-  {
-    heading: 'Акции',
-    description: 'Наличие товаров по акции',
-    icon: gift
-  },
-  {
-    heading: 'Доставка по Украине',
-    description: 'В любой город наложенным платежом',
-    icon: truck
-  },
-
-  {
-    heading: 'Работаем всю неделю',
-    description: 'Пн-Вс, 9:00-20:00',
-    icon: clock
-  },
-  {
-    heading: 'Оплата При Получении',
-    description: 'Курьеру или в отделении Новой Почты',
-    icon: money
-  }
-]
+import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,14 +41,14 @@ const useStyles = makeStyles((theme) => ({
       height: '100%'
     }
   },
-  heading: {
+  title: {
     marginTop: '17px',
     marginBottom: '10px',
     textAlign: 'center',
     fontWeight: 600,
     color: theme.palette.primary.main
   },
-  description: {
+  info: {
     textAlign: 'center',
     margin: 0
   }
@@ -79,6 +56,31 @@ const useStyles = makeStyles((theme) => ({
 
 const Advantages: React.FC = () => {
   const classes = useStyles()
+  const { t } = useTranslation()
+
+  const items = [
+    {
+      title: t('home.advantages.discounts.title'),
+      info: t('home.advantages.discounts.info'),
+      icon: gift
+    },
+    {
+      title: t('home.advantages.delivery.title'),
+      info: t('home.advantages.delivery.info'),
+      icon: truck
+    },
+
+    {
+      title: t('home.advantages.workTime.title'),
+      info: t('home.advantages.workTime.info'),
+      icon: clock
+    },
+    {
+      title: t('home.advantages.payment.title'),
+      info: t('home.advantages.payment.info'),
+      icon: money
+    }
+  ]
 
   return (
     <section className={classes.root}>
@@ -87,14 +89,14 @@ const Advantages: React.FC = () => {
           return (
             <li key={ind}>
               <div className={classes.iconWrap}>
-                <img src={item.icon} alt={item.heading} />
+                <img src={item.icon} alt={item.title} />
               </div>
               <div>
-                <Typography component="h3" className={classes.heading}>
-                  {item.heading}
+                <Typography component="h3" className={classes.title}>
+                  {item.title}
                 </Typography>
-                <Typography component="p" className={classes.description}>
-                  {item.description}
+                <Typography component="p" className={classes.info}>
+                  {item.info}
                 </Typography>
               </div>
             </li>
