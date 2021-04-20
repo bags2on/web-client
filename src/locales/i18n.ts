@@ -11,7 +11,7 @@ i18n
   .use(initReactI18next)
   .init({
     initImmediate: false,
-    fallbackLng: false, // can affect which language will be downloaded first from the server
+    fallbackLng: 'ru', // can affect which language will be downloaded first from the server
     debug: isDebugMode,
     ns: ['translation'],
     defaultNS: 'translation',
@@ -24,7 +24,7 @@ i18n
     },
     backend: {
       allowMultiLoading: false,
-      loadPath: './locales/{{lng}}/{{ns}}.json'
+      loadPath: '/locales/{{lng}}/{{ns}}.json'
     },
     detection: {
       order: ['localStorage'],
