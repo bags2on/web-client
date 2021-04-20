@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
   drawer: {
     width: '100%',
+    height: '100vh',
     overflowX: 'hidden',
     backgroundColor: theme.palette.background.default,
     [theme.breakpoints.up('md')]: {
@@ -29,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
       cursor: 'pointer',
       position: 'absolute',
       width: '100%',
-      // height: '100%',
       willChange: 'transform'
     }
   }
