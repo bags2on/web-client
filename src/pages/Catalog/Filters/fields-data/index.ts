@@ -1,21 +1,19 @@
 import {} from 'react-i18next'
 import i18n from '../../../../locales/i18n'
 
-const gender: {
+interface FilterItem {
   options: Array<{
     label: string
     value: string
+    disabled?: boolean
   }>
-} = {
+}
+
+const gender: FilterItem = {
   options: []
 }
 
-const availability: {
-  options: Array<{
-    label: string
-    value: string
-  }>
-} = {
+const availability: FilterItem = {
   options: []
 }
 
@@ -29,55 +27,50 @@ const radioGroup: {
   options: []
 }
 
-const categories: {
-  options: Array<{
-    label: string
-    value: string
-  }>
-} = {
+const categories: FilterItem = {
   options: []
 }
 
 function fillUpValues(): void {
   gender.options = [
     {
-      label: i18n.t('filters:gender.female'),
+      label: i18n.t('catalog.filters.gender.female'),
       value: 'female'
     },
     {
-      label: i18n.t('filters:gender.male'),
+      label: i18n.t('catalog.filters.gender.male'),
       value: 'male'
     },
     {
-      label: i18n.t('filters:gender.unisex'),
+      label: i18n.t('catalog.filters.gender.unisex'),
       value: 'unisex'
     }
   ]
 
   availability.options = [
     {
-      label: i18n.t('filters:availability.inStock'),
+      label: i18n.t('catalog.filters.availability.inStock'),
       value: 'inStock'
     },
     {
-      label: i18n.t('filters:availability.byOrder'),
+      label: i18n.t('catalog.filters.availability.byOrder'),
       value: 'byOrder'
     }
   ]
 
   radioGroup.options = [
     {
-      label: i18n.t('filters:radioGroup.all'),
+      label: i18n.t('catalog.filters.radioGroup.all'),
       value: 'all',
       disabled: false
     },
     {
-      label: i18n.t('filters:radioGroup.new'),
+      label: i18n.t('catalog.filters.radioGroup.new'),
       value: 'new',
       disabled: false
     },
     {
-      label: i18n.t('filters:radioGroup.discounts'),
+      label: i18n.t('catalog.filters.radioGroup.discounts'),
       value: 'discounts',
       disabled: false
     }
@@ -85,19 +78,19 @@ function fillUpValues(): void {
 
   categories.options = [
     {
-      label: i18n.t('filters:categories.all'),
+      label: i18n.t('categories.all'),
       value: 'all'
     },
     {
-      label: i18n.t('filters:categories.suitcases'),
+      label: i18n.t('categories.suitcases'),
       value: 'suitcases'
     },
     {
-      label: i18n.t('filters:categories.bags'),
+      label: i18n.t('categories.bags'),
       value: 'bags'
     },
     {
-      label: i18n.t('filters:categories.wallets'),
+      label: i18n.t('categories.wallets'),
       value: 'wallets'
     }
   ]

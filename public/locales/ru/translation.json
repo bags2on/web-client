@@ -9,5 +9,30 @@
     "history": "История просмотра",
     "lang": "Язык"
   },
-  "categories": { "all": "Все", "suitcases": "Чемоданы", "bags": "Сумки", "wallets": "Кошельки" }
+  "categories": { "all": "Все", "suitcases": "Чемоданы", "bags": "Сумки", "wallets": "Кошельки" },
+  "catalog": {
+    "filters": {
+      "title": "Параметры",
+      "names": {
+        "type": "Тип",
+        "availability": "Наличие",
+        "price": "Цена",
+        "category": "Категория"
+      },
+      "gender": {
+        "female": "Женский",
+        "male": "Мужской",
+        "unisex": "Унисекс"
+      },
+      "availability": {
+        "inStock": "В наличии",
+        "byOrder": "Под заказ"
+      },
+      "radioGroup": {
+        "all": "Все",
+        "new": "Новинки",
+        "discounts": "Акции"
+      }
+    }
+  }
 }

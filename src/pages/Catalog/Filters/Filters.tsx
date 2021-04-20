@@ -17,7 +17,6 @@ const useStyles = makeStyles(() => ({
 
 const Filters: React.FC = () => {
   const classes = useStyles()
-
   const { t } = useTranslation()
 
   const { gender, availability, radioGroup, categories } = fieldProps
@@ -27,7 +26,7 @@ const Filters: React.FC = () => {
 
   return (
     <aside className={classes.root}>
-      <Typography component="p">{t('filters:title')}</Typography>
+      <Typography component="p">{t('catalog.filters.title')}</Typography>
       <Formik
         onSubmit={handleSubmit}
         initialValues={{
@@ -36,16 +35,25 @@ const Filters: React.FC = () => {
           general: ''
         }}
       >
-        {/* eslint-disable-next-line @typescript-eslint/explicit-function-return-type */}
-        {() => (
+        {(): React.ReactElement => (
           <Form>
-            <CheckBoxGroup title={t('filters:names.type')} name="gender" options={gender.options} />
-            <CheckBoxGroup title={t('filters:names.availability')} name="availability" options={availability.options} />
+            <CheckBoxGroup title={t('catalog.filters.names.type')} name="gender" options={gender.options} />
+            <CheckBoxGroup
+              title={t('catalog.filters.names.availability')}
+              name="availability"
+              options={availability.options}
+            />
             <div className={classes.generalWrapper}>
               <RadioGroup name="general" size="medium" options={radioGroup.options} />
             </div>
-            <PriceRange title={t('filters:names.price')} min={1500} max={4500} step={1} defaultValue={[2250, 3350]} />
-            <CheckBoxGroup title={t('filters:names.category')} name="category" options={categories.options} />
+            <PriceRange
+              title={t('catalog.filters.names.price')}
+              min={1500}
+              max={4500}
+              step={1}
+              defaultValue={[2250, 3350]}
+            />
+            <CheckBoxGroup title={t('catalog.filters.names.category')} name="category" options={categories.options} />
           </Form>
         )}
       </Formik>

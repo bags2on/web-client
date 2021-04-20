@@ -9,5 +9,30 @@
     "history": "Історія перегляду",
     "lang": "Мова"
   },
-  "categories": { "all": "Усе", "suitcases": "Валізи", "bags": "Сумки", "wallets": "Гаманці" }
+  "categories": { "all": "Усе", "suitcases": "Валізи", "bags": "Сумки", "wallets": "Гаманці" },
+  "catalog": {
+    "filters": {
+      "title": "Параметри",
+      "names": {
+        "type": "Тип",
+        "availability": "Наявність",
+        "price": "Ціна",
+        "category": "Категорія"
+      },
+      "gender": {
+        "female": "Жіночий",
+        "male": "Чоловічий",
+        "unisex": "Унісекс"
+      },
+      "availability": {
+        "inStock": "В наявності",
+        "byOrder": "Під замовлення"
+      },
+      "radioGroup": {
+        "all": "Усе",
+        "new": "Новинки",
+        "discounts": "Акції"
+      }
+    }
+  }
 }

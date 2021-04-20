@@ -3,8 +3,7 @@ import LanguageDetector from 'i18next-browser-languagedetector'
 import Backend from 'i18next-http-backend'
 import { initReactI18next } from 'react-i18next'
 
-// const isDebugMode = process.env.NODE_ENV === 'development'
-const isDebugMode = false
+const isDebugMode = process.env.NODE_ENV === 'development'
 
 i18n
   .use(Backend)
@@ -12,30 +11,27 @@ i18n
   .use(initReactI18next)
   .init({
     initImmediate: false,
-    // fallbackLng - can affect which language will be downloaded first from the server
-    fallbackLng: false,
+    fallbackLng: false, // can affect which language will be downloaded first from the server
     debug: isDebugMode,
-
-    // common namespace used around the full app
-    ns: ['filters'],
+    ns: ['translation'],
     defaultNS: 'translation',
     interpolation: {
-      escapeValue: false,
-      formatSeparator: ','
+      escapeValue: false
     },
     react: {
       wait: true,
       useSuspense: true
     },
     backend: {
-      //   allowMultiLoading: false,
+      allowMultiLoading: false,
       loadPath: './locales/{{lng}}/{{ns}}.json'
     },
     detection: {
       order: ['localStorage'],
-      caches: ['localStorage', 'cookie'],
-      cookieMinutes: 80
+      caches: ['localStorage']
     }
   })
+
+i18n.languages = ['ru', 'ua']
 
 export default i18n
