@@ -63,7 +63,7 @@ input OrderInput {
   phone: String!
   cityId: String!
   postOfficeId: String!
-  productsId: [CartItem!]!
+  cartItems: [CartItem!]!
 }
 
 type OrderResponse {

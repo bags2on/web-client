@@ -53,7 +53,7 @@ export type OrderInput = {
   phone: Scalars['String']
   cityId: Scalars['String']
   postOfficeId: Scalars['String']
-  productsId: Array<CartItem>
+  cartItems: Array<CartItem>
 }
 
 export type OrderResponse = {
