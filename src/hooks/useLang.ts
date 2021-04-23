@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 export const useLang = (): [string, (lang: string) => void] => {
   const { i18n } = useTranslation()
 
-  const [lang, setLang] = useState<string>('') // TODO: probably without it?
+  const [lang, setLang] = useState<string>('')
 
   const langHandler = (lang: string): void => {
     i18n.changeLanguage(lang)

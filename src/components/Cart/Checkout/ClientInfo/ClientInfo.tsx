@@ -159,7 +159,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
               className={clsx({
                 [classes.listIcon]: true,
                 [classes.error]: !!errors.email && touched.email,
-                [classes.done]: touched.email && !errors.email && values.email // TODO: do on every item
+                [classes.done]: touched.email && !errors.email && values.email
               })}
             >
               <MailIcon />
