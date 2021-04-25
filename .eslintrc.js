@@ -1,5 +1,5 @@
 module.exports = {
-  parser: '@typescript-eslint/parser', // Specifies the ESLint parser
+  parser: '@typescript-eslint/parser',
   extends: [
     'plugin:react/recommended', // Uses the recommended rules from @eslint-plugin-react
     'plugin:@typescript-eslint/recommended', // Uses the recommended rules from the @typescript-eslint/eslint-plugin
@@ -11,7 +11,15 @@ module.exports = {
     sourceType: 'module' // Allows for the use of imports
   },
   rules: {
-    'react/prop-types': 0
+    'react/prop-types': 0,
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        varsIgnorePattern: '^_',
+        argsIgnorePattern: '^_',
+        ignoreRestSiblings: true
+      }
+    ]
   },
   settings: {
     react: {

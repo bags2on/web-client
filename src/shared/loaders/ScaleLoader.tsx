@@ -7,7 +7,7 @@ interface StyleProps {
   dark?: boolean
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     '& div:nth-child(1)': {
       animation: '$scale-loader 1s -.4s infinite cubic-bezier(.2, .68, .18, 1.08)'

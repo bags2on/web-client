@@ -34,6 +34,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
+// eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface FeaturesProps {}
 
 const Features: React.FC<FeaturesProps> = () => {
@@ -41,7 +42,10 @@ const Features: React.FC<FeaturesProps> = () => {
 
   const [expanded, setExpanded] = useState<string | false>('panel1')
 
-  const handleChange = (panel: string) => (event: React.ChangeEvent<{}>, newExpanded: boolean): void => {
+  const handleChange = (panel: string) => (
+    _event: React.ChangeEvent<Record<string, never>>,
+    newExpanded: boolean
+  ): void => {
     setExpanded(newExpanded ? panel : false)
   }
 

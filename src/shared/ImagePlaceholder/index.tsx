@@ -1,7 +1,6 @@
 import React from 'react'
 import { ReactComponent as Placeholder } from '../../assets/svg/image_placeholder.svg'
 import ProgressiveImage from 'react-progressive-graceful-image'
-import { waveStyle } from '../../utils/styling'
 import { makeStyles } from '@material-ui/core'
 
 export interface ImagePlaceholderProps {
@@ -40,7 +39,12 @@ const useStyles = makeStyles(() => ({
     borderTopRightRadius: '8px'
   },
   shine: {
-    ...waveStyle,
+    width: '100%',
+    height: '100%',
+    transition: '0.3s',
+    background: 'linear-gradient(-90deg, #efefef 0%, #fcfcfc 50%, #efefef 100%)',
+    backgroundSize: '400% 400%',
+    opacity: 0.8,
     animation: '$shine 1.3s infinite',
     borderTopLeftRadius: (props: StyleProps): string => (props.plain ? '0' : '8px'),
     borderTopRightRadius: (props: StyleProps): string => (props.plain ? '0' : '8px')

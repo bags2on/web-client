@@ -42,7 +42,7 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, name, options }) =
   return (
     <FieldArray
       name={name}
-      render={(arrayHelpers) => (
+      render={(_arrayHelpers) => (
         <div>
           <ListItem button onClick={handleCollapse} className={classes.title}>
             <ListItemText primary={title} />

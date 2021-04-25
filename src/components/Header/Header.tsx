@@ -173,6 +173,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
     onCartOpen()
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   const handleFavoritesClick = (): void => {}
 
   return (

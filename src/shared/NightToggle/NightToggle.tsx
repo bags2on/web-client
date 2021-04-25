@@ -23,7 +23,7 @@ const NightToggle: React.FC<NightToggleProps> = ({ themeChanger }) => {
           autoComplete="off"
           onChange={handleSwitch}
           checked={defaultTheme === 'dark'}
-          style={hiddenStyles}
+          style={hiddenStyles as React.CSSProperties}
         />
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 83 70">
           <defs>
