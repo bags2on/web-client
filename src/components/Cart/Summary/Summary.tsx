@@ -43,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
   },
   skeletonCheckoutBtn: {
     position: 'absolute',
-    top: 6
+    top: 13
   },
   totalTitle: {
     fontSize: 18,
@@ -69,9 +69,15 @@ const Summary: React.FC<SummaryProps> = ({ isLoading, onClose, onCheckout }) => 
         <IconButton onClick={onClose} className={clsx(classes.closeCartButton, classes.skeletonCheckoutBtn)}>
           <CloseIcon />
         </IconButton>
-        <ContentLoader backgroundColor="#ffbd61" foregroundColor="#ffd9a3" viewBox="0 0 380 97">
-          <rect x="85" y="3" rx="4" ry="4" width="157" height="23" />
-          <rect x="0" y="50" rx="8" ry="8" width="100%" height="44" />
+        <ContentLoader
+          backgroundColor="#ffbd61"
+          foregroundColor="#ffd9a3"
+          width="100%"
+          height="102"
+          viewBox="0 0 375 102"
+        >
+          <rect x="80" y="12" rx="4" ry="4" width="142" height="22" />
+          <rect x="0" y="57" rx="8" ry="8" width="100%" height="44" />
         </ContentLoader>
       </div>
     )

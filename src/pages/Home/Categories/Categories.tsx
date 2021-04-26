@@ -1,5 +1,5 @@
 import React from 'react'
-import Icon from '@material-ui/core/SvgIcon'
+import SvgIcon from '@material-ui/core/SvgIcon'
 import Grid from '@material-ui/core/Grid'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
@@ -76,7 +76,7 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'none',
     color: 'inherit'
   },
-  icon: {
+  listItem: {
     width: '100%',
     margin: '0 auto',
     borderRadius: 8,
@@ -98,6 +98,9 @@ const useStyles = makeStyles((theme) => ({
     color: 'inherit',
     minWidth: 'auto',
     marginRight: 8
+  },
+  icon: {
+    fill: theme.palette.type === 'light' ? '#000' : theme.palette.secondary.main
   },
   itemText: {
     margin: 0,
@@ -130,11 +133,11 @@ const Categories: React.FC = () => {
               {category.group.map((group, ind) => (
                 <Grid key={ind} item xs={12} lg={6} className={classes.item}>
                   <Link className={classes.link} to={group.to}>
-                    <ListItem component="div" className={classes.icon}>
+                    <ListItem component="div" className={classes.listItem}>
                       <ListItemIcon className={classes.itemIcon}>
-                        <Icon>
+                        <SvgIcon component="span" fontSize="large" className={classes.icon}>
                           <group.icon />
-                        </Icon>
+                        </SvgIcon>
                       </ListItemIcon>
                       <ListItemText className={classes.itemText} primary={t(`categories.${group.i18n}`)} />
                     </ListItem>
