@@ -59,7 +59,6 @@ const useStyles = makeStyles(() => ({
   },
   title: {
     maxWidth: 200,
-    paddingRight: 16,
     fontSize: 22,
     fontWeight: 500,
     paddingBottom: 3,

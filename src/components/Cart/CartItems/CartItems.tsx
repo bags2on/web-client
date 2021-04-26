@@ -27,9 +27,8 @@ const useStyles = makeStyles((theme) => ({
   },
   list: {
     margin: 0,
-    padding: 0,
-    listStyle: 'none',
-    paddingTop: '20px'
+    padding: '20px 10px 0 10px',
+    listStyle: 'none'
   },
   clearButton: {
     display: 'block',
@@ -71,16 +70,15 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
     notifyOnNetworkStatusChange: true,
     onCompleted: (data) => {
       if (data) {
-        const totalSumm = data.productsByID.reduce((previousValue: number, item: CartItemType) => {
-          return previousValue + item.price * item.amount
-        }, 0)
+        const totalSumm = data.productsByID.reduce(
+          (previousValue: number, item: CartItemType) => previousValue + item.price * item.amount,
+          0
+        )
 
         CartMutations.updateCartPrice(totalSumm)
       }
     }
   })
-
-  console.log('empty: ', isCartEmpty)
 
   console.log('data: ', data)
 
@@ -93,10 +91,16 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   }
 
   const handleClearAllClick = (): void => {
+    /*  Attention useEffect hook will invoke error: «Rendered fewer hooks than expected»
+        because render and re-render depends on AC cart state and useSpring()...
+    */
     CartMutations.clearCart()
   }
 
   const handleProductRemove = (id: string): void => {
+    /*  Attention useEffect hook will invoke error: «Rendered fewer hooks than expected»
+        because render and re-render depends on AC cart state and useSpring()...
+    */
     CartMutations.removeProduct(id)
   }
 
