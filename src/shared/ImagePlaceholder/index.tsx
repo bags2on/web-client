@@ -4,9 +4,9 @@ import ProgressiveImage from 'react-progressive-graceful-image'
 import { makeStyles } from '@material-ui/core'
 
 export interface ImagePlaceholderProps {
-  plain?: boolean
   src: string
   altText: string
+  plain?: boolean
 }
 
 interface StyleProps {
@@ -43,7 +43,7 @@ const useStyles = makeStyles(() => ({
     height: '100%',
     transition: '0.3s',
     background: 'linear-gradient(-90deg, #efefef 0%, #fcfcfc 50%, #efefef 100%)',
-    backgroundSize: '400% 400%',
+    backgroundSize: '300% 300%',
     opacity: 0.8,
     animation: '$shine 1.3s infinite',
     borderTopLeftRadius: (props: StyleProps): string => (props.plain ? '0' : '8px'),
@@ -70,7 +70,7 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ plain = false, src, altText }) => {
+const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText, plain = false }) => {
   const classes = useStyles({ plain })
 
   const placeholderPlug = (
@@ -89,8 +89,8 @@ const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ plain = false, src,
   return (
     <picture className={classes.root}>
       <ProgressiveImage src={src} placeholder="">
-        {(src: string, loading: boolean): JSX.Element => {
-          return loading ? plug : <img src={src} alt={altText} className={classes.productImage} />
+        {(src: string, _loading: boolean): JSX.Element => {
+          return true ? plug : <img src={src} alt={altText} className={classes.productImage} />
         }}
       </ProgressiveImage>
     </picture>

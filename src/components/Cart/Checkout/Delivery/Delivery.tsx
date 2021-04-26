@@ -42,6 +42,7 @@ const useStyles = makeStyles(() => ({
     cursor: 'pointer',
     height: 83,
     flexBasis: '47%',
+    borderRadius: 5,
     border: '1px solid #eeeeee',
     '&:hover': {
       borderColor: '#b0b0b0'

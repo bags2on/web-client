@@ -56,6 +56,9 @@ const useStyles = makeStyles(() => ({
       alignItems: 'center'
     }
   },
+  fieldText: {
+    fontSize: 17
+  },
   listIcon: {
     fontSize: 20,
     lineHeight: '23px',
@@ -134,7 +137,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
             Покупатель
           </Typography>
           <IconButton component="button" onClick={onEdit} className={classes.editButton}>
-            {!edit ? <CheckIcon /> : <EditIcon />}
+            {edit ? <CheckIcon /> : <EditIcon />}
           </IconButton>
         </div>
         <ul className={classes.previewList}>
@@ -149,7 +152,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
             >
               <ProfileIcon />
             </Icon>
-            <Typography component="p">
+            <Typography component="span" className={classes.fieldText}>
               {values.name ? values.name : plug(5)}&nbsp;{values.surname ? values.surname : plug(5)}
             </Typography>
           </li>
@@ -164,7 +167,9 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
             >
               <MailIcon />
             </Icon>
-            <Typography component="span">{values.email ? values.email : plug(10)}</Typography>
+            <Typography component="span" className={classes.fieldText}>
+              {values.email ? values.email : plug(10)}
+            </Typography>
           </li>
           <li>
             <Icon
@@ -177,8 +182,11 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
             >
               <PhoneIcon />
             </Icon>
-            <Typography component="span">
+            <Typography component="span" className={classes.fieldText}>
               <NumberFormat
+                className={clsx({
+                  [classes.plug]: !values.phone
+                })}
                 value={values.phone}
                 mask="-"
                 displayType={'text'}
