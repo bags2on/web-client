@@ -10,9 +10,9 @@ import routes from '../../utils/routes'
 // import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
 // import logo from '../../assets/svg/logo.svg'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
-import { ReactComponent as CartIcon } from '../../assets/svg/new_cart.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/svg/profile.svg'
+import { ReactComponent as CartIcon } from '../../assets/svg/new_cart.svg'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
@@ -126,8 +126,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   profileIcon: {
-    fontSize: 22,
-    marginTop: -4,
+    fontSize: 24,
     fill: theme.palette.type === 'light' ? '#303030' : '#ff9900',
 
     '& svg:hover': {
@@ -135,14 +134,13 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   cartIcon: {
-    fontSize: 26,
+    fontSize: 27,
     fill: theme.palette.type === 'light' ? '#303030' : '#ff9900',
-
     [theme.breakpoints.up('md')]: {
-      fontSize: 22,
-      marginTop: -4,
+      fontSize: 24,
       '& svg:hover': {
-        fill: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc'
+        fill: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc',
+        stroke: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc'
       }
     }
   },
