@@ -7,6 +7,11 @@ import { makeStyles } from '@material-ui/core/styles'
 
 interface PhoneInputProps {
   name: string
+  error?: boolean
+}
+
+interface StyleProps {
+  error: boolean
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -16,12 +21,17 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
     borderRadius: 4,
-    border: '1px solid rgba(0, 0, 0, 0.23)',
+    border: '1px solid',
     fontSize: '1rem',
+    borderColor: (props: StyleProps) => (props.error ? 'red' : 'rgba(0, 0, 0, 0.23)'),
+    outline: 'none',
     boxShadow: 'rgb(0 0 0 / 10%) 0px 4px 6px -1px, rgb(0 0 0 / 6%) 0px 2px 4px -1px',
     color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
     '&:hover': {
       borderColor: '#343434'
+    },
+    '&:focus': {
+      border: '2px solid #343434'
     }
   },
   message: {
@@ -37,13 +47,13 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const PhoneInput: React.FC<PhoneInputProps> = ({ name }) => {
+const PhoneInput: React.FC<PhoneInputProps> = ({ name, error = false }) => {
+  const classes = useStyles({ error })
+
   const [field, meta] = useField({ name })
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { onChange, ...fieldOther } = field
-
-  const classes = useStyles()
 
   const handleValueChange = (values: NumberFormatValues): void => {
     field.onChange(name)(values.value)

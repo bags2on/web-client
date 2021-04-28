@@ -105,14 +105,21 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
 
   const ref = useRef(null)
 
-  const { values, errors, touched, setFieldValue } = useFormikContext<CheckoutOrderType>()
+  const { values, errors, touched, setFieldValue, setFieldError } = useFormikContext<CheckoutOrderType>()
 
   console.log(errors)
 
   const handleClearClick = (): void => {
+    setFieldError('surname', '')
     setFieldValue('surname', '')
+
+    setFieldError('name', '')
     setFieldValue('name', '')
+
+    setFieldError('email', '')
     setFieldValue('email', '')
+
+    setFieldError('phone', '')
     setFieldValue('phone', '')
   }
 
@@ -147,7 +154,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
               className={clsx({
                 [classes.listIcon]: true,
                 [classes.error]: (!!errors.name || !!errors.surname) && (touched.name || touched.surname),
-                [classes.done]: touched.name && values.surname && values.name
+                [classes.done]: values.surname && values.name
               })}
             >
               <ProfileIcon />
@@ -162,7 +169,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
               className={clsx({
                 [classes.listIcon]: true,
                 [classes.error]: !!errors.email && touched.email,
-                [classes.done]: touched.email && !errors.email && values.email
+                [classes.done]: !errors.email && values.email
               })}
             >
               <MailIcon />
@@ -177,7 +184,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
               className={clsx({
                 [classes.listIcon]: true,
                 [classes.error]: !!errors.phone && touched.phone,
-                [classes.done]: touched.phone && !errors.phone && values.phone
+                [classes.done]: !errors.phone && values.phone
               })}
             >
               <PhoneIcon />
@@ -212,7 +219,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
             </FormControl>
             <FormControl className={classes.formField}>
               <Typography component="p">Телефон</Typography>
-              <PhoneInput name="phone" />
+              <PhoneInput name="phone" error={!!errors.phone} />
             </FormControl>
             <Button onClick={handleClearClick} disableShadow className={classes.clear}>
               очистить
