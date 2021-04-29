@@ -27,6 +27,7 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children 
       grabCursor
       speed={speed}
       slidesPerView={1}
+      runCallbacksOnInit
       className={classes.root}
       spaceBetween={15}
       autoplay={{
@@ -46,6 +47,16 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children 
         1000: {
           slidesPerView: 5
         }
+      }}
+      onSwiper={(swiper) => {
+        const el = swiper.$el[0]
+        el.addEventListener('mouseenter', () => {
+          swiper.autoplay.stop()
+        })
+
+        el.addEventListener('mouseleave', () => {
+          swiper.autoplay.start()
+        })
       }}
     >
       {React.Children.map(children, (child, index) => (
