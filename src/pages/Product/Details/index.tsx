@@ -156,7 +156,7 @@ const Details: React.FC<SummaryProps> = ({ id, title, price, tags, description, 
           <SvgIcon className={classes.stockIcon}>{inStock ? <CheckIcon /> : <ErrorOutlineIcon />}</SvgIcon>
           <Typography component="span">{inStock ? 'В наличии' : 'Нет в наличии'}</Typography>
         </div>
-        <Rating starsAmount={5} />
+        <Rating votesAmount={0} />
       </div>
       <div
         className={clsx({
