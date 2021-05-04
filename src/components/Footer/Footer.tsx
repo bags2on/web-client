@@ -142,7 +142,7 @@ const Footer: React.FC<FooterProps> = ({ themeChanger }) => {
         </div>
       </footer>
       <div className={classes.subFooter}>
-        <Typography component="span">Bags2on © 2021</Typography>
+        <Typography component="span">{process.env.REACT_APP_NAME} © 2021</Typography>
       </div>
     </div>
   )

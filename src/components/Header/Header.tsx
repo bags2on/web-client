@@ -7,8 +7,6 @@ import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import Search from '../../components/Search/Search'
 import routes from '../../utils/routes'
-// import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
-// import logo from '../../assets/svg/logo.svg'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/svg/profile.svg'
@@ -185,9 +183,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
           <MenuIcon />
         </Icon>
       </IconButton>
-      {/* <Link to="/" className={classes.logo}>
-        <img src={logo} alt="Bags2on" />
-      </Link> */}
+
       <nav>
         <List className={classes.navList}>
           <ListItem component="li">
