@@ -32,6 +32,8 @@ interface RatingProps {
   starRating?: number
 }
 
+// TODO: Rating with count
+
 const Rating: React.FC<RatingProps> = ({ starsAmount, starRating = 0 }) => {
   const [rating, setRating] = useState<number>(starRating)
   const [interactValue, setInteractValue] = useState<number>(0)

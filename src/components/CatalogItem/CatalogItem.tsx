@@ -45,8 +45,8 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, mainTa
               [classes.price_discount]: Boolean(discountPrice)
             })}
           >
-            {!!discountPrice && <p className={classes.discount}>{formatPrice(discountPrice)}&nbsp;₴</p>}
-            <span>{formatPrice(price)}</span>
+            {!!discountPrice && <p className={classes.discount}>{formatPrice(price)}&nbsp;₴</p>}
+            <span>{formatPrice(discountPrice ? discountPrice : price)}&nbsp;₴</span>
           </div>
           <div className={classes.likeButton}>
             <IconButton onClick={handleLikeClick}>

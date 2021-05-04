@@ -1,59 +1,48 @@
 import React from 'react'
 import clsx from 'clsx'
+import Icon from '@material-ui/core/Icon'
 import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
+import IconButton from '@material-ui/core/IconButton'
 import SvgIcon from '@material-ui/core/SvgIcon'
-import { makeStyles } from '@material-ui/core'
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
+import Button from '../../../shared/Button/Button'
 import Tags from './Tags'
 import Rating from '../../../shared/Rating'
 import Features from './Features/Features'
-import ProductBuy from './ProductBuy/ProductBuy'
+import { formatPrice } from '../../../utils/helpers'
+import { CartMutations } from '../../../apollo/cache/mutations'
 import { ReactComponent as CheckIcon } from '../../../assets/svg/check_mark.svg'
+import { ReactComponent as HeartIcon } from '../../../assets/svg/heart.svg'
+import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     padding: '10px 10px 15px 10px'
   },
   title: {
+    fontSize: 29,
+    fontWeight: 500,
+    margin: 0,
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis'
   },
-  productTitle: {
-    fontSize: 25,
+  code: {
+    color: '#939191',
+    margin: 0,
     fontWeight: 500,
-    lineHeight: 1.6
+    fontSize: 15,
+    marginBottom: 17
   },
-  subTitle: {
-    fontSize: 16,
-    fontWeight: 500,
-    color: '#6A6A6A',
-    paddingLeft: 1
+  box: {
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    marginBottom: 25
   },
-  price: {
-    textAlign: 'end',
-    fontSize: 25,
-    fontWeight: 500,
-    '& > span': {
-      fontSize: 20
-    }
-  },
-  description: {
-    marginTop: '20px',
-    fontWeight: 500,
-    '& .title': {
-      paddingBottom: 6,
-      fontWeight: 600
-    }
-  },
-
-  subSection: {
-    marginTop: 20
-  },
-
   stock: {
     display: 'inline-flex',
+    marginRight: 80,
     borderRadius: 10,
     width: 'auto',
     padding: '7px 8px',
@@ -64,20 +53,76 @@ const useStyles = makeStyles(() => ({
       fontWeight: 600
     }
   },
+  stockIcon: {
+    fill: '#fff',
+    fontSize: 20,
+    marginRight: 3
+  },
   inStock: {
     background: '#32CD32'
   },
   outOfStock: {
     background: '#c0c0c0'
   },
-  stockIcon: {
-    fill: '#fff',
-    fontSize: 20,
-    marginRight: 3
+  price: {
+    margin: 0,
+    fontSize: 29,
+    lineHeight: '29px',
+    fontWeight: 500
   },
-  ratingBox: {
+  priceDiscount: {
+    color: '#f44336'
+  },
+  discount: {
+    color: '#999999',
+    margin: 0,
+    fontSize: 17,
+    fontWeight: 500,
+    textDecoration: 'line-through'
+  },
+  description: {
+    marginTop: '20px',
+    fontWeight: 500,
+    '& > p': {
+      paddingBottom: 6,
+      fontWeight: 600
+    }
+  },
+  buttonsWrapper: {
     display: 'flex',
-    alignItems: 'center'
+    justifyContent: 'center',
+    marginTop: 30,
+    [theme.breakpoints.up('md')]: {
+      justifyContent: 'flex-start'
+    }
+  },
+  cartButton: {
+    maxWidth: 300,
+    background: 'none',
+    border: '2px solid',
+    borderColor: theme.palette.type === 'light' ? '#343434' : '#32CD32',
+    fontWeight: 600,
+    color: theme.palette.type === 'light' ? '#343434' : '#fff',
+    transition: 'all .1s',
+    '&:hover': {
+      background: 'none',
+      color: theme.palette.secondary.main,
+      borderColor: theme.palette.secondary.main
+    }
+  },
+  likeButton: {
+    border: '2px solid',
+    borderColor: theme.palette.type === 'light' ? '#343434' : '#fff',
+    marginLeft: 15,
+    '&:hover': {
+      background: 'none',
+      borderColor: '#f44336'
+    }
+  },
+  heartIcon: {
+    fontSize: 24,
+    fill: 'none',
+    stroke: '#f44336'
   }
 }))
 
@@ -87,53 +132,55 @@ interface SummaryProps {
   price: number
   tags?: string[]
   description?: string
+  discountPrice?: number
   inStock: boolean
 }
 
-const Details: React.FC<SummaryProps> = ({ id, title, price, tags, description, inStock }) => {
+const Details: React.FC<SummaryProps> = ({ id, title, price, tags, description, inStock, discountPrice }) => {
   const classes = useStyles()
+
+  const handleAddToCart = (): void => {
+    CartMutations.addProduct({
+      id,
+      amount: 1
+    })
+  }
 
   return (
     <section className={classes.root}>
       {tags && <Tags tags={tags} />}
-      <Grid container>
-        <Grid item xs={8}>
-          <Typography component="h1" className={clsx(classes.productTitle, classes.title)}>
-            {title}
-          </Typography>
-          <Typography component="h1" className={clsx(classes.subTitle, classes.title)}>
-            Yellow Bag Women 2020
-          </Typography>
-        </Grid>
-        <Grid item xs={4}>
-          <Typography component="p" className={classes.price}>
-            {price}
-            <Typography component="span">&nbsp;₴</Typography>
-          </Typography>
-        </Grid>
-        <Grid item xs={12} className={classes.subSection}>
-          <Grid container>
-            <Grid item xs={6}>
-              <div className={clsx(classes.stock, inStock ? classes.inStock : classes.outOfStock)}>
-                <SvgIcon className={classes.stockIcon}>{inStock ? <CheckIcon /> : <ErrorOutlineIcon />}</SvgIcon>
-                {/* 'in stock' : 'out of stock' */}
-                <Typography component="span">{inStock ? 'В наличии' : 'Нет в наличии'}</Typography>
-              </div>
-            </Grid>
-            <Grid item xs={6} className={classes.ratingBox}>
-              <Rating starsAmount={5} /> (10)
-            </Grid>
-          </Grid>
-        </Grid>
-      </Grid>
+      <h1 className={classes.title}>{title}</h1>
+      <p className={classes.code}>код:&nbsp;{id}</p>
+      <div className={classes.box}>
+        <div className={clsx(classes.stock, inStock ? classes.inStock : classes.outOfStock)}>
+          <SvgIcon className={classes.stockIcon}>{inStock ? <CheckIcon /> : <ErrorOutlineIcon />}</SvgIcon>
+          <Typography component="span">{inStock ? 'В наличии' : 'Нет в наличии'}</Typography>
+        </div>
+        <Rating starsAmount={5} />
+      </div>
+      <div
+        className={clsx({
+          [classes.priceDiscount]: Boolean(discountPrice)
+        })}
+      >
+        {!!discountPrice && <span className={classes.discount}>{formatPrice(price)}&nbsp;₴</span>}
+        <p className={classes.price}>{formatPrice(discountPrice ? discountPrice : price)}&nbsp;₴</p>
+      </div>
       <div className={classes.description}>
-        <Typography component="p" className="title">
-          Описание:
-        </Typography>
+        <Typography component="p">Описание:</Typography>
         <Typography component="span">{description}</Typography>
       </div>
-      <ProductBuy id={id} />
-      <Features />
+      <div className={classes.buttonsWrapper}>
+        <Button onClick={handleAddToCart} className={classes.cartButton} fullWidth disableShadow>
+          Добавить в корзину
+        </Button>
+        <IconButton className={classes.likeButton}>
+          <Icon className={classes.heartIcon}>
+            <HeartIcon />
+          </Icon>
+        </IconButton>
+      </div>
+      <Features color="желтый" material="кожа" type="женский" category="сумки" />
     </section>
   )
 }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import Grid from '@material-ui/core/Grid'
@@ -16,11 +16,14 @@ interface ProductID {
   id: string
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 20,
     maxWidth: 1200,
-    margin: '0 auto'
+    margin: '0 auto',
+    [theme.breakpoints.up('laptop')]: {
+      height: 'calc(var(--vh, 1vh) * 100 - 78px)'
+    }
   },
   loaderWapper: {
     height: '100vh',
@@ -31,14 +34,19 @@ const useStyles = makeStyles(() => ({
 }))
 
 const ProductDetails: React.FC = () => {
+  const classes = useStyles()
   const { id } = useParams<ProductID>()
+
+  useEffect(() => {
+    window.scrollTo({
+      top: 0
+    })
+  }, [])
 
   const { loading, data, error } = useQuery<GetProductByIdQuery, GetProductByIdVariables>(GetProductByIdDocument, {
     variables: { id },
     fetchPolicy: 'network-only'
   })
-
-  const classes = useStyles()
 
   if (loading) {
     return (
@@ -71,10 +79,10 @@ const ProductDetails: React.FC = () => {
   return (
     <div className={classes.root}>
       <Grid container>
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} md={6}>
           <Preview images={product.images} />
         </Grid>
-        <Grid item xs={12} lg={6}>
+        <Grid item xs={12} md={6}>
           <Details
             id={product.id}
             title={product.title}

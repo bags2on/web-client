@@ -1,91 +1,72 @@
-import React, { useState } from 'react'
-import Typography from '@material-ui/core/Typography'
+import React from 'react'
 import { makeStyles } from '@material-ui/core'
-import Table from '@material-ui/core/Table'
-import TableBody from '@material-ui/core/TableBody'
-import TableCell from '@material-ui/core/TableCell'
-import TableContainer from '@material-ui/core/TableContainer'
-import TableRow from '@material-ui/core/TableRow'
-import Accordion from '@material-ui/core/Accordion'
-import AccordionSummary from '@material-ui/core/AccordionSummary'
-import AccordionDetails from '@material-ui/core/AccordionDetails'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    padding: '10px 10px 15px 10px'
+    marginTop: 30
   },
-  description: {
-    marginTop: '20px',
-    fontWeight: 500,
-    '& .title': {
-      paddingBottom: 6,
-      fontWeight: 600
-    }
+  list: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    margin: 0,
+    padding: '15px 20px 5px 20px',
+    listStyle: 'none',
+    borderRadius: 10,
+    boxShadow: '0px 1px 9px -1px rgba(0, 0, 0, 0.1)',
+    fontWeight: 500
   },
-  title: {
-    paddingBottom: 6,
-    fontWeight: 600
-  },
-  tbody: {
-    '& .table-row-name': {
-      fontWeight: 500
+  listItem: {
+    flexBasis: '50%',
+    fontSize: 17,
+    marginBottom: 17,
+    textAlign: 'center',
+    '& p': {
+      color: '#939191',
+      margin: 0,
+      userSelect: 'none'
+    },
+    '& span': {
+      fontSize: 15
+    },
+    [theme.breakpoints.up('md')]: {
+      textAlign: 'start'
+    },
+    [theme.breakpoints.up('laptop')]: {
+      flexBasis: '25%'
     }
   }
 }))
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface FeaturesProps {}
+interface FeaturesProps {
+  color: string
+  material: string
+  type: string
+  category: string
+}
 
-const Features: React.FC<FeaturesProps> = () => {
+const Features: React.FC<FeaturesProps> = ({ color, material, type, category }) => {
   const classes = useStyles()
 
-  const [expanded, setExpanded] = useState<string | false>('panel1')
-
-  const handleChange = (panel: string) => (
-    _event: React.ChangeEvent<Record<string, never>>,
-    newExpanded: boolean
-  ): void => {
-    setExpanded(newExpanded ? panel : false)
-  }
-
   return (
-    <div className={classes.description}>
-      <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-        <AccordionSummary expandIcon={<ExpandMoreIcon />}>
-          <Typography component="p" className={classes.title}>
-            O товаре:
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <TableContainer>
-            <Table>
-              <TableBody className={classes.tbody}>
-                <TableRow>
-                  <TableCell className="table-row-name">Цвет:</TableCell>
-                  <TableCell>yellow</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="table-row-name">Категория:</TableCell>
-                  <TableCell>suitcases</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="table-row-name">Тип:</TableCell>
-                  <TableCell>unisex</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="table-row-name">Материал:</TableCell>
-                  <TableCell>nylon</TableCell>
-                </TableRow>
-                <TableRow>
-                  <TableCell className="table-row-name">Размер:</TableCell>
-                  <TableCell>33cm x 18cm x 48cm</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </AccordionDetails>
-      </Accordion>
+    <div className={classes.root}>
+      <ul className={classes.list}>
+        <li className={classes.listItem}>
+          <p>Материал</p>
+          <span>{material}</span>
+        </li>
+        <li className={classes.listItem}>
+          <p>Цвет</p>
+          <span>{color}</span>
+        </li>
+        <li className={classes.listItem}>
+          <p>Тип</p>
+          <span>{type}</span>
+        </li>
+        <li className={classes.listItem}>
+          <p>Категория</p>
+          <span>{category}</span>
+        </li>
+      </ul>
     </div>
   )
 }

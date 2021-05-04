@@ -9,7 +9,7 @@ const useStyles = makeStyles(() => ({
   root: {
     display: 'flex',
     padding: 0,
-    paddingBottom: 23
+    paddingBottom: 7
   },
   item: {
     width: 'auto',

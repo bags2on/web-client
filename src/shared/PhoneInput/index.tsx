@@ -52,7 +52,6 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name, error = false }) => {
 
   const [field, meta] = useField({ name })
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { onChange, ...fieldOther } = field
 
   const handleValueChange = (values: NumberFormatValues): void => {
