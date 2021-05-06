@@ -8,8 +8,10 @@ export type AllProductsQuery = {
   products: Array<{
     __typename?: 'Product'
     id: string
-    price: number
     title: string
+    instock: boolean
+    price: number
+    discount: number
     mainTag: string
     preview: string
   }>
@@ -22,8 +24,10 @@ export const AllProductsDocument = gql`
   query allProducts {
     products {
       id
-      price
       title
+      instock
+      price
+      discount
       mainTag
       preview
     }

@@ -89,7 +89,8 @@ const ProductDetails: React.FC = () => {
             price={product.price}
             description={product.description}
             tags={product.tags}
-            inStock={product.availability}
+            inStock={product.instock}
+            discountPrice={product.discount}
           />
         </Grid>
       </Grid>

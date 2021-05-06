@@ -1,8 +1,10 @@
 query allProducts {
   products {
     id
-    price
     title
+    instock
+    price
+    discount
     mainTag
     preview
   }

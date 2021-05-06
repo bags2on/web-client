@@ -12,10 +12,11 @@ export type GetProductByIdQuery = {
     id: string
     title: string
     price: number
+    discount: number
     tags: Array<string>
     images: Array<string>
     description: string
-    availability: boolean
+    instock: boolean
   }>
 }
 
@@ -28,10 +29,11 @@ export const GetProductByIdDocument = gql`
       id
       title
       price
+      discount
       tags
       images
       description
-      availability
+      instock
     }
   }
 `

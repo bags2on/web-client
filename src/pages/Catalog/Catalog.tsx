@@ -67,14 +67,6 @@ const Catalog: React.FC = () => {
     )
   }
 
-  const TEMPgenerator = (price: number): number => {
-    const min = 349
-    const max = 550
-    const x = min + Math.floor((max - min + 1) * Math.random())
-
-    return price - x <= 0 ? 0 : price - x
-  }
-
   return (
     <div className={classes.root}>
       <Typography className={classes.title} component="h2">
@@ -93,7 +85,7 @@ const Catalog: React.FC = () => {
                   title={product.title}
                   price={product.price}
                   id={product.id}
-                  discountPrice={Math.round(Math.random() * 10) === 7 ? TEMPgenerator(product.price) : 0}
+                  discountPrice={product.discount}
                   mainTag={product.mainTag}
                 />
               </Grid>

@@ -3,9 +3,10 @@ query getProductByID($id: ID!) {
     id
     title
     price
+    discount
     tags
     images
     description
-    availability
+    instock
   }
 }

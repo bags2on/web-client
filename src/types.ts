@@ -66,8 +66,9 @@ export type Product = {
   id: Scalars['ID']
   title: Scalars['String']
   price: Scalars['Int']
+  discount: Scalars['Int']
   amount: Scalars['Int']
-  availability: Scalars['Boolean']
+  instock: Scalars['Boolean']
   preview: Scalars['String']
   images: Array<Scalars['String']>
   tags: Array<Scalars['String']>

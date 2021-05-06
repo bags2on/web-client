@@ -74,8 +74,9 @@ type Product {
   id: ID!
   title: String!
   price: Int!
+  discount: Int!
   amount: Int!
-  availability: Boolean!
+  instock: Boolean!
   preview: String!
   images: [String!]!
   tags: [String!]!
