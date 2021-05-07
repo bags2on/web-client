@@ -44,6 +44,7 @@ const Popular: React.FC<PopularProps> = ({ products }) => {
       <ProductsSlider speed={500}>
         {products.map((product) => (
           <CatalogItem
+            inStock
             key={product.id}
             id={product.id}
             url={product.preview}

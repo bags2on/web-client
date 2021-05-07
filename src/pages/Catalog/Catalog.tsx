@@ -87,6 +87,7 @@ const Catalog: React.FC = () => {
                   id={product.id}
                   discountPrice={product.discount}
                   mainTag={product.mainTag}
+                  inStock={product.instock}
                 />
               </Grid>
             ))}

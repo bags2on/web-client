@@ -46,6 +46,7 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
         {products.map((product: ProductType) => (
           <Grid key={product.id} component="li" className={classes.item} item xs={6} md={4} lg={3}>
             <CatalogItem
+              inStock
               id={product.id}
               url={product.preview}
               title={product.title}

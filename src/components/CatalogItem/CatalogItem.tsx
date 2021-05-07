@@ -17,11 +17,12 @@ interface CatalogItemProps {
   url: string
   title: string
   price: number
+  inStock: boolean
   discountPrice?: number
   mainTag: string
 }
 
-const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, mainTag, discountPrice }) => {
+const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, inStock, mainTag, discountPrice }) => {
   const { t } = useTranslation()
 
   const [isLiked, setLiked] = useState<boolean>(false)
@@ -31,7 +32,12 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, mainTa
   }
 
   return (
-    <div className={classes.root}>
+    <div
+      className={clsx({
+        [classes.root]: true,
+        [classes.outStock]: !inStock
+      })}
+    >
       <div className={classes.image}>
         <Link to={generateLink(routes.product, id)}>
           <ImagePlaceholder src={url} altText={title} />
