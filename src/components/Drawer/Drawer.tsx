@@ -12,9 +12,9 @@ import history from '../../utils/history'
 import { makeStyles } from '@material-ui/core'
 import { useTranslation } from 'react-i18next'
 import { ReactComponent as HomeIcon } from '../../assets/svg/home.svg'
-import { ReactComponent as PercentIcon } from '../../assets/svg/sale.svg'
+import { ReactComponent as SaleIcon } from '../../assets/svg/sale.svg'
 import { ReactComponent as ListIcon } from '../../assets/svg/list.svg'
-import { ReactComponent as LookIcon } from '../../assets/svg/look.svg'
+import { ReactComponent as EyeIcon } from '../../assets/svg/eye.svg'
 
 interface DrawerProps {
   isOpen: boolean
@@ -46,10 +46,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline'
   },
   icon: {
-    height: 'auto',
-    fill: '#ff9900'
+    fill: '#ff9900',
+    fontSize: 33
   },
   text: {
+    margin: 0,
+    marginBottom: 3,
     '& > span': {
       fontSize: 18,
       fontWeight: 500
@@ -74,7 +76,7 @@ const drawerItems: DrawerItem[] = [
     i18n: 'home'
   },
   {
-    icon: PercentIcon,
+    icon: SaleIcon,
     to: '/discounts',
     i18n: 'sales'
   },
@@ -84,7 +86,7 @@ const drawerItems: DrawerItem[] = [
     i18n: 'catalog'
   },
   {
-    icon: LookIcon,
+    icon: EyeIcon,
     to: '/history',
     i18n: 'history'
   }
@@ -124,7 +126,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
               component="li"
             >
               <ListItemIcon className={classes.listItemIcon}>
-                <SvgIcon fontSize="large" className={classes.icon}>
+                <SvgIcon component="span" className={classes.icon}>
                   <item.icon />
                 </SvgIcon>
               </ListItemIcon>

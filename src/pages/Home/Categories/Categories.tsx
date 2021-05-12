@@ -1,4 +1,5 @@
 import React from 'react'
+import clsx from 'clsx'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import Grid from '@material-ui/core/Grid'
 import ListItem from '@material-ui/core/ListItem'
@@ -102,6 +103,10 @@ const useStyles = makeStyles((theme) => ({
   icon: {
     fill: theme.palette.type === 'light' ? '#000' : theme.palette.secondary.main
   },
+  walletSVG: {
+    strokeWidth: '1px',
+    stroke: theme.palette.type === 'light' ? '#000' : theme.palette.secondary.main
+  },
   itemText: {
     margin: 0,
     '& > span': {
@@ -135,7 +140,15 @@ const Categories: React.FC = () => {
                   <Link className={classes.link} to={group.to}>
                     <ListItem component="div" className={classes.listItem}>
                       <ListItemIcon className={classes.itemIcon}>
-                        <SvgIcon component="span" fontSize="large" className={classes.icon}>
+                        <SvgIcon
+                          component="span"
+                          fontSize="large"
+                          // TODO: dumb decision
+                          className={clsx({
+                            [classes.icon]: true,
+                            [classes.walletSVG]: group.i18n === 'wallets'
+                          })}
+                        >
                           <group.icon />
                         </SvgIcon>
                       </ListItemIcon>
