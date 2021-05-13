@@ -17,18 +17,40 @@ export type CartItem = {
   amount: Scalars['Int']
 }
 
+export enum Gender {
+  Female = 'FEMALE',
+  Male = 'MALE',
+  Unisex = 'UNISEX'
+}
+
+export type HideProductResponse = {
+  __typename?: 'HideProductResponse'
+  isHidden: Scalars['Boolean']
+}
+
 export type Mutation = {
   __typename?: 'Mutation'
-  createProduct?: Maybe<NewProductResponse>
   createOrder?: Maybe<OrderResponse>
+  createProduct?: Maybe<NewProductResponse>
+  updateProduct?: Maybe<UpdateProductResponse>
+  hideProduct?: Maybe<HideProductResponse>
+}
+
+export type MutationCreateOrderArgs = {
+  input?: Maybe<OrderInput>
 }
 
 export type MutationCreateProductArgs = {
   input?: Maybe<NewProductInput>
 }
 
-export type MutationCreateOrderArgs = {
-  input?: Maybe<OrderInput>
+export type MutationUpdateProductArgs = {
+  input?: Maybe<UpdateProductInput>
+}
+
+export type MutationHideProductArgs = {
+  id: Scalars['ID']
+  isHidden: Scalars['Boolean']
 }
 
 export type NewProductInput = {
@@ -65,10 +87,12 @@ export type Product = {
   __typename?: 'Product'
   id: Scalars['ID']
   title: Scalars['String']
+  isHidden: Scalars['Boolean']
   price: Scalars['Int']
   discount: Scalars['Int']
   amount: Scalars['Int']
   instock: Scalars['Boolean']
+  gender: Scalars['String']
   preview: Scalars['String']
   images: Array<Scalars['String']>
   tags: Array<Scalars['String']>
@@ -76,10 +100,15 @@ export type Product = {
   description: Scalars['String']
 }
 
+export type ProductFilter = {
+  gender?: Maybe<Gender>
+  instock?: Maybe<Scalars['Boolean']>
+}
+
 export type Query = {
   __typename?: 'Query'
-  products: Array<Product>
   product?: Maybe<Product>
+  products: Array<Product>
   productsByID: Array<Product>
 }
 
@@ -87,8 +116,26 @@ export type QueryProductArgs = {
   id: Scalars['ID']
 }
 
+export type QueryProductsArgs = {
+  filter: ProductFilter
+}
+
 export type QueryProductsByIdArgs = {
   input?: Maybe<Array<CartItem>>
+}
+
+export type UpdateProductInput = {
+  id: Scalars['ID']
+  title: Scalars['String']
+  price: Scalars['Int']
+  discount: Scalars['Int']
+  instock: Scalars['Boolean']
+  description?: Maybe<Scalars['String']>
+}
+
+export type UpdateProductResponse = {
+  __typename?: 'UpdateProductResponse'
+  message: Scalars['String']
 }
 
 export interface PossibleTypesResultData {

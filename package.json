@@ -50,7 +50,10 @@
     "apollo:schema": "apollo client:download-schema --endpoint=http://localhost:8080/ ./src/graphql/schema.graphql",
     "_apollo:gen": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/graphql/**' --tagName=gql _types_",
     "generate": "graphql-codegen --config codegen.yml",
-    "generate:clear": "find ./src -name _gen_ -exec rm -rf {} \\;"
+    "schema:get": "apollo client:download-schema --endpoint=http://localhost:8080/ ./src/graphql/schema.graphql",
+    "schema:remove": "rm ./src/graphql/schema.graphql",
+    "generate:clear": "find ./src -name _gen_ -exec rm -rf {} \\;",
+    "gen": "npm run schema:remove && npm run generate:clear && npm run schema:get && npm run generate"
   },
   "eslintConfig": {
     "extends": "react-app"

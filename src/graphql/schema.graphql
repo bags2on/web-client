@@ -37,9 +37,21 @@ input CartItem {
   amount: Int!
 }
 
+enum Gender {
+  FEMALE
+  MALE
+  UNISEX
+}
+
+type HideProductResponse {
+  isHidden: Boolean!
+}
+
 type Mutation {
-  createProduct(input: NewProductInput): NewProductResponse
   createOrder(input: OrderInput): OrderResponse
+  createProduct(input: NewProductInput): NewProductResponse
+  updateProduct(input: UpdateProductInput): UpdateProductResponse
+  hideProduct(id: ID!, isHidden: Boolean!): HideProductResponse
 }
 
 input NewProductInput {
@@ -73,10 +85,12 @@ type OrderResponse {
 type Product {
   id: ID!
   title: String!
+  isHidden: Boolean!
   price: Int!
   discount: Int!
   amount: Int!
   instock: Boolean!
+  gender: String!
   preview: String!
   images: [String!]!
   tags: [String!]!
@@ -84,10 +98,28 @@ type Product {
   description: String!
 }
 
+input ProductFilter {
+  gender: Gender
+  instock: Boolean
+}
+
 type Query {
-  products: [Product!]!
   product(id: ID!): Product
+  products(filter: ProductFilter!): [Product!]!
   productsByID(input: [CartItem!]): [Product!]!
+}
+
+input UpdateProductInput {
+  id: ID!
+  title: String!
+  price: Int!
+  discount: Int!
+  instock: Boolean!
+  description: String
+}
+
+type UpdateProductResponse {
+  message: String!
 }
 
 scalar Upload
