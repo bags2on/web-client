@@ -5,7 +5,6 @@ interface FilterItem {
   options: Array<{
     label: string
     value: string
-    disabled?: boolean
   }>
 }
 
@@ -35,15 +34,15 @@ function fillUpValues(): void {
   gender.options = [
     {
       label: i18n.t('catalog.filters.gender.female'),
-      value: 'female'
+      value: 'Female'
     },
     {
       label: i18n.t('catalog.filters.gender.male'),
-      value: 'male'
+      value: 'Male'
     },
     {
       label: i18n.t('catalog.filters.gender.unisex'),
-      value: 'unisex'
+      value: 'Unisex'
     }
   ]
 

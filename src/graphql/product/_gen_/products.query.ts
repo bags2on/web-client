@@ -2,7 +2,7 @@ import * as Types from '../../../types'
 
 import { gql } from '@apollo/client'
 export type AllProductsQueryVariables = Types.Exact<{
-  gender?: Types.Maybe<Types.Gender>
+  gender?: Types.Maybe<Array<Types.Maybe<Types.Gender>> | Types.Maybe<Types.Gender>>
   instock?: Types.Maybe<Types.Scalars['Boolean']>
 }>
 
@@ -24,7 +24,7 @@ export type AllProductsVariables = AllProductsQueryVariables
 export type AllProductsProducts = NonNullable<NonNullable<AllProductsQuery['products']>[number]>
 
 export const AllProductsDocument = gql`
-  query allProducts($gender: Gender, $instock: Boolean) {
+  query allProducts($gender: [Gender], $instock: Boolean) {
     products(filter: { gender: $gender, instock: $instock }) {
       id
       title

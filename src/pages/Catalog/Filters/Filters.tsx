@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { useTranslation } from 'react-i18next'
@@ -7,6 +8,12 @@ import RadioGroup from '../../../shared/FormFields/RadioGroup'
 import CheckBoxGroup from '../../../shared/FormFields/CheckBoxGroup'
 import PriceRange from '../../../shared/FormFields/PriceRange/PriceRange'
 import fieldProps from './fields-data'
+import AutoSave from '../../../shared/AutoSave'
+
+interface FiltersProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  onSubmit(values: any): void
+}
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -15,14 +22,23 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Filters: React.FC = () => {
+const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
   const classes = useStyles()
   const { t } = useTranslation()
 
   const { gender, availability, radioGroup, categories } = fieldProps
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const handleSubmit = (): void => {}
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSubmit = (values: any): void => {
+    onSubmit(values)
+    console.log('submit')
+  }
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSave = (values: any) => {
+    console.log('save')
+    onSubmit(values)
+  }
 
   return (
     <aside className={classes.root}>
@@ -30,15 +46,16 @@ const Filters: React.FC = () => {
       <Formik
         onSubmit={handleSubmit}
         initialValues={{
-          gender: '',
-          availability: '',
-          general: ''
+          gender: []
+          // availability: '',
+          // general: ''
         }}
       >
         {(): React.ReactElement => (
           <Form>
+            <AutoSave onSave={handleSave} />
             <CheckBoxGroup title={t('catalog.filters.names.type')} name="gender" options={gender.options} />
-            <CheckBoxGroup
+            {/* <CheckBoxGroup
               title={t('catalog.filters.names.availability')}
               name="availability"
               options={availability.options}
@@ -53,7 +70,7 @@ const Filters: React.FC = () => {
               step={1}
               defaultValue={[2250, 3350]}
             />
-            <CheckBoxGroup title={t('catalog.filters.names.category')} name="category" options={categories.options} />
+            <CheckBoxGroup title={t('catalog.filters.names.category')} name="category" options={categories.options} /> */}
           </Form>
         )}
       </Formik>

@@ -101,7 +101,7 @@ export type Product = {
 }
 
 export type ProductFilter = {
-  gender?: Maybe<Gender>
+  gender?: Maybe<Array<Maybe<Gender>>>
   instock?: Maybe<Scalars['Boolean']>
 }
 

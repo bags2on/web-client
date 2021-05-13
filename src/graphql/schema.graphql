@@ -99,7 +99,7 @@ type Product {
 }
 
 input ProductFilter {
-  gender: Gender
+  gender: [Gender]
   instock: Boolean
 }
 

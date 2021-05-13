@@ -30,9 +30,8 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, name, options }) => {
+const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, options, name }) => {
   const classes = useStyles()
-
   const [isCollapsed, setCollapsed] = useState<boolean>(true)
 
   const handleCollapse = (): void => {
@@ -40,22 +39,22 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, name, options }) =
   }
 
   return (
-    <FieldArray
-      name={name}
-      render={(_arrayHelpers) => (
-        <div>
-          <ListItem button onClick={handleCollapse} className={classes.title}>
-            <ListItemText primary={title} />
-            {isCollapsed ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-          </ListItem>
+    <div>
+      <ListItem button onClick={handleCollapse} className={classes.title}>
+        <ListItemText primary={title} />
+        {isCollapsed ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+      </ListItem>
+      <FieldArray
+        name={name}
+        render={({ name }) => (
           <Collapse in={isCollapsed} timeout="auto" unmountOnExit className={classes.collapseList}>
             {options.map(({ value, label }) => (
-              <Checkbox key={value} label={label} value={value} />
+              <Checkbox key={value} label={label} name={name} value={value} />
             ))}
           </Collapse>
-        </div>
-      )}
-    />
+        )}
+      />
+    </div>
   )
 }
 
