@@ -36,7 +36,6 @@ const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleSave = (values: any) => {
-    console.log('save')
     onSubmit(values)
   }
 
@@ -46,8 +45,8 @@ const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
       <Formik
         onSubmit={handleSubmit}
         initialValues={{
-          gender: []
-          // availability: '',
+          gender: [],
+          availability: []
           // general: ''
         }}
       >
@@ -55,12 +54,12 @@ const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
           <Form>
             <AutoSave onSave={handleSave} />
             <CheckBoxGroup title={t('catalog.filters.names.type')} name="gender" options={gender.options} />
-            {/* <CheckBoxGroup
+            <CheckBoxGroup
               title={t('catalog.filters.names.availability')}
               name="availability"
               options={availability.options}
             />
-            <div className={classes.generalWrapper}>
+            {/* <div className={classes.generalWrapper}>
               <RadioGroup name="general" size="medium" options={radioGroup.options} />
             </div>
             <PriceRange

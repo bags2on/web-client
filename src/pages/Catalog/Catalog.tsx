@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -43,7 +44,8 @@ interface ParamTypes {
   page: string
 }
 
-type gender = 'Female' | 'Male' | 'Unisex'
+type genderType = 'Female' | 'Male' | 'Unisex'
+type availability = 'inStock' | 'byOrder'
 
 const Catalog: React.FC = () => {
   const { page } = useParams<ParamTypes>()
@@ -55,7 +57,8 @@ const Catalog: React.FC = () => {
   useEffect(() => {
     getProducts({
       variables: {
-        gender: []
+        gender: [],
+        instock: undefined
       }
     })
   }, [])
@@ -65,12 +68,25 @@ const Catalog: React.FC = () => {
   const classes = useStyles()
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleFiltersSubmit = (values: any) => {
+  const handleFiltersSubmit = (values: { availability: Array<availability>; gender: Array<genderType> }) => {
     console.log(values)
+    const { gender, availability } = values
+
+    let instock: boolean | undefined
+
+    if (availability.length === 1) {
+      const stockSrc = {
+        inStock: true,
+        byOrder: false
+      }
+
+      instock = stockSrc[availability[0]]
+    }
 
     getProducts({
       variables: {
-        gender: values.gender.map((g: gender) => Gender[g])
+        gender: gender.map((g: genderType) => Gender[g]),
+        instock
       }
     })
   }
