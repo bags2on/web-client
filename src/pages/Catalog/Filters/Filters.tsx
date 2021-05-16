@@ -59,10 +59,10 @@ const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
               name="availability"
               options={availability.options}
             />
-            {/* <div className={classes.generalWrapper}>
+            <div className={classes.generalWrapper}>
               <RadioGroup name="general" size="medium" options={radioGroup.options} />
             </div>
-            <PriceRange
+            {/* <PriceRange
               title={t('catalog.filters.names.price')}
               min={1500}
               max={4500}
