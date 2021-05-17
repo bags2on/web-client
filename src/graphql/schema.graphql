@@ -37,6 +37,14 @@ input CartItem {
   amount: Int!
 }
 
+enum CategoryType {
+  BAG
+  OTHER
+  WALLET
+  BACKPACK
+  SUITCASE
+}
+
 enum Gender {
   FEMALE
   MALE
@@ -114,6 +122,7 @@ input ProductFilter {
   instock: Boolean
   mainTag: MainTag
   price: PriceRange
+  category: [CategoryType]
 }
 
 type Query {

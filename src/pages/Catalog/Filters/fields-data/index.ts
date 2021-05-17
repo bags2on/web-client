@@ -75,22 +75,33 @@ function fillUpValues(): void {
     }
   ]
 
+  // Other = 'OTHER',
+
   categories.options = [
-    {
-      label: i18n.t('categories.all'),
-      value: 'all'
-    },
+    // {
+    //   label: i18n.t('categories.all'),
+    //   value: 'all'
+    // },
     {
       label: i18n.t('categories.suitcases'),
-      value: 'suitcases'
+      value: 'Suitcase'
     },
     {
       label: i18n.t('categories.bags'),
-      value: 'bags'
+      value: 'Bag'
     },
     {
       label: i18n.t('categories.wallets'),
-      value: 'wallets'
+      value: 'Wallet'
+    },
+    // TODO: expand values
+    {
+      label: 'Рюкзаки',
+      value: 'Backpack'
+    },
+    {
+      label: 'Другое',
+      value: 'Other'
     }
   ]
 }

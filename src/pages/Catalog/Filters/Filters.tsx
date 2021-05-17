@@ -48,7 +48,8 @@ const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
           gender: [],
           availability: [],
           mainTag: '',
-          price: []
+          price: [0, 4000],
+          category: []
         }}
       >
         {(): React.ReactElement => (
@@ -71,8 +72,7 @@ const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
               step={1}
               defaultValue={[2250, 3350]}
             />
-            {/* 
-            <CheckBoxGroup title={t('catalog.filters.names.category')} name="category" options={categories.options} /> */}
+            <CheckBoxGroup title={t('catalog.filters.names.category')} name="category" options={categories.options} />
           </Form>
         )}
       </Formik>

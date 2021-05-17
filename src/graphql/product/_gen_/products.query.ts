@@ -6,6 +6,7 @@ export type AllProductsQueryVariables = Types.Exact<{
   instock?: Types.Maybe<Types.Scalars['Boolean']>
   mainTag?: Types.Maybe<Types.MainTag>
   price?: Types.Maybe<Types.PriceRange>
+  category?: Types.Maybe<Array<Types.Maybe<Types.CategoryType>> | Types.Maybe<Types.CategoryType>>
 }>
 
 export type AllProductsQuery = {
@@ -26,8 +27,14 @@ export type AllProductsVariables = AllProductsQueryVariables
 export type AllProductsProducts = NonNullable<NonNullable<AllProductsQuery['products']>[number]>
 
 export const AllProductsDocument = gql`
-  query allProducts($gender: [Gender], $instock: Boolean, $mainTag: MainTag, $price: PriceRange) {
-    products(filter: { gender: $gender, instock: $instock, mainTag: $mainTag, price: $price }) {
+  query allProducts(
+    $gender: [Gender]
+    $instock: Boolean
+    $mainTag: MainTag
+    $price: PriceRange
+    $category: [CategoryType]
+  ) {
+    products(filter: { gender: $gender, instock: $instock, mainTag: $mainTag, price: $price, category: $category }) {
       id
       title
       instock

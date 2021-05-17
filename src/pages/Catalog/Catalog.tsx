@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom'
 import { useLazyQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
 import { AllProductsDocument, AllProductsQuery, AllProductsVariables } from '../../graphql/product/_gen_/products.query'
-import { Gender, MainTag } from '../../types'
+import { CategoryType, Gender, MainTag } from '../../types'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -47,6 +47,7 @@ interface ParamTypes {
 type genderType = 'Female' | 'Male' | 'Unisex'
 type availability = 'inStock' | 'byOrder'
 type mainTagType = 'Stock' | 'New' | 'Top'
+type categoryType = 'Bag' | 'Wallet' | 'Backpack' | 'Suitcase' | 'Other'
 
 const Catalog: React.FC = () => {
   const { page } = useParams<ParamTypes>()
@@ -59,7 +60,8 @@ const Catalog: React.FC = () => {
     getProducts({
       variables: {
         gender: [],
-        instock: undefined
+        instock: undefined,
+        category: []
       }
     })
   }, [])
@@ -74,9 +76,10 @@ const Catalog: React.FC = () => {
     gender: Array<genderType>
     mainTag: mainTagType
     price: [number, number]
+    category: Array<categoryType>
   }) => {
     console.log(values)
-    const { gender, availability, mainTag, price } = values
+    const { gender, availability, mainTag, price, category } = values
     const [lt, gt] = price
 
     let instock: boolean | undefined
@@ -98,7 +101,8 @@ const Catalog: React.FC = () => {
         price: {
           lt,
           gt
-        }
+        },
+        category: category.map((c: categoryType) => CategoryType[c])
       }
     })
   }

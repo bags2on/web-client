@@ -17,6 +17,14 @@ export type CartItem = {
   amount: Scalars['Int']
 }
 
+export enum CategoryType {
+  Bag = 'BAG',
+  Other = 'OTHER',
+  Wallet = 'WALLET',
+  Backpack = 'BACKPACK',
+  Suitcase = 'SUITCASE'
+}
+
 export enum Gender {
   Female = 'FEMALE',
   Male = 'MALE',
@@ -116,6 +124,7 @@ export type ProductFilter = {
   instock?: Maybe<Scalars['Boolean']>
   mainTag?: Maybe<MainTag>
   price?: Maybe<PriceRange>
+  category?: Maybe<Array<Maybe<CategoryType>>>
 }
 
 export type Query = {
