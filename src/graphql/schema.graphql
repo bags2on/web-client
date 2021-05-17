@@ -47,6 +47,12 @@ type HideProductResponse {
   isHidden: Boolean!
 }
 
+enum MainTag {
+  STOCK
+  NEW
+  TOP
+}
+
 type Mutation {
   createOrder(input: OrderInput): OrderResponse
   createProduct(input: NewProductInput): NewProductResponse
@@ -101,6 +107,7 @@ type Product {
 input ProductFilter {
   gender: [Gender]
   instock: Boolean
+  mainTag: MainTag
 }
 
 type Query {

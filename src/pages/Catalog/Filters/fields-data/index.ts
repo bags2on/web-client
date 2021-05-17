@@ -60,17 +60,17 @@ function fillUpValues(): void {
   radioGroup.options = [
     {
       label: i18n.t('catalog.filters.radioGroup.all'),
-      value: 'all',
+      value: '',
       disabled: false
     },
     {
       label: i18n.t('catalog.filters.radioGroup.new'),
-      value: 'new',
+      value: 'New',
       disabled: false
     },
     {
       label: i18n.t('catalog.filters.radioGroup.discounts'),
-      value: 'discounts',
+      value: 'Stock',
       disabled: false
     }
   ]

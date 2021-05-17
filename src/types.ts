@@ -28,6 +28,12 @@ export type HideProductResponse = {
   isHidden: Scalars['Boolean']
 }
 
+export enum MainTag {
+  Stock = 'STOCK',
+  New = 'NEW',
+  Top = 'TOP'
+}
+
 export type Mutation = {
   __typename?: 'Mutation'
   createOrder?: Maybe<OrderResponse>
@@ -103,6 +109,7 @@ export type Product = {
 export type ProductFilter = {
   gender?: Maybe<Array<Maybe<Gender>>>
   instock?: Maybe<Scalars['Boolean']>
+  mainTag?: Maybe<MainTag>
 }
 
 export type Query = {

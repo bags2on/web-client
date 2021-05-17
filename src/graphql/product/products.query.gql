@@ -1,5 +1,5 @@
-query allProducts($gender: [Gender], $instock: Boolean) {
-  products(filter: { gender: $gender, instock: $instock }) {
+query allProducts($gender: [Gender], $instock: Boolean, $mainTag: MainTag) {
+  products(filter: { gender: $gender, instock: $instock, mainTag: $mainTag }) {
     id
     title
     instock

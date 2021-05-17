@@ -46,8 +46,8 @@ const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
         onSubmit={handleSubmit}
         initialValues={{
           gender: [],
-          availability: []
-          // general: ''
+          availability: [],
+          mainTag: ''
         }}
       >
         {(): React.ReactElement => (
@@ -60,7 +60,7 @@ const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
               options={availability.options}
             />
             <div className={classes.generalWrapper}>
-              <RadioGroup name="general" size="medium" options={radioGroup.options} />
+              <RadioGroup name="mainTag" size="medium" options={radioGroup.options} />
             </div>
             {/* <PriceRange
               title={t('catalog.filters.names.price')}

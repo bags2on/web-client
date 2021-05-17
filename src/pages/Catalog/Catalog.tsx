@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom'
 import { useLazyQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
 import { AllProductsDocument, AllProductsQuery, AllProductsVariables } from '../../graphql/product/_gen_/products.query'
-import { Gender } from '../../types'
+import { Gender, MainTag } from '../../types'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -46,6 +46,7 @@ interface ParamTypes {
 
 type genderType = 'Female' | 'Male' | 'Unisex'
 type availability = 'inStock' | 'byOrder'
+type mainTagType = 'Stock' | 'New' | 'Top'
 
 const Catalog: React.FC = () => {
   const { page } = useParams<ParamTypes>()
@@ -68,9 +69,13 @@ const Catalog: React.FC = () => {
   const classes = useStyles()
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleFiltersSubmit = (values: { availability: Array<availability>; gender: Array<genderType> }) => {
+  const handleFiltersSubmit = (values: {
+    availability: Array<availability>
+    gender: Array<genderType>
+    mainTag: mainTagType
+  }) => {
     console.log(values)
-    const { gender, availability } = values
+    const { gender, availability, mainTag } = values
 
     let instock: boolean | undefined
 
@@ -86,7 +91,8 @@ const Catalog: React.FC = () => {
     getProducts({
       variables: {
         gender: gender.map((g: genderType) => Gender[g]),
-        instock
+        instock,
+        mainTag: mainTag ? MainTag[mainTag] : null
       }
     })
   }
