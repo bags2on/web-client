@@ -29,7 +29,14 @@
     "history": "История просмотра",
     "lang": "Язык"
   },
-  "categories": { "all": "Все", "suitcases": "Чемоданы", "bags": "Сумки", "wallets": "Кошельки" },
+  "categories": {
+    "all": "Все",
+    "suitcases": "Чемоданы",
+    "bags": "Сумки",
+    "wallets": "Кошельки",
+    "backpack": "Рюкзаки",
+    "other": "Другое"
+  },
   "catalog": {
     "filters": {
       "title": "Параметры",

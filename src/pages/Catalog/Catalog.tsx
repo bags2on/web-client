@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
@@ -49,6 +48,14 @@ type availability = 'inStock' | 'byOrder'
 type mainTagType = 'Stock' | 'New' | 'Top'
 type categoryType = 'Bag' | 'Wallet' | 'Backpack' | 'Suitcase' | 'Other'
 
+interface FilterValues {
+  availability: Array<availability>
+  gender: Array<genderType>
+  mainTag: mainTagType
+  price: [number, number]
+  category: Array<categoryType>
+}
+
 const Catalog: React.FC = () => {
   const { page } = useParams<ParamTypes>()
 
@@ -70,14 +77,7 @@ const Catalog: React.FC = () => {
 
   const classes = useStyles()
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleFiltersSubmit = (values: {
-    availability: Array<availability>
-    gender: Array<genderType>
-    mainTag: mainTagType
-    price: [number, number]
-    category: Array<categoryType>
-  }) => {
+  const handleFiltersSubmit = (values: FilterValues) => {
     console.log(values)
     const { gender, availability, mainTag, price, category } = values
     const [lt, gt] = price

@@ -94,13 +94,12 @@ function fillUpValues(): void {
       label: i18n.t('categories.wallets'),
       value: 'Wallet'
     },
-    // TODO: expand values
     {
-      label: 'Рюкзаки',
+      label: i18n.t('categories.backpack'),
       value: 'Backpack'
     },
     {
-      label: 'Другое',
+      label: i18n.t('categories.other'),
       value: 'Other'
     }
   ]

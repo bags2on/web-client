@@ -29,7 +29,14 @@
     "history": "Історія перегляду",
     "lang": "Мова"
   },
-  "categories": { "all": "Усе", "suitcases": "Валізи", "bags": "Сумки", "wallets": "Гаманці" },
+  "categories": {
+    "all": "Усе",
+    "suitcases": "Валізи",
+    "bags": "Сумки",
+    "wallets": "Гаманці",
+    "backpack": "-----",
+    "other": "-----"
+  },
   "catalog": {
     "filters": {
       "title": "Параметри",

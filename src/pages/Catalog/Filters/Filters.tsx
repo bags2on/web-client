@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import { useTranslation } from 'react-i18next'
@@ -25,13 +24,10 @@ const useStyles = makeStyles(() => ({
 const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
   const classes = useStyles()
   const { t } = useTranslation()
-
   const { gender, availability, radioGroup, categories } = fieldProps
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const handleSubmit = (values: any): void => {
-    onSubmit(values)
-    console.log('submit')
+  const handleSubmit = (): void => {
+    return
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -48,7 +44,7 @@ const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
           gender: [],
           availability: [],
           mainTag: '',
-          price: [0, 4000],
+          price: [0, 4000], // TODO: without default value
           category: []
         }}
       >
