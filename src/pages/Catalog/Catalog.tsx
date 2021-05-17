@@ -73,9 +73,11 @@ const Catalog: React.FC = () => {
     availability: Array<availability>
     gender: Array<genderType>
     mainTag: mainTagType
+    price: [number, number]
   }) => {
     console.log(values)
-    const { gender, availability, mainTag } = values
+    const { gender, availability, mainTag, price } = values
+    const [lt, gt] = price
 
     let instock: boolean | undefined
 
@@ -92,7 +94,11 @@ const Catalog: React.FC = () => {
       variables: {
         gender: gender.map((g: genderType) => Gender[g]),
         instock,
-        mainTag: mainTag ? MainTag[mainTag] : null
+        mainTag: mainTag ? MainTag[mainTag] : null,
+        price: {
+          lt,
+          gt
+        }
       }
     })
   }

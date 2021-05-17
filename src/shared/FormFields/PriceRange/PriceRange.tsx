@@ -6,6 +6,7 @@ import ListItemText from '@material-ui/core/ListItemText'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import Button from '@material-ui/core/Button'
+import { useFormikContext } from 'formik'
 import { Range } from 'rc-slider'
 import { makeStyles } from '@material-ui/core'
 
@@ -14,6 +15,7 @@ import './PriceRange.scss'
 
 interface PriceRangeProps {
   title: string
+  name: string
   min: number
   max: number
   step: number
@@ -48,8 +50,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const PriceRange: React.FC<PriceRangeProps> = ({ title, min, max, step, defaultValue }) => {
+const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step, defaultValue }) => {
   const classes = useStyles()
+  const { setFieldValue } = useFormikContext()
 
   const [isCollapsed, setCollapsed] = useState<boolean>(true)
 
@@ -87,6 +90,8 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, min, max, step, defaultV
   const handlePriceSubmit = (): void => {
     setMinInput(minInput_1)
     setmMaxInput(maxInput_1)
+
+    setFieldValue(name, [minInput_1, maxInput_1])
   }
 
   const marks = {

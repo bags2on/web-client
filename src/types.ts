@@ -89,6 +89,11 @@ export type OrderResponse = {
   message: Scalars['String']
 }
 
+export type PriceRange = {
+  lt: Scalars['Int']
+  gt: Scalars['Int']
+}
+
 export type Product = {
   __typename?: 'Product'
   id: Scalars['ID']
@@ -110,6 +115,7 @@ export type ProductFilter = {
   gender?: Maybe<Array<Maybe<Gender>>>
   instock?: Maybe<Scalars['Boolean']>
   mainTag?: Maybe<MainTag>
+  price?: Maybe<PriceRange>
 }
 
 export type Query = {
