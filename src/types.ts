@@ -102,6 +102,12 @@ export type PriceRange = {
   gt: Scalars['Int']
 }
 
+export type PriceRangeType = {
+  __typename?: 'PriceRangeType'
+  lt: Scalars['Int']
+  gt: Scalars['Int']
+}
+
 export type Product = {
   __typename?: 'Product'
   id: Scalars['ID']
@@ -127,10 +133,16 @@ export type ProductFilter = {
   category?: Maybe<Array<Maybe<CategoryType>>>
 }
 
+export type ProductsResponse = {
+  __typename?: 'ProductsResponse'
+  products: Array<Product>
+  priceRange: PriceRangeType
+}
+
 export type Query = {
   __typename?: 'Query'
   product?: Maybe<Product>
-  products: Array<Product>
+  allProducts: ProductsResponse
   productsByID: Array<Product>
 }
 
@@ -138,7 +150,7 @@ export type QueryProductArgs = {
   id: Scalars['ID']
 }
 
-export type QueryProductsArgs = {
+export type QueryAllProductsArgs = {
   filter: ProductFilter
 }
 

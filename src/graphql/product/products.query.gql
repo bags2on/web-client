@@ -1,17 +1,23 @@
-query allProducts(
+query AllProducts(
   $gender: [Gender]
   $instock: Boolean
   $mainTag: MainTag
   $price: PriceRange
   $category: [CategoryType]
 ) {
-  products(filter: { gender: $gender, instock: $instock, mainTag: $mainTag, price: $price, category: $category }) {
-    id
-    title
-    instock
-    price
-    discount
-    mainTag
-    preview
+  allProducts(filter: { gender: $gender, instock: $instock, mainTag: $mainTag, price: $price, category: $category }) {
+    priceRange {
+      lt
+      gt
+    }
+    products {
+      id
+      title
+      instock
+      price
+      discount
+      mainTag
+      preview
+    }
   }
 }

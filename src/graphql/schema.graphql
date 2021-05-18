@@ -101,6 +101,11 @@ input PriceRange {
   gt: Int!
 }
 
+type PriceRangeType {
+  lt: Int!
+  gt: Int!
+}
+
 type Product {
   id: ID!
   title: String!
@@ -125,9 +130,14 @@ input ProductFilter {
   category: [CategoryType]
 }
 
+type ProductsResponse {
+  products: [Product!]!
+  priceRange: PriceRangeType!
+}
+
 type Query {
   product(id: ID!): Product
-  products(filter: ProductFilter!): [Product!]!
+  allProducts(filter: ProductFilter!): ProductsResponse!
   productsByID(input: [CartItem!]): [Product!]!
 }
 

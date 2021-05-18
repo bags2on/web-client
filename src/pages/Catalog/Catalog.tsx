@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Filters from './Filters/Filters'
@@ -13,7 +13,6 @@ import { CategoryType, Gender, MainTag } from '../../types'
 
 const useStyles = makeStyles(() => ({
   root: {
-    // background: '#ff9900'
     maxWidth: '1600px',
     margin: '0 auto'
   },
@@ -35,7 +34,6 @@ const useStyles = makeStyles(() => ({
   },
   pageContainer: {
     padding: '0 20px'
-    // backgroundColor: 'limegreen' //
   }
 }))
 
@@ -52,15 +50,28 @@ interface FilterValues {
   availability: Array<availability>
   gender: Array<genderType>
   mainTag: mainTagType
-  price: [number, number]
+  priceRange: [number, number]
   category: Array<categoryType>
 }
 
 const Catalog: React.FC = () => {
   const { page } = useParams<ParamTypes>()
+  const classes = useStyles()
+
+  const numOfPage = page ? Number(page) : 1
+
+  const [priceRange, setPriceRange] = useState<[number, number]>([0, 0])
 
   const [getProducts, { loading, data, error }] = useLazyQuery<AllProductsQuery, AllProductsVariables>(
-    AllProductsDocument
+    AllProductsDocument,
+    {
+      onCompleted: (data) => {
+        if (data?.allProducts.priceRange) {
+          const { lt, gt } = data?.allProducts.priceRange
+          setPriceRange([lt, gt])
+        }
+      }
+    }
   )
 
   useEffect(() => {
@@ -73,14 +84,20 @@ const Catalog: React.FC = () => {
     })
   }, [])
 
-  const numOfPage = page ? Number(page) : 1
-
-  const classes = useStyles()
-
   const handleFiltersSubmit = (values: FilterValues) => {
     console.log(values)
-    const { gender, availability, mainTag, price, category } = values
-    const [lt, gt] = price
+    const { gender, availability, mainTag, priceRange, category } = values
+
+    let price
+
+    if (priceRange.length) {
+      const [lt, gt] = priceRange
+
+      price = {
+        lt,
+        gt
+      }
+    }
 
     let instock: boolean | undefined
 
@@ -95,13 +112,10 @@ const Catalog: React.FC = () => {
 
     getProducts({
       variables: {
-        gender: gender.map((g: genderType) => Gender[g]),
         instock,
+        price,
         mainTag: mainTag ? MainTag[mainTag] : null,
-        price: {
-          lt,
-          gt
-        },
+        gender: gender.map((g: genderType) => Gender[g]),
         category: category.map((c: categoryType) => CategoryType[c])
       }
     })
@@ -122,7 +136,7 @@ const Catalog: React.FC = () => {
       </Typography>
       <Grid container className={classes.pageContainer}>
         <Grid item xs={2}>
-          <Filters onSubmit={handleFiltersSubmit} />
+          <Filters priceRange={priceRange} onSubmit={handleFiltersSubmit} />
         </Grid>
         {loading ? (
           <div className={classes.loaderWapper}>
@@ -131,16 +145,16 @@ const Catalog: React.FC = () => {
         ) : (
           <Grid item xs={10}>
             <Grid container component="ul" className={classes.list}>
-              {data?.products.map((product) => (
+              {data?.allProducts.products.map((product) => (
                 <Grid key={product.id} component="li" item xs={6} md={4} lg={3} xl={2}>
                   <CatalogItem
+                    id={product.id}
                     url={product.preview}
                     title={product.title}
                     price={product.price}
-                    id={product.id}
-                    discountPrice={product.discount}
-                    mainTag={product.mainTag}
                     inStock={product.instock}
+                    mainTag={product.mainTag}
+                    discountPrice={product.discount}
                   />
                 </Grid>
               ))}

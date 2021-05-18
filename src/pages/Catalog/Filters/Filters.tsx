@@ -9,7 +9,13 @@ import PriceRange from '../../../shared/FormFields/PriceRange/PriceRange'
 import fieldProps from './fields-data'
 import AutoSave from '../../../shared/AutoSave'
 
+type PriceRange = {
+  lt: number
+  gt: number
+}
+
 interface FiltersProps {
+  priceRange: [number, number]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSubmit(values: any): void
 }
@@ -21,10 +27,12 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
+const Filters: React.FC<FiltersProps> = ({ priceRange, onSubmit }) => {
   const classes = useStyles()
   const { t } = useTranslation()
+
   const { gender, availability, radioGroup, categories } = fieldProps
+  const [minPrice, maxPrice] = priceRange
 
   const handleSubmit = (): void => {
     return
@@ -44,7 +52,7 @@ const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
           gender: [],
           availability: [],
           mainTag: '',
-          price: [0, 4000], // TODO: without default value
+          priceRange: [],
           category: []
         }}
       >
@@ -53,21 +61,14 @@ const Filters: React.FC<FiltersProps> = ({ onSubmit }) => {
             <AutoSave onSave={handleSave} />
             <CheckBoxGroup title={t('catalog.filters.names.type')} name="gender" options={gender.options} />
             <CheckBoxGroup
-              title={t('catalog.filters.names.availability')}
               name="availability"
+              title={t('catalog.filters.names.availability')}
               options={availability.options}
             />
             <div className={classes.generalWrapper}>
               <RadioGroup name="mainTag" size="medium" options={radioGroup.options} />
             </div>
-            <PriceRange
-              title={t('catalog.filters.names.price')}
-              name="price"
-              min={1500}
-              max={4500}
-              step={1}
-              defaultValue={[2250, 3350]}
-            />
+            <PriceRange name="priceRange" min={minPrice} max={maxPrice} title={t('catalog.filters.names.price')} />
             <CheckBoxGroup title={t('catalog.filters.names.category')} name="category" options={categories.options} />
           </Form>
         )}

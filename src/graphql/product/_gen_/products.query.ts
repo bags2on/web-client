@@ -11,37 +11,51 @@ export type AllProductsQueryVariables = Types.Exact<{
 
 export type AllProductsQuery = {
   __typename?: 'Query'
-  products: Array<{
-    __typename?: 'Product'
-    id: string
-    title: string
-    instock: boolean
-    price: number
-    discount: number
-    mainTag: string
-    preview: string
-  }>
+  allProducts: {
+    __typename?: 'ProductsResponse'
+    priceRange: { __typename?: 'PriceRangeType'; lt: number; gt: number }
+    products: Array<{
+      __typename?: 'Product'
+      id: string
+      title: string
+      instock: boolean
+      price: number
+      discount: number
+      mainTag: string
+      preview: string
+    }>
+  }
 }
 
 export type AllProductsVariables = AllProductsQueryVariables
-export type AllProductsProducts = NonNullable<NonNullable<AllProductsQuery['products']>[number]>
+export type AllProductsAllProducts = NonNullable<AllProductsQuery['allProducts']>
+export type AllProductsPriceRange = NonNullable<NonNullable<AllProductsQuery['allProducts']>['priceRange']>
+export type AllProductsProducts = NonNullable<
+  NonNullable<NonNullable<AllProductsQuery['allProducts']>['products']>[number]
+>
 
 export const AllProductsDocument = gql`
-  query allProducts(
+  query AllProducts(
     $gender: [Gender]
     $instock: Boolean
     $mainTag: MainTag
     $price: PriceRange
     $category: [CategoryType]
   ) {
-    products(filter: { gender: $gender, instock: $instock, mainTag: $mainTag, price: $price, category: $category }) {
-      id
-      title
-      instock
-      price
-      discount
-      mainTag
-      preview
+    allProducts(filter: { gender: $gender, instock: $instock, mainTag: $mainTag, price: $price, category: $category }) {
+      priceRange {
+        lt
+        gt
+      }
+      products {
+        id
+        title
+        instock
+        price
+        discount
+        mainTag
+        preview
+      }
     }
   }
 `

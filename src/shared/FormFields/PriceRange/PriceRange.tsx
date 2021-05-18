@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import clsx from 'clsx'
 import ListItem from '@material-ui/core/ListItem'
 import Collapse from '@material-ui/core/Collapse'
@@ -18,8 +18,7 @@ interface PriceRangeProps {
   name: string
   min: number
   max: number
-  step: number
-  defaultValue: [number, number]
+  step?: number
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -50,48 +49,43 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step, defaultValue }) => {
+const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1 }) => {
   const classes = useStyles()
   const { setFieldValue } = useFormikContext()
 
   const [isCollapsed, setCollapsed] = useState<boolean>(true)
 
-  // const [globalValues, setGlobalValues] = useState<[number, number]>(defaultValue)
+  const [minInputValue, setMinInputValue] = useState<number>(min)
+  const [maxInputValue, setMaxInputValue] = useState<number>(max)
 
-  const [minInput, setMinInput] = useState<number>(defaultValue[0])
-  const [maxInput, setmMaxInput] = useState<number>(defaultValue[1])
-
-  const [minInput_1, setMinInput_1] = useState<number>(defaultValue[0])
-  const [maxInput_1, setmMaxInput_1] = useState<number>(defaultValue[1])
+  useLayoutEffect(() => {
+    setMinInputValue(min)
+    setMaxInputValue(max)
+  }, [min, max])
 
   const handleCollapse = (): void => {
     setCollapsed(!isCollapsed)
   }
 
   const onSliderChange = (values: number[]): void => {
-    console.log(values)
-    setMinInput(values[0])
-    setMinInput_1(values[0])
-    setmMaxInput(values[1])
-    setmMaxInput_1(values[1])
+    const [min, max] = values
+
+    setMinInputValue(min)
+    setMaxInputValue(max)
   }
 
   const onMinChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = +event.target.value
-
-    setMinInput_1(value)
+    setMinInputValue(value)
   }
+
   const onMaxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value = +event.target.value
-
-    setmMaxInput_1(value)
+    setMaxInputValue(value)
   }
 
   const handlePriceSubmit = (): void => {
-    setMinInput(minInput_1)
-    setmMaxInput(maxInput_1)
-
-    setFieldValue(name, [minInput_1, maxInput_1])
+    setFieldValue(name, [minInputValue, maxInputValue])
   }
 
   const marks = {
@@ -113,15 +107,15 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step, de
         <div className={classes.controlsBox}>
           <input
             type="number"
-            className={clsx(classes.input, 'price-input')}
-            value={minInput_1}
+            value={minInputValue}
             onChange={onMinChange}
+            className={clsx(classes.input, 'price-input')}
           />
           <input
             type="number"
-            className={clsx(classes.input, 'price-input')}
-            value={maxInput_1}
+            value={maxInputValue}
             onChange={onMaxChange}
+            className={clsx(classes.input, 'price-input')}
           />
           <Button className={clsx(classes.submitButton, 'price-submit')} onClick={handlePriceSubmit}>
             ok
@@ -131,8 +125,7 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step, de
           min={min}
           max={max}
           step={step}
-          value={[minInput, maxInput]}
-          defaultValue={defaultValue}
+          value={[minInputValue, maxInputValue]}
           onChange={onSliderChange}
           marks={marks}
         />
