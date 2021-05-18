@@ -86,11 +86,11 @@ const ProductDetails: React.FC = () => {
           <Details
             id={product.id}
             title={product.title}
-            price={product.price}
+            price={product.currentPrice}
             description={product.description}
             tags={product.tags}
             inStock={product.instock}
-            discountPrice={product.discount}
+            withDiscount={product.withDiscount}
           />
         </Grid>
       </Grid>

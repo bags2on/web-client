@@ -110,8 +110,9 @@ type Product {
   id: ID!
   title: String!
   isHidden: Boolean!
-  price: Int!
-  discount: Int!
+  currentPrice: Int!
+  withDiscount: Boolean!
+  basePrice: Int!
   amount: Int!
   instock: Boolean!
   gender: String!

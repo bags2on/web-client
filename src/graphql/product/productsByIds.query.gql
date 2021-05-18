@@ -2,7 +2,7 @@ query productsByIDs($input: [CartItem!]) {
   productsByID(input: $input) {
     id
     title
-    price
+    currentPrice
     amount
     preview
   }

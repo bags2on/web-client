@@ -3,7 +3,8 @@ export const TEMP_FEATURED_DATA: {
   title: string
   price: number
   preview: string
-  discountPrice: number
+  withDiscount: boolean
+  basePrice: number
   mainTag: 'new' | 'top' | 'stock' | ''
 }[] = [
   {
@@ -11,7 +12,8 @@ export const TEMP_FEATURED_DATA: {
     title: '[draft] Чемодан BM-black дорожный пластик',
     mainTag: '',
     price: 2920,
-    discountPrice: 0,
+    withDiscount: false,
+    basePrice: 2920,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608120280/bags2on/products/suitc_dr_jrrcks.jpg'
   },
   {
@@ -19,7 +21,8 @@ export const TEMP_FEATURED_DATA: {
     title: '[draft] Чемодан A-1 Suitcase дорожный пластик',
     mainTag: 'stock',
     price: 3617,
-    discountPrice: 3100,
+    withDiscount: true,
+    basePrice: 4000,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608119984/bags2on/products/test-bag_1_dr_d12fjf.jpg'
   },
   {
@@ -27,7 +30,8 @@ export const TEMP_FEATURED_DATA: {
     title: '[draft] Чемодан Suitcase BM дорожный пластик',
     mainTag: '',
     price: 2182,
-    discountPrice: 0,
+    withDiscount: false,
+    basePrice: 2182,
     preview:
       'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121424/bags2on/products/test-bag_2_hz75wn_b6f281.jpg'
   },
@@ -36,7 +40,8 @@ export const TEMP_FEATURED_DATA: {
     title: '[draft] Чемодан Light SSR-1 дорожный пластик',
     mainTag: 'new',
     price: 2629,
-    discountPrice: 0,
+    withDiscount: false,
+    basePrice: 2629,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121006/bags2on/products/3141b_k67pzc_zretlj.jpg'
   }
 ]
@@ -119,7 +124,8 @@ export const TEMP_POPULAR_DATA: {
   title: string
   price: number
   preview: string
-  discountPrice: number
+  withDiscount: boolean
+  basePrice: number
   mainTag: 'new' | 'top' | 'stock' | ''
 }[] = [
   {
@@ -127,15 +133,17 @@ export const TEMP_POPULAR_DATA: {
     title: '[draft] Чемодан BM-lime дорожный пластик',
     mainTag: '',
     price: 2920,
-    discountPrice: 0,
+    withDiscount: false,
+    basePrice: 2920,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_3_rz8rko.jpg'
   },
   {
     id: '002',
     title: '[draft] Чемодан A-1 light Suitcase дорожный',
     mainTag: 'stock',
-    price: 3617,
-    discountPrice: 3100,
+    price: 1500,
+    withDiscount: true,
+    basePrice: 3617,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_1_hd5u9o.jpg'
   },
   {
@@ -143,7 +151,8 @@ export const TEMP_POPULAR_DATA: {
     title: '[draft] Чемодан Light SSR-1 дорожный пластик',
     mainTag: 'new',
     price: 2629,
-    discountPrice: 0,
+    withDiscount: false,
+    basePrice: 2629,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121006/bags2on/products/3141b_k67pzc_zretlj.jpg'
   },
   {
@@ -151,7 +160,8 @@ export const TEMP_POPULAR_DATA: {
     title: '[draft] Чемодан City Walk серый',
     mainTag: '',
     price: 2182,
-    discountPrice: 0,
+    withDiscount: false,
+    basePrice: 2128,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_2_qo2mlm.jpg'
   },
   {
@@ -159,7 +169,8 @@ export const TEMP_POPULAR_DATA: {
     title: '[draft] Чемодан Light Green JJK дорожный пластик',
     mainTag: 'new',
     price: 2101,
-    discountPrice: 0,
+    withDiscount: false,
+    basePrice: 2101,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_3_rz8rko.jpg'
   },
   {
@@ -167,7 +178,8 @@ export const TEMP_POPULAR_DATA: {
     title: '[draft] Чемодан SUD-BM дорожный пластик',
     mainTag: '',
     price: 1300,
-    discountPrice: 0,
+    withDiscount: false,
+    basePrice: 1300,
     preview:
       'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121424/bags2on/products/test-bag_2_hz75wn_b6f281.jpg'
   },
@@ -176,7 +188,8 @@ export const TEMP_POPULAR_DATA: {
     title: '[draft] Чемодан KJJ-BM дорожный пластик',
     mainTag: '',
     price: 1500,
-    discountPrice: 0,
+    withDiscount: false,
+    basePrice: 1500,
     preview:
       'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121424/bags2on/products/test-bag_2_hz75wn_b6f281.jpg'
   }

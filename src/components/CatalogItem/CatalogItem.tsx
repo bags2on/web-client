@@ -18,11 +18,21 @@ interface CatalogItemProps {
   title: string
   price: number
   inStock: boolean
-  discountPrice?: number
+  withDiscount: boolean
+  basePrice: number
   mainTag: string
 }
 
-const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, inStock, mainTag, discountPrice }) => {
+const CatalogItem: React.FC<CatalogItemProps> = ({
+  id,
+  url,
+  title,
+  price,
+  inStock,
+  mainTag,
+  withDiscount,
+  basePrice
+}) => {
   const { t } = useTranslation()
 
   const [isLiked, setLiked] = useState<boolean>(false)
@@ -48,11 +58,12 @@ const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, inStoc
           <div
             className={clsx({
               [classes.price]: true,
-              [classes.price_discount]: Boolean(discountPrice)
+              [classes.price_discount]: withDiscount
             })}
           >
-            {!!discountPrice && <p className={classes.discount}>{formatPrice(price)}&nbsp;₴</p>}
-            <span>{formatPrice(discountPrice ? discountPrice : price)}&nbsp;₴</span>
+            {withDiscount && <p className={classes.discount}>{formatPrice(basePrice)}&nbsp;₴</p>}
+            <span>{formatPrice(price)}&nbsp;₴</span>
+            {/* <span>{formatPrice(discountPrice ? discountPrice : price)}&nbsp;₴</span> */}
           </div>
           <div className={classes.likeButton}>
             <IconButton onClick={handleLikeClick}>

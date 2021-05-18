@@ -16,7 +16,7 @@ import { CartMutations } from '../../../apollo/cache/mutations'
 export type CartItemType = {
   id: string
   title: string
-  price: number
+  currentPrice: number
   amount: number
   preview: string
 }
@@ -100,7 +100,7 @@ const useStyles = makeStyles(() => ({
 }))
 
 const CartItem: React.FC<CartItemProps> = ({ product, onRemove }) => {
-  const { id, title, preview, price, amount } = product
+  const { id, title, preview, currentPrice, amount } = product
 
   const classes = useStyles()
   const [count, setCount] = useState<number>(amount)
@@ -134,12 +134,12 @@ const CartItem: React.FC<CartItemProps> = ({ product, onRemove }) => {
           </Grid>
           <Grid item xs={12}>
             <Typography component="span" className={classes.priceTitle}>
-              Цена:&nbsp;&nbsp;{formatPrice(price)}&nbsp;₴
+              Цена:&nbsp;&nbsp;{formatPrice(currentPrice)}&nbsp;₴
             </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography component="p" className={classes.amountTitle}>
-              {count}&nbsp;шт:&nbsp;&nbsp;{formatPrice(count * price)}&nbsp;грн.
+              {count}&nbsp;шт:&nbsp;&nbsp;{formatPrice(count * currentPrice)}&nbsp;грн.
             </Typography>
             <Box marginTop="10px">
               <Button

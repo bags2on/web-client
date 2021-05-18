@@ -11,8 +11,9 @@ export type GetProductByIdQuery = {
     __typename?: 'Product'
     id: string
     title: string
-    price: number
-    discount: number
+    currentPrice: number
+    withDiscount: boolean
+    basePrice: number
     tags: Array<string>
     images: Array<string>
     description: string
@@ -28,8 +29,9 @@ export const GetProductByIdDocument = gql`
     product(id: $id) {
       id
       title
-      price
-      discount
+      currentPrice
+      withDiscount
+      basePrice
       tags
       images
       description

@@ -14,8 +14,9 @@ query AllProducts(
       id
       title
       instock
-      price
-      discount
+      currentPrice
+      withDiscount
+      basePrice
       mainTag
       preview
     }

@@ -58,9 +58,15 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
   const [minInputValue, setMinInputValue] = useState<number>(min)
   const [maxInputValue, setMaxInputValue] = useState<number>(max)
 
+  const [sliderMin, setSliderMin] = useState<number>(minInputValue)
+  const [sliderMax, setSliderMax] = useState<number>(maxInputValue)
+
   useLayoutEffect(() => {
     setMinInputValue(min)
     setMaxInputValue(max)
+
+    setSliderMin(min)
+    setSliderMax(max)
   }, [min, max])
 
   const handleCollapse = (): void => {
@@ -72,19 +78,25 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
 
     setMinInputValue(min)
     setMaxInputValue(max)
+
+    setSliderMin(min)
+    setSliderMax(max)
   }
 
   const onMinChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const value = +event.target.value
-    setMinInputValue(value)
+    const min = +event.target.value
+    setMinInputValue(min)
   }
 
   const onMaxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const value = +event.target.value
-    setMaxInputValue(value)
+    const max = +event.target.value
+    setMaxInputValue(max)
   }
 
   const handlePriceSubmit = (): void => {
+    setSliderMin(minInputValue)
+    setSliderMax(maxInputValue)
+
     setFieldValue(name, [minInputValue, maxInputValue])
   }
 
@@ -121,14 +133,7 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
             ok
           </Button>
         </div>
-        <Range
-          min={min}
-          max={max}
-          step={step}
-          value={[minInputValue, maxInputValue]}
-          onChange={onSliderChange}
-          marks={marks}
-        />
+        <Range min={min} max={max} step={step} value={[sliderMin, sliderMax]} onChange={onSliderChange} marks={marks} />
       </Collapse>
     </div>
   )

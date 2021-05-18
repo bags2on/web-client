@@ -132,11 +132,11 @@ interface SummaryProps {
   price: number
   tags?: string[]
   description?: string
-  discountPrice?: number
+  withDiscount: boolean
   inStock: boolean
 }
 
-const Details: React.FC<SummaryProps> = ({ id, title, price, tags, description, inStock, discountPrice }) => {
+const Details: React.FC<SummaryProps> = ({ id, title, price, tags, description, inStock, withDiscount }) => {
   const classes = useStyles()
 
   const handleAddToCart = (): void => {
@@ -160,11 +160,12 @@ const Details: React.FC<SummaryProps> = ({ id, title, price, tags, description, 
       </div>
       <div
         className={clsx({
-          [classes.priceDiscount]: Boolean(discountPrice)
+          [classes.priceDiscount]: withDiscount
         })}
       >
-        {!!discountPrice && <span className={classes.discount}>{formatPrice(price)}&nbsp;₴</span>}
-        <p className={classes.price}>{formatPrice(discountPrice ? discountPrice : price)}&nbsp;₴</p>
+        {withDiscount && <span className={classes.discount}>{formatPrice(price)}&nbsp;₴</span>}
+        {/* <p className={classes.price}>{formatPrice(discountPrice ? discountPrice : price)}&nbsp;₴</p> */}
+        <p className={classes.price}>{formatPrice(price)}&nbsp;₴</p>
       </div>
       <div className={classes.description}>
         <Typography component="p">Описание:</Typography>

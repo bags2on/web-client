@@ -11,7 +11,7 @@ export type ProductsByIDsQuery = {
     __typename?: 'Product'
     id: string
     title: string
-    price: number
+    currentPrice: number
     amount: number
     preview: string
   }>
@@ -25,7 +25,7 @@ export const ProductsByIDsDocument = gql`
     productsByID(input: $input) {
       id
       title
-      price
+      currentPrice
       amount
       preview
     }

@@ -71,7 +71,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
     onCompleted: (data) => {
       if (data) {
         const totalSumm = data.productsByID.reduce(
-          (previousValue: number, item: CartItemType) => previousValue + item.price * item.amount,
+          (previousValue: number, item: CartItemType) => previousValue + item.currentPrice * item.amount,
           0
         )
 
