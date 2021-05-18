@@ -15,7 +15,6 @@ query AllProducts(
       title
       instock
       currentPrice
-      withDiscount
       basePrice
       mainTag
       preview

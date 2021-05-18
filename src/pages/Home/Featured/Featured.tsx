@@ -9,7 +9,6 @@ interface ProductType {
   price: number
   title: string
   preview: string
-  withDiscount: boolean
   basePrice: number
   mainTag: 'new' | 'top' | 'stock' | ''
 }
@@ -53,7 +52,6 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
               title={product.title}
               price={product.price}
               mainTag={product.mainTag}
-              withDiscount={product.withDiscount}
               basePrice={product.basePrice}
             />
           </Grid>

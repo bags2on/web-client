@@ -9,7 +9,6 @@ interface ProductType {
   price: number
   title: string
   preview: string
-  withDiscount: boolean
   basePrice: number
   mainTag: 'new' | 'top' | 'stock' | ''
 }
@@ -53,7 +52,6 @@ const Popular: React.FC<PopularProps> = ({ products }) => {
             price={product.price}
             mainTag={product.mainTag}
             basePrice={product.basePrice}
-            withDiscount={product.withDiscount}
           />
         ))}
       </ProductsSlider>

@@ -114,7 +114,6 @@ export type Product = {
   title: Scalars['String']
   isHidden: Scalars['Boolean']
   currentPrice: Scalars['Int']
-  withDiscount: Scalars['Boolean']
   basePrice: Scalars['Int']
   amount: Scalars['Int']
   instock: Scalars['Boolean']

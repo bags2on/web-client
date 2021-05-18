@@ -155,7 +155,6 @@ const Catalog: React.FC = () => {
                     inStock={product.instock}
                     mainTag={product.mainTag}
                     basePrice={product.basePrice}
-                    withDiscount={product.withDiscount}
                   />
                 </Grid>
               ))}

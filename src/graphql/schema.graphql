@@ -111,7 +111,6 @@ type Product {
   title: String!
   isHidden: Boolean!
   currentPrice: Int!
-  withDiscount: Boolean!
   basePrice: Int!
   amount: Int!
   instock: Boolean!

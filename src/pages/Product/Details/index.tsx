@@ -64,7 +64,7 @@ const useStyles = makeStyles((theme) => ({
   outOfStock: {
     background: '#c0c0c0'
   },
-  price: {
+  currentPrice: {
     margin: 0,
     fontSize: 29,
     lineHeight: '29px',
@@ -129,14 +129,14 @@ const useStyles = makeStyles((theme) => ({
 interface SummaryProps {
   id: string
   title: string
-  price: number
+  currentPrice: number
   tags?: string[]
   description?: string
-  withDiscount: boolean
+  basePrice: number
   inStock: boolean
 }
 
-const Details: React.FC<SummaryProps> = ({ id, title, price, tags, description, inStock, withDiscount }) => {
+const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, description, inStock, basePrice }) => {
   const classes = useStyles()
 
   const handleAddToCart = (): void => {
@@ -160,12 +160,11 @@ const Details: React.FC<SummaryProps> = ({ id, title, price, tags, description, 
       </div>
       <div
         className={clsx({
-          [classes.priceDiscount]: withDiscount
+          [classes.priceDiscount]: basePrice !== currentPrice
         })}
       >
-        {withDiscount && <span className={classes.discount}>{formatPrice(price)}&nbsp;₴</span>}
-        {/* <p className={classes.price}>{formatPrice(discountPrice ? discountPrice : price)}&nbsp;₴</p> */}
-        <p className={classes.price}>{formatPrice(price)}&nbsp;₴</p>
+        {basePrice !== currentPrice && <span className={classes.discount}>{formatPrice(basePrice)}&nbsp;₴</span>}
+        <p className={classes.currentPrice}>{formatPrice(currentPrice)}&nbsp;₴</p>
       </div>
       <div className={classes.description}>
         <Typography component="p">Описание:</Typography>

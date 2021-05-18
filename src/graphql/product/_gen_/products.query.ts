@@ -20,7 +20,6 @@ export type AllProductsQuery = {
       title: string
       instock: boolean
       currentPrice: number
-      withDiscount: boolean
       basePrice: number
       mainTag: string
       preview: string
@@ -53,7 +52,6 @@ export const AllProductsDocument = gql`
         title
         instock
         currentPrice
-        withDiscount
         basePrice
         mainTag
         preview
