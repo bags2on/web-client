@@ -1,5 +1,6 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
+import Divider from '@material-ui/core/Divider'
 import { useTranslation } from 'react-i18next'
 import { Formik, Form } from 'formik'
 import { makeStyles } from '@material-ui/core'
@@ -20,8 +21,26 @@ interface FiltersProps {
   onSubmit(values: any): void
 }
 
-const useStyles = makeStyles(() => ({
-  root: {},
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: theme.palette.background.default
+  },
+  title: {
+    fontSize: 21,
+    textAlign: 'center',
+    position: 'relative',
+    fontWeight: 500,
+    marginBottom: 15,
+    [theme.breakpoints.up('lg')]: {
+      textAlign: 'start'
+    }
+  },
+  divider: {
+    backgroundColor: '#d8bbbb80',
+    marginBottom: '10px',
+    height: 2
+  },
+
   generalWrapper: {
     padding: '8px 10px'
   }
@@ -45,7 +64,14 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, onSubmit }) => {
 
   return (
     <aside className={classes.root}>
-      <Typography component="p">{t('catalog.filters.title')}</Typography>
+      <Typography component="p" className={classes.title}>
+        {t('catalog.filters.title')}
+      </Typography>
+      <Divider
+        classes={{
+          root: classes.divider
+        }}
+      />
       <Formik
         onSubmit={handleSubmit}
         initialValues={{

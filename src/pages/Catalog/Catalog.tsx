@@ -1,41 +1,17 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react'
-import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
+import clsx from 'clsx'
+import SvgIcon from '@material-ui/core/SvgIcon'
+import Button from '../../shared/Button/Button'
 import Filters from './Filters/Filters'
+import Products from './Products/Products'
 import ScaleLoader from '../../shared/loaders/ScaleLoader'
-import CatalogItem from '../../components/CatalogItem/CatalogItem'
-import Pagination from '../../components/Pagination/Pagination'
+import { ReactComponent as FilterIcon } from '../../assets/svg/filter.svg'
 import { useParams } from 'react-router-dom'
 import { useLazyQuery } from '@apollo/client'
-import { makeStyles } from '@material-ui/core'
 import { AllProductsDocument, AllProductsQuery, AllProductsVariables } from '../../graphql/product/_gen_/products.query'
 import { CategoryType, Gender, MainTag } from '../../types'
-
-const useStyles = makeStyles(() => ({
-  root: {
-    maxWidth: '1600px',
-    margin: '0 auto'
-  },
-  list: {
-    margin: 0,
-    padding: 5,
-    listStyle: 'none'
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: 500,
-    margin: '15px 0 5px 10px'
-  },
-  loaderWapper: {
-    height: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  pageContainer: {
-    padding: '0 20px'
-  }
-}))
+import classes from './Catalog.module.scss'
 
 interface ParamTypes {
   page: string
@@ -56,11 +32,10 @@ interface FilterValues {
 
 const Catalog: React.FC = () => {
   const { page } = useParams<ParamTypes>()
-  const classes = useStyles()
-
   const numOfPage = page ? Number(page) : 1
 
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0])
+  const [isOpen, setOpen] = useState<boolean>(false)
 
   const [getProducts, { loading, data, error }] = useLazyQuery<AllProductsQuery, AllProductsVariables>(
     AllProductsDocument,
@@ -121,6 +96,16 @@ const Catalog: React.FC = () => {
     })
   }
 
+  const handleFilterClick = () => {
+    document.body.style.overflow = 'hidden'
+    setOpen(true)
+  }
+
+  const handleDrawerClose = () => {
+    document.body.style.overflow = 'unset'
+    setOpen(false)
+  }
+
   if (error) {
     return (
       <div className={classes.loaderWapper}>
@@ -131,38 +116,54 @@ const Catalog: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <Typography className={classes.title} component="h2">
-        Каталог
-      </Typography>
-      <Grid container className={classes.pageContainer}>
-        <Grid item xs={2}>
-          <Filters priceRange={priceRange} onSubmit={handleFiltersSubmit} />
-        </Grid>
+      <div className={classes.pageContainer}>
+        <div className={classes.controlContainer}>
+          <div className={classes.filterButtonWrapper}>
+            <Button
+              onClick={handleFilterClick}
+              className={classes.filterButton}
+              disableShadow
+              disabled={loading}
+              fullWidth
+              startIcon={
+                <SvgIcon component="span">
+                  <FilterIcon />
+                </SvgIcon>
+              }
+            >
+              фильтр
+            </Button>
+          </div>
+          <div
+            className={clsx({
+              [classes.filtersBox]: true,
+              [classes.filtersBoxVisible]: isOpen
+            })}
+          >
+            <Filters priceRange={priceRange} onSubmit={handleFiltersSubmit} />
+          </div>
+        </div>
         {loading ? (
           <div className={classes.loaderWapper}>
             <ScaleLoader fallback />
           </div>
         ) : (
-          <Grid item xs={10}>
-            <Grid container component="ul" className={classes.list}>
-              {data?.allProducts.products.map((product) => (
-                <Grid key={product.id} component="li" item xs={6} md={4} lg={3} xl={2}>
-                  <CatalogItem
-                    id={product.id}
-                    url={product.preview}
-                    title={product.title}
-                    price={product.currentPrice}
-                    inStock={product.instock}
-                    mainTag={product.mainTag}
-                    basePrice={product.basePrice}
-                  />
-                </Grid>
-              ))}
-            </Grid>
-            <Pagination total={20} currentPage={isNaN(numOfPage) ? 1 : numOfPage} />
-          </Grid>
+          <div className={classes.productsContainer}>
+            <Products
+              totalPages={20}
+              currentPage={isNaN(numOfPage) ? 1 : numOfPage}
+              products={data?.allProducts.products}
+            />
+          </div>
         )}
-      </Grid>
+      </div>
+      <div
+        onClick={handleDrawerClose}
+        className={clsx({
+          [classes.overlay]: true,
+          [classes.overlayVisible]: isOpen
+        })}
+      />
     </div>
   )
 }
