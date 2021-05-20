@@ -96,14 +96,24 @@ const Catalog: React.FC = () => {
     })
   }
 
-  const handleFilterClick = () => {
+  const handleFilterClick = (): void => {
     document.body.style.overflow = 'hidden'
     setOpen(true)
   }
 
-  const handleDrawerClose = () => {
+  const handleDrawerClose = (): void => {
     document.body.style.overflow = 'unset'
     setOpen(false)
+  }
+
+  const handleReftesh = (): void => {
+    getProducts({
+      variables: {
+        gender: [],
+        instock: undefined,
+        category: []
+      }
+    })
   }
 
   if (error) {
@@ -116,54 +126,59 @@ const Catalog: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.pageContainer}>
-        <div className={classes.controlContainer}>
-          <div className={classes.filterButtonWrapper}>
-            <Button
-              onClick={handleFilterClick}
-              className={classes.filterButton}
-              disableShadow
-              disabled={loading}
-              fullWidth
-              startIcon={
-                <SvgIcon component="span">
-                  <FilterIcon />
-                </SvgIcon>
-              }
+      <div className={classes.wrapper}>
+        <div className={classes.pageContainer}>
+          <div className={classes.controlContainer}>
+            <div className={classes.filterButtonWrapper}>
+              <Button
+                onClick={handleFilterClick}
+                className={classes.filterButton}
+                disableShadow
+                disabled={loading}
+                fullWidth
+                startIcon={
+                  <SvgIcon component="span">
+                    <FilterIcon />
+                  </SvgIcon>
+                }
+              >
+                фильтр
+              </Button>
+            </div>
+            <div
+              className={clsx({
+                [classes.filtersBox]: true,
+                [classes.filtersBoxVisible]: isOpen
+              })}
             >
-              фильтр
-            </Button>
+              <Filters priceRange={priceRange} onSubmit={handleFiltersSubmit} />
+            </div>
           </div>
-          <div
-            className={clsx({
-              [classes.filtersBox]: true,
-              [classes.filtersBoxVisible]: isOpen
-            })}
-          >
-            <Filters priceRange={priceRange} onSubmit={handleFiltersSubmit} />
+          <div className={classes.viewBox}>
+            {loading ? (
+              <div className={classes.loaderWapper}>
+                <ScaleLoader fallback />
+              </div>
+            ) : (
+              <div className={classes.productsContainer}>
+                <Products
+                  totalPages={20}
+                  currentPage={isNaN(numOfPage) ? 1 : numOfPage}
+                  products={data?.allProducts.products}
+                  onActionButtonClick={handleReftesh}
+                />
+              </div>
+            )}
           </div>
         </div>
-        {loading ? (
-          <div className={classes.loaderWapper}>
-            <ScaleLoader fallback />
-          </div>
-        ) : (
-          <div className={classes.productsContainer}>
-            <Products
-              totalPages={20}
-              currentPage={isNaN(numOfPage) ? 1 : numOfPage}
-              products={data?.allProducts.products}
-            />
-          </div>
-        )}
+        <div
+          onClick={handleDrawerClose}
+          className={clsx({
+            [classes.overlay]: true,
+            [classes.overlayVisible]: isOpen
+          })}
+        />
       </div>
-      <div
-        onClick={handleDrawerClose}
-        className={clsx({
-          [classes.overlay]: true,
-          [classes.overlayVisible]: isOpen
-        })}
-      />
     </div>
   )
 }

@@ -1,8 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import { useTranslation } from 'react-i18next'
-import { Formik, Form } from 'formik'
+import { Formik, Form, FormikProps } from 'formik'
 import { makeStyles } from '@material-ui/core'
 import RadioGroup from '../../../shared/FormFields/RadioGroup'
 import CheckBoxGroup from '../../../shared/FormFields/CheckBoxGroup'
@@ -23,7 +24,7 @@ interface FiltersProps {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.default
+    padding: '10px 10px 20px 10px'
   },
   title: {
     fontSize: 21,

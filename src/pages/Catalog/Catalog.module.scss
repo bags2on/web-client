@@ -1,17 +1,26 @@
 @import '../../utils/shared.scss';
 
-.root {
-  max-width: 1600px;
+.wrapper {
+  max-width: 1700px;
   margin: 0 auto;
   padding-top: 17px;
 }
 
+.viewBox {
+  background-color: #fff;
+  flex-grow: 0;
+  border-radius: 7px;
+  margin-left: 7px;
+  max-width: 100%;
+  flex-basis: 100%;
+}
+
 .loaderWapper {
-  height: 100vh;
-  width: 100%;
   display: flex;
+  height: calc(100 * var(--vh));
   align-items: center;
   justify-content: center;
+  flex-grow: 1;
 }
 
 .pageContainer {
@@ -29,9 +38,9 @@
 }
 
 .productsContainer {
-  flex-grow: 0;
   max-width: 100%;
   flex-basis: 100%;
+  height: 100%;
 }
 
 .filterButtonWrapper {
@@ -65,7 +74,6 @@
   z-index: 1200;
   width: 100%;
   max-width: 300px;
-  padding: 10px 10px 20px 10px;
   height: calc(100 * var(--vh));
   overflow-x: hidden;
   background-color: #fff;
@@ -103,16 +111,24 @@
 }
 
 @media screen and (min-width: $lg) {
+  .root {
+    background-color: #f5f5f4;
+  }
+
   .controlContainer {
     width: auto;
     max-width: initial;
     flex-basis: initial;
   }
 
-  .productsContainer {
+  .loaderWapper {
+    height: 100%;
+  }
+
+  .viewBox {
     max-width: initial;
     flex-grow: 1;
-    width: calc(100% - 300px);
+    width: calc(100% - 307px);
     flex-basis: initial;
   }
 
@@ -123,10 +139,17 @@
   .filtersBox {
     position: static;
     right: 0;
-    height: auto;
+    height: 100%;
+    border-radius: 7px;
   }
 
   .overlay {
     display: none !important;
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .filtersBox {
+    width: 300px;
   }
 }

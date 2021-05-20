@@ -42,6 +42,7 @@ const FONTS = [
 
 export const darkTheme = createMuiTheme({
   breakpoints: {
+    keys: ['xs', 'sm', 'md', 'lg', 'xl', 'tablet', 'laptop', 'desktop'],
     values: {
       xs: 0,
       sm: 450,
@@ -90,6 +91,7 @@ export const darkTheme = createMuiTheme({
 
 export const lightTheme = createMuiTheme({
   breakpoints: {
+    keys: ['xs', 'sm', 'md', 'lg', 'xl', 'tablet', 'laptop', 'desktop'],
     values: {
       xs: 0,
       sm: 450,

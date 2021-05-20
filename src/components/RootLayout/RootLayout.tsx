@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 65,
     [theme.breakpoints.up('lg')]: {
-      marginTop: 15
+      marginTop: 0
     }
   }
 }))
