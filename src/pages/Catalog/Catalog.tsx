@@ -124,6 +124,9 @@ const Catalog: React.FC = () => {
     )
   }
 
+  const formikRef = React.useRef<HTMLFormElement>(null)
+  console.log(formikRef)
+
   return (
     <div className={classes.root}>
       <div className={classes.wrapper}>
@@ -151,7 +154,7 @@ const Catalog: React.FC = () => {
                 [classes.filtersBoxVisible]: isOpen
               })}
             >
-              <Filters priceRange={priceRange} onSubmit={handleFiltersSubmit} />
+              <Filters priceRange={priceRange} formRef={formikRef} onSubmit={handleFiltersSubmit} />
             </div>
           </div>
           <div className={classes.viewBox}>

@@ -1,9 +1,8 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import { useTranslation } from 'react-i18next'
-import { Formik, Form, FormikProps } from 'formik'
+import { Formik, Form } from 'formik'
 import { makeStyles } from '@material-ui/core'
 import RadioGroup from '../../../shared/FormFields/RadioGroup'
 import CheckBoxGroup from '../../../shared/FormFields/CheckBoxGroup'
@@ -17,6 +16,7 @@ type PriceRange = {
 }
 
 interface FiltersProps {
+  formRef: React.RefObject<HTMLFormElement>
   priceRange: [number, number]
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSubmit(values: any): void
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Filters: React.FC<FiltersProps> = ({ priceRange, onSubmit }) => {
+const Filters: React.FC<FiltersProps> = ({ priceRange, formRef, onSubmit }) => {
   const classes = useStyles()
   const { t } = useTranslation()
 
@@ -74,6 +74,15 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, onSubmit }) => {
         }}
       />
       <Formik
+        onReset={(_, { setValues }) => {
+          setValues({
+            gender: [],
+            availability: [],
+            mainTag: '',
+            priceRange: [],
+            category: []
+          })
+        }}
         onSubmit={handleSubmit}
         initialValues={{
           gender: [],
@@ -84,7 +93,7 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, onSubmit }) => {
         }}
       >
         {(): React.ReactElement => (
-          <Form>
+          <Form ref={formRef}>
             <AutoSave onSave={handleSave} />
             <CheckBoxGroup title={t('catalog.filters.names.type')} name="gender" options={gender.options} />
             <CheckBoxGroup
