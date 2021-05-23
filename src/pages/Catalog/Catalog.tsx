@@ -106,7 +106,13 @@ const Catalog: React.FC = () => {
     setOpen(false)
   }
 
+  const formikRef = React.useRef<HTMLFormElement>(null)
+
   const handleReftesh = (): void => {
+    if (formikRef) {
+      formikRef.current?.reset()
+    }
+
     getProducts({
       variables: {
         gender: [],
@@ -123,9 +129,6 @@ const Catalog: React.FC = () => {
       </div>
     )
   }
-
-  const formikRef = React.useRef<HTMLFormElement>(null)
-  console.log(formikRef)
 
   return (
     <div className={classes.root}>
