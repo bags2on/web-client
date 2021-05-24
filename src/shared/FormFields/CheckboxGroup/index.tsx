@@ -22,7 +22,6 @@ interface CheckBoxGroupProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {},
   title: {
     padding: '8px 10px'
   },
@@ -49,7 +48,7 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, options, name }) =
         name={name}
         render={({ name }) => (
           <Collapse in={isCollapsed} timeout="auto" unmountOnExit className={classes.collapseList}>
-            <FormControl component="fieldset" style={{ display: 'flex' }}>
+            <FormControl component="fieldset">
               <FormGroup>
                 {options.map(({ label, value }) => (
                   <Field key={value} type="checkbox" component={Checkbox} name={name} value={value} Label={{ label }} />

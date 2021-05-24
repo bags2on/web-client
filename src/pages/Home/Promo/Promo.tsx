@@ -83,7 +83,15 @@ const Promo: React.FC = () => {
   return (
     <section className={classes.root}>
       <div className={classes.wrapper}>
-        <Link to={routes.allCatalog} className={classes.overlay}>
+        <Link
+          to={{
+            pathname: routes.allCatalog,
+            state: {
+              genderType: 'Male'
+            }
+          }}
+          className={classes.overlay}
+        >
           <div className={classes.contentBox}>
             <p className={classes.title}>{t('home.promo.male')}</p>
             <div className={classes.fakeButton}>{t('home.promo.action')}</div>
@@ -92,7 +100,15 @@ const Promo: React.FC = () => {
         <img src={maleBanner} className={classes.image} alt="банер" />
       </div>
       <div className={classes.wrapper}>
-        <Link to={routes.allCatalog} className={classes.overlay}>
+        <Link
+          to={{
+            pathname: routes.allCatalog,
+            state: {
+              genderType: 'Female'
+            }
+          }}
+          className={classes.overlay}
+        >
           <div className={classes.contentBox}>
             <p className={classes.title}>{t('home.promo.female')}</p>
             <div className={classes.fakeButton}>{t('home.promo.action')}</div>

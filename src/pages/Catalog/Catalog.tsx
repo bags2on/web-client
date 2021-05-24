@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import SvgIcon from '@material-ui/core/SvgIcon'
@@ -7,7 +6,7 @@ import Filters from './Filters/Filters'
 import Products from './Products/Products'
 import ScaleLoader from '../../shared/loaders/ScaleLoader'
 import { ReactComponent as FilterIcon } from '../../assets/svg/filter.svg'
-import { useParams } from 'react-router-dom'
+import { useParams, useLocation } from 'react-router-dom'
 import { useLazyQuery } from '@apollo/client'
 import { AllProductsDocument, AllProductsQuery, AllProductsVariables } from '../../graphql/product/_gen_/products.query'
 import { CategoryType, Gender, MainTag } from '../../types'
@@ -30,8 +29,17 @@ interface FilterValues {
   category: Array<categoryType>
 }
 
+interface LocationState {
+  categoryName?: categoryType | ''
+  genderType?: genderType | ''
+}
+
 const Catalog: React.FC = () => {
   const { page } = useParams<ParamTypes>()
+  const location = useLocation<LocationState>()
+
+  const { categoryName, genderType } = location.state || { categoryName: '', genderType: '' }
+
   const numOfPage = page ? Number(page) : 1
 
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0])
@@ -50,11 +58,15 @@ const Catalog: React.FC = () => {
   )
 
   useEffect(() => {
+    if (categoryName || genderType) {
+      history.replaceState({}, 'drop history state')
+    }
+
     getProducts({
       variables: {
-        gender: [],
+        gender: genderType ? [Gender[genderType]] : [],
         instock: undefined,
-        category: []
+        category: categoryName ? [CategoryType[categoryName]] : []
       }
     })
   }, [])
@@ -130,6 +142,14 @@ const Catalog: React.FC = () => {
     )
   }
 
+  const filtersInitialValues = {
+    gender: genderType ? [genderType] : [],
+    availability: [],
+    mainTag: '',
+    priceRange: [],
+    category: categoryName ? [categoryName] : []
+  }
+
   return (
     <div className={classes.root}>
       <div className={classes.wrapper}>
@@ -157,7 +177,12 @@ const Catalog: React.FC = () => {
                 [classes.filtersBoxVisible]: isOpen
               })}
             >
-              <Filters priceRange={priceRange} formRef={formikRef} onSubmit={handleFiltersSubmit} />
+              <Filters
+                initValues={filtersInitialValues}
+                priceRange={priceRange}
+                formRef={formikRef}
+                onSubmit={handleFiltersSubmit}
+              />
             </div>
           </div>
           <div className={classes.viewBox}>

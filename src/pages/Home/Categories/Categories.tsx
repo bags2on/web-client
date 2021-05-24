@@ -19,6 +19,7 @@ type CategoryItemType = {
   icon: React.ElementType
   to: string
   i18n: string
+  categoryName: string
 }
 
 const categoriesValues: {
@@ -29,12 +30,14 @@ const categoriesValues: {
       {
         icon: BaggageIcon,
         to: routes.allCatalog,
-        i18n: 'suitcases'
+        i18n: 'suitcases',
+        categoryName: 'Suitcase'
       },
       {
         icon: BagIcon,
         to: routes.allCatalog,
-        i18n: 'bags'
+        i18n: 'bags',
+        categoryName: 'Bag'
       }
     ]
   },
@@ -43,12 +46,14 @@ const categoriesValues: {
       {
         icon: WalletIcon,
         to: routes.allCatalog,
-        i18n: 'wallets'
+        i18n: 'wallets',
+        categoryName: 'Wallet'
       },
       {
         icon: OtherIcon,
         to: routes.allCatalog,
-        i18n: 'all'
+        i18n: 'all',
+        categoryName: ''
       }
     ]
   }
@@ -123,7 +128,6 @@ const useStyles = makeStyles((theme) => ({
 
 const Categories: React.FC = () => {
   const classes = useStyles()
-
   const { t } = useTranslation()
 
   return (
@@ -137,7 +141,16 @@ const Categories: React.FC = () => {
             <Grid container item key={ind} xs={6} lg={6} component="li" className={classes.groupBox}>
               {category.group.map((group, ind) => (
                 <Grid key={ind} item xs={12} lg={6} className={classes.item}>
-                  <Link className={classes.link} to={group.to}>
+                  <Link
+                    className={classes.link}
+                    to={{
+                      pathname: group.to,
+
+                      state: {
+                        categoryName: group.categoryName
+                      }
+                    }}
+                  >
                     <ListItem component="div" className={classes.listItem}>
                       <ListItemIcon className={classes.itemIcon}>
                         <SvgIcon

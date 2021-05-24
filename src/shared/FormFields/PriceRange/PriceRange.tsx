@@ -5,13 +5,17 @@ import Collapse from '@material-ui/core/Collapse'
 import ListItemText from '@material-ui/core/ListItemText'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
-import Button from '@material-ui/core/Button'
+import Button from '../../../shared/Button/Button'
 import { useFormikContext } from 'formik'
 import { Range } from 'rc-slider'
 import { makeStyles } from '@material-ui/core'
 
 import 'rc-slider/assets/index.css'
 import './PriceRange.scss'
+
+/*
+  TODO: make price range more dependent from Formik
+*/
 
 interface PriceRangeProps {
   title: string
@@ -40,11 +44,12 @@ const useStyles = makeStyles((theme) => ({
     borderColor: theme.palette.type === 'light' ? '#c4c4c4' : '#3c4144'
   },
   submitButton: {
-    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
+    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#2bab2b',
     color: theme.palette.type === 'light' ? '#343434' : '#fff',
+    border: '1px solid',
+    borderColor: theme.palette.type === 'dark' ? 'transparent' : '#c0c0c0',
     '&:hover': {
-      backgroundColor: theme.palette.type === 'dark' ? '#ff9900' : '#f8f8f8',
-      borderColor: theme.palette.type === 'dark' ? '#343434' : '#c0c0c0'
+      backgroundColor: theme.palette.type === 'dark' ? '#32cd32' : '#efefef'
     }
   }
 }))
@@ -129,7 +134,7 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
             onChange={onMaxChange}
             className={clsx(classes.input, 'price-input')}
           />
-          <Button className={clsx(classes.submitButton, 'price-submit')} onClick={handlePriceSubmit}>
+          <Button disableShadow className={clsx(classes.submitButton, 'price-submit')} onClick={handlePriceSubmit}>
             ok
           </Button>
         </div>

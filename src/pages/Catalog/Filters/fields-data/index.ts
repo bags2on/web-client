@@ -1,4 +1,3 @@
-import {} from 'react-i18next'
 import i18n from '../../../../locales/i18n'
 
 interface FilterItem {
@@ -75,13 +74,7 @@ function fillUpValues(): void {
     }
   ]
 
-  // Other = 'OTHER',
-
   categories.options = [
-    // {
-    //   label: i18n.t('categories.all'),
-    //   value: 'all'
-    // },
     {
       label: i18n.t('categories.suitcases'),
       value: 'Suitcase'
