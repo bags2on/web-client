@@ -142,6 +142,7 @@ const Catalog: React.FC = () => {
     )
   }
 
+  // TODO: why resetForm() doesn't re-init form values?
   const filtersInitialValues = {
     gender: genderType ? [genderType] : [],
     availability: [],
