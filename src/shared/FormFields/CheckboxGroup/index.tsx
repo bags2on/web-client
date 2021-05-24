@@ -4,10 +4,11 @@ import ListItemText from '@material-ui/core/ListItemText'
 import Collapse from '@material-ui/core/Collapse'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
-import { FieldArray } from 'formik'
+import FormControl from '@material-ui/core/FormControl'
+import FormGroup from '@material-ui/core/FormGroup'
+import Checkbox from '../../Checkbox/Checkbox'
+import { FieldArray, Field } from 'formik'
 import { makeStyles } from '@material-ui/core'
-
-import Checkbox from '../Checkbox/Checkbox'
 
 type optionType = {
   value: string
@@ -48,9 +49,13 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, options, name }) =
         name={name}
         render={({ name }) => (
           <Collapse in={isCollapsed} timeout="auto" unmountOnExit className={classes.collapseList}>
-            {options.map(({ value, label }) => (
-              <Checkbox key={value} label={label} name={name} value={value} />
-            ))}
+            <FormControl component="fieldset" style={{ display: 'flex' }}>
+              <FormGroup>
+                {options.map(({ label, value }) => (
+                  <Field key={value} type="checkbox" component={Checkbox} name={name} value={value} Label={{ label }} />
+                ))}
+              </FormGroup>
+            </FormControl>
           </Collapse>
         )}
       />

@@ -1,23 +1,53 @@
 import React from 'react'
-import { useField } from 'formik'
-import { FormControlLabel } from '@material-ui/core'
-import MaterialCheckbox from '@material-ui/core/Checkbox'
+import { FieldProps } from 'formik'
+import FormControlLabel, { FormControlLabelProps as MuiFormControlLabelProps } from '@material-ui/core/FormControlLabel'
+import MuiCheckbox, { CheckboxProps as MuiCheckboxProps } from '@material-ui/core/Checkbox'
 
-interface CheckboxProps {
-  name: string
-  label: string
-  value: string
-  checked?: boolean
+interface CheckboxProps
+  extends FieldProps,
+    Omit<
+      MuiCheckboxProps,
+      | 'name'
+      | 'value'
+      | 'error'
+      | 'form'
+      | 'checked'
+      | 'defaultChecked'
+      // Excluded for conflict with Field type
+      | 'type'
+    > {
+  type?: string
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ label, ...restProps }) => {
-  const [field] = useField(restProps)
+function fieldToCheckbox({
+  disabled,
+  field: { onBlur: fieldOnBlur, ...field },
+  form: { isSubmitting },
+  type,
+  onBlur,
+  ...props
+}: CheckboxProps): MuiCheckboxProps {
+  const indeterminate = !Array.isArray(field.value) && field.value == null
 
-  return (
-    <div>
-      <FormControlLabel label={label} {...field} control={<MaterialCheckbox {...restProps} />} />
-    </div>
-  )
+  return {
+    disabled: disabled ?? isSubmitting,
+    indeterminate,
+    onBlur:
+      onBlur ??
+      function (e) {
+        fieldOnBlur(e ?? field.name)
+      },
+    ...field,
+    ...props
+  }
+}
+
+interface ComponentProps extends FieldProps, CheckboxProps {
+  Label: Omit<MuiFormControlLabelProps, 'checked' | 'name' | 'value' | 'control'>
+}
+
+const Checkbox: React.FC<ComponentProps> = ({ Label, ...restProps }) => {
+  return <FormControlLabel {...Label} control={<MuiCheckbox {...fieldToCheckbox(restProps)} />} />
 }
 
 export default Checkbox
