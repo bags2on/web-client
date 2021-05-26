@@ -1,5 +1,6 @@
 import React from 'react'
-import Grid from '@material-ui/core/Grid'
+// import Grid from '@material-ui/core/Grid'
+import ExpandedGrid from '../../../shared/ExpandedGrid'
 import FlatProductItem from '../../../components/FlatProductItem/FlatProductItem'
 import { makeStyles } from '@material-ui/core'
 
@@ -17,6 +18,7 @@ interface SideListProps {
 
 const useStyles = makeStyles(() => ({
   root: {
+    width: 'inherit',
     paddingTop: 2
   },
   list: {
@@ -34,9 +36,9 @@ const SideList: React.FC<SideListProps> = ({ products }) => {
 
   return (
     <div className={classes.root}>
-      <Grid container component="ul" className={classes.list}>
+      <ExpandedGrid container component="ul" className={classes.list}>
         {products.map((product: ProductType) => (
-          <Grid key={product.id} item component="li" className={classes.item} xs={12}>
+          <ExpandedGrid key={product.id} component="li" item className={classes.item} xs={12} md={6} laptop={12}>
             <FlatProductItem
               id={product.id}
               title={product.title}
@@ -44,9 +46,9 @@ const SideList: React.FC<SideListProps> = ({ products }) => {
               imageURL={product.imageURL}
               discountPrice={product.discountPrice}
             />
-          </Grid>
+          </ExpandedGrid>
         ))}
-      </Grid>
+      </ExpandedGrid>
     </div>
   )
 }

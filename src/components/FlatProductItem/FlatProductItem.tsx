@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
@@ -23,34 +24,40 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     height: 120,
     boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
-    paddingLeft: 4,
+    // paddingLeft: 4,
     transition: 'box-shadow 0.3s',
     '&:hover': {
       boxShadow: 'rgba(0, 0, 0, 0.08) 0px 4px 12px'
     }
   },
-  textContainer: {
-    paddingTop: 20,
+  imageBox: {
+    width: '100%',
+    maxWidth: 117,
+    padding: '0 5px'
+    // backgroundColor: 'gold'
+  },
+  infoBox: {
+    flex: '1 1 100%',
+    minWidth: 0,
+    padding: '20px 10px 0 10px',
+    // backgroundColor: 'gold',
     position: 'relative',
+    // width: '100%',
     [theme.breakpoints.up('laptop')]: {
       position: 'static'
     }
   },
   link: {
     textDecoration: 'none',
-    color: 'inherit',
-    marginRight: 15
-  },
-  linkWrapper: {
-    width: '100%',
-    maxWidth: 117
+    color: 'inherit'
+    // marginRight: 15
   },
   title: {
     fontSize: 16,
     whiteSpace: 'nowrap',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
-    maxWidth: 115,
+    // maxWidth: 115,
     '& > a': {
       color: 'inherit',
       textDecoration: 'none',
@@ -116,12 +123,19 @@ const FlatProductItem: React.FC<FlatProductItemProps> = ({ id, price, title, ima
 
   return (
     <div className={classes.root}>
-      <div className={classes.linkWrapper}>
+      <div className={classes.imageBox}>
         <Link to={generateLink(routes.product, id)} className={classes.link}>
           <ImagePlaceholder src={imageURL} altText={title} />
         </Link>
+        {/* <div
+          style={{
+            backgroundColor: 'limegreen',
+            width: '100%',
+            height: '100%'
+          }}
+        /> */}
       </div>
-      <div className={classes.textContainer}>
+      <div className={classes.infoBox}>
         <Typography component="p" className={classes.title}>
           <Link to={generateLink(routes.product, id)} className={classes.link}>
             {title}
