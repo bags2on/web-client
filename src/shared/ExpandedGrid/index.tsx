@@ -10,15 +10,17 @@ interface ExpandedGridProps {
   container?: boolean
   xs?: boolean | GridSize
   md?: boolean | GridSize
+  laptop?: boolean | GridSize
   xl?: boolean | GridSize
   desktop?: boolean | GridSize
 }
 
-const ExpandedGrid: React.FC<ExpandedGridProps> = ({ desktop, ...other }) => {
+const ExpandedGrid: React.FC<ExpandedGridProps> = ({ className, laptop, desktop, ...other }) => {
   const classes = clsx({
-    [`MuiGrid-grid-desktop-${desktop}`]: Boolean(desktop)
+    [`MuiGrid-grid-desktop-${desktop}`]: Boolean(desktop),
+    [`MuiGrid-grid-laptop-${laptop}`]: Boolean(laptop)
   })
-  return <Grid className={classes} {...other} />
+  return <Grid className={clsx(className, classes)} {...other} />
 }
 
 export default ExpandedGrid
