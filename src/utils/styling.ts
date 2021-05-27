@@ -1,9 +1,5 @@
 import type { CSSProperties } from '@material-ui/core/styles/withStyles'
 
-/*
-  boxShadow: '0 1px 0 rgb(12 13 14 / 15%)', // simple undeline
-*/
-
 export const getColorByTagName = (name: string): string => {
   switch (name) {
     case 'new':
@@ -11,7 +7,7 @@ export const getColorByTagName = (name: string): string => {
     case 'best price':
       return '#FFA500'
     default:
-      return 'lightgray' // default shouldn't be visible
+      return 'lightgray'
   }
 }
 
@@ -24,7 +20,7 @@ export const getColorForMainTagName = (name: string): string => {
     case 'stock':
       return '#d81e1e'
     default:
-      return 'lightgray' // default shouldn't be visible
+      return 'lightgray'
   }
 }
 
@@ -36,7 +32,7 @@ export const hiddenStyles: CSSProperties = {
   border: 0,
   padding: 0,
   whiteSpace: 'nowrap',
-  clipPath: 'insert(100%)',
+  clipPath: 'inset(100%)',
   clip: 'rect(0 0 0 0)',
   overflow: 'hidden'
 }

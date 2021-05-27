@@ -59,11 +59,11 @@ const useStyles = makeStyles((theme) => ({
   actionButton: {
     display: 'block',
     width: 200,
-    backgroundColor: '#2bab2b',
     padding: '15px 10px',
     margin: '0 auto',
+    backgroundColor: 'var(--green)',
     '&:hover': {
-      backgroundColor: '#32cd32'
+      backgroundColor: 'var(--green-light)'
     }
   }
 }))

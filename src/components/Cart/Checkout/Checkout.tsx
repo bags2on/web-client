@@ -85,6 +85,7 @@ const Checkout: React.FC<CheckoutProps> = ({ onConfirm, onBack }) => {
           surname: '',
           email: '',
           phone: '',
+          deliveryService: 'nova',
           cityId: '',
           postOfficeId: 'sfh34i'
         }}
