@@ -1,11 +1,21 @@
 query AllProducts(
   $gender: [Gender]
+  $isHidden: Boolean = false
   $instock: Boolean
   $mainTag: MainTag
   $price: PriceRange
   $category: [CategoryType]
 ) {
-  allProducts(filter: { gender: $gender, instock: $instock, mainTag: $mainTag, price: $price, category: $category }) {
+  allProducts(
+    filter: {
+      gender: $gender
+      isHidden: $isHidden
+      instock: $instock
+      mainTag: $mainTag
+      price: $price
+      category: $category
+    }
+  ) {
     priceRange {
       lt
       gt

@@ -124,6 +124,7 @@ type Product {
 
 input ProductFilter {
   gender: [Gender]
+  isHidden: Boolean
   instock: Boolean
   mainTag: MainTag
   price: PriceRange
