@@ -37,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: 'gold'
   },
   infoBox: {
+    maxWidth: 170,
     flex: '1 1 100%',
     minWidth: 0,
     padding: '20px 10px 0 10px',
@@ -66,9 +67,6 @@ const useStyles = makeStyles((theme) => ({
         outline: 'none',
         color: '#909090'
       }
-    },
-    [theme.breakpoints.up('xl')]: {
-      maxWidth: 170
     }
   },
   price: {
