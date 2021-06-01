@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
 import { GET_CART_AMOUNT } from '../../apollo/cache/queries/cart'
+import logoImage from '../../assets/svg/logo.svg'
 
 interface HeaderProps {
   onDrawerOpen(): void
@@ -36,15 +37,21 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: '0 1px 2px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.05)',
     [theme.breakpoints.up('lg')]: {
       position: 'static',
-      padding: '15px 50px',
+      padding: '10px 17px',
       backgroundColor: theme.palette.type === 'light' ? '#fff' : '#242729'
+    },
+    [theme.breakpoints.up('laptop')]: {
+      padding: '10px 50px'
     }
   },
   logo: {
     display: 'none',
     [theme.breakpoints.up('lg')]: {
-      display: 'flex',
-      width: 177,
+      display: 'block',
+      position: 'relative',
+      top: 7,
+      marginRight: 40,
+      width: 150,
       '& > img': {
         width: '100%',
         height: '100%'
@@ -85,7 +92,6 @@ const useStyles = makeStyles((theme) => ({
           '-ms-transition': 'all .3s ease 0s'
         },
         '&:hover': {
-          // color: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc',
           '&::after': {
             width: '45%',
             opacity: 1,
@@ -183,7 +189,9 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
           <MenuIcon />
         </Icon>
       </IconButton>
-
+      <div className={classes.logo}>
+        <img src={logoImage} alt="логотип" />
+      </div>
       <nav>
         <List className={classes.navList}>
           <ListItem component="li">
@@ -191,9 +199,6 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
           </ListItem>
           <ListItem component="li">
             <Link to={routes.allCatalog}>Каталог</Link>
-          </ListItem>
-          <ListItem component="li">
-            <Link to={routes.discounts}>Акции</Link>
           </ListItem>
         </List>
       </nav>

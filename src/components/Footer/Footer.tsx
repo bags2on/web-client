@@ -8,6 +8,7 @@ import { ReactComponent as PhoneIcon } from '../../assets/svg/phone.svg'
 import { ReactComponent as InstagramIcon } from '../../assets/svg/instagram.svg'
 import { ReactComponent as TelegramIcon } from '../../assets/svg/telegram.svg'
 import { ReactComponent as FacebookIcon } from '../../assets/svg/facebook.svg'
+import logoImage from '../../assets/svg/logo.svg'
 import classes from './Footer.module.scss'
 
 interface FooterProps {
@@ -20,11 +21,9 @@ const Footer: React.FC<FooterProps> = ({ themeChanger }) => {
       <footer className={classes.root}>
         <div className={classes.brand}>
           <Link to="#">
-            <Typography className={classes.logo} component="h1">
-              Bags
-              <sup>2</sup>
-              on
-            </Typography>
+            <div className={classes.logo}>
+              <img src={logoImage} alt="логотип" />
+            </div>
           </Link>
           <div className={classes.logoBox}>
             <Icon className={classes.icon}>

@@ -17,13 +17,10 @@ interface PopularProps {
   products: Array<ProductType>
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles(() => ({
   root: {
     padding: '0 10px',
-    marginBottom: 15,
-    [theme.breakpoints.up('laptop')]: {
-      padding: '0 30px 0 10px'
-    }
+    marginBottom: 15
   },
   title: {
     fontSize: '23px',

@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
     // backgroundColor: 'gold'
   },
   infoBox: {
-    maxWidth: 170,
+    maxWidth: 190,
     flex: '1 1 100%',
     minWidth: 0,
     padding: '20px 10px 0 10px',

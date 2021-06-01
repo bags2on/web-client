@@ -1,4 +1,5 @@
 import React from 'react'
+import clsx from 'clsx'
 import Advantages from './Advantages/Advantages'
 import MainProduct from '../../components/MainProduct/MainProduct'
 import Carousel from '../../components/Carousel/Carousel'
@@ -12,10 +13,11 @@ import { makeStyles } from '@material-ui/core'
 import { TEMP_SIDE_LIST_DATA, TEMP_FEATURED_DATA, TEMP_MAIN_SLIDER_IMAGES, TEMP_POPULAR_DATA } from './temp'
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  container: {
+    maxWidth: 1500,
+    margin: '0 auto'
+  },
   sliderContainer: {
-    maxWidth: 1400,
-    margin: '0 auto',
     display: 'flex',
     flexWrap: 'wrap',
     [theme.breakpoints.up('md')]: {
@@ -35,8 +37,6 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   homeContainer: {
-    maxWidth: 1400,
-    margin: '0 auto',
     display: 'flex',
     flexDirection: 'column-reverse',
     padding: '20px 10px 0 10px',
@@ -74,12 +74,12 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className={classes.root}>
-      <div className={classes.sliderContainer}>
+    <div>
+      <div className={clsx(classes.container, classes.sliderContainer)}>
         <Carousel items={TEMP_MAIN_SLIDER_IMAGES} />
         <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
       </div>
-      <div className={classes.homeContainer}>
+      <div className={clsx(classes.container, classes.homeContainer)}>
         <div className={classes.subBoxOne}>
           <SideList products={TEMP_SIDE_LIST_DATA} />
         </div>
@@ -92,7 +92,7 @@ const Home: React.FC = () => {
           <Promo />
         </div>
       </div>
-      <div style={{ maxWidth: 1400, margin: '0 auto' }}>
+      <div className={classes.container}>
         <Popular products={TEMP_POPULAR_DATA} />
       </div>
       <Advantages />

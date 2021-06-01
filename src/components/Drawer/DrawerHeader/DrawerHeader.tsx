@@ -1,8 +1,8 @@
 import React from 'react'
 import Divider from '@material-ui/core/Divider'
 import Link from '@material-ui/core/Link'
-import Typography from '@material-ui/core/Typography'
 import NightToggle from '../../../shared/NightToggle/NightToggle'
+import logoImage from '../../../assets/svg/logo.svg'
 
 import { makeStyles } from '@material-ui/core'
 
@@ -13,15 +13,14 @@ interface DrawerHeaderProps {
 const useStyles = makeStyles(() => ({
   root: {
     position: 'relative',
-    padding: '40px 0 30px 20px'
+    padding: '40px 0 25px 20px'
   },
   logo: {
-    fontSize: '40px',
-    fontWeight: 500,
-    color: 'transparent',
-    background: 'linear-gradient(to right, #fc4a1a, #FFDD00, #f7b733)',
-    userSelect: 'none',
-    '-webkit-background-clip': 'text'
+    width: 190,
+    '& > img': {
+      width: '100%',
+      height: '100%'
+    }
   },
   close: {
     padding: 0,
@@ -44,13 +43,11 @@ const DrawerHeader: React.FC<DrawerHeaderProps> = ({ themeChanger }) => {
   return (
     <>
       <div className={classes.root}>
-        <Typography className={classes.logo} component="h1">
-          <Link color="inherit">
-            Bags
-            <sup>2</sup>
-            on
-          </Link>
-        </Typography>
+        <Link color="inherit">
+          <div className={classes.logo}>
+            <img src={logoImage} alt="логотип" />
+          </div>
+        </Link>
         <div className={classes.close}>
           <NightToggle themeChanger={themeChanger} />
         </div>
