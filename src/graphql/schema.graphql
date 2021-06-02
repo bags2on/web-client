@@ -1,3 +1,5 @@
+directive @internal on FIELD_DEFINITION
+
 """
 Direct the client to resolve this field locally, either from the cache or local resolvers.
 """

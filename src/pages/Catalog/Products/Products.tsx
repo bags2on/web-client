@@ -3,6 +3,8 @@ import Button from '../../../shared/Button/Button'
 import CatalogItem from '../../../components/CatalogItem/CatalogItem'
 import Pagination from '../../../components/Pagination/Pagination'
 import ExpandedGrid from '../../../shared/ExpandedGrid'
+import { useQuery } from '@apollo/client'
+import { GET_FAVORITE_IDS } from '../../../apollo/cache/queries/favorite'
 import { makeStyles } from '@material-ui/core'
 
 interface ProductsProps {
@@ -68,8 +70,14 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+interface FavoriteIdsQuery {
+  favoriteIds: string[]
+}
+
 const Products: React.FC<ProductsProps> = ({ totalPages, currentPage, products, onActionButtonClick }) => {
   const classes = useStyles()
+  const { data } = useQuery<FavoriteIdsQuery>(GET_FAVORITE_IDS)
+  const favoriteIds = data?.favoriteIds
 
   if (products === undefined) {
     return <div>data error</div>
@@ -92,19 +100,24 @@ const Products: React.FC<ProductsProps> = ({ totalPages, currentPage, products, 
   return (
     <>
       <ExpandedGrid container component="ul" className={classes.root}>
-        {products.map((product) => (
-          <ExpandedGrid key={product.id} component="li" item xs={6} md={4} xl={3} desktop={2}>
-            <CatalogItem
-              id={product.id}
-              url={product.preview}
-              title={product.title}
-              price={product.currentPrice}
-              inStock={product.instock}
-              mainTag={product.mainTag}
-              basePrice={product.basePrice}
-            />
-          </ExpandedGrid>
-        ))}
+        {products.map((product) => {
+          const isFavorite = favoriteIds?.includes(product.id)
+
+          return (
+            <ExpandedGrid key={product.id} component="li" item xs={6} md={4} xl={3} desktop={2}>
+              <CatalogItem
+                id={product.id}
+                url={product.preview}
+                title={product.title}
+                price={product.currentPrice}
+                inStock={product.instock}
+                mainTag={product.mainTag}
+                basePrice={product.basePrice}
+                isFavorite={isFavorite}
+              />
+            </ExpandedGrid>
+          )
+        })}
       </ExpandedGrid>
       <Pagination total={totalPages} currentPage={currentPage} />
     </>

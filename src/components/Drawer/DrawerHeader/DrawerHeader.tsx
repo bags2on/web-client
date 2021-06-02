@@ -13,7 +13,7 @@ interface DrawerHeaderProps {
 const useStyles = makeStyles(() => ({
   root: {
     position: 'relative',
-    padding: '40px 0 25px 20px'
+    padding: '60px 0 25px 20px'
   },
   logo: {
     width: 190,

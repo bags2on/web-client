@@ -14,7 +14,7 @@ import { ReactComponent as CartIcon } from '../../assets/svg/new_cart.svg'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
-import { GET_CART_AMOUNT } from '../../apollo/cache/queries/cart'
+import { GET_HEADER_DATA } from '../../apollo/cache/queries/shared'
 import logoImage from '../../assets/svg/logo.svg'
 
 interface HeaderProps {
@@ -161,15 +161,17 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-interface CartAmount {
+interface HeaderQuery {
   cartAmount: number
+  favoriteAmount: number
 }
 
 const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   const classes = useStyles()
-  const { data } = useQuery<CartAmount>(GET_CART_AMOUNT)
+  const { data } = useQuery<HeaderQuery>(GET_HEADER_DATA)
 
   const cartAmount = data?.cartAmount
+  const favoriteAmount = data?.favoriteAmount
 
   const handleCartClick = (): void => {
     onCartOpen()
@@ -211,7 +213,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
         disableRipple
         className={clsx(classes.btns, classes.heartButton)}
       >
-        <Badge badgeContent={0} max={999} color="error">
+        <Badge badgeContent={favoriteAmount} max={999} color="error">
           <Icon className={classes.heartIcon}>
             <HeartIcon />
           </Icon>

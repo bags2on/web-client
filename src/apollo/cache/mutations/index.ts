@@ -1,11 +1,7 @@
-import syncCart from './cart/syncCart'
-import addProduct from './cart/addProduct'
-import removeProduct from './cart/removeProduct'
-import updateProductAmount from './cart/updateProductAmount'
-import updateCartPrice from './cart/updateCartPrice'
-import clearCart from './cart/clearCart'
+import { syncCart, addProduct, removeProduct, updateProductAmount, updateCartPrice, clearCart } from './cart'
+import { addToFavorite, syncFavorite, deleteFavorite } from './favorite'
 
-import { cartItemsVar, cartPriceVar } from '../cache'
+import { cartItemsVar, cartPriceVar, favoriteAmountVar } from '../cache'
 
 export const CartMutations = {
   addProduct: addProduct(cartItemsVar),
@@ -14,4 +10,10 @@ export const CartMutations = {
   removeProduct: removeProduct(cartItemsVar),
   updateProductAmount: updateProductAmount(cartItemsVar),
   updateCartPrice: updateCartPrice(cartPriceVar)
+}
+
+export const FavoriteMutations = {
+  addToFavorite: addToFavorite(favoriteAmountVar),
+  deleteFavorite: deleteFavorite(favoriteAmountVar),
+  syncFavorite: syncFavorite(favoriteAmountVar)
 }

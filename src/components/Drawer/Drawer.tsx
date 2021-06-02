@@ -1,18 +1,20 @@
 import React from 'react'
+import Badge from '@material-ui/core/Badge'
 import DrawerUI from '@material-ui/core/Drawer'
 import DrawerHeader from './DrawerHeader/DrawerHeader'
 import List from '@material-ui/core/List'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import ListItemIcon from '@material-ui/core/ListItemIcon'
 import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
 import Typography from '@material-ui/core/Typography'
 import history from '../../utils/history'
+import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
+import { GET_FAVORITE_AMOUNT } from '../../apollo/cache/queries/favorite'
 import { useTranslation } from 'react-i18next'
 import { ReactComponent as HomeIcon } from '../../assets/svg/home.svg'
-import { ReactComponent as SaleIcon } from '../../assets/svg/sale.svg'
+// import { ReactComponent as SaleIcon } from '../../assets/svg/sale.svg'
+import { ReactComponent as HeartIcon } from '../../assets/svg/heart_2.svg'
 import { ReactComponent as ListIcon } from '../../assets/svg/list.svg'
 import { ReactComponent as EyeIcon } from '../../assets/svg/eye.svg'
 
@@ -50,12 +52,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 33
   },
   text: {
-    margin: 0,
-    marginBottom: 3,
-    '& > span': {
-      fontSize: 18,
-      fontWeight: 500
-    }
+    fontSize: 18,
+    lineHeight: '18px',
+    fontWeight: 500
   },
   languageBox: {
     display: 'flex',
@@ -75,11 +74,17 @@ const drawerItems: DrawerItem[] = [
     to: '/',
     i18n: 'home'
   },
+  // {
+  //   icon: SaleIcon,
+  //   to: '/discounts',
+  //   i18n: 'sales'
+  // },
   {
-    icon: SaleIcon,
-    to: '/discounts',
-    i18n: 'sales'
+    icon: HeartIcon,
+    to: '/profile',
+    i18n: 'favorite'
   },
+
   {
     icon: ListIcon,
     to: '/catalog',
@@ -92,8 +97,14 @@ const drawerItems: DrawerItem[] = [
   }
 ]
 
+interface FavoriteAmountQuery {
+  favoriteAmount: number
+}
+
 const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
   const classes = useStyles()
+  const { data } = useQuery<FavoriteAmountQuery>(GET_FAVORITE_AMOUNT)
+  const favoriteAmount = data?.favoriteAmount
 
   const { t } = useTranslation()
 
@@ -125,12 +136,22 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
               button
               component="li"
             >
-              <ListItemIcon className={classes.listItemIcon}>
-                <SvgIcon component="span" className={classes.icon}>
-                  <item.icon />
-                </SvgIcon>
-              </ListItemIcon>
-              <ListItemText primary={t(`drawer.${item.i18n}`)} className={classes.text} />
+              <div style={{ display: 'flex', alignItems: 'center' }}>
+                {item.i18n === 'favorite' ? (
+                  <Badge badgeContent={favoriteAmount} max={999} color="error">
+                    <SvgIcon component="span" className={classes.icon}>
+                      <item.icon />
+                    </SvgIcon>
+                  </Badge>
+                ) : (
+                  <SvgIcon component="span" className={classes.icon}>
+                    <item.icon />
+                  </SvgIcon>
+                )}
+                <div style={{ marginLeft: 25 }}>
+                  <Typography className={classes.text}>{t(`drawer.${item.i18n}`)}</Typography>
+                </div>
+              </div>
             </ListItem>
           ))}
         </List>

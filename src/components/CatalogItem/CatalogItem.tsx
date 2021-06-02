@@ -9,6 +9,7 @@ import { generateLink } from '../../utils/links'
 import { formatPrice } from '../../utils/helpers'
 import { getColorForMainTagName } from '../../utils/styling'
 import { useTranslation } from 'react-i18next'
+import { FavoriteMutations } from '../../apollo/cache/mutations'
 import routes from '../../utils/routes'
 import classes from './styles.module.scss'
 
@@ -20,14 +21,30 @@ interface CatalogItemProps {
   inStock: boolean
   basePrice: number
   mainTag: string
+  isFavorite?: boolean // TODO: set value on whole project
 }
 
-const CatalogItem: React.FC<CatalogItemProps> = ({ id, url, title, price, inStock, mainTag, basePrice }) => {
+const CatalogItem: React.FC<CatalogItemProps> = ({
+  id,
+  url,
+  title,
+  price,
+  inStock,
+  mainTag,
+  basePrice,
+  isFavorite = false
+}) => {
   const { t } = useTranslation()
 
-  const [isLiked, setLiked] = useState<boolean>(false)
+  const [isLiked, setLiked] = useState<boolean>(isFavorite)
 
   const handleLikeClick = (): void => {
+    if (isLiked) {
+      FavoriteMutations.deleteFavorite(id)
+    } else {
+      FavoriteMutations.addToFavorite(id)
+    }
+
     setLiked(!isLiked)
   }
 

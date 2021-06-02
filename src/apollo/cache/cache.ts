@@ -1,12 +1,13 @@
 import { InMemoryCache, makeVar } from '@apollo/client'
 
+export const cartItemsVar = makeVar<CartItem[]>([])
+export const cartPriceVar = makeVar<number>(0)
+export const favoriteAmountVar = makeVar<string[]>([])
+
 interface CartItem {
   id: string
   amount: number
 }
-
-export const cartItemsVar = makeVar<CartItem[]>([])
-export const cartPriceVar = makeVar<number>(0)
 
 const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {
@@ -18,8 +19,8 @@ const cache: InMemoryCache = new InMemoryCache({
           }
         },
         cartAmount: {
-          read(_, options): number {
-            const res = options.readField<CartItem[]>('cartItems')
+          read(_, opt): number {
+            const res = opt.readField<CartItem[]>('cartItems')
             if (!res?.length) return 0
             return res?.reduce((acc, p) => acc + p.amount, 0)
           }
@@ -27,6 +28,17 @@ const cache: InMemoryCache = new InMemoryCache({
         cartPrice: {
           read(): number {
             return cartPriceVar()
+          }
+        },
+        favoriteIds: {
+          read(): string[] {
+            return favoriteAmountVar()
+          }
+        },
+        favoriteAmount: {
+          read(_, opt): number {
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            return opt.readField<string[]>('favoriteIds')!.length
           }
         }
       }

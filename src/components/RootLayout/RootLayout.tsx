@@ -4,7 +4,7 @@ import Header from '../Header/Header'
 import Drawer from '../Drawer/Drawer'
 import Cart from '../Cart/Cart'
 import Footer from '../Footer/Footer'
-import { CartMutations } from '../../apollo/cache/mutations'
+import { CartMutations, FavoriteMutations } from '../../apollo/cache/mutations'
 import { makeStyles } from '@material-ui/core'
 
 interface RootLayoutProps {
@@ -28,6 +28,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
 
   useEffect(() => {
     CartMutations.syncCart()
+    FavoriteMutations.syncFavorite()
   }, [])
 
   const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
