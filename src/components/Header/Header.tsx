@@ -51,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
       position: 'relative',
       top: 7,
       marginRight: 40,
-      width: 150,
+      width: 130,
       '& > img': {
         width: '100%',
         height: '100%'
