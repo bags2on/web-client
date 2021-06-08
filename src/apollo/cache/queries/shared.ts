@@ -6,3 +6,9 @@ export const GET_HEADER_DATA = gql`
     favoriteAmount @client
   }
 `
+
+export const GET_AUTH_MODAL_OPEN = gql`
+  query GetAuthModalOpen {
+    isAuthModalOpen @client
+  }
+`

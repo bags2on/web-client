@@ -8,7 +8,8 @@ const routes: RoutesMap = {
   catalog: '/catalog/:page?',
   allCatalog: '/catalog',
   product: '/p/:id',
-  discounts: '/discounts'
+  discounts: '/discounts',
+  profile: '/profile'
 }
 
 export default routes

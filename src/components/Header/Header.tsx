@@ -15,6 +15,7 @@ import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
 import { GET_HEADER_DATA } from '../../apollo/cache/queries/shared'
+import { SharedMutations } from '../../apollo/cache/mutations'
 import logoImage from '../../assets/svg/logo.svg'
 
 interface HeaderProps {
@@ -180,6 +181,10 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const handleFavoritesClick = (): void => {}
 
+  const handleProfileClick = (): void => {
+    SharedMutations.redirectToProfile()
+  }
+
   return (
     <header className={classes.root}>
       <IconButton onClick={onDrawerOpen} disableRipple className={clsx(classes.btns, classes.menuBtn)}>
@@ -221,7 +226,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
       </IconButton>
       <IconButton
         color="primary"
-        onClick={handleFavoritesClick}
+        onClick={handleProfileClick}
         disableRipple
         className={clsx(classes.btns, classes.heartButton)}
       >

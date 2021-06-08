@@ -4,6 +4,7 @@ import Header from '../Header/Header'
 import Drawer from '../Drawer/Drawer'
 import Cart from '../Cart/Cart'
 import Footer from '../Footer/Footer'
+import AuthModal from '../AuthModal/AuthModal'
 import { CartMutations, FavoriteMutations } from '../../apollo/cache/mutations'
 import { makeStyles } from '@material-ui/core'
 
@@ -57,6 +58,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
       <Header onDrawerOpen={handleOpenDrawer} onCartOpen={handleCartOpen} />
       <main className={classes.root}>{children}</main>
       <Footer themeChanger={themeChanger} />
+      <AuthModal />
     </>
   )
 }

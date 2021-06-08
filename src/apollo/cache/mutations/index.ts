@@ -1,7 +1,8 @@
 import { syncCart, addProduct, removeProduct, updateProductAmount, updateCartPrice, clearCart } from './cart'
 import { addToFavorite, syncFavorite, deleteFavorite } from './favorite'
+import { redirectToProfile, closeAuthModal } from './shared'
 
-import { cartItemsVar, cartPriceVar, favoriteAmountVar } from '../cache'
+import { cartItemsVar, cartPriceVar, favoriteAmountVar, authModalVar, isAuthenticatedVar } from '../cache'
 
 export const CartMutations = {
   addProduct: addProduct(cartItemsVar),
@@ -16,4 +17,9 @@ export const FavoriteMutations = {
   addToFavorite: addToFavorite(favoriteAmountVar),
   deleteFavorite: deleteFavorite(favoriteAmountVar),
   syncFavorite: syncFavorite(favoriteAmountVar)
+}
+
+export const SharedMutations = {
+  redirectToProfile: redirectToProfile(isAuthenticatedVar, authModalVar),
+  closeAuthModal: closeAuthModal(authModalVar)
 }

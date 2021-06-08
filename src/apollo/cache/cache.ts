@@ -4,6 +4,9 @@ export const cartItemsVar = makeVar<CartItem[]>([])
 export const cartPriceVar = makeVar<number>(0)
 export const favoriteAmountVar = makeVar<string[]>([])
 
+export const isAuthenticatedVar = makeVar<boolean>(false)
+export const authModalVar = makeVar<boolean>(false)
+
 interface CartItem {
   id: string
   amount: number
@@ -39,6 +42,16 @@ const cache: InMemoryCache = new InMemoryCache({
           read(_, opt): number {
             // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
             return opt.readField<string[]>('favoriteIds')!.length
+          }
+        },
+        isAuthenticated: {
+          read(): boolean {
+            return isAuthenticatedVar()
+          }
+        },
+        isAuthModalOpen: {
+          read(): boolean {
+            return authModalVar()
           }
         }
       }
