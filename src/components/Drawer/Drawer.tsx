@@ -11,6 +11,7 @@ import history from '../../utils/history'
 import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
 import { GET_FAVORITE_AMOUNT } from '../../apollo/cache/queries/favorite'
+import { SharedMutations } from '../../apollo/cache/mutations'
 import { useTranslation } from 'react-i18next'
 import { ReactComponent as HomeIcon } from '../../assets/svg/home.svg'
 import { ReactComponent as UserIcon } from '../../assets/svg/user.svg'
@@ -116,6 +117,12 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
 
   const goTo = (path: string): void => {
     onClose()
+
+    if (path === '/profile') {
+      const isRedirect = SharedMutations.redirectToProfile()
+      if (!isRedirect) return
+    }
+
     setTimeout(() => {
       history.push(path)
     }, 250)
