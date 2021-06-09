@@ -11,21 +11,33 @@ import { ReactComponent as InstagramIcon } from '../../assets/svg/instagram.svg'
 import { GET_AUTH_MODAL_OPEN } from '../../apollo/cache/queries/shared'
 import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles((_theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     position: 'relative',
-    width: '900px',
-    height: '570px'
+    height: '100vh',
+    [theme.breakpoints.up('md')]: {
+      height: '570px'
+    },
+    [theme.breakpoints.up('laptop')]: {
+      width: 900
+    }
   },
   imageWrapper: {
-    flexBasis: '40%',
     height: '100%',
-    backgroundImage: `url(${AuthPatternImage})`
+    display: 'none',
+    backgroundImage: `url(${AuthPatternImage})`,
+    [theme.breakpoints.up('laptop')]: {
+      display: 'block',
+      flexBasis: '35%'
+    }
   },
   infoBox: {
-    flexBasis: '60%',
-    paddingTop: 70
+    flexBasis: '100%',
+    paddingTop: 70,
+    [theme.breakpoints.up('laptop')]: {
+      flexBasis: '65%'
+    }
   },
   title: {
     textAlign: 'center',
@@ -49,6 +61,9 @@ const useStyles = makeStyles((_theme) => ({
     justifyContent: 'center',
     marginTop: 50,
     '& li': {
+      display: 'flex',
+      justifyContent: 'center',
+      flexBasis: '100%',
       marginBottom: 20
     }
   },
@@ -62,7 +77,7 @@ const useStyles = makeStyles((_theme) => ({
     alignItems: 'center',
     textDecoration: 'none',
     width: 320,
-    padding: '15px 20px',
+    padding: '10px 15px',
     border: '2px solid #b3b3b3',
     borderRadius: 20,
     transition: 'all .3s',
@@ -72,6 +87,9 @@ const useStyles = makeStyles((_theme) => ({
     '&:hover': {
       color: '#2c80ca',
       borderColor: '#2c80ca'
+    },
+    [theme.breakpoints.up('lg')]: {
+      padding: '15px 20px'
     }
   }
 }))

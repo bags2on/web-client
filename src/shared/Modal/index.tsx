@@ -11,11 +11,24 @@ interface ModalProps {
   onClose(): void
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     maxWidth: 'none',
     borderRadius: '10px',
-    border: '5px solid #4c4c4c'
+    border: '5px solid #4c4c4c',
+    margin: 0,
+    [theme.breakpoints.up('md')]: {
+      margin: 30
+    }
+  },
+  paperScrollPaper: {
+    maxHeight: 'none'
+  },
+  scrollPaper: {
+    marginTop: 220,
+    [theme.breakpoints.up('md')]: {
+      marginTop: 0
+    }
   },
   closeButton: {
     position: 'absolute',
@@ -48,7 +61,9 @@ const Modal: React.FC<ModalProps> = ({ children, open, onClose }) => {
       onClose={handleClose}
       TransitionComponent={Transition}
       classes={{
-        paper: classes.paper
+        paper: classes.paper,
+        paperScrollPaper: classes.paperScrollPaper,
+        scrollPaper: classes.scrollPaper
       }}
     >
       {children}
