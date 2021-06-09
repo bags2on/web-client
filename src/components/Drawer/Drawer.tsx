@@ -13,6 +13,7 @@ import { makeStyles } from '@material-ui/core'
 import { GET_FAVORITE_AMOUNT } from '../../apollo/cache/queries/favorite'
 import { useTranslation } from 'react-i18next'
 import { ReactComponent as HomeIcon } from '../../assets/svg/home.svg'
+import { ReactComponent as UserIcon } from '../../assets/svg/user.svg'
 // import { ReactComponent as SaleIcon } from '../../assets/svg/sale.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart_2.svg'
 import { ReactComponent as ListIcon } from '../../assets/svg/list.svg'
@@ -79,6 +80,11 @@ const drawerItems: DrawerItem[] = [
   //   to: '/discounts',
   //   i18n: 'sales'
   // },
+  {
+    icon: UserIcon,
+    to: '/profile',
+    i18n: 'profile'
+  },
   {
     icon: HeartIcon,
     to: '/profile',
