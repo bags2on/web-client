@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
     width: (props: StyleProps) => (props.fallback ? 34 : 24),
     height: (props: StyleProps) => (props.fallback ? 40 : 24),
     '& > rect': {
-      fill: (props: StyleProps) => (props.dark ? '#fff' : theme.palette.secondary.main)
+      fill: (props: StyleProps) => (props.dark ? '#343434' : theme.palette.secondary.main)
     }
   }
 }))

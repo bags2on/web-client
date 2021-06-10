@@ -2,6 +2,13 @@ import React from 'react'
 import { FieldProps } from 'formik'
 import FormControlLabel, { FormControlLabelProps as MuiFormControlLabelProps } from '@material-ui/core/FormControlLabel'
 import MuiCheckbox, { CheckboxProps as MuiCheckboxProps } from '@material-ui/core/Checkbox'
+import { makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles((theme) => ({
+  checked: {
+    color: (theme.palette.type === 'light' ? '#343434' : theme.palette.secondary.main) + '!important'
+  }
+}))
 
 interface CheckboxProps
   extends FieldProps,
@@ -47,7 +54,20 @@ interface ComponentProps extends FieldProps, CheckboxProps {
 }
 
 const Checkbox: React.FC<ComponentProps> = ({ Label, ...restProps }) => {
-  return <FormControlLabel {...Label} control={<MuiCheckbox {...fieldToCheckbox(restProps)} />} />
+  const classes = useStyles()
+  return (
+    <FormControlLabel
+      {...Label}
+      control={
+        <MuiCheckbox
+          classes={{
+            checked: classes.checked
+          }}
+          {...fieldToCheckbox(restProps)}
+        />
+      }
+    />
+  )
 }
 
 export default Checkbox

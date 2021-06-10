@@ -3,6 +3,13 @@ import { useField } from 'formik'
 import Radio from '@material-ui/core/Radio'
 import MaterialRadioGroup from '@material-ui/core/RadioGroup'
 import FormControlLabel from '@material-ui/core/FormControlLabel'
+import { makeStyles } from '@material-ui/core'
+
+const useStyles = makeStyles((theme) => ({
+  checked: {
+    color: (theme.palette.type === 'light' ? '#343434' : theme.palette.secondary.main) + '!important'
+  }
+}))
 
 type option = {
   value: string
@@ -17,6 +24,7 @@ interface RadioGroup {
 }
 
 const RadioGroup: React.FC<RadioGroup> = ({ size, options, ...restProps }) => {
+  const classes = useStyles()
   const [field] = useField(restProps)
 
   return (
@@ -27,7 +35,14 @@ const RadioGroup: React.FC<RadioGroup> = ({ size, options, ...restProps }) => {
           value={option.value}
           label={option.label}
           disabled={option.disabled}
-          control={<Radio size={size} />}
+          control={
+            <Radio
+              size={size}
+              classes={{
+                checked: classes.checked
+              }}
+            />
+          }
         />
       ))}
     </MaterialRadioGroup>

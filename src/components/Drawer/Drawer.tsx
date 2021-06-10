@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline'
   },
   icon: {
-    fill: '#ff9900',
+    fill: theme.palette.type === 'light' ? '#343434' : theme.palette.secondary.main,
     fontSize: 33
   },
   text: {
@@ -88,7 +88,7 @@ const drawerItems: DrawerItem[] = [
   },
   {
     icon: HeartIcon,
-    to: '/profile',
+    to: '/favorite',
     i18n: 'favorite'
   },
 

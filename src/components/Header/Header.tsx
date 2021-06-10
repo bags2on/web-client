@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
           content: "''",
           position: 'absolute',
           borderBottom: '2px solid',
-          borderBottomColor: theme.palette.type === 'light' ? '#808080' : '#A0A0A0',
+          borderBottomColor: '#343434',
           bottom: -7,
           left: 0,
           right: 0,

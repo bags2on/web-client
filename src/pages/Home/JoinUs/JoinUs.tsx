@@ -7,7 +7,7 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: '#FFCC00'
+    backgroundColor: theme.palette.secondary.main
   },
   contentBox: {
     maxWidth: 1400,

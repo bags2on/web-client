@@ -45,7 +45,7 @@ const ResponsePlug: React.FC<ResponsePlugProps> = ({ text, onClose }) => {
         <Typography component="p">{text}</Typography>
       </div>
       <Box margin="0 auto" width="130px" marginTop="50px">
-        <Button fullWidth onClick={onClose} color="secondary" startIcon={<ArrowBackIosIcon />}>
+        <Button fullWidth onClick={onClose} darkLoader color="secondary" startIcon={<ArrowBackIosIcon />}>
           Назад
         </Button>
       </Box>

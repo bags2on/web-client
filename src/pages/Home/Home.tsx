@@ -24,10 +24,7 @@ const useStyles = makeStyles((theme) => ({
       padding: '0 5px'
     },
     [theme.breakpoints.up('tablet')]: {
-      padding: '0 10px'
-    },
-    [theme.breakpoints.up('xl')]: {
-      padding: '16px 25px 0 10px'
+      padding: '16px 10px 0 10px'
     },
     '& section:nth-of-type(2)': {
       display: 'none',

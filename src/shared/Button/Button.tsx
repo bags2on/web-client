@@ -45,7 +45,7 @@ const useStyles = makeStyles((theme) => ({
   },
   secondary: {
     background: theme.palette.secondary.main,
-    color: theme.palette.primary.light,
+    color: '#343434',
     '&:hover': {
       opacity: '0.9',
       background: theme.palette.secondary.main // override .MuiButton-root:hover

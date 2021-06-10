@@ -10,13 +10,14 @@ interface DrawerHeaderProps {
   themeChanger(checked: boolean): void
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     padding: '60px 0 25px 20px'
   },
   logo: {
     width: 190,
+    backgroundColor: theme.palette.type === 'light' ? 'transparent' : theme.palette.secondary.main,
     '& > img': {
       width: '100%',
       height: '100%'
