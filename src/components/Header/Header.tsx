@@ -34,12 +34,11 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     flexWrap: 'wrap',
     padding: '5px 0',
-    backgroundColor: theme.palette.type === 'light' ? '#fafafb' : '#242729',
+    backgroundColor: theme.palette.secondary.main,
     boxShadow: '0 1px 2px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.05)',
     [theme.breakpoints.up('lg')]: {
       position: 'static',
-      padding: '10px 17px',
-      backgroundColor: theme.palette.type === 'light' ? '#fff' : '#242729'
+      padding: '10px 17px'
     },
     [theme.breakpoints.up('laptop')]: {
       padding: '10px 50px'
@@ -50,19 +49,20 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('lg')]: {
       display: 'block',
       position: 'relative',
-      top: 7,
-      marginRight: 40,
-      width: 130,
+      top: 3,
+      width: 150,
       '& > img': {
         width: '100%',
         height: '100%'
       }
+    },
+    [theme.breakpoints.up('xl')]: {
+      margin: '0 40px'
     }
   },
   navList: {
     display: 'none',
-    paddingBottom: 0,
-    paddingTop: 3,
+    padding: 0,
     [theme.breakpoints.up('lg')]: {
       display: 'flex',
       alignItems: 'center',
@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 600,
         textDecoration: 'none',
         textTransform: 'uppercase',
-        color: theme.palette.type === 'light' ? '#303030' : '#ff9900',
+        color: '#343434',
         transition: 'color 0.3s',
         position: 'relative',
         '&::after': {
@@ -110,11 +110,7 @@ const useStyles = makeStyles((theme) => ({
       }
     }
   },
-  menuBtn: {
-    [theme.breakpoints.up('lg')]: {
-      display: 'none'
-    }
-  },
+
   heartButton: {
     display: 'none',
     [theme.breakpoints.up('md')]: {
@@ -125,34 +121,34 @@ const useStyles = makeStyles((theme) => ({
   heartIcon: {
     fontSize: 24,
     fill: 'none',
-    stroke: theme.palette.type === 'light' ? '#303030' : '#ff9900',
-    '& svg:hover': {
-      stroke: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc'
+    stroke: '#343434',
+    transition: 'all 0.3s',
+    '&:hover': {
+      transform: 'scale(1.2)'
     }
   },
   profileIcon: {
     fontSize: 24,
-    fill: theme.palette.type === 'light' ? '#303030' : '#ff9900',
-
-    '& svg:hover': {
-      fill: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc'
+    fill: '#343434',
+    transition: 'all 0.3s',
+    '&:hover': {
+      transform: 'scale(1.2)'
     }
   },
   cartIcon: {
     fontSize: 27,
-    fill: theme.palette.type === 'light' ? '#303030' : '#ff9900',
+    fill: '#343434',
     [theme.breakpoints.up('md')]: {
       fontSize: 24,
-      '& svg:hover': {
-        fill: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc',
-        stroke: theme.palette.type === 'light' ? '#ff9900' : '#dcdcdc'
+      transition: 'all 0.3s',
+      '&:hover': {
+        transform: 'scale(1.2)'
       }
     }
   },
   menuIcon: {
-    fill: theme.palette.type === 'light' ? '#303030' : '#ff9900'
+    fill: '#343434'
   },
-  cart: {},
   toggl: {
     marginLeft: 7,
     paddingRight: 20,
@@ -187,7 +183,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
 
   return (
     <header className={classes.root}>
-      <IconButton onClick={onDrawerOpen} disableRipple className={clsx(classes.btns, classes.menuBtn)}>
+      <IconButton onClick={onDrawerOpen} disableRipple className={classes.btns}>
         <Icon
           classes={{
             root: classes.menuIcon

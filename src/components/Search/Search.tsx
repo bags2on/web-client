@@ -44,9 +44,12 @@ const useStyles = makeStyles((theme) => ({
     '-webkit-transition-duration': '0.4s',
     '-o-transition-duration': '0.4s',
     [theme.breakpoints.up('lg')]: {
-      width: 333,
+      width: 300,
       borderRadius: 10,
       BorderColor: 'transparent'
+    },
+    [theme.breakpoints.up('xl')]: {
+      width: 400
     },
     '&::placeholder': {
       color: theme.palette.type === 'light' ? '#3c4144' : '#c4c4c4'
@@ -71,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Search: React.FC = () => {
   const classes = useStyles()
-  const { t } = useTranslation() // from header??
+  const { t } = useTranslation()
 
   const handleSearch = (values: TopSearchType): void => {
     console.log(values)
@@ -81,12 +84,7 @@ const Search: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <Formik
-        onSubmit={handleSearch}
-        // enableReinitialize
-        initialValues={initialValues}
-        validationSchema={TopSearchSchema}
-      >
+      <Formik onSubmit={handleSearch} initialValues={initialValues} validationSchema={TopSearchSchema}>
         {(): React.ReactElement => (
           <Form className={classes.searchBox} noValidate>
             <Field

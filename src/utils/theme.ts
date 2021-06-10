@@ -1,6 +1,10 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 import { BreakpointOverrides } from '@material-ui/core/styles/createBreakpoints'
 
+/*
+  #ff9900 - orange secondary
+*/
+
 declare module '@material-ui/core/styles/createBreakpoints' {
   interface BreakpointOverrides {
     xs: true
@@ -62,7 +66,7 @@ export const darkTheme = createMuiTheme({
       dark: '#303030'
     },
     secondary: {
-      main: '#ff9900'
+      main: '#F2E30C'
     },
     background: {
       default: '#1e1e1e'
@@ -110,7 +114,7 @@ export const lightTheme = createMuiTheme({
       light: '#fff'
     },
     secondary: {
-      main: '#ff9900'
+      main: '#F2E30C'
     },
     background: {
       default: '#fff'
