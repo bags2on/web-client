@@ -1,6 +1,5 @@
 import React from 'react'
 import clsx from 'clsx'
-import NightToggle from '../../shared/NightToggle/NightToggle'
 import Typography from '@material-ui/core/Typography'
 import Icon from '@material-ui/core/Icon'
 import { Link } from 'react-router-dom'
@@ -11,11 +10,7 @@ import { ReactComponent as FacebookIcon } from '../../assets/svg/facebook.svg'
 import logoImage from '../../assets/svg/logo.svg'
 import classes from './Footer.module.scss'
 
-interface FooterProps {
-  themeChanger(checked: boolean): void
-}
-
-const Footer: React.FC<FooterProps> = ({ themeChanger }) => {
+const Footer: React.FC = () => {
   return (
     <div className={classes.wrapper}>
       <footer className={classes.root}>
@@ -56,9 +51,6 @@ const Footer: React.FC<FooterProps> = ({ themeChanger }) => {
               </Link>
             </li>
           </ul>
-          <div className={classes.theme}>
-            <NightToggle themeChanger={themeChanger} />
-          </div>
         </div>
         <div className={clsx([classes.column, classes.category])}>
           <Typography component="h5">Категории</Typography>

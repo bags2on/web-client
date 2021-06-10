@@ -57,7 +57,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
       <Cart isOpen={isCartOpen} onClose={handleCartClose} />
       <Header onDrawerOpen={handleOpenDrawer} onCartOpen={handleCartOpen} />
       <main className={classes.root}>{children}</main>
-      <Footer themeChanger={themeChanger} />
+      <Footer />
       <AuthModal />
     </>
   )

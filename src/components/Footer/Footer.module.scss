@@ -79,16 +79,8 @@ $text-color: #939191;
   }
 }
 
-.theme {
-  display: block;
-  position: absolute;
-  top: -10px;
-  right: 25px;
-}
-
 .brand {
   width: 100%;
-  position: relative;
   & a {
     text-decoration: none;
   }
@@ -188,10 +180,6 @@ $text-color: #939191;
 
   .category {
     margin-right: 85px;
-  }
-
-  .theme {
-    right: -45px;
   }
 }
 
