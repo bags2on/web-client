@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import clsx from 'clsx'
 import Icon from '@material-ui/core/Icon'
 import Typography from '@material-ui/core/Typography'
@@ -9,8 +9,10 @@ import Button from '../../../shared/Button/Button'
 import Tags from './Tags'
 import Rating from '../../../shared/Rating'
 import Features from './Features/Features'
+import { useQuery } from '@apollo/client'
+import { GET_FAVORITE_IDS } from '../../../apollo/cache/queries/favorite'
 import { formatPrice } from '../../../utils/helpers'
-import { CartMutations } from '../../../apollo/cache/mutations'
+import { CartMutations, FavoriteMutations } from '../../../apollo/cache/mutations'
 import { ReactComponent as CheckIcon } from '../../../assets/svg/check_mark.svg'
 import { ReactComponent as HeartIcon } from '../../../assets/svg/heart.svg'
 import { makeStyles } from '@material-ui/core'
@@ -123,6 +125,9 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 24,
     fill: 'none',
     stroke: '#f44336'
+  },
+  heartIconLiked: {
+    fill: '#f44336'
   }
 }))
 
@@ -136,14 +141,36 @@ interface SummaryProps {
   inStock: boolean
 }
 
+interface FavoriteIdsQuery {
+  favoriteIds: string[]
+}
+
 const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, description, inStock, basePrice }) => {
   const classes = useStyles()
+  const { data } = useQuery<FavoriteIdsQuery>(GET_FAVORITE_IDS)
+
+  const favoriteIds = data?.favoriteIds
+
+  const isFavorite = favoriteIds?.includes(id)
+
+  const [isLiked, setLiked] = useState<boolean>(isFavorite || false)
+
+  console.log(isFavorite)
 
   const handleAddToCart = (): void => {
     CartMutations.addProduct({
       id,
       amount: 1
     })
+  }
+
+  const handleLikeClick = (): void => {
+    if (isLiked) {
+      FavoriteMutations.deleteFavorite(id)
+    } else {
+      FavoriteMutations.addToFavorite(id)
+    }
+    setLiked(!isLiked)
   }
 
   return (
@@ -174,8 +201,15 @@ const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, descri
         <Button onClick={handleAddToCart} className={classes.cartButton} fullWidth disableShadow>
           Добавить в корзину
         </Button>
-        <IconButton className={classes.likeButton}>
-          <Icon className={classes.heartIcon}>
+        <IconButton onClick={handleLikeClick} className={classes.likeButton}>
+          <Icon
+            classes={{
+              root: clsx({
+                [classes.heartIcon]: true,
+                [classes.heartIconLiked]: isLiked
+              })
+            }}
+          >
             <HeartIcon />
           </Icon>
         </IconButton>

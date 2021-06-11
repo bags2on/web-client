@@ -192,9 +192,9 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
           <MenuIcon />
         </Icon>
       </IconButton>
-      <div className={classes.logo}>
+      <Link to="/" className={classes.logo}>
         <img src={logoImage} alt="логотип" />
-      </div>
+      </Link>
       <nav>
         <List className={classes.navList}>
           <ListItem component="li">
