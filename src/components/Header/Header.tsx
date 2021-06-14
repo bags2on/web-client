@@ -1,5 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
+import history from '../../utils/history'
 import IconButton from '@material-ui/core/IconButton'
 import Badge from '@material-ui/core/Badge'
 import Icon from '@material-ui/core/Icon'
@@ -178,7 +179,10 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   const handleFavoritesClick = (): void => {}
 
   const handleProfileClick = (): void => {
-    SharedMutations.redirectToProfile()
+    const isAuth = SharedMutations.checkAuthentication()
+    if (isAuth) {
+      history.push('/profile')
+    }
   }
 
   return (

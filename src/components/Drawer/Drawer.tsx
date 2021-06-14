@@ -119,8 +119,8 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
     onClose()
 
     if (path === '/profile') {
-      const isRedirect = SharedMutations.redirectToProfile()
-      if (!isRedirect) return
+      const isAuth = SharedMutations.checkAuthentication()
+      if (!isAuth) return
     }
 
     setTimeout(() => {

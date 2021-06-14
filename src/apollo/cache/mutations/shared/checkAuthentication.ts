@@ -1,6 +1,4 @@
 import { ReactiveVar } from '@apollo/client'
-import routes from '../../../../utils/routes'
-import history from '../../../../utils/history'
 
 export default (isAuthenticatedVar: ReactiveVar<boolean>, authModalVar: ReactiveVar<boolean>): (() => boolean) => {
   return (): boolean => {
@@ -10,8 +8,6 @@ export default (isAuthenticatedVar: ReactiveVar<boolean>, authModalVar: Reactive
       authModalVar(true)
       return isAuthenticated
     }
-
-    history.push(routes.profile)
 
     return isAuthenticated
   }

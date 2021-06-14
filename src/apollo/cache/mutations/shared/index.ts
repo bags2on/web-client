@@ -1,4 +1,4 @@
-import redirectToProfile from './redirectToProfile'
+import checkAuthentication from './checkAuthentication'
 import closeAuthModal from './closeAuthModal'
 
-export { redirectToProfile, closeAuthModal }
+export { checkAuthentication, closeAuthModal }
