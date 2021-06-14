@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
+import routes from '../../utils/routes'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import Grid from '@material-ui/core/Grid'
@@ -43,7 +45,7 @@ const ProductDetails: React.FC = () => {
     })
   }, [])
 
-  const { loading, data, error } = useQuery<GetProductByIdQuery, GetProductByIdVariables>(GetProductByIdDocument, {
+  const { loading, data } = useQuery<GetProductByIdQuery, GetProductByIdVariables>(GetProductByIdDocument, {
     variables: { id },
     fetchPolicy: 'network-only'
   })
@@ -56,25 +58,24 @@ const ProductDetails: React.FC = () => {
     )
   }
 
-  if (error) {
+  if (data?.product?.__typename === 'NotFound') {
+    return <Redirect to={routes.notFound} />
+  }
+
+  const product = data?.product
+
+  // TODO: how handle errors
+  if (!product) {
     return (
+      // TODO: make right plug
       <div className={classes.loaderWapper}>
-        <h1>Access denied</h1>
+        <div style={{ textAlign: 'center' }}>
+          <h1>Не удалось получить данные с сервера</h1>
+          <p style={{ fontSize: 20 }}>попробуйте перезагрузить страницу</p>
+        </div>
       </div>
     )
   }
-
-  if (!data?.product) {
-    return (
-      <div className={classes.loaderWapper}>
-        <h1>Access denied</h1>
-      </div>
-    )
-  }
-
-  const { product } = data
-
-  console.log(product)
 
   return (
     <div className={classes.root}>

@@ -82,6 +82,11 @@ export type NewProductResponse = {
   message: Scalars['String']
 }
 
+export type NotFound = {
+  __typename?: 'NotFound'
+  message: Scalars['String']
+}
+
 export type OrderInput = {
   name: Scalars['String']
   surname: Scalars['String']
@@ -134,6 +139,8 @@ export type ProductFilter = {
   category?: Maybe<Array<Maybe<CategoryType>>>
 }
 
+export type ProductResult = Product | NotFound
+
 export type ProductsResponse = {
   __typename?: 'ProductsResponse'
   products: Array<Product>
@@ -142,7 +149,7 @@ export type ProductsResponse = {
 
 export type Query = {
   __typename?: 'Query'
-  product?: Maybe<Product>
+  product?: Maybe<ProductResult>
   allProducts: ProductsResponse
   productsByID: Array<Product>
 }
@@ -157,6 +164,11 @@ export type QueryAllProductsArgs = {
 
 export type QueryProductsByIdArgs = {
   input?: Maybe<Array<CartItem>>
+}
+
+export enum Role {
+  Admin = 'ADMIN',
+  User = 'USER'
 }
 
 export type UpdateProductInput = {
@@ -179,6 +191,8 @@ export interface PossibleTypesResultData {
   }
 }
 const result: PossibleTypesResultData = {
-  possibleTypes: {}
+  possibleTypes: {
+    ProductResult: ['Product', 'NotFound']
+  }
 }
 export default result

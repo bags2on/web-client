@@ -1,5 +1,5 @@
 import React, { lazy, Suspense } from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
 import routes from './utils/routes'
 import RootLayout from './components/RootLayout/RootLayout'
 import Fallback from './shared/Fallback'
@@ -23,7 +23,8 @@ const App: React.FC<AppProps> = ({ themeChanger }) => {
           <Route path={routes.catalog} component={Catalog} />
           <Route exact path={routes.product} component={Product} />
           <Route exact path={routes.profile} component={Profile} />
-          <Route component={NoMatchPage} />
+          <Route path={routes.notFound} component={NoMatchPage} />
+          <Redirect to={routes.notFound} />
         </Switch>
       </RootLayout>
     </Suspense>

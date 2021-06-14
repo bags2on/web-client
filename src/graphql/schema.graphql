@@ -1,4 +1,4 @@
-directive @internal on FIELD_DEFINITION
+directive @hasRole(role: Role!) on FIELD_DEFINITION
 
 """
 Direct the client to resolve this field locally, either from the cache or local resolvers.
@@ -84,6 +84,10 @@ type NewProductResponse {
   message: String!
 }
 
+type NotFound {
+  message: String!
+}
+
 input OrderInput {
   name: String!
   surname: String!
@@ -133,15 +137,22 @@ input ProductFilter {
   category: [CategoryType]
 }
 
+union ProductResult = Product | NotFound
+
 type ProductsResponse {
   products: [Product!]!
   priceRange: PriceRangeType!
 }
 
 type Query {
-  product(id: ID!): Product
+  product(id: ID!): ProductResult
   allProducts(filter: ProductFilter!): ProductsResponse!
   productsByID(input: [CartItem!]): [Product!]!
+}
+
+enum Role {
+  ADMIN
+  USER
 }
 
 input UpdateProductInput {

@@ -9,7 +9,8 @@ const routes: RoutesMap = {
   allCatalog: '/catalog',
   product: '/p/:id',
   discounts: '/discounts',
-  profile: '/profile'
+  profile: '/profile',
+  notFound: '/404'
 }
 
 export default routes

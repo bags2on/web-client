@@ -47,10 +47,9 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint src*/**/*.{js,ts,tsx}",
-    "apollo:schema": "apollo client:download-schema --endpoint=http://localhost:8080/ ./src/graphql/schema.graphql",
     "_apollo:gen": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/graphql/**' --tagName=gql _types_",
     "generate": "graphql-codegen --config codegen.yml",
-    "schema:get": "apollo client:download-schema --endpoint=http://localhost:8080/ ./src/graphql/schema.graphql",
+    "schema:get": "apollo client:download-schema --endpoint=http://localhost:8080/graphql ./src/graphql/schema.graphql",
     "schema:remove": "rm ./src/graphql/schema.graphql",
     "generate:clear": "find . -name _gen_ -type d -exec rm -r {} +",
     "gen": "npm run schema:remove && npm run generate:clear && npm run schema:get && npm run generate"
