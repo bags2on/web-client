@@ -5,6 +5,7 @@ import Button from '../../shared/Button/Button'
 import Filters from './Filters/Filters'
 import Products from './Products/Products'
 import ScaleLoader from '../../shared/loaders/ScaleLoader'
+import ErrorPlug from '../../shared/ErrorPlug'
 import { ReactComponent as FilterIcon } from '../../assets/svg/filter.svg'
 import { useParams, useLocation } from 'react-router-dom'
 import { useLazyQuery } from '@apollo/client'
@@ -59,7 +60,7 @@ const Catalog: React.FC = () => {
 
   useEffect(() => {
     if (categoryName || genderType) {
-      history.replaceState({}, 'drop history state')
+      history.replaceState({}, '')
     }
 
     getProducts({
@@ -135,11 +136,7 @@ const Catalog: React.FC = () => {
   }
 
   if (error) {
-    return (
-      <div className={classes.loaderWapper}>
-        <h1>Access denied</h1>
-      </div>
-    )
+    return <ErrorPlug />
   }
 
   // TODO: why resetForm() doesn't re-init form values?

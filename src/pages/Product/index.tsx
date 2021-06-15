@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import routes from '../../utils/routes'
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
+import routes from '../../utils/routes'
 import Grid from '@material-ui/core/Grid'
 import ScaleLoader from '../../shared/loaders/ScaleLoader'
+import ErrorPlug from '../../shared/ErrorPlug'
 import Preview from './Preview/Preview'
 import Details from './Details'
 import { makeStyles } from '@material-ui/core'
@@ -64,17 +65,8 @@ const ProductDetails: React.FC = () => {
 
   const product = data?.product
 
-  // TODO: how handle errors
   if (!product) {
-    return (
-      // TODO: make right plug
-      <div className={classes.loaderWapper}>
-        <div style={{ textAlign: 'center' }}>
-          <h1>Не удалось получить данные с сервера</h1>
-          <p style={{ fontSize: 20 }}>попробуйте перезагрузить страницу</p>
-        </div>
-      </div>
-    )
+    return <ErrorPlug />
   }
 
   return (
