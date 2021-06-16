@@ -9,7 +9,7 @@ const routes: RoutesMap = {
   allCatalog: '/catalog',
   product: '/p/:id',
   discounts: '/discounts',
-  profile: '/profile',
+  profile: '/profile/:tabName?',
   notFound: '/404'
 }
 

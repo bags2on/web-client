@@ -18,6 +18,14 @@ export const CheckoutOrderSchema = yup.object({
   postOfficeId: yup.string().required('* обязательное поле')
 })
 
+export const AccountSettingsSchema = yup.object({
+  name: yup.string().max(30, '* максимум 30 символов'),
+  surname: yup.string().max(30, '* максимум 30 символов'),
+  email: yup.string().email('* некорректный email'),
+  phone: yup.string().min(10, '* недостаточно значений'),
+  city: yup.string()
+})
+
 export const JoinUsSchema = yup.object({
   email: yup.string().email().max(70).required()
 })
@@ -26,3 +34,4 @@ export type LoginSchemaType = yup.InferType<typeof LoginSchema>
 export type TopSearchType = yup.InferType<typeof TopSearchSchema>
 export type CheckoutOrderType = yup.InferType<typeof CheckoutOrderSchema>
 export type JoinUsSchemaType = yup.InferType<typeof JoinUsSchema>
+export type AccountSettingsSchemaType = yup.InferType<typeof AccountSettingsSchema>
