@@ -1,11 +1,11 @@
 import * as Types from '../../../types'
 
 import { gql } from '@apollo/client'
-export type ProductsByIDsQueryVariables = Types.Exact<{
-  input?: Types.Maybe<Array<Types.CartItem> | Types.CartItem>
+export type ProductsByIdQueryVariables = Types.Exact<{
+  input?: Types.Maybe<Array<Types.Scalars['String']> | Types.Scalars['String']>
 }>
 
-export type ProductsByIDsQuery = {
+export type ProductsByIdQuery = {
   __typename?: 'Query'
   productsByID: Array<{
     __typename?: 'Product'
@@ -17,11 +17,11 @@ export type ProductsByIDsQuery = {
   }>
 }
 
-export type ProductsByIDsVariables = ProductsByIDsQueryVariables
-export type ProductsByIDsProductsById = NonNullable<NonNullable<ProductsByIDsQuery['productsByID']>[number]>
+export type ProductsByIdVariables = ProductsByIdQueryVariables
+export type ProductsByIdProductsById = NonNullable<NonNullable<ProductsByIdQuery['productsByID']>[number]>
 
-export const ProductsByIDsDocument = gql`
-  query productsByIDs($input: [CartItem!]) {
+export const ProductsByIdDocument = gql`
+  query ProductsByID($input: [String!]) {
     productsByID(input: $input) {
       id
       title

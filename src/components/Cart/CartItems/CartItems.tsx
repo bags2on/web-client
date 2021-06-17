@@ -10,10 +10,10 @@ import { useQuery } from '@apollo/client'
 import { GET_CART_ITEMS } from '../../../apollo/cache/queries/cart'
 import { CartMutations } from '../../../apollo/cache/mutations'
 import {
-  ProductsByIDsDocument,
-  ProductsByIDsQuery,
-  ProductsByIDsVariables
-} from '../../../graphql/product/_gen_/productsByIds.query'
+  CartProductsDocument,
+  CartProductsQuery,
+  CartProductsVariables
+} from '../../../graphql/product/_gen_/cartProducts.query'
 import { makeStyles } from '@material-ui/core'
 
 interface CartItemsProps {
@@ -61,7 +61,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   const cart = useQuery(GET_CART_ITEMS)
   const isCartEmpty = cart.data.cartItems.length === 0
 
-  const { data, loading, error } = useQuery<ProductsByIDsQuery, ProductsByIDsVariables>(ProductsByIDsDocument, {
+  const { data, loading, error } = useQuery<CartProductsQuery, CartProductsVariables>(CartProductsDocument, {
     variables: {
       input: cart.data.cartItems
     },
@@ -70,7 +70,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
     notifyOnNetworkStatusChange: true,
     onCompleted: (data) => {
       if (data) {
-        const totalSumm = data.productsByID.reduce(
+        const totalSumm = data.cartProducts.reduce(
           (previousValue: number, item: CartItemType) => previousValue + item.currentPrice * item.amount,
           0
         )
@@ -123,7 +123,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
             </Grid>
             <Grid item xs={12}>
               <Grid container component="ul" className={classes.list}>
-                {data?.productsByID.map((product: CartItemType, index) => (
+                {data?.cartProducts.map((product: CartItemType, index) => (
                   <Grid key={index} component="li" item xs={12}>
                     <CartItem product={product} onRemove={handleProductRemove} />
                   </Grid>

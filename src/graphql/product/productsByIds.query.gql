@@ -1,4 +1,4 @@
-query productsByIDs($input: [CartItem!]) {
+query ProductsByID($input: [String!]) {
   productsByID(input: $input) {
     id
     title

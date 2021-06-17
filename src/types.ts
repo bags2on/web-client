@@ -151,6 +151,7 @@ export type Query = {
   __typename?: 'Query'
   product?: Maybe<ProductResult>
   allProducts: ProductsResponse
+  cartProducts: Array<Product>
   productsByID: Array<Product>
 }
 
@@ -162,8 +163,12 @@ export type QueryAllProductsArgs = {
   filter: ProductFilter
 }
 
-export type QueryProductsByIdArgs = {
+export type QueryCartProductsArgs = {
   input?: Maybe<Array<CartItem>>
+}
+
+export type QueryProductsByIdArgs = {
+  input?: Maybe<Array<Scalars['String']>>
 }
 
 export enum Role {

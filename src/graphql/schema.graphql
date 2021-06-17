@@ -147,7 +147,8 @@ type ProductsResponse {
 type Query {
   product(id: ID!): ProductResult
   allProducts(filter: ProductFilter!): ProductsResponse!
-  productsByID(input: [CartItem!]): [Product!]!
+  cartProducts(input: [CartItem!]): [Product!]!
+  productsByID(input: [String!]): [Product!]!
 }
 
 enum Role {
