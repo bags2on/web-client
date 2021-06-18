@@ -2,8 +2,10 @@ query ProductsByID($input: [String!]) {
   productsByID(input: $input) {
     id
     title
+    instock
     currentPrice
-    amount
+    basePrice
+    mainTag
     preview
   }
 }

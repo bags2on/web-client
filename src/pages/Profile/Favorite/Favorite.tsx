@@ -8,9 +8,16 @@ import {
   ProductsByIdQuery,
   ProductsByIdVariables
 } from '../../../graphql/product/_gen_/productsByIds.query'
+import ExpandedGrid from '../../../shared/ExpandedGrid'
+import CatalogItem from '../../../components/CatalogItem/CatalogItem'
 
 const useStyles = makeStyles(() => ({
-  root: {}
+  root: {},
+  list: {
+    margin: 0,
+    padding: 0,
+    listStyle: 'none'
+  }
 }))
 
 interface FavoriteIdsQuery {
@@ -44,11 +51,39 @@ const Favorite: React.FC = () => {
     }
   })
 
+  if (loading) {
+    return <div>Loading</div>
+  }
+
   console.log(data)
+
+  if (!data) {
+    return <div>No data</div>
+  }
+
+  const products = data.productsByID
 
   return (
     <div className={classes.root}>
-      <h1>Favorite</h1>
+      <ExpandedGrid container component="ul" className={classes.list}>
+        {products.map((product) => {
+          const isFavorite = favoriteIds?.includes(product.id)
+          return (
+            <ExpandedGrid key={product.id} component="li" item xs={6} md={4} xl={3} desktop={2}>
+              <CatalogItem
+                id={product.id}
+                url={product.preview}
+                title={product.title}
+                price={product.currentPrice}
+                inStock={product.instock}
+                mainTag={product.mainTag}
+                basePrice={product.basePrice}
+                isFavorite={isFavorite}
+              />
+            </ExpandedGrid>
+          )
+        })}
+      </ExpandedGrid>
     </div>
   )
 }

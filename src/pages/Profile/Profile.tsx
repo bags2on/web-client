@@ -7,14 +7,9 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
   root: {
-    height: 'calc((100 * var(--vh)) - 68px)',
     padding: '30px 15px 10px 15px'
   },
-  wrapper: {
-    // height: '100%',
-    // borderRadius: 10,
-    // boxShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
-  }
+  wrapper: {}
 }))
 
 interface ParamsType {

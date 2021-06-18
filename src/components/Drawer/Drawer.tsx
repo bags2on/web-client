@@ -19,6 +19,7 @@ import { ReactComponent as UserIcon } from '../../assets/svg/user.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart_2.svg'
 import { ReactComponent as ListIcon } from '../../assets/svg/list.svg'
 import { ReactComponent as EyeIcon } from '../../assets/svg/eye.svg'
+import routes from '../../utils/routes'
 
 interface DrawerProps {
   isOpen: boolean
@@ -73,7 +74,7 @@ const useStyles = makeStyles((theme) => ({
 const drawerItems: DrawerItem[] = [
   {
     icon: HomeIcon,
-    to: '/',
+    to: routes.root,
     i18n: 'home'
   },
   // {
@@ -83,23 +84,23 @@ const drawerItems: DrawerItem[] = [
   // },
   {
     icon: UserIcon,
-    to: '/profile',
+    to: routes.profile,
     i18n: 'profile'
   },
   {
     icon: HeartIcon,
-    to: '/favorite',
+    to: routes.favorite,
     i18n: 'favorite'
   },
 
   {
     icon: ListIcon,
-    to: '/catalog',
+    to: routes.catalog,
     i18n: 'catalog'
   },
   {
     icon: EyeIcon,
-    to: '/history',
+    to: routes.profile,
     i18n: 'history'
   }
 ]

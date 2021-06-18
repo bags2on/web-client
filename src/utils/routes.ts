@@ -10,6 +10,7 @@ const routes: RoutesMap = {
   product: '/p/:id',
   discounts: '/discounts',
   profile: '/profile/:tabName?',
+  favorite: '/profile/favorite',
   notFound: '/404'
 }
 
