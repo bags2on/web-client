@@ -10,6 +10,7 @@ import {
 } from '../../../graphql/product/_gen_/productsByIds.query'
 import ExpandedGrid from '../../../shared/ExpandedGrid'
 import CatalogItem from '../../../components/CatalogItem/CatalogItem'
+import TopBar from './TopBar'
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -65,6 +66,7 @@ const Favorite: React.FC = () => {
 
   return (
     <div className={classes.root}>
+      <TopBar />
       <ExpandedGrid container component="ul" className={classes.list}>
         {products.map((product) => {
           const isFavorite = favoriteIds?.includes(product.id)
