@@ -77,7 +77,7 @@ interface FavoriteIdsQuery {
 const Products: React.FC<ProductsProps> = ({ totalPages, currentPage, products, onActionButtonClick }) => {
   const classes = useStyles()
   const { data } = useQuery<FavoriteIdsQuery>(GET_FAVORITE_IDS)
-  const favoriteIds = data?.favoriteIds
+  const favoriteIds = data?.favoriteIds || []
 
   if (products === undefined) {
     return <div>data error</div>

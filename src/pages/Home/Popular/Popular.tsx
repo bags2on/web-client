@@ -49,6 +49,7 @@ const Popular: React.FC<PopularProps> = ({ products }) => {
             price={product.price}
             mainTag={product.mainTag}
             basePrice={product.basePrice}
+            isFavorite={false} // TODO: get data form ac3
           />
         ))}
       </ProductsSlider>

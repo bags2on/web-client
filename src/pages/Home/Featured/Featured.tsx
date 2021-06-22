@@ -53,6 +53,7 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
               price={product.price}
               mainTag={product.mainTag}
               basePrice={product.basePrice}
+              isFavorite={false} // TODO: get data form ac3
             />
           </Grid>
         ))}

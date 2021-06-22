@@ -21,7 +21,7 @@ interface CatalogItemProps {
   inStock: boolean
   basePrice: number
   mainTag: string
-  isFavorite?: boolean // TODO: set value on whole project
+  isFavorite: boolean // TODO: set value on whole project
 }
 
 const CatalogItem: React.FC<CatalogItemProps> = ({
