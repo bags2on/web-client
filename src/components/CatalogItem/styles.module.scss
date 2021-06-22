@@ -73,7 +73,7 @@ $red: #f44336;
   }
 }
 
-.likeButton {
+.actionButton {
   flex-basis: 25%;
 }
 
@@ -102,6 +102,10 @@ $red: #f44336;
 
 .heartIcon_liked {
   fill: $red;
+}
+
+.deleteIcon {
+  color: #626262;
 }
 
 @media screen and (min-width: $sm) {

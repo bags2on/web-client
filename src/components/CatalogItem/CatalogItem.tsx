@@ -3,6 +3,8 @@ import clsx from 'clsx'
 import IconButton from '@material-ui/core/IconButton'
 import ImagePlaceholder from '../../shared/ImagePlaceholder'
 import Icon from '@material-ui/core/Icon'
+import DeleteIcon from '@material-ui/icons/Delete'
+import Tooltip from '@material-ui/core/Tooltip'
 import { Link } from 'react-router-dom'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { generateLink } from '../../utils/links'
@@ -21,7 +23,8 @@ interface CatalogItemProps {
   inStock: boolean
   basePrice: number
   mainTag: string
-  isFavorite: boolean // TODO: set value on whole project
+  isFavorite: boolean
+  withDelete?: boolean
 }
 
 const CatalogItem: React.FC<CatalogItemProps> = ({
@@ -32,13 +35,14 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
   inStock,
   mainTag,
   basePrice,
-  isFavorite = false
+  isFavorite,
+  withDelete = false
 }) => {
   const { t } = useTranslation()
 
   const [isLiked, setLiked] = useState<boolean>(isFavorite)
 
-  const handleLikeClick = (): void => {
+  const handleActionClick = (): void => {
     if (isLiked) {
       FavoriteMutations.deleteFavorite(id)
     } else {
@@ -71,18 +75,24 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
             {basePrice !== price && <p className={classes.discount}>{formatPrice(basePrice)}&nbsp;₴</p>}
             <span>{formatPrice(price)}&nbsp;₴</span>
           </div>
-          <div className={classes.likeButton}>
-            <IconButton onClick={handleLikeClick}>
-              <Icon
-                classes={{
-                  root: clsx({
-                    [classes.heartIcon]: true,
-                    [classes.heartIcon_liked]: isLiked
-                  })
-                }}
-              >
-                <HeartIcon />
-              </Icon>
+          <div className={classes.actionButton}>
+            <IconButton onClick={handleActionClick}>
+              {withDelete ? (
+                <Tooltip title="Удалить из избранного">
+                  <DeleteIcon className={classes.deleteIcon} />
+                </Tooltip>
+              ) : (
+                <Icon
+                  classes={{
+                    root: clsx({
+                      [classes.heartIcon]: true,
+                      [classes.heartIcon_liked]: isLiked
+                    })
+                  }}
+                >
+                  <HeartIcon />
+                </Icon>
+              )}
             </IconButton>
           </div>
         </div>

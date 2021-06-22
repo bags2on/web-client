@@ -74,6 +74,7 @@ const Favorite: React.FC = () => {
             <ExpandedGrid key={product.id} component="li" item xs={6} md={4} xl={3} desktop={2}>
               <CatalogItem
                 id={product.id}
+                withDelete
                 url={product.preview}
                 title={product.title}
                 price={product.currentPrice}
