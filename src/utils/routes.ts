@@ -11,6 +11,7 @@ const routes: RoutesMap = {
   discounts: '/discounts',
   profile: '/profile/:tabName?',
   favorite: '/profile/favorite',
+  profileInfo: '/profile/info',
   notFound: '/404'
 }
 

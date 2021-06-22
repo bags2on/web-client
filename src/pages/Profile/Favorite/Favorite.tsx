@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
+import Asset_1 from '../../../assets/svg/Asset_1.svg'
 import { makeStyles } from '@material-ui/core'
 import { useQuery } from '@apollo/client'
 import { GET_FAVORITE_IDS } from '../../../apollo/cache/queries/favorite'
@@ -11,6 +12,7 @@ import {
 import ExpandedGrid from '../../../shared/ExpandedGrid'
 import CatalogItem from '../../../components/CatalogItem/CatalogItem'
 import TopBar from './TopBar'
+import Button from '../../../shared/Button/Button'
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -18,6 +20,31 @@ const useStyles = makeStyles(() => ({
     margin: 0,
     padding: 0,
     listStyle: 'none'
+  },
+  noData: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 'calc(80 * var(--vh))'
+  },
+  container: {},
+  title: {
+    fontSize: 17,
+    fontWeight: 500,
+    marginBottom: 21
+  },
+  image: {
+    display: 'block',
+    margin: '0 auto',
+    marginBottom: 47,
+    width: '100%',
+    maxWidth: 187
+  },
+  actionButton: {
+    display: 'block',
+    margin: '0 auto',
+    textTransform: 'none',
+    maxWidth: 230
   }
 }))
 
@@ -40,17 +67,22 @@ const Favorite: React.FC = () => {
     },
     fetchPolicy: 'network-only',
     skip: favoriteIds.length === 0,
-    notifyOnNetworkStatusChange: true,
-    onCompleted: () => {
-      // if (data) {
-      //   const totalSumm = data.productsByID.reduce(
-      //     (previousValue: number, item: CartItemType) => previousValue + item.currentPrice * item.amount,
-      //     0
-      //   )
-      //   CartMutations.updateCartPrice(totalSumm)
-      // }
-    }
+    notifyOnNetworkStatusChange: true
   })
+
+  if (favoriteIds.length === 0) {
+    return (
+      <div className={classes.noData}>
+        <div className={classes.container}>
+          <img src={Asset_1} className={classes.image} />
+          <p className={classes.title}>Вы еще ничего не добавили в избранное</p>
+          <Button fullWidth color="secondary" className={classes.actionButton}>
+            Перейти в каталог
+          </Button>
+        </div>
+      </div>
+    )
+  }
 
   if (loading) {
     return <div>Loading</div>

@@ -1,13 +1,13 @@
 import React from 'react'
 import clsx from 'clsx'
 import history from '../../utils/history'
+import routes from '../../utils/routes'
 import IconButton from '@material-ui/core/IconButton'
 import Badge from '@material-ui/core/Badge'
 import Icon from '@material-ui/core/Icon'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import Search from '../../components/Search/Search'
-import routes from '../../utils/routes'
 import { ReactComponent as MenuIcon } from '../../assets/svg/menu.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { ReactComponent as ProfileIcon } from '../../assets/svg/profile.svg'
@@ -175,13 +175,14 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
     onCartOpen()
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  const handleFavoritesClick = (): void => {}
+  const handleFavoritesClick = (): void => {
+    history.push(routes.favorite)
+  }
 
   const handleProfileClick = (): void => {
     const isAuth = SharedMutations.checkAuthentication()
     if (isAuth) {
-      history.push('/profile')
+      history.push(routes.profileInfo)
     }
   }
 
