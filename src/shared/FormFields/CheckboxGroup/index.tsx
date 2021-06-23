@@ -6,7 +6,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
 import ExpandLessIcon from '@material-ui/icons/ExpandLess'
 import FormControl from '@material-ui/core/FormControl'
 import FormGroup from '@material-ui/core/FormGroup'
-import Checkbox from '../../Checkbox/Checkbox'
+import Checkbox from '../Checkbox/Checkbox'
 import { FieldArray, Field } from 'formik'
 import { makeStyles } from '@material-ui/core'
 
