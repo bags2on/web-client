@@ -1,7 +1,7 @@
 import React from 'react'
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
-import TextInput from '../../../../shared/TextInput'
+import TextInput from '../../../../shared/FormFields/TextInput/TextInput'
 import ImagePlaceholder from '../../../../shared/ImagePlaceholder'
 import novaPoshtaImage from '../../../../assets/svg/nova_poshta.svg'
 import justinImage from '../../../../assets/svg/justin.svg'
@@ -127,8 +127,48 @@ const Delivery: React.FC = () => {
           </li>
         </ul>
         <FormControl className={classes.formField}>
-          <Typography component="p">Ваш город</Typography>
-          <TextInput name="cityId" />
+          <Typography component="p">Область</Typography>
+          <TextInput
+            name="areaId"
+            select
+            fullWidth
+            options={[
+              {
+                label: 'Харьковская',
+                value: 'kh'
+              },
+              {
+                label: 'Киевская',
+                value: 'kv'
+              },
+              {
+                label: 'Одесская',
+                value: 'od'
+              }
+            ]}
+          />
+        </FormControl>
+        <FormControl className={classes.formField}>
+          <Typography component="p">Город</Typography>
+          <TextInput
+            name="cityId"
+            select
+            fullWidth
+            options={[
+              {
+                label: 'Харьков',
+                value: 'kh-1'
+              },
+              {
+                label: 'Киев',
+                value: 'kv-1'
+              },
+              {
+                label: 'Одесса',
+                value: 'od-1'
+              }
+            ]}
+          />
         </FormControl>
         <FormControl className={classes.formField}>
           <Typography component="p">Выберите отделение</Typography>
