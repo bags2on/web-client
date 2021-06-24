@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
@@ -101,7 +100,17 @@ const useStyles = makeStyles(() => ({
 }))
 
 interface FormFields {
-  areaId: string
+  region: string
+}
+
+type area = {
+  id: string
+  name: string
+  areas: Array<area>
+}
+interface AreasType {
+  name: string
+  areas: Array<area>
 }
 
 const Delivery: React.FC = () => {
@@ -109,60 +118,37 @@ const Delivery: React.FC = () => {
 
   const { values } = useFormikContext<FormFields>()
 
-  const [areas, setAreas] = useState<{
-    areas: Array<{
-      id: string
-      name: string
-      areas: Array<{
-        id: string
-        name: string
-      }>
-    }>
-  }>({
-    areas: [
-      {
-        name: '---',
-        id: '-',
-        areas: [
-          {
-            name: '---',
-            id: '-'
-          }
-        ]
-      }
-    ]
-  })
+  const [areas, setAreas] = useState<AreasType>()
+  const [areasLoading, setAreasLoading] = useState<boolean>(true)
 
   useEffect(() => {
-    fetch(API_URL + 'areas').then(async (resp) => {
-      const data = await resp.json()
-      console.log(data)
+    const controller = new AbortController()
+    const { signal } = controller
 
+    fetch(API_URL + 'areas', { signal }).then(async (resp) => {
+      const data = await resp.json()
       setAreas(data)
+      setAreasLoading(false)
     })
 
     return () => {
-      console.log('cleanup')
+      controller.abort()
     }
   }, [])
 
-  if (!areas) {
-    console.log('no data')
-  }
+  const areasOptions =
+    areas?.areas.map(({ name }) => ({
+      label: name,
+      value: name
+    })) || []
 
-  const areasOptions = areas.areas.map((area) => ({
-    label: area.name,
-    value: area.id
-  }))
+  const cities = areas?.areas.find((currentArea) => currentArea.name === values.region)?.areas
 
-  console.log(values.areaId)
-
-  const areaCities = areas.areas.find((area) => area.id === values.areaId)?.areas
-
-  const citiesOption = areaCities?.map((city) => ({
-    label: city.name,
-    value: city.name
-  }))
+  const citiesOptions =
+    cities?.map((city) => ({
+      label: city.name,
+      value: city.name
+    })) || []
 
   return (
     <div className={classes.root}>
@@ -192,11 +178,11 @@ const Delivery: React.FC = () => {
         </ul>
         <FormControl className={classes.formField}>
           <Typography component="p">Область</Typography>
-          <TextInput name="areaId" select fullWidth options={areasOptions} />
+          <TextInput name="region" disabled={areasLoading} select fullWidth options={areasOptions} />
         </FormControl>
         <FormControl className={classes.formField}>
           <Typography component="p">Город</Typography>
-          <TextInput name="cityId" select fullWidth options={citiesOption} />
+          <TextInput name="city" select disabled={!values.region} fullWidth options={citiesOptions} />
         </FormControl>
         <FormControl className={classes.formField}>
           <Typography component="p">Выберите отделение</Typography>
