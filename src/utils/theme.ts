@@ -44,6 +44,8 @@ const FONTS = [
   '"Segoe UI Symbol"'
 ].join(',')
 
+const BRAND_COLOR = '#F2E30C'
+
 export const darkTheme = createMuiTheme({
   breakpoints: {
     keys: ['xs', 'sm', 'md', 'lg', 'xl', 'tablet', 'laptop', 'desktop'],
@@ -66,7 +68,7 @@ export const darkTheme = createMuiTheme({
       dark: '#303030'
     },
     secondary: {
-      main: '#F2E30C'
+      main: BRAND_COLOR
     },
     background: {
       default: '#1e1e1e'
@@ -114,7 +116,7 @@ export const lightTheme = createMuiTheme({
       light: '#fff'
     },
     secondary: {
-      main: '#F2E30C'
+      main: BRAND_COLOR
     },
     background: {
       default: '#fff'
