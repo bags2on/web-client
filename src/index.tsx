@@ -14,6 +14,7 @@ import './locales/i18n'
 import './utils/shared.scss'
 import 'swiper/swiper.scss'
 import 'swiper/components/navigation/navigation.scss'
+import 'swiper/components/effect-fade/effect-fade.scss'
 import 'swiper/components/pagination/pagination.scss'
 
 SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade])
