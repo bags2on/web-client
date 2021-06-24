@@ -1,13 +1,16 @@
-import React from 'react'
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import React, { useState, useEffect } from 'react'
 import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
 import TextInput from '../../../../shared/FormFields/TextInput/TextInput'
 import ImagePlaceholder from '../../../../shared/ImagePlaceholder'
 import novaPoshtaImage from '../../../../assets/svg/nova_poshta.svg'
 import justinImage from '../../../../assets/svg/justin.svg'
-import { Field } from 'formik'
+import { Field, useFormikContext } from 'formik'
 import { hiddenStyles } from '../../../../utils/styling'
 import { makeStyles } from '@material-ui/core'
+
+const API_URL = process.env.REACT_APP_API_URL
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -97,8 +100,69 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
+interface FormFields {
+  areaId: string
+}
+
 const Delivery: React.FC = () => {
   const classes = useStyles()
+
+  const { values } = useFormikContext<FormFields>()
+
+  const [areas, setAreas] = useState<{
+    areas: Array<{
+      id: string
+      name: string
+      areas: Array<{
+        id: string
+        name: string
+      }>
+    }>
+  }>({
+    areas: [
+      {
+        name: '---',
+        id: '-',
+        areas: [
+          {
+            name: '---',
+            id: '-'
+          }
+        ]
+      }
+    ]
+  })
+
+  useEffect(() => {
+    fetch(API_URL + 'areas').then(async (resp) => {
+      const data = await resp.json()
+      console.log(data)
+
+      setAreas(data)
+    })
+
+    return () => {
+      console.log('cleanup')
+    }
+  }, [])
+
+  if (!areas) {
+    console.log('no data')
+  }
+
+  const areasOptions = areas.areas.map((area) => ({
+    label: area.name,
+    value: area.id
+  }))
+
+  console.log(values.areaId)
+
+  const areaCities = areas.areas.find((area) => area.id === values.areaId)?.areas
+
+  const citiesOption = areaCities?.map((city) => ({
+    label: city.name,
+    value: city.name
+  }))
 
   return (
     <div className={classes.root}>
@@ -128,47 +192,11 @@ const Delivery: React.FC = () => {
         </ul>
         <FormControl className={classes.formField}>
           <Typography component="p">Область</Typography>
-          <TextInput
-            name="areaId"
-            select
-            fullWidth
-            options={[
-              {
-                label: 'Харьковская',
-                value: 'kh'
-              },
-              {
-                label: 'Киевская',
-                value: 'kv'
-              },
-              {
-                label: 'Одесская',
-                value: 'od'
-              }
-            ]}
-          />
+          <TextInput name="areaId" select fullWidth options={areasOptions} />
         </FormControl>
         <FormControl className={classes.formField}>
           <Typography component="p">Город</Typography>
-          <TextInput
-            name="cityId"
-            select
-            fullWidth
-            options={[
-              {
-                label: 'Харьков',
-                value: 'kh-1'
-              },
-              {
-                label: 'Киев',
-                value: 'kv-1'
-              },
-              {
-                label: 'Одесса',
-                value: 'od-1'
-              }
-            ]}
-          />
+          <TextInput name="cityId" select fullWidth options={citiesOption} />
         </FormControl>
         <FormControl className={classes.formField}>
           <Typography component="p">Выберите отделение</Typography>
