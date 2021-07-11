@@ -12,13 +12,13 @@ const useStyles = makeStyles((theme) => ({
   contentBox: {
     maxWidth: 1400,
     margin: '0 auto',
-    padding: '13px',
+    padding: 13,
     [theme.breakpoints.up('lg')]: {
       display: 'flex',
       alignItems: 'center'
     },
     [theme.breakpoints.up('desktop')]: {
-      padding: '13px 0'
+      padding: '17px 0'
     }
   },
   title: {
@@ -57,7 +57,8 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     outline: 'none',
     borderRadius: 4,
-    border: '1px solid',
+    border: '3px solid',
+    borderRightWidth: 0,
     color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
     borderColor: theme.palette.type === 'light' ? '#c4c4c4' : '#3c4144',
     backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
