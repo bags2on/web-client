@@ -98,7 +98,7 @@ const useStyles = makeStyles((theme) => ({
       '&:hover': {
         boxShadow: 'rgba(0, 0, 0, 0.08) 0px 4px 12px',
         '& $icon': {
-          transform: 'scale(1.3)'
+          transform: 'scale(1.2)'
         }
       }
     }

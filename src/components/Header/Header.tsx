@@ -35,14 +35,14 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     flexWrap: 'wrap',
     padding: '5px 0',
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: '#343434',
     boxShadow: '0 1px 2px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.05)',
     [theme.breakpoints.up('lg')]: {
       position: 'static',
       padding: '10px 17px'
     },
     [theme.breakpoints.up('laptop')]: {
-      padding: '10px 50px'
+      padding: '13px 50px'
     }
   },
   logo: {
@@ -72,14 +72,14 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 600,
         textDecoration: 'none',
         textTransform: 'uppercase',
-        color: '#343434',
+        color: theme.palette.secondary.main,
         transition: 'color 0.3s',
         position: 'relative',
         '&::after': {
           content: "''",
           position: 'absolute',
           borderBottom: '2px solid',
-          borderBottomColor: '#343434',
+          borderBottomColor: theme.palette.secondary.main,
           bottom: -7,
           left: 0,
           right: 0,
@@ -122,7 +122,7 @@ const useStyles = makeStyles((theme) => ({
   heartIcon: {
     fontSize: 24,
     fill: 'none',
-    stroke: '#343434',
+    stroke: theme.palette.secondary.main,
     transition: 'all 0.3s',
     '&:hover': {
       transform: 'scale(1.2)'
@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
   },
   profileIcon: {
     fontSize: 24,
-    fill: '#343434',
+    fill: theme.palette.secondary.main,
     transition: 'all 0.3s',
     '&:hover': {
       transform: 'scale(1.2)'
@@ -138,7 +138,8 @@ const useStyles = makeStyles((theme) => ({
   },
   cartIcon: {
     fontSize: 27,
-    fill: '#343434',
+    fill: theme.palette.secondary.main,
+    stroke: theme.palette.secondary.main,
     [theme.breakpoints.up('md')]: {
       fontSize: 24,
       transition: 'all 0.3s',
@@ -148,7 +149,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   menuIcon: {
-    fill: '#343434'
+    fill: theme.palette.secondary.main
   },
   toggl: {
     marginLeft: 7,

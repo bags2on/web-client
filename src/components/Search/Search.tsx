@@ -10,9 +10,8 @@ import { useTranslation } from 'react-i18next'
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    [theme.breakpoints.up('lg')]: {
-      flexGrow: 'initial',
-      marginLeft: 'auto'
+    [theme.breakpoints.up('xl')]: {
+      margin: '0 20px'
     }
   },
   searchBox: {
@@ -34,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     zIndex: 9,
     transitionDuration: '0.4s',
-    borderRadius: 4,
+    borderRadius: 5,
     border: '1px solid',
     color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
     borderColor: theme.palette.type === 'light' ? '#c4c4c4' : '#3c4144',
@@ -44,12 +43,8 @@ const useStyles = makeStyles((theme) => ({
     '-webkit-transition-duration': '0.4s',
     '-o-transition-duration': '0.4s',
     [theme.breakpoints.up('lg')]: {
-      width: 300,
-      borderRadius: 10,
+      width: '100%',
       BorderColor: 'transparent'
-    },
-    [theme.breakpoints.up('xl')]: {
-      width: 400
     },
     '&::placeholder': {
       color: theme.palette.type === 'light' ? '#3c4144' : '#c4c4c4'

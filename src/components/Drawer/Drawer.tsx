@@ -100,7 +100,7 @@ const drawerItems: DrawerItem[] = [
   },
   {
     icon: EyeIcon,
-    to: routes.profile,
+    to: '#',
     i18n: 'history'
   }
 ]
