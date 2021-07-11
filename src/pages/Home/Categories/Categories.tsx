@@ -79,12 +79,12 @@ const useStyles = makeStyles((theme) => ({
     margin: 5
   },
   link: {
+    userSelect: 'none',
     textDecoration: 'none',
     color: 'inherit'
   },
   listItem: {
-    width: '100%',
-    margin: '0 auto',
+    userSelect: 'none',
     borderRadius: 8,
     height: 75,
     transition: 'all 0.3s',
@@ -93,11 +93,14 @@ const useStyles = makeStyles((theme) => ({
     '-webkit-tap-highlight-color': 'transparent',
     '-moz-appearance': 'none',
     '-webkit-appearance': 'none',
-    '&:hover': {
-      boxShadow: 'rgba(0, 0, 0, 0.08) 0px 4px 12px'
-    },
     [theme.breakpoints.up('md')]: {
-      borderRadius: 0
+      borderRadius: 0,
+      '&:hover': {
+        boxShadow: 'rgba(0, 0, 0, 0.08) 0px 4px 12px',
+        '& $icon': {
+          transform: 'scale(1.3)'
+        }
+      }
     }
   },
   itemIcon: {
@@ -106,7 +109,10 @@ const useStyles = makeStyles((theme) => ({
     marginRight: 8
   },
   icon: {
-    fill: theme.palette.type === 'light' ? '#000' : theme.palette.secondary.main
+    fill: theme.palette.type === 'light' ? '#000' : theme.palette.secondary.main,
+    transition: 'all .2s',
+    fontSize: 45,
+    userSelect: 'none'
   },
   walletSVG: {
     strokeWidth: '1px',
@@ -155,7 +161,6 @@ const Categories: React.FC = () => {
                       <ListItemIcon className={classes.itemIcon}>
                         <SvgIcon
                           component="span"
-                          fontSize="large"
                           // TODO: dumb decision
                           className={clsx({
                             [classes.icon]: true,
