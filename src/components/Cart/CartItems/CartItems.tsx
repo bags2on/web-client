@@ -3,8 +3,8 @@ import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Summary from '../Summary/Summary'
 import Button from '../../../shared/Button/Button'
-import Fallback from '../../../shared/Fallback'
 import ResponsePlug from './ResponsePlug'
+import ContentLoader from 'react-content-loader'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
 import { useQuery } from '@apollo/client'
 import { GET_CART_ITEMS } from '../../../apollo/cache/queries/cart'
@@ -46,13 +46,15 @@ const useStyles = makeStyles((theme) => ({
       }
     }
   },
-  fallbackBox: {
+  fallbackList: {
+    margin: 0,
+    padding: 0,
+    paddingTop: 30,
+    listStyle: 'none',
     width: '100%',
-    height: 340,
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'column'
+    '& li': {
+      width: '100%'
+    }
   }
 }))
 
@@ -111,9 +113,24 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
           <Summary isLoading={loading} onClose={onClose} onCheckout={onCheckout} />
         </Grid>
         {loading ? (
-          <div className={classes.fallbackBox}>
-            <Fallback />
-          </div>
+          <ul className={classes.fallbackList}>
+            {cart.data.cartItems.map((_: unknown, index: number) => (
+              <li key={index}>
+                <ContentLoader
+                  backgroundColor="#F2E30C"
+                  foregroundColor="#ffd9a3"
+                  width="100%"
+                  height="210"
+                  viewBox="0 0 400 210"
+                >
+                  <rect x="20" y="5" rx="6" ry="6" width="130" height="155" />
+                  <rect x="190" y="10" rx="0" ry="0" width="190" height="21" />
+                  <rect x="190" y="47" rx="0" ry="0" width="130" height="20" />
+                  <rect x="190" y="79" rx="0" ry="0" width="85" height="20" />
+                </ContentLoader>
+              </li>
+            ))}
+          </ul>
         ) : (
           <>
             <Grid item xs={12}>

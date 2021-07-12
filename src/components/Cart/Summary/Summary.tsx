@@ -70,7 +70,7 @@ const Summary: React.FC<SummaryProps> = ({ isLoading, onClose, onCheckout }) => 
           <CloseIcon />
         </IconButton>
         <ContentLoader
-          backgroundColor="#ffbd61"
+          backgroundColor="#F2E30C"
           foregroundColor="#ffd9a3"
           width="100%"
           height="102"
