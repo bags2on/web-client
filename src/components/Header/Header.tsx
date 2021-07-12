@@ -35,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
     flexWrap: 'wrap',
     padding: '5px 0',
-    backgroundColor: '#343434',
+    backgroundColor: '#282828',
     boxShadow: '0 1px 2px rgba(0,0,0,0.05), 0 1px 4px rgba(0,0,0,0.05), 0 2px 8px rgba(0,0,0,0.05)',
     [theme.breakpoints.up('lg')]: {
       position: 'static',
