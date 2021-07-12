@@ -13,10 +13,6 @@ import { makeStyles } from '@material-ui/core'
 import 'rc-slider/assets/index.css'
 import './PriceRange.scss'
 
-/*
-  TODO: make price range more dependent from Formik
-*/
-
 interface PriceRangeProps {
   title: string
   name: string
@@ -54,25 +50,30 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+interface FormFields {
+  priceRange: Array<number>
+}
+
 const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1 }) => {
   const classes = useStyles()
-  const { setFieldValue } = useFormikContext()
+  const { values, setFieldValue } = useFormikContext<FormFields>()
 
+  const [minPrice, maxPrice] = values.priceRange
   const [isCollapsed, setCollapsed] = useState<boolean>(true)
 
-  const [minInputValue, setMinInputValue] = useState<number>(min)
-  const [maxInputValue, setMaxInputValue] = useState<number>(max)
+  const [minInputValue, setMinInputValue] = useState<number>(minPrice)
+  const [maxInputValue, setMaxInputValue] = useState<number>(maxPrice)
 
   const [sliderMin, setSliderMin] = useState<number>(minInputValue)
   const [sliderMax, setSliderMax] = useState<number>(maxInputValue)
 
   useLayoutEffect(() => {
-    setMinInputValue(min)
-    setMaxInputValue(max)
+    setMinInputValue(minPrice)
+    setMaxInputValue(maxPrice)
 
-    setSliderMin(min)
-    setSliderMax(max)
-  }, [min, max])
+    setSliderMin(minPrice)
+    setSliderMax(maxPrice)
+  }, [minPrice, maxPrice])
 
   const handleCollapse = (): void => {
     setCollapsed(!isCollapsed)

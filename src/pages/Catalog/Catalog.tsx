@@ -139,12 +139,11 @@ const Catalog: React.FC = () => {
     return <ErrorPlug />
   }
 
-  // TODO: why resetForm() doesn't re-init form values?
   const filtersInitialValues = {
     gender: genderType ? [genderType] : [],
     availability: [],
     mainTag: '',
-    priceRange: [],
+    priceRange: priceRange,
     category: categoryName ? [categoryName] : []
   }
 
