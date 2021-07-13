@@ -100,16 +100,14 @@ const useStyles = makeStyles((theme) => ({
   },
   cartButton: {
     maxWidth: 300,
-    background: 'none',
+    backgroundColor: 'var(--green-light)',
     border: '2px solid',
     borderColor: theme.palette.type === 'light' ? '#343434' : '#32CD32',
     fontWeight: 600,
-    color: theme.palette.type === 'light' ? '#343434' : '#fff',
+    color: '#fff',
     transition: 'all .1s',
     '&:hover': {
-      background: 'none',
-      color: theme.palette.secondary.main,
-      borderColor: theme.palette.secondary.main
+      backgroundColor: '#4bea4b'
     }
   },
   likeButton: {
@@ -128,6 +126,10 @@ const useStyles = makeStyles((theme) => ({
   },
   heartIconLiked: {
     fill: '#f44336'
+  },
+  requestButton: {
+    fontSize: 17,
+    textTransform: 'none'
   }
 }))
 
@@ -164,6 +166,10 @@ const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, descri
     })
   }
 
+  const handleEnchantmentClick = (): void => {
+    console.log('tell us something')
+  }
+
   const handleLikeClick = (): void => {
     if (isLiked) {
       FavoriteMutations.deleteFavorite(id)
@@ -198,9 +204,20 @@ const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, descri
         <Typography component="span">{description}</Typography>
       </div>
       <div className={classes.buttonsWrapper}>
-        <Button onClick={handleAddToCart} className={classes.cartButton} fullWidth disableShadow>
-          Добавить в корзину
-        </Button>
+        {inStock ? (
+          <Button onClick={handleAddToCart} className={classes.cartButton} fullWidth disableShadow>
+            Добавить в корзину
+          </Button>
+        ) : (
+          <Button
+            fullWidth
+            disableShadow
+            onClick={handleEnchantmentClick}
+            className={clsx(classes.cartButton, classes.requestButton)}
+          >
+            Сообщить когда появиться
+          </Button>
+        )}
         <IconButton onClick={handleLikeClick} className={classes.likeButton}>
           <Icon
             classes={{
@@ -214,6 +231,7 @@ const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, descri
           </Icon>
         </IconButton>
       </div>
+
       <Features color="желтый" material="кожа" type="женский" category="сумки" />
     </section>
   )
