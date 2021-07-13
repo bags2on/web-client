@@ -1,6 +1,5 @@
 import React, { lazy, Suspense } from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import routes from './utils/routes'
 import RootLayout from './components/RootLayout/RootLayout'
 import Fallback from './shared/Fallback'
 
@@ -19,12 +18,12 @@ const App: React.FC<AppProps> = ({ themeChanger }) => {
     <Suspense fallback={<Fallback />}>
       <RootLayout themeChanger={themeChanger}>
         <Switch>
-          <Route exact path={routes.root} component={Home} />
-          <Route path={routes.catalog} component={Catalog} />
-          <Route exact path={routes.product} component={Product} />
-          <Route exact path={routes.profile} component={Profile} />
-          <Route path={routes.notFound} component={NoMatchPage} />
-          <Redirect to={routes.notFound} />
+          <Route exact path="/" component={Home} />
+          <Route path="/catalog/:page?" component={Catalog} />
+          <Route exact path="/p/:id" component={Product} />
+          <Route exact path="/profile/:tabName?" component={Profile} />
+          <Route path="/404" component={NoMatchPage} />
+          <Redirect to="/404" />
         </Switch>
       </RootLayout>
     </Suspense>

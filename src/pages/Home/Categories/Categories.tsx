@@ -29,13 +29,13 @@ const categoriesValues: {
     group: [
       {
         icon: BaggageIcon,
-        to: routes.allCatalog,
+        to: routes.catalog,
         i18n: 'suitcases',
         categoryName: 'Suitcase'
       },
       {
         icon: BagIcon,
-        to: routes.allCatalog,
+        to: routes.catalog,
         i18n: 'bags',
         categoryName: 'Bag'
       }
@@ -45,13 +45,13 @@ const categoriesValues: {
     group: [
       {
         icon: WalletIcon,
-        to: routes.allCatalog,
+        to: routes.catalog,
         i18n: 'wallets',
         categoryName: 'Wallet'
       },
       {
         icon: OtherIcon,
-        to: routes.allCatalog,
+        to: routes.catalog,
         i18n: 'all',
         categoryName: ''
       }

@@ -207,7 +207,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
             <Link to={routes.root}>Главная</Link>
           </ListItem>
           <ListItem component="li">
-            <Link to={routes.allCatalog}>Каталог</Link>
+            <Link to={routes.catalog}>Каталог</Link>
           </ListItem>
         </List>
       </nav>

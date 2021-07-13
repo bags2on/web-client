@@ -3,13 +3,12 @@ interface RoutesMap {
 }
 
 const routes: RoutesMap = {
-  login: '/login',
   root: '/',
-  catalog: '/catalog/:page?',
-  allCatalog: '/catalog',
+  catalog: '/catalog',
   product: '/p/:id',
+  login: '/login',
   discounts: '/discounts',
-  profile: '/profile/:tabName?',
+  profile: '/profile',
   favorite: '/profile/favorite',
   profileInfo: '/profile/info',
   notFound: '/404'

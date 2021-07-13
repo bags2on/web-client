@@ -85,7 +85,7 @@ const Promo: React.FC = () => {
       <div className={classes.wrapper}>
         <Link
           to={{
-            pathname: routes.allCatalog,
+            pathname: routes.catalog,
             state: {
               genderType: 'Male'
             }
@@ -102,7 +102,7 @@ const Promo: React.FC = () => {
       <div className={classes.wrapper}>
         <Link
           to={{
-            pathname: routes.allCatalog,
+            pathname: routes.catalog,
             state: {
               genderType: 'Female'
             }
