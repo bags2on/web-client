@@ -1,6 +1,5 @@
 import React from 'react'
 import clsx from 'clsx'
-import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import CloseIcon from '@material-ui/icons/Close'
 import IconButton from '@material-ui/core/IconButton'
@@ -22,6 +21,13 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: '15px 10px 25px 15px',
     backgroundColor: theme.palette.type === 'light' ? '#f3f3f3' : '#282828'
+  },
+  topContainer: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    width: '100%', // ?
+    alignItems: 'center',
+    marginBottom: 10
   },
   closeCartButton: {
     marginRight: 30
@@ -86,17 +92,15 @@ const Summary: React.FC<SummaryProps> = ({ isLoading, onClose, onCheckout }) => 
   return (
     <section className={classes.root}>
       <Grid container>
-        <Box display="flex" flexWrap="wrap" width="100%" marginBottom="10px">
+        <div className={classes.topContainer}>
           <IconButton onClick={onClose} className={classes.closeCartButton}>
             <CloseIcon />
           </IconButton>
-          <Box display="flex" alignItems="center" justifyContent="center">
-            <Typography component="p" className={classes.totalTitle}>
-              Итого:&nbsp;
-              <Typography component="span">{formatPrice(data.cartPrice)}&nbsp;грн.</Typography>
-            </Typography>
-          </Box>
-        </Box>
+          <Typography component="p" className={classes.totalTitle}>
+            Итого:&nbsp;
+            <Typography component="span">{formatPrice(data.cartPrice)}&nbsp;грн.</Typography>
+          </Typography>
+        </div>
         <Grid container>
           <Button fullWidth disableShadow color="secondary" onClick={handleCheckoutClick}>
             Оформить заказ

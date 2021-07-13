@@ -1,5 +1,4 @@
 import React from 'react'
-import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Summary from '../Summary/Summary'
 import Button from '../../../shared/Button/Button'
@@ -107,50 +106,48 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   }
 
   return (
-    <Box>
-      <Grid container>
-        <Grid item xs={12}>
-          <Summary isLoading={loading} onClose={onClose} onCheckout={onCheckout} />
-        </Grid>
-        {loading ? (
-          <ul className={classes.fallbackList}>
-            {cart.data.cartItems.map((_: unknown, index: number) => (
-              <li key={index}>
-                <ContentLoader
-                  backgroundColor="#F2E30C"
-                  foregroundColor="#ffd9a3"
-                  width="100%"
-                  height="210"
-                  viewBox="0 0 400 210"
-                >
-                  <rect x="20" y="5" rx="6" ry="6" width="130" height="155" />
-                  <rect x="190" y="10" rx="0" ry="0" width="190" height="21" />
-                  <rect x="190" y="47" rx="0" ry="0" width="130" height="20" />
-                  <rect x="190" y="79" rx="0" ry="0" width="85" height="20" />
-                </ContentLoader>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <>
-            <Grid item xs={12}>
-              <Button onClick={handleClearAllClick} disableShadow className={classes.clearButton}>
-                Очистить корзину
-              </Button>
-            </Grid>
-            <Grid item xs={12}>
-              <Grid container component="ul" className={classes.list}>
-                {data?.cartProducts.map((product: CartItemType, index) => (
-                  <Grid key={index} component="li" item xs={12}>
-                    <CartItem product={product} onRemove={handleProductRemove} />
-                  </Grid>
-                ))}
-              </Grid>
-            </Grid>
-          </>
-        )}
+    <Grid container>
+      <Grid item xs={12}>
+        <Summary isLoading={loading} onClose={onClose} onCheckout={onCheckout} />
       </Grid>
-    </Box>
+      {loading ? (
+        <ul className={classes.fallbackList}>
+          {cart.data.cartItems.map((_: unknown, index: number) => (
+            <li key={index}>
+              <ContentLoader
+                backgroundColor="#F2E30C"
+                foregroundColor="#ffd9a3"
+                width="100%"
+                height="210"
+                viewBox="0 0 400 210"
+              >
+                <rect x="20" y="5" rx="6" ry="6" width="130" height="155" />
+                <rect x="190" y="10" rx="0" ry="0" width="190" height="21" />
+                <rect x="190" y="47" rx="0" ry="0" width="130" height="20" />
+                <rect x="190" y="79" rx="0" ry="0" width="85" height="20" />
+              </ContentLoader>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <>
+          <Grid item xs={12}>
+            <Button onClick={handleClearAllClick} disableShadow className={classes.clearButton}>
+              Очистить корзину
+            </Button>
+          </Grid>
+          <Grid item xs={12}>
+            <Grid container component="ul" className={classes.list}>
+              {data?.cartProducts.map((product: CartItemType, index) => (
+                <Grid key={index} component="li" item xs={12}>
+                  <CartItem product={product} onRemove={handleProductRemove} />
+                </Grid>
+              ))}
+            </Grid>
+          </Grid>
+        </>
+      )}
+    </Grid>
   )
 }
 

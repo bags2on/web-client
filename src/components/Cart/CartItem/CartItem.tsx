@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Box from '@material-ui/core/Box'
 import Grid from '@material-ui/core/Grid'
 import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
@@ -28,6 +27,7 @@ interface CartItemProps {
 
 const useStyles = makeStyles(() => ({
   root: {
+    display: 'flex',
     position: 'relative',
     marginBottom: 30,
     '&::after': {
@@ -86,6 +86,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: 500
   },
   removeButton: {
+    marginTop: 10,
     padding: 0,
     color: '#DC143C',
     fontSize: 12,
@@ -96,6 +97,12 @@ const useStyles = makeStyles(() => ({
       background: 'none',
       textDecoration: 'underline'
     }
+  },
+  controllerWrapper: {
+    marginTop: 20,
+    display: 'flex',
+    justifyContent: 'flex-end',
+    paddingRight: 10
   }
 }))
 
@@ -115,22 +122,20 @@ const CartItem: React.FC<CartItemProps> = ({ product, onRemove }) => {
   }
 
   return (
-    <Box display="flex" className={classes.root}>
-      <Box component="div" className={classes.box}>
+    <div className={classes.root}>
+      <div className={classes.box}>
         <Link className={classes.linkWrapper} to={generateLink(routes.product, id)}>
           <ImagePlaceholder src={preview} altText={title} />
         </Link>
-      </Box>
+      </div>
       <div className={classes.productInfoBox}>
         <Grid container>
           <Grid item xs={12}>
-            <Box minWidth="0">
-              <Typography component="p" className={classes.title}>
-                <Link title={title} to={generateLink(routes.product, id)}>
-                  {title}
-                </Link>
-              </Typography>
-            </Box>
+            <Typography component="p" className={classes.title}>
+              <Link title={title} to={generateLink(routes.product, id)}>
+                {title}
+              </Link>
+            </Typography>
           </Grid>
           <Grid item xs={12}>
             <Typography component="span" className={classes.priceTitle}>
@@ -141,24 +146,22 @@ const CartItem: React.FC<CartItemProps> = ({ product, onRemove }) => {
             <Typography component="p" className={classes.amountTitle}>
               {count}&nbsp;шт:&nbsp;&nbsp;{formatPrice(count * currentPrice)}&nbsp;грн.
             </Typography>
-            <Box marginTop="10px">
-              <Button
-                disableRipple
-                onClick={handleProductRemove}
-                className={classes.removeButton}
-                startIcon={<CloseIcon fontSize="small" />}
-                aria-label={`Удалить этот (${title}) товар`}
-              >
-                удалить
-              </Button>
-            </Box>
+            <Button
+              disableRipple
+              onClick={handleProductRemove}
+              className={classes.removeButton}
+              startIcon={<CloseIcon fontSize="small" />}
+              aria-label={`Удалить этот (${title}) товар`}
+            >
+              удалить
+            </Button>
           </Grid>
         </Grid>
-        <Box marginTop="20px" display="flex" justifyContent="flex-end" paddingRight="10px">
+        <div className={classes.controllerWrapper}>
           <AmountController min={1} max={100} amount={count} onChange={handleAmountChange} />
-        </Box>
+        </div>
       </div>
-    </Box>
+    </div>
   )
 }
 

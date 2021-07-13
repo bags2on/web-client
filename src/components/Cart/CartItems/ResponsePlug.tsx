@@ -1,5 +1,4 @@
 import React from 'react'
-import Box from '@material-ui/core/Box'
 import Typography from '@material-ui/core/Typography'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import Button from '../../../shared/Button/Button'
@@ -32,6 +31,10 @@ const useStyles = makeStyles(() => ({
       fontWeight: 500,
       textAlign: 'center'
     }
+  },
+  button: {
+    maxWidth: 130,
+    marginTop: 50
   }
 }))
 
@@ -39,17 +42,22 @@ const ResponsePlug: React.FC<ResponsePlugProps> = ({ text, onClose }) => {
   const classes = useStyles()
 
   return (
-    <Box className={classes.root}>
+    <div className={classes.root}>
       <div className={classes.content}>
         <EmptyCartIcon />
         <Typography component="p">{text}</Typography>
       </div>
-      <Box margin="0 auto" width="130px" marginTop="50px">
-        <Button fullWidth onClick={onClose} darkLoader color="secondary" startIcon={<ArrowBackIosIcon />}>
-          Назад
-        </Button>
-      </Box>
-    </Box>
+      <Button
+        fullWidth
+        onClick={onClose}
+        darkLoader
+        color="secondary"
+        startIcon={<ArrowBackIosIcon />}
+        className={classes.button}
+      >
+        Назад
+      </Button>
+    </div>
   )
 }
 
