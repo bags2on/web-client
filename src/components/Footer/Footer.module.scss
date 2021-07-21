@@ -5,6 +5,7 @@ $text-color: #939191;
 @mixin h5-title {
   & h5 {
     font-size: 15px;
+    margin: 0;
     margin-bottom: 25px;
     font-weight: 600;
     color: var(--font-color);
@@ -49,6 +50,7 @@ $text-color: #939191;
   }
   & p {
     font-size: 14px;
+    margin: 0;
     color: $text-color;
   }
   & span {
@@ -71,7 +73,8 @@ $text-color: #939191;
   & p {
     font-size: 15px;
     color: var(--sub-title-color);
-    margin-bottom: 5px;
+    margin-top: 0;
+    margin-bottom: 6px;
     transition: color 0.2s;
     &:hover {
       color: $main-color;
@@ -108,6 +111,8 @@ $text-color: #939191;
 }
 
 .phone {
+  margin: 0;
+  line-height: 1.3;
   color: var(--font-color);
   font-weight: 500 !important;
   font-size: 21px !important;
