@@ -1,10 +1,10 @@
 import React from 'react'
-import { useField } from 'formik'
-import { makeStyles } from '@material-ui/core/styles'
 import TextField from '@material-ui/core/TextField'
 import Typography from '@material-ui/core/Typography'
-import Fade from '@material-ui/core/Fade'
 import MenuItem from '@material-ui/core/MenuItem'
+import { useField } from 'formik'
+import { makeStyles } from '@material-ui/core/styles'
+import { useSpring, animated } from 'react-spring'
 
 interface TextInputProps {
   name: string
@@ -40,7 +40,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     color: '#ff182e',
     paddingLeft: 10,
-    opacity: 0,
     transition: 'all 0.33s linear'
   },
   notchedOutline: {
@@ -51,6 +50,14 @@ const useStyles = makeStyles((theme) => ({
 const TextInput: React.FC<TextInputProps> = ({ autoComplete = 'off', maxLength = 50, options, ...restProps }) => {
   const classes = useStyles()
   const [field, meta] = useField(restProps)
+
+  const fadeStyles = useSpring({
+    config: { duration: 250 },
+    from: { opacity: 0 },
+    to: {
+      opacity: meta.touched && !!meta.error ? 1 : 0
+    }
+  })
 
   return (
     <div>
@@ -77,11 +84,11 @@ const TextInput: React.FC<TextInputProps> = ({ autoComplete = 'off', maxLength =
             </MenuItem>
           ))}
       </TextField>
-      <Fade in={meta.touched && !!meta.error}>
+      <animated.div style={fadeStyles}>
         <Typography component="p" className={classes.message}>
           {meta.touched && meta.error}
         </Typography>
-      </Fade>
+      </animated.div>
     </div>
   )
 }

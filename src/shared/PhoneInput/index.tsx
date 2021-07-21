@@ -1,8 +1,8 @@
 import React from 'react'
-import { useField } from 'formik'
-import NumberFormat, { NumberFormatValues } from 'react-number-format'
 import Typography from '@material-ui/core/Typography'
-import Fade from '@material-ui/core/Fade'
+import NumberFormat, { NumberFormatValues } from 'react-number-format'
+import { useField } from 'formik'
+import { useSpring, animated } from 'react-spring'
 import { makeStyles } from '@material-ui/core/styles'
 
 interface PhoneInputProps {
@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 14,
     color: '#ff182e',
     paddingLeft: 10,
-    opacity: 0,
     transition: 'all 0.33s linear'
   },
   notchedOutline: {
@@ -58,6 +57,14 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name, error = false }) => {
     field.onChange(name)(values.value)
   }
 
+  const fadeStyles = useSpring({
+    config: { duration: 250 },
+    from: { opacity: 0 },
+    to: {
+      opacity: meta.touched && !!meta.error ? 1 : 0
+    }
+  })
+
   return (
     <div>
       <NumberFormat
@@ -68,11 +75,11 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name, error = false }) => {
         allowEmptyFormatting
         onValueChange={handleValueChange}
       />
-      <Fade in={meta.touched && !!meta.error}>
+      <animated.div style={fadeStyles}>
         <Typography component="p" className={classes.message}>
           {meta.touched && meta.error}
         </Typography>
-      </Fade>
+      </animated.div>
     </div>
   )
 }
