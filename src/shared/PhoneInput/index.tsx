@@ -1,5 +1,4 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
 import NumberFormat, { NumberFormatValues } from 'react-number-format'
 import { useField } from 'formik'
 import { useSpring, animated } from 'react-spring'
@@ -38,6 +37,7 @@ const useStyles = makeStyles((theme) => ({
     height: 24,
     fontSize: 14,
     color: '#ff182e',
+    margin: 0,
     paddingLeft: 10,
     transition: 'all 0.33s linear'
   },
@@ -76,9 +76,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name, error = false }) => {
         onValueChange={handleValueChange}
       />
       <animated.div style={fadeStyles}>
-        <Typography component="p" className={classes.message}>
-          {meta.touched && meta.error}
-        </Typography>
+        <p className={classes.message}>{meta.touched && meta.error}</p>
       </animated.div>
     </div>
   )

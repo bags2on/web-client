@@ -1,6 +1,5 @@
 import React from 'react'
 import TextField from '@material-ui/core/TextField'
-import Typography from '@material-ui/core/Typography'
 import MenuItem from '@material-ui/core/MenuItem'
 import { useField } from 'formik'
 import { makeStyles } from '@material-ui/core/styles'
@@ -39,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
     height: 24,
     fontSize: 14,
     color: '#ff182e',
+    margin: 0,
     paddingLeft: 10,
     transition: 'all 0.33s linear'
   },
@@ -85,9 +85,7 @@ const TextInput: React.FC<TextInputProps> = ({ autoComplete = 'off', maxLength =
           ))}
       </TextField>
       <animated.div style={fadeStyles}>
-        <Typography component="p" className={classes.message}>
-          {meta.touched && meta.error}
-        </Typography>
+        <p className={classes.message}>{meta.touched && meta.error}</p>
       </animated.div>
     </div>
   )
