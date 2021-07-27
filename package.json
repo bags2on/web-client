@@ -46,6 +46,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "analyze": "source-map-explorer build/static/js/*.js",
     "lint": "eslint src*/**/*.{js,ts,tsx}",
     "_apollo:gen": "apollo codegen:generate --localSchemaFile=schema.graphql --target=typescript --includes='src/graphql/**' --tagName=gql _types_",
     "generate": "graphql-codegen --config codegen.yml",
