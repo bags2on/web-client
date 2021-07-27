@@ -100,17 +100,17 @@ export const TEMP_MAIN_SLIDER_IMAGES: {
   {
     url: '#',
     text: 'first slide',
-    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/zveri_pattern_z3blcb.jpg'
+    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1627388037/bags2on/zveri_pattern_ybzpvz.jpg'
   },
   {
     url: '#',
     text: 'second slide',
-    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1584278178/bags2on/list_lazmfm.jpg'
+    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1627387902/bags2on/list_aw5rgo.jpg'
   },
   {
     url: '#',
     text: 'third slide',
-    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1603389661/bags2on/third_vspxox.jpg'
+    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1627387748/bags2on/third_qh9dhv.jpg'
   }
 ]
 
