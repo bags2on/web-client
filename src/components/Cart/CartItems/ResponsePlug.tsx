@@ -1,5 +1,4 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import Button from '../../../shared/Button/Button'
 import { ReactComponent as EmptyCartIcon } from '../../../assets/svg/emptycart.svg'
@@ -27,6 +26,7 @@ const useStyles = makeStyles(() => ({
       fill: 'gray'
     },
     '& > p': {
+      margin: 0,
       fontSize: 20,
       fontWeight: 500,
       textAlign: 'center'
@@ -45,7 +45,7 @@ const ResponsePlug: React.FC<ResponsePlugProps> = ({ text, onClose }) => {
     <div className={classes.root}>
       <div className={classes.content}>
         <EmptyCartIcon />
-        <Typography component="p">{text}</Typography>
+        <p>{text}</p>
       </div>
       <Button
         fullWidth

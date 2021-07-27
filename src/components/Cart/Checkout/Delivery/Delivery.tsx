@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-import Typography from '@material-ui/core/Typography'
 import FormControl from '@material-ui/core/FormControl'
 import TextInput from '../../../../shared/FormFields/TextInput/TextInput'
 import ImagePlaceholder from '../../../../shared/ImagePlaceholder'
@@ -28,6 +27,7 @@ const useStyles = makeStyles(() => ({
     borderBottom: '1px solid #d2d2d7'
   },
   subTitle: {
+    fontSize: 16,
     fontWeight: 500
   },
   editButton: {
@@ -90,9 +90,11 @@ const useStyles = makeStyles(() => ({
     }
   },
   formField: {
-    display: 'flex',
     width: '100%',
+    display: 'flex',
     '& > p': {
+      margin: 0,
+      fontSize: 16,
       color: '#5a5a5a',
       paddingBottom: 5
     }
@@ -154,9 +156,7 @@ const Delivery: React.FC = () => {
     <div className={classes.root}>
       <div className={classes.contentBox}>
         <div className={classes.titleWrapper}>
-          <Typography component="span" className={classes.subTitle}>
-            Служба доставки
-          </Typography>
+          <span className={classes.subTitle}>Служба доставки</span>
         </div>
         <ul className={classes.deliveriesList}>
           <li>
@@ -177,15 +177,15 @@ const Delivery: React.FC = () => {
           </li>
         </ul>
         <FormControl className={classes.formField}>
-          <Typography component="p">Область</Typography>
+          <p>Область</p>
           <TextInput name="region" disabled={areasLoading} select fullWidth options={areasOptions} />
         </FormControl>
         <FormControl className={classes.formField}>
-          <Typography component="p">Город</Typography>
+          <p>Город</p>
           <TextInput name="city" select disabled={!values.region} fullWidth options={citiesOptions} />
         </FormControl>
         <FormControl className={classes.formField}>
-          <Typography component="p">Выберите отделение</Typography>
+          <p>Выберите отделение</p>
           <TextInput name="postOfficeId" />
         </FormControl>
       </div>

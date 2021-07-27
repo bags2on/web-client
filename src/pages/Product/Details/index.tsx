@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import Icon from '@material-ui/core/Icon'
-import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
@@ -83,9 +82,11 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: 'line-through'
   },
   description: {
+    fontSize: 16,
+    lineHeight: '1.5',
     marginTop: '20px',
-    fontWeight: 500,
     '& > p': {
+      margin: 0,
       paddingBottom: 6,
       fontWeight: 600
     }
@@ -187,7 +188,7 @@ const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, descri
       <div className={classes.box}>
         <div className={clsx(classes.stock, inStock ? classes.inStock : classes.outOfStock)}>
           <SvgIcon className={classes.stockIcon}>{inStock ? <CheckIcon /> : <ErrorOutlineIcon />}</SvgIcon>
-          <Typography component="span">{inStock ? 'В наличии' : 'Нет в наличии'}</Typography>
+          <span>{inStock ? 'В наличии' : 'Нет в наличии'}</span>
         </div>
         <Rating votesAmount={0} />
       </div>
@@ -200,8 +201,8 @@ const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, descri
         <p className={classes.currentPrice}>{formatPrice(currentPrice)}&nbsp;₴</p>
       </div>
       <div className={classes.description}>
-        <Typography component="p">Описание:</Typography>
-        <Typography component="span">{description}</Typography>
+        <p>Описание:</p>
+        <span>{description}</span>
       </div>
       <div className={classes.buttonsWrapper}>
         {inStock ? (

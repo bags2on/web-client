@@ -1,6 +1,5 @@
 import React from 'react'
 import SvgIcon from '@material-ui/core/SvgIcon'
-import Typography from '@material-ui/core/Typography'
 import Button from '../../../shared/Button/Button'
 import { Link } from 'react-router-dom'
 import { ReactComponent as LetterCheckImage } from '../../../assets/svg/letter-check.svg'
@@ -24,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto'
   },
   title: {
+    margin: 0,
     fontSize: 20,
     fontWeight: 600,
     marginBottom: 5,
@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
     textAlign: 'center',
     '& p': {
+      margin: 0,
       lineHeight: '15px',
       color: '#676767',
       fontSize: 13
@@ -48,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     paddingBottom: 20,
     '& p': {
+      margin: 0,
       fontSize: 14,
       lineHeight: '20px',
       marginLeft: 20,
@@ -83,29 +85,27 @@ const OrderSuccess: React.FC<OrderSuccessProps> = ({ onClose }) => {
         <LetterCheckImage />
       </div>
       <div className={classes.orderInfoBox}>
-        <Typography component="h3" className={classes.title}>
-          Вы успешно создали заказ!
-        </Typography>
+        <h3 className={classes.title}>Вы успешно создали заказ!</h3>
         <div className={classes.subTitle}>
-          <Typography component="p">Мы свяжемся с вами в ближайшее время для подтверждения</Typography>
+          <p>Мы свяжемся с вами в ближайшее время для подтверждения</p>
         </div>
         <ul className={classes.detailsList}>
           <li className={classes.orderInfo}>
             <SvgIcon fontSize="large" component="span">
               <MailImage />
             </SvgIcon>
-            <Typography component="p">Проверьте свой почтовый ящик для уточнения деталей</Typography>
+            <p>Проверьте свой почтовый ящик для уточнения деталей</p>
           </li>
           <li className={classes.orderInfo}>
             <SvgIcon fontSize="large" component="span">
               <PinImage />
             </SvgIcon>
-            <Typography component="p">
+            <p>
               Вы можете отследить статус покупки в&nbsp;
               <Link to="#" className={classes.profileLink}>
                 личном кабинете
               </Link>
-            </Typography>
+            </p>
           </li>
         </ul>
         <div className={classes.buttonWrapper}>

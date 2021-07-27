@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
-import Typography from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ReactComponent as BaggageIcon } from '../../../assets/svg/baggage.svg'
@@ -72,8 +71,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: 20,
     fontWeight: 500,
-    marginLeft: '10px',
-    marginBottom: 5
+    lineHeight: '1.5',
+    margin: '0 0 5px 10px'
   },
   item: {
     margin: 5
@@ -138,9 +137,7 @@ const Categories: React.FC = () => {
 
   return (
     <section className={classes.root}>
-      <Typography className={classes.title} component="h2">
-        Категории
-      </Typography>
+      <h2 className={classes.title}>Категории</h2>
       <div>
         <Grid component="ul" container>
           {categoriesValues.map((category, ind) => (

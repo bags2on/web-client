@@ -1,5 +1,4 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
 import { useTranslation } from 'react-i18next'
 import { Formik, Form } from 'formik'
@@ -37,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
     padding: '10px 10px 20px 10px'
   },
   title: {
+    margin: 0,
+    lineHeight: '1.5',
     fontSize: 21,
     textAlign: 'center',
     position: 'relative',
@@ -98,9 +99,7 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
         {({ dirty, resetForm }): React.ReactElement => (
           <Form ref={formRef}>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 15 }}>
-              <Typography component="p" className={classes.title}>
-                {t('catalog.filters.title')}
-              </Typography>
+              <p className={classes.title}>{t('catalog.filters.title')}</p>
               {dirty && (
                 <Button onClick={() => resetForm()} className={classes.clearButton} disableShadow>
                   очистить

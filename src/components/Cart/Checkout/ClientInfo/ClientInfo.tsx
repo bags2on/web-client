@@ -1,6 +1,5 @@
 import React, { useRef } from 'react'
 import clsx from 'clsx'
-import Typography from '@material-ui/core/Typography'
 import IconButton from '@material-ui/core/IconButton'
 import Icon from '@material-ui/core/SvgIcon'
 import FormControl from '@material-ui/core/FormControl'
@@ -32,6 +31,7 @@ const useStyles = makeStyles(() => ({
     boxShadow: '0px 1px 9px -1px rgba(0,0,0,0.1)'
   },
   subTitle: {
+    fontSize: 16,
     fontWeight: 500
   },
   header: {
@@ -71,6 +71,8 @@ const useStyles = makeStyles(() => ({
     flexDirection: 'row',
     justifyContent: 'space-between',
     '& > p': {
+      margin: 0,
+      fontSize: 16,
       color: '#5a5a5a',
       flexBasis: '30%',
       paddingBottom: 24,
@@ -140,9 +142,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
     <div className={classes.root}>
       <div className={classes.contentBox}>
         <div className={classes.header}>
-          <Typography component="span" className={classes.subTitle}>
-            Покупатель
-          </Typography>
+          <span className={classes.subTitle}>Покупатель</span>
           <IconButton component="button" onClick={onEdit} className={classes.editButton}>
             {edit ? <CheckIcon /> : <EditIcon />}
           </IconButton>
@@ -159,9 +159,9 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
             >
               <ProfileIcon />
             </Icon>
-            <Typography component="span" className={classes.fieldText}>
+            <span className={classes.fieldText}>
               {values.name ? values.name : plug(5)}&nbsp;{values.surname ? values.surname : plug(5)}
-            </Typography>
+            </span>
           </li>
           <li>
             <Icon
@@ -174,9 +174,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
             >
               <MailIcon />
             </Icon>
-            <Typography component="span" className={classes.fieldText}>
-              {values.email ? values.email : plug(10)}
-            </Typography>
+            <span className={classes.fieldText}>{values.email ? values.email : plug(10)}</span>
           </li>
           <li>
             <Icon
@@ -189,7 +187,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
             >
               <PhoneIcon />
             </Icon>
-            <Typography component="span" className={classes.fieldText}>
+            <span className={classes.fieldText}>
               <NumberFormat
                 className={clsx({
                   [classes.plug]: !values.phone
@@ -200,25 +198,25 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
                 format="+38 (###) ###-####"
                 allowEmptyFormatting
               />
-            </Typography>
+            </span>
           </li>
         </ul>
         <animated.div style={{ ...slideInStyles, overflow: 'hidden' }}>
           <div ref={ref}>
             <FormControl className={classes.formField}>
-              <Typography component="p">Имя</Typography>
+              <p>Имя</p>
               <TextInput name="name" />
             </FormControl>
             <FormControl className={classes.formField}>
-              <Typography component="p">Фамилия</Typography>
+              <p>Фамилия</p>
               <TextInput name="surname" />
             </FormControl>
             <FormControl className={classes.formField}>
-              <Typography component="p">Email</Typography>
+              <p>Email</p>
               <TextInput name="email" type="email" />
             </FormControl>
             <FormControl className={classes.formField}>
-              <Typography component="p">Телефон</Typography>
+              <p>Телефон</p>
               <PhoneInput name="phone" error={!!errors.phone} />
             </FormControl>
             <Button onClick={handleClearClick} disableShadow className={classes.clear}>

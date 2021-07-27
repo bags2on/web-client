@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
 import Button from '@material-ui/core/Button'
 import CloseIcon from '@material-ui/icons/Close'
 import { Link } from 'react-router-dom'
@@ -59,6 +58,8 @@ const useStyles = makeStyles(() => ({
   },
   title: {
     maxWidth: 200,
+    margin: 0,
+    marginBottom: 3,
     fontSize: 22,
     fontWeight: 500,
     paddingBottom: 3,
@@ -81,6 +82,7 @@ const useStyles = makeStyles(() => ({
     fontWeight: 500
   },
   amountTitle: {
+    margin: 0,
     paddingLeft: 1,
     fontSize: 16,
     fontWeight: 500
@@ -131,21 +133,19 @@ const CartItem: React.FC<CartItemProps> = ({ product, onRemove }) => {
       <div className={classes.productInfoBox}>
         <Grid container>
           <Grid item xs={12}>
-            <Typography component="p" className={classes.title}>
+            <p className={classes.title}>
               <Link title={title} to={generateLink(routes.product, id)}>
                 {title}
               </Link>
-            </Typography>
+            </p>
           </Grid>
           <Grid item xs={12}>
-            <Typography component="span" className={classes.priceTitle}>
-              Цена:&nbsp;&nbsp;{formatPrice(currentPrice)}&nbsp;₴
-            </Typography>
+            <span className={classes.priceTitle}>Цена:&nbsp;&nbsp;{formatPrice(currentPrice)}&nbsp;₴</span>
           </Grid>
           <Grid item xs={12}>
-            <Typography component="p" className={classes.amountTitle}>
+            <p className={classes.amountTitle}>
               {count}&nbsp;шт:&nbsp;&nbsp;{formatPrice(count * currentPrice)}&nbsp;грн.
-            </Typography>
+            </p>
             <Button
               disableRipple
               onClick={handleProductRemove}

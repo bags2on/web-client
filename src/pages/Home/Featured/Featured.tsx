@@ -1,6 +1,5 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
-import Typography from '@material-ui/core/Typography'
 import CatalogItem from '../../../components/CatalogItem/CatalogItem'
 import { makeStyles } from '@material-ui/core'
 
@@ -22,6 +21,7 @@ const useStyles = makeStyles(() => ({
   title: {
     fontSize: 20,
     fontWeight: 500,
+    lineHeight: '1.5',
     margin: '15px 0 5px 10px'
   },
   list: {
@@ -39,9 +39,7 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
 
   return (
     <section>
-      <Typography className={classes.title} component="h2">
-        Рекомендуемые
-      </Typography>
+      <h2 className={classes.title}>Рекомендуемые</h2>
       <Grid container component="ul" className={classes.list}>
         {products.map((product: ProductType) => (
           <Grid key={product.id} component="li" className={classes.item} item xs={6} md={4} lg={3}>

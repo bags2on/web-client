@@ -1,5 +1,4 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import Modal from '../../shared/Modal'
 import { Link } from 'react-router-dom'
@@ -114,12 +113,8 @@ const AuthModal: React.FC = () => {
       <div className={classes.root}>
         <div className={classes.imageWrapper} />
         <div className={classes.infoBox}>
-          <Typography component="h3" className={classes.title}>
-            Здравствуйте!
-          </Typography>
-          <Typography component="p" className={classes.subTitle}>
-            Пройдите авторизацию, чтобы получить больше возможностей
-          </Typography>
+          <h3 className={classes.title}>Здравствуйте!</h3>
+          <p className={classes.subTitle}>Пройдите авторизацию, чтобы получить больше возможностей</p>
           <ul className={classes.mediaList}>
             <li>
               <Link to="#" className={classes.link}>

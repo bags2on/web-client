@@ -2,7 +2,6 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
-import Typography from '@material-ui/core/Typography'
 import ImagePlaceholder from '../../shared/ImagePlaceholder'
 import LikeButton from '../../shared/LikeButton/LikeButton'
 import routes from '../../utils/routes'
@@ -20,6 +19,7 @@ interface FlatProductItemProps {
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    lineHeight: '1.5',
     position: 'relative',
     display: 'flex',
     height: 120,
@@ -48,12 +48,16 @@ const useStyles = makeStyles((theme) => ({
       position: 'static'
     }
   },
+  textWrapper: {
+    margin: 0
+  },
   link: {
     textDecoration: 'none',
     color: 'inherit'
     // marginRight: 15
   },
   title: {
+    margin: 0,
     fontSize: 16,
     whiteSpace: 'nowrap',
     overflow: 'hidden',
@@ -134,31 +138,30 @@ const FlatProductItem: React.FC<FlatProductItemProps> = ({ id, price, title, ima
         /> */}
       </div>
       <div className={classes.infoBox}>
-        <Typography component="p" className={classes.title}>
+        <p className={classes.title}>
           <Link to={generateLink(routes.product, id)} className={classes.link}>
             {title}
           </Link>
-        </Typography>
-        <Typography component="p">
-          <Typography
-            component="span"
+        </p>
+        <p className={classes.textWrapper}>
+          <span
             className={clsx({
               [classes.price]: true,
               [classes.priceWithDiscount]: Boolean(discountPrice)
             })}
           >
-            <Typography component="span">{formatPrice(price)}</Typography>
-            <Typography component="span">&nbsp;₴</Typography>
-          </Typography>
+            <span>{formatPrice(price)}</span>
+            <span>&nbsp;₴</span>
+          </span>
           {!!discountPrice && (
             <>
-              <Typography component="span" className={classes.discountPrice}>
-                <Typography component="span">{formatPrice(discountPrice)}</Typography>
-                <Typography component="span">&nbsp;₴</Typography>
-              </Typography>
+              <span className={classes.discountPrice}>
+                <span>{formatPrice(discountPrice)}</span>
+                <span>&nbsp;₴</span>
+              </span>
             </>
           )}
-        </Typography>
+        </p>
         <div className={classes.likeButton}>
           <LikeButton liked={isLiked} onClick={handleLikeClick} disableRipple />
         </div>

@@ -1,5 +1,4 @@
 import React from 'react'
-import Typography from '@material-ui/core/Typography'
 import ProductsSlider from '../../../components/ProductsSlider/ProductsSlider'
 import CatalogItem from '../../../components/CatalogItem/CatalogItem'
 import { makeStyles } from '@material-ui/core'
@@ -25,8 +24,7 @@ const useStyles = makeStyles(() => ({
   title: {
     fontSize: '23px',
     fontWeight: 600,
-    marginLeft: '10px',
-    marginBottom: '15px'
+    margin: '0 0 15px 10px'
   }
 }))
 
@@ -35,9 +33,7 @@ const Popular: React.FC<PopularProps> = ({ products }) => {
 
   return (
     <section className={classes.root}>
-      <Typography className={classes.title} component="h2">
-        Популярное
-      </Typography>
+      <h2 className={classes.title}>Популярное</h2>
       <ProductsSlider speed={500}>
         {products.map((product) => (
           <CatalogItem

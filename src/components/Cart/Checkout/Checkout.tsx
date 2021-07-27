@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Typography from '@material-ui/core/Typography'
 import ClientInfo from './ClientInfo/ClientInfo'
 import Button from '../../../shared/Button/Button'
 import Delivery from './Delivery/Delivery'
@@ -18,6 +17,7 @@ interface CheckoutProps {
 const useStyles = makeStyles(() => ({
   root: {},
   title: {
+    margin: 0,
     fontSize: 20,
     fontWeight: 600,
     marginBottom: 7,
@@ -93,9 +93,7 @@ const Checkout: React.FC<CheckoutProps> = ({ onConfirm, onBack }) => {
       >
         {(): React.ReactElement => (
           <Form>
-            <Typography component="h5" className={classes.title}>
-              Заполните форму
-            </Typography>
+            <h5 className={classes.title}>Заполните форму</h5>
             <ClientInfo edit={isEdit} onEdit={handleEditChange} />
             <Delivery />
             <div className={classes.submitContainer}>
@@ -115,7 +113,7 @@ const Checkout: React.FC<CheckoutProps> = ({ onConfirm, onBack }) => {
               </Button>
             </div>
             <div className={classes.conditions}>
-              <Typography component="p">Подтверждая заказ, я принимаю условия пользовательского соглашения</Typography>
+              <p>Подтверждая заказ, я принимаю условия пользовательского соглашения</p>
             </div>
           </Form>
         )}

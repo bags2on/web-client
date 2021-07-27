@@ -6,7 +6,6 @@ import List from '@material-ui/core/List'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import ListItem from '@material-ui/core/ListItem'
 import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
-import Typography from '@material-ui/core/Typography'
 import history from '../../utils/history'
 import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
@@ -55,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 33
   },
   text: {
+    margin: 0,
     fontSize: 18,
     lineHeight: '18px',
     fontWeight: 500
@@ -163,14 +163,14 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
                   </SvgIcon>
                 )}
                 <div style={{ marginLeft: 25 }}>
-                  <Typography className={classes.text}>{t(`drawer.${item.i18n}`)}</Typography>
+                  <p className={classes.text}>{t(`drawer.${item.i18n}`)}</p>
                 </div>
               </div>
             </ListItem>
           ))}
         </List>
         <div className={classes.languageBox}>
-          <Typography component="span">{t('drawer.lang')}:</Typography>
+          <span>{t('drawer.lang')}:</span>
           <LangSwitcher />
         </div>
       </div>

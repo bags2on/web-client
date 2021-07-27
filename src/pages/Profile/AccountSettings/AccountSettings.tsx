@@ -1,6 +1,5 @@
 import React from 'react'
 import FormControl from '@material-ui/core/FormControl'
-import Typography from '@material-ui/core/Typography'
 import Button from '../../../shared/Button/Button'
 import TextInput from '../../../shared/FormFields/TextInput/TextInput'
 import PhoneInput from '../../../shared/PhoneInput'
@@ -13,7 +12,13 @@ const useStyles = makeStyles(() => ({
     paddingTop: 20
   },
   title: {},
-  formField: {},
+  formField: {
+    '& > p': {
+      margin: 0,
+      fontSize: 16,
+      lineHeight: '1.5'
+    }
+  },
   submitButton: {
     maxWidth: '300px'
   }
@@ -44,23 +49,23 @@ const AccountSettings: React.FC = () => {
       >
         {(): React.ReactElement => (
           <Form>
-            {/* <Typography component="h5" className={classes.title}>
+            {/* <h5 className={classes.title}>
               Заполните форму
-            </Typography> */}
+            </h5> */}
             <FormControl className={classes.formField}>
-              <Typography component="p">Имя</Typography>
+              <p>Имя</p>
               <TextInput name="name" />
             </FormControl>
             <FormControl className={classes.formField}>
-              <Typography component="p">Фамилия</Typography>
+              <p>Фамилия</p>
               <TextInput name="surname" />
             </FormControl>
             <FormControl className={classes.formField}>
-              <Typography component="p">Email</Typography>
+              <p>Email</p>
               <TextInput name="email" type="email" />
             </FormControl>
             <FormControl className={classes.formField}>
-              <Typography component="p">Телефон</Typography>
+              <p>Телефон</p>
               <PhoneInput name="phone" />
               {/* error={!!errors.phone} */}
             </FormControl>

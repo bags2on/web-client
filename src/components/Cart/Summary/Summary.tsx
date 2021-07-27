@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import Grid from '@material-ui/core/Grid'
 import CloseIcon from '@material-ui/icons/Close'
 import IconButton from '@material-ui/core/IconButton'
-import Typography from '@material-ui/core/Typography'
 import ContentLoader from 'react-content-loader'
 import Button from '../../../shared/Button/Button'
 import { useQuery } from '@apollo/client'
@@ -52,6 +51,7 @@ const useStyles = makeStyles((theme) => ({
     top: 13
   },
   totalTitle: {
+    margin: 0,
     fontSize: 18,
     '& > span': {
       fontSize: 16,
@@ -96,10 +96,10 @@ const Summary: React.FC<SummaryProps> = ({ isLoading, onClose, onCheckout }) => 
           <IconButton onClick={onClose} className={classes.closeCartButton}>
             <CloseIcon />
           </IconButton>
-          <Typography component="p" className={classes.totalTitle}>
+          <p className={classes.totalTitle}>
             Итого:&nbsp;
-            <Typography component="span">{formatPrice(data.cartPrice)}&nbsp;грн.</Typography>
-          </Typography>
+            <span>{formatPrice(data.cartPrice)}&nbsp;грн.</span>
+          </p>
         </div>
         <Grid container>
           <Button fullWidth disableShadow color="secondary" onClick={handleCheckoutClick}>

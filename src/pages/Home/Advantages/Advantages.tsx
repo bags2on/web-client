@@ -1,6 +1,5 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core'
-import Typography from '@material-ui/core/Typography'
 import gift from '../../../assets/svg/gift.svg'
 import truck from '../../../assets/svg/truck.svg'
 import money from '../../../assets/svg/money.svg'
@@ -43,14 +42,16 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     marginTop: '17px',
+    lineHeight: '1.5',
     marginBottom: '10px',
     textAlign: 'center',
     fontWeight: 600,
     color: theme.palette.primary.main
   },
   info: {
-    textAlign: 'center',
-    margin: 0
+    fontSize: 16,
+    margin: 0,
+    textAlign: 'center'
   }
 }))
 
@@ -92,12 +93,8 @@ const Advantages: React.FC = () => {
                 <img src={item.icon} alt={item.title} />
               </div>
               <div>
-                <Typography component="h3" className={classes.title}>
-                  {item.title}
-                </Typography>
-                <Typography component="p" className={classes.info}>
-                  {item.info}
-                </Typography>
+                <h3 className={classes.title}>{item.title}</h3>
+                <p className={classes.info}>{item.info}</p>
               </div>
             </li>
           )
