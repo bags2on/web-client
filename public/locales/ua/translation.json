@@ -1,6 +1,6 @@
 {
   "header": { "search": "Я шукаю..." },
-  "product": { "mainTag": { "new": "new", "top": "Топ", "stock": "Акція" } },
+  "product": { "mainTag": { "NEW": "new", "TOP": "Топ", "STOCK": "Акція" } },
   "home": {
     "promo": { "male": "Чоловіча колекція", "female": "Жіноча колекція", "action": "Докладніше" },
     "advantages": {

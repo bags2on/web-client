@@ -25,6 +25,11 @@ export enum CategoryType {
   Suitcase = 'SUITCASE'
 }
 
+export type DeleteProductResponse = {
+  __typename?: 'DeleteProductResponse'
+  message: Scalars['String']
+}
+
 export enum Gender {
   Female = 'FEMALE',
   Male = 'MALE',
@@ -39,7 +44,8 @@ export type HideProductResponse = {
 export enum MainTag {
   Stock = 'STOCK',
   New = 'NEW',
-  Top = 'TOP'
+  Top = 'TOP',
+  Regular = 'REGULAR'
 }
 
 export type Mutation = {
@@ -47,6 +53,7 @@ export type Mutation = {
   createOrder?: Maybe<OrderResponse>
   createProduct?: Maybe<NewProductResponse>
   updateProduct?: Maybe<UpdateProductResponse>
+  deleteProduct?: Maybe<DeleteProductResponse>
   hideProduct?: Maybe<HideProductResponse>
 }
 
@@ -55,11 +62,15 @@ export type MutationCreateOrderArgs = {
 }
 
 export type MutationCreateProductArgs = {
-  input?: Maybe<NewProductInput>
+  input: NewProductInput
 }
 
 export type MutationUpdateProductArgs = {
   input?: Maybe<UpdateProductInput>
+}
+
+export type MutationDeleteProductArgs = {
+  id: Scalars['ID']
 }
 
 export type MutationHideProductArgs = {
@@ -69,17 +80,19 @@ export type MutationHideProductArgs = {
 
 export type NewProductInput = {
   title: Scalars['String']
-  price: Scalars['Int']
-  discountPrice?: Maybe<Scalars['Int']>
-  preview: Scalars['Upload']
-  images?: Maybe<Array<Maybe<Scalars['String']>>>
-  tags?: Maybe<Array<Maybe<Scalars['String']>>>
+  amount: Scalars['Int']
+  basePrice: Scalars['Int']
+  currentPrice?: Maybe<Scalars['Int']>
+  gender: Gender
+  instock: Scalars['Boolean']
+  mainTag: MainTag
+  category: CategoryType
   description?: Maybe<Scalars['String']>
 }
 
 export type NewProductResponse = {
   __typename?: 'NewProductResponse'
-  message: Scalars['String']
+  id: Scalars['ID']
 }
 
 export type NotFound = {
@@ -122,11 +135,12 @@ export type Product = {
   basePrice: Scalars['Int']
   amount: Scalars['Int']
   instock: Scalars['Boolean']
-  gender: Scalars['String']
+  gender: Gender
+  category: CategoryType
   preview: Scalars['String']
   images: Array<Scalars['String']>
   tags: Array<Scalars['String']>
-  mainTag: Scalars['String']
+  mainTag: MainTag
   description: Scalars['String']
 }
 
@@ -179,9 +193,13 @@ export enum Role {
 export type UpdateProductInput = {
   id: Scalars['ID']
   title: Scalars['String']
-  price: Scalars['Int']
-  discount: Scalars['Int']
+  amount: Scalars['Int']
+  basePrice: Scalars['Int']
+  currentPrice?: Maybe<Scalars['Int']>
+  gender: Gender
   instock: Scalars['Boolean']
+  mainTag: MainTag
+  category: CategoryType
   description?: Maybe<Scalars['String']>
 }
 

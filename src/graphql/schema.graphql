@@ -1,4 +1,4 @@
-directive @hasRole(role: Role!) on FIELD_DEFINITION
+directive @hasRole(role: Role!) on FIELD_DEFINITION | MUTATION
 
 """
 Direct the client to resolve this field locally, either from the cache or local resolvers.
@@ -47,6 +47,10 @@ enum CategoryType {
   SUITCASE
 }
 
+type DeleteProductResponse {
+  message: String!
+}
+
 enum Gender {
   FEMALE
   MALE
@@ -61,27 +65,31 @@ enum MainTag {
   STOCK
   NEW
   TOP
+  REGULAR
 }
 
 type Mutation {
   createOrder(input: OrderInput): OrderResponse
-  createProduct(input: NewProductInput): NewProductResponse
+  createProduct(input: NewProductInput!): NewProductResponse
   updateProduct(input: UpdateProductInput): UpdateProductResponse
+  deleteProduct(id: ID!): DeleteProductResponse
   hideProduct(id: ID!, isHidden: Boolean!): HideProductResponse
 }
 
 input NewProductInput {
   title: String!
-  price: Int!
-  discountPrice: Int
-  preview: Upload!
-  images: [String]
-  tags: [String]
+  amount: Int!
+  basePrice: Int!
+  currentPrice: Int
+  gender: Gender!
+  instock: Boolean!
+  mainTag: MainTag!
+  category: CategoryType!
   description: String
 }
 
 type NewProductResponse {
-  message: String!
+  id: ID!
 }
 
 type NotFound {
@@ -120,11 +128,12 @@ type Product {
   basePrice: Int!
   amount: Int!
   instock: Boolean!
-  gender: String!
+  gender: Gender!
+  category: CategoryType!
   preview: String!
   images: [String!]!
   tags: [String!]!
-  mainTag: String!
+  mainTag: MainTag!
   description: String!
 }
 
@@ -159,9 +168,13 @@ enum Role {
 input UpdateProductInput {
   id: ID!
   title: String!
-  price: Int!
-  discount: Int!
+  amount: Int!
+  basePrice: Int!
+  currentPrice: Int
+  gender: Gender!
   instock: Boolean!
+  mainTag: MainTag!
+  category: CategoryType!
   description: String
 }
 
