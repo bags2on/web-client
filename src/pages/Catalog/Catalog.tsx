@@ -10,7 +10,7 @@ import { ReactComponent as FilterIcon } from '../../assets/svg/filter.svg'
 import { useParams, useLocation } from 'react-router-dom'
 import { useLazyQuery } from '@apollo/client'
 import { AllProductsDocument, AllProductsQuery, AllProductsVariables } from '../../graphql/product/_gen_/products.query'
-import { CategoryType, Gender, MainTag } from '../../types'
+import { CategoryType, Gender, MainTag } from '../../graphql/types'
 import classes from './Catalog.module.scss'
 
 interface ParamTypes {
