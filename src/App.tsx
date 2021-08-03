@@ -8,6 +8,7 @@ const Catalog = lazy(() => import('./pages/Catalog/Catalog'))
 const Product = lazy(() => import('./pages/Product'))
 const Profile = lazy(() => import('./pages/Profile'))
 const NoMatchPage = lazy(() => import('./pages/NoMatchPage'))
+const Terms = lazy(() => import('./pages/Terms'))
 
 interface AppProps {
   themeChanger(checked: boolean): void
@@ -22,6 +23,7 @@ const App: React.FC<AppProps> = ({ themeChanger }) => {
           <Route path="/catalog/:page?" component={Catalog} />
           <Route exact path="/p/:id" component={Product} />
           <Route exact path="/profile/:tabName?" component={Profile} />
+          <Route exact path="/terms/:tabName?" component={Terms} />
           <Route path="/404" component={NoMatchPage} />
           <Redirect to="/404" />
         </Switch>
