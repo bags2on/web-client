@@ -4,12 +4,12 @@ export const TEMP_FEATURED_DATA: {
   price: number
   preview: string
   basePrice: number
-  mainTag: 'new' | 'top' | 'stock' | ''
+  mainTag: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR'
 }[] = [
   {
     id: '1',
     title: '[draft] Чемодан BM-black дорожный пластик',
-    mainTag: '',
+    mainTag: 'REGULAR',
     price: 2920,
     basePrice: 2920,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608120280/bags2on/products/suitc_dr_jrrcks.jpg'
@@ -17,7 +17,7 @@ export const TEMP_FEATURED_DATA: {
   {
     id: '002',
     title: '[draft] Чемодан A-1 Suitcase дорожный пластик',
-    mainTag: 'stock',
+    mainTag: 'STOCK',
     price: 3617,
     basePrice: 4000,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608119984/bags2on/products/test-bag_1_dr_d12fjf.jpg'
@@ -25,7 +25,7 @@ export const TEMP_FEATURED_DATA: {
   {
     id: '003',
     title: '[draft] Чемодан Suitcase BM дорожный пластик',
-    mainTag: '',
+    mainTag: 'REGULAR',
     price: 2182,
     basePrice: 2182,
     preview:
@@ -34,7 +34,7 @@ export const TEMP_FEATURED_DATA: {
   {
     id: '004',
     title: '[draft] Чемодан Light SSR-1 дорожный пластик',
-    mainTag: 'new',
+    mainTag: 'NEW',
     price: 2629,
     basePrice: 2629,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121006/bags2on/products/3141b_k67pzc_zretlj.jpg'
@@ -120,12 +120,12 @@ export const TEMP_POPULAR_DATA: {
   price: number
   preview: string
   basePrice: number
-  mainTag: 'new' | 'top' | 'stock' | ''
+  mainTag: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR'
 }[] = [
   {
     id: '1',
     title: '[draft] Чемодан BM-lime дорожный пластик',
-    mainTag: '',
+    mainTag: 'REGULAR',
     price: 2920,
     basePrice: 2920,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_3_rz8rko.jpg'
@@ -133,7 +133,7 @@ export const TEMP_POPULAR_DATA: {
   {
     id: '002',
     title: '[draft] Чемодан A-1 light Suitcase дорожный',
-    mainTag: 'stock',
+    mainTag: 'STOCK',
     price: 1500,
     basePrice: 3617,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_1_hd5u9o.jpg'
@@ -141,7 +141,7 @@ export const TEMP_POPULAR_DATA: {
   {
     id: '003',
     title: '[draft] Чемодан Light SSR-1 дорожный пластик',
-    mainTag: 'new',
+    mainTag: 'NEW',
     price: 2629,
     basePrice: 2629,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121006/bags2on/products/3141b_k67pzc_zretlj.jpg'
@@ -149,7 +149,7 @@ export const TEMP_POPULAR_DATA: {
   {
     id: '004',
     title: '[draft] Чемодан City Walk серый',
-    mainTag: '',
+    mainTag: 'REGULAR',
     price: 2182,
     basePrice: 2128,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_2_qo2mlm.jpg'
@@ -157,7 +157,7 @@ export const TEMP_POPULAR_DATA: {
   {
     id: '005',
     title: '[draft] Чемодан Light Green JJK дорожный пластик',
-    mainTag: 'new',
+    mainTag: 'NEW',
     price: 2101,
     basePrice: 2101,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_3_rz8rko.jpg'
@@ -165,7 +165,7 @@ export const TEMP_POPULAR_DATA: {
   {
     id: '006',
     title: '[draft] Чемодан SUD-BM дорожный пластик',
-    mainTag: '',
+    mainTag: 'REGULAR',
     price: 1300,
     basePrice: 1300,
     preview:
@@ -174,7 +174,7 @@ export const TEMP_POPULAR_DATA: {
   {
     id: '007',
     title: '[draft] Чемодан KJJ-BM дорожный пластик',
-    mainTag: '',
+    mainTag: 'REGULAR',
     price: 1500,
     basePrice: 1500,
     preview:

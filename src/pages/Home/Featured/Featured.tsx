@@ -9,7 +9,7 @@ interface ProductType {
   title: string
   preview: string
   basePrice: number
-  mainTag: 'new' | 'top' | 'stock' | ''
+  mainTag: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR'
 }
 
 interface FeaturedProps {
