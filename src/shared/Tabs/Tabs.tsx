@@ -6,6 +6,7 @@ import { makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
 
 interface TabsPorps {
+  orientation?: 'horizontal' | 'vertical'
   value: number
   tabNames: Array<{
     label: string
@@ -14,14 +15,18 @@ interface TabsPorps {
   }>
 }
 
+type tabStyles = {
+  isVertical: boolean
+}
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1
+    flexGrow: (props: tabStyles) => (props.isVertical ? 0 : 1)
   },
   appBar: {
     color: theme.palette.primary.main,
     boxShadow: 'none',
-    borderBottom: `3px solid #343434`
+    borderBottom: (props: tabStyles) => (props.isVertical ? 'none' : '3px solid #343434')
   },
   tabs: {
     background: '#fff',
@@ -32,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tab: {
     backgroundColor: '#fff',
-    width: 250,
+    width: (props: tabStyles) => (props.isVertical ? 'auto' : 250),
     textTransform: 'none',
     fontSize: 16,
     fontWeight: 500,
@@ -53,13 +58,14 @@ function a11yProps(index: number) {
   }
 }
 
-const Tabs: React.FC<TabsPorps> = ({ tabNames, value }) => {
-  const classes = useStyles()
+const Tabs: React.FC<TabsPorps> = ({ orientation = 'horizontal', tabNames, value }) => {
+  const classes = useStyles({ isVertical: orientation === 'vertical' })
 
   return (
     <div className={classes.root}>
       <AppBar className={classes.appBar} position="static">
         <MUITabs
+          orientation={orientation}
           value={value}
           classes={{
             indicator: classes.indicator,

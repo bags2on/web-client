@@ -25,8 +25,9 @@ const Terms: React.FC = () => {
   }, [tabName])
 
   return (
-    <div>
+    <div style={{ display: 'flex' }}>
       <Tabs
+        orientation="vertical"
         value={currentTab}
         tabNames={[
           {
@@ -41,12 +42,14 @@ const Terms: React.FC = () => {
           }
         ]}
       />
-      <TabPanel value={currentTab} index={0}>
-        <TermsOfUse />
-      </TabPanel>
-      <TabPanel value={currentTab} index={1}>
-        <div>terms-of-site-use</div>
-      </TabPanel>
+      <div>
+        <TabPanel value={currentTab} index={0}>
+          <TermsOfUse />
+        </TabPanel>
+        <TabPanel value={currentTab} index={1}>
+          <div>terms-of-site-use</div>
+        </TabPanel>
+      </div>
     </div>
   )
 }
