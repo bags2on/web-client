@@ -26,6 +26,10 @@ interface ProductsProps {
 
 const useStyles = makeStyles((theme) => ({
   root: {
+    position: 'relative',
+    height: '100%'
+  },
+  list: {
     margin: 0,
     padding: 5,
     listStyle: 'none',
@@ -67,6 +71,12 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       backgroundColor: 'var(--green-light)'
     }
+  },
+  paginationWrapper: {
+    position: 'absolute',
+    bottom: 0,
+    left: '50%',
+    transform: 'translate(-50%, 0)'
   }
 }))
 
@@ -86,7 +96,7 @@ const Products: React.FC<ProductsProps> = ({ totalPages, currentPage, products, 
   if (!products.length) {
     return (
       <div className={classes.notFoundBox}>
-        <div className={classes.wrapper}>
+        <div>
           <p className={classes.smile}>:(</p>
           <p className={classes.text}>Извините, но по вашему запросу ничего не найдено</p>
           <Button fullWidth onClick={onActionButtonClick} className={classes.actionButton}>
@@ -98,8 +108,8 @@ const Products: React.FC<ProductsProps> = ({ totalPages, currentPage, products, 
   }
 
   return (
-    <>
-      <ExpandedGrid container component="ul" className={classes.root}>
+    <div className={classes.root}>
+      <ExpandedGrid container component="ul" className={classes.list}>
         {products.map((product) => {
           const isFavorite = favoriteIds?.includes(product.id)
 
@@ -119,8 +129,10 @@ const Products: React.FC<ProductsProps> = ({ totalPages, currentPage, products, 
           )
         })}
       </ExpandedGrid>
-      <Pagination total={totalPages} currentPage={currentPage} />
-    </>
+      <div className={classes.paginationWrapper}>
+        <Pagination total={totalPages} currentPage={currentPage} />
+      </div>
+    </div>
   )
 }
 
