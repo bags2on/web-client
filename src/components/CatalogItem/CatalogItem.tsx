@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import IconButton from '@material-ui/core/IconButton'
+import LikeButton from '../../shared/LikeButton/LikeButton'
 import ImagePlaceholder from '../../shared/ImagePlaceholder'
-import Icon from '@material-ui/core/Icon'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Tooltip from '@material-ui/core/Tooltip'
 import { Link } from 'react-router-dom'
-import { ReactComponent as HeartIcon } from '../../assets/svg/heart.svg'
 import { generateLink } from '../../utils/links'
 import { formatPrice } from '../../utils/helpers'
 import { getColorForMainTagName } from '../../utils/styling'
@@ -76,24 +75,15 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
             <span>{formatPrice(price)}&nbsp;₴</span>
           </div>
           <div className={classes.actionButton}>
-            <IconButton onClick={handleActionClick}>
-              {withDelete ? (
+            {withDelete ? (
+              <IconButton onClick={handleActionClick}>
                 <Tooltip title="Удалить из избранного">
                   <DeleteIcon className={classes.deleteIcon} />
                 </Tooltip>
-              ) : (
-                <Icon
-                  classes={{
-                    root: clsx({
-                      [classes.heartIcon]: true,
-                      [classes.heartIcon_liked]: isLiked
-                    })
-                  }}
-                >
-                  <HeartIcon />
-                </Icon>
-              )}
-            </IconButton>
+              </IconButton>
+            ) : (
+              <LikeButton liked={isLiked} onClick={handleActionClick} disableRipple />
+            )}
           </div>
         </div>
         <Link className={classes.title} title={title} to={generateLink(routes.product, id)}>
