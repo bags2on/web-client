@@ -1,9 +1,7 @@
 import { createMuiTheme } from '@material-ui/core/styles'
 import { BreakpointOverrides } from '@material-ui/core/styles/createBreakpoints'
 
-/*
-  #ff9900 - orange secondary
-*/
+// #ff9900 - orange secondary
 
 declare module '@material-ui/core/styles/createBreakpoints' {
   interface BreakpointOverrides {
@@ -74,22 +72,6 @@ export const darkTheme = createMuiTheme({
       default: '#1e1e1e'
     }
   },
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        '*::-webkit-scrollbar': {
-          width: 7
-        },
-        '*::-webkit-scrollbar-track': {
-          backgroundColor: '#e8e8e8'
-        },
-        '*::-webkit-scrollbar-thumb': {
-          backgroundColor: '#888',
-          outline: '1px solid slategrey'
-        }
-      }
-    }
-  },
   typography: {
     fontFamily: FONTS
   }
@@ -120,22 +102,6 @@ export const lightTheme = createMuiTheme({
     },
     background: {
       default: '#fff'
-    }
-  },
-  overrides: {
-    MuiCssBaseline: {
-      '@global': {
-        '*::-webkit-scrollbar': {
-          width: 7
-        },
-        '*::-webkit-scrollbar-track': {
-          backgroundColor: '#e8e8e8'
-        },
-        '*::-webkit-scrollbar-thumb': {
-          backgroundColor: '#888',
-          outline: '1px solid slategrey'
-        }
-      }
     }
   },
   typography: {
