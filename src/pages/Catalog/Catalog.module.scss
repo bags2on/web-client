@@ -53,10 +53,11 @@
   background: none;
   border: 2px solid;
   font-weight: 600;
-  color: var(--sub-title-color);
-  border-color: var(--sub-title-color);
+  color: var(--catalog-filter-btn-color);
+  background: var(--catalog-filter-btn-bgc);
   &:disabled {
-    border-color: rgba(0, 0, 0, 0.26);
+    color: var(--sub-title-color);
+    border-color: var(--sub-title-color);
   }
   &:hover {
     background: none;

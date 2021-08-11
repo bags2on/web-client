@@ -2,3 +2,4 @@
 /build
 /.VSCodeCounter
 .env.production
+local-build.sh 

@@ -19,6 +19,9 @@ $desktop: 1400px;
 
   --green: #2bab2b;
   --green-light: #32cd32;
+
+  --catalog-filter-btn-color: #343434;
+  --catalog-filter-btn-bgc: transparent;
 }
 
 .dark {
@@ -31,6 +34,9 @@ $desktop: 1400px;
 
   --green: #2bab2b;
   --green-light: #32cd32;
+
+  --catalog-filter-btn-color: #f2e30c;
+  --catalog-filter-btn-bgc: #363636;
 }
 
 @mixin reset-list {
