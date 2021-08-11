@@ -4,9 +4,6 @@ import history from '../../utils/history'
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
-  root: {
-    margin: '20px 0'
-  },
   pagination: {
     display: 'flex',
     justifyContent: 'center',
@@ -104,7 +101,7 @@ const Pagination: React.FC<PaginationProps> = ({ total, currentPage }) => {
   }, [current])
 
   return (
-    <section className={classes.root}>
+    <section>
       <ul className={classes.pagination}>
         {items.map((page, ind) => {
           return (

@@ -27,15 +27,16 @@ interface ProductsProps {
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
-    height: '100%'
+    height: '100%',
+    paddingBottom: 47,
+    [theme.breakpoints.up('lg')]: {
+      paddingBottom: 67
+    }
   },
   list: {
     margin: 0,
     padding: 5,
-    listStyle: 'none',
-    [theme.breakpoints.up('lg')]: {
-      padding: '10px 7px 10px 7px'
-    }
+    listStyle: 'none'
   },
   notFoundBox: {
     width: '100%',
@@ -76,7 +77,10 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     bottom: 0,
     left: '50%',
-    transform: 'translate(-50%, 0)'
+    transform: 'translate(-50%, 0)',
+    [theme.breakpoints.up('lg')]: {
+      bottom: 15
+    }
   }
 }))
 
