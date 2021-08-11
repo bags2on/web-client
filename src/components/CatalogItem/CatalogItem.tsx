@@ -52,13 +52,13 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
   }
 
   return (
-    <div
-      className={clsx({
-        [classes.root]: true,
-        [classes.outStock]: !inStock
-      })}
-    >
-      <div className={classes.image}>
+    <div className={classes.root}>
+      <div
+        className={clsx({
+          [classes.image]: true,
+          [classes.outStock]: !inStock
+        })}
+      >
         <Link to={generateLink(routes.product, id)}>
           <ImagePlaceholder src={url} altText={title} />
         </Link>
@@ -68,6 +68,7 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
           <div
             className={clsx({
               [classes.price]: true,
+              [classes.outStock]: !inStock,
               [classes.price_discount]: basePrice !== price
             })}
           >
@@ -86,7 +87,14 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
             )}
           </div>
         </div>
-        <Link className={classes.title} title={title} to={generateLink(routes.product, id)}>
+        <Link
+          className={clsx({
+            [classes.title]: true,
+            [classes.outStock]: !inStock
+          })}
+          title={title}
+          to={generateLink(routes.product, id)}
+        >
           {title}
         </Link>
       </div>
