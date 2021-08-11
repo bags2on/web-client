@@ -40,7 +40,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
       tag="section"
       wrapperTag="ul"
       slidesPerView={1}
-      speed={1300}
+      speed={1500}
       pagination={{
         clickable: true,
         bulletClass: classes.bullet,

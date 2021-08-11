@@ -100,12 +100,13 @@ export const TEMP_MAIN_SLIDER_IMAGES: {
   {
     url: '#',
     text: 'first slide',
-    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1627388037/bags2on/zveri_pattern_ybzpvz.jpg'
+    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1628684243/bags2on/p_Mesa_de_trabajo_1_rsvxnq.jpg'
+    // imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1627388037/bags2on/zveri_pattern_ybzpvz.jpg'
   },
   {
     url: '#',
     text: 'second slide',
-    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1627387902/bags2on/list_aw5rgo.jpg'
+    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1627388037/bags2on/zveri_pattern_ybzpvz.jpg'
   },
   {
     url: '#',
