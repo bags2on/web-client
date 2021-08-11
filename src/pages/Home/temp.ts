@@ -100,8 +100,7 @@ export const TEMP_MAIN_SLIDER_IMAGES: {
   {
     url: '#',
     text: 'first slide',
-    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1628684243/bags2on/p_Mesa_de_trabajo_1_rsvxnq.jpg'
-    // imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1627388037/bags2on/zveri_pattern_ybzpvz.jpg'
+    imageUrl: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1628689918/bags2on/first_q8msk2.jpg'
   },
   {
     url: '#',
