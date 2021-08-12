@@ -1,0 +1,17 @@
+@import '../../../utils/shared.scss';
+
+.root {
+  margin-bottom: 20px;
+}
+
+.swiperContainer {
+  & ul {
+    @include reset-list;
+  }
+}
+
+.slideImage {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
