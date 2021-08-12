@@ -6,13 +6,20 @@ import { makeStyles } from '@material-ui/core'
 interface LikeButtonProps {
   liked: boolean
   onClick: (e: React.MouseEvent) => void
+  width?: number
+  height?: number
   disableRipple?: boolean
+}
+
+interface styleProps {
+  width?: number
+  height?: number
 }
 
 const useStyles = makeStyles(() => ({
   boxSvg: {
-    width: 20,
-    height: 20,
+    width: (props: styleProps) => props.width,
+    height: (props: styleProps) => props.height,
     fill: 'transparent',
     stroke: '#f44336',
     overflow: 'visible!important',
@@ -44,8 +51,11 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const LikeButton: React.FC<LikeButtonProps> = ({ liked, disableRipple, ...restProps }) => {
-  const classes = useStyles()
+const LikeButton: React.FC<LikeButtonProps> = ({ liked, disableRipple, width = 20, height = 20, ...restProps }) => {
+  const classes = useStyles({
+    width,
+    height
+  })
 
   return (
     <IconButton
