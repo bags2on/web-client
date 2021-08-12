@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
-import Icon from '@material-ui/core/Icon'
-import IconButton from '@material-ui/core/IconButton'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline'
 import Button from '../../../shared/Button/Button'
@@ -13,8 +11,8 @@ import { GET_FAVORITE_IDS } from '../../../apollo/cache/queries/favorite'
 import { formatPrice } from '../../../utils/helpers'
 import { CartMutations, FavoriteMutations } from '../../../apollo/cache/mutations'
 import { ReactComponent as CheckIcon } from '../../../assets/svg/check_mark.svg'
-import { ReactComponent as HeartIcon } from '../../../assets/svg/heart.svg'
 import { makeStyles } from '@material-ui/core'
+import LikeButton from '../../../shared/LikeButton/LikeButton'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -112,21 +110,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   likeButton: {
-    border: '2px solid',
-    borderColor: theme.palette.type === 'light' ? '#343434' : '#fff',
-    marginLeft: 15,
-    '&:hover': {
-      background: 'none',
-      borderColor: '#f44336'
-    }
-  },
-  heartIcon: {
-    fontSize: 24,
-    fill: 'none',
-    stroke: '#f44336'
-  },
-  heartIconLiked: {
-    fill: '#f44336'
+    marginLeft: 15
   },
   requestButton: {
     fontSize: 17,
@@ -219,20 +203,10 @@ const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, descri
             Сообщить когда появиться
           </Button>
         )}
-        <IconButton onClick={handleLikeClick} className={classes.likeButton}>
-          <Icon
-            classes={{
-              root: clsx({
-                [classes.heartIcon]: true,
-                [classes.heartIconLiked]: isLiked
-              })
-            }}
-          >
-            <HeartIcon />
-          </Icon>
-        </IconButton>
+        <div className={classes.likeButton}>
+          <LikeButton disableRipple width={30} height={30} liked={isLiked} onClick={handleLikeClick} />
+        </div>
       </div>
-
       <Features color="желтый" material="кожа" type="женский" category="сумки" />
     </section>
   )
