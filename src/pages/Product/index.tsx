@@ -19,11 +19,14 @@ interface ProductID {
   id: string
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 20,
     maxWidth: 1200,
-    margin: '0 auto'
+    margin: '0 auto',
+    [theme.breakpoints.up('laptop')]: {
+      minHeight: 'calc(var(--vh, 1vh) * 100 - 78px)'
+    }
   },
   loaderWapper: {
     height: '100vh',
