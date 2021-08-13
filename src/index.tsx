@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import SwiperCore, { Autoplay, EffectFade, Navigation, Pagination } from 'swiper'
+import SwiperCore, { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper'
 import { ApolloProvider } from '@apollo/client'
 import { Router } from 'react-router-dom'
 import { ThemeProvider, CssBaseline } from '@material-ui/core'
@@ -17,7 +17,7 @@ import 'swiper/components/navigation/navigation.scss'
 import 'swiper/components/effect-fade/effect-fade.scss'
 import 'swiper/components/pagination/pagination.scss'
 
-SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade])
+SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade, Thumbs])
 
 const Application: React.FC = () => {
   const [theme, changeTheme] = useTheme('light')
