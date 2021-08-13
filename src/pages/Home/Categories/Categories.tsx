@@ -93,7 +93,6 @@ const useStyles = makeStyles((theme) => ({
     '-moz-appearance': 'none',
     '-webkit-appearance': 'none',
     [theme.breakpoints.up('md')]: {
-      borderRadius: 0,
       '&:hover': {
         boxShadow: 'rgba(0, 0, 0, 0.08) 0px 4px 12px',
         '& $icon': {
