@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
+import Thumbs from './Thumbs/Thumbs'
 import { Swiper, SwiperSlide } from 'swiper/react'
 
-import classes from './styles.module.scss'
+import './styles.scss'
 
 interface PreviewProps {
   images: string[]
@@ -21,39 +22,43 @@ const Preview: React.FC<PreviewProps> = ({ images }) => {
   }
 
   return (
-    <div className={classes.root}>
+    <div className="root">
+      <Thumbs activeIndex={activePaginationIndex} images={images} onChange={hadnlePaginationClick} />
       <Swiper
         loop
         // @ts-ignore
         onInit={setSwiper}
-        onSlideChange={(swiper) => {
-          const index = swiper.activeIndex
-
-          if (index === images.length + 1) {
+        onSlideChange={({ activeIndex }) => {
+          console.log(activeIndex)
+          if (activeIndex === images.length + 1) {
             setPaginationIndex(0)
+          } else if (activeIndex === 0) {
+            // because swiper adds virual index for its loop
+            setPaginationIndex(images.length - 1)
+            return
           } else {
-            setPaginationIndex(index - 1)
+            setPaginationIndex(activeIndex - 1)
           }
         }}
         navigation
         tag="div"
         wrapperTag="ul"
         slidesPerView={1}
-        className={classes.swiperContainer}
+        className="swiperContainer"
       >
         {images.map((image, index) => (
           <SwiperSlide tag="li" key={index} virtualIndex={index}>
-            <img src={image} className={classes.slideImage} alt={`фото продукта №${index + 1}`} />
+            <img src={image} className="slide-image" alt={`фото продукта №${index + 1}`} />
           </SwiperSlide>
         ))}
       </Swiper>
-      <ul className={classes.pagination}>
+      <ul className="pagination">
         {images.map((_, index) => (
           <li
             key={index}
             className={clsx({
-              [classes.item]: true,
-              [classes.active]: index === activePaginationIndex
+              item: true,
+              active: index === activePaginationIndex
             })}
             onClick={() => hadnlePaginationClick(index + 1)}
           />

@@ -36,12 +36,12 @@ const useStyles = makeStyles((theme) => ({
   box: {
     display: 'flex',
     alignItems: 'center',
-    flexWrap: 'wrap',
-    marginBottom: 25
+    flexWrap: 'wrap'
   },
   stock: {
     display: 'inline-flex',
     marginRight: 80,
+    marginBottom: 25,
     borderRadius: 10,
     width: 'auto',
     padding: '7px 8px',
@@ -62,6 +62,9 @@ const useStyles = makeStyles((theme) => ({
   },
   outOfStock: {
     background: '#c0c0c0'
+  },
+  ratingWrapper: {
+    marginBottom: 25
   },
   currentPrice: {
     margin: 0,
@@ -142,8 +145,6 @@ const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, descri
 
   const [isLiked, setLiked] = useState<boolean>(isFavorite || false)
 
-  console.log(isFavorite)
-
   const handleAddToCart = (): void => {
     CartMutations.addProduct({
       id,
@@ -174,7 +175,9 @@ const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, descri
           <SvgIcon className={classes.stockIcon}>{inStock ? <CheckIcon /> : <ErrorOutlineIcon />}</SvgIcon>
           <span>{inStock ? 'В наличии' : 'Нет в наличии'}</span>
         </div>
-        <Rating votesAmount={0} />
+        <div className={classes.ratingWrapper}>
+          <Rating votesAmount={0} />
+        </div>
       </div>
       <div
         className={clsx({

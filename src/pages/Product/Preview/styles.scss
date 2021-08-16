@@ -1,12 +1,27 @@
 @import '../../../utils/shared.scss';
 
-.root {
-}
-
 .swiperContainer {
   & ul {
     @include reset-list;
   }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  padding: 33px 25px;
+  color: #343434;
+  transition: all 0.3s;
+  &:active {
+    transform: scale(1.2);
+  }
+}
+
+.swiper-button-prev {
+  left: 5px;
+}
+
+.swiper-button-next {
+  right: 5px;
 }
 
 .subSwiperContainer {
@@ -16,7 +31,7 @@
   }
 }
 
-.slideImage {
+.slide-image {
   display: block;
   width: 100%;
   height: 100%;
@@ -57,5 +72,22 @@
   &:before {
     content: '';
     background: #3b3b3b;
+  }
+}
+
+@media screen and (min-width: $lg) {
+  .root {
+    display: flex;
+  }
+
+  .pagination {
+    display: none;
+  }
+
+  .swiper-button-prev,
+  .swiper-button-next {
+    &:hover {
+      color: rgb(139, 139, 139);
+    }
   }
 }

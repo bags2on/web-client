@@ -22,7 +22,7 @@ interface ProductID {
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: 20,
-    maxWidth: 1200,
+    maxWidth: 1300,
     margin: '0 auto',
     [theme.breakpoints.up('laptop')]: {
       minHeight: 'calc(var(--vh, 1vh) * 100 - 78px)'
@@ -72,10 +72,10 @@ const ProductDetails: React.FC = () => {
   return (
     <div className={classes.root}>
       <Grid container>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={7}>
           <Preview images={product.images} />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={5}>
           <Details
             id={product.id}
             title={product.title}
