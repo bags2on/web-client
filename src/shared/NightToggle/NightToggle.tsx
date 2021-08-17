@@ -17,6 +17,7 @@ const NightToggle: React.FC<NightToggleProps> = ({ themeChanger }) => {
 
   return (
     <div className={classes.root}>
+      <span className={classes.beta}>beta</span>
       <label>
         <input
           type="checkbox"
