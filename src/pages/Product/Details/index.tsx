@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 29,
     fontWeight: 500,
     lineHeight: '33px',
-    margin: 0
+    margin: 0,
+    marginBottom: 10
   },
   code: {
     color: '#939191',
