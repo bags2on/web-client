@@ -11,11 +11,11 @@ interface ThumbsProps {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // display: 'none'
-    marginRight: 15,
     display: 'none',
-    [theme.breakpoints.up('lg')]: {
-      display: 'block'
+    marginRight: 15,
+    [theme.breakpoints.up('md')]: {
+      display: 'flex',
+      alignItems: 'center'
     }
   },
   list: {
@@ -26,26 +26,26 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column'
   },
   item: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
     cursor: 'pointer',
+    userSelect: 'none',
     width: 100,
     height: 100,
     marginBottom: 10,
-    borderRadius: 4
+    borderRadius: 5,
+    '&:hover:not($activeItem)': {
+      border: '1px dashed #343434'
+    }
   },
   activeItem: {
-    '& > img': {
-      border: '1px solid #343434'
-    }
+    border: '1px solid #343434'
   },
   slideImage: {
     borderRadius: 5,
-    width: '100%',
-    height: '100%',
-    // maxWidth: '100%',
-    // maxHeight: '100%',
-    '&:hover': {
-      border: '1px dashed #343434'
-    }
+    maxWidth: 95,
+    maxHeight: 95
   }
 }))
 

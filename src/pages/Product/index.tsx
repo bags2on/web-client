@@ -72,10 +72,10 @@ const ProductDetails: React.FC = () => {
   return (
     <div className={classes.root}>
       <Grid container>
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} lg={7}>
           <Preview images={product.images} />
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid item xs={12} lg={5}>
           <Details
             id={product.id}
             title={product.title}

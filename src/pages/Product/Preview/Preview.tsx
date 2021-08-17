@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import clsx from 'clsx'
 import Thumbs from './Thumbs/Thumbs'
 import { Swiper, SwiperSlide } from 'swiper/react'
-
-import './styles.scss'
+import classes from './styles.module.scss'
 
 interface PreviewProps {
   images: string[]
@@ -11,8 +10,10 @@ interface PreviewProps {
 
 const Preview: React.FC<PreviewProps> = ({ images }) => {
   const [activePaginationIndex, setPaginationIndex] = useState<number>(0)
-
   const [swiper, setSwiper] = useState(null)
+
+  const prevRef = useRef<HTMLDivElement>(null)
+  const nextRef = useRef<HTMLDivElement>(null)
 
   const hadnlePaginationClick = (index: number): void => {
     if (swiper) {
@@ -22,12 +23,20 @@ const Preview: React.FC<PreviewProps> = ({ images }) => {
   }
 
   return (
-    <div className="root">
+    <div className={classes.root}>
       <Thumbs activeIndex={activePaginationIndex} images={images} onChange={hadnlePaginationClick} />
       <Swiper
         loop
-        // @ts-ignore
-        onInit={setSwiper}
+        grabCursor
+        onInit={(swiper) => {
+          // @ts-ignore
+          swiper.params.navigation.prevEl = prevRef.current
+          // @ts-ignore
+          swiper.params.navigation.nextEl = nextRef.current
+          swiper.navigation.update()
+          // @ts-ignore
+          setSwiper(swiper)
+        }}
         onSlideChange={({ activeIndex }) => {
           console.log(activeIndex)
           if (activeIndex === images.length + 1) {
@@ -40,25 +49,30 @@ const Preview: React.FC<PreviewProps> = ({ images }) => {
             setPaginationIndex(activeIndex - 1)
           }
         }}
-        navigation
+        navigation={{
+          prevEl: prevRef.current ? prevRef.current : undefined,
+          nextEl: nextRef.current ? nextRef.current : undefined
+        }}
         tag="div"
         wrapperTag="ul"
         slidesPerView={1}
-        className="swiperContainer"
+        className={classes.swiperContainer}
       >
         {images.map((image, index) => (
           <SwiperSlide tag="li" key={index} virtualIndex={index}>
-            <img src={image} className="slide-image" alt={`фото продукта №${index + 1}`} />
+            <img src={image} className={classes.slideImage} alt={`фото продукта №${index + 1}`} />
           </SwiperSlide>
         ))}
+        <div ref={prevRef} className={classes.buttonPrev} />
+        <div ref={nextRef} className={classes.buttonNext} />
       </Swiper>
-      <ul className="pagination">
+      <ul className={classes.pagination}>
         {images.map((_, index) => (
           <li
             key={index}
             className={clsx({
-              item: true,
-              active: index === activePaginationIndex
+              [classes.item]: true,
+              [classes.active]: index === activePaginationIndex
             })}
             onClick={() => hadnlePaginationClick(index + 1)}
           />
