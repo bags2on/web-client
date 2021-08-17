@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import SvgIcon from '@material-ui/core/SvgIcon'
@@ -21,10 +22,8 @@ const useStyles = makeStyles((theme) => ({
   title: {
     fontSize: 29,
     fontWeight: 500,
-    margin: 0,
-    whiteSpace: 'nowrap',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis'
+    lineHeight: '33px',
+    margin: 0
   },
   code: {
     color: '#939191',
