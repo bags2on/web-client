@@ -84,6 +84,7 @@ const ProductDetails: React.FC = () => {
             inStock={product.instock}
             basePrice={product.basePrice}
             currentPrice={product.currentPrice}
+            features={product.features}
           />
         </Grid>
       </Grid>

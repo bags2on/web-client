@@ -18,6 +18,7 @@ export type GetProductByIdQuery = {
         images: Array<string>
         description: string
         instock: boolean
+        features: { __typename?: 'ProductFeatures'; material: string; color: string; gender: string; category: string }
       }
     | { __typename: 'NotFound'; message: string }
   >
@@ -30,6 +31,9 @@ export type GetProductByIdProduct = NonNullable<GetProductByIdQuery['product']>
 export type GetProductByIdProductInlineFragment = DiscriminateUnion<
   NonNullable<GetProductByIdQuery['product']>,
   { __typename?: 'Product' }
+>
+export type GetProductByIdFeatures = NonNullable<
+  DiscriminateUnion<NonNullable<GetProductByIdQuery['product']>, { __typename?: 'Product' }>['features']
 >
 export type GetProductByIdNotFoundInlineFragment = DiscriminateUnion<
   NonNullable<GetProductByIdQuery['product']>,
@@ -49,6 +53,12 @@ export const GetProductByIdDocument = gql`
         images
         description
         instock
+        features {
+          material
+          color
+          gender
+          category
+        }
       }
       ... on NotFound {
         message

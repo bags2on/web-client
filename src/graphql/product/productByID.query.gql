@@ -10,6 +10,12 @@ query getProductByID($id: ID!) {
       images
       description
       instock
+      features {
+        material
+        color
+        gender
+        category
+      }
     }
     ... on NotFound {
       message

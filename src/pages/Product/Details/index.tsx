@@ -121,6 +121,12 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
+type featuresType = {
+  material: string
+  color: string
+  gender: string
+  category: string
+}
 interface SummaryProps {
   id: string
   title: string
@@ -129,13 +135,23 @@ interface SummaryProps {
   description?: string
   basePrice: number
   inStock: boolean
+  features: featuresType
 }
 
 interface FavoriteIdsQuery {
   favoriteIds: string[]
 }
 
-const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, description, inStock, basePrice }) => {
+const Details: React.FC<SummaryProps> = ({
+  id,
+  title,
+  currentPrice,
+  tags,
+  description,
+  inStock,
+  basePrice,
+  features
+}) => {
   const classes = useStyles()
   const { data } = useQuery<FavoriteIdsQuery>(GET_FAVORITE_IDS)
 
@@ -210,7 +226,12 @@ const Details: React.FC<SummaryProps> = ({ id, title, currentPrice, tags, descri
           <LikeButton disableRipple width={30} height={30} liked={isLiked} onClick={handleLikeClick} />
         </div>
       </div>
-      <Features color="желтый" material="кожа" type="женский" category="сумки" />
+      <Features
+        color={features.color}
+        material={features.material}
+        type={features.gender}
+        category={features.category}
+      />
     </section>
   )
 }

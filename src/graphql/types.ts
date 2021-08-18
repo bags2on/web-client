@@ -142,6 +142,15 @@ export type Product = {
   tags: Array<Scalars['String']>
   mainTag: MainTag
   description: Scalars['String']
+  features: ProductFeatures
+}
+
+export type ProductFeatures = {
+  __typename?: 'ProductFeatures'
+  material: Scalars['String']
+  color: Scalars['String']
+  gender: Scalars['String']
+  category: Scalars['String']
 }
 
 export type ProductFilter = {
