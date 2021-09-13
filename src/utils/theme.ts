@@ -42,7 +42,7 @@ const FONTS = [
   '"Segoe UI Symbol"'
 ].join(',')
 
-const BRAND_COLOR = '#F2E30C'
+const BRAND_COLOR = '#FAFF00'
 
 export const darkTheme = createMuiTheme({
   breakpoints: {
