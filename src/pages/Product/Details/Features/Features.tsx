@@ -3,6 +3,7 @@ import { ReactComponent as MaterialIcon } from '../../../../assets/svg/product-m
 import { ReactComponent as ColorIcon } from '../../../../assets/svg/product-color.svg'
 import { ReactComponent as GenderIcon } from '../../../../assets/svg/product-gender.svg'
 import { ReactComponent as CategoryIcon } from '../../../../assets/svg/product-category.svg'
+import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
@@ -58,6 +59,7 @@ interface FeaturesProps {
 
 const Features: React.FC<FeaturesProps> = ({ color, material, type, category }) => {
   const classes = useStyles()
+  const { t } = useTranslation()
 
   return (
     <ul className={classes.root}>
@@ -66,8 +68,8 @@ const Features: React.FC<FeaturesProps> = ({ color, material, type, category }) 
           <MaterialIcon />
         </div>
         <div className={classes.itemInfo}>
-          <p>Материал</p>
-          <span>{material}</span>
+          <p>{t('product.common.material')}</p>
+          <span>{t(`product.common.${material}`)}</span>
         </div>
       </li>
       <li className={classes.item}>
@@ -75,7 +77,7 @@ const Features: React.FC<FeaturesProps> = ({ color, material, type, category }) 
           <ColorIcon />
         </div>
         <div className={classes.itemInfo}>
-          <p>Цвет</p>
+          <p>{t('product.common.color')}</p>
           <span>{color}</span>
         </div>
       </li>
@@ -84,7 +86,7 @@ const Features: React.FC<FeaturesProps> = ({ color, material, type, category }) 
           <GenderIcon />
         </div>
         <div className={classes.itemInfo}>
-          <p>Тип</p>
+          <p>{t('product.common.type')}</p>
           <span>{type}</span>
         </div>
       </li>
@@ -93,7 +95,7 @@ const Features: React.FC<FeaturesProps> = ({ color, material, type, category }) 
           <CategoryIcon />
         </div>
         <div className={classes.itemInfo}>
-          <p>Категория</p>
+          <p>{t('product.common.category')}</p>
           <span>{category}</span>
         </div>
       </li>

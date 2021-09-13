@@ -1,6 +1,17 @@
 {
   "header": { "search": "Я шукаю..." },
-  "product": { "mainTag": { "NEW": "new", "TOP": "Топ", "STOCK": "Акція" } },
+  "product": {
+    "mainTag": { "NEW": "new", "TOP": "Топ", "STOCK": "Акция" },
+    "common": {
+      "category": "----",
+      "type": "----",
+      "color": "----",
+      "material": "----",
+      "textile": "----",
+      "plastic": "----",
+      "leath": "----"
+    }
+  },
   "home": {
     "promo": { "male": "Чоловіча колекція", "female": "Жіноча колекція", "action": "Докладніше" },
     "advantages": {

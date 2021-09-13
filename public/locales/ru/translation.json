@@ -1,6 +1,17 @@
 {
   "header": { "search": "Я ищу..." },
-  "product": { "mainTag": { "NEW": "new", "TOP": "Топ", "STOCK": "Акция" } },
+  "product": {
+    "mainTag": { "NEW": "new", "TOP": "Топ", "STOCK": "Акция" },
+    "common": {
+      "category": "Категория",
+      "type": "Тип",
+      "color": "Цвет",
+      "material": "Материал",
+      "textile": "ткань",
+      "plastic": "пластик",
+      "leath": "кожа"
+    }
+  },
   "home": {
     "promo": { "male": "Мужская коллекция", "female": "Женская коллекция", "action": "Подробнее" },
     "advantages": {
