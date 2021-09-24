@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     [theme.breakpoints.up('xl')]: {
-      margin: '0 20px'
+      margin: '0 25px'
     }
   },
   searchBox: {
@@ -20,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
     tabIndex: 0,
     verticalAlign: 'bottom',
     display: 'flex',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    paddingRight: 10
   },
   searchInput: {
     fontSize: 14,
@@ -33,11 +34,11 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     zIndex: 9,
     transitionDuration: '0.4s',
-    borderRadius: 5,
+    borderRadius: 10,
     border: '1px solid',
-    color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
-    borderColor: theme.palette.type === 'light' ? '#c4c4c4' : '#3c4144',
-    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
+    color: '#fff',
+    borderColor: '#3c4144',
+    backgroundColor: '#3c4144',
     padding: '10px 46px 10px 15px',
     '-moz-transition-duration': '0.4s',
     '-webkit-transition-duration': '0.4s',
@@ -47,11 +48,12 @@ const useStyles = makeStyles((theme) => ({
       BorderColor: 'transparent'
     },
     '&::placeholder': {
-      color: theme.palette.type === 'light' ? '#3c4144' : '#c4c4c4'
+      color: '#c4c4c4',
+      textAlign: 'center'
     }
   },
   searchButton: {
-    color: theme.palette.type === 'light' ? '#3c4144' : '#bbc0c4',
+    color: '#bbc0c4',
     zIndex: 10,
     '& svg': {
       fontSize: 19

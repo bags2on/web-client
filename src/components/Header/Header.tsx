@@ -26,8 +26,6 @@ interface HeaderProps {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
-    alignItems: 'center',
     position: 'fixed',
     zIndex: 500,
     top: 0,
@@ -41,9 +39,15 @@ const useStyles = makeStyles((theme) => ({
       position: 'static',
       padding: '10px 17px'
     },
-    [theme.breakpoints.up('laptop')]: {
+    [theme.breakpoints.up('xl')]: {
       padding: '13px 50px'
     }
+  },
+  wrapper: {
+    display: 'flex',
+    alignItems: 'center',
+    maxWidth: '1500px',
+    margin: '0 auto'
   },
   logo: {
     display: 'none',
@@ -189,62 +193,64 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
 
   return (
     <header className={classes.root}>
-      <IconButton onClick={onDrawerOpen} disableRipple className={classes.btns}>
-        <Icon
-          classes={{
-            root: classes.menuIcon
-          }}
+      <div className={classes.wrapper}>
+        <IconButton onClick={onDrawerOpen} disableRipple className={classes.btns}>
+          <Icon
+            classes={{
+              root: classes.menuIcon
+            }}
+          >
+            <MenuIcon />
+          </Icon>
+        </IconButton>
+        <Link to="/" className={classes.logo}>
+          <img src={logoImage} alt="логотип" />
+        </Link>
+        <nav>
+          <List className={classes.navList}>
+            <ListItem component="li">
+              <Link to={routes.root}>Главная</Link>
+            </ListItem>
+            <ListItem component="li">
+              <Link to={routes.catalog}>Каталог</Link>
+            </ListItem>
+          </List>
+        </nav>
+        {/*  */}
+        <Search />
+        {/*  */}
+        <IconButton
+          color="primary"
+          onClick={handleFavoritesClick}
+          disableRipple
+          className={clsx(classes.btns, classes.heartButton)}
         >
-          <MenuIcon />
-        </Icon>
-      </IconButton>
-      <Link to="/" className={classes.logo}>
-        <img src={logoImage} alt="логотип" />
-      </Link>
-      <nav>
-        <List className={classes.navList}>
-          <ListItem component="li">
-            <Link to={routes.root}>Главная</Link>
-          </ListItem>
-          <ListItem component="li">
-            <Link to={routes.catalog}>Каталог</Link>
-          </ListItem>
-        </List>
-      </nav>
-      {/*  */}
-      <Search />
-      {/*  */}
-      <IconButton
-        color="primary"
-        onClick={handleFavoritesClick}
-        disableRipple
-        className={clsx(classes.btns, classes.heartButton)}
-      >
-        <Badge badgeContent={favoriteAmount} max={999} color="error">
-          <Icon className={classes.heartIcon}>
-            <HeartIcon />
-          </Icon>
-        </Badge>
-      </IconButton>
-      <IconButton
-        color="primary"
-        onClick={handleProfileClick}
-        disableRipple
-        className={clsx(classes.btns, classes.heartButton)}
-      >
-        <Badge badgeContent={0} max={999} color="error">
-          <Icon className={classes.profileIcon}>
-            <ProfileIcon />
-          </Icon>
-        </Badge>
-      </IconButton>
-      <IconButton color="primary" onClick={handleCartClick} disableRipple className={classes.btns}>
-        <Badge badgeContent={cartAmount} max={999} color="error">
-          <Icon className={classes.cartIcon}>
-            <CartIcon />
-          </Icon>
-        </Badge>
-      </IconButton>
+          <Badge badgeContent={favoriteAmount} max={999} color="error">
+            <Icon className={classes.heartIcon}>
+              <HeartIcon />
+            </Icon>
+          </Badge>
+        </IconButton>
+        <IconButton
+          color="primary"
+          onClick={handleProfileClick}
+          disableRipple
+          className={clsx(classes.btns, classes.heartButton)}
+        >
+          <Badge badgeContent={0} max={999} color="error">
+            <Icon className={classes.profileIcon}>
+              <ProfileIcon />
+            </Icon>
+          </Badge>
+        </IconButton>
+        <IconButton color="primary" onClick={handleCartClick} disableRipple className={classes.btns}>
+          <Badge badgeContent={cartAmount} max={999} color="error">
+            <Icon className={classes.cartIcon}>
+              <CartIcon />
+            </Icon>
+          </Badge>
+        </IconButton>
+      </div>
     </header>
   )
 }
