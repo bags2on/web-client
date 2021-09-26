@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 75
   },
   image: {
+    width: '100%',
     maxWidth: 175,
     userSelect: 'none',
     transition: 'all 0.3s',
