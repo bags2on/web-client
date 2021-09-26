@@ -1,8 +1,6 @@
-import React from 'react'
+import React, { useRef, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { makeStyles } from '@material-ui/core'
-
-import './Carousel.scss'
+import classes from './Carousel.module.scss'
 
 export type CarouselItem = {
   url: string
@@ -13,34 +11,32 @@ interface CarouselProps {
   items: CarouselItem[]
 }
 
-const useStyles = makeStyles(() => ({
-  bullet: {
-    backgroundColor: '#000',
-    width: 8,
-    height: 8,
-    display: 'inline-block',
-    borderRadius: '50%',
-    margin: '0 4px',
-    opacity: 0.2
-  },
-  bulletActive: {
-    opacity: 1,
-    backgroundColor: '#efefef'
-  }
-}))
-
 const Carousel: React.FC<CarouselProps> = ({ items }) => {
-  const classes = useStyles()
+  const [_, setSwiper] = useState(null)
+  const prevRef = useRef<HTMLDivElement>(null)
+  const nextRef = useRef<HTMLDivElement>(null)
 
   return (
     <Swiper
+      onInit={(swiper) => {
+        // @ts-ignore
+        swiper.params.navigation.prevEl = prevRef.current
+        // @ts-ignore
+        swiper.params.navigation.nextEl = nextRef.current
+        swiper.navigation.update()
+        // @ts-ignore
+        setSwiper(swiper)
+      }}
       loop
-      navigation
       effect="fade"
       tag="section"
       wrapperTag="ul"
       slidesPerView={1}
       speed={1500}
+      navigation={{
+        prevEl: prevRef.current ? prevRef.current : undefined,
+        nextEl: nextRef.current ? nextRef.current : undefined
+      }}
       pagination={{
         clickable: true,
         bulletClass: classes.bullet,
@@ -49,6 +45,7 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
       autoplay={{
         disableOnInteraction: false
       }}
+      className={classes.swiperContainer}
     >
       {items.map((slide, index) => (
         <SwiperSlide tag="li" key={slide.text} virtualIndex={index}>
@@ -57,10 +54,12 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
             style={{
               backgroundImage: `url(${slide.imageUrl})`
             }}
-            className="slide-image-box"
+            className={classes.slideImageBox}
           />
         </SwiperSlide>
       ))}
+      <div ref={prevRef} className={classes.buttonPrev} />
+      <div ref={nextRef} className={classes.buttonNext} />
     </Swiper>
   )
 }
