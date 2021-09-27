@@ -2,6 +2,7 @@
 
 .root {
   flex-basis: 30%;
+  margin-left: auto;
 }
 
 .container {
@@ -78,7 +79,6 @@
 
 @media (min-width: 1100px) {
   .container {
-    margin-left: auto;
     & > a {
       margin: 0 auto;
       width: 80%;

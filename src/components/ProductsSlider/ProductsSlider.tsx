@@ -11,8 +11,10 @@ const useStyles = makeStyles(() => ({
     maxWidth: '100% !important',
     borderRadius: '0 !important',
     padding: '5px 0 20px 0 !important',
-    '& > .swiper-wrapper': {
-      padding: 0
+    '& > ul': {
+      padding: 0,
+      margin: 0,
+      listStyle: 'none'
     }
   }
 }))

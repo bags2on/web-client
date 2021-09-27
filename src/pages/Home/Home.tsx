@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
   subBoxTwo: {
     flexBasis: '100%',
     [theme.breakpoints.up('md')]: {
-      padding: '10px 15px',
+      padding: '10px 0 10px 15px',
       flexBasis: '75%'
     }
   },
