@@ -19,7 +19,6 @@ const useStyles = makeStyles((theme) => ({
   },
   sliderContainer: {
     display: 'flex',
-    flexWrap: 'wrap',
     [theme.breakpoints.up('md')]: {
       padding: '0 5px'
     },
