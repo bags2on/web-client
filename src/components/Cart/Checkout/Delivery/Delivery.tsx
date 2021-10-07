@@ -182,7 +182,7 @@ const Delivery: React.FC = () => {
         </FormControl>
         <FormControl className={classes.formField}>
           <p>Город</p>
-          <TextInput name="city" select disabled={!values.region} fullWidth options={citiesOptions} />
+          <TextInput name="cityId" select disabled={!values.region} fullWidth options={citiesOptions} />
         </FormControl>
         <FormControl className={classes.formField}>
           <p>Выберите отделение</p>
