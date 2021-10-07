@@ -6,7 +6,7 @@ import { useQuery } from '@apollo/client'
 import AuthPatternImage from '../../assets/svg/auth-pattern.svg'
 import { SharedMutations } from '../../apollo/cache/mutations'
 import { ReactComponent as GoogleLogoImage } from '../../assets/svg/google_logo.svg'
-import { ReactComponent as InstagramIcon } from '../../assets/svg/instagram.svg'
+import { ReactComponent as InstagramIcon } from '../../assets/svg/icons/instagram.svg'
 import { GET_AUTH_MODAL_OPEN } from '../../apollo/cache/queries/shared'
 import { makeStyles } from '@material-ui/core'
 

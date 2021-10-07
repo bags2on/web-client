@@ -11,7 +11,7 @@ import { useQuery } from '@apollo/client'
 import { GET_FAVORITE_IDS } from '../../../apollo/cache/queries/favorite'
 import { formatPrice } from '../../../utils/helpers'
 import { CartMutations, FavoriteMutations } from '../../../apollo/cache/mutations'
-import { ReactComponent as CheckIcon } from '../../../assets/svg/check_mark.svg'
+import { ReactComponent as CheckIcon } from '../../../assets/svg/icons/check_mark.svg'
 import { makeStyles } from '@material-ui/core'
 import LikeButton from '../../../shared/LikeButton/LikeButton'
 

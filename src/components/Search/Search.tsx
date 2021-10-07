@@ -4,7 +4,7 @@ import SvgIcon from '@material-ui/core/SvgIcon'
 import { makeStyles } from '@material-ui/core'
 import { Formik, Form, Field } from 'formik'
 import { TopSearchSchema, TopSearchType } from '../../utils/validationSchema'
-import { ReactComponent as SearchIcon } from '../../assets/svg/search.svg'
+import { ReactComponent as SearchIcon } from '../../assets/svg/icons/search.svg'
 import { useTranslation } from 'react-i18next'
 
 const useStyles = makeStyles((theme) => ({

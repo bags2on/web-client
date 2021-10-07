@@ -1,8 +1,8 @@
 import React from 'react'
-import { ReactComponent as MaterialIcon } from '../../../../assets/svg/product-material.svg'
-import { ReactComponent as ColorIcon } from '../../../../assets/svg/product-color.svg'
-import { ReactComponent as GenderIcon } from '../../../../assets/svg/product-gender.svg'
-import { ReactComponent as CategoryIcon } from '../../../../assets/svg/product-category.svg'
+import { ReactComponent as MaterialIcon } from '../../../../assets/svg/icons/product-material.svg'
+import { ReactComponent as ColorIcon } from '../../../../assets/svg/icons/product-color.svg'
+import { ReactComponent as GenderIcon } from '../../../../assets/svg/icons/product-gender.svg'
+import { ReactComponent as CategoryIcon } from '../../../../assets/svg/icons/product-category.svg'
 import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@material-ui/core'
 

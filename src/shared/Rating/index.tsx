@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import SvgIcon from '@material-ui/core/SvgIcon'
-import { ReactComponent as StarIcon } from '../../assets/svg/star.svg'
+import { ReactComponent as StarIcon } from '../../assets/svg/icons/star.svg'
 import { hiddenStyles } from '../../utils/styling'
 import { makeStyles } from '@material-ui/core'
 

@@ -39,7 +39,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const classes = useStyles()
 
   const pagesAmount = 3
-  const [[index, dir], setIndex] = useState<[number, number]>([2, 0])
+  const [[index, dir], setIndex] = useState<[number, number]>([0, 0])
 
   const slideNext = () => setIndex([(index + 1) % pagesAmount, 1])
   const slidePrev = () => setIndex([(index - 1 + pagesAmount) % pagesAmount, -1])

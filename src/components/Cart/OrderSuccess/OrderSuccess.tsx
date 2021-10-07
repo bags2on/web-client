@@ -3,8 +3,8 @@ import SvgIcon from '@material-ui/core/SvgIcon'
 import Button from '../../../shared/Button/Button'
 import { Link } from 'react-router-dom'
 import { ReactComponent as LetterCheckImage } from '../../../assets/svg/letter-check.svg'
-import { ReactComponent as MailImage } from '../../../assets/svg/mail.svg'
-import { ReactComponent as PinImage } from '../../../assets/svg/pin.svg'
+import { ReactComponent as MailImage } from '../../../assets/svg/icons/mail.svg'
+import { ReactComponent as PinImage } from '../../../assets/svg/icons/pin.svg'
 import { makeStyles } from '@material-ui/core'
 
 interface OrderSuccessProps {
