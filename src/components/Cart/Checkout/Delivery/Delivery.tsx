@@ -161,7 +161,7 @@ const Delivery: React.FC = () => {
         <ul className={classes.deliveriesList}>
           <li>
             <label className={classes.serviceLabel}>
-              <Field type="radio" name="deliveryService" value="nova" className={classes.input} />
+              <Field type="radio" name="supplier" value="nova-poshta" className={classes.input} />
               <div className={classes.imageWrapper}>
                 <ImagePlaceholder plain src={novaPoshtaImage} altText="логотип 'Новая Почта'" />
               </div>
@@ -169,7 +169,7 @@ const Delivery: React.FC = () => {
           </li>
           <li>
             <label className={classes.serviceLabel}>
-              <Field type="radio" name="deliveryService" value="jus" className={classes.input} />
+              <Field type="radio" name="supplier" value="justin" className={classes.input} />
               <div className={classes.imageWrapper}>
                 <ImagePlaceholder plain src={justinImage} altText="логотип 'Justin'" />
               </div>
