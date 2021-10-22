@@ -10,7 +10,7 @@ import ListItem from '@material-ui/core/ListItem'
 import Search from '../../components/Search/Search'
 import { ReactComponent as MenuIcon } from '../../assets/svg/icons/menu.svg'
 import { ReactComponent as HeartIcon } from '../../assets/svg/icons/heart.svg'
-import { ReactComponent as ProfileIcon } from '../../assets/svg/icons/profile.svg'
+import { ReactComponent as AvatarIcon } from '../../assets/svg/icons/avatar.svg'
 import { ReactComponent as CartIcon } from '../../assets/svg/icons/header_cart.svg'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
@@ -132,7 +132,7 @@ const useStyles = makeStyles((theme) => ({
       transform: 'scale(1.2)'
     }
   },
-  profileIcon: {
+  avatarIcon: {
     fontSize: 24,
     fill: theme.palette.secondary.main,
     transition: 'all 0.3s',
@@ -238,8 +238,8 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
           className={clsx(classes.btns, classes.heartButton)}
         >
           <Badge badgeContent={0} max={999} color="error">
-            <Icon className={classes.profileIcon}>
-              <ProfileIcon />
+            <Icon className={classes.avatarIcon}>
+              <AvatarIcon />
             </Icon>
           </Badge>
         </IconButton>

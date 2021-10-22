@@ -10,7 +10,7 @@ import { CheckoutOrderType } from '../../../../utils/validationSchema'
 import { useFormikContext } from 'formik'
 import { ReactComponent as EditIcon } from '../../../../assets/svg/icons/edit.svg'
 import { ReactComponent as CheckIcon } from '../../../../assets/svg/icons/check_mark.svg'
-import { ReactComponent as ProfileIcon } from '../../../../assets/svg/icons/contact.svg'
+import { ReactComponent as AvatarIcon } from '../../../../assets/svg/icons/avatar.svg'
 import { ReactComponent as PhoneIcon } from '../../../../assets/svg/icons/phone.svg'
 import { animated, useSpring } from 'react-spring'
 import { ReactComponent as MailIcon } from '../../../../assets/svg/icons/mail.svg'
@@ -157,7 +157,7 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
                 [classes.done]: values.surname && values.name
               })}
             >
-              <ProfileIcon />
+              <AvatarIcon />
             </Icon>
             <span className={classes.fieldText}>
               {values.name ? values.name : plug(5)}&nbsp;{values.surname ? values.surname : plug(5)}
