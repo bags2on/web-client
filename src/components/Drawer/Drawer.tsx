@@ -65,8 +65,7 @@ const useStyles = makeStyles((theme) => ({
     '& > span': {
       fontWeight: 500,
       fontSize: 18,
-      marginLeft: 20,
-      marginRight: 5
+      marginLeft: 20
     }
   }
 }))
