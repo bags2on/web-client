@@ -1,37 +1,47 @@
 @import '../../utils//shared.scss';
 
 .root {
+  position: relative;
   flex-basis: 30%;
   margin-left: auto;
+  overflow: hidden;
+  border-radius: 4px;
 }
 
 .container {
   height: 100%;
   padding: 30px 10px 10px 10px;
-  position: relative;
-  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
-  border-radius: 4px;
-  animation: animated-gradient 4s ease alternate infinite;
-  background-size: 300% 300%;
   & a {
     display: block;
     height: 100%;
   }
 }
 
-@keyframes animated-gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+.plug {
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+  height: 100%;
+  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  // animation: animated-transform 6s infinite;
 }
 
+/* High CPU usage */
+
+// @keyframes animated-transform {
+//   0% {
+//     transform: translate(0%, 0%);
+//   }
+//   50% {
+//     transform: translate(-66%, 0%);
+//   }
+//   100% {
+//     transform: translate(0%, 0%);
+//   }
+// }
+
 .image {
+  position: relative;
   width: 100%;
   height: auto;
   user-select: none;
@@ -68,7 +78,7 @@
   left: 14px;
   color: #fff;
   font-size: 18px;
-  font-weight: 500;
+  font-weight: 600;
   margin: 0;
 }
 

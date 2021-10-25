@@ -14,6 +14,7 @@ interface MainProductProps {
 const MainProduct: React.FC<MainProductProps> = ({ id, title, price }) => {
   return (
     <section className={classes.root}>
+      <div className={classes.plug} />
       <div className={classes.container}>
         <Link to={generateLink(routes.product, id)}>
           <img className={classes.image} src={imgTEMPsrc} alt="самый рекомендуемый товар" />
