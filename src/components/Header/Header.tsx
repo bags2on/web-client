@@ -17,6 +17,7 @@ import { useQuery } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
 import { GET_HEADER_DATA } from '../../apollo/cache/queries/shared'
 import { SharedMutations } from '../../apollo/cache/mutations'
+import { useTranslation } from 'react-i18next'
 import logoImage from '../../assets/svg/logo.svg'
 
 interface HeaderProps {
@@ -172,6 +173,7 @@ interface HeaderQuery {
 const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   const classes = useStyles()
   const { data } = useQuery<HeaderQuery>(GET_HEADER_DATA)
+  const { t } = useTranslation()
 
   const cartAmount = data?.cartAmount
   const favoriteAmount = data?.favoriteAmount
@@ -209,7 +211,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
         <nav>
           <List className={classes.navList}>
             <ListItem component="li">
-              <Link to={routes.root}>Главная</Link>
+              <Link to={routes.root}>{t('header.home')}</Link>
             </ListItem>
             <ListItem component="li">
               <Link to={routes.catalog}>Каталог</Link>

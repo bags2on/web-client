@@ -204,19 +204,19 @@ const ClientInfo: React.FC<ClientInfoProps> = ({ edit, onEdit }) => {
         <animated.div style={{ ...slideInStyles, overflow: 'hidden' }}>
           <div ref={ref}>
             <FormControl className={classes.formField}>
-              <p>Имя</p>
+              <p>Имя:</p>
               <TextInput name="name" />
             </FormControl>
             <FormControl className={classes.formField}>
-              <p>Фамилия</p>
+              <p>Фамилия:</p>
               <TextInput name="surname" />
             </FormControl>
             <FormControl className={classes.formField}>
-              <p>Email</p>
+              <p>email:</p>
               <TextInput name="email" type="email" />
             </FormControl>
             <FormControl className={classes.formField}>
-              <p>Телефон</p>
+              <p>Телефон:</p>
               <PhoneInput name="phone" error={!!errors.phone} />
             </FormControl>
             <Button onClick={handleClearClick} disableShadow className={classes.clear}>

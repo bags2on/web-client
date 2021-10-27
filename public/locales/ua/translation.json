@@ -1,5 +1,5 @@
 {
-  "header": { "search": "Я шукаю..." },
+  "header": { "home": "Головна", "search": "Я шукаю..." },
   "product": {
     "mainTag": { "NEW": "new", "TOP": "Топ", "STOCK": "Акция" },
     "common": {
@@ -35,9 +35,9 @@
   },
   "drawer": {
     "home": "Головна",
-    "profile": "------",
+    "profile": "Кабінет",
     "sales": "Знижки та Акції",
-    "favorite": "---------",
+    "favorite": "Обране",
     "catalog": "Каталог",
     "history": "Історія перегляду",
     "lang": "Мова"

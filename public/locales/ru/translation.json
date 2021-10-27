@@ -1,5 +1,5 @@
 {
-  "header": { "search": "Я ищу..." },
+  "header": { "home": "Главная", "search": "Я ищу..." },
   "product": {
     "mainTag": { "NEW": "new", "TOP": "Топ", "STOCK": "Акция" },
     "common": {

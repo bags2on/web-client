@@ -17,9 +17,9 @@ const useStyles = makeStyles((theme) => ({
   root: {
     width: 214,
     padding: 13,
-    fontWeight: 500,
+    fontWeight: 400,
     backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
-    borderRadius: 4,
+    borderRadius: 14,
     border: '1px solid',
     fontSize: '1rem',
     borderColor: (props: StyleProps) => (props.error ? 'red' : 'rgba(0, 0, 0, 0.23)'),
@@ -27,10 +27,13 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: 'rgb(0 0 0 / 10%) 0px 4px 6px -1px, rgb(0 0 0 / 6%) 0px 2px 4px -1px',
     color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
     '&:hover': {
-      borderColor: '#343434'
+      borderColor: '#838383'
     },
     '&:focus': {
-      border: '2px solid #343434'
+      border: '1px solid #838383'
+    },
+    '&::before,&::after': {
+      boxSizing: 'border-box'
     }
   },
   message: {
@@ -40,9 +43,6 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     paddingLeft: 10,
     transition: 'all 0.33s linear'
-  },
-  notchedOutline: {
-    borderWidth: '1px'
   }
 }))
 
@@ -72,6 +72,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name, error = false }) => {
         className={classes.root}
         format="+38 (###) ###-####"
         mask="_"
+        autoComplete="off"
         allowEmptyFormatting
         onValueChange={handleValueChange}
       />

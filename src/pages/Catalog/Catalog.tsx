@@ -59,6 +59,10 @@ const Catalog: React.FC = () => {
   )
 
   useEffect(() => {
+    window.scrollTo({
+      top: 0
+    })
+
     if (categoryName || genderType) {
       history.replaceState({}, '')
     }
