@@ -3,7 +3,7 @@ import SvgIcon from '@material-ui/core/SvgIcon'
 import Modal from '../../shared/Modal'
 import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
-import AuthPatternImage from '../../assets/svg/auth-pattern.svg'
+import AuthPatternImage from '../../assets/rastr/animal-pattern.jpeg'
 import { SharedMutations } from '../../apollo/cache/mutations'
 import { ReactComponent as GoogleLogoImage } from '../../assets/svg/google_logo.svg'
 import { ReactComponent as InstagramIcon } from '../../assets/svg/icons/instagram.svg'
@@ -26,6 +26,8 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     display: 'none',
     backgroundImage: `url(${AuthPatternImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
     [theme.breakpoints.up('laptop')]: {
       display: 'block',
       flexBasis: '35%'
