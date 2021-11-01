@@ -127,7 +127,7 @@ const Delivery: React.FC = () => {
     const controller = new AbortController()
     const { signal } = controller
 
-    fetch(API_URL + 'areas', { signal }).then(async (resp) => {
+    fetch(API_URL + '/areas', { signal }).then(async (resp) => {
       const data = await resp.json()
       setAreas(data)
       setAreasLoading(false)
