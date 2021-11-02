@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import history from '../../utils/history'
 import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   pagination: {
     display: 'flex',
     justifyContent: 'center',
@@ -19,11 +19,12 @@ const useStyles = makeStyles(() => ({
     position: 'relative',
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'transparent',
+    backgroundColor: theme.palette.type === 'light' ? '#f3f4f7' : '#444444',
+    borderRadius: 5,
     fontSize: 15,
     outline: 'none',
-    width: 30,
-    height: 30,
+    width: 35,
+    height: 35,
     padding: 0,
     userSelect: 'none',
     transition: 'opacity .3s',
@@ -32,7 +33,8 @@ const useStyles = makeStyles(() => ({
     }
   },
   activePage: {
-    color: '#ff9900'
+    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#696C72',
+    boxShadow: 'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px'
   }
 }))
 
