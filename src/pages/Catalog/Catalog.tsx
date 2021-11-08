@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import SvgIcon from '@material-ui/core/SvgIcon'
@@ -12,7 +10,7 @@ import { ReactComponent as FilterIcon } from '../../assets/svg/icons/filter.svg'
 import { useParams, useLocation, Redirect } from 'react-router-dom'
 import { useLazyQuery } from '@apollo/client'
 import { AllProductsDocument, AllProductsQuery, AllProductsVariables } from '../../graphql/product/_gen_/products.query'
-import { CategoryType, Gender, MainTag } from '../../graphql/types'
+import { CategoryType, Gender, MainTag, PriceRange } from '../../graphql/types'
 import classes from './Catalog.module.scss'
 import routes from '../../utils/routes'
 import appHistory from '../../utils/history'
@@ -22,12 +20,12 @@ interface ParamTypes {
 }
 
 type genderType = 'FEMALE' | 'MALE' | 'UNISEX'
-type availability = 'inStock' | 'byOrder'
-type mainTagType = 'STOCK' | 'NEW' | 'Top'
+type availabilityType = 'inStock' | 'byOrder'
+type mainTagType = 'STOCK' | 'NEW'
 type categoryType = 'BAG' | 'WALLET' | 'BACKPACK' | 'SUITCASE' | 'OTHER'
 
 interface FilterValues {
-  availability: Array<availability>
+  availability: Array<availabilityType>
   gender: Array<genderType>
   mainTag: mainTagType
   priceRange: [number, number]
@@ -39,38 +37,49 @@ interface LocationState {
   genderType?: genderType | ''
 }
 
-// function useQuery() {
-//   const { search } = useLocation<LocationState>()
-//   return React.useMemo(() => new URLSearchParams(search), [search])
-// }
+type queryValues = {
+  instock: boolean | undefined
+  price: PriceRange | undefined
+  mainTag: MainTag
+  gender: Gender[]
+  category: CategoryType[]
+}
+
+function getQueryValues(values: FilterValues): queryValues {
+  const { gender, availability, mainTag, priceRange, category } = values as FilterValues
+
+  let price
+
+  const [gt, lt] = priceRange
+
+  if (gt && lt) price = { gt, lt }
+
+  let instock: boolean | undefined
+
+  if (availability.length === 1) {
+    const map = { inStock: true, byOrder: false }
+    instock = map[availability[0]]
+  }
+
+  return {
+    instock,
+    price,
+    mainTag: (mainTag || undefined) as MainTag,
+    gender: gender as Gender[],
+    category: category as CategoryType[]
+  }
+}
 
 const Catalog: React.FC = () => {
   const { page } = useParams<ParamTypes>()
   const location = useLocation<LocationState>()
 
-  const { categoryName, genderType } = location.state || { categoryName: '', genderType: '' }
-
-  const numOfPage = !isNaN(Number(page)) ? Number(page) : 1
-
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0])
   const [isOpen, setOpen] = useState<boolean>(false)
 
-  // const filtersInitialValues = {
-  //   gender: genderType ? [genderType] : [],
-  //   availability: [],
-  //   mainTag: '',
-  //   priceRange: priceRange,
-  //   // priceRange: priceRange !== undefined ? priceRange : ([0, 0] as [number, number]),
-  //   category: categoryName ? [categoryName] : []
-  // }
+  const { categoryName, genderType } = location.state || { categoryName: '', genderType: '' }
 
-  const [requestValues, setRequestValues] = useState({
-    gender: genderType ? [genderType] : [],
-    availability: [],
-    mainTag: '',
-    priceRange: priceRange,
-    category: categoryName ? [categoryName] : []
-  })
+  const numOfPage = !isNaN(Number(page)) ? Number(page) : 1
 
   const [getProducts, { loading, data, error }] = useLazyQuery<AllProductsQuery, AllProductsVariables>(
     AllProductsDocument,
@@ -78,14 +87,6 @@ const Catalog: React.FC = () => {
       onCompleted: (data) => {
         if (data?.allProducts.priceRange) {
           const { gt, lt } = data.allProducts.priceRange
-          // const f = data.allProducts.filter
-          // setRequestValues({
-          //   gender: (f.gender as genderType[]) || [],
-          //   availability: [],
-          //   mainTag: f.mainTag ? f.mainTag : '',
-          //   priceRange: [gt, lt],
-          //   category: (f.category as categoryType[]) || []
-          // })
           setPriceRange([gt, lt])
         }
       }
@@ -101,52 +102,17 @@ const Catalog: React.FC = () => {
   }
 
   useEffect(() => {
-    window.scrollTo({
-      top: 0
-    })
+    window.scrollTo({ top: 0 })
 
-    if (categoryName || genderType) {
-      history.replaceState({}, '')
-    }
+    if (categoryName || genderType) history.replaceState({}, '')
 
     const filters = sessionStorage.getItem('filters')
 
     if (filters) {
-      const values = JSON.parse(filters)
-
-      const { gender, availability, mainTag, priceRange, category } = values as FilterValues
-
-      let price
-
-      const [gt, lt] = priceRange
-
-      if (gt && lt) {
-        price = {
-          gt,
-          lt
-        }
-      }
-
-      let instock: boolean | undefined
-
-      if (availability.length === 1) {
-        const stockSrc = {
-          inStock: true,
-          byOrder: false
-        }
-
-        instock = stockSrc[availability[0]]
-      }
+      const values = JSON.parse(filters) as FilterValues
 
       getProducts({
-        variables: {
-          instock,
-          price,
-          mainTag: (mainTag || undefined) as MainTag,
-          gender: gender as Gender[],
-          category: category as CategoryType[],
-          page: numOfPage
-        }
+        variables: { ...getQueryValues(values), page: numOfPage }
       })
     } else {
       getProducts({
@@ -158,50 +124,13 @@ const Catalog: React.FC = () => {
         }
       })
     }
-
-    return () => {
-      console.log('Catalog unmount')
-    }
   }, [numOfPage])
 
   const handleFiltersSubmit = (values: FilterValues) => {
-    console.log(values)
-    const { gender, availability, mainTag, priceRange, category } = values
-
     sessionStorage.setItem('filters', JSON.stringify(values))
 
-    let price
-
-    const [gt, lt] = priceRange
-
-    if (gt && lt) {
-      price = {
-        gt,
-        lt
-      }
-    }
-
-    let instock: boolean | undefined
-
-    if (availability.length === 1) {
-      const stockSrc = {
-        inStock: true,
-        byOrder: false
-      }
-
-      instock = stockSrc[availability[0]]
-    }
-
     getProducts({
-      variables: {
-        instock,
-        price,
-        mainTag: (mainTag || undefined) as MainTag,
-        gender: gender as Gender[],
-        category: category as CategoryType[],
-        // category: category.map((c: categoryType) => CategoryType[c]),
-        page: numOfPage
-      }
+      variables: { ...getQueryValues(values), page: numOfPage }
     })
   }
 
@@ -218,20 +147,8 @@ const Catalog: React.FC = () => {
   const formikRef = React.useRef<HTMLFormElement>(null)
 
   const handleReftesh = (): void => {
-    if (formikRef) {
-      formikRef.current?.reset()
-    }
-
-    appHistory.push(`/catalog/1`)
-
-    // getProducts({
-    //   variables: {
-    //     gender: [],
-    //     instock: undefined,
-    //     category: [],
-    //     page: numOfPage
-    //   }
-    // })
+    if (formikRef) formikRef.current?.reset()
+    appHistory.push(routes.catalog + '/1')
   }
 
   if (error) {

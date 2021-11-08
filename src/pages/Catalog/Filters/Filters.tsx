@@ -1,15 +1,14 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import Divider from '@material-ui/core/Divider'
-import { useTranslation } from 'react-i18next'
-import { Formik, Form } from 'formik'
-import { makeStyles } from '@material-ui/core'
 import RadioGroup from '../../../shared/FormFields/RadioGroup/RadioGroup'
 import CheckBoxGroup from '../../../shared/FormFields/CheckboxGroup'
 import PriceRange from '../../../shared/FormFields/PriceRange/PriceRange'
 import fieldProps from './fields-data'
 import Button from '../../../shared/Button/Button'
 import AutoSave from '../../../shared/AutoSave'
+import { useTranslation } from 'react-i18next'
+import { Formik, Form } from 'formik'
+import { makeStyles } from '@material-ui/core'
 
 type PriceRange = {
   lt: number

@@ -22,18 +22,6 @@ query AllProducts(
       gt
       lt
     }
-    filter {
-      gender
-      isHidden
-      instock
-      mainTag
-      price {
-        gt
-        lt
-      }
-      category
-      page
-    }
     pagination {
       totalPages
       currentPage

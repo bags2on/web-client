@@ -207,17 +207,6 @@ export type ProductFilter = {
   page: Scalars['Int']
 }
 
-export type ProductFilterType = {
-  __typename?: 'ProductFilterType'
-  gender?: Maybe<Array<Maybe<Gender>>>
-  isHidden?: Maybe<Scalars['Boolean']>
-  instock?: Maybe<Scalars['Boolean']>
-  mainTag?: Maybe<MainTag>
-  price?: Maybe<PriceRangeType>
-  category?: Maybe<Array<Maybe<CategoryType>>>
-  page: Scalars['Int']
-}
-
 export type ProductResult = Product | NotFound
 
 export type ProductsResponse = {
@@ -225,7 +214,6 @@ export type ProductsResponse = {
   products: Array<Product>
   priceRange: PriceRangeType
   pagination: Pagination
-  filter: ProductFilterType
 }
 
 export type Query = {

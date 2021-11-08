@@ -41,9 +41,10 @@ const useStyles = makeStyles((theme) => ({
 interface PaginationProps {
   total: number
   currentPage: number
+  route: string
 }
 
-const Pagination: React.FC<PaginationProps> = ({ total, currentPage }) => {
+const Pagination: React.FC<PaginationProps> = ({ total, currentPage, route }) => {
   const [current, setCurrent] = useState<number>(currentPage > total ? total : currentPage)
   const [items, setItems] = useState<(string | number)[]>([])
 
@@ -52,7 +53,7 @@ const Pagination: React.FC<PaginationProps> = ({ total, currentPage }) => {
   const handlePaginationChange = (value: number | string): void => {
     if (typeof value === 'number') {
       setCurrent(value)
-      history.push(`/catalog/${value}`)
+      history.push(route + `/${value}`)
     }
   }
 

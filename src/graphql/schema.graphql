@@ -197,23 +197,12 @@ input ProductFilter {
   page: Int!
 }
 
-type ProductFilterType {
-  gender: [Gender]
-  isHidden: Boolean
-  instock: Boolean
-  mainTag: MainTag
-  price: PriceRangeType
-  category: [CategoryType]
-  page: Int!
-}
-
 union ProductResult = Product | NotFound
 
 type ProductsResponse {
   products: [Product!]!
   priceRange: PriceRangeType!
   pagination: Pagination!
-  filter: ProductFilterType!
 }
 
 type Query {

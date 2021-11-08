@@ -3,6 +3,7 @@ import Button from '../../../shared/Button/Button'
 import CatalogItem from '../../../components/CatalogItem/CatalogItem'
 import Pagination from '../../../components/Pagination/Pagination'
 import ExpandedGrid from '../../../shared/ExpandedGrid'
+import routes from '../../../utils/routes'
 import { useQuery } from '@apollo/client'
 import { GET_FAVORITE_IDS } from '../../../apollo/cache/queries/favorite'
 import { makeStyles } from '@material-ui/core'
@@ -48,7 +49,6 @@ const useStyles = makeStyles((theme) => ({
       height: '100%'
     }
   },
-  wrapper: {},
   text: {
     fontSize: 17,
     fontWeight: 500,
@@ -132,7 +132,7 @@ const Products: React.FC<ProductsProps> = ({ totalPages, currentPage, products, 
         })}
       </ExpandedGrid>
       <div className={classes.paginationWrapper}>
-        <Pagination total={totalPages} currentPage={currentPage} />
+        <Pagination route={routes.catalog} total={totalPages} currentPage={currentPage} />
       </div>
     </div>
   )
