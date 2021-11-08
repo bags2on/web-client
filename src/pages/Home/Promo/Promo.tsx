@@ -89,7 +89,7 @@ const Promo: React.FC = () => {
         to={{
           pathname: routes.catalog,
           state: {
-            genderType: 'Female'
+            genderType: 'FEMALE'
           }
         }}
         className={classes.wrapper}
@@ -108,7 +108,7 @@ const Promo: React.FC = () => {
         to={{
           pathname: routes.catalog,
           state: {
-            genderType: 'Male'
+            genderType: 'MALE'
           }
         }}
         className={classes.wrapper}

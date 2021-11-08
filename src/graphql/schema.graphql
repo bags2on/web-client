@@ -39,6 +39,11 @@ input CartItem {
   amount: Int!
 }
 
+type CartItemType {
+  id: String!
+  amount: Int!
+}
+
 enum CategoryType {
   BAG
   OTHER
@@ -46,6 +51,8 @@ enum CategoryType {
   BACKPACK
   SUITCASE
 }
+
+scalar Date
 
 type DeleteProductResponse {
   message: String!
@@ -69,11 +76,26 @@ enum MainTag {
 }
 
 type Mutation {
-  createOrder(input: OrderInput): OrderResponse
+  createOrder(input: NewOrderInput): NewOrderResponse
   createProduct(input: NewProductInput!): NewProductResponse
   updateProduct(input: UpdateProductInput): UpdateProductResponse
   deleteProduct(id: ID!): DeleteProductResponse
   hideProduct(id: ID!, isHidden: Boolean!): HideProductResponse
+}
+
+input NewOrderInput {
+  name: String!
+  surname: String!
+  email: String!
+  phone: String!
+  cityId: String!
+  postOfficeId: String!
+  supplier: String!
+  cartItems: [CartItem!]!
+}
+
+type NewOrderResponse {
+  message: String!
 }
 
 input NewProductInput {
@@ -85,6 +107,7 @@ input NewProductInput {
   instock: Boolean!
   mainTag: MainTag!
   category: CategoryType!
+  features: ProductFeaturesInput!
   description: String
 }
 
@@ -96,18 +119,30 @@ type NotFound {
   message: String!
 }
 
-input OrderInput {
-  name: String!
-  surname: String!
-  email: String!
-  phone: String!
+type Order {
+  id: ID!
+  receiverName: String!
+  receiverSurname: String!
+  receiverEmail: String!
+  receiverPhone: String!
   cityId: String!
   postOfficeId: String!
-  cartItems: [CartItem!]!
+  products: [Product!]!
+  status: String!
+  cartItems: [CartItemType!]!
+  supplier: String!
+  createdAt: Date!
 }
 
-type OrderResponse {
-  message: String!
+union OrderByIdResult = Order | NotFound
+
+input OrderFilter {
+  status: String!
+}
+
+type Pagination {
+  totalPages: Int!
+  currentPage: Int!
 }
 
 input PriceRange {
@@ -116,8 +151,8 @@ input PriceRange {
 }
 
 type PriceRangeType {
-  lt: Int!
   gt: Int!
+  lt: Int!
 }
 
 type Product {
@@ -141,8 +176,15 @@ type Product {
 type ProductFeatures {
   material: String!
   color: String!
-  gender: String!
-  category: String!
+  gender: Gender!
+  category: CategoryType!
+}
+
+input ProductFeaturesInput {
+  material: String!
+  color: String!
+  gender: Gender!
+  category: CategoryType!
 }
 
 input ProductFilter {
@@ -152,6 +194,17 @@ input ProductFilter {
   mainTag: MainTag
   price: PriceRange
   category: [CategoryType]
+  page: Int!
+}
+
+type ProductFilterType {
+  gender: [Gender]
+  isHidden: Boolean
+  instock: Boolean
+  mainTag: MainTag
+  price: PriceRangeType
+  category: [CategoryType]
+  page: Int!
 }
 
 union ProductResult = Product | NotFound
@@ -159,13 +212,18 @@ union ProductResult = Product | NotFound
 type ProductsResponse {
   products: [Product!]!
   priceRange: PriceRangeType!
+  pagination: Pagination!
+  filter: ProductFilterType!
 }
 
 type Query {
+  order(id: ID!): OrderByIdResult
+  allOrders(input: OrderFilter!): [Order!]!
   product(id: ID!): ProductResult
   allProducts(filter: ProductFilter!): ProductsResponse!
   cartProducts(input: [CartItem!]): [Product!]!
   productsByID(input: [String!]): [Product!]!
+  searchProductByName(input: String!): [Product!]!
 }
 
 enum Role {
@@ -184,6 +242,7 @@ input UpdateProductInput {
   mainTag: MainTag!
   category: CategoryType!
   description: String
+  features: ProductFeaturesInput!
 }
 
 type UpdateProductResponse {

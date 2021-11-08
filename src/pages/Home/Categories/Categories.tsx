@@ -30,13 +30,13 @@ const categoriesValues: {
         icon: BaggageIcon,
         to: routes.catalog,
         i18n: 'suitcases',
-        categoryName: 'Suitcase'
+        categoryName: 'SUITCASE'
       },
       {
         icon: BagIcon,
         to: routes.catalog,
         i18n: 'bags',
-        categoryName: 'Bag'
+        categoryName: 'BAG'
       }
     ]
   },
@@ -46,7 +46,7 @@ const categoriesValues: {
         icon: WalletIcon,
         to: routes.catalog,
         i18n: 'wallets',
-        categoryName: 'Wallet'
+        categoryName: 'WALLET'
       },
       {
         icon: OtherIcon,

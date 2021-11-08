@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import Divider from '@material-ui/core/Divider'
 import { useTranslation } from 'react-i18next'
@@ -25,7 +26,7 @@ type InitValues = {
 
 interface FiltersProps {
   formRef: React.RefObject<HTMLFormElement>
-  priceRange: [number, number]
+  priceRange: number[]
   initValues: InitValues
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onSubmit(values: any): void

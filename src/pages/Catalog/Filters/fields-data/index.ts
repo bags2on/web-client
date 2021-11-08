@@ -33,15 +33,15 @@ function fillUpValues(): void {
   gender.options = [
     {
       label: i18n.t('catalog.filters.gender.female'),
-      value: 'Female'
+      value: 'FEMALE'
     },
     {
       label: i18n.t('catalog.filters.gender.male'),
-      value: 'Male'
+      value: 'MALE'
     },
     {
       label: i18n.t('catalog.filters.gender.unisex'),
-      value: 'Unisex'
+      value: 'UNISEX'
     }
   ]
 
@@ -64,12 +64,12 @@ function fillUpValues(): void {
     },
     {
       label: i18n.t('catalog.filters.radioGroup.new'),
-      value: 'New',
+      value: 'NEW',
       disabled: false
     },
     {
       label: i18n.t('catalog.filters.radioGroup.discounts'),
-      value: 'Stock',
+      value: 'STOCK',
       disabled: false
     }
   ]
@@ -77,23 +77,23 @@ function fillUpValues(): void {
   categories.options = [
     {
       label: i18n.t('categories.suitcases'),
-      value: 'Suitcase'
+      value: 'SUITCASE'
     },
     {
       label: i18n.t('categories.bags'),
-      value: 'Bag'
+      value: 'BAG'
     },
     {
       label: i18n.t('categories.wallets'),
-      value: 'Wallet'
+      value: 'WALLET'
     },
     {
       label: i18n.t('categories.backpack'),
-      value: 'Backpack'
+      value: 'BACKPACK'
     },
     {
       label: i18n.t('categories.other'),
-      value: 'Other'
+      value: 'OTHER'
     }
   ]
 }

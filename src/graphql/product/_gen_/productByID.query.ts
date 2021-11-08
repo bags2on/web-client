@@ -18,7 +18,13 @@ export type GetProductByIdQuery = {
         images: Array<string>
         description: string
         instock: boolean
-        features: { __typename?: 'ProductFeatures'; material: string; color: string; gender: string; category: string }
+        features: {
+          __typename?: 'ProductFeatures'
+          material: string
+          color: string
+          gender: Types.Gender
+          category: Types.CategoryType
+        }
       }
     | { __typename: 'NotFound'; message: string }
   >

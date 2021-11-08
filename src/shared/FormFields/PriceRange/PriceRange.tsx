@@ -58,7 +58,7 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
   const classes = useStyles()
   const { values, setFieldValue } = useFormikContext<FormFields>()
 
-  const [minPrice, maxPrice] = values.priceRange
+  const [minPrice, maxPrice] = values.priceRange || [0, 0]
   const [isCollapsed, setCollapsed] = useState<boolean>(true)
 
   const [minInputValue, setMinInputValue] = useState<number>(minPrice)

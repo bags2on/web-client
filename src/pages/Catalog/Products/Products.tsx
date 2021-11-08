@@ -93,9 +93,7 @@ const Products: React.FC<ProductsProps> = ({ totalPages, currentPage, products, 
   const { data } = useQuery<FavoriteIdsQuery>(GET_FAVORITE_IDS)
   const favoriteIds = data?.favoriteIds || []
 
-  if (products === undefined) {
-    return <div>data error</div>
-  }
+  if (products === undefined) return null
 
   if (!products.length) {
     return (

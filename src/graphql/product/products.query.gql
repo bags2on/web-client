@@ -5,6 +5,7 @@ query AllProducts(
   $mainTag: MainTag
   $price: PriceRange
   $category: [CategoryType]
+  $page: Int!
 ) {
   allProducts(
     filter: {
@@ -14,11 +15,28 @@ query AllProducts(
       mainTag: $mainTag
       price: $price
       category: $category
+      page: $page
     }
   ) {
     priceRange {
-      lt
       gt
+      lt
+    }
+    filter {
+      gender
+      isHidden
+      instock
+      mainTag
+      price {
+        gt
+        lt
+      }
+      category
+      page
+    }
+    pagination {
+      totalPages
+      currentPage
     }
     products {
       id
