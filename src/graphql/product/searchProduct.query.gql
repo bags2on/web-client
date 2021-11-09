@@ -1,0 +1,9 @@
+query SearchProduct($input: String!) {
+  searchProductByName(input: $input) {
+    id
+    title
+    instock
+    mainTag
+    preview
+  }
+}

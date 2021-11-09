@@ -6,7 +6,7 @@ export const LoginSchema = yup.object({
 })
 
 export const TopSearchSchema = yup.object({
-  searchQuery: yup.string().required()
+  searchQuery: yup.string()
 })
 
 export const CheckoutOrderSchema = yup.object({
