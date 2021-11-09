@@ -12,6 +12,7 @@ import { GET_FAVORITE_IDS } from '../../../apollo/cache/queries/favorite'
 import { formatPrice } from '../../../utils/helpers'
 import { CartMutations, FavoriteMutations } from '../../../apollo/cache/mutations'
 import { ReactComponent as CheckIcon } from '../../../assets/svg/icons/check_mark.svg'
+import { ReactComponent as HeaderCartIcon } from '../../../assets/svg/icons/header_cart.svg'
 import { makeStyles } from '@material-ui/core'
 import LikeButton from '../../../shared/LikeButton/LikeButton'
 
@@ -42,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'inline-flex',
     marginRight: 80,
     marginBottom: 25,
-    borderRadius: 10,
+    borderRadius: 15,
     width: 'auto',
     padding: '7px 8px',
     color: '#fff',
@@ -104,6 +105,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: 300,
     backgroundColor: 'var(--green-light)',
     border: '2px solid',
+    fontSize: 19,
     borderColor: theme.palette.type === 'light' ? '#343434' : '#32CD32',
     fontWeight: 600,
     color: '#fff',
@@ -209,8 +211,18 @@ const Details: React.FC<SummaryProps> = ({
       </div>
       <div className={classes.buttonsWrapper}>
         {inStock ? (
-          <Button onClick={handleAddToCart} className={classes.cartButton} fullWidth disableShadow>
-            Добавить в корзину
+          <Button
+            onClick={handleAddToCart}
+            className={classes.cartButton}
+            fullWidth
+            disableShadow
+            startIcon={
+              <SvgIcon fontSize="large">
+                <HeaderCartIcon />
+              </SvgIcon>
+            }
+          >
+            Купить
           </Button>
         ) : (
           <Button
