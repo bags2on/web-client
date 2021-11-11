@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
           <h5>Информация</h5>
           <ul>
             <li>
-              <Link to="#">
+              <Link to="/terms/payment-and-delivery">
                 <p>Доставка</p>
               </Link>
             </li>
@@ -98,8 +98,8 @@ const Footer: React.FC = () => {
               </Link>
             </li>
             <li>
-              <Link to="#">
-                <p>Политика конфиденциальности</p>
+              <Link to="/terms/terms-of-site-use">
+                <p>Условия использования сайта</p>
               </Link>
             </li>
           </ul>

@@ -1,18 +1,33 @@
 import React, { useState, useEffect } from 'react'
 import UseTerms from './UseTerms'
+import UserTerms from './UserTerms'
+import PaymentDelivery from './PaymentDelivery'
 import { useParams } from 'react-router-dom'
 import { Tabs, TabPanel } from '../../shared/Tabs'
 import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex'
+    [theme.breakpoints.up('md')]: {
+      display: 'flex'
+    }
+  },
+  tabPanel: {
+    width: '100%',
+    maxWidth: '100%',
+    [theme.breakpoints.up('md')]: {
+      width: 310,
+      maxWidth: 310
+    }
   }
 }))
 
 interface ParamsType {
   tabName: 'terms-of-use' | 'terms-of-site-use'
 }
+
+const APP_NAME = process.env.REACT_APP_NAME || '---'
+const APP_NAME_RU = process.env.REACT_APP_NAME_RU || '---'
 
 const Terms: React.FC = () => {
   const classes = useStyles()
@@ -21,11 +36,15 @@ const Terms: React.FC = () => {
 
   useEffect(() => {
     switch (tabName) {
-      case 'terms-of-use':
+      case 'user-terms':
         setCurrentTab(0)
         break
-      case 'terms-of-site-use':
+
+      case 'payment-and-delivery':
         setCurrentTab(1)
+        break
+      case 'terms-of-site-use':
+        setCurrentTab(2)
         break
       default:
         setCurrentTab(1)
@@ -37,10 +56,16 @@ const Terms: React.FC = () => {
       <Tabs
         orientation="vertical"
         value={currentTab}
+        tabClassName={classes.tabPanel}
         tabNames={[
           {
             label: 'Пользовательское соглашение',
-            path: '/terms/terms-of-use',
+            path: '/terms/user-terms',
+            disabled: false
+          },
+          {
+            label: 'Оплата и доставка',
+            path: '/terms/payment-and-delivery',
             disabled: false
           },
           {
@@ -50,11 +75,15 @@ const Terms: React.FC = () => {
           }
         ]}
       />
+
       <TabPanel value={currentTab} index={0}>
-        <h1>Пользовательское соглашение</h1>
+        <UserTerms brandName={APP_NAME} brandNameRu={APP_NAME_RU} />
       </TabPanel>
       <TabPanel value={currentTab} index={1}>
-        <UseTerms />
+        <PaymentDelivery />
+      </TabPanel>
+      <TabPanel value={currentTab} index={2}>
+        <UseTerms brandName={APP_NAME} brandNameRu={APP_NAME_RU} />
       </TabPanel>
     </div>
   )

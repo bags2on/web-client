@@ -1,4 +1,5 @@
 import React from 'react'
+import clsx from 'clsx'
 import AppBar from '@material-ui/core/AppBar'
 import MUITabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
@@ -13,6 +14,7 @@ interface TabsPorps {
     path: string
     disabled: boolean
   }>
+  tabClassName?: string
 }
 
 type tabStyles = {
@@ -58,7 +60,7 @@ function a11yProps(index: number) {
   }
 }
 
-const Tabs: React.FC<TabsPorps> = ({ orientation = 'horizontal', tabNames, value }) => {
+const Tabs: React.FC<TabsPorps> = ({ orientation = 'horizontal', tabNames, value, tabClassName }) => {
   const classes = useStyles({ isVertical: orientation === 'vertical' })
 
   return (
@@ -80,7 +82,7 @@ const Tabs: React.FC<TabsPorps> = ({ orientation = 'horizontal', tabNames, value
                 disabled={tab.disabled}
                 classes={{
                   selected: classes.selected,
-                  root: classes.tab
+                  root: clsx(classes.tab, tabClassName)
                 }}
                 component={Link}
                 to={tab.path}
