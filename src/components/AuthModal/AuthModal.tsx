@@ -1,14 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import Modal from '../../shared/Modal'
-import { Link } from 'react-router-dom'
 import { useQuery } from '@apollo/client'
 import AuthPatternImage from '../../assets/rastr/animal-pattern.jpeg'
 import { SharedMutations } from '../../apollo/cache/mutations'
 import { ReactComponent as GoogleLogoImage } from '../../assets/svg/google_logo.svg'
 import { ReactComponent as InstagramIcon } from '../../assets/svg/icons/instagram.svg'
 import { GET_AUTH_MODAL_OPEN } from '../../apollo/cache/queries/shared'
+import { useSpring, animated } from 'react-spring'
 import { makeStyles } from '@material-ui/core'
+
+interface GetAuthModalTypes {
+  isAuthModalOpen: boolean
+}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -76,10 +80,10 @@ const useStyles = makeStyles((theme) => ({
   link: {
     display: 'flex',
     alignItems: 'center',
-    textDecoration: 'none',
+    cursor: 'pointer',
     width: 320,
     padding: '10px 15px',
-    border: '2px solid #b3b3b3',
+    border: '2px solid #343434',
     borderRadius: 20,
     transition: 'all .3s',
     fontSize: 16,
@@ -92,22 +96,45 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up('lg')]: {
       padding: '15px 20px'
     }
+  },
+  errorMessage: {
+    fontSize: 16,
+    color: '#ff182e',
+    textAlign: 'center'
   }
 }))
 
-interface GetAuthModalTypes {
-  isAuthModalOpen: boolean
-}
+const API_URL = process.env.REACT_APP_API_URL
 
 const AuthModal: React.FC = () => {
   const classes = useStyles()
   const { data } = useQuery<GetAuthModalTypes>(GET_AUTH_MODAL_OPEN)
+  const [withError, setError] = useState<boolean>(false)
+
+  const fadeStyles = useSpring({
+    config: { duration: 250 },
+    from: { opacity: 0 },
+    to: {
+      opacity: withError ? 1 : 0
+    }
+  })
 
   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   const isOpen = data!.isAuthModalOpen
 
   const handleClose = (): void => {
+    setError(false)
     SharedMutations.closeAuthModal()
+  }
+
+  const handleGoogleClick = async (): Promise<void> => {
+    try {
+      const url = await fetch(API_URL + '/google-oauth').then((resp) => resp.text())
+      window.location.replace(url)
+    } catch (error) {
+      console.log(error)
+      setError(true)
+    }
   }
 
   return (
@@ -119,22 +146,25 @@ const AuthModal: React.FC = () => {
           <p className={classes.subTitle}>Пройдите авторизацию, чтобы получить больше возможностей</p>
           <ul className={classes.mediaList}>
             <li>
-              <Link to="#" className={classes.link}>
+              <div className={classes.link} onClick={handleGoogleClick}>
                 <SvgIcon component="span" className={classes.mediaLogo}>
                   <GoogleLogoImage />
                 </SvgIcon>
                 <span>Войти через Google</span>
-              </Link>
+              </div>
             </li>
             <li>
-              <Link to="#" className={classes.link}>
+              <div className={classes.link}>
                 <SvgIcon component="span" className={classes.mediaLogo}>
                   <InstagramIcon />
                 </SvgIcon>
                 <span>Войти через Instagram</span>
-              </Link>
+              </div>
             </li>
           </ul>
+          <animated.div style={fadeStyles}>
+            <p className={classes.errorMessage}>Ошибка, повторите попытку позже</p>
+          </animated.div>
         </div>
       </div>
     </Modal>
