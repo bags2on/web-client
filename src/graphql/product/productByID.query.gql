@@ -16,6 +16,12 @@ query getProductByID($id: ID!) {
         gender
         category
       }
+      rating {
+        id
+        productId
+        votesNumber
+        rating
+      }
     }
     ... on NotFound {
       message

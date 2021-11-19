@@ -48,6 +48,15 @@ export type HideProductResponse = {
   isHidden: Scalars['Boolean']
 }
 
+export type LogInInput = {
+  keyWord: Scalars['String']
+}
+
+export type LogInRsponse = {
+  __typename?: 'LogInRsponse'
+  token: Scalars['String']
+}
+
 export enum MainTag {
   Stock = 'STOCK',
   New = 'NEW',
@@ -62,6 +71,7 @@ export type Mutation = {
   updateProduct?: Maybe<UpdateProductResponse>
   deleteProduct?: Maybe<DeleteProductResponse>
   hideProduct?: Maybe<HideProductResponse>
+  productRatingVote?: Maybe<ProductRatingVoteResponse>
 }
 
 export type MutationCreateOrderArgs = {
@@ -83,6 +93,10 @@ export type MutationDeleteProductArgs = {
 export type MutationHideProductArgs = {
   id: Scalars['ID']
   isHidden: Scalars['Boolean']
+}
+
+export type MutationProductRatingVoteArgs = {
+  input: ProductRatingVoteInput
 }
 
 export type NewOrderInput = {
@@ -180,6 +194,7 @@ export type Product = {
   mainTag: MainTag
   description: Scalars['String']
   features: ProductFeatures
+  rating: ProductRating
 }
 
 export type ProductFeatures = {
@@ -207,6 +222,24 @@ export type ProductFilter = {
   page: Scalars['Int']
 }
 
+export type ProductRating = {
+  __typename?: 'ProductRating'
+  id: Scalars['ID']
+  productId: Scalars['String']
+  votesNumber: Scalars['Int']
+  rating: Scalars['Float']
+}
+
+export type ProductRatingVoteInput = {
+  productId: Scalars['String']
+  rating: Scalars['Int']
+}
+
+export type ProductRatingVoteResponse = {
+  __typename?: 'ProductRatingVoteResponse'
+  isSaved: Scalars['Boolean']
+}
+
 export type ProductResult = Product | NotFound
 
 export type ProductsResponse = {
@@ -225,6 +258,7 @@ export type Query = {
   cartProducts: Array<Product>
   productsByID: Array<Product>
   searchProductByName: Array<Product>
+  logInRoot?: Maybe<LogInRsponse>
 }
 
 export type QueryOrderArgs = {
@@ -253,6 +287,10 @@ export type QueryProductsByIdArgs = {
 
 export type QuerySearchProductByNameArgs = {
   input: Scalars['String']
+}
+
+export type QueryLogInRootArgs = {
+  input: LogInInput
 }
 
 export enum Role {

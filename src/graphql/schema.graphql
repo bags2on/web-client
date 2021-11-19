@@ -68,6 +68,14 @@ type HideProductResponse {
   isHidden: Boolean!
 }
 
+input LogInInput {
+  keyWord: String!
+}
+
+type LogInRsponse {
+  token: String!
+}
+
 enum MainTag {
   STOCK
   NEW
@@ -81,6 +89,7 @@ type Mutation {
   updateProduct(input: UpdateProductInput): UpdateProductResponse
   deleteProduct(id: ID!): DeleteProductResponse
   hideProduct(id: ID!, isHidden: Boolean!): HideProductResponse
+  productRatingVote(input: ProductRatingVoteInput!): ProductRatingVoteResponse
 }
 
 input NewOrderInput {
@@ -171,6 +180,7 @@ type Product {
   mainTag: MainTag!
   description: String!
   features: ProductFeatures!
+  rating: ProductRating!
 }
 
 type ProductFeatures {
@@ -197,6 +207,22 @@ input ProductFilter {
   page: Int!
 }
 
+type ProductRating {
+  id: ID!
+  productId: String!
+  votesNumber: Int!
+  rating: Float!
+}
+
+input ProductRatingVoteInput {
+  productId: String!
+  rating: Int!
+}
+
+type ProductRatingVoteResponse {
+  isSaved: Boolean!
+}
+
 union ProductResult = Product | NotFound
 
 type ProductsResponse {
@@ -213,6 +239,7 @@ type Query {
   cartProducts(input: [CartItem!]): [Product!]!
   productsByID(input: [String!]): [Product!]!
   searchProductByName(input: String!): [Product!]!
+  logInRoot(input: LogInInput!): LogInRsponse
 }
 
 enum Role {

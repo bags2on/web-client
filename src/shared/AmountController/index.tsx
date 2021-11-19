@@ -8,20 +8,26 @@ interface AddSubInputProps {
   amount: number
   min: number
   max?: number
-  //   startValue: number
   onChange(type: 'add' | 'sub', n: number): void
 }
 
 const useStyles = makeStyles(() => ({
   root: {
-    display: 'inline-block'
+    display: 'inline-block',
+    border: '1px solid #dcdcdc',
+    borderRadius: 10
   },
-  button: {},
-  show: {
+  button: {
+    '&:hover': {
+      backgroundColor: 'transparent'
+    }
+  },
+  amount: {
     width: 20,
     display: 'inline-block',
     textAlign: 'center',
-    userSelect: 'none'
+    userSelect: 'none',
+    fontWeight: 500
   }
 }))
 
@@ -40,13 +46,21 @@ const AmountController: React.FC<AddSubInputProps> = ({ min, max, amount, onChan
 
   return (
     <div className={classes.root}>
-      <IconButton onClick={handleSubClick} disabled={amount <= 1} aria-label="удалить одну единицу данного продукта">
+      <IconButton
+        disableRipple
+        className={classes.button}
+        onClick={handleSubClick}
+        disabled={amount <= 1}
+        aria-label="удалить одну единицу данного продукта"
+      >
         <RemoveIcon />
       </IconButton>
-      <div className={classes.show}>
+      <div className={classes.amount}>
         <span>{amount}</span>
       </div>
       <IconButton
+        disableRipple
+        className={classes.button}
         onClick={handleAddClick}
         disabled={!!max && amount >= max}
         aria-label="добавить одну единицу данного продукта"

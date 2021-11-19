@@ -25,6 +25,7 @@ export type GetProductByIdQuery = {
           gender: Types.Gender
           category: Types.CategoryType
         }
+        rating: { __typename?: 'ProductRating'; id: string; productId: string; votesNumber: number; rating: number }
       }
     | { __typename: 'NotFound'; message: string }
   >
@@ -40,6 +41,9 @@ export type GetProductByIdProductInlineFragment = DiscriminateUnion<
 >
 export type GetProductByIdFeatures = NonNullable<
   DiscriminateUnion<NonNullable<GetProductByIdQuery['product']>, { __typename?: 'Product' }>['features']
+>
+export type GetProductByIdRating = NonNullable<
+  DiscriminateUnion<NonNullable<GetProductByIdQuery['product']>, { __typename?: 'Product' }>['rating']
 >
 export type GetProductByIdNotFoundInlineFragment = DiscriminateUnion<
   NonNullable<GetProductByIdQuery['product']>,
@@ -64,6 +68,12 @@ export const GetProductByIdDocument = gql`
           color
           gender
           category
+        }
+        rating {
+          id
+          productId
+          votesNumber
+          rating
         }
       }
       ... on NotFound {

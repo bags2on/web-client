@@ -74,6 +74,14 @@ export const darkTheme = createMuiTheme({
   },
   typography: {
     fontFamily: FONTS
+  },
+  overrides: {
+    MuiBackdrop: {
+      root: {
+        backdropFilter: 'blur(3px)',
+        backgroundColor: 'rgba(0, 0, 0, 0.4)'
+      }
+    }
   }
 })
 
@@ -106,5 +114,13 @@ export const lightTheme = createMuiTheme({
   },
   typography: {
     fontFamily: FONTS
+  },
+  overrides: {
+    MuiBackdrop: {
+      root: {
+        backdropFilter: 'blur(3px)',
+        backgroundColor: 'rgba(0, 0, 0, 0.3)'
+      }
+    }
   }
 })
