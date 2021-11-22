@@ -34,9 +34,7 @@ const useStyles = makeStyles(() => ({
     margin: 'auto',
     outline: 'none',
     objectFit: 'cover',
-    userSelect: 'none',
-    borderTopLeftRadius: '8px',
-    borderTopRightRadius: '8px'
+    userSelect: 'none'
   },
   shine: {
     width: '100%',
