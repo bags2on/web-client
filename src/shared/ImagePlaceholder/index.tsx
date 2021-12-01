@@ -1,7 +1,7 @@
 import React from 'react'
 import { ReactComponent as Placeholder } from '../../assets/svg/image_placeholder.svg'
 import ProgressiveImage from 'react-progressive-graceful-image'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 
 export interface ImagePlaceholderProps {
   src: string
@@ -9,19 +9,19 @@ export interface ImagePlaceholderProps {
   plain?: boolean
 }
 
-interface StyleProps {
+interface styleProps {
   plain: boolean
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles<Theme, styleProps>(() => ({
   root: {
     display: 'block',
     outline: 'none',
     position: 'relative',
     overflow: 'hidden',
     transform: 'translatez(0)',
-    paddingTop: (props: StyleProps): string => (props.plain ? '0px' : '100%'),
-    height: (props: StyleProps): string => (props.plain ? '100%' : 'auto')
+    paddingTop: ({ plain }) => (plain ? '0px' : '100%'),
+    height: ({ plain }) => (plain ? '100%' : 'auto')
   },
   productImage: {
     position: 'absolute',
@@ -44,8 +44,8 @@ const useStyles = makeStyles(() => ({
     backgroundSize: '300% 300%',
     opacity: 0.8,
     animation: '$shine 1.3s infinite',
-    borderTopLeftRadius: (props: StyleProps): string => (props.plain ? '0' : '8px'),
-    borderTopRightRadius: (props: StyleProps): string => (props.plain ? '0' : '8px')
+    borderTopLeftRadius: ({ plain }) => (plain ? '0' : '8px'),
+    borderTopRightRadius: ({ plain }) => (plain ? '0' : '8px')
   },
   productBox: {
     position: 'absolute',

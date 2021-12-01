@@ -2,18 +2,18 @@ import React from 'react'
 import NumberFormat, { NumberFormatValues } from 'react-number-format'
 import { useField } from 'formik'
 import { useSpring, animated } from 'react-spring'
-import { makeStyles } from '@material-ui/core/styles'
+import { makeStyles, Theme } from '@material-ui/core/styles'
 
 interface PhoneInputProps {
   name: string
   error?: boolean
 }
 
-interface StyleProps {
-  error: boolean
+interface styleProps {
+  withError: boolean
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme, styleProps>((theme) => ({
   root: {
     width: 214,
     padding: 13,
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 14,
     border: '1px solid',
     fontSize: '1rem',
-    borderColor: (props: StyleProps) => (props.error ? 'red' : 'rgba(0, 0, 0, 0.23)'),
+    borderColor: ({ withError }) => (withError ? 'red' : 'rgba(0, 0, 0, 0.23)'),
     outline: 'none',
     boxShadow: 'rgb(0 0 0 / 10%) 0px 4px 6px -1px, rgb(0 0 0 / 6%) 0px 2px 4px -1px',
     color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 const PhoneInput: React.FC<PhoneInputProps> = ({ name, error = false }) => {
-  const classes = useStyles({ error })
+  const classes = useStyles({ withError: error })
 
   const [field, meta] = useField({ name })
 

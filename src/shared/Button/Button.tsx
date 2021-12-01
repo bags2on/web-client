@@ -1,8 +1,8 @@
 import React from 'react'
 import clsx from 'clsx'
 import { Button as MaterialButton } from '@material-ui/core'
-import { makeStyles } from '@material-ui/core'
 import ScaleLoader from '../loaders/ScaleLoader'
+import { makeStyles, Theme } from '@material-ui/core'
 
 interface BottonProps {
   to?: string
@@ -20,11 +20,11 @@ interface BottonProps {
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void
 }
 
-interface BottonStyleTypes {
+interface styleProps {
   disableShadow: boolean
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme, styleProps>((theme) => ({
   root: {
     lineHeight: 'normal',
     fontSize: '16px',
@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     color: '#fff',
     borderRadius: '6px',
-    boxShadow: (props: BottonStyleTypes): string => (props.disableShadow ? 'none' : '0px 8px 17px rgba(0, 0, 0, .3)')
+    boxShadow: ({ disableShadow }) => (disableShadow ? 'none' : '0px 8px 17px rgba(0, 0, 0, .3)')
   },
   text: {
     lineHeight: '24px'

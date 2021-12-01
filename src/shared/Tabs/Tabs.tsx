@@ -3,8 +3,8 @@ import clsx from 'clsx'
 import AppBar from '@material-ui/core/AppBar'
 import MUITabs from '@material-ui/core/Tabs'
 import Tab from '@material-ui/core/Tab'
-import { makeStyles } from '@material-ui/core'
 import { Link } from 'react-router-dom'
+import { makeStyles, Theme } from '@material-ui/core'
 
 interface TabsPorps {
   orientation?: 'horizontal' | 'vertical'
@@ -17,18 +17,18 @@ interface TabsPorps {
   tabClassName?: string
 }
 
-type tabStyles = {
+type styleProps = {
   isVertical: boolean
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme, styleProps>((theme) => ({
   root: {
-    flexGrow: (props: tabStyles) => (props.isVertical ? 0 : 1)
+    flexGrow: ({ isVertical }) => (isVertical ? 0 : 1)
   },
   appBar: {
     color: theme.palette.primary.main,
     boxShadow: 'none',
-    borderBottom: (props: tabStyles) => (props.isVertical ? 'none' : '3px solid #343434')
+    borderBottom: ({ isVertical }) => (isVertical ? 'none' : '3px solid #343434')
   },
   tabs: {
     background: '#fff',
@@ -39,7 +39,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tab: {
     backgroundColor: '#fff',
-    width: (props: tabStyles) => (props.isVertical ? 'auto' : 250),
+    width: ({ isVertical }) => (isVertical ? 'auto' : 250),
     textTransform: 'none',
     fontSize: 16,
     fontWeight: 500,

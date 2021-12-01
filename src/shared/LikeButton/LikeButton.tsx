@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import IconButton from '@material-ui/core/IconButton'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 
 interface LikeButtonProps {
   liked: boolean
@@ -12,14 +12,14 @@ interface LikeButtonProps {
 }
 
 interface styleProps {
-  width?: number
-  height?: number
+  width: number
+  height: number
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles<Theme, styleProps>(() => ({
   boxSvg: {
-    width: (props: styleProps) => props.width,
-    height: (props: styleProps) => props.height,
+    width: ({ width }) => width,
+    height: ({ height }) => height,
     fill: 'transparent',
     stroke: '#f44336',
     overflow: 'visible!important',

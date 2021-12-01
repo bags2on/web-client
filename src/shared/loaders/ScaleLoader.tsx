@@ -1,17 +1,17 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core'
+import { makeStyles, Theme } from '@material-ui/core'
 
-interface StyleProps {
+interface styleProps {
   fallback?: boolean
   dark?: boolean
 }
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles<Theme, styleProps>((theme) => ({
   loader: {
-    width: (props: StyleProps) => (props.fallback ? 34 : 24),
-    height: (props: StyleProps) => (props.fallback ? 40 : 24),
+    width: ({ fallback }) => (fallback ? 34 : 24),
+    height: ({ fallback }) => (fallback ? 40 : 24),
     '& > rect': {
-      fill: (props: StyleProps) => (props.dark ? '#343434' : theme.palette.secondary.main)
+      fill: (props: styleProps) => (props.dark ? '#343434' : theme.palette.secondary.main)
     }
   }
 }))
