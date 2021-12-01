@@ -121,7 +121,7 @@ const CartItem: React.FC<CartItemProps> = ({ product, onRemove }) => {
     <div className={classes.root}>
       <div className={classes.box}>
         <Link className={classes.linkWrapper} to={generateLink(routes.product, id)}>
-          <ImagePlaceholder src={preview} altText={title} />
+          <ImagePlaceholder plain src={preview} altText={title} />
         </Link>
       </div>
       <div className={classes.productInfoBox}>
