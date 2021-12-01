@@ -1,4 +1,4 @@
-directive @hasRole(role: Role!) on FIELD_DEFINITION | MUTATION
+directive @hasRole(role: [Role!]!) on FIELD_DEFINITION | MUTATION
 
 """
 Direct the client to resolve this field locally, either from the cache or local resolvers.
@@ -33,6 +33,10 @@ directive @connection(
   """
   filter: [String!]
 ) on FIELD
+
+type AttachedRating {
+  rating: Float!
+}
 
 input CartItem {
   id: String!
@@ -180,7 +184,7 @@ type Product {
   mainTag: MainTag!
   description: String!
   features: ProductFeatures!
-  rating: ProductRating!
+  rating: AttachedRating!
 }
 
 type ProductFeatures {
@@ -205,13 +209,6 @@ input ProductFilter {
   price: PriceRange
   category: [CategoryType]
   page: Int!
-}
-
-type ProductRating {
-  id: ID!
-  productId: String!
-  votesNumber: Int!
-  rating: Float!
 }
 
 input ProductRatingVoteInput {

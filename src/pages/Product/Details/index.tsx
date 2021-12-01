@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import SvgIcon from '@material-ui/core/SvgIcon'
@@ -7,14 +6,14 @@ import Button from '../../../shared/Button/Button'
 import Tags from './Tags'
 import Rating from '../../../shared/Rating'
 import Features from './Features/Features'
+import LikeButton from '../../../shared/LikeButton/LikeButton'
 import { useQuery } from '@apollo/client'
 import { GET_FAVORITE_IDS } from '../../../apollo/cache/queries/favorite'
-import { formatPrice } from '../../../utils/helpers'
 import { CartMutations, FavoriteMutations } from '../../../apollo/cache/mutations'
+import { formatPrice } from '../../../utils/helpers'
 import { ReactComponent as CheckIcon } from '../../../assets/svg/icons/check_mark.svg'
 import { ReactComponent as HeaderCartIcon } from '../../../assets/svg/icons/header_cart.svg'
 import { makeStyles } from '@material-ui/core'
-import LikeButton from '../../../shared/LikeButton/LikeButton'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -129,6 +128,11 @@ type featuresType = {
   gender: string
   category: string
 }
+
+type productRating = {
+  rating: number
+}
+
 interface SummaryProps {
   id: string
   title: string
@@ -138,6 +142,7 @@ interface SummaryProps {
   basePrice: number
   inStock: boolean
   features: featuresType
+  rating: productRating
 }
 
 interface FavoriteIdsQuery {
@@ -152,10 +157,22 @@ const Details: React.FC<SummaryProps> = ({
   description,
   inStock,
   basePrice,
-  features
+  features,
+  rating
 }) => {
   const classes = useStyles()
   const { data } = useQuery<FavoriteIdsQuery>(GET_FAVORITE_IDS)
+  // const [getProducts, { loading, data, error }] = useLazyQuery<AllProductsQuery, AllProductsVariables>(
+  //   AllProductsDocument,
+  //   {
+  //     onCompleted: (data) => {
+  //       if (data?.allProducts.priceRange) {
+  //         const { gt, lt } = data.allProducts.priceRange
+  //         setPriceRange([gt, lt])
+  //       }
+  //     }
+  //   }
+  // )
 
   const favoriteIds = data?.favoriteIds
 
@@ -183,6 +200,8 @@ const Details: React.FC<SummaryProps> = ({
     setLiked(!isLiked)
   }
 
+  // const handleRatingVote = (rating: number): void => {}
+
   return (
     <section className={classes.root}>
       {tags && <Tags tags={tags} />}
@@ -194,7 +213,7 @@ const Details: React.FC<SummaryProps> = ({
           <span>{inStock ? 'В наличии' : 'Нет в наличии'}</span>
         </div>
         <div className={classes.ratingWrapper}>
-          <Rating votesAmount={0} />
+          <Rating readonly starRating={rating.rating} />
         </div>
       </div>
       <div

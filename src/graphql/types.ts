@@ -13,6 +13,11 @@ export type Scalars = {
   Upload: any
 }
 
+export type AttachedRating = {
+  __typename?: 'AttachedRating'
+  rating: Scalars['Float']
+}
+
 export type CartItem = {
   id: Scalars['String']
   amount: Scalars['Int']
@@ -194,7 +199,7 @@ export type Product = {
   mainTag: MainTag
   description: Scalars['String']
   features: ProductFeatures
-  rating: ProductRating
+  rating: AttachedRating
 }
 
 export type ProductFeatures = {
@@ -220,14 +225,6 @@ export type ProductFilter = {
   price?: Maybe<PriceRange>
   category?: Maybe<Array<Maybe<CategoryType>>>
   page: Scalars['Int']
-}
-
-export type ProductRating = {
-  __typename?: 'ProductRating'
-  id: Scalars['ID']
-  productId: Scalars['String']
-  votesNumber: Scalars['Int']
-  rating: Scalars['Float']
 }
 
 export type ProductRatingVoteInput = {

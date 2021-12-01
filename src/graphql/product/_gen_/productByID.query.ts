@@ -25,7 +25,7 @@ export type GetProductByIdQuery = {
           gender: Types.Gender
           category: Types.CategoryType
         }
-        rating: { __typename?: 'ProductRating'; id: string; productId: string; votesNumber: number; rating: number }
+        rating: { __typename?: 'AttachedRating'; rating: number }
       }
     | { __typename: 'NotFound'; message: string }
   >
@@ -70,9 +70,6 @@ export const GetProductByIdDocument = gql`
           category
         }
         rating {
-          id
-          productId
-          votesNumber
           rating
         }
       }
