@@ -213,7 +213,7 @@ const Details: React.FC<SummaryProps> = ({
           <span>{inStock ? 'В наличии' : 'Нет в наличии'}</span>
         </div>
         <div className={classes.ratingWrapper}>
-          <Rating readonly starRating={rating.rating} />
+          <Rating starRating={rating.rating} />
         </div>
       </div>
       <div
