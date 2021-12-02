@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   },
   stock: {
     display: 'inline-flex',
-    marginRight: 80,
+    marginRight: 30,
     marginBottom: 25,
     borderRadius: 15,
     width: 'auto',
@@ -50,6 +50,9 @@ const useStyles = makeStyles((theme) => ({
       fontSize: 13,
       marginLeft: 5,
       fontWeight: 600
+    },
+    [theme.breakpoints.up('md')]: {
+      marginRight: 80
     }
   },
   stockIcon: {
