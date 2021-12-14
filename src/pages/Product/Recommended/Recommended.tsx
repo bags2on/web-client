@@ -3,18 +3,7 @@ import ProductsSlider from '../../../shared/ProductsSlider'
 import CatalogItem from '../../../components/CatalogItem/CatalogItem'
 import { makeStyles } from '@material-ui/core'
 
-interface ProductType {
-  id: string
-  price: number
-  title: string
-  preview: string
-  basePrice: number
-  mainTag: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR'
-}
-
-interface PopularProps {
-  products: Array<ProductType>
-}
+import TEMP_RECOMENDED from './temp'
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -23,26 +12,25 @@ const useStyles = makeStyles(() => ({
   },
   title: {
     fontSize: '23px',
-    fontWeight: 600,
-    margin: '0 0 15px 10px'
+    fontWeight: 600
   }
 }))
 
-const Popular: React.FC<PopularProps> = ({ products }) => {
+const Recommended: React.FC = () => {
   const classes = useStyles()
 
   return (
     <section className={classes.root}>
-      <h2 className={classes.title}>Популярное</h2>
+      <h2 className={classes.title}>Рекомендуемые</h2>
       <ProductsSlider speed={500}>
-        {products.map((product) => (
+        {TEMP_RECOMENDED.map((product) => (
           <CatalogItem
             inStock
             key={product.id}
             id={product.id}
             url={product.preview}
             title={product.title}
-            price={product.price}
+            price={product.currentPrice}
             mainTag={product.mainTag}
             basePrice={product.basePrice}
             isFavorite={false} // TODO: get data form ac3
@@ -53,4 +41,4 @@ const Popular: React.FC<PopularProps> = ({ products }) => {
   )
 }
 
-export default Popular
+export default Recommended

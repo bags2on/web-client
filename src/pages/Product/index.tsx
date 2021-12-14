@@ -8,12 +8,13 @@ import ScaleLoader from '../../shared/loaders/ScaleLoader'
 import ErrorPlug from '../../shared/ErrorPlug'
 import Preview from './Preview/Preview'
 import Details from './Details'
-import { makeStyles } from '@material-ui/core'
+import Recommended from './Recommended/Recommended'
 import {
   GetProductByIdDocument,
   GetProductByIdQuery,
   GetProductByIdVariables
 } from '../../graphql/product/_gen_/productByID.query'
+import { makeStyles } from '@material-ui/core'
 
 interface ProductID {
   id: string
@@ -89,6 +90,7 @@ const ProductDetails: React.FC = () => {
           />
         </Grid>
       </Grid>
+      <Recommended />
     </div>
   )
 }
