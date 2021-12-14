@@ -1,5 +1,6 @@
 /node_modules
 /build
 /.VSCodeCounter
+/.vscode
 .env.production
 local-build.sh 

@@ -5,14 +5,15 @@ import Grid from '@material-ui/core/Grid'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemIcon from '@material-ui/core/ListItemIcon'
 import ListItemText from '@material-ui/core/ListItemText'
+import routes from '../../../utils/routes'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ReactComponent as BaggageIcon } from '../../../assets/svg/icons/baggage.svg'
 import { ReactComponent as WalletIcon } from '../../../assets/svg/icons/wallet.svg'
 import { ReactComponent as BagIcon } from '../../../assets/svg/icons/shopping-bag.svg'
 import { ReactComponent as OtherIcon } from '../../../assets/svg/icons/other.svg'
+import { ReactComponent as FlashIcon } from '../../../assets/svg/flash.svg'
 import { makeStyles } from '@material-ui/core'
-import routes from '../../../utils/routes'
 
 type CategoryItemType = {
   icon: React.ElementType
@@ -72,7 +73,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 20,
     fontWeight: 500,
     lineHeight: '1.5',
-    margin: '0 0 5px 10px'
+    margin: '0 0 5px 10px',
+    display: 'flex'
   },
   item: {
     margin: 5
@@ -136,7 +138,12 @@ const Categories: React.FC = () => {
 
   return (
     <section className={classes.root}>
-      <h2 className={classes.title}>Категории</h2>
+      <h2 className={classes.title}>
+        <SvgIcon component="span">
+          <FlashIcon />
+        </SvgIcon>
+        Категории
+      </h2>
       <div>
         <Grid component="ul" container>
           {categoriesValues.map((category, ind) => (
