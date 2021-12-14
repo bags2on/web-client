@@ -85,6 +85,14 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     textDecoration: 'line-through'
   },
+  percentage: {
+    color: '#fff',
+    marginLeft: 7,
+    fontWeight: 600,
+    borderRadius: 8,
+    padding: '2px 3px',
+    backgroundColor: '#f44336'
+  },
   description: {
     fontSize: 16,
     lineHeight: '1.5',
@@ -224,7 +232,12 @@ const Details: React.FC<SummaryProps> = ({
           [classes.priceDiscount]: basePrice !== currentPrice
         })}
       >
-        {basePrice !== currentPrice && <span className={classes.discount}>{formatPrice(basePrice)}&nbsp;₴</span>}
+        {basePrice !== currentPrice && (
+          <>
+            <span className={classes.discount}>{formatPrice(basePrice)}&nbsp;₴</span>
+            <span className={classes.percentage}>-{Math.round(((basePrice - currentPrice) * 100) / basePrice)}%</span>
+          </>
+        )}
         <p className={classes.currentPrice}>{formatPrice(currentPrice)}&nbsp;₴</p>
       </div>
       <div className={classes.description}>
