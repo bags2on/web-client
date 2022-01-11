@@ -15,7 +15,7 @@ interface styleProps {
 
 const useStyles = makeStyles<Theme, styleProps>((theme) => ({
   root: {
-    width: 214,
+    width: '100%',
     padding: 13,
     fontWeight: 400,
     backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
