@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CustomerInfo from './CustomerInfo/CustomerInfo'
 import Delivery from './Delivery/Delivery'
 import Preview from './Preview/Preview'
@@ -18,12 +18,15 @@ const useStyles = makeStyles((theme) => ({
   },
   root: {
     width: '100%',
-    maxWidth: 1400,
-    margin: '0 auto',
-    padding: '20px 0',
     height: '100%',
     display: 'flex',
-    justifyContent: 'space-between'
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: 1400,
+      margin: '0 auto',
+      padding: '20px 0'
+    }
   },
   emptyCartBox: {
     display: 'flex',
@@ -32,20 +35,40 @@ const useStyles = makeStyles((theme) => ({
     height: 'calc(100 * var(--vh))'
   },
   temp: {
-    width: 800,
-    padding: '20px 40px 20px 30px',
+    padding: '20px 10px 20px 10px',
     backgroundColor: '#fff',
-    borderRadius: 14
+    [theme.breakpoints.up('lg')]: {
+      width: 800,
+      borderRadius: 14,
+      padding: '20px 40px 20px 30px'
+    }
   }
 }))
 
 const Checkout: React.FC = () => {
   const classes = useStyles()
+  const [isInfoEdit, setInfoEdit] = useState<boolean>(false)
+  const [isDeliveryEdit, setDeliveryEdit] = useState<boolean>(false)
 
   const cart = useQuery(GET_CART_ITEMS)
   const [createOrder, { loading }] = useMutation(CREATE_ORDER)
 
   if (cart.data.cartItems.length === 0) return <Redirect to={routes.root} />
+
+  const handleInfoEditOpen = (): void => {
+    if (isDeliveryEdit) setDeliveryEdit(false)
+    setInfoEdit((prev) => !prev)
+  }
+
+  const handleDeliveryEditOpen = (): void => {
+    if (isInfoEdit) setInfoEdit(false)
+    setDeliveryEdit((prev) => !prev)
+  }
+
+  const handleContinue = () => {
+    setInfoEdit(false)
+    setDeliveryEdit(true)
+  }
 
   const handleSubmit = async (values: CheckoutOrderType): Promise<void> => {
     console.log(values)
@@ -82,8 +105,8 @@ const Checkout: React.FC = () => {
         {(): React.ReactElement => (
           <Form className={classes.root}>
             <div className={classes.temp}>
-              <CustomerInfo />
-              <Delivery />
+              <CustomerInfo isEdit={isInfoEdit} onEdit={handleInfoEditOpen} onContinue={handleContinue} />
+              <Delivery isEdit={isDeliveryEdit} onEdit={handleDeliveryEditOpen} />
             </div>
             <div>
               <Preview submitLoading={loading} />

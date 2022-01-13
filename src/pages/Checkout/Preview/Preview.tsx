@@ -17,12 +17,14 @@ interface PreviewProps {
   submitLoading: boolean
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    width: 430,
-    padding: '20px 40px 20px 30px',
     backgroundColor: '#fff',
-    borderRadius: 14
+    borderRadius: 14,
+    [theme.breakpoints.up('lg')]: {
+      width: 430,
+      padding: '20px 40px 20px 30px'
+    }
   },
   loaderWrapper: {
     width: 430,

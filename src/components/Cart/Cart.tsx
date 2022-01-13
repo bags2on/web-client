@@ -5,6 +5,8 @@ import Checkout from './Checkout/Checkout'
 import OrderSuccess from './OrderSuccess/OrderSuccess'
 import { useTransition, animated, config } from 'react-spring'
 import { makeStyles } from '@material-ui/core'
+import history from '../../utils/history'
+import routes from '../../utils/routes'
 
 interface CartProps {
   isOpen: boolean
@@ -53,7 +55,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   })
 
   const handleCheckout = (): void => {
-    slideNext()
+    // slideNext()
+    onClose()
+    history.push(routes.checkout)
   }
 
   const handleConfirm = (): void => {

@@ -11,33 +11,46 @@ import { CheckoutOrderType } from '../../../utils/validationSchema'
 import { ReactComponent as PinIcon } from '../../../assets/svg/icons/pin.svg'
 import { Field, useFormikContext } from 'formik'
 import { hiddenStyles } from '../../../utils/styling'
+import { animated, useSpring } from 'react-spring'
 import { makeStyles } from '@material-ui/core'
 
-const API_URL = process.env.REACT_APP_API_URL
+interface DeliveryProps {
+  isEdit: boolean
+  onEdit(): void
+}
 
 const useStyles = makeStyles(() => ({
   root: {},
+  titleWrapper: {
+    position: 'relative',
+    backgroundColor: '#e7e7e7',
+    padding: '20px 10px 37px 10px',
+    borderRadius: 10,
+    transition: 'background-color 0.3s'
+  },
   title: {
     display: 'flex',
     alignItems: 'center',
-    marginBottom: 25,
+    // marginBottom: 30,
+    marginBottom: 15,
+    borderRadius: 10,
     '& > h2': {
       margin: 0
     }
   },
+  titleWrapperExpand: {
+    backgroundColor: 'transparent',
+    justifyContent: 'flex-start',
+    marginBottom: 0
+  },
   listIcon: {
-    fontSize: 22,
+    fontSize: 32,
     lineHeight: '22px',
     color: '#979797',
     marginRight: 7
   },
   iconDone: {
     fill: 'limegreen'
-  },
-  editButton: {
-    width: 43,
-    height: 43,
-    padding: 10
   },
   deliveriesList: {
     display: 'flex',
@@ -94,6 +107,20 @@ const useStyles = makeStyles(() => ({
       backgroundPosition: '50% 50%'
     }
   },
+  editPlugHide: {
+    display: 'none'
+  },
+  editPlug: {
+    position: 'absolute',
+    left: '50%',
+    transform: 'translateX(-50%)',
+    bottom: 9,
+    color: 'var(--green-light)',
+    borderRadius: 10,
+    border: '2px solid var(--green-light)',
+    padding: '5px 7px',
+    fontWeight: 600
+  },
   formField: {
     width: '100%',
     maxWidth: 300,
@@ -115,6 +142,8 @@ const useStyles = makeStyles(() => ({
   postField: {}
 }))
 
+const API_URL = process.env.REACT_APP_API_URL
+
 type area = {
   id: string
   name: string
@@ -125,13 +154,22 @@ interface AreasType {
   areas: Array<area>
 }
 
-const Delivery: React.FC = () => {
+const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit }) => {
   const classes = useStyles()
 
   const { values } = useFormikContext<CheckoutOrderType>()
 
   const [areas, setAreas] = useState<AreasType>()
   const [areasLoading, setAreasLoading] = useState<boolean>(true)
+
+  const slideInStyles = useSpring({
+    config: { duration: 250 },
+    from: { opacity: 0, height: 0 },
+    to: {
+      opacity: isEdit ? 1 : 0,
+      height: isEdit ? 400 : 0
+    }
+  })
 
   useEffect(() => {
     const controller = new AbortController()
@@ -164,58 +202,69 @@ const Delivery: React.FC = () => {
 
   return (
     <div className={classes.root}>
-      <div className={classes.title}>
-        <Icon
-          component="span"
-          className={clsx({
-            [classes.listIcon]: true,
-            [classes.iconDone]: values.region && values.cityId && values.postOfficeId
-          })}
-        >
-          <PinIcon />
-        </Icon>
-        <h2>Доставка</h2>
+      <div
+        className={clsx({
+          [classes.titleWrapper]: true,
+          [classes.titleWrapperExpand]: isEdit
+        })}
+        onClick={onEdit}
+      >
+        <div className={classes.title}>
+          <Icon
+            component="span"
+            className={clsx({
+              [classes.listIcon]: true,
+              [classes.iconDone]: values.region && values.cityId && values.postOfficeId
+            })}
+          >
+            <PinIcon />
+          </Icon>
+          <h2>Способ доставки</h2>
+        </div>
+        <span className={clsx(isEdit ? classes.editPlugHide : classes.editPlug)}>Изменить</span>
       </div>
-      <ul className={classes.deliveriesList}>
-        <li>
-          <label className={classes.serviceLabel}>
-            <Field type="radio" name="supplier" value="nova-poshta" className={classes.input} />
-            <div className={classes.imageWrapper}>
-              <ImagePlaceholder plain src={novaPoshtaImage} altText="логотип 'Новая Почта'" />
-            </div>
-          </label>
-        </li>
-        <li>
-          <label className={classes.serviceLabel}>
-            <Field type="radio" name="supplier" value="url-poshta" className={classes.input} />
-            <div className={classes.imageWrapper}>
-              <ImagePlaceholder plain src={urkPoshtaImage} altText="логотип 'Укр Почта'" />
-            </div>
-          </label>
-        </li>
-        <li>
-          <label className={classes.serviceLabel}>
-            <Field type="radio" name="supplier" value="justin" className={classes.input} />
-            <div className={classes.imageWrapper}>
-              <ImagePlaceholder plain src={justinImage} altText="логотип 'Justin'" />
-            </div>
-          </label>
-        </li>
-      </ul>
-      <div className={classes.areaContainer}>
+      <animated.div style={{ ...slideInStyles, overflow: 'hidden' }}>
+        <ul className={classes.deliveriesList}>
+          <li>
+            <label className={classes.serviceLabel}>
+              <Field type="radio" name="supplier" value="nova-poshta" className={classes.input} />
+              <div className={classes.imageWrapper}>
+                <ImagePlaceholder plain src={novaPoshtaImage} altText="логотип 'Новая Почта'" />
+              </div>
+            </label>
+          </li>
+          <li>
+            <label className={classes.serviceLabel}>
+              <Field type="radio" name="supplier" value="url-poshta" className={classes.input} />
+              <div className={classes.imageWrapper}>
+                <ImagePlaceholder plain src={urkPoshtaImage} altText="логотип 'Укр Почта'" />
+              </div>
+            </label>
+          </li>
+          <li>
+            <label className={classes.serviceLabel}>
+              <Field type="radio" name="supplier" value="justin" className={classes.input} />
+              <div className={classes.imageWrapper}>
+                <ImagePlaceholder plain src={justinImage} altText="логотип 'Justin'" />
+              </div>
+            </label>
+          </li>
+        </ul>
+        <div className={classes.areaContainer}>
+          <FormControl className={classes.formField}>
+            <span>Область</span>
+            <TextInput name="region" disabled={areasLoading} select fullWidth options={areasOptions} />
+          </FormControl>
+          <FormControl className={clsx(classes.formField, classes.cityField)}>
+            <span>Город</span>
+            <TextInput name="cityId" select disabled={!values.region} fullWidth options={citiesOptions} />
+          </FormControl>
+        </div>
         <FormControl className={classes.formField}>
-          <span>Область</span>
-          <TextInput name="region" disabled={areasLoading} select fullWidth options={areasOptions} />
+          <span>Выберите отделение</span>
+          <TextInput name="postOfficeId" />
         </FormControl>
-        <FormControl className={clsx(classes.formField, classes.cityField)}>
-          <span>Город</span>
-          <TextInput name="cityId" select disabled={!values.region} fullWidth options={citiesOptions} />
-        </FormControl>
-      </div>
-      <FormControl className={classes.formField}>
-        <span>Выберите отделение</span>
-        <TextInput name="postOfficeId" />
-      </FormControl>
+      </animated.div>
     </div>
   )
 }

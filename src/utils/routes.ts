@@ -11,6 +11,7 @@ const routes: RoutesMap = {
   profile: '/profile',
   favorite: '/profile/favorite',
   profileInfo: '/profile/info',
+  checkout: '/checkout',
   notFound: '/404'
 }
 
