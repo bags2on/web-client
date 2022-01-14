@@ -10,6 +10,7 @@ import { CheckoutOrderSchema, CheckoutOrderType } from '../../utils/validationSc
 import { Formik, Form } from 'formik'
 import { CREATE_ORDER } from '../../graphql/order'
 import { Redirect } from 'react-router-dom'
+import { useWindowRatio } from '../../hooks'
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
@@ -36,17 +37,20 @@ const useStyles = makeStyles((theme) => ({
   },
   temp: {
     padding: '20px 10px 20px 10px',
-    backgroundColor: '#fff',
+    backgroundColor: '#f2f2f2',
     [theme.breakpoints.up('lg')]: {
-      width: 800,
+      maxWidth: 800,
       borderRadius: 14,
-      padding: '20px 40px 20px 30px'
+      padding: '20px 40px 20px 30px',
+      backgroundColor: '#fff'
     }
   }
 }))
 
 const Checkout: React.FC = () => {
   const classes = useStyles()
+  const [windowWidth] = useWindowRatio()
+
   const [isInfoEdit, setInfoEdit] = useState<boolean>(false)
   const [isDeliveryEdit, setDeliveryEdit] = useState<boolean>(false)
 
@@ -56,11 +60,13 @@ const Checkout: React.FC = () => {
   if (cart.data.cartItems.length === 0) return <Redirect to={routes.root} />
 
   const handleInfoEditOpen = (): void => {
+    if (windowWidth >= 900) return
     if (isDeliveryEdit) setDeliveryEdit(false)
     setInfoEdit((prev) => !prev)
   }
 
   const handleDeliveryEditOpen = (): void => {
+    if (windowWidth >= 900) return
     if (isInfoEdit) setInfoEdit(false)
     setDeliveryEdit((prev) => !prev)
   }

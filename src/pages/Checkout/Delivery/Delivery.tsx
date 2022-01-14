@@ -7,6 +7,7 @@ import novaPoshtaImage from '../../../assets/svg/nova_poshta.svg'
 import urkPoshtaImage from '../../../assets/svg/ukr-poshta.svg'
 import justinImage from '../../../assets/svg/justin.svg'
 import Icon from '@material-ui/core/SvgIcon'
+import Button from '../../../shared/Button/Button'
 import { CheckoutOrderType } from '../../../utils/validationSchema'
 import { ReactComponent as PinIcon } from '../../../assets/svg/icons/pin.svg'
 import { Field, useFormikContext } from 'formik'
@@ -19,14 +20,25 @@ interface DeliveryProps {
   onEdit(): void
 }
 
-const useStyles = makeStyles(() => ({
-  root: {},
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    [theme.breakpoints.up('lg')]: {
+      backgroundColor: 'transparent',
+      borderRadius: 'none'
+    }
+  },
   titleWrapper: {
     position: 'relative',
-    backgroundColor: '#e7e7e7',
+    backgroundColor: '#e1e1e1',
     padding: '20px 10px 37px 10px',
     borderRadius: 10,
-    transition: 'background-color 0.3s'
+    transition: 'all 0.3s',
+    [theme.breakpoints.up('lg')]: {
+      backgroundColor: 'transparent',
+      padding: '0'
+    }
   },
   title: {
     display: 'flex',
@@ -41,13 +53,17 @@ const useStyles = makeStyles(() => ({
   titleWrapperExpand: {
     backgroundColor: 'transparent',
     justifyContent: 'flex-start',
-    marginBottom: 0
+    marginBottom: 0,
+    paddingBottom: 0
   },
   listIcon: {
     fontSize: 32,
     lineHeight: '22px',
     color: '#979797',
-    marginRight: 7
+    marginRight: 7,
+    [theme.breakpoints.up('lg')]: {
+      fontSize: 30
+    }
   },
   iconDone: {
     fill: 'limegreen'
@@ -59,8 +75,17 @@ const useStyles = makeStyles(() => ({
     listStyle: 'none',
     marginBottom: 15,
     '& li': {
-      flexBasis: '25%',
-      marginRight: 11
+      flexBasis: '33%',
+      margin: '0 5px',
+      '-webkit-tap-highlight-color': 'transparent',
+      '-moz-appearance': 'none',
+      '-webkit-appearance': 'none'
+    },
+    [theme.breakpoints.up('lg')]: {
+      '& li': {
+        flexBasis: '25%',
+        marginRight: 11
+      }
     }
   },
   serviceLabel: {
@@ -70,6 +95,7 @@ const useStyles = makeStyles(() => ({
     ...hiddenStyles,
     '&:checked + $imageWrapper': {
       borderColor: 'var(--green-light)',
+      backgroundColor: 'rgba(50, 205, 50, .2)',
       '&::before': {
         transform: 'scale(1)',
         opacity: 1,
@@ -83,7 +109,7 @@ const useStyles = makeStyles(() => ({
     cursor: 'pointer',
     position: 'relative',
     borderRadius: 10,
-    border: '1px solid #eeeeee',
+    border: '1px solid #d7d7d7',
     padding: '10px 10px',
     transition: 'border-color 0.3s',
     '&:hover': {
@@ -99,7 +125,7 @@ const useStyles = makeStyles(() => ({
       borderRadius: '50%',
       border: '1px solid #aeaeae',
       opacity: 0,
-      transform: 'scale(0)',
+      // transform: 'scale(0)', // TODO: bounce?
       transition: '0.25s ease',
       backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='192' height='192' fill='%23FFFFFF' viewBox='0 0 256 256'%3E%3Crect width='256' height='256' fill='none'%3E%3C/rect%3E%3Cpolyline points='216 72.005 104 184 48 128.005' fill='none' stroke='%23FFFFFF' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'%3E%3C/polyline%3E%3C/svg%3E")`,
       backgroundSize: '12px',
@@ -119,16 +145,28 @@ const useStyles = makeStyles(() => ({
     borderRadius: 10,
     border: '2px solid var(--green-light)',
     padding: '5px 7px',
-    fontWeight: 600
+    fontWeight: 600,
+    [theme.breakpoints.up('lg')]: {
+      display: 'none'
+    }
+  },
+  animatedBox: {
+    padding: '0 10px',
+    [theme.breakpoints.up('lg')]: {
+      opacity: '1 !important',
+      height: 'auto !important'
+    }
   },
   formField: {
     width: '100%',
     maxWidth: 300,
     display: 'flex',
     '& > span': {
-      //   fontSize: 16,
-      //   color: '#5a5a5a',
-      //   paddingBottom: 5
+      fontSize: 15,
+      color: '#6a6a6a',
+      fontWeight: 600,
+      paddingLeft: 7,
+      marginBottom: 3
     }
   },
   areaContainer: {
@@ -136,10 +174,20 @@ const useStyles = makeStyles(() => ({
     flexWrap: 'wrap'
   },
   cityField: {
-    marginLeft: 25,
-    width: 230
+    width: 230,
+    [theme.breakpoints.up('lg')]: {
+      marginLeft: 25
+    }
   },
-  postField: {}
+  postField: {},
+  saveButton: {
+    display: 'block',
+    margin: '0 auto',
+    backgroundColor: 'var(--green-light)',
+    [theme.breakpoints.up('lg')]: {
+      display: 'none'
+    }
+  }
 }))
 
 const API_URL = process.env.REACT_APP_API_URL
@@ -167,7 +215,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit }) => {
     from: { opacity: 0, height: 0 },
     to: {
       opacity: isEdit ? 1 : 0,
-      height: isEdit ? 400 : 0
+      height: isEdit ? 455 : 0
     }
   })
 
@@ -223,7 +271,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit }) => {
         </div>
         <span className={clsx(isEdit ? classes.editPlugHide : classes.editPlug)}>Изменить</span>
       </div>
-      <animated.div style={{ ...slideInStyles, overflow: 'hidden' }}>
+      <animated.div style={{ ...slideInStyles, overflow: 'hidden' }} className={classes.animatedBox}>
         <ul className={classes.deliveriesList}>
           <li>
             <label className={classes.serviceLabel}>
@@ -264,6 +312,9 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit }) => {
           <span>Выберите отделение</span>
           <TextInput name="postOfficeId" />
         </FormControl>
+        <Button disableShadow className={classes.saveButton}>
+          Ок
+        </Button>
       </animated.div>
     </div>
   )
