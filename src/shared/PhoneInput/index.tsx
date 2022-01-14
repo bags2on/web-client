@@ -19,7 +19,7 @@ const useStyles = makeStyles<Theme, styleProps>((theme) => ({
     padding: 13,
     fontWeight: 400,
     backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
-    borderRadius: 14,
+    borderRadius: 8,
     border: '1px solid',
     fontSize: '1rem',
     borderColor: ({ withError }) => (withError ? 'red' : 'rgba(0, 0, 0, 0.23)'),

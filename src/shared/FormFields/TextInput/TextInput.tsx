@@ -26,7 +26,7 @@ interface TextInputProps {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    borderRadius: 14,
+    borderRadius: 8,
     backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
     boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;',
     color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
