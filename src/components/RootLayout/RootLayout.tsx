@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { useLang, useWindowHeight } from '../../hooks'
+import { useLang, useWindowRatio } from '../../hooks'
 import Header from '../Header/Header'
 import Drawer from '../Drawer/Drawer'
 import Cart from '../Cart/Cart'
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
   useLang()
-  useWindowHeight()
+  useWindowRatio()
 
   const classes = useStyles()
 
