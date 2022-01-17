@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import CustomerInfo from './CustomerInfo/CustomerInfo'
 import Delivery from './Delivery/Delivery'
 import Preview from './Preview/Preview'
+import Modal from './Modal'
 import routes from '../../utils/routes'
 import { useMutation } from '@apollo/client'
 import { useQuery } from '@apollo/client'
@@ -12,6 +13,7 @@ import { CREATE_ORDER } from '../../graphql/order'
 import { Redirect } from 'react-router-dom'
 import { useWindowRatio } from '../../hooks'
 import { makeStyles } from '@material-ui/core'
+import history from '../../utils/history'
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -61,6 +63,8 @@ const Checkout: React.FC = () => {
   const classes = useStyles()
   const [windowWidth] = useWindowRatio()
 
+  const [isModalOpen, setModalOpen] = useState<boolean>(false)
+
   const [isInfoEdit, setInfoEdit] = useState<boolean>(false)
   const [isDeliveryEdit, setDeliveryEdit] = useState<boolean>(false)
 
@@ -98,14 +102,18 @@ const Checkout: React.FC = () => {
     console.log(values)
 
     try {
-      const req = await createOrder({
+      await createOrder({
         variables: { ...values }
       })
-
-      console.log(req)
+      setModalOpen(true)
     } catch (error) {
       console.log('CREATE_ORDER error: ', error)
     }
+  }
+
+  const hanldeModalClose = () => {
+    setModalOpen(false)
+    history.replace(routes.root)
   }
 
   return (
@@ -138,6 +146,7 @@ const Checkout: React.FC = () => {
           </Form>
         )}
       </Formik>
+      <Modal open={isModalOpen} onClose={hanldeModalClose} />
     </div>
   )
 }
