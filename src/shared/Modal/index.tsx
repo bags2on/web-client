@@ -17,8 +17,10 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '10px',
     border: '5px solid #4c4c4c',
     margin: 0,
+    width: '100%',
     [theme.breakpoints.up('md')]: {
-      margin: 30
+      margin: 30,
+      width: 'auto'
     }
   },
   paperScrollPaper: {
