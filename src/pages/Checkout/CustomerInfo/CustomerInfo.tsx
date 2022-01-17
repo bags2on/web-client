@@ -20,16 +20,16 @@ interface CustomerInfoProps {
 const useStyles = makeStyles((theme) => ({
   root: {
     marginBottom: 30,
-    backgroundColor: '#fff',
+    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#323232',
     borderRadius: 10,
     [theme.breakpoints.up('lg')]: {
       backgroundColor: 'transparent',
-      borderRadius: 'none'
+      borderRadius: 0
     }
   },
   titleWrapper: {
     position: 'relative',
-    backgroundColor: '#e1e1e1',
+    backgroundColor: theme.palette.type === 'light' ? '#e1e1e1' : '#343434',
     padding: '20px 10px 37px 10px',
     borderRadius: 10,
     transition: 'all 0.3s',
@@ -47,7 +47,11 @@ const useStyles = makeStyles((theme) => ({
       margin: 0
     },
     [theme.breakpoints.up('lg')]: {
+      justifyContent: 'center',
       marginBottom: 30
+    },
+    [theme.breakpoints.up('xl')]: {
+      justifyContent: 'start'
     }
   },
   titleWrapperExpand: {
@@ -58,27 +62,30 @@ const useStyles = makeStyles((theme) => ({
   },
   wrapper: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    [theme.breakpoints.up('xl')]: {
+      maxWidth: 560
+    }
   },
   formField: {
     flexBasis: '100%',
     '& > span': {
       fontSize: 15,
-      color: '#6a6a6a',
-      fontWeight: 600,
+      color: theme.palette.type === 'light' ? '6a6a6a' : '#fff',
+      fontWeight: 500,
       paddingLeft: 7,
-      marginBottom: 3
+      marginBottom: 5
     },
-    [theme.breakpoints.up('lg')]: {
-      flexBasis: '50%',
-      maxWidth: 250,
-      marginRight: 50
+    ['@media screen and (min-width: 1000px)']: {
+      flexBasis: '48%'
     }
   },
   divider: {
     [theme.breakpoints.up('lg')]: {
       marginTop: '15px',
-      borderBottom: '2px solid #dcdcdc'
+      borderBottom: '2px solid',
+      borderBottomColor: theme.palette.type === 'light' ? '#dcdcdc' : '#646464'
     }
   },
   listIcon: {
@@ -91,8 +98,9 @@ const useStyles = makeStyles((theme) => ({
     fill: 'limegreen'
   },
   animatedBox: {
-    padding: '0 10px',
+    padding: '0 17px',
     [theme.breakpoints.up('lg')]: {
+      padding: '0 5px',
       opacity: '1 !important',
       height: 'auto !important'
     }
@@ -104,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     left: '50%',
     transform: 'translateX(-50%)',
-    bottom: 9,
+    bottom: 10,
     color: 'var(--green-light)',
     borderRadius: 10,
     border: '2px solid var(--green-light)',
@@ -114,7 +122,11 @@ const useStyles = makeStyles((theme) => ({
       display: 'none'
     }
   },
-  nextButton: {
+  сontinueButton: {
+    backgroundColor: 'var(--green-light)',
+    '&:hover': {
+      backgroundColor: 'var(--green-light)'
+    },
     [theme.breakpoints.up('lg')]: {
       display: 'none'
     }
@@ -131,7 +143,7 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
     from: { opacity: 0, height: 0 },
     to: {
       opacity: isEdit ? 1 : 0,
-      height: isEdit ? 440 : 0
+      height: isEdit ? 445 : 0
     }
   })
 
@@ -181,8 +193,8 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
             <TextInput name="email" type="email" fullWidth />
           </FormControl>
         </div>
-        <Button disableShadow fullWidth className={classes.nextButton} onClick={handleNextClick}>
-          Далее
+        <Button disableShadow fullWidth className={classes.сontinueButton} onClick={handleNextClick}>
+          Продолжить
         </Button>
       </animated.div>
       <div className={classes.divider} />

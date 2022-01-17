@@ -19,22 +19,31 @@ interface PreviewProps {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: '#fff',
+    padding: '10px',
+    [theme.breakpoints.up('lg')]: {
+      padding: 0
+    }
+  },
+  wrapper: {
+    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#323232',
     borderRadius: 14,
+    padding: '7px 10px 15px 10px',
     [theme.breakpoints.up('lg')]: {
       width: 430,
       padding: '20px 40px 20px 30px'
     }
   },
   loaderWrapper: {
-    width: 430,
-    padding: '20px 40px 20px 30px',
-    backgroundColor: '#fff',
+    width: '100%',
+    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#323232',
     borderRadius: 14,
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '500px'
+    height: '500px',
+    [theme.breakpoints.up('lg')]: {
+      width: 430
+    }
   }
 }))
 
@@ -43,6 +52,7 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading }) => {
 
   const cart = useQuery(GET_CART_ITEMS)
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data, loading, error } = useQuery<CartProductsQuery, CartProductsVariables>(CartProductsDocument, {
     variables: {
       input: cart.data.cartItems
@@ -61,10 +71,6 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading }) => {
     }
   })
 
-  const onClose = (): void => {
-    console.log('close')
-  }
-
   if (loading) {
     return (
       <div className={classes.loaderWrapper}>
@@ -79,8 +85,10 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading }) => {
 
   return (
     <section className={classes.root}>
-      <CartItems cartItems={data?.cartProducts || []} onClose={onClose} />
-      <Summary onClose={onClose} submitLoading={submitLoading} />
+      <div className={classes.wrapper}>
+        <CartItems cartItems={data?.cartProducts || []} />
+        <Summary submitLoading={submitLoading} />
+      </div>
     </section>
   )
 }

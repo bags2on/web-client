@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import CustomerInfo from './CustomerInfo/CustomerInfo'
 import Delivery from './Delivery/Delivery'
 import Preview from './Preview/Preview'
@@ -15,7 +15,7 @@ import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
-    backgroundColor: theme.palette.type === 'light' ? '#f3f3f3' : '#282828'
+    backgroundColor: theme.palette.type === 'light' ? '#f3f3f3' : 'transparent'
   },
   root: {
     width: '100%',
@@ -25,8 +25,9 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     [theme.breakpoints.up('lg')]: {
       maxWidth: 1400,
+      flexWrap: 'nowrap',
       margin: '0 auto',
-      padding: '20px 0'
+      padding: '20px 7px'
     }
   },
   emptyCartBox: {
@@ -35,14 +36,23 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     height: 'calc(100 * var(--vh))'
   },
-  temp: {
+  mainBox: {
     padding: '20px 10px 20px 10px',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: theme.palette.type === 'light' ? '#f2f2f2' : 'transparent',
     [theme.breakpoints.up('lg')]: {
-      maxWidth: 800,
       borderRadius: 14,
+      marginRight: 20,
+      backgroundColor: theme.palette.type === 'light' ? '#fff' : '#323232'
+    },
+    [theme.breakpoints.up('xl')]: {
       padding: '20px 40px 20px 30px',
-      backgroundColor: '#fff'
+      flexBasis: '65%'
+    }
+  },
+  wrapBox: {
+    width: '100%',
+    [theme.breakpoints.up('lg')]: {
+      width: 'auto'
     }
   }
 }))
@@ -56,6 +66,10 @@ const Checkout: React.FC = () => {
 
   const cart = useQuery(GET_CART_ITEMS)
   const [createOrder, { loading }] = useMutation(CREATE_ORDER)
+
+  useEffect(() => {
+    window.scrollTo({ top: 0 })
+  }, [])
 
   if (cart.data.cartItems.length === 0) return <Redirect to={routes.root} />
 
@@ -71,9 +85,13 @@ const Checkout: React.FC = () => {
     setDeliveryEdit((prev) => !prev)
   }
 
-  const handleContinue = () => {
+  const handleInfoChecked = () => {
     setInfoEdit(false)
     setDeliveryEdit(true)
+  }
+
+  const handleDeliveryChecked = () => {
+    setDeliveryEdit(false)
   }
 
   const handleSubmit = async (values: CheckoutOrderType): Promise<void> => {
@@ -110,11 +128,11 @@ const Checkout: React.FC = () => {
       >
         {(): React.ReactElement => (
           <Form className={classes.root}>
-            <div className={classes.temp}>
-              <CustomerInfo isEdit={isInfoEdit} onEdit={handleInfoEditOpen} onContinue={handleContinue} />
-              <Delivery isEdit={isDeliveryEdit} onEdit={handleDeliveryEditOpen} />
+            <div className={classes.mainBox}>
+              <CustomerInfo isEdit={isInfoEdit} onEdit={handleInfoEditOpen} onContinue={handleInfoChecked} />
+              <Delivery isEdit={isDeliveryEdit} onEdit={handleDeliveryEditOpen} onContinue={handleDeliveryChecked} />
             </div>
-            <div>
+            <div className={classes.wrapBox}>
               <Preview submitLoading={loading} />
             </div>
           </Form>

@@ -8,7 +8,6 @@ import { makeStyles } from '@material-ui/core'
 
 interface SummaryProps {
   submitLoading: boolean
-  onClose(): void
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -47,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     '& > p': {
       textAlign: 'center',
       fontSize: 13,
-      color: '#6c757d',
+      color: theme.palette.type === 'light' ? '#6c757d' : '#f1f1f1',
       paddingLeft: 3
     }
   }

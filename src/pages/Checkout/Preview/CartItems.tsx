@@ -12,12 +12,14 @@ import { makeStyles } from '@material-ui/core'
 
 interface CartItemsProps {
   cartItems: CartItemType[]
-  onClose(): void
 }
 
 const useStyles = makeStyles(() => ({
   root: {
     position: 'relative'
+  },
+  title: {
+    paddingLeft: 7
   },
   list: {
     margin: 0,
@@ -69,7 +71,7 @@ const CartItems: React.FC<CartItemsProps> = ({ cartItems }) => {
     <Grid container>
       <Grid item xs={12}>
         <Grid container justify="space-between" alignItems="center">
-          <h2>Ваш заказ</h2>
+          <h2 className={classes.title}>Ваш заказ</h2>
           <IconButton onClick={handleClearAllClick} className={classes.clearButton} aria-label={`Удалить товар`}>
             <Tooltip title="Удалить все">
               <SvgIcon>

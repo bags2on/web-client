@@ -18,11 +18,12 @@ import { makeStyles } from '@material-ui/core'
 interface DeliveryProps {
   isEdit: boolean
   onEdit(): void
+  onContinue(): void
 }
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: '#fff',
+    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#323232',
     borderRadius: 10,
     [theme.breakpoints.up('lg')]: {
       backgroundColor: 'transparent',
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   },
   titleWrapper: {
     position: 'relative',
-    backgroundColor: '#e1e1e1',
+    backgroundColor: theme.palette.type === 'light' ? '#e1e1e1' : '#343434',
     padding: '20px 10px 37px 10px',
     borderRadius: 10,
     transition: 'all 0.3s',
@@ -43,11 +44,17 @@ const useStyles = makeStyles((theme) => ({
   title: {
     display: 'flex',
     alignItems: 'center',
-    // marginBottom: 30,
     marginBottom: 15,
     borderRadius: 10,
     '& > h2': {
       margin: 0
+    },
+    [theme.breakpoints.up('lg')]: {
+      justifyContent: 'center',
+      marginBottom: 30
+    },
+    [theme.breakpoints.up('xl')]: {
+      justifyContent: 'start'
     }
   },
   titleWrapperExpand: {
@@ -73,19 +80,17 @@ const useStyles = makeStyles((theme) => ({
     margin: 0,
     padding: '15px 0',
     listStyle: 'none',
-    marginBottom: 15,
-    '& li': {
-      flexBasis: '33%',
-      margin: '0 5px',
-      '-webkit-tap-highlight-color': 'transparent',
-      '-moz-appearance': 'none',
-      '-webkit-appearance': 'none'
-    },
-    [theme.breakpoints.up('lg')]: {
-      '& li': {
-        flexBasis: '25%',
-        marginRight: 11
-      }
+    marginBottom: 15
+  },
+  deliveriesListItem: {
+    flexBasis: '33%',
+    margin: '0 5px',
+    '-webkit-tap-highlight-color': 'transparent',
+    '-moz-appearance': 'none',
+    '-webkit-appearance': 'none',
+    [theme.breakpoints.up('xl')]: {
+      flexBasis: '25%',
+      margin: '0 10px'
     }
   },
   serviceLabel: {
@@ -95,7 +100,7 @@ const useStyles = makeStyles((theme) => ({
     ...hiddenStyles,
     '&:checked + $imageWrapper': {
       borderColor: 'var(--green-light)',
-      backgroundColor: 'rgba(50, 205, 50, .2)',
+      backgroundColor: theme.palette.type === 'light' ? 'rgba(50, 205, 50, .2)' : '#fff',
       '&::before': {
         transform: 'scale(1)',
         opacity: 1,
@@ -112,6 +117,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #d7d7d7',
     padding: '10px 10px',
     transition: 'border-color 0.3s',
+    backgroundColor: '#fff',
     '&:hover': {
       borderColor: 'var(--green-light)'
     },
@@ -140,7 +146,7 @@ const useStyles = makeStyles((theme) => ({
     position: 'absolute',
     left: '50%',
     transform: 'translateX(-50%)',
-    bottom: 9,
+    bottom: 10,
     color: 'var(--green-light)',
     borderRadius: 10,
     border: '2px solid var(--green-light)',
@@ -159,31 +165,37 @@ const useStyles = makeStyles((theme) => ({
   },
   formField: {
     width: '100%',
-    maxWidth: 300,
-    display: 'flex',
     '& > span': {
       fontSize: 15,
-      color: '#6a6a6a',
-      fontWeight: 600,
+      color: theme.palette.type === 'light' ? '6a6a6a' : '#fff',
+      fontWeight: 500,
       paddingLeft: 7,
-      marginBottom: 3
+      marginBottom: 5
+    },
+    ['@media screen and (min-width: 1000px)']: {
+      maxWidth: 300
     }
   },
   areaContainer: {
     display: 'flex',
-    flexWrap: 'wrap'
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    [theme.breakpoints.up('xl')]: {
+      justifyContent: 'flex-start'
+    }
   },
   cityField: {
-    width: 230,
-    [theme.breakpoints.up('lg')]: {
+    [theme.breakpoints.up('xl')]: {
+      width: 230,
       marginLeft: 25
     }
   },
   postField: {},
-  saveButton: {
-    display: 'block',
-    margin: '0 auto',
+  сontinueButton: {
     backgroundColor: 'var(--green-light)',
+    '&:hover': {
+      backgroundColor: 'var(--green-light)'
+    },
     [theme.breakpoints.up('lg')]: {
       display: 'none'
     }
@@ -202,7 +214,7 @@ interface AreasType {
   areas: Array<area>
 }
 
-const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit }) => {
+const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
   const classes = useStyles()
 
   const { values } = useFormikContext<CheckoutOrderType>()
@@ -215,7 +227,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit }) => {
     from: { opacity: 0, height: 0 },
     to: {
       opacity: isEdit ? 1 : 0,
-      height: isEdit ? 455 : 0
+      height: isEdit ? 475 : 0
     }
   })
 
@@ -249,7 +261,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit }) => {
     })) || []
 
   return (
-    <div className={classes.root}>
+    <section className={classes.root}>
       <div
         className={clsx({
           [classes.titleWrapper]: true,
@@ -273,7 +285,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit }) => {
       </div>
       <animated.div style={{ ...slideInStyles, overflow: 'hidden' }} className={classes.animatedBox}>
         <ul className={classes.deliveriesList}>
-          <li>
+          <li className={classes.deliveriesListItem}>
             <label className={classes.serviceLabel}>
               <Field type="radio" name="supplier" value="nova-poshta" className={classes.input} />
               <div className={classes.imageWrapper}>
@@ -281,7 +293,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit }) => {
               </div>
             </label>
           </li>
-          <li>
+          <li className={classes.deliveriesListItem}>
             <label className={classes.serviceLabel}>
               <Field type="radio" name="supplier" value="url-poshta" className={classes.input} />
               <div className={classes.imageWrapper}>
@@ -289,7 +301,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit }) => {
               </div>
             </label>
           </li>
-          <li>
+          <li className={classes.deliveriesListItem}>
             <label className={classes.serviceLabel}>
               <Field type="radio" name="supplier" value="justin" className={classes.input} />
               <div className={classes.imageWrapper}>
@@ -312,11 +324,11 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit }) => {
           <span>Выберите отделение</span>
           <TextInput name="postOfficeId" />
         </FormControl>
-        <Button disableShadow className={classes.saveButton}>
-          Ок
+        <Button disableShadow fullWidth onClick={onContinue} className={classes.сontinueButton}>
+          Продолжить
         </Button>
       </animated.div>
-    </div>
+    </section>
   )
 }
 
