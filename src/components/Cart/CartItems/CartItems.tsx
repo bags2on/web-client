@@ -4,7 +4,7 @@ import Summary from '../Summary/Summary'
 import Button from '../../../shared/Button/Button'
 import ResponsePlug from './ResponsePlug'
 import ContentLoader from 'react-content-loader'
-import CartItem, { CartItemType } from '../CartItem/CartItem'
+import CartItem, { CartItemType } from '../../CartItem/CartItem'
 import { useQuery } from '@apollo/client'
 import { GET_CART_ITEMS } from '../../../apollo/cache/queries/cart'
 import { CartMutations } from '../../../apollo/cache/mutations'
@@ -81,8 +81,6 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
     }
   })
 
-  console.log('data: ', data)
-
   if (isCartEmpty) {
     return <ResponsePlug text="Корзина пуста" onClose={onClose} />
   }
@@ -92,16 +90,10 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   }
 
   const handleClearAllClick = (): void => {
-    /*  Attention useEffect hook will invoke error: «Rendered fewer hooks than expected»
-        because render and re-render depends on AC cart state and useSpring()...
-    */
     CartMutations.clearCart()
   }
 
   const handleProductRemove = (id: string): void => {
-    /*  Attention useEffect hook will invoke error: «Rendered fewer hooks than expected»
-        because render and re-render depends on AC cart state and useSpring()...
-    */
     CartMutations.removeProduct(id)
   }
 
