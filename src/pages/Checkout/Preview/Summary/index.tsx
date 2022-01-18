@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core'
 
 interface SummaryProps {
   submitLoading: boolean
+  orderCreationErr: boolean
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -49,10 +50,23 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.type === 'light' ? '#6c757d' : '#f1f1f1',
       paddingLeft: 3
     }
+  },
+  creationErr: {
+    fontWeight: 500,
+    marginTop: 10,
+    fontSize: 16,
+    padding: '10px 15px',
+    borderRadius: 10,
+    color: '#fff',
+    backgroundColor: '#f44336',
+    '& p': {
+      margin: 0,
+      marginTop: 5
+    }
   }
 }))
 
-const Summary: React.FC<SummaryProps> = ({ submitLoading }) => {
+const Summary: React.FC<SummaryProps> = ({ submitLoading, orderCreationErr }) => {
   const classes = useStyles()
   const { data } = useQuery(GET_CART_PRICE)
 
@@ -70,6 +84,12 @@ const Summary: React.FC<SummaryProps> = ({ submitLoading }) => {
             Подтвердить заказ
           </Button>
         </Grid>
+        {orderCreationErr && (
+          <div className={classes.creationErr}>
+            <b>Внимание!</b>
+            <p>Произошла ошибка, повторите попытку позже</p>
+          </div>
+        )}
         <div className={classes.conditions}>
           <p>Подтверждая заказ, я принимаю условия пользовательского соглашения</p>
         </div>

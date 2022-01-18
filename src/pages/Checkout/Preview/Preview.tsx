@@ -15,6 +15,7 @@ import { makeStyles } from '@material-ui/core'
 
 interface PreviewProps {
   submitLoading: boolean
+  orderCreationErr: boolean
 }
 
 const useStyles = makeStyles((theme) => ({
@@ -47,12 +48,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Preview: React.FC<PreviewProps> = ({ submitLoading }) => {
+const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) => {
   const classes = useStyles()
 
   const cart = useQuery(GET_CART_ITEMS)
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { data, loading, error } = useQuery<CartProductsQuery, CartProductsVariables>(CartProductsDocument, {
     variables: {
       input: cart.data.cartItems
@@ -87,7 +87,7 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading }) => {
     <section className={classes.root}>
       <div className={classes.wrapper}>
         <CartItems cartItems={data?.cartProducts || []} />
-        <Summary submitLoading={submitLoading} />
+        <Summary submitLoading={submitLoading} orderCreationErr={orderCreationErr} />
       </div>
     </section>
   )

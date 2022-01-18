@@ -64,6 +64,7 @@ const Checkout: React.FC = () => {
   const [windowWidth] = useWindowRatio()
 
   const [isModalOpen, setModalOpen] = useState<boolean>(false)
+  const [orderErr, setOrderErr] = useState<boolean>(false)
 
   const [isInfoEdit, setInfoEdit] = useState<boolean>(false)
   const [isDeliveryEdit, setDeliveryEdit] = useState<boolean>(false)
@@ -107,7 +108,7 @@ const Checkout: React.FC = () => {
       })
       setModalOpen(true)
     } catch (error) {
-      console.log('CREATE_ORDER error: ', error)
+      setOrderErr(true)
     }
   }
 
@@ -141,7 +142,7 @@ const Checkout: React.FC = () => {
               <Delivery isEdit={isDeliveryEdit} onEdit={handleDeliveryEditOpen} onContinue={handleDeliveryChecked} />
             </div>
             <div className={classes.wrapBox}>
-              <Preview submitLoading={loading} />
+              <Preview submitLoading={loading} orderCreationErr={orderErr} />
             </div>
           </Form>
         )}
