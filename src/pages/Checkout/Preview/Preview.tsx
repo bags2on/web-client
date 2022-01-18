@@ -80,6 +80,7 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) =>
   }
 
   if (error) {
+    // TODO: handle error
     return <h1>Error</h1>
   }
 

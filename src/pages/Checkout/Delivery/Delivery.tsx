@@ -8,6 +8,7 @@ import urkPoshtaImage from '../../../assets/svg/ukr-poshta.svg'
 import justinImage from '../../../assets/svg/justin.svg'
 import Icon from '@material-ui/core/SvgIcon'
 import Button from '../../../shared/Button/Button'
+import SomethingWrongModal from '../Modals/SomethingWrong'
 import { CheckoutOrderType } from '../../../utils/validationSchema'
 import { ReactComponent as PinIcon } from '../../../assets/svg/icons/pin.svg'
 import { Field, useFormikContext } from 'formik'
@@ -218,6 +219,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
 
   const [areas, setAreas] = useState<AreasType>()
   const [areasLoading, setAreasLoading] = useState<boolean>(true)
+  const [areasError, setAreasError] = useState<boolean>(false)
 
   const slideInStyles = useSpring({
     config: { duration: 250 },
@@ -232,11 +234,15 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
     const controller = new AbortController()
     const { signal } = controller
 
-    fetch(API_URL + '/areas', { signal }).then(async (resp) => {
-      const data = await resp.json()
-      setAreas(data)
-      setAreasLoading(false)
-    })
+    fetch(API_URL + '/areas', { signal })
+      .then(async (resp) => {
+        const data = await resp.json()
+        setAreas(data)
+        setAreasLoading(false)
+      })
+      .catch(() => {
+        setAreasError(true)
+      })
 
     return () => {
       controller.abort()
@@ -325,6 +331,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
           Продолжить
         </Button>
       </animated.div>
+      <SomethingWrongModal open={areasError} />
     </section>
   )
 }

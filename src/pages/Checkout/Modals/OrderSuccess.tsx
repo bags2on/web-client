@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../../../shared/Button/Button'
-import AppModal from '../../../shared/Modal'
+import Modal from '../../../shared/Modal'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import { Link } from 'react-router-dom'
 import { ReactComponent as LetterCheckImage } from '../../../assets/svg/letter-check.svg'
@@ -8,7 +8,7 @@ import { ReactComponent as MailImage } from '../../../assets/svg/icons/mail.svg'
 import { ReactComponent as PinImage } from '../../../assets/svg/icons/pin.svg'
 import { makeStyles } from '@material-ui/core'
 
-interface ModalProps {
+interface OrderSuccessProps {
   open: boolean
   onClose(): void
 }
@@ -105,11 +105,11 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Modal: React.FC<ModalProps> = ({ open, onClose }) => {
+const OrderSuccess: React.FC<OrderSuccessProps> = ({ open, onClose }) => {
   const classes = useStyles()
 
   return (
-    <AppModal open={open} onClose={onClose}>
+    <Modal open={open} onClose={onClose}>
       <div className={classes.root}>
         <div className={classes.imageBox}>
           <div className={classes.image}>
@@ -147,8 +147,8 @@ const Modal: React.FC<ModalProps> = ({ open, onClose }) => {
           </div>
         </div>
       </div>
-    </AppModal>
+    </Modal>
   )
 }
 
-export default Modal
+export default OrderSuccess
