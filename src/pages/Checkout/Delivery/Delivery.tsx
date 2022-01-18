@@ -64,13 +64,10 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 0
   },
   listIcon: {
-    fontSize: 32,
+    fontSize: 34,
     lineHeight: '22px',
     color: '#979797',
-    marginRight: 7,
-    [theme.breakpoints.up('lg')]: {
-      fontSize: 30
-    }
+    marginRight: 7
   },
   iconDone: {
     fill: 'limegreen'
