@@ -22,6 +22,7 @@ $desktop: 1400px;
 
   --catalog-filter-btn-color: #343434;
   --catalog-filter-btn-bgc: transparent;
+  --base-scale: calc(100vw / 75);
 }
 
 .dark {
@@ -37,6 +38,7 @@ $desktop: 1400px;
 
   --catalog-filter-btn-color: #f2e30c;
   --catalog-filter-btn-bgc: #363636;
+  --base-scale: calc(100vw / 75);
 }
 
 @mixin reset-list {

@@ -2,6 +2,7 @@ import React from 'react'
 import CartItems from './CartItems'
 import Summary from './Summary'
 import ScaleLoader from '../../../shared/loaders/ScaleLoader'
+import SignupPromo from '../../../components/SignupPromo'
 import { useQuery } from '@apollo/client'
 import { GET_CART_ITEMS } from '../../../apollo/cache/queries/cart'
 import { CartMutations } from '../../../apollo/cache/mutations'
@@ -90,6 +91,7 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) =>
         <CartItems cartItems={data?.cartProducts || []} />
         <Summary submitLoading={submitLoading} orderCreationErr={orderCreationErr} />
       </div>
+      <SignupPromo />
     </section>
   )
 }
