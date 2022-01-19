@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     height: 120,
     boxShadow: 'rgba(0, 0, 0, 0.16) 0px 1px 4px',
-    backgroundColor: theme.palette.type === 'dark' ? '#282828' : 'transparent',
+    backgroundColor: theme.palette.type === 'dark' ? '#323232' : '#fff',
     borderRadius: 10,
     transition: 'box-shadow 0.3s',
     '&:hover': {

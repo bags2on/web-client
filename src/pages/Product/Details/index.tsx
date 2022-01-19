@@ -252,7 +252,7 @@ const Details: React.FC<SummaryProps> = ({
             fullWidth
             disableShadow
             startIcon={
-              <SvgIcon fontSize="large">
+              <SvgIcon component="span" style={{ fontSize: 30 }}>
                 <HeaderCartIcon />
               </SvgIcon>
             }

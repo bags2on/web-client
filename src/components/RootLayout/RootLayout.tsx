@@ -14,7 +14,7 @@ interface RootLayoutProps {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    marginTop: 65,
+    marginTop: 60,
     [theme.breakpoints.up('lg')]: {
       marginTop: 0
     }

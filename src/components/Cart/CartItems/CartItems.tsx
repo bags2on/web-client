@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     textTransform: 'none',
     background: 'none',
-    color: '#343434',
+    color: theme.palette.type === 'light' ? '#343434' : '#f2f2f2',
     marginLeft: 'auto',
     [theme.breakpoints.up('md')]: {
       '&:hover': {

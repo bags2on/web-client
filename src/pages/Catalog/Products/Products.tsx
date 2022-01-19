@@ -37,7 +37,13 @@ const useStyles = makeStyles((theme) => ({
   list: {
     margin: 0,
     padding: 5,
-    listStyle: 'none'
+    listStyle: 'none',
+    [theme.breakpoints.up('lg')]: {
+      padding: '10px 10px 0 10px'
+    },
+    [theme.breakpoints.up('xl')]: {
+      padding: '15px 20px 0 20px'
+    }
   },
   notFoundBox: {
     width: '100%',

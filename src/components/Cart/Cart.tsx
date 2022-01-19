@@ -29,6 +29,7 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
   const classes = useStyles()
 
   const handleCheckout = (): void => {
+    onClose()
     history.push(routes.checkout)
   }
 

@@ -35,6 +35,11 @@ const useStyles = makeStyles((theme) => ({
   root: {
     padding: '10px 10px 20px 10px'
   },
+  titleWrapper: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    margin: '10px 0 15px 10px'
+  },
   title: {
     margin: 0,
     lineHeight: '1.5',
@@ -98,7 +103,7 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
       >
         {({ dirty, resetForm }): React.ReactElement => (
           <Form ref={formRef}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 15 }}>
+            <div className={classes.titleWrapper}>
               <p className={classes.title}>{t('catalog.filters.title')}</p>
               {dirty && (
                 <Button onClick={() => resetForm()} className={classes.clearButton} disableShadow>
