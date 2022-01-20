@@ -4,6 +4,7 @@ export const useTheme = (defaultTheme: 'light' | 'dark'): [string, (checked: boo
   const current = localStorage.getItem('theme') || defaultTheme
 
   document.body.className = current
+  document.body.setAttribute('data-theme', current)
 
   const [theme, setTheme] = useState<string>(current)
 
