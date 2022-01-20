@@ -5,8 +5,8 @@ import CloseIcon from '@material-ui/icons/Close'
 import IconButton from '@material-ui/core/IconButton'
 import ContentLoader from 'react-content-loader'
 import Button from '../../../shared/Button/Button'
-import { useQuery } from '@apollo/client'
-import { GET_CART_PRICE } from '../../../apollo/cache/queries/cart'
+import { useReactiveVar } from '@apollo/client'
+import { cartPriceVar } from '../../../apollo/cache/variables'
 import { formatPrice } from '../../../utils/helpers'
 import { makeStyles } from '@material-ui/core'
 
@@ -62,7 +62,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Summary: React.FC<SummaryProps> = ({ isLoading, onClose, onCheckout }) => {
   const classes = useStyles()
-  const { data } = useQuery(GET_CART_PRICE)
+
+  const cartPrice = useReactiveVar(cartPriceVar)
 
   const handleCheckoutClick = (): void => {
     console.log('order')
@@ -98,7 +99,7 @@ const Summary: React.FC<SummaryProps> = ({ isLoading, onClose, onCheckout }) => 
           </IconButton>
           <p className={classes.totalTitle}>
             Итого:&nbsp;
-            <span>{formatPrice(data.cartPrice)}&nbsp;грн.</span>
+            <span>{formatPrice(cartPrice)}&nbsp;грн.</span>
           </p>
         </div>
         <Grid container>

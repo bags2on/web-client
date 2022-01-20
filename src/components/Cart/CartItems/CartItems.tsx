@@ -5,14 +5,14 @@ import Button from '../../../shared/Button/Button'
 import ResponsePlug from './ResponsePlug'
 import ContentLoader from 'react-content-loader'
 import CartItem, { CartItemType } from '../../CartItem/CartItem'
-import { useQuery } from '@apollo/client'
-import { GET_CART_ITEMS } from '../../../apollo/cache/queries/cart'
+import { useQuery, useReactiveVar } from '@apollo/client'
 import { CartMutations } from '../../../apollo/cache/mutations'
 import {
   CartProductsDocument,
   CartProductsQuery,
   CartProductsVariables
 } from '../../../graphql/product/_gen_/cartProducts.query'
+import { cartItemsVar } from '../../../apollo/cache/variables'
 import { makeStyles } from '@material-ui/core'
 
 interface CartItemsProps {
@@ -59,12 +59,13 @@ const useStyles = makeStyles((theme) => ({
 
 const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   const classes = useStyles()
-  const cart = useQuery(GET_CART_ITEMS)
-  const isCartEmpty = cart.data.cartItems.length === 0
+  const cartItems = useReactiveVar(cartItemsVar)
+
+  const isCartEmpty = cartItems.length === 0
 
   const { data, loading, error } = useQuery<CartProductsQuery, CartProductsVariables>(CartProductsDocument, {
     variables: {
-      input: cart.data.cartItems
+      input: cartItems
     },
     fetchPolicy: 'network-only',
     skip: isCartEmpty,
@@ -104,7 +105,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
       </Grid>
       {loading ? (
         <ul className={classes.fallbackList}>
-          {cart.data.cartItems.map((_: unknown, index: number) => (
+          {cartItems.map((_: unknown, index: number) => (
             <li key={index}>
               <ContentLoader
                 backgroundColor="#F2E30C"

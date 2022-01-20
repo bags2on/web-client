@@ -1,16 +1,6 @@
-import { InMemoryCache, makeVar } from '@apollo/client'
-
-export const cartItemsVar = makeVar<CartItem[]>([])
-export const cartPriceVar = makeVar<number>(0)
-export const favoriteAmountVar = makeVar<string[]>([])
-
-export const isAuthenticatedVar = makeVar<boolean>(false)
-export const authModalVar = makeVar<boolean>(false)
-
-interface CartItem {
-  id: string
-  amount: number
-}
+import { InMemoryCache } from '@apollo/client'
+import { cartItemsVar, cartPriceVar, favoriteProductsVar, isAuthenticatedVar, authModalVar } from './variables'
+import type { CartItem } from './variables'
 
 const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {
@@ -33,15 +23,14 @@ const cache: InMemoryCache = new InMemoryCache({
             return cartPriceVar()
           }
         },
-        favoriteIds: {
+        favoriteProducts: {
           read(): string[] {
-            return favoriteAmountVar()
+            return favoriteProductsVar()
           }
         },
         favoriteAmount: {
-          read(_, opt): number {
-            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-            return opt.readField<string[]>('favoriteIds')!.length
+          read(): number {
+            return favoriteProductsVar().length
           }
         },
         isAuthenticated: {

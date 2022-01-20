@@ -1,18 +1,14 @@
 import React, { useState } from 'react'
 import SvgIcon from '@material-ui/core/SvgIcon'
 import Modal from '../../shared/Modal'
-import { useQuery } from '@apollo/client'
 import AuthPatternImage from '../../assets/rastr/animal-pattern.jpeg'
+import { useReactiveVar } from '@apollo/client'
 import { SharedMutations } from '../../apollo/cache/mutations'
+import { authModalVar } from '../../apollo/cache/variables'
 import { ReactComponent as GoogleLogoImage } from '../../assets/svg/google_logo.svg'
 import { ReactComponent as InstagramIcon } from '../../assets/svg/icons/instagram.svg'
-import { GET_AUTH_MODAL_OPEN } from '../../apollo/cache/queries/shared'
 import { useSpring, animated } from 'react-spring'
 import { makeStyles } from '@material-ui/core'
-
-interface GetAuthModalTypes {
-  isAuthModalOpen: boolean
-}
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -108,7 +104,7 @@ const API_URL = process.env.REACT_APP_API_URL
 
 const AuthModal: React.FC = () => {
   const classes = useStyles()
-  const { data } = useQuery<GetAuthModalTypes>(GET_AUTH_MODAL_OPEN)
+  const isModalOpen = useReactiveVar(authModalVar)
   const [withError, setError] = useState<boolean>(false)
 
   const fadeStyles = useSpring({
@@ -118,9 +114,6 @@ const AuthModal: React.FC = () => {
       opacity: withError ? 1 : 0
     }
   })
-
-  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-  const isOpen = data!.isAuthModalOpen
 
   const handleClose = (): void => {
     setError(false)
@@ -138,7 +131,7 @@ const AuthModal: React.FC = () => {
   }
 
   return (
-    <Modal open={isOpen} onClose={handleClose}>
+    <Modal open={isModalOpen} onClose={handleClose}>
       <div className={classes.root}>
         <div className={classes.imageWrapper} />
         <div className={classes.infoBox}>

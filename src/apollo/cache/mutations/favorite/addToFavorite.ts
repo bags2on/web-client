@@ -1,6 +1,6 @@
 import { ReactiveVar } from '@apollo/client'
 
-export default (favoriteAmountVar: ReactiveVar<string[]>): ((id: string) => void) => {
+export default (favoriteProductsVar: ReactiveVar<string[]>): ((id: string) => void) => {
   function saveLocal(ids: string[]): void {
     window.localStorage.setItem('favorite', JSON.stringify(ids))
   }
@@ -16,9 +16,9 @@ export default (favoriteAmountVar: ReactiveVar<string[]>): ((id: string) => void
   }
 
   return (newID: string): void => {
-    const ids = favoriteAmountVar()
+    const ids = favoriteProductsVar()
     const updatedFavorite = merege(ids, newID)
-    favoriteAmountVar([...updatedFavorite])
+    favoriteProductsVar([...updatedFavorite])
     saveLocal(updatedFavorite)
   }
 }

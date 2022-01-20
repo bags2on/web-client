@@ -1,7 +1,7 @@
 import React from 'react'
 import SignUpPatternImg from '../../assets/rastr/signup-promo-pattern.jpg'
 import { SharedMutations } from '../../apollo/cache/mutations'
-import { isAuthenticatedVar } from '../../apollo/cache/cache'
+import { isAuthenticatedVar } from '../../apollo/cache/variables'
 import { useReactiveVar } from '@apollo/client'
 import { makeStyles } from '@material-ui/core'
 

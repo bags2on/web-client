@@ -4,16 +4,15 @@ import Delivery from './Delivery/Delivery'
 import Preview from './Preview/Preview'
 import Modal from './Modals/OrderSuccess'
 import routes from '../../utils/routes'
-import { useMutation } from '@apollo/client'
-import { useQuery } from '@apollo/client'
-import { GET_CART_ITEMS } from '../../apollo/cache/queries/cart'
+import history from '../../utils/history'
+import { useMutation, useReactiveVar } from '@apollo/client'
+import { cartItemsVar } from '../../apollo/cache/variables'
 import { CheckoutOrderSchema, CheckoutOrderType } from '../../utils/validationSchema'
 import { Formik, Form } from 'formik'
 import { CREATE_ORDER } from '../../graphql/order'
 import { Redirect } from 'react-router-dom'
 import { useWindowRatio } from '../../hooks'
 import { makeStyles } from '@material-ui/core'
-import history from '../../utils/history'
 
 const useStyles = makeStyles((theme) => ({
   wrapper: {
@@ -69,14 +68,14 @@ const Checkout: React.FC = () => {
   const [isInfoEdit, setInfoEdit] = useState<boolean>(false)
   const [isDeliveryEdit, setDeliveryEdit] = useState<boolean>(false)
 
-  const cart = useQuery(GET_CART_ITEMS)
+  const cartItems = useReactiveVar(cartItemsVar)
   const [createOrder, { loading }] = useMutation(CREATE_ORDER)
 
   useEffect(() => {
     window.scrollTo({ top: 0 })
   }, [])
 
-  if (cart.data.cartItems.length === 0) return <Redirect to={routes.root} />
+  if (cartItems.length === 0) return <Redirect to={routes.root} />
 
   const handleInfoEditOpen = (): void => {
     if (windowWidth >= 900) return

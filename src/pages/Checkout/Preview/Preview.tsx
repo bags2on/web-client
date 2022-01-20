@@ -3,8 +3,8 @@ import CartItems from './CartItems'
 import Summary from './Summary'
 import ScaleLoader from '../../../shared/loaders/ScaleLoader'
 import SignupPromo from '../../../components/SignupPromo'
-import { useQuery } from '@apollo/client'
-import { GET_CART_ITEMS } from '../../../apollo/cache/queries/cart'
+import { useQuery, useReactiveVar } from '@apollo/client'
+import { cartItemsVar } from '../../../apollo/cache/variables'
 import { CartMutations } from '../../../apollo/cache/mutations'
 import {
   CartProductsDocument,
@@ -52,11 +52,11 @@ const useStyles = makeStyles((theme) => ({
 const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) => {
   const classes = useStyles()
 
-  const cart = useQuery(GET_CART_ITEMS)
+  const cartItems = useReactiveVar(cartItemsVar)
 
   const { data, loading, error } = useQuery<CartProductsQuery, CartProductsVariables>(CartProductsDocument, {
     variables: {
-      input: cart.data.cartItems
+      input: cartItems
     },
     fetchPolicy: 'network-only',
     notifyOnNetworkStatusChange: true,

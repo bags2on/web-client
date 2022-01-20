@@ -4,8 +4,8 @@ import CatalogItem from '../../../components/CatalogItem/CatalogItem'
 import Pagination from '../../../components/Pagination/Pagination'
 import ExpandedGrid from '../../../shared/ExpandedGrid'
 import routes from '../../../utils/routes'
-import { useQuery } from '@apollo/client'
-import { GET_FAVORITE_IDS } from '../../../apollo/cache/queries/favorite'
+import { useReactiveVar } from '@apollo/client'
+import { favoriteProductsVar } from '../../../apollo/cache/variables'
 import { makeStyles } from '@material-ui/core'
 
 interface ProductsProps {
@@ -90,14 +90,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-interface FavoriteIdsQuery {
-  favoriteIds: string[]
-}
-
 const Products: React.FC<ProductsProps> = ({ totalPages, currentPage, products, onActionButtonClick }) => {
   const classes = useStyles()
-  const { data } = useQuery<FavoriteIdsQuery>(GET_FAVORITE_IDS)
-  const favoriteIds = data?.favoriteIds || []
+  const favoriteProducts = useReactiveVar(favoriteProductsVar)
 
   if (products === undefined) return null
 
@@ -119,7 +114,7 @@ const Products: React.FC<ProductsProps> = ({ totalPages, currentPage, products, 
     <div className={classes.root}>
       <ExpandedGrid container component="ul" className={classes.list}>
         {products.map((product) => {
-          const isFavorite = favoriteIds?.includes(product.id)
+          const isFavorite = favoriteProducts.includes(product.id)
 
           return (
             <ExpandedGrid key={product.id} component="li" item xs={6} md={4} xl={3} desktop={2}>

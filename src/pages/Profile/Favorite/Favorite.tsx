@@ -2,8 +2,8 @@
 import React from 'react'
 import Asset_1 from '../../../assets/svg/Asset_1.svg'
 import { makeStyles } from '@material-ui/core'
-import { useQuery } from '@apollo/client'
-import { GET_FAVORITE_IDS } from '../../../apollo/cache/queries/favorite'
+import { useQuery, useReactiveVar } from '@apollo/client'
+import { favoriteProductsVar } from '../../../apollo/cache/variables'
 import {
   ProductsByIdDocument,
   ProductsByIdQuery,
@@ -48,29 +48,20 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-interface FavoriteIdsQuery {
-  favoriteIds: string[]
-}
-
 const Favorite: React.FC = () => {
   const classes = useStyles()
-
-  const favoriteResp = useQuery<FavoriteIdsQuery>(GET_FAVORITE_IDS)
-
-  const favoriteIds = favoriteResp.data?.favoriteIds || []
-
-  console.log(favoriteIds)
+  const favoriteProducts = useReactiveVar(favoriteProductsVar)
 
   const { data, loading, error } = useQuery<ProductsByIdQuery, ProductsByIdVariables>(ProductsByIdDocument, {
     variables: {
-      input: favoriteIds
+      input: favoriteProducts
     },
     fetchPolicy: 'network-only',
-    skip: favoriteIds.length === 0,
+    skip: favoriteProducts.length === 0,
     notifyOnNetworkStatusChange: true
   })
 
-  if (favoriteIds.length === 0) {
+  if (favoriteProducts.length === 0) {
     return (
       <div className={classes.noData}>
         <div className={classes.container}>
@@ -101,7 +92,7 @@ const Favorite: React.FC = () => {
       <TopBar />
       <ExpandedGrid container component="ul" className={classes.list}>
         {products.map((product) => {
-          const isFavorite = favoriteIds?.includes(product.id)
+          const isFavorite = favoriteProducts.includes(product.id)
           return (
             <ExpandedGrid key={product.id} component="li" item xs={6} md={4} xl={3} desktop={2}>
               <CatalogItem

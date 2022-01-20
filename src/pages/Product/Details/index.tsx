@@ -7,8 +7,8 @@ import Tags from './Tags'
 import Rating from '../../../shared/Rating'
 import Features from './Features/Features'
 import LikeButton from '../../../shared/LikeButton/LikeButton'
-import { useQuery } from '@apollo/client'
-import { GET_FAVORITE_IDS } from '../../../apollo/cache/queries/favorite'
+import { useReactiveVar } from '@apollo/client'
+import { favoriteProductsVar } from '../../../apollo/cache/variables'
 import { CartMutations, FavoriteMutations } from '../../../apollo/cache/mutations'
 import { formatPrice } from '../../../utils/helpers'
 import { ReactComponent as CheckIcon } from '../../../assets/svg/icons/check_mark.svg'
@@ -156,10 +156,6 @@ interface SummaryProps {
   rating: productRating
 }
 
-interface FavoriteIdsQuery {
-  favoriteIds: string[]
-}
-
 const Details: React.FC<SummaryProps> = ({
   id,
   title,
@@ -172,7 +168,7 @@ const Details: React.FC<SummaryProps> = ({
   rating
 }) => {
   const classes = useStyles()
-  const { data } = useQuery<FavoriteIdsQuery>(GET_FAVORITE_IDS)
+  const favoriteProducts = useReactiveVar(favoriteProductsVar)
   // const [getProducts, { loading, data, error }] = useLazyQuery<AllProductsQuery, AllProductsVariables>(
   //   AllProductsDocument,
   //   {
@@ -185,11 +181,7 @@ const Details: React.FC<SummaryProps> = ({
   //   }
   // )
 
-  const favoriteIds = data?.favoriteIds
-
-  const isFavorite = favoriteIds?.includes(id)
-
-  const [isLiked, setLiked] = useState<boolean>(isFavorite || false)
+  const [isLiked, setLiked] = useState<boolean>(favoriteProducts.includes(id))
 
   const handleAddToCart = (): void => {
     CartMutations.addProduct({

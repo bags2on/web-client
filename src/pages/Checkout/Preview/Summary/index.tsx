@@ -1,8 +1,8 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import Button from '../../../../shared/Button/Button'
-import { useQuery } from '@apollo/client'
-import { GET_CART_PRICE } from '../../../../apollo/cache/queries/cart'
+import { useReactiveVar } from '@apollo/client'
+import { cartPriceVar } from '../../../../apollo/cache/variables'
 import { formatPrice } from '../../../../utils/helpers'
 import { makeStyles } from '@material-ui/core'
 
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Summary: React.FC<SummaryProps> = ({ submitLoading, orderCreationErr }) => {
   const classes = useStyles()
-  const { data } = useQuery(GET_CART_PRICE)
+  const cartPrice = useReactiveVar(cartPriceVar)
 
   return (
     <div className={classes.root}>
@@ -76,7 +76,7 @@ const Summary: React.FC<SummaryProps> = ({ submitLoading, orderCreationErr }) =>
         <div className={classes.info}>
           <div className={classes.totalTitle}>
             <b>Итого:</b>
-            <span>{formatPrice(data.cartPrice)}&nbsp;грн.</span>
+            <span>{formatPrice(cartPrice)}&nbsp;грн.</span>
           </div>
         </div>
         <Grid container>
