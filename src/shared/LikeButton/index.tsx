@@ -5,10 +5,10 @@ import { makeStyles, Theme } from '@material-ui/core'
 
 interface LikeButtonProps {
   liked: boolean
-  onClick: (e: React.MouseEvent) => void
   width?: number
   height?: number
-  disableRipple?: boolean
+  className?: string
+  onClick: (e: React.MouseEvent) => void
 }
 
 interface styleProps {
@@ -17,6 +17,12 @@ interface styleProps {
 }
 
 const useStyles = makeStyles<Theme, styleProps>(() => ({
+  root: {
+    backgroundColor: 'transparent',
+    '&:hover': {
+      background: 'none'
+    }
+  },
   boxSvg: {
     width: ({ width }) => width,
     height: ({ height }) => height,
@@ -41,30 +47,19 @@ const useStyles = makeStyles<Theme, styleProps>(() => ({
       transition: 'all 0.5s cubic-bezier(.19,2.41,.45,.94)'
     }
   },
-  ripleDisabled: {
-    '&:hover': {
-      background: 'none'
-    }
-  },
   hide: {
     display: 'none'
   }
 }))
 
-const LikeButton: React.FC<LikeButtonProps> = ({ liked, disableRipple, width = 20, height = 20, ...restProps }) => {
+const LikeButton: React.FC<LikeButtonProps> = ({ liked, className, width = 20, height = 20, ...restProps }) => {
   const classes = useStyles({
     width,
     height
   })
 
   return (
-    <IconButton
-      className={clsx({
-        [classes.ripleDisabled]: disableRipple
-      })}
-      disableRipple={disableRipple}
-      {...restProps}
-    >
+    <IconButton className={clsx({ [classes.root]: true }, className)} {...restProps}>
       <svg
         className={clsx({
           [classes.boxSvg]: true,

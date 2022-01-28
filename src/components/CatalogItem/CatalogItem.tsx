@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import IconButton from '@material-ui/core/IconButton'
-import LikeButton from '../../shared/LikeButton/LikeButton'
+import LikeButton from '../../shared/LikeButton'
 import ImagePlaceholder from '../../shared/ImagePlaceholder'
 import DeleteIcon from '@material-ui/icons/Delete'
 import Tooltip from '@material-ui/core/Tooltip'
@@ -83,7 +83,7 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
                 </Tooltip>
               </IconButton>
             ) : (
-              <LikeButton liked={isLiked} onClick={handleActionClick} disableRipple />
+              <LikeButton liked={isLiked} onClick={handleActionClick} />
             )}
           </div>
         </div>

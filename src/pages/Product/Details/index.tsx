@@ -6,7 +6,7 @@ import Button from '../../../shared/Button/Button'
 import Tags from './Tags'
 import Rating from '../../../shared/Rating'
 import Features from './Features/Features'
-import LikeButton from '../../../shared/LikeButton/LikeButton'
+import LikeButton from '../../../shared/LikeButton'
 import { useReactiveVar } from '@apollo/client'
 import { favoriteProductsVar } from '../../../apollo/cache/variables'
 import { CartMutations, FavoriteMutations } from '../../../apollo/cache/mutations'
@@ -21,8 +21,8 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontSize: 29,
-    fontWeight: 500,
-    lineHeight: '33px',
+    fontWeight: 600,
+    lineHeight: '30px',
     margin: 0,
     marginBottom: 10
   },
@@ -114,10 +114,11 @@ const useStyles = makeStyles((theme) => ({
   cartButton: {
     maxWidth: 300,
     backgroundColor: 'var(--green-light)',
-    border: '2px solid',
-    fontSize: 19,
-    borderColor: theme.palette.type === 'light' ? '#343434' : '#32CD32',
-    fontWeight: 600,
+    borderRadius: 10,
+    fontSize: 18,
+    lineHeight: '18px',
+    textTransform: 'none',
+    fontWeight: 500,
     color: '#fff',
     transition: 'all .1s',
     '&:hover': {
@@ -125,7 +126,12 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   likeButton: {
-    marginLeft: 15
+    marginLeft: 10,
+    backgroundColor: theme.palette.type === 'light' ? '#f3f3f3' : '#363636',
+    borderRadius: 10,
+    '&:hover': {
+      backgroundColor: theme.palette.type === 'light' ? '#f3f3f3' : '#363636'
+    }
   },
   requestButton: {
     fontSize: 17,
@@ -209,7 +215,7 @@ const Details: React.FC<SummaryProps> = ({
     <section className={classes.root}>
       {tags && <Tags tags={tags} />}
       <h1 className={classes.title}>{title}</h1>
-      <p className={classes.code}>код:&nbsp;{id}</p>
+      <p className={classes.code}>Код:&nbsp;{id}</p>
       <div className={classes.box}>
         <div className={clsx(classes.stock, inStock ? classes.inStock : classes.outOfStock)}>
           <SvgIcon className={classes.stockIcon}>{inStock ? <CheckIcon /> : <ErrorOutlineIcon />}</SvgIcon>
@@ -261,9 +267,7 @@ const Details: React.FC<SummaryProps> = ({
             Сообщить когда появиться
           </Button>
         )}
-        <div className={classes.likeButton}>
-          <LikeButton disableRipple width={30} height={30} liked={isLiked} onClick={handleLikeClick} />
-        </div>
+        <LikeButton className={classes.likeButton} width={25} height={25} liked={isLiked} onClick={handleLikeClick} />
       </div>
       <Features
         color={features.color}

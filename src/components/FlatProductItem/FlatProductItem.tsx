@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 import { Link } from 'react-router-dom'
 import ImagePlaceholder from '../../shared/ImagePlaceholder'
-import LikeButton from '../../shared/LikeButton/LikeButton'
+import LikeButton from '../../shared/LikeButton'
 import routes from '../../utils/routes'
 import { formatPrice } from '../../utils/helpers'
 import { generateLink } from '../../utils/links'
@@ -151,7 +151,7 @@ const FlatProductItem: React.FC<FlatProductItemProps> = ({ id, price, title, ima
           )}
         </p>
         <div className={classes.likeButton}>
-          <LikeButton liked={isLiked} onClick={handleLikeClick} disableRipple />
+          <LikeButton liked={isLiked} onClick={handleLikeClick} />
         </div>
       </div>
     </div>
