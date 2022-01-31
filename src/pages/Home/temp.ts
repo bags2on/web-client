@@ -48,42 +48,42 @@ export const TEMP_SIDE_LIST_DATA: {
   imageURL: string
 }[] = [
   {
-    id: 'UNKNOWN',
+    id: 'UNKNOWN_1',
     price: 410,
     discountPrice: 0,
     title: 'Brand Bucket',
     imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/265_l29mmc.jpg'
   },
   {
-    id: 'UNKNOWN',
+    id: 'UNKNOWN_2',
     price: 617,
     discountPrice: 510,
     title: 'Perimeter Wallet',
     imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/2_xoaduj.jpg'
   },
   {
-    id: 'UNKNOWN',
+    id: 'UNKNOWN_3',
     price: 399,
     discountPrice: 0,
     title: 'Canvas Wallet',
     imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/3_flal1d.jpg'
   },
   {
-    id: 'UNKNOWN',
+    id: 'UNKNOWN_4',
     price: 500,
     discountPrice: 0,
     title: 'Wallet Scouts',
     imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/4_g7mct3.jpg'
   },
   {
-    id: 'UNKNOWN',
+    id: 'UNKNOWN_5',
     price: 250,
     discountPrice: 0,
     title: 'Connection Wallet Loream ipsum some text',
     imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/265_l29mmc.jpg'
   },
   {
-    id: 'UNKNOWN',
+    id: 'UNKNOWN_6',
     price: 300,
     discountPrice: 0,
     title: 'Mini Wallet',
