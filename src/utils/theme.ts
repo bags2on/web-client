@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles'
+import { createTheme } from '@material-ui/core/styles'
 import { BreakpointOverrides } from '@material-ui/core/styles/createBreakpoints'
 
 // #ff9900 - orange secondary
@@ -16,14 +16,14 @@ declare module '@material-ui/core/styles/createBreakpoints' {
   }
 }
 
-declare module '@material-ui/core/styles/createMuiTheme' {
+declare module '@material-ui/core/styles/createTheme' {
   interface Theme {
     appDrawer: {
       width: React.CSSProperties['width']
       breakpoint: BreakpointOverrides
     }
   }
-  // allow configuration using `createMuiTheme`
+  // allow configuration using `createTheme`
   interface ThemeOptions {
     appDrawer?: {
       width?: React.CSSProperties['width']
@@ -44,7 +44,7 @@ const FONTS = [
 
 const BRAND_COLOR = '#F2E30C'
 
-export const darkTheme = createMuiTheme({
+export const darkTheme = createTheme({
   breakpoints: {
     keys: ['xs', 'sm', 'md', 'lg', 'xl', 'tablet', 'laptop', 'desktop'],
     values: {
@@ -85,7 +85,7 @@ export const darkTheme = createMuiTheme({
   }
 })
 
-export const lightTheme = createMuiTheme({
+export const lightTheme = createTheme({
   breakpoints: {
     keys: ['xs', 'sm', 'md', 'lg', 'xl', 'tablet', 'laptop', 'desktop'],
     values: {

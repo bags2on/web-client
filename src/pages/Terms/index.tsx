@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 interface ParamsType {
-  tabName: 'terms-of-use' | 'terms-of-site-use'
+  tabName: 'user-terms' | 'terms-of-site-use' | 'payment-and-delivery'
 }
 
 const APP_NAME = process.env.REACT_APP_NAME || '---'
