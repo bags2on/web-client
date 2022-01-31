@@ -7,37 +7,36 @@ export const TEMP_FEATURED_DATA: {
   mainTag: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR'
 }[] = [
   {
-    id: 'test_p01',
-    title: '[draft] Чемодан BM-black дорожный пластик',
+    id: 'test_p09',
+    title: 'Чемодан S-E дорожный бежевый',
     mainTag: 'REGULAR',
-    price: 2920,
-    basePrice: 2920,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608120280/bags2on/products/suitc_dr_jrrcks.jpg'
+    price: 1850,
+    basePrice: 1850,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856813/bags2on/products/s-e_eqwf02.jpg'
   },
   {
-    id: 'test_p02',
-    title: '[draft] Чемодан A-1 Suitcase дорожный пластик',
-    mainTag: 'STOCK',
-    price: 3617,
-    basePrice: 4000,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608119984/bags2on/products/test-bag_1_dr_d12fjf.jpg'
-  },
-  {
-    id: 'test_p03',
-    title: '[draft] Чемодан Suitcase BM дорожный пластик',
-    mainTag: 'REGULAR',
-    price: 2182,
-    basePrice: 2182,
-    preview:
-      'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121424/bags2on/products/test-bag_2_hz75wn_b6f281.jpg'
-  },
-  {
-    id: 'test_p04',
-    title: '[draft] Чемодан Light SSR-1 дорожный пластик',
+    id: 'test_p11',
+    title: 'Чемодан WHP-100 городской белый',
     mainTag: 'NEW',
-    price: 2629,
-    basePrice: 2629,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121006/bags2on/products/3141b_k67pzc_zretlj.jpg'
+    price: 1500,
+    basePrice: 1500,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856813/bags2on/products/wh_ggue4g.jpg'
+  },
+  {
+    id: 'test_p12',
+    title: 'Рюкзак PDP городской',
+    mainTag: 'STOCK',
+    price: 900,
+    basePrice: 1100,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856812/bags2on/products/pdp_ocxu7g.jpg'
+  },
+  {
+    id: 'test_p17',
+    title: 'Чемодан PE-R100, пласиковый Gray',
+    mainTag: 'REGULAR',
+    price: 1700,
+    basePrice: 1700,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856812/bags2on/products/p-e_gsbyun.jpg'
   }
 ]
 
@@ -49,42 +48,42 @@ export const TEMP_SIDE_LIST_DATA: {
   imageURL: string
 }[] = [
   {
-    id: 'b64rsa',
+    id: 'UNKNOWN',
     price: 410,
     discountPrice: 0,
     title: 'Brand Bucket',
     imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/265_l29mmc.jpg'
   },
   {
-    id: 'e21s23',
+    id: 'UNKNOWN',
     price: 617,
     discountPrice: 510,
     title: 'Perimeter Wallet',
     imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/2_xoaduj.jpg'
   },
   {
-    id: 'kwh734',
+    id: 'UNKNOWN',
     price: 399,
     discountPrice: 0,
     title: 'Canvas Wallet',
     imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/3_flal1d.jpg'
   },
   {
-    id: 'g74tjc',
+    id: 'UNKNOWN',
     price: 500,
     discountPrice: 0,
     title: 'Wallet Scouts',
     imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/4_g7mct3.jpg'
   },
   {
-    id: 'gh37634nd',
+    id: 'UNKNOWN',
     price: 250,
     discountPrice: 0,
     title: 'Connection Wallet Loream ipsum some text',
     imageURL: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612955181/bags2on/products/side/265_l29mmc.jpg'
   },
   {
-    id: 'bvg5393e',
+    id: 'UNKNOWN',
     price: 300,
     discountPrice: 0,
     title: 'Mini Wallet',
@@ -123,61 +122,59 @@ export const TEMP_POPULAR_DATA: {
   mainTag: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR'
 }[] = [
   {
-    id: '1',
-    title: '[draft] Чемодан BM-lime дорожный пластик',
+    id: 'test_p03',
+    title: 'Чемодан SSR-1 light green дорожный пластик',
     mainTag: 'REGULAR',
-    price: 2920,
-    basePrice: 2920,
+    price: 2156,
+    basePrice: 2156,
     preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_3_rz8rko.jpg'
   },
   {
-    id: '002',
-    title: '[draft] Чемодан A-1 light Suitcase дорожный',
+    id: 'test_p15',
+    title: 'Сумка с цветным патерном "лето", ткань',
+    mainTag: 'TOP',
+    price: 1490,
+    basePrice: 1490,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856812/bags2on/products/6a9_meyvrw.jpg'
+  },
+  {
+    id: 'test_p10',
+    title: 'Рюкзак городской "This Walk"',
     mainTag: 'STOCK',
-    price: 1500,
-    basePrice: 3617,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_1_hd5u9o.jpg'
+    price: 600,
+    basePrice: 850,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856813/bags2on/products/ths_ktraik.jpg'
   },
   {
-    id: '003',
-    title: '[draft] Чемодан Light SSR-1 дорожный пластик',
+    id: 'test_p05',
+    title: 'Сумка для ноутбука ун - графит',
+    mainTag: 'REGULAR',
+    price: 1350,
+    basePrice: 1350,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1614954158/bags2on/products/hgmk_kmzwsb.jpg'
+  },
+  {
+    id: 'test_p11',
+    title: 'Чемодан WHP-100 городской белый',
     mainTag: 'NEW',
-    price: 2629,
-    basePrice: 2629,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121006/bags2on/products/3141b_k67pzc_zretlj.jpg'
-  },
-  {
-    id: '004',
-    title: '[draft] Чемодан City Walk серый',
-    mainTag: 'REGULAR',
-    price: 2182,
-    basePrice: 2128,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_2_qo2mlm.jpg'
-  },
-  {
-    id: '005',
-    title: '[draft] Чемодан Light Green JJK дорожный пластик',
-    mainTag: 'NEW',
-    price: 2101,
-    basePrice: 2101,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1612883149/bags2on/products/nodraft_3_rz8rko.jpg'
-  },
-  {
-    id: '006',
-    title: '[draft] Чемодан SUD-BM дорожный пластик',
-    mainTag: 'REGULAR',
-    price: 1300,
-    basePrice: 1300,
-    preview:
-      'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121424/bags2on/products/test-bag_2_hz75wn_b6f281.jpg'
-  },
-  {
-    id: '007',
-    title: '[draft] Чемодан KJJ-BM дорожный пластик',
-    mainTag: 'REGULAR',
     price: 1500,
     basePrice: 1500,
-    preview:
-      'https://res.cloudinary.com/dct4oinuz/image/upload/v1608121424/bags2on/products/test-bag_2_hz75wn_b6f281.jpg'
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856813/bags2on/products/wh_ggue4g.jpg'
+  },
+  {
+    id: 'test_p07',
+    title: 'Сумка WGJ-blue кожаная',
+    mainTag: 'STOCK',
+    price: 3200,
+    basePrice: 3700,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1614954158/bags2on/products/je87b_cixhwg.png'
+  },
+  {
+    id: 'test_p06',
+    title: 'Рюкзак ун HGY st-brown',
+    mainTag: 'REGULAR',
+    price: 900,
+    basePrice: 900,
+    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1614954158/bags2on/products/okokvb_jfllrc.png'
   }
 ]
