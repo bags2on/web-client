@@ -81,7 +81,6 @@
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
-    "eslint-plugin-react-hooks": "^4.2.1-rc.0-next-fa816be7f-20220128",
     "prettier": "^2.0.4"
   }
 }
