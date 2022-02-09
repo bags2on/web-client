@@ -37,7 +37,7 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children 
         disableOnInteraction: false
       }}
       breakpoints={{
-        550: {
+        0: {
           slidesPerView: 2
         },
         600: {
