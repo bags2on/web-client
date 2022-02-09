@@ -1,7 +1,7 @@
 {
   "header": { "home": "Головна", "search": "Я шукаю..." },
   "product": {
-    "mainTag": { "NEW": "Новинка", "TOP": "Топ", "STOCK": "Акция" },
+    "mainTag": { "NEW": "Новинка", "TOP": "Топ", "STOCK": "Акція" },
     "common": {
       "category": "----",
       "type": "----",
@@ -13,7 +13,17 @@
     }
   },
   "home": {
+    "categories": "Категорії",
+    "featured": "Рекомендовані",
     "promo": { "male": "Чоловіча колекція", "female": "Жіноча колекція", "action": "Докладніше" },
+    "popular": "Часто купують",
+    "joinus": {
+      "title": "Зареєструйтесь",
+      "subText": "та отримуйте знижки в",
+      "subText2": "особистому кабінеті",
+      "placeholder": "Введіть Ваш email",
+      "button": "Приєднатися"
+    },
     "advantages": {
       "discounts": {
         "title": "Акції",
@@ -42,14 +52,6 @@
     "history": "Історія перегляду",
     "lang": "Мова"
   },
-  "categories": {
-    "all": "Усе",
-    "suitcases": "Валізи",
-    "bags": "Сумки",
-    "wallets": "Гаманці",
-    "backpack": "-----",
-    "other": "-----"
-  },
   "catalog": {
     "filters": {
       "title": "Параметри",
@@ -73,6 +75,16 @@
         "new": "Новинки",
         "discounts": "Акції"
       }
+    }
+  },
+  "shared": {
+    "categories": {
+      "all": "Інше",
+      "suitcases": "Валізи",
+      "bags": "Сумки",
+      "wallets": "Гаманці",
+      "backpack": "Рюкзаки",
+      "other": "Інше"
     }
   }
 }

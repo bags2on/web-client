@@ -142,7 +142,7 @@ const Categories: React.FC = () => {
         <SvgIcon component="span">
           <FlashIcon />
         </SvgIcon>
-        Категории
+        {t('home.categories')}
       </h2>
       <div>
         <Grid component="ul" container>
@@ -173,7 +173,7 @@ const Categories: React.FC = () => {
                           <group.icon />
                         </SvgIcon>
                       </ListItemIcon>
-                      <ListItemText className={classes.itemText} primary={t(`categories.${group.i18n}`)} />
+                      <ListItemText className={classes.itemText} primary={t(`shared.categories.${group.i18n}`)} />
                     </ListItem>
                   </Link>
                 </Grid>

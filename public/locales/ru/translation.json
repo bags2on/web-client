@@ -13,7 +13,17 @@
     }
   },
   "home": {
+    "categories": "Категории",
+    "featured": "Рекомендуемые",
     "promo": { "male": "Мужская коллекция", "female": "Женская коллекция", "action": "Подробнее" },
+    "popular": "Популярное",
+    "joinus": {
+      "title": "Зарегистрируйтесь",
+      "subText": "и получайте скидки в",
+      "subText2": "личном кабинете",
+      "placeholder": "Введите ваш email",
+      "button": "Присоединиться"
+    },
     "advantages": {
       "discounts": {
         "title": "Акции",
@@ -42,14 +52,6 @@
     "history": "История просмотра",
     "lang": "Язык"
   },
-  "categories": {
-    "all": "Все",
-    "suitcases": "Чемоданы",
-    "bags": "Сумки",
-    "wallets": "Кошельки",
-    "backpack": "Рюкзаки",
-    "other": "Другое"
-  },
   "catalog": {
     "filters": {
       "title": "Параметры",
@@ -73,6 +75,16 @@
         "new": "Новинки",
         "discounts": "Акции"
       }
+    }
+  },
+  "shared": {
+    "categories": {
+      "all": "Все",
+      "suitcases": "Чемоданы",
+      "bags": "Сумки",
+      "wallets": "Кошельки",
+      "backpack": "Рюкзаки",
+      "other": "Другое"
     }
   }
 }

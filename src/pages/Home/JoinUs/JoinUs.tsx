@@ -1,6 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import Button from '../../../shared/Button/Button'
+import { useTranslation } from 'react-i18next'
 import { JoinUsSchema, JoinUsSchemaType } from '../../../utils/validationSchema'
 import { Formik, Form, Field } from 'formik'
 import { makeStyles } from '@material-ui/core'
@@ -84,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
     margin: '0 auto',
     marginTop: 10,
     fontSize: 15,
+    textTransform: 'none',
     [theme.breakpoints.up('md')]: {
       margin: 0,
       borderTopLeftRadius: 0,
@@ -105,6 +107,7 @@ const useStyles = makeStyles((theme) => ({
 
 const JoinUs: React.FC = () => {
   const classes = useStyles()
+  const { t } = useTranslation()
 
   const handleSubmit = (values: JoinUsSchemaType): void => {
     console.log('submit')
@@ -115,9 +118,12 @@ const JoinUs: React.FC = () => {
   return (
     <div className={classes.root}>
       <div className={classes.contentBox}>
-        <h4 className={classes.title}>Зарегистрируйтесь!</h4>
+        <h4 className={classes.title}>{t('home.joinus.title')}!</h4>
         <p className={classes.text}>
-          ...и получайте скидки в <b>личном кабинете</b>
+          ...
+          {t('home.joinus.subText')}
+          &nbsp;
+          <b>{t('home.joinus.subText2')}</b>
         </p>
         <Formik
           validateOnBlur={false}
@@ -137,14 +143,14 @@ const JoinUs: React.FC = () => {
                 }}
                 name="email"
                 autoComplete="off"
-                placeholder="Введите ваш email"
+                placeholder={t('home.joinus.placeholder')}
                 className={clsx({
                   [classes.input]: true,
                   [classes.inputError]: errors.email && touched.email
                 })}
               />
               <Button type="submit" className={classes.submitButton} disableShadow loading={false}>
-                Присоединиться
+                {t('home.joinus.button')}
               </Button>
             </Form>
           )}

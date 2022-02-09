@@ -1,6 +1,7 @@
 import React from 'react'
 import Grid from '@material-ui/core/Grid'
 import CatalogItem from '../../../components/CatalogItem/CatalogItem'
+import { useTranslation } from 'react-i18next'
 import { makeStyles } from '@material-ui/core'
 
 interface ProductType {
@@ -17,7 +18,6 @@ interface FeaturedProps {
 }
 
 const useStyles = makeStyles(() => ({
-  root: {},
   title: {
     fontSize: 20,
     fontWeight: 500,
@@ -36,10 +36,11 @@ const useStyles = makeStyles(() => ({
 
 const Featured: React.FC<FeaturedProps> = ({ products }) => {
   const classes = useStyles()
+  const { t } = useTranslation()
 
   return (
     <section>
-      <h2 className={classes.title}>Рекомендуемые</h2>
+      <h2 className={classes.title}>{t('home.featured')}</h2>
       <Grid container component="ul" className={classes.list}>
         {products.map((product: ProductType) => (
           <Grid key={product.id} component="li" className={classes.item} item xs={6} md={4} lg={3}>

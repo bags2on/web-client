@@ -76,23 +76,23 @@ function fillUpValues(): void {
 
   categories.options = [
     {
-      label: i18n.t('categories.suitcases'),
+      label: i18n.t('shared.categories.suitcases'),
       value: 'SUITCASE'
     },
     {
-      label: i18n.t('categories.bags'),
+      label: i18n.t('shared.categories.bags'),
       value: 'BAG'
     },
     {
-      label: i18n.t('categories.wallets'),
+      label: i18n.t('shared.categories.wallets'),
       value: 'WALLET'
     },
     {
-      label: i18n.t('categories.backpack'),
+      label: i18n.t('shared.categories.backpack'),
       value: 'BACKPACK'
     },
     {
-      label: i18n.t('categories.other'),
+      label: i18n.t('shared.categories.other'),
       value: 'OTHER'
     }
   ]
