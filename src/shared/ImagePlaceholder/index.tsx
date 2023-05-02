@@ -87,7 +87,7 @@ const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText, plain
   return (
     <picture className={classes.root}>
       <ProgressiveImage src={src} placeholder="">
-        {(src: string, loading: boolean): JSX.Element => {
+        {(src, loading) => {
           return loading ? plug : <img src={src} alt={altText} className={classes.productImage} />
         }}
       </ProgressiveImage>

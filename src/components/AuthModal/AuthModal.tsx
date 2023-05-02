@@ -102,7 +102,7 @@ const useStyles = makeStyles((theme) => ({
 
 const API_URL = process.env.REACT_APP_API_URL
 
-const AuthModal: React.FC = () => {
+const AuthModal: React.FC<{ children?: React.ReactNode }> = () => {
   const classes = useStyles()
   const isModalOpen = useReactiveVar(authModalVar)
   const [withError, setError] = useState<boolean>(false)

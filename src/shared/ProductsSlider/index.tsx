@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core'
 
 interface ProductsSliderProps {
   speed?: number
+  children?: React.ReactNode
 }
 
 const useStyles = makeStyles(() => ({

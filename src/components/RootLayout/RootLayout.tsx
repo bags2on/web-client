@@ -10,6 +10,7 @@ import { makeStyles } from '@material-ui/core'
 
 interface RootLayoutProps {
   themeChanger(checked: boolean): void
+  children?: React.ReactNode
 }
 
 const useStyles = makeStyles((theme) => ({

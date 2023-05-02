@@ -136,7 +136,6 @@ const JoinUs: React.FC = () => {
         >
           {({ errors, touched, setErrors }): React.ReactElement => (
             <Form className={classes.form} noValidate>
-              {console.log(errors)}
               <Field
                 onAnimationEnd={(): void => {
                   setErrors({})
