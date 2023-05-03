@@ -4,7 +4,9 @@ import SwiperCore, { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from
 import { ApolloProvider } from '@apollo/client'
 import { Router } from 'react-router-dom'
 import { ThemeProvider, CssBaseline } from '@material-ui/core'
+import { ThemeProvider as StyThemeProvider } from 'styled-components'
 import { darkTheme, lightTheme } from './utils/theme'
+import { darkTheme as StDark, lightTheme as StLight } from './utils/st_theme'
 import App from './App'
 import { useTheme } from './hooks'
 import history from './utils/history'
@@ -25,10 +27,12 @@ const Application: React.FC = () => {
   return (
     <Router history={history}>
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-        <ApolloProvider client={client}>
-          <CssBaseline />
-          <App themeChanger={changeTheme} />
-        </ApolloProvider>
+        <StyThemeProvider theme={theme === 'light' ? StLight : StDark}>
+          <ApolloProvider client={client}>
+            <CssBaseline />
+            <App themeChanger={changeTheme} />
+          </ApolloProvider>
+        </StyThemeProvider>
       </ThemeProvider>
     </Router>
   )

@@ -1,5 +1,5 @@
 import React from 'react'
-import Badge from '@material-ui/core/Badge'
+import Badge from '../../shared/Badge'
 import DrawerUI from '@material-ui/core/Drawer'
 import DrawerHeader from './DrawerHeader/DrawerHeader'
 import List from '@material-ui/core/List'
@@ -151,7 +151,7 @@ const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, themeChanger }) => {
             >
               <div style={{ display: 'flex', alignItems: 'center' }}>
                 {item.i18n === 'favorite' ? (
-                  <Badge badgeContent={favoriteAmount} max={999} color="error">
+                  <Badge content={favoriteAmount}>
                     <SvgIcon component="span" className={classes.icon}>
                       <item.icon />
                     </SvgIcon>
