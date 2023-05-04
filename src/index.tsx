@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import SwiperCore, { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper'
 import { ApolloProvider } from '@apollo/client'
 import { Router } from 'react-router-dom'
@@ -38,4 +38,5 @@ const Application: React.FC = () => {
   )
 }
 
-ReactDOM.render(<Application />, document.querySelector('#root'))
+const root = createRoot(document.getElementById('root') as HTMLElement)
+root.render(<Application />)
