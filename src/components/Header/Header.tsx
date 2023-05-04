@@ -24,6 +24,7 @@ import {
   TheProfileIcon,
   TheCartIcon,
   HeaderButton,
+  CartButton,
   DynamicButton
 } from './Header.styled'
 
@@ -83,27 +84,27 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
         {/*  */}
         <Search />
         {/*  */}
-        <DynamicButton color="primary" onClick={handleFavoritesClick} disableRipple>
+        <DynamicButton onClick={handleFavoritesClick} disableRipple>
           <Badge content={favoriteAmount}>
             <TheHeartIcon>
               <HeartIcon />
             </TheHeartIcon>
           </Badge>
         </DynamicButton>
-        <DynamicButton color="primary" onClick={handleProfileClick} disableRipple>
+        <DynamicButton onClick={handleProfileClick} disableRipple>
           <Badge content={0} max={5}>
             <TheProfileIcon>
               <ProfileIcon />
             </TheProfileIcon>
           </Badge>
         </DynamicButton>
-        <HeaderButton color="primary" onClick={handleCartClick} disableRipple>
+        <CartButton onClick={handleCartClick} disableRipple>
           <Badge content={cartAmount}>
             <TheCartIcon>
               <CartIcon />
             </TheCartIcon>
           </Badge>
-        </HeaderButton>
+        </CartButton>
       </Wrapper>
     </TheHeader>
   )

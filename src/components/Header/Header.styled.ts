@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import SvgIcon from '../../shared/SvgIcon'
-import IconButton from '@material-ui/core/IconButton'
+import IconButton from '../../shared/IconButton'
 import { Link } from 'react-router-dom'
 
 export const TheHeader = styled.header`
@@ -128,7 +128,7 @@ export const TheCartIcon = styled(SvgIcon)`
   fill: ${({ theme }) => theme.colors.primary};
   stroke: ${({ theme }) => theme.colors.primary};
   @media ${({ theme }) => theme.media.md} {
-    font-size: 24px;
+    font-size: 25px;
     transition: all 0.3s;
     &:hover {
       transform: scale(1.2);
@@ -148,8 +148,14 @@ export const HeaderButton = styled(IconButton)`
   ${headerButton}
 `
 
+export const CartButton = styled(IconButton)`
+  ${headerButton}
+  padding: 11px;
+`
+
 export const DynamicButton = styled(IconButton)`
   display: none;
+  color: ${({ theme }) => theme.colors.primary};
   @media ${({ theme }) => theme.media.md} {
     display: block;
     padding: 11px;
