@@ -13,11 +13,12 @@ import history from './utils/history'
 import client from './apollo/apollo'
 
 import './locales/i18n'
+
 import './utils/shared.scss'
-import 'swiper/swiper.scss'
-import 'swiper/components/navigation/navigation.scss'
-import 'swiper/components/effect-fade/effect-fade.scss'
-import 'swiper/components/pagination/pagination.scss'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/effect-fade'
+import 'swiper/css/pagination'
 
 SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade, Thumbs])
 

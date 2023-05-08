@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Children } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { makeStyles } from '@material-ui/core'
 
@@ -52,7 +52,7 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children 
         }
       }}
       onSwiper={(swiper) => {
-        const el = swiper.$el[0]
+        const el = swiper.el
         el.addEventListener('mouseenter', () => {
           swiper.autoplay.stop()
         })
@@ -62,7 +62,7 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children 
         })
       }}
     >
-      {React.Children.map(children, (child, index) => (
+      {Children.map(children, (child, index) => (
         <SwiperSlide tag="li" key={index} virtualIndex={index}>
           {child}
         </SwiperSlide>
