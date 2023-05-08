@@ -28,8 +28,7 @@ export const CategoryItem = styled.li`
   display: flex;
   width: 50%;
   flex-basis: 50%;
-
-  @media ${({ theme }) => theme.media.lg} {
+  @media ${({ theme }) => theme.media.tablet} {
     flex-basis: 25%;
     width: 25%;
   }
