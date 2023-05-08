@@ -4,23 +4,24 @@
   position: relative;
   flex-basis: 100%;
   padding: 5px 8px;
-  height: 100%;
   overflow: hidden;
   margin: 0;
   max-width: 1000px;
-  max-height: 545px;
   & ul {
     @include reset-list;
   }
 }
 
 .slideImageBox {
+  user-select: none;
+  border-radius: 20px;
   width: 100%;
-  border-radius: 7px;
-  padding-bottom: 50%;
+  height: 100%;
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
+  height: 40vw;
+  max-height: 400px;
 }
 
 .bullet {
@@ -43,7 +44,7 @@
   display: none;
 }
 
-@media screen and (min-width: $md) {
+@media screen and (min-width: $tablet) {
   .swiperContainer {
     flex-basis: 70%;
     padding: 0;
@@ -51,7 +52,7 @@
   }
 
   .slideImageBox {
-    border-radius: 4px;
+    height: 100%;
   }
 }
 
@@ -72,6 +73,7 @@
 
   .buttonPrev,
   .buttonNext {
+    user-select: none;
     position: absolute;
     top: 50%;
     margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
@@ -80,7 +82,7 @@
     color: #fff;
     z-index: 100;
     z-index: 10;
-    padding: 17px;
+    padding: 15px;
     background-color: rgba(0, 0, 0, 0.3);
     transition: all 0.3s;
     -webkit-appearance: none;
