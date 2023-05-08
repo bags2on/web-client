@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
   sliderContainer: {
     display: 'flex',
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('lg')]: {
       padding: '0 5px'
     },
     [theme.breakpoints.up('tablet')]: {
@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
     },
     '& section:nth-of-type(2)': {
       display: 'none',
-      [theme.breakpoints.up('md')]: {
+      [theme.breakpoints.up('tablet')]: {
         display: 'block'
       }
     }
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
     }
   },
   mainProductBox: {
-    [theme.breakpoints.up('md')]: {
+    [theme.breakpoints.up('tablet')]: {
       display: 'none'
     }
   }
