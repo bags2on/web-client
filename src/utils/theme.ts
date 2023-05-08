@@ -109,7 +109,7 @@ export const lightTheme = createTheme({
       main: BRAND_COLOR
     },
     background: {
-      default: '#fff'
+      default: '#fafafa'
     }
   },
   typography: {
