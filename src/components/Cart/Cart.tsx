@@ -12,7 +12,8 @@ interface CartProps {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    color: theme.palette.type === 'dark' ? '#fff' : '#000'
+    color: theme.palette.type === 'dark' ? '#fff' : '#000',
+    height: '100%'
   },
   drawer: {
     width: '100%',
