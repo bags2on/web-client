@@ -2,7 +2,7 @@ import React from 'react'
 import Summary from '../Summary/Summary'
 import ResponsePlug from './ResponsePlug'
 import ContentLoader from 'react-content-loader'
-import CartItem, { CartItemType } from '../../CartItem/CartItem'
+import CartItem, { CartItemType } from '../CartItem/CartItem'
 import { useQuery, useReactiveVar } from '@apollo/client'
 import { CartMutations } from '../../../apollo/cache/mutations'
 import {

@@ -11,7 +11,7 @@ import {
   CartProductsQuery,
   CartProductsVariables
 } from '../../../graphql/product/_gen_/cartProducts.query'
-import type { CartItemType } from '../../../components/CartItem/CartItem'
+import type { CartItemType } from '../../../components/Cart/CartItem/CartItem'
 import { makeStyles } from '@material-ui/core'
 
 interface PreviewProps {
