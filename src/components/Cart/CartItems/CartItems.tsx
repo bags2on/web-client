@@ -5,6 +5,7 @@ import ContentLoader from 'react-content-loader'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
 import { useQuery, useReactiveVar } from '@apollo/client'
 import { CartMutations } from '../../../apollo/cache/mutations'
+import { ReactComponent as CrossIcon } from '../../../assets/svg/icons/cross.svg'
 import {
   CartProductsDocument,
   CartProductsQuery,
@@ -12,7 +13,15 @@ import {
 } from '../../../graphql/product/_gen_/cartProducts.query'
 import { cartItemsVar } from '../../../apollo/cache/variables'
 
-import { Container, ProductsList, ClearButton, ContentLoaderList } from './CartItems.styled'
+import {
+  Container,
+  ProductsList,
+  ClearButton,
+  ContentLoaderList,
+  TopControls,
+  CloseButton,
+  TheCloseIcon
+} from './CartItems.styled'
 
 interface CartItemsProps {
   onClose(): void
@@ -61,8 +70,16 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
 
   return (
     <Container>
-      <Summary isLoading={loading} onClose={onClose} onCheckout={onCheckout} />
-
+      <TopControls>
+        <CloseButton disableRipple onClick={onClose}>
+          <TheCloseIcon>
+            <CrossIcon />
+          </TheCloseIcon>
+        </CloseButton>
+        <ClearButton onClick={handleClearAllClick} disableShadow>
+          Очистить корзину
+        </ClearButton>
+      </TopControls>
       {loading ? (
         <ContentLoaderList>
           {cartItems.map((_: unknown, index: number) => (
@@ -84,9 +101,6 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
         </ContentLoaderList>
       ) : (
         <>
-          <ClearButton onClick={handleClearAllClick} disableShadow>
-            Очистить корзину
-          </ClearButton>
           <ProductsList>
             {data?.cartProducts.map((product: CartItemType, index) => (
               <CartItem key={index} product={product} onRemove={handleProductRemove} />
@@ -94,6 +108,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
           </ProductsList>
         </>
       )}
+      <Summary isLoading={loading} onCheckout={onCheckout} />
     </Container>
   )
 }

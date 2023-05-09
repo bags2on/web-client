@@ -1,10 +1,10 @@
 import styled from 'styled-components'
 import Button from '../../../shared/Button/Button'
+import IconButton from '../../../shared/IconButton'
+import SvgIcon from '../../../shared/SvgIcon'
 
 export const Container = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
+  position: relative;
 `
 
 export const ProductsList = styled.ul`
@@ -21,10 +21,9 @@ export const ClearButton = styled(Button)`
   text-transform: none;
   background: none;
   color: ${({ theme }) => (theme.type === 'light' ? '#343434' : '#f2f2f2')};
-  margin-left: auto;
+  text-decoration: underline;
   &:hover {
     background-color: transparent;
-    text-decoration: underline;
   }
 `
 
@@ -37,4 +36,23 @@ export const ContentLoaderList = styled.ul`
   & li {
     width: 100%;
   }
+`
+
+export const TopControls = styled.div`
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  background-color: ${({ theme }) => (theme.type === 'light' ? '#f3f3f3' : '#282828')};
+`
+
+export const CloseButton = styled(IconButton)`
+  color: #8c8c8c;
+  margin-left: 20px;
+`
+
+export const TheCloseIcon = styled(SvgIcon)`
+  fill: '#373737';
+  font-size: 17px;
 `

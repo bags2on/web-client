@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: '100vh',
     overflowX: 'hidden',
-    backgroundColor: theme.palette.background.default,
+    backgroundColor: '#fff',
     [theme.breakpoints.up('md')]: {
       maxWidth: 400 // 363
     }
