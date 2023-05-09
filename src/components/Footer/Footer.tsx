@@ -130,7 +130,7 @@ const Footer: React.FC = () => {
         </div>
       </footer>
       <div className={classes.subFooter}>
-        <span>{process.env.REACT_APP_NAME} © 2021</span>
+        <span>{process.env.REACT_APP_NAME} © 2023</span>
       </div>
     </div>
   )
