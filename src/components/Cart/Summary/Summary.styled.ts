@@ -3,6 +3,7 @@ import IconButton from '../../../shared/IconButton'
 import SvgIcon from '../../../shared/SvgIcon'
 
 export const Container = styled.div`
+  width: 100%;
   position: relative;
   padding: 15px 10px 25px 15px;
   background-color: ${({ theme }) => (theme.type === 'light' ? '#f3f3f3' : '#282828')};
