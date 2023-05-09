@@ -7,7 +7,7 @@ import history from '../../../utils/history'
 import routes from '../../../utils/routes'
 import CartItem, { CartItemType } from '../../../components/Cart/CartItem/CartItem'
 import { CartMutations } from '../../../apollo/cache/mutations'
-import { ReactComponent as TrashIcon } from '../../../assets/svg/icons/trash-alt.svg'
+import { ReactComponent as TrashIcon } from '../../../assets/svg/icons/trash.svg'
 import { makeStyles } from '@material-ui/core'
 
 interface CartItemsProps {
