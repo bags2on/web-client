@@ -10,7 +10,7 @@ export const cartItemsVar = makeVar<CartItem[]>([])
 export const cartPriceVar = makeVar<number>(0)
 export const favoriteProductsVar = makeVar<string[]>([])
 
-export const isAuthenticatedVar = makeVar<boolean>(false)
+export const isAuthenticatedVar = makeVar<boolean>(true)
 export const authModalVar = makeVar<boolean>(false)
 
 export type { CartItem }
