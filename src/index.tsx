@@ -11,6 +11,7 @@ import App from './App'
 import { useTheme } from './hooks'
 import history from './utils/history'
 import client from './apollo/apollo'
+import { ModalProvider } from 'styled-react-modal'
 
 import './locales/i18n'
 
@@ -29,10 +30,12 @@ const Application: React.FC = () => {
     <Router history={history}>
       <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
         <StyThemeProvider theme={theme === 'light' ? StLight : StDark}>
-          <ApolloProvider client={client}>
-            <CssBaseline />
-            <App themeChanger={changeTheme} />
-          </ApolloProvider>
+          <ModalProvider>
+            <ApolloProvider client={client}>
+              <CssBaseline />
+              <App themeChanger={changeTheme} />
+            </ApolloProvider>
+          </ModalProvider>
         </StyThemeProvider>
       </ThemeProvider>
     </Router>
