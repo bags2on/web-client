@@ -2,7 +2,8 @@ import React from 'react'
 import ProductsSlider from '../../../shared/ProductsSlider'
 import CatalogItem from '../../../components/CatalogItem/CatalogItem'
 import { useTranslation } from 'react-i18next'
-import { makeStyles } from '@material-ui/core'
+
+import { Container, Title } from './Popular.styled'
 
 interface ProductType {
   id: string
@@ -17,25 +18,12 @@ interface PopularProps {
   products: Array<ProductType>
 }
 
-const useStyles = makeStyles(() => ({
-  root: {
-    padding: '0 10px',
-    marginBottom: 15
-  },
-  title: {
-    fontSize: '23px',
-    fontWeight: 600,
-    margin: '0 0 15px 10px'
-  }
-}))
-
 const Popular: React.FC<PopularProps> = ({ products }) => {
-  const classes = useStyles()
   const { t } = useTranslation()
 
   return (
-    <section className={classes.root}>
-      <h2 className={classes.title}>{t('home.popular')}</h2>
+    <Container>
+      <Title>{t('home.popular')}</Title>
       <ProductsSlider speed={500}>
         {products.map((product) => (
           <CatalogItem
@@ -51,7 +39,7 @@ const Popular: React.FC<PopularProps> = ({ products }) => {
           />
         ))}
       </ProductsSlider>
-    </section>
+    </Container>
   )
 }
 
