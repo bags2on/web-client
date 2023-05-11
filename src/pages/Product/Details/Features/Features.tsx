@@ -4,51 +4,8 @@ import { ReactComponent as ColorIcon } from '../../../../assets/svg/icons/produc
 import { ReactComponent as GenderIcon } from '../../../../assets/svg/icons/product-gender.svg'
 import { ReactComponent as CategoryIcon } from '../../../../assets/svg/icons/product-category.svg'
 import { useTranslation } from 'react-i18next'
-import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    margin: 0,
-    marginTop: 30,
-    padding: '15px 20px 5px 20px',
-    listStyle: 'none',
-    borderRadius: 10,
-    boxShadow: '0px 1px 9px -1px rgba(0, 0, 0, 0.1)',
-    fontWeight: 500,
-    backgroundColor: theme.palette.type === 'dark' ? '#363636' : '#fff'
-  },
-  item: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexBasis: '50%',
-    fontSize: 17,
-    marginBottom: 17,
-    [theme.breakpoints.up('md')]: {
-      justifyContent: 'flex-start'
-    }
-  },
-  itemIcon: {
-    width: 45,
-    marginRight: 20,
-    '& svg': {
-      fill: theme.palette.type === 'dark' ? '#c0c0c0' : '#343434'
-    }
-  },
-  itemInfo: {
-    '& p': {
-      fontSize: 14,
-      color: '#939191',
-      margin: 0,
-      userSelect: 'none'
-    },
-    '& span': {
-      fontSize: 16
-    }
-  }
-}))
+import { Container, Feature, FeatureIcon, FeatureInfo } from './Features.styled'
 
 interface FeaturesProps {
   color: string
@@ -58,48 +15,47 @@ interface FeaturesProps {
 }
 
 const Features: React.FC<FeaturesProps> = ({ color, material, type, category }) => {
-  const classes = useStyles()
   const { t } = useTranslation()
 
   return (
-    <ul className={classes.root}>
-      <li className={classes.item}>
-        <div className={classes.itemIcon}>
+    <Container>
+      <Feature>
+        <FeatureIcon>
           <MaterialIcon />
-        </div>
-        <div className={classes.itemInfo}>
+        </FeatureIcon>
+        <FeatureInfo>
           <p>{t('product.common.material')}</p>
           <span>{t(`product.common.${material}`)}</span>
-        </div>
-      </li>
-      <li className={classes.item}>
-        <div className={classes.itemIcon}>
+        </FeatureInfo>
+      </Feature>
+      <Feature>
+        <FeatureIcon>
           <ColorIcon />
-        </div>
-        <div className={classes.itemInfo}>
+        </FeatureIcon>
+        <FeatureInfo>
           <p>{t('product.common.color')}</p>
           <span>{color}</span>
-        </div>
-      </li>
-      <li className={classes.item}>
-        <div className={classes.itemIcon}>
+        </FeatureInfo>
+      </Feature>
+      <Feature>
+        <FeatureIcon>
           <GenderIcon />
-        </div>
-        <div className={classes.itemInfo}>
+        </FeatureIcon>
+        <FeatureInfo>
           <p>{t('product.common.type')}</p>
           <span>{type}</span>
-        </div>
-      </li>
-      <li className={classes.item}>
-        <div className={classes.itemIcon}>
+        </FeatureInfo>
+      </Feature>
+      <Feature>
+        <FeatureIcon>
           <CategoryIcon />
-        </div>
-        <div className={classes.itemInfo}>
+        </FeatureIcon>
+        <FeatureInfo>
           <p>{t('product.common.category')}</p>
           <span>{category}</span>
-        </div>
-      </li>
-    </ul>
+        </FeatureInfo>
+      </Feature>
+    </Container>
   )
 }
 
