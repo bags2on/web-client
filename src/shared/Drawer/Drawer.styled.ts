@@ -10,7 +10,7 @@ export const Box = styled.div<BoxStyledProps>`
   height: 100%;
   overflow: auto;
   position: fixed;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+  box-shadow: ${({ $open }) => ($open ? '0 0 15px rgba(0, 0, 0, 0.5)' : 'none')};
   transition: transform 0.3s ease;
   z-index: 1000;
   ${({ $pos, $open }) => {
@@ -19,13 +19,13 @@ export const Box = styled.div<BoxStyledProps>`
         return css`
           top: 0;
           right: 0;
-          transform: ${$open ? 'translateX(0)' : 'translateX(100%)'};
+          transform: ${$open ? 'translateX(0)' : 'translateX(101%)'};
         `
       default:
         return css`
           top: 0;
           left: 0;
-          transform: ${$open ? 'translateX(0)' : 'translateX(-100%)'};
+          transform: ${$open ? 'translateX(0)' : 'translateX(-101%)'};
         `
     }
   }}

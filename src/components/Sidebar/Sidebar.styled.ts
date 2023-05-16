@@ -1,13 +1,11 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  width: 100%;
   height: 100%;
   background-color: ${({ theme }) => theme.background};
   color: ${({ theme }) => (theme.type === 'light' ? '#000' : '#fff')};
-  @media ${({ theme }) => theme.media.md} {
-    width: 350px;
-  }
+  width: 75vw;
+  max-width: 350px;
 `
 
 export const LanguageBox = styled.div`
