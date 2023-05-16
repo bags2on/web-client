@@ -10,19 +10,22 @@ interface DrawerProps {
   children?: React.ReactNode
 }
 
-const APP_DRAWER_PORTAL_NODE_ID = 'app-drawer-root'
-
-function createPortalRoot() {
+function createPortalRoot(id: string): HTMLDivElement {
   const drawerRoot = document.createElement('div')
-  drawerRoot.setAttribute('id', APP_DRAWER_PORTAL_NODE_ID)
-
+  drawerRoot.setAttribute('id', id)
   return drawerRoot
 }
 
+function getPortalID(): string {
+  return 'drawer-' + new Date().getTime()
+}
+
 const Drawer: React.FC<DrawerProps> = ({ open, children, onClose, position = 'left' }) => {
+  const portalID = getPortalID()
+
   const bodyRef = useRef(document.querySelector('body'))
 
-  const portalRootRef = useRef(document.getElementById(APP_DRAWER_PORTAL_NODE_ID) || createPortalRoot())
+  const portalRootRef = useRef(document.getElementById(portalID) || createPortalRoot(portalID))
 
   useEffect(() => {
     let portal: HTMLElement
