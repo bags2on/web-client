@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { useLang, useWindowRatio } from '../../hooks'
 import Header from '../Header/Header'
-import Drawer from '../Drawer/Drawer'
+import SideBar from '../Sidebar/Sidebar'
 import Cart from '../Cart/Cart'
 import Footer from '../Footer/Footer'
 import AuthModal from '../AuthModal/AuthModal'
@@ -54,7 +54,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
 
   return (
     <>
-      <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer} themeChanger={themeChanger} />
+      <SideBar isOpen={isDrawerOpen} onClose={handleCloseDrawer} themeChanger={themeChanger} />
       <Cart isOpen={isCartOpen} onClose={handleCartClose} />
       <Header onDrawerOpen={handleOpenDrawer} onCartOpen={handleCartOpen} />
       <main className={classes.root}>{children}</main>

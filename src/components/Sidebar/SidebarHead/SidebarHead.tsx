@@ -2,13 +2,13 @@ import React from 'react'
 import NightToggle from '../../../shared/NightToggle/NightToggle'
 import logoImage from '../../../assets/svg/logo.svg'
 
-import { Container, LogoWrapper, ThemeWrapper } from './DrawerHeader.styled'
+import { Container, LogoWrapper, ThemeWrapper } from './SidebarHead.styled'
 
-interface DrawerHeaderProps {
+interface SidebarHeadProps {
   themeChanger(checked: boolean): void
 }
 
-const DrawerHeader: React.FC<DrawerHeaderProps> = ({ themeChanger }) => {
+const SidebarHead: React.FC<SidebarHeadProps> = ({ themeChanger }) => {
   return (
     <Container>
       <LogoWrapper>
@@ -22,4 +22,4 @@ const DrawerHeader: React.FC<DrawerHeaderProps> = ({ themeChanger }) => {
   )
 }
 
-export default DrawerHeader
+export default SidebarHead
