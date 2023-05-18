@@ -21,6 +21,7 @@ export const TheStarIcon = styled(SvgIcon)<{ $active: boolean }>`
   -webkit-tap-highlight-color: transparent;
   -moz-appearance: none;
   -webkit-appearance: none;
+  overflow: visible;
 `
 
 export const HiddenInput = styled.input`
