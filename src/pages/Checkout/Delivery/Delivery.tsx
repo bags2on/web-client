@@ -316,11 +316,11 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
         <div className={classes.areaContainer}>
           <FormControl className={classes.formField}>
             <span>Область</span>
-            <TextInput name="region" disabled={areasLoading} select fullWidth options={areasOptions} />
+            <TextInput name="region" disabled={areasLoading} options={areasOptions} />
           </FormControl>
           <FormControl className={clsx(classes.formField, classes.cityField)}>
             <span>Город</span>
-            <TextInput name="cityId" select disabled={!values.region} fullWidth options={citiesOptions} />
+            <TextInput name="cityId" disabled={!values.region} options={citiesOptions} />
           </FormControl>
         </div>
         <FormControl className={classes.formField}>

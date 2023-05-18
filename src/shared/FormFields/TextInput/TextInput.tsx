@@ -1,103 +1,107 @@
 import React from 'react'
-import TextField from '@material-ui/core/TextField'
-import MenuItem from '@material-ui/core/MenuItem'
+import styled, { css } from 'styled-components'
 import { useField } from 'formik'
-import { makeStyles } from '@material-ui/core/styles'
-import { useSpring, animated } from 'react-spring'
 
 interface TextInputProps {
   name: string
-  select?: boolean
   type?: string
   rows?: number
-  label?: string
   disabled?: boolean
   multiline?: boolean
   maxLength?: number
-  fullWidth?: boolean
   placeholder?: string
   autoComplete?: string
-  options?: Array<{
-    label: string
-    value: string
-  }>
-  onChange?(event: React.ChangeEvent<HTMLInputElement>): void
+  hiddenLabel?: boolean
+  hideErrorMessage?: boolean
+  onChange?(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    borderRadius: 8,
-    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
-    boxShadow: 'rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;',
-    color: theme.palette.type === 'light' ? '#3c4144' : '#fff',
-    '& .MuiOutlinedInput-input': {
-      padding: 14,
-      fontWeight: 500
-    },
-    '& input:valid + fieldset': {
-      border: '1px solid',
-      borderColor: '#cdcdcd'
-    },
-    '&:hover input:valid + fieldset': {
-      borderColor: '#838383'
-    },
-    '& input:valid:focus + fieldset': {
-      borderColor: '#838383'
-    }
-  },
-  message: {
-    height: 24,
-    fontSize: 14,
-    color: '#ff182e',
-    margin: 0,
-    paddingLeft: 10,
-    transition: 'all 0.33s linear'
-  },
-  notchedOutline: {
-    borderWidth: '1px'
-  }
-}))
+interface BaseInputStyles {
+  $error: boolean
+}
 
-const TextInput: React.FC<TextInputProps> = ({ autoComplete = 'off', maxLength = 50, options, ...restProps }) => {
-  const classes = useStyles()
+const baseStyles = css<BaseInputStyles>`
+  font: inherit;
+  display: block;
+  color: currentColor;
+  box-sizing: border-box;
+  user-select: text;
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 13px 8px 11px 10px;
+  margin-bottom: 5px;
+  color: #fff;
+  outline-width: 0;
+  user-select: text;
+  border-radius: 8px;
+  background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#434343')};
+  color: ${({ theme }) => (theme.type === 'light' ? '#3c4144' : '#fff')};
+  border: 1px solid;
+  border-color: ${({ $error }) => ($error ? '#ff182e' : '#6a6a6a')};
+  -webkit-tap-highlight-color: transparent;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
+  transition: all 0.2s;
+
+  &:focus {
+    border: 1px solid #989898;
+  }
+  &:focus::placeholder {
+    opacity: 0.25;
+  }
+  &::placeholder {
+    color: #919191;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #3d3d3d;
+    border: 1px solid transparent;
+  }
+`
+
+const MultilineInput = styled.textarea<BaseInputStyles>`
+  ${baseStyles}
+  resize: none;
+`
+
+const BaseInput = styled.input<BaseInputStyles>`
+  ${baseStyles}
+`
+
+const ErrorMessage = styled.p<{ $err: boolean }>`
+  height: 24px;
+  font-size: 13px;
+  margin: 0;
+  color: #ff182e;
+  padding-left: 10px;
+  opacity: 1;
+  transition: all 0.3s linear;
+  transition: opacity 0.2s ease-in-out;
+  opacity: ${({ $err }) => ($err ? 1 : 0)};
+`
+
+const TextInput: React.FC<TextInputProps> = ({
+  autoComplete = 'off',
+  hideErrorMessage = false,
+  type = 'text',
+  multiline,
+  ...restProps
+}) => {
   const [field, meta] = useField(restProps)
 
-  const fadeStyles = useSpring({
-    config: { duration: 250 },
-    from: { opacity: 0 },
-    to: {
-      opacity: meta.touched && !!meta.error ? 1 : 0
-    }
-  })
+  const isErr = meta.touched && !!meta.error
 
   return (
     <div>
-      <TextField
-        {...field}
-        {...restProps}
-        variant="outlined"
-        autoComplete={autoComplete}
-        error={meta.touched && !!meta.error}
-        InputProps={{
-          classes: {
-            root: classes.root,
-            notchedOutline: classes.notchedOutline
-          }
-        }}
-        inputProps={{
-          maxLength
-        }}
-      >
-        {options &&
-          options.map(({ label, value }) => (
-            <MenuItem key={value} value={value}>
-              {label}
-            </MenuItem>
-          ))}
-      </TextField>
-      <animated.div style={fadeStyles}>
-        <p className={classes.message}>{meta.touched && meta.error}</p>
-      </animated.div>
+      {!!multiline ? (
+        <MultilineInput {...field} {...restProps} $error={isErr} autoComplete={autoComplete} />
+      ) : (
+        <BaseInput {...field} {...restProps} type={type} autoComplete={autoComplete} $error={isErr} />
+      )}
+      {!hideErrorMessage && <ErrorMessage $err={isErr}>{meta.touched && meta.error}</ErrorMessage>}
     </div>
   )
 }
