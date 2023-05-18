@@ -178,11 +178,11 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
         <div className={classes.wrapper}>
           <FormControl className={classes.formField}>
             <span>Имя</span>
-            <TextInput name="name" fullWidth />
+            <TextInput name="name" />
           </FormControl>
           <FormControl className={classes.formField}>
             <span>Фамилия</span>
-            <TextInput name="surname" fullWidth />
+            <TextInput name="surname" />
           </FormControl>
           <FormControl className={classes.formField}>
             <span>Телефон</span>
@@ -190,7 +190,7 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
           </FormControl>
           <FormControl className={classes.formField}>
             <span>E-mail</span>
-            <TextInput name="email" type="email" fullWidth />
+            <TextInput name="email" type="email" />
           </FormControl>
         </div>
         <Button disableShadow fullWidth className={classes.сontinueButton} onClick={handleNextClick}>

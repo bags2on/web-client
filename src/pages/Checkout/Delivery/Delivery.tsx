@@ -15,6 +15,7 @@ import { Field, useFormikContext } from 'formik'
 import { hiddenStyles } from '../../../utils/styling'
 import { animated, useSpring } from 'react-spring'
 import { makeStyles } from '@material-ui/core'
+import Select from '../../../shared/FormFields/Select'
 
 interface DeliveryProps {
   isEdit: boolean
@@ -316,11 +317,11 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
         <div className={classes.areaContainer}>
           <FormControl className={classes.formField}>
             <span>Область</span>
-            <TextInput name="region" disabled={areasLoading} options={areasOptions} />
+            <Select name="region" disabled={areasLoading} options={areasOptions} />
           </FormControl>
           <FormControl className={clsx(classes.formField, classes.cityField)}>
             <span>Город</span>
-            <TextInput name="cityId" disabled={!values.region} options={citiesOptions} />
+            <Select name="cityId" disabled={!values.region} options={citiesOptions} />
           </FormControl>
         </div>
         <FormControl className={classes.formField}>
