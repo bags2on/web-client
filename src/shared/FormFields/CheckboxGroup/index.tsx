@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
-import Collapse from '../../Collapse'
+import Collapse, { CollapseHead } from '../../Collapse'
 import Checkbox from '../Checkbox/Checkbox'
-import { ReactComponent as ExpandIcon } from '../../../assets/svg/icons/expand-arrow.svg'
 
-import { Fieldset, GroupHead, TheExpandIcon, Title } from './CheckboxGroup.styled'
+import { Fieldset } from './CheckboxGroup.styled'
 
 type optionType = {
   value: string
@@ -25,10 +24,7 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, options, name }) =
 
   return (
     <div>
-      <GroupHead onClick={handleCollapse}>
-        <Title>{title}</Title>
-        <TheExpandIcon $collapsed={isCollapsed}>{isCollapsed ? <ExpandIcon /> : <ExpandIcon />}</TheExpandIcon>
-      </GroupHead>
+      <CollapseHead title={title} collapsed={isCollapsed} onCollapse={handleCollapse} />
       <Collapse open={isCollapsed}>
         <Fieldset>
           {options.map(({ label, value }) => (
