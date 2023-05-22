@@ -1,27 +1,15 @@
 import React from 'react'
 import ProductsSlider from '../../../shared/ProductsSlider'
 import CatalogItem from '../../../components/CatalogItem/CatalogItem'
-import { makeStyles } from '@material-ui/core'
+
+import { Container, Title } from './Recommended.styled'
 
 import TEMP_RECOMENDED from './temp'
 
-const useStyles = makeStyles(() => ({
-  root: {
-    padding: '0 10px',
-    marginBottom: 15
-  },
-  title: {
-    fontSize: '23px',
-    fontWeight: 600
-  }
-}))
-
 const Recommended: React.FC = () => {
-  const classes = useStyles()
-
   return (
-    <section className={classes.root}>
-      <h2 className={classes.title}>Рекомендуемые</h2>
+    <Container>
+      <Title>Рекомендуемые</Title>
       <ProductsSlider speed={500}>
         {TEMP_RECOMENDED.map((product) => (
           <CatalogItem
@@ -37,7 +25,7 @@ const Recommended: React.FC = () => {
           />
         ))}
       </ProductsSlider>
-    </section>
+    </Container>
   )
 }
 
