@@ -1,14 +1,13 @@
 import React from 'react'
-import Divider from '@material-ui/core/Divider'
 import RadioGroup from '../../../shared/FormFields/RadioGroup/RadioGroup'
 import CheckBoxGroup from '../../../shared/FormFields/CheckboxGroup'
 import PriceRange from '../../../shared/FormFields/PriceRange/PriceRange'
 import fieldProps from './fields-data'
-import Button from '../../../shared/Button/Button'
 import AutoSave from '../../../shared/AutoSave'
 import { useTranslation } from 'react-i18next'
 import { Formik, Form } from 'formik'
-import { makeStyles } from '@material-ui/core'
+
+import { Aside, TitleWrapper, Title, Divider, ClearButton, RadioWrapper } from './Filters.styled'
 
 type PriceRange = {
   lt: number
@@ -31,46 +30,7 @@ interface FiltersProps {
   onSubmit(values: any): void
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: '10px 10px 20px 10px'
-  },
-  titleWrapper: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    margin: '10px 0 15px 10px'
-  },
-  title: {
-    margin: 0,
-    lineHeight: '1.5',
-    fontSize: 21,
-    textAlign: 'center',
-    position: 'relative',
-    fontWeight: 500,
-    [theme.breakpoints.up('lg')]: {
-      textAlign: 'start'
-    }
-  },
-  divider: {
-    backgroundColor: '#d8bbbb80',
-    marginBottom: '10px',
-    height: 2
-  },
-  clearButton: {
-    fontSize: 11,
-    padding: 3,
-    background: '#f44336',
-    '&:hover': {
-      background: '#ff5346'
-    }
-  },
-  generalWrapper: {
-    padding: '8px 10px'
-  }
-}))
-
 const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSubmit }) => {
-  const classes = useStyles()
   const { t } = useTranslation()
 
   const { gender, availability, radioGroup, categories } = fieldProps
@@ -86,7 +46,7 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
   }
 
   return (
-    <aside className={classes.root}>
+    <Aside>
       <Formik
         enableReinitialize
         onReset={(_, { setValues }) => {
@@ -103,19 +63,15 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
       >
         {({ dirty, resetForm }): React.ReactElement => (
           <Form ref={formRef}>
-            <div className={classes.titleWrapper}>
-              <p className={classes.title}>{t('catalog.filters.title')}</p>
+            <TitleWrapper>
+              <Title>{t('catalog.filters.title')}</Title>
               {dirty && (
-                <Button onClick={() => resetForm()} className={classes.clearButton} disableShadow>
+                <ClearButton onClick={() => resetForm()} disableShadow>
                   очистить
-                </Button>
+                </ClearButton>
               )}
-            </div>
-            <Divider
-              classes={{
-                root: classes.divider
-              }}
-            />
+            </TitleWrapper>
+            <Divider />
             <AutoSave onSave={handleSave} />
             <CheckBoxGroup title={t('catalog.filters.names.type')} name="gender" options={gender.options} />
             <CheckBoxGroup
@@ -123,15 +79,15 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
               title={t('catalog.filters.names.availability')}
               options={availability.options}
             />
-            <div className={classes.generalWrapper}>
+            <RadioWrapper>
               <RadioGroup name="mainTag" size="medium" options={radioGroup.options} />
-            </div>
+            </RadioWrapper>
             <PriceRange name="priceRange" min={minPrice} max={maxPrice} title={t('catalog.filters.names.price')} />
             <CheckBoxGroup title={t('catalog.filters.names.category')} name="category" options={categories.options} />
           </Form>
         )}
       </Formik>
-    </aside>
+    </Aside>
   )
 }
 
