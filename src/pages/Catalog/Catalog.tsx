@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
-import SvgIcon from '@material-ui/core/SvgIcon'
 import Button from '../../shared/Button/Button'
 import Filters from './Filters/Filters'
 import Products from './Products/Products'
@@ -14,6 +13,7 @@ import { CategoryType, Gender, MainTag, PriceRange } from '../../graphql/types'
 import classes from './Catalog.module.scss'
 import routes from '../../utils/routes'
 import appHistory from '../../utils/history'
+import SvgIcon from '../../shared/SvgIcon'
 
 interface ParamTypes {
   page: string
@@ -173,7 +173,7 @@ const Catalog: React.FC = () => {
                 disabled={loading}
                 fullWidth
                 startIcon={
-                  <SvgIcon component="span">
+                  <SvgIcon>
                     <FilterIcon />
                   </SvgIcon>
                 }
