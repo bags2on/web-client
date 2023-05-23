@@ -8,58 +8,14 @@ import history from '../../utils/history'
 import { useMutation, useReactiveVar } from '@apollo/client'
 import { cartItemsVar } from '../../apollo/cache/variables'
 import { CheckoutOrderSchema, CheckoutOrderType } from '../../utils/validationSchema'
-import { Formik, Form } from 'formik'
+import { Formik } from 'formik'
 import { CREATE_ORDER } from '../../graphql/order'
 import { Redirect } from 'react-router-dom'
 import { useWindowRatio } from '../../hooks'
-import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles((theme) => ({
-  wrapper: {
-    backgroundColor: theme.palette.type === 'light' ? '#f3f3f3' : 'transparent'
-  },
-  root: {
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-between',
-    [theme.breakpoints.up('lg')]: {
-      maxWidth: 1400,
-      flexWrap: 'nowrap',
-      margin: '0 auto',
-      padding: '20px 7px'
-    }
-  },
-  emptyCartBox: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: 'calc(100 * var(--vh))'
-  },
-  mainBox: {
-    padding: '20px 10px 20px 10px',
-    backgroundColor: theme.palette.type === 'light' ? '#f2f2f2' : 'transparent',
-    [theme.breakpoints.up('lg')]: {
-      borderRadius: 14,
-      marginRight: 20,
-      backgroundColor: theme.palette.type === 'light' ? '#fff' : '#323232'
-    },
-    [theme.breakpoints.up('xl')]: {
-      padding: '20px 40px 20px 30px',
-      flexBasis: '65%'
-    }
-  },
-  wrapBox: {
-    width: '100%',
-    [theme.breakpoints.up('lg')]: {
-      width: 'auto'
-    }
-  }
-}))
+import { Container, Form, DeliveryBox, PreviewBox } from './Checkout.styled'
 
 const Checkout: React.FC = () => {
-  const classes = useStyles()
   const [windowWidth] = useWindowRatio()
 
   const [isModalOpen, setModalOpen] = useState<boolean>(false)
@@ -117,7 +73,7 @@ const Checkout: React.FC = () => {
   }
 
   return (
-    <div className={classes.wrapper}>
+    <Container>
       <Formik
         validateOnBlur
         validateOnChange={false}
@@ -135,19 +91,19 @@ const Checkout: React.FC = () => {
         }}
       >
         {(): React.ReactElement => (
-          <Form className={classes.root}>
-            <div className={classes.mainBox}>
+          <Form>
+            <DeliveryBox>
               <CustomerInfo isEdit={isInfoEdit} onEdit={handleInfoEditOpen} onContinue={handleInfoChecked} />
               <Delivery isEdit={isDeliveryEdit} onEdit={handleDeliveryEditOpen} onContinue={handleDeliveryChecked} />
-            </div>
-            <div className={classes.wrapBox}>
+            </DeliveryBox>
+            <PreviewBox>
               <Preview submitLoading={loading} orderCreationErr={orderErr} />
-            </div>
+            </PreviewBox>
           </Form>
         )}
       </Formik>
       <Modal open={isModalOpen} onClose={hanldeModalClose} />
-    </div>
+    </Container>
   )
 }
 
