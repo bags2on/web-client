@@ -80,7 +80,7 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
               options={availability.options}
             />
             <RadioWrapper>
-              <RadioGroup name="mainTag" size="medium" options={radioGroup.options} />
+              <RadioGroup name="mainTag" options={radioGroup.options} />
             </RadioWrapper>
             <PriceRange name="priceRange" min={minPrice} max={maxPrice} title={t('catalog.filters.names.price')} />
             <CheckBoxGroup title={t('catalog.filters.names.category')} name="category" options={categories.options} />
