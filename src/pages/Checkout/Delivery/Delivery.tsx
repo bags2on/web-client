@@ -6,7 +6,6 @@ import ImagePlaceholder from '../../../shared/ImagePlaceholder'
 import novaPoshtaImage from '../../../assets/svg/nova_poshta.svg'
 import urkPoshtaImage from '../../../assets/svg/ukr-poshta.svg'
 import justinImage from '../../../assets/svg/justin.svg'
-import Icon from '@material-ui/core/SvgIcon'
 import Button from '../../../shared/Button/Button'
 import SomethingWrongModal from '../Modals/SomethingWrong'
 import { CheckoutOrderType } from '../../../utils/validationSchema'
@@ -17,6 +16,8 @@ import { animated, useSpring } from 'react-spring'
 import { makeStyles } from '@material-ui/core'
 import Select from '../../../shared/FormFields/Select'
 
+import { Container, TitleWrapper, TitleBox, ThePinIcon, DeliveriesList, DeliveriesItem } from './Delivery.styled'
+
 interface DeliveryProps {
   isEdit: boolean
   onEdit(): void
@@ -24,74 +25,6 @@ interface DeliveryProps {
 }
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#323232',
-    borderRadius: 10,
-    [theme.breakpoints.up('lg')]: {
-      backgroundColor: 'transparent',
-      borderRadius: 'none'
-    }
-  },
-  titleWrapper: {
-    position: 'relative',
-    backgroundColor: theme.palette.type === 'light' ? '#e1e1e1' : '#343434',
-    padding: '20px 10px 37px 10px',
-    borderRadius: 10,
-    transition: 'all 0.3s',
-    [theme.breakpoints.up('lg')]: {
-      backgroundColor: 'transparent',
-      padding: '0'
-    }
-  },
-  title: {
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: 15,
-    borderRadius: 10,
-    '& > h2': {
-      margin: 0
-    },
-    [theme.breakpoints.up('lg')]: {
-      justifyContent: 'center',
-      marginBottom: 30
-    },
-    [theme.breakpoints.up('xl')]: {
-      justifyContent: 'start'
-    }
-  },
-  titleWrapperExpand: {
-    backgroundColor: 'transparent',
-    justifyContent: 'flex-start',
-    marginBottom: 0,
-    paddingBottom: 0
-  },
-  listIcon: {
-    fontSize: 34,
-    lineHeight: '22px',
-    color: '#979797',
-    marginRight: 7
-  },
-  iconDone: {
-    fill: 'limegreen'
-  },
-  deliveriesList: {
-    display: 'flex',
-    margin: 0,
-    padding: '15px 0',
-    listStyle: 'none',
-    marginBottom: 15
-  },
-  deliveriesListItem: {
-    flexBasis: '33%',
-    margin: '0 5px',
-    '-webkit-tap-highlight-color': 'transparent',
-    '-moz-appearance': 'none',
-    '-webkit-appearance': 'none',
-    [theme.breakpoints.up('xl')]: {
-      flexBasis: '25%',
-      margin: '0 10px'
-    }
-  },
   serviceLabel: {
     display: 'block'
   },
@@ -189,7 +122,6 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: 25
     }
   },
-  postField: {},
   сontinueButton: {
     backgroundColor: 'var(--green-light)',
     '&:hover': {
@@ -265,55 +197,43 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
     })) || []
 
   return (
-    <section className={classes.root}>
-      <div
-        className={clsx({
-          [classes.titleWrapper]: true,
-          [classes.titleWrapperExpand]: isEdit
-        })}
-        onClick={onEdit}
-      >
-        <div className={classes.title}>
-          <Icon
-            component="span"
-            className={clsx({
-              [classes.listIcon]: true,
-              [classes.iconDone]: values.region && values.cityId && values.postOfficeId
-            })}
-          >
+    <Container>
+      <TitleWrapper $expand={isEdit} onClick={onEdit}>
+        <TitleBox>
+          <ThePinIcon $valid={Boolean(values.region && values.cityId && values.postOfficeId)}>
             <PinIcon />
-          </Icon>
+          </ThePinIcon>
           <h2>Способ доставки</h2>
-        </div>
+        </TitleBox>
         <span className={clsx(isEdit ? classes.editPlugHide : classes.editPlug)}>Изменить</span>
-      </div>
+      </TitleWrapper>
       <animated.div style={{ ...slideInStyles, overflow: 'hidden' }} className={classes.animatedBox}>
-        <ul className={classes.deliveriesList}>
-          <li className={classes.deliveriesListItem}>
+        <DeliveriesList>
+          <DeliveriesItem>
             <label className={classes.serviceLabel}>
               <Field type="radio" name="supplier" value="nova-poshta" className={classes.input} />
               <div className={classes.imageWrapper}>
                 <ImagePlaceholder plain src={novaPoshtaImage} altText="логотип 'Новая Почта'" />
               </div>
             </label>
-          </li>
-          <li className={classes.deliveriesListItem}>
+          </DeliveriesItem>
+          <DeliveriesItem>
             <label className={classes.serviceLabel}>
               <Field type="radio" name="supplier" value="url-poshta" className={classes.input} />
               <div className={classes.imageWrapper}>
                 <ImagePlaceholder plain src={urkPoshtaImage} altText="логотип 'Укр Почта'" />
               </div>
             </label>
-          </li>
-          <li className={classes.deliveriesListItem}>
+          </DeliveriesItem>
+          <DeliveriesItem>
             <label className={classes.serviceLabel}>
               <Field type="radio" name="supplier" value="justin" className={classes.input} />
               <div className={classes.imageWrapper}>
                 <ImagePlaceholder plain src={justinImage} altText="логотип 'Justin'" />
               </div>
             </label>
-          </li>
-        </ul>
+          </DeliveriesItem>
+        </DeliveriesList>
         <div className={classes.areaContainer}>
           <FormControl className={classes.formField}>
             <span>Область</span>
@@ -333,7 +253,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
         </Button>
       </animated.div>
       <SomethingWrongModal open={areasError} />
-    </section>
+    </Container>
   )
 }
 
