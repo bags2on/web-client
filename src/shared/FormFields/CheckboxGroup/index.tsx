@@ -1,14 +1,8 @@
 import React, { useState } from 'react'
-import ListItem from '@material-ui/core/ListItem'
-import ListItemText from '@material-ui/core/ListItemText'
-import Collapse from '@material-ui/core/Collapse'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import ExpandLessIcon from '@material-ui/icons/ExpandLess'
-import FormControl from '@material-ui/core/FormControl'
-import FormGroup from '@material-ui/core/FormGroup'
+import Collapse, { CollapseHead } from '../../Collapse'
 import Checkbox from '../Checkbox/Checkbox'
-import { FieldArray, Field } from 'formik'
-import { makeStyles } from '@material-ui/core'
+
+import { Fieldset } from './CheckboxGroup.styled'
 
 type optionType = {
   value: string
@@ -21,43 +15,25 @@ interface CheckBoxGroupProps {
   options: Array<optionType>
 }
 
-const useStyles = makeStyles(() => ({
-  title: {
-    padding: '8px 10px'
-  },
-  collapseList: {
-    paddingLeft: 20
-  }
-}))
-
 const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, options, name }) => {
-  const classes = useStyles()
   const [isCollapsed, setCollapsed] = useState<boolean>(true)
 
   const handleCollapse = (): void => {
-    setCollapsed(!isCollapsed)
+    setCollapsed((prev) => !prev)
   }
 
   return (
     <div>
-      <ListItem button onClick={handleCollapse} className={classes.title}>
-        <ListItemText primary={title} />
-        {isCollapsed ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-      </ListItem>
-      <FieldArray
-        name={name}
-        render={({ name }) => (
-          <Collapse in={isCollapsed} timeout="auto" unmountOnExit className={classes.collapseList}>
-            <FormControl component="fieldset">
-              <FormGroup>
-                {options.map(({ label, value }) => (
-                  <Field key={value} type="checkbox" component={Checkbox} name={name} value={value} Label={{ label }} />
-                ))}
-              </FormGroup>
-            </FormControl>
-          </Collapse>
-        )}
-      />
+      <CollapseHead title={title} collapsed={isCollapsed} onCollapse={handleCollapse} />
+      <Collapse open={isCollapsed}>
+        <Fieldset>
+          {options.map(({ label, value }) => (
+            <div key={value}>
+              <Checkbox name={name} label={label} value={value} />
+            </div>
+          ))}
+        </Fieldset>
+      </Collapse>
     </div>
   )
 }

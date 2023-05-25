@@ -1,20 +1,18 @@
 import React from 'react'
-import { makeStyles, Theme } from '@material-ui/core'
+import styled from 'styled-components'
 
 interface styleProps {
   fallback?: boolean
   dark?: boolean
 }
 
-const useStyles = makeStyles<Theme, styleProps>((theme) => ({
-  loader: {
-    width: ({ fallback }) => (fallback ? 34 : 24),
-    height: ({ fallback }) => (fallback ? 40 : 24),
-    '& > rect': {
-      fill: (props: styleProps) => (props.dark ? '#343434' : theme.palette.secondary.main)
-    }
+const SvgEl = styled.svg<styleProps>`
+  width: ${({ fallback }) => (fallback ? '34px' : '24px')};
+  height: ${({ fallback }) => (fallback ? '40px' : '24px')};
+  & > rect {
+    fill: ${({ theme, dark }) => (dark ? '#343434' : theme.colors.primary)};
   }
-}))
+`
 
 interface LoaderProps {
   fallback?: boolean
@@ -22,9 +20,15 @@ interface LoaderProps {
 }
 
 const ScaleLoader: React.FC<LoaderProps> = ({ fallback = false, dark }) => {
-  const classes = useStyles({ fallback, dark })
   return (
-    <svg className={classes.loader} xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" viewBox="0 0 24 30">
+    <SvgEl
+      fallback={fallback}
+      dark={dark}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24px"
+      height="24px"
+      viewBox="0 0 24 30"
+    >
       <rect x="0" y="13" width="4" height="5" fill="#333">
         <animate
           attributeName="height"
@@ -79,7 +83,7 @@ const ScaleLoader: React.FC<LoaderProps> = ({ fallback = false, dark }) => {
           repeatCount="indefinite"
         />
       </rect>
-    </svg>
+    </SvgEl>
   )
 }
 

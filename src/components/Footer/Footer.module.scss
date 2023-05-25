@@ -131,7 +131,7 @@ $text-color: #939191;
   &:hover {
     fill: $main-color;
   }
-  & svg {
+  & > svg {
     width: 19px;
     height: 19px;
   }

@@ -1,17 +1,11 @@
 import React, { useState, useLayoutEffect } from 'react'
-import clsx from 'clsx'
-import ListItem from '@material-ui/core/ListItem'
-import Collapse from '@material-ui/core/Collapse'
-import ListItemText from '@material-ui/core/ListItemText'
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore'
-import ExpandLessIcon from '@material-ui/icons/ExpandLess'
-import Button from '../../../shared/Button/Button'
 import { useFormikContext } from 'formik'
-import { Range } from 'rc-slider'
-import { makeStyles } from '@material-ui/core'
+import type { SliderProps } from 'rc-slider'
+
+import Collapse, { CollapseHead } from '../../../shared/Collapse'
 
 import 'rc-slider/assets/index.css'
-import './PriceRange.scss'
+import { Container, Slider, SliderMark, Controls, PriceInput, SetButton } from './PriceRange.styled'
 
 interface PriceRangeProps {
   title: string
@@ -21,41 +15,11 @@ interface PriceRangeProps {
   step?: number
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {},
-  title: {
-    padding: '8px 10px'
-  },
-  collapseBox: {
-    width: '100%',
-    padding: '20px 15px 35px 13px'
-  },
-  controlsBox: {
-    marginBottom: 20
-  },
-  input: {
-    border: '1px solid',
-    color: theme.palette.type === 'light' ? '#343434' : '#fff',
-    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#3c4144',
-    borderColor: theme.palette.type === 'light' ? '#c4c4c4' : '#3c4144'
-  },
-  submitButton: {
-    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#2bab2b',
-    color: theme.palette.type === 'light' ? '#343434' : '#fff',
-    border: '1px solid',
-    borderColor: theme.palette.type === 'dark' ? 'transparent' : '#c0c0c0',
-    '&:hover': {
-      backgroundColor: theme.palette.type === 'dark' ? '#32cd32' : '#efefef'
-    }
-  }
-}))
-
 interface FormFields {
   priceRange: Array<number>
 }
 
 const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1 }) => {
-  const classes = useStyles()
   const { values, setFieldValue } = useFormikContext<FormFields>()
 
   const [minPrice, maxPrice] = values.priceRange || [0, 0]
@@ -79,8 +43,8 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
     setCollapsed(!isCollapsed)
   }
 
-  const onSliderChange = (values: number[]): void => {
-    const [min, max] = values
+  const onSliderChange = (values: number | number[]): void => {
+    const [min, max] = values as number[]
 
     setMinInputValue(min)
     setMaxInputValue(max)
@@ -106,40 +70,35 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
     setFieldValue(name, [minInputValue, maxInputValue])
   }
 
-  const marks = {
-    [String(min)]: {
-      label: min
+  const marks: SliderProps['marks'] = {
+    [min]: {
+      label: <SliderMark>{min}</SliderMark>
     },
-    [String(max)]: {
-      label: max
+    [max]: {
+      label: <SliderMark>{max}</SliderMark>
     }
   }
 
   return (
     <div>
-      <ListItem button onClick={handleCollapse} className={classes.title}>
-        <ListItemText primary={title} />
-        {isCollapsed ? <ExpandLessIcon /> : <ExpandMoreIcon />}
-      </ListItem>
-      <Collapse in={isCollapsed} timeout="auto" unmountOnExit className={classes.collapseBox}>
-        <div className={classes.controlsBox}>
-          <input
-            type="number"
-            value={minInputValue}
-            onChange={onMinChange}
-            className={clsx(classes.input, 'price-input')}
+      <CollapseHead title={title} collapsed={isCollapsed} onCollapse={handleCollapse} />
+      <Collapse open={isCollapsed}>
+        <Container>
+          <Controls>
+            <PriceInput type="number" value={minInputValue} onChange={onMinChange} />
+            <PriceInput type="number" value={maxInputValue} onChange={onMaxChange} />
+            <SetButton onClick={handlePriceSubmit}>ok</SetButton>
+          </Controls>
+          <Slider
+            range
+            min={min}
+            max={max}
+            step={step}
+            value={[sliderMin, sliderMax]}
+            onChange={onSliderChange}
+            marks={marks}
           />
-          <input
-            type="number"
-            value={maxInputValue}
-            onChange={onMaxChange}
-            className={clsx(classes.input, 'price-input')}
-          />
-          <Button disableShadow className={clsx(classes.submitButton, 'price-submit')} onClick={handlePriceSubmit}>
-            ok
-          </Button>
-        </div>
-        <Range min={min} max={max} step={step} value={[sliderMin, sliderMax]} onChange={onSliderChange} marks={marks} />
+        </Container>
       </Collapse>
     </div>
   )

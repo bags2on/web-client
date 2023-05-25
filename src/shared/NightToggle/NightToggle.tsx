@@ -1,6 +1,5 @@
 import React from 'react'
 import classes from './style.module.scss'
-import { hiddenStyles } from '../../utils/styling'
 
 interface NightToggleProps {
   themeChanger(checked: boolean): void
@@ -20,11 +19,11 @@ const NightToggle: React.FC<NightToggleProps> = ({ themeChanger }) => {
       <span className={classes.beta}>beta</span>
       <label>
         <input
+          className={classes.toggleInput}
           type="checkbox"
           autoComplete="off"
           onChange={handleSwitch}
           checked={defaultTheme === 'dark'}
-          style={hiddenStyles as React.CSSProperties}
         />
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 83 70">
           <defs>

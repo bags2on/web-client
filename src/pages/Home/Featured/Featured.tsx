@@ -1,8 +1,8 @@
 import React from 'react'
-import Grid from '@material-ui/core/Grid'
 import CatalogItem from '../../../components/CatalogItem/CatalogItem'
 import { useTranslation } from 'react-i18next'
-import { makeStyles } from '@material-ui/core'
+
+import { Title, List, ListItem } from './Featured.styled'
 
 interface ProductType {
   id: string
@@ -17,33 +17,15 @@ interface FeaturedProps {
   products: Array<ProductType>
 }
 
-const useStyles = makeStyles(() => ({
-  title: {
-    fontSize: 20,
-    fontWeight: 500,
-    lineHeight: '1.5',
-    margin: '15px 0 5px 10px'
-  },
-  list: {
-    margin: 0,
-    padding: 0,
-    listStyle: 'none'
-  },
-  item: {
-    padding: 1
-  }
-}))
-
 const Featured: React.FC<FeaturedProps> = ({ products }) => {
-  const classes = useStyles()
   const { t } = useTranslation()
 
   return (
     <section>
-      <h2 className={classes.title}>{t('home.featured')}</h2>
-      <Grid container component="ul" className={classes.list}>
+      <Title>{t('home.featured')}</Title>
+      <List>
         {products.map((product: ProductType) => (
-          <Grid key={product.id} component="li" className={classes.item} item xs={6} md={4} lg={3}>
+          <ListItem key={product.id}>
             <CatalogItem
               inStock
               id={product.id}
@@ -54,9 +36,9 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
               basePrice={product.basePrice}
               isFavorite={false} // TODO: get data form ac3
             />
-          </Grid>
+          </ListItem>
         ))}
-      </Grid>
+      </List>
     </section>
   )
 }

@@ -1,31 +1,28 @@
 import React, { useState, useEffect } from 'react'
 import { useLang, useWindowRatio } from '../../hooks'
 import Header from '../Header/Header'
-import Drawer from '../Drawer/Drawer'
+import SideBar from '../Sidebar/Sidebar'
 import Cart from '../Cart/Cart'
 import Footer from '../Footer/Footer'
 import AuthModal from '../AuthModal/AuthModal'
 import { CartMutations, FavoriteMutations } from '../../apollo/cache/mutations'
-import { makeStyles } from '@material-ui/core'
+import styled from 'styled-components'
 
 interface RootLayoutProps {
   themeChanger(checked: boolean): void
+  children?: React.ReactNode
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: 60,
-    [theme.breakpoints.up('lg')]: {
-      marginTop: 0
-    }
+const Main = styled.main`
+  margin-top: 60px;
+  @media ${({ theme }) => theme.media.lg} {
+    margin-top: 0;
   }
-}))
+`
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
   useLang()
   useWindowRatio()
-
-  const classes = useStyles()
 
   useEffect(() => {
     CartMutations.syncCart()
@@ -53,10 +50,10 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children, themeChanger }) => {
 
   return (
     <>
-      <Drawer isOpen={isDrawerOpen} onClose={handleCloseDrawer} themeChanger={themeChanger} />
+      <SideBar isOpen={isDrawerOpen} onClose={handleCloseDrawer} themeChanger={themeChanger} />
       <Cart isOpen={isCartOpen} onClose={handleCartClose} />
       <Header onDrawerOpen={handleOpenDrawer} onCartOpen={handleCartOpen} />
-      <main className={classes.root}>{children}</main>
+      <Main>{children}</Main>
       <Footer />
       <AuthModal />
     </>

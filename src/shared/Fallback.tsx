@@ -1,23 +1,19 @@
 import React from 'react'
+import styled from 'styled-components'
 import ScaleLoader from './loaders/ScaleLoader'
-import { makeStyles } from '@material-ui/core'
 
-const useStyles = makeStyles(() => ({
-  root: {
-    height: '100vh',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center'
-  }
-}))
+const Container = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 const Fallback: React.FC = () => {
-  const classes = useStyles()
-
   return (
-    <div className={classes.root}>
+    <Container>
       <ScaleLoader fallback />
-    </div>
+    </Container>
   )
 }
 

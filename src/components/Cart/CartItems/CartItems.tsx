@@ -1,64 +1,34 @@
 import React from 'react'
-import Grid from '@material-ui/core/Grid'
 import Summary from '../Summary/Summary'
-import Button from '../../../shared/Button/Button'
 import ResponsePlug from './ResponsePlug'
 import ContentLoader from 'react-content-loader'
-import CartItem, { CartItemType } from '../../CartItem/CartItem'
+import CartItem, { CartItemType } from '../CartItem/CartItem'
 import { useQuery, useReactiveVar } from '@apollo/client'
 import { CartMutations } from '../../../apollo/cache/mutations'
+import { ReactComponent as CrossIcon } from '../../../assets/svg/icons/cross.svg'
 import {
   CartProductsDocument,
   CartProductsQuery,
   CartProductsVariables
 } from '../../../graphql/product/_gen_/cartProducts.query'
 import { cartItemsVar } from '../../../apollo/cache/variables'
-import { makeStyles } from '@material-ui/core'
+
+import {
+  Container,
+  ProductsList,
+  ClearButton,
+  ContentLoaderList,
+  TopControls,
+  CloseButton,
+  TheCloseIcon
+} from './CartItems.styled'
 
 interface CartItemsProps {
   onClose(): void
   onCheckout(): void
 }
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    position: 'relative'
-  },
-  list: {
-    margin: 0,
-    padding: '20px 10px 0 10px',
-    listStyle: 'none'
-  },
-  clearButton: {
-    display: 'block',
-    fontSize: 16,
-    padding: 10,
-    fontWeight: 400,
-    textTransform: 'none',
-    background: 'none',
-    color: theme.palette.type === 'light' ? '#343434' : '#f2f2f2',
-    marginLeft: 'auto',
-    [theme.breakpoints.up('md')]: {
-      '&:hover': {
-        backgroundColor: 'transparent',
-        textDecoration: 'underline'
-      }
-    }
-  },
-  fallbackList: {
-    margin: 0,
-    padding: 0,
-    paddingTop: 30,
-    listStyle: 'none',
-    width: '100%',
-    '& li': {
-      width: '100%'
-    }
-  }
-}))
-
 const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
-  const classes = useStyles()
   const cartItems = useReactiveVar(cartItemsVar)
 
   const isCartEmpty = cartItems.length === 0
@@ -99,12 +69,17 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   }
 
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <Summary isLoading={loading} onClose={onClose} onCheckout={onCheckout} />
-      </Grid>
+    <Container>
+      <TopControls>
+        <CloseButton disableRipple onClick={onClose}>
+          <TheCloseIcon>
+            <CrossIcon />
+          </TheCloseIcon>
+        </CloseButton>
+        <ClearButton onClick={handleClearAllClick}>Очистить корзину</ClearButton>
+      </TopControls>
       {loading ? (
-        <ul className={classes.fallbackList}>
+        <ContentLoaderList>
           {cartItems.map((_: unknown, index: number) => (
             <li key={index}>
               <ContentLoader
@@ -121,26 +96,18 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
               </ContentLoader>
             </li>
           ))}
-        </ul>
+        </ContentLoaderList>
       ) : (
         <>
-          <Grid item xs={12}>
-            <Button onClick={handleClearAllClick} disableShadow className={classes.clearButton}>
-              Очистить корзину
-            </Button>
-          </Grid>
-          <Grid item xs={12}>
-            <Grid container component="ul" className={classes.list}>
-              {data?.cartProducts.map((product: CartItemType, index) => (
-                <Grid key={index} component="li" item xs={12}>
-                  <CartItem product={product} onRemove={handleProductRemove} />
-                </Grid>
-              ))}
-            </Grid>
-          </Grid>
+          <ProductsList>
+            {data?.cartProducts.map((product: CartItemType, index) => (
+              <CartItem key={index} product={product} onRemove={handleProductRemove} />
+            ))}
+          </ProductsList>
         </>
       )}
-    </Grid>
+      <Summary isLoading={loading} onCheckout={onCheckout} />
+    </Container>
   )
 }
 

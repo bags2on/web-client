@@ -1,42 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import clsx from 'clsx'
 import history from '../../utils/history'
-import { makeStyles } from '@material-ui/core'
-
-const useStyles = makeStyles((theme) => ({
-  pagination: {
-    display: 'flex',
-    justifyContent: 'center',
-    listStyle: 'none',
-    margin: 0,
-    padding: 0
-  },
-  pagingItem: {
-    margin: 5,
-    display: 'flex',
-    fontWeight: 600,
-    cursor: 'pointer',
-    position: 'relative',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: theme.palette.type === 'light' ? '#f3f4f7' : '#444444',
-    borderRadius: 5,
-    fontSize: 15,
-    outline: 'none',
-    width: 35,
-    height: 35,
-    padding: 0,
-    userSelect: 'none',
-    transition: 'opacity .3s',
-    '&:hover': {
-      opacity: '0.6'
-    }
-  },
-  activePage: {
-    backgroundColor: theme.palette.type === 'light' ? '#fff' : '#696C72',
-    boxShadow: 'rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px'
-  }
-}))
+import { List, PaginationItem } from './Pagination.styled'
 
 interface PaginationProps {
   total: number
@@ -56,8 +20,6 @@ const Pagination: React.FC<PaginationProps> = ({ total, currentPage, route }) =>
       history.push(route + `/${value}`)
     }
   }
-
-  const classes = useStyles()
 
   const constantSlots = 8
 
@@ -104,22 +66,15 @@ const Pagination: React.FC<PaginationProps> = ({ total, currentPage, route }) =>
 
   return (
     <section>
-      <ul className={classes.pagination}>
+      <List>
         {items.map((page, ind) => {
           return (
-            <li
-              key={ind}
-              className={clsx({
-                [classes.pagingItem]: true,
-                [classes.activePage]: current === page
-              })}
-              onClick={(): void => handlePaginationChange(page)}
-            >
+            <PaginationItem key={ind} $current={current === page} onClick={() => handlePaginationChange(page)}>
               {page}
-            </li>
+            </PaginationItem>
           )
         })}
-      </ul>
+      </List>
     </section>
   )
 }

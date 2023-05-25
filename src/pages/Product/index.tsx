@@ -1,41 +1,25 @@
 import React, { useEffect } from 'react'
-import { Redirect } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
-import { useQuery } from '@apollo/client'
 import routes from '../../utils/routes'
-import Grid from '@material-ui/core/Grid'
 import ScaleLoader from '../../shared/loaders/ScaleLoader'
 import ErrorPlug from '../../shared/ErrorPlug'
 import Preview from './Preview/Preview'
 import Details from './Details'
 import Recommended from './Recommended/Recommended'
+import { Redirect } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
+import { useQuery } from '@apollo/client'
 import {
   GetProductByIdDocument,
   GetProductByIdQuery,
   GetProductByIdVariables
 } from '../../graphql/product/_gen_/productByID.query'
-import { makeStyles } from '@material-ui/core'
+import { Container, Loader, Inner, PreviewWrapper, DetailsWrapper } from './Product.styled'
 
 interface ProductID {
   id: string
 }
 
-const useStyles = makeStyles(() => ({
-  root: {
-    marginTop: 20,
-    maxWidth: 1300,
-    margin: '0 auto'
-  },
-  loaderWapper: {
-    height: '100vh',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center'
-  }
-}))
-
 const ProductDetails: React.FC = () => {
-  const classes = useStyles()
   const { id } = useParams<ProductID>()
 
   useEffect(() => {
@@ -51,9 +35,9 @@ const ProductDetails: React.FC = () => {
 
   if (loading) {
     return (
-      <div className={classes.loaderWapper}>
+      <Loader>
         <ScaleLoader fallback />
-      </div>
+      </Loader>
     )
   }
 
@@ -68,12 +52,12 @@ const ProductDetails: React.FC = () => {
   }
 
   return (
-    <div className={classes.root}>
-      <Grid container>
-        <Grid item xs={12} lg={7}>
+    <Container>
+      <Inner>
+        <PreviewWrapper>
           <Preview images={product.images} />
-        </Grid>
-        <Grid item xs={12} lg={5}>
+        </PreviewWrapper>
+        <DetailsWrapper>
           <Details
             id={product.id}
             title={product.title}
@@ -85,10 +69,10 @@ const ProductDetails: React.FC = () => {
             features={product.features}
             rating={product.rating}
           />
-        </Grid>
-      </Grid>
+        </DetailsWrapper>
+      </Inner>
       <Recommended />
-    </div>
+    </Container>
   )
 }
 

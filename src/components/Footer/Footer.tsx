@@ -1,6 +1,5 @@
 import React from 'react'
 import clsx from 'clsx'
-import Icon from '@material-ui/core/Icon'
 import { Link } from 'react-router-dom'
 import { ReactComponent as PhoneIcon } from '../../assets/svg/icons/phone.svg'
 import { ReactComponent as InstagramIcon } from '../../assets/svg/icons/instagram.svg'
@@ -20,31 +19,31 @@ const Footer: React.FC = () => {
             </div>
           </Link>
           <div className={classes.logoBox}>
-            <Icon className={classes.icon}>
+            <div className={clsx(classes.socialMediaIcon, classes.icon)}>
               <PhoneIcon />
-            </Icon>
+            </div>
             <p className={classes.phone}>099&nbsp;123&nbsp;45&nbsp;67</p>
           </div>
           <ul className={classes.socialMedia}>
             <li>
               <Link to="#">
-                <Icon className={classes.socialMediaIcon}>
+                <div className={classes.socialMediaIcon}>
                   <InstagramIcon />
-                </Icon>
+                </div>
               </Link>
             </li>
             <li>
               <Link to="#">
-                <Icon className={classes.socialMediaIcon}>
+                <div className={classes.socialMediaIcon}>
                   <FacebookIcon />
-                </Icon>
+                </div>
               </Link>
             </li>
             <li>
               <Link to="#">
-                <Icon className={classes.socialMediaIcon}>
+                <div className={classes.socialMediaIcon}>
                   <TelegramIcon />
-                </Icon>
+                </div>
               </Link>
             </li>
           </ul>
@@ -130,7 +129,7 @@ const Footer: React.FC = () => {
         </div>
       </footer>
       <div className={classes.subFooter}>
-        <span>{process.env.REACT_APP_NAME} © 2021</span>
+        <span>{process.env.REACT_APP_NAME} © 2023</span>
       </div>
     </div>
   )
