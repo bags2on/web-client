@@ -168,8 +168,7 @@ const Catalog: React.FC = () => {
             <div className={classes.filterButtonWrapper}>
               <Button
                 onClick={handleFilterClick}
-                className={classes.filterButton}
-                disableShadow
+                // className={classes.filterButton}
                 disabled={loading}
                 fullWidth
                 startIcon={

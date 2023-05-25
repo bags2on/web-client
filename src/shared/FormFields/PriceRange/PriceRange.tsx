@@ -87,9 +87,7 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
           <Controls>
             <PriceInput type="number" value={minInputValue} onChange={onMinChange} />
             <PriceInput type="number" value={maxInputValue} onChange={onMaxChange} />
-            <SetButton disableShadow onClick={handlePriceSubmit}>
-              ok
-            </SetButton>
+            <SetButton onClick={handlePriceSubmit}>ok</SetButton>
           </Controls>
           <Slider
             range

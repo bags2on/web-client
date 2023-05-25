@@ -111,7 +111,8 @@ const SomethingWrong: React.FC<SomethingWrongProps> = ({ open }) => {
           <div className={classes.subTitle}>
             <p>Попробуйте перезагрузить страницу или повторите попытку позже</p>
           </div>
-          <Button fullWidth color="secondary" className={classes.relodeButton} onClick={hanleReloadClick}>
+          {/* className={classes.relodeButton} */}
+          <Button fullWidth color="secondary" onClick={hanleReloadClick}>
             перезагрузить
           </Button>
           <p className={classes.or}>или</p>

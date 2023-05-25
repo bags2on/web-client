@@ -124,7 +124,6 @@ const Details: React.FC<SummaryProps> = ({
         <ActionButton
           onClick={handleAddToCart}
           fullWidth
-          disableShadow
           startIcon={
             <SvgIcon style={{ fontSize: 30, fill: '#fff' }}>
               <HeaderCartIcon />

@@ -71,7 +71,7 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
             <TextInput name="email" type="email" />
           </Field>
         </FieldsWrapper>
-        <ContinueButton disableShadow fullWidth onClick={handleNextClick}>
+        <ContinueButton fullWidth onClick={handleNextClick}>
           Продолжить
         </ContinueButton>
       </AnimatedBox>

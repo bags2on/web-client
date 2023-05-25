@@ -147,7 +147,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
           <span>Выберите отделение</span>
           <TextInput name="postOfficeId" />
         </FormField>
-        <ContinueButton disableShadow fullWidth onClick={onContinue}>
+        <ContinueButton fullWidth onClick={onContinue}>
           Продолжить
         </ContinueButton>
       </AnimatedBox>

@@ -39,7 +39,7 @@ const Summary: React.FC<SummaryProps> = ({ isLoading, onCheckout }) => {
           <span>Итого:</span>
           <b>{formatPrice(cartPrice)}&nbsp;грн.</b>
         </CartPrice>
-        <Button fullWidth disableShadow color="secondary" onClick={handleButtonClick}>
+        <Button fullWidth color="secondary" onClick={handleButtonClick}>
           Оформить заказ
         </Button>
       </InnerContainer>

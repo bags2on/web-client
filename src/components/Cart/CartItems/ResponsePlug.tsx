@@ -19,7 +19,6 @@ const ResponsePlug: React.FC<ResponsePlugProps> = ({ text, onClose }) => {
       <BackButton
         fullWidth
         onClick={onClose}
-        darkLoader
         color="secondary"
         startIcon={
           <ExpandIcon>

@@ -76,9 +76,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
             <CrossIcon />
           </TheCloseIcon>
         </CloseButton>
-        <ClearButton onClick={handleClearAllClick} disableShadow>
-          Очистить корзину
-        </ClearButton>
+        <ClearButton onClick={handleClearAllClick}>Очистить корзину</ClearButton>
       </TopControls>
       {loading ? (
         <ContentLoaderList>

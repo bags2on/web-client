@@ -20,7 +20,7 @@ const Summary: React.FC<SummaryProps> = ({ submitLoading, orderCreationErr }) =>
           <span>{formatPrice(cartPrice)}&nbsp;грн.</span>
         </TotalInfo>
       </Info>
-      <Button fullWidth disableShadow color="secondary" type="submit" loading={submitLoading} darkLoader>
+      <Button fullWidth color="secondary" type="submit" loading={submitLoading}>
         Подтвердить заказ
       </Button>
       {orderCreationErr && (
