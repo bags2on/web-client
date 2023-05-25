@@ -1,5 +1,4 @@
 import React from 'react'
-import clsx from 'clsx'
 import Advantages from './Advantages/Advantages'
 import MainProduct from '../../components/MainProduct/MainProduct'
 import Carousel from '../../components/Carousel/Carousel'
@@ -9,63 +8,18 @@ import SideList from './SideList/SideList'
 import Featured from './Featured/Featured'
 import Promo from './Promo/Promo'
 import JoinUs from './JoinUs/JoinUs'
-import { makeStyles } from '@material-ui/core'
 import { TEMP_SIDE_LIST_DATA, TEMP_FEATURED_DATA, TEMP_MAIN_SLIDER_IMAGES, TEMP_POPULAR_DATA } from './temp'
 
-const useStyles = makeStyles((theme) => ({
-  container: {
-    maxWidth: 1500,
-    margin: '0 auto'
-  },
-  sliderContainer: {
-    display: 'flex',
-    [theme.breakpoints.up('lg')]: {
-      padding: '0 5px'
-    },
-    [theme.breakpoints.up('tablet')]: {
-      padding: '16px 10px 0 10px'
-    },
-    '& section:nth-of-type(2)': {
-      display: 'none',
-      [theme.breakpoints.up('tablet')]: {
-        display: 'block'
-      }
-    }
-  },
-  homeContainer: {
-    display: 'flex',
-    flexDirection: 'column-reverse',
-    padding: '20px 10px 0 10px',
-    [theme.breakpoints.up('laptop')]: {
-      flexDirection: 'initial'
-    }
-  },
-  subBoxOne: {
-    flexBasis: '100%',
-    [theme.breakpoints.up('md')]: {
-      flexBasis: '25%'
-    }
-  },
-  subBoxTwo: {
-    flexBasis: '100%',
-    [theme.breakpoints.up('md')]: {
-      padding: '10px 0 10px 0',
-      flexBasis: '75%'
-    },
-    [theme.breakpoints.up('laptop')]: {
-      paddingLeft: 15
-    }
-  },
-  mainProductBox: {
-    [theme.breakpoints.up('tablet')]: {
-      display: 'none'
-    }
-  }
-}))
+import {
+  SliderContainer,
+  HomeContainer,
+  MainProductContainer,
+  SideListContainer,
+  PopularContainer,
+  SubBox
+} from './Home.styled'
 
 const Home: React.FC = () => {
-  const classes = useStyles()
-
   const mainProduct = {
     id: 'eh345vs',
     title: '#товарДня',
@@ -74,26 +28,26 @@ const Home: React.FC = () => {
 
   return (
     <div>
-      <div className={clsx(classes.container, classes.sliderContainer)}>
+      <SliderContainer>
         <Carousel items={TEMP_MAIN_SLIDER_IMAGES} />
         <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
-      </div>
-      <div className={clsx(classes.container, classes.homeContainer)}>
-        <div className={classes.subBoxOne}>
+      </SliderContainer>
+      <HomeContainer>
+        <SideListContainer>
           <SideList products={TEMP_SIDE_LIST_DATA} />
-        </div>
-        <div className={classes.subBoxTwo}>
+        </SideListContainer>
+        <SubBox>
           <Categories />
-          <div className={classes.mainProductBox}>
+          <MainProductContainer>
             <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
-          </div>
+          </MainProductContainer>
           <Featured products={TEMP_FEATURED_DATA} />
           <Promo />
-        </div>
-      </div>
-      <div className={classes.container}>
+        </SubBox>
+      </HomeContainer>
+      <PopularContainer>
         <Popular products={TEMP_POPULAR_DATA} />
-      </div>
+      </PopularContainer>
       <Advantages />
       <JoinUs />
     </div>
