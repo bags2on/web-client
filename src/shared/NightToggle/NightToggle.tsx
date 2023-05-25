@@ -18,7 +18,13 @@ const NightToggle: React.FC<NightToggleProps> = ({ themeChanger }) => {
     <div className={classes.root}>
       <span className={classes.beta}>beta</span>
       <label>
-        <input type="checkbox" autoComplete="off" onChange={handleSwitch} checked={defaultTheme === 'dark'} />
+        <input
+          className={classes.toggleInput}
+          type="checkbox"
+          autoComplete="off"
+          onChange={handleSwitch}
+          checked={defaultTheme === 'dark'}
+        />
         <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 83 70">
           <defs>
             <clipPath id="moonmask" className={classes.moonmask}>

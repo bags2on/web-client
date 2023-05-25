@@ -33,7 +33,7 @@ $line-size: 3px;
   background-color: #fff231;
 }
 
-input {
+.toggleInput {
   @include hide;
 }
 
@@ -44,7 +44,7 @@ svg .moon {
   transform: translateX(0px);
 }
 
-input:checked + svg .moon {
+.toggleInput:checked + svg .moon {
   transform: translateX(12px);
   stroke: $dark;
 }
@@ -54,7 +54,7 @@ svg .moonmask {
   transform: translateX(0px);
 }
 
-input:checked + svg .moonmask {
+.toggleInput:checked + svg .moonmask {
   transform: translateX(-12px);
 }
 
@@ -63,7 +63,7 @@ svg .sunmask {
   transform: translateX(0px);
 }
 
-input:checked + svg .sunmask {
+.toggleInput:checked + svg .sunmask {
   transform: translateX(12px);
 }
 
@@ -78,7 +78,7 @@ input:checked + svg .sunmask {
   @include shape();
 }
 
-input:checked + svg .beams {
+.toggleInput:checked + svg .beams {
   stroke-dashoffset: 10px;
   stroke: $dark;
 }
@@ -89,6 +89,6 @@ svg .sun {
   stroke: $light;
 }
 
-input:checked + svg .sun {
+.toggleInput:checked + svg .sun {
   stroke: $dark;
 }
