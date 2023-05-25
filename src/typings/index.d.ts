@@ -1,7 +1,5 @@
-import { ITheme, ThemeType } from '../utils/st_theme'
+import { ITheme, ThemeType } from '../utils/theme'
 
 declare module 'styled-components' {
-  export interface DefaultTheme extends ITheme {
-    type: ThemeType
-  }
+  export interface DefaultTheme extends ITheme {}
 }
