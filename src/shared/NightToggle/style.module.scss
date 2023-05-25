@@ -3,6 +3,8 @@ $dark: rgb(254, 230, 230);
 $time: 200ms linear;
 $line-size: 3px;
 
+@import '../../utils/shared.scss';
+
 @mixin shape {
   fill: none;
   stroke-width: $line-size;
@@ -29,6 +31,10 @@ $line-size: 3px;
   user-select: none;
   color: #343434;
   background-color: #fff231;
+}
+
+input {
+  @include hide;
 }
 
 svg .moon {
