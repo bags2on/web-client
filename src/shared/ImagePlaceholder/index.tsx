@@ -1,8 +1,14 @@
 import React from 'react'
-import { ReactComponent as Placeholder } from '../../assets/svg/image_placeholder.svg'
+// import Placeholder from '../../../public/assets/image_placeholder.svg'
 import ProgressiveImage from 'react-progressive-graceful-image'
 
-import { Picture, Shine, PlaceholderContainer, PlaceholderBox, Image } from './ImagePlaceholder.styled'
+import {
+  Picture,
+  Shine,
+  PlaceholderContainer,
+  PlaceholderBox,
+  Image
+} from './ImagePlaceholder.styled'
 
 export interface ImagePlaceholderProps {
   src: string
@@ -10,17 +16,11 @@ export interface ImagePlaceholderProps {
   plain?: boolean
 }
 
-interface styleProps {
-  plain: boolean
-}
-
 const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText, plain = false }) => {
   const placeholderPlug = (
     <PlaceholderContainer>
       <Shine $plain={plain} />
-      <PlaceholderBox>
-        <Placeholder height={50} width={50} />
-      </PlaceholderBox>
+      <PlaceholderBox>{/* <Placeholder height={50} width={50} /> */}</PlaceholderBox>
     </PlaceholderContainer>
   )
 
@@ -30,7 +30,7 @@ const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText, plain
 
   return (
     <Picture $plain={plain}>
-      <ProgressiveImage src={src} placeholder="">
+      <ProgressiveImage src={src} placeholder="xcxc">
         {(src, loading) => {
           return loading ? plug : <Image src={src} alt={altText} />
         }}

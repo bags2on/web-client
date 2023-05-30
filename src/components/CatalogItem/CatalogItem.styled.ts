@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import SvgIcon from '../../shared/SvgIcon'
+import Link from 'next/link'
+import SvgIcon from '@/shared/SvgIcon'
 
 export const Container = styled.div`
   position: relative;

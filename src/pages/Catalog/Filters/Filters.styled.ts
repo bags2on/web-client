@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Button from '../../../shared/Button/Button'
+import Button from '@/shared/Button'
 
 export const Aside = styled.aside`
   padding: 10px 10px 20px 10px;

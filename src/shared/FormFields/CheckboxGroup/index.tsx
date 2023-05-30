@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Collapse, { CollapseHead } from '../../Collapse'
-import Checkbox from '../Checkbox/Checkbox'
+import Checkbox from '../Checkbox'
 
 import { Fieldset } from './CheckboxGroup.styled'
 

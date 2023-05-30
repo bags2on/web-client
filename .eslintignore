@@ -1,1 +1,2 @@
-/src/graphql/types.ts
+/src/index.d.ts
+next.config.js

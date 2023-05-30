@@ -1,5 +1,7 @@
 import React from 'react'
-import Asset_2 from '../../assets/svg/Asset_2.svg'
+import Image from 'next/image'
+
+// import Asset_2 from '../../../public/assets/Asset_2.svg'
 
 import { Container, ImageWrapper, Title, SubTitle } from './ErrorPlug.styled'
 
@@ -12,7 +14,7 @@ const ErrorPlug: React.FC<ErrorPlugProps> = () => {
     <Container>
       <div>
         <ImageWrapper>
-          <img src={Asset_2} alt="asset 2" />
+          <Image width={200} height={100} src="/public/assets/Asset_2.svg" alt="asset 2" />
         </ImageWrapper>
         <Title>Не удалось получить данные с сервера</Title>
         <SubTitle>попробуйте перезагрузить страницу</SubTitle>

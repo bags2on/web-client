@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import IconButton from '../IconButton'
+import IconButton from '@/shared/IconButton'
 
 export const Button = styled(IconButton)`
   color: #f44336;

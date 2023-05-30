@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Button from '../../../shared/Button/Button'
+import Button from '@/shared/Button'
 import RcSlider from 'rc-slider'
 
 export const Container = styled.div`

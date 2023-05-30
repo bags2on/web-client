@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import Button from '../../../shared/Button/Button'
+import Button from '@/shared/Button'
 
 export const Container = styled.div`
   position: relative;

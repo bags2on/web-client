@@ -88,25 +88,25 @@ export const darkTheme: DefaultTheme = {
 }
 
 export const GlobalStyles = createGlobalStyle`
-  *,
-  *:after,
-  *:before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
+
   body {
-    margin: 0;
-    font-family: Montserrat,Roboto,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-family: Montserrat, Roboto, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol';
+    line-height: 1.5;
+    background-color: ${({ theme }) => theme.background};
+    -webkit-font-smoothing: antialiased;
   }
+
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-  input[type=number] {
-    -moz-appearance: textfield;
+
+  a {
+    text-decoration: none;
   }
+ 
  
   /* ul {
     margin: 0;

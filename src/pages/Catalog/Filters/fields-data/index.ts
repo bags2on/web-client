@@ -1,107 +1,94 @@
-import i18n from '../../../../locales/i18n'
-
-interface FilterItem {
-  options: Array<{
-    label: string
-    value: string
-  }>
+export interface IFilterItem {
+  label: string
+  value: string
+  disabled?: boolean
 }
 
-const gender: FilterItem = {
-  options: []
+export interface FilterSection {
+  // options: Partial<IFilterItem>[]
+  options: IFilterItem[]
 }
 
-const availability: FilterItem = {
-  options: []
-}
-
-const radioGroup: {
-  options: Array<{
-    label: string
-    value: string
-    disabled: boolean
-  }>
-} = {
-  options: []
-}
-
-const categories: FilterItem = {
-  options: []
-}
-
-function fillUpValues(): void {
-  gender.options = [
+const gender: FilterSection = {
+  options: [
     {
-      label: i18n.t('catalog.filters.gender.female'),
+      label: 'catalog:filters.gender.female',
       value: 'FEMALE'
     },
     {
-      label: i18n.t('catalog.filters.gender.male'),
+      label: 'catalog:filters.gender.male',
       value: 'MALE'
     },
     {
-      label: i18n.t('catalog.filters.gender.unisex'),
+      label: 'catalog:filters.gender.unisex',
       value: 'UNISEX'
     }
   ]
+}
 
-  availability.options = [
+const availability: FilterSection = {
+  options: [
     {
-      label: i18n.t('catalog.filters.availability.inStock'),
+      label: 'catalog:filters.availability.inStock',
       value: 'inStock'
     },
     {
-      label: i18n.t('catalog.filters.availability.byOrder'),
+      label: 'catalog:filters.availability.byOrder',
       value: 'byOrder'
     }
   ]
+}
 
-  radioGroup.options = [
+const tags: FilterSection = {
+  options: [
     {
-      label: i18n.t('catalog.filters.radioGroup.all'),
+      label: 'catalog:filters.tag.all',
       value: '',
       disabled: false
     },
     {
-      label: i18n.t('catalog.filters.radioGroup.new'),
+      label: 'catalog:filters.tag.new',
       value: 'NEW',
       disabled: false
     },
     {
-      label: i18n.t('catalog.filters.radioGroup.discounts'),
+      label: 'catalog:filters.tag.discounts',
       value: 'STOCK',
       disabled: false
     }
   ]
+}
 
-  categories.options = [
+const categories: FilterSection = {
+  options: [
     {
-      label: i18n.t('shared.categories.suitcases'),
+      label: 'catalog:filters.categories.suitcases',
       value: 'SUITCASE'
     },
     {
-      label: i18n.t('shared.categories.bags'),
+      label: 'catalog:filters.categories.bags',
       value: 'BAG'
     },
     {
-      label: i18n.t('shared.categories.wallets'),
+      label: 'catalog:filters.categories.wallets',
       value: 'WALLET'
     },
     {
-      label: i18n.t('shared.categories.backpack'),
+      label: 'catalog:filters.categories.backpack',
       value: 'BACKPACK'
     },
     {
-      label: i18n.t('shared.categories.other'),
+      label: 'catalog:filters.categories.other',
       value: 'OTHER'
     }
   ]
 }
 
-fillUpValues()
+const data = {
+  gender,
+  availability,
+  tags,
+  categories
+}
 
-i18n.on('languageChanged', (): void => {
-  fillUpValues()
-})
-
-export default { gender, availability, radioGroup, categories }
+export default data

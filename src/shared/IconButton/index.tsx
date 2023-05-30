@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import styled, { keyframes } from 'styled-components'
-import ScaleLoader from '../loaders/ScaleLoader'
+import ScaleLoader from '@/shared/loaders/ScaleLoader'
 
 interface IconButtonProps {
   to?: string

@@ -1,7 +1,7 @@
 import React from 'react'
-import CatalogItem from '../../../components/CatalogItem/CatalogItem'
-import Pagination from '../../../components/Pagination/Pagination'
-import routes from '../../../utils/routes'
+import CatalogItem from '@/components/CatalogItem'
+import Pagination from '../../../components/Pagination'
+import { routeNames } from '@/utils/navigation'
 import { useReactiveVar } from '@apollo/client'
 import { favoriteProductsVar } from '../../../apollo/cache/variables'
 
@@ -33,7 +33,12 @@ interface ProductsProps {
   onActionButtonClick(): void
 }
 
-const Products: React.FC<ProductsProps> = ({ totalPages, currentPage, products, onActionButtonClick }) => {
+const Products: React.FC<ProductsProps> = ({
+  totalPages,
+  currentPage,
+  products,
+  onActionButtonClick
+}) => {
   const favoriteProducts = useReactiveVar(favoriteProductsVar)
 
   if (products === undefined) return null
@@ -75,7 +80,7 @@ const Products: React.FC<ProductsProps> = ({ totalPages, currentPage, products, 
         })}
       </ProductList>
       <PaginationWrapper>
-        <Pagination route={routes.catalog} total={totalPages} currentPage={currentPage} />
+        <Pagination route={routeNames.catalog} total={totalPages} currentPage={currentPage} />
       </PaginationWrapper>
     </Container>
   )
