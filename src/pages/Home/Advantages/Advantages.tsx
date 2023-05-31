@@ -15,23 +15,23 @@ const Advantages: React.FC = () => {
     {
       title: 'advantages.discounts.title',
       info: 'advantages.discounts.info',
-      icon: '/public/assets/gift.svg'
+      icon: '/assets/gift.svg'
     },
     {
       title: 'advantages.delivery.title',
       info: 'advantages.delivery.info',
-      icon: '/public/assets/truck.svg'
+      icon: '/assets/truck.svg'
     },
 
     {
       title: 'advantages.workTime.title',
       info: 'advantages.workTime.info',
-      icon: '/public/assets/clock.svg'
+      icon: '/assets/clock.svg'
     },
     {
       title: 'advantages.payment.title',
       info: 'advantages.payment.info',
-      icon: '/public/assets/money.svg'
+      icon: '/assets/money.svg'
     }
   ]
 
@@ -39,13 +39,15 @@ const Advantages: React.FC = () => {
     <Section>
       <List>
         {items.map((item, ind) => {
+          const title = t(item.title)
+
           return (
             <li key={ind}>
               <IconWrapper>
-                <Image src={item.icon} alt={item.title} width={150} height={150} />
+                <Image src={item.icon} alt={'картинка - ' + title} width={150} height={150} />
               </IconWrapper>
               <div>
-                <Title>{t(item.title)}</Title>
+                <Title>{title}</Title>
                 <Info>{t(item.info)}</Info>
               </div>
             </li>

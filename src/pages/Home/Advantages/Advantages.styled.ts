@@ -32,6 +32,7 @@ export const IconWrapper = styled.div`
   height: 45px;
   margin: 0 auto;
   & img {
+    user-select: none;
     width: 100%;
     height: 100%;
   }
