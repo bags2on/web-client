@@ -1,6 +1,6 @@
 import React from 'react'
 import CatalogItem from '@/components/CatalogItem'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 import { Title, List, ListItem } from './Featured.styled'
 
@@ -22,7 +22,7 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
 
   return (
     <section>
-      <Title>{t('home.featured')}</Title>
+      <Title>{t('home:headers.advise')}</Title>
       <List>
         {products.map((product: ProductType) => (
           <ListItem key={product.id}>

@@ -1,7 +1,7 @@
 import React from 'react'
 import SvgIcon from '@/shared/SvgIcon'
 import { routeNames } from '@/utils/navigation'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 import BaggageIcon from '../../../../public/assets/baggage.svg'
 import WalletIcon from '../../../../public/assets/wallet.svg'
 import BagIcon from '../../../../public/assets/shopping-bag.svg'
@@ -47,13 +47,13 @@ const categoriesValues: categoryItemType[] = [
   {
     icon: OtherIcon,
     to: routeNames.catalog,
-    i18n: 'all',
+    i18n: 'other',
     name: ''
   }
 ]
 
 const Categories: React.FC = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('home')
 
   return (
     <Section>
@@ -61,7 +61,7 @@ const Categories: React.FC = () => {
         <SvgIcon>
           <FlashIcon />
         </SvgIcon>
-        {t('home.categories')}
+        {t('headers.categories')}
       </Title>
       <div>
         <CategoryList>
@@ -80,7 +80,7 @@ const Categories: React.FC = () => {
                   <CategoryIcon $strokeIcon={category.i18n === 'wallets'}>
                     <category.icon />
                   </CategoryIcon>
-                  <span>{t(`shared.categories.${category.i18n}`)}</span>
+                  <span>{t(`categories.${category.i18n}`)}</span>
                 </InnerContainer>
               </Link>
             </CategoryItem>

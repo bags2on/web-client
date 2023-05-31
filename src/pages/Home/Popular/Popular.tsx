@@ -1,7 +1,7 @@
 import React from 'react'
 import ProductsSlider from '@/shared/ProductsSlider'
 import CatalogItem from '@/components/CatalogItem'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 
 import { Container, Title } from './Popular.styled'
 
@@ -23,7 +23,7 @@ const Popular: React.FC<PopularProps> = ({ products }) => {
 
   return (
     <Container>
-      <Title>{t('home.popular')}</Title>
+      <Title>{t('home:headers.popular')}</Title>
       <ProductsSlider speed={500}>
         {products.map((product) => (
           <CatalogItem
