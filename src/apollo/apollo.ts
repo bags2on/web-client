@@ -1,13 +1,12 @@
 import { ApolloClient } from '@apollo/client'
 import { cache } from './cache/cache'
 
-// const API_GRAPHQL = process.env.REACT_APP_API_URL + '/graphql' // TODO
-const API_GRAPHQL = 'http://localhost:8080/graphql'
+const API_GRAPHQL = process.env.NEXT_PUBLIC_API_HOST + '/graphql'
 const withDevTools = process.env.NODE_ENV === 'development'
 
 const client = new ApolloClient({
-  uri: API_GRAPHQL,
   cache,
+  uri: API_GRAPHQL,
   connectToDevTools: withDevTools
 })
 
