@@ -119,6 +119,7 @@ export const Tag = styled.div<{ $backgroundColor: string }>`
 
 export const ActionButtonWrapper = styled.div`
   flex-basis: 25%;
+  padding: 5px;
 `
 
 export const TheTrashIcon = styled(SvgIcon)`
