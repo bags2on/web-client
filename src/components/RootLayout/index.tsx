@@ -1,5 +1,6 @@
 import React from 'react'
 import Header from '../Header'
+import Footer from '../Footer'
 
 interface IRootLayout {
   children: React.ReactNode
@@ -17,7 +18,7 @@ const RootLayout: React.FC<IRootLayout> = ({ children }) => {
         }}
       />
       <main>{children}</main>
-      {/* <Footer /> */}
+      <Footer />
     </>
   )
 }
