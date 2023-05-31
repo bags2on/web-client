@@ -3,7 +3,7 @@
 const path = require('path')
 
 module.exports = {
-  debug: true, // TODO
+  debug: false, // TODO
   localeDetection: false,
   i18n: {
     defaultLocale: 'ru',

@@ -1,0 +1,59 @@
+import React, { Children } from 'react'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import classes from './ProductsSlider.module.scss'
+
+interface ProductsSliderProps {
+  speed?: number
+  children?: React.ReactNode
+}
+
+const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children }) => {
+  return (
+    <Swiper
+      loop
+      wrapperTag="ul"
+      grabCursor
+      speed={speed}
+      slidesPerView={1}
+      runCallbacksOnInit
+      className={classes.swiperContainer}
+      spaceBetween={15}
+      autoplay={{
+        delay: 3000,
+        disableOnInteraction: false
+      }}
+      breakpoints={{
+        0: {
+          slidesPerView: 2
+        },
+        600: {
+          slidesPerView: 3
+        },
+        900: {
+          slidesPerView: 4
+        },
+        1000: {
+          slidesPerView: 5
+        }
+      }}
+      onSwiper={(swiper) => {
+        const el = swiper.el
+        el.addEventListener('mouseenter', () => {
+          swiper.autoplay.stop()
+        })
+
+        el.addEventListener('mouseleave', () => {
+          swiper.autoplay.start()
+        })
+      }}
+    >
+      {Children.map(children, (child, index) => (
+        <SwiperSlide tag="li" key={index} virtualIndex={index}>
+          {child}
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  )
+}
+
+export default ProductsSlider

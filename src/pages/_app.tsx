@@ -10,6 +10,11 @@ import { appWithTranslation } from 'next-i18next'
 
 import '../../node_modules/modern-normalize/modern-normalize.css'
 import '@/styles/css-variables.scss'
+import 'swiper/css'
+import 'swiper/css/navigation'
+import 'swiper/css/effect-fade'
+import 'swiper/css/pagination'
+
 type AppPropsWithLayout = AppProps
 
 // import { Montserrat } from 'next/font/google'
