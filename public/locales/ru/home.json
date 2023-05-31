@@ -10,6 +10,11 @@
     "wallets": "Кошельки",
     "other": "Другое"
   },
+  "promo": {
+    "male": "Мужская коллекция",
+    "female": "Женская коллекция",
+    "action": "Подробнее"
+  },
   "advantages": {
     "discounts": {
       "title": "Акции",

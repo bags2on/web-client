@@ -10,6 +10,11 @@
     "wallets": "Гаманці",
     "other": "Інше"
   },
+  "promo": {
+    "male": "Чоловіча колекція",
+    "female": "Жіноча колекція",
+    "action": "Докладніше"
+  },
   "advantages": {
     "discounts": {
       "title": "Акції",

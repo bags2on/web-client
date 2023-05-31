@@ -1,5 +1,4 @@
 {
-  "header": { "home": "Головна", "search": "Я шукаю..." },
   "product": {
     "common": {
       "category": "----",
@@ -14,15 +13,7 @@
   "home": {
     "categories": "Категорії",
     "featured": "Рекомендовані",
-    "promo": { "male": "Чоловіча колекція", "female": "Жіноча колекція", "action": "Докладніше" },
-    "popular": "Часто купують",
-    "joinus": {
-      "title": "Зареєструйтесь",
-      "subText": "та отримуйте знижки в",
-      "subText2": "особистому кабінеті",
-      "placeholder": "Введіть Ваш email",
-      "button": "Приєднатися"
-    }
+    "popular": "Часто купують"
   },
   "drawer": {
     "home": "Головна",
