@@ -10,12 +10,6 @@
       "leath": "кожа"
     }
   },
-  "home": {
-    "categories": "Категории",
-    "featured": "Рекомендуемые",
-    "popular": "Популярное"
-  },
-
   "shared": {
     "categories": {
       "all": "Все",
