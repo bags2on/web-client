@@ -1,10 +1,11 @@
 import Head from 'next/head'
+import client from '../apollo/apollo'
 import type { AppProps } from 'next/app'
 import RootLayout from '@/components/RootLayout'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyles, lightTheme } from '@/utils/theme'
-import client from '../apollo/apollo'
+import SwiperCore, { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper'
 
 import { appWithTranslation } from 'next-i18next'
 
@@ -22,6 +23,8 @@ type AppPropsWithLayout = AppProps
 //   weight: ['400', '500', '600'],
 //   display: 'swap'
 // })
+
+SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade, Thumbs])
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (
