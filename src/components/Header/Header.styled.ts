@@ -4,7 +4,7 @@ import IconButton from '@/shared/IconButton'
 import Link from 'next/link'
 
 export const TheHeader = styled.header`
-  position: fixed;
+  position: sticky;
   z-index: 500;
   top: 0;
   left: 0;

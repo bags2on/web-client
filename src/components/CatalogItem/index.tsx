@@ -92,7 +92,7 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
       </Info>
       {mainTag !== 'REGULAR' && (
         <Tag $backgroundColor={getProductMainTagColor(mainTag)}>
-          <span>{t(`productTag.${mainTag}`)}</span>
+          {/* <span>{t(`productTag.${mainTag}`)}</span> */}
         </Tag>
       )}
     </Container>
