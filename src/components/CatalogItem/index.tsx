@@ -3,10 +3,9 @@ import { routeNames, generateLink } from '@/utils/navigation'
 import LikeButton from '@/shared/LikeButton'
 import ImagePlaceholder from '@/shared/ImagePlaceholder'
 import Link from 'next/link'
-
 import { formatPrice } from '@/utils/helper'
 import { getProductMainTagColor } from '@/utils/styling'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 import { FavoriteMutations } from '../../apollo/cache/mutations'
 import TrashIcon from '../../../public/assets/trash.svg'
 
@@ -92,7 +91,7 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
       </Info>
       {mainTag !== 'REGULAR' && (
         <Tag $backgroundColor={getProductMainTagColor(mainTag)}>
-          {/* <span>{t(`productTag.${mainTag}`)}</span> */}
+          <span>{t(`productTag.${mainTag}`)}</span>
         </Tag>
       )}
     </Container>
