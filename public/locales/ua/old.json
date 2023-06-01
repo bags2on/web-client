@@ -15,15 +15,6 @@
     "featured": "Рекомендовані",
     "popular": "Часто купують"
   },
-  "drawer": {
-    "home": "Головна",
-    "profile": "Кабінет",
-    "sales": "Знижки та Акції",
-    "favorite": "Обране",
-    "catalog": "Каталог",
-    "history": "Історія перегляду",
-    "lang": "Мова"
-  },
   "shared": {
     "categories": {
       "all": "Інше",

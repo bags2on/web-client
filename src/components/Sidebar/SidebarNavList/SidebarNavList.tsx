@@ -6,7 +6,7 @@ import HeartIcon from '../../../../public/assets/heart_2.svg'
 import ListIcon from '../../../../public/assets/list.svg'
 import EyeIcon from '../../../../public/assets/eye.svg'
 import { routeNames } from '@/utils/navigation'
-import { useTranslation } from 'react-i18next'
+import { useTranslation } from 'next-i18next'
 import { useQuery } from '@apollo/client'
 import { GET_FAVORITE_AMOUNT } from '../../../apollo/cache/queries/favorite'
 import { SharedMutations } from '../../../apollo/cache/mutations'
@@ -62,7 +62,7 @@ interface FavoriteAmountQuery {
 }
 
 const SidebarNavList: React.FC<SidebarNavListProps> = ({ onClose }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
 
   const { data } = useQuery<FavoriteAmountQuery>(GET_FAVORITE_AMOUNT)
   const favoriteAmount = data?.favoriteAmount

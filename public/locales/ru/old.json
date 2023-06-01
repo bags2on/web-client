@@ -15,15 +15,7 @@
     "featured": "Рекомендуемые",
     "popular": "Популярное"
   },
-  "drawer": {
-    "home": "Главная",
-    "profile": "Профиль",
-    "sales": "Скидки и Акции",
-    "favorite": "Избранное",
-    "catalog": "Каталог",
-    "history": "История просмотра",
-    "lang": "Язык"
-  },
+
   "shared": {
     "categories": {
       "all": "Все",
