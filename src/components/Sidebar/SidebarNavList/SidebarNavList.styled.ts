@@ -9,17 +9,6 @@ export const NavList = styled.ul`
   padding-top: 20px;
 `
 
-export const ListItem = styled.li`
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-`
-
-export const ItemIcon = styled(SvgIcon)`
-  fill: ${({ theme }) => (theme.type === 'light' ? '#343434' : theme.colors.primary)};
-  font-size: 33px;
-`
-
 export const ItemText = styled.div`
   margin-left: 15px;
   & > p {
@@ -28,4 +17,19 @@ export const ItemText = styled.div`
     line-height: 18px;
     font-weight: 500;
   }
+`
+
+export const ListItem = styled.li`
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  cursor: pointer;
+  &:hover > ${ItemText} {
+    text-decoration: underline;
+  }
+`
+
+export const ItemIcon = styled(SvgIcon)`
+  fill: ${({ theme }) => (theme.type === 'light' ? '#343434' : theme.colors.primary)};
+  font-size: 33px;
 `
