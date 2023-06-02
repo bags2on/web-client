@@ -26,7 +26,6 @@ export const LinkWrapper = styled(Link)`
   display: flex;
   overflow: hidden;
   flex-basis: 100%;
-  height: 250px;
   border-radius: 6px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   background-color: #cfffbc;
@@ -56,6 +55,7 @@ export const ContentTitle = styled.p`
   margin: 0;
   color: #343434;
   user-select: none;
+  text-align: center;
   margin-bottom: 3px;
 `
 
