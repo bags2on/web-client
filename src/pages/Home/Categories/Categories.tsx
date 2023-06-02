@@ -15,6 +15,7 @@ import {
   InnerContainer,
   CategoryList,
   CategoryItem,
+  IconWrapper,
   CategoryIcon
 } from './Categories.styled'
 
@@ -23,6 +24,8 @@ type categoryItemType = {
   to: string
   i18n: string
   name: string
+  backgroundColor: string
+  borderColor: string
 }
 
 const categoriesValues: categoryItemType[] = [
@@ -30,25 +33,33 @@ const categoriesValues: categoryItemType[] = [
     icon: BaggageIcon,
     to: routeNames.catalog,
     i18n: 'suitcases',
-    name: 'SUITCASE'
+    name: 'SUITCASE',
+    backgroundColor: '#edfdf1',
+    borderColor: '#c0e7ca'
   },
   {
     icon: WalletIcon,
     to: routeNames.catalog,
     i18n: 'wallets',
-    name: 'WALLET'
+    name: 'WALLET',
+    backgroundColor: '#fdfddc',
+    borderColor: '#dee0af'
   },
   {
     icon: BagIcon,
     to: routeNames.catalog,
     i18n: 'bags',
-    name: 'BAG'
+    name: 'BAG',
+    backgroundColor: '#f4f4ff',
+    borderColor: '#dbdbfa'
   },
   {
     icon: OtherIcon,
     to: routeNames.catalog,
     i18n: 'other',
-    name: ''
+    name: '',
+    backgroundColor: '#e4fffa',
+    borderColor: '#c2ebe3'
   }
 ]
 
@@ -67,19 +78,16 @@ const Categories: React.FC = () => {
         <CategoryList>
           {categoriesValues.map((category, ind) => (
             <CategoryItem key={ind}>
-              <Link
-                // href={{
-                //   pathname: category.to,
-                //   state: {
-                //     categoryName: category.name
-                //   }
-                // }}
-                href={category.to}
-              >
+              <Link href={category.to}>
                 <InnerContainer>
-                  <CategoryIcon $strokeIcon={category.i18n === 'wallets'}>
-                    <category.icon />
-                  </CategoryIcon>
+                  <IconWrapper
+                    $background={category.backgroundColor}
+                    $borderColor={category.borderColor}
+                  >
+                    <CategoryIcon $strokeIcon={category.i18n === 'wallets'}>
+                      <category.icon />
+                    </CategoryIcon>
+                  </IconWrapper>
                   <span>{t(`categories.${category.i18n}`)}</span>
                 </InnerContainer>
               </Link>
