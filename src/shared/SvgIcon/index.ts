@@ -9,7 +9,5 @@ export default styled.div`
   overflow: hidden;
   & svg {
     display: block;
-    /* width: inherit;
-    height: inherit; */
   }
 `
