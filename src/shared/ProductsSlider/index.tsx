@@ -36,6 +36,11 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children 
           slidesPerView: 5
         }
       }}
+      /*
+        TODO: check issue
+        1. https://github.com/nolimits4web/swiper/issues/5635
+        2. https://github.com/nolimits4web/swiper/issues/5613
+      */
       onSwiper={(swiper) => {
         const el = swiper.el
         el.addEventListener('mouseenter', () => {
