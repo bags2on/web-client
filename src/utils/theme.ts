@@ -65,7 +65,7 @@ const media = {
 
 export const lightTheme: DefaultTheme = {
   type: ThemeType.light,
-  background: '#fafafa',
+  background: '#fefefe',
   colors: {
     primary: BRAND_COLOR,
     main: '#383838',

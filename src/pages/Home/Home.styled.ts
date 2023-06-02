@@ -41,7 +41,7 @@ export const MainProductContainer = styled.div`
 export const SideListContainer = styled.div`
   flex-basis: 100%;
   @media ${({ theme }) => theme.media.md} {
-    flex-basis: 25%;
+    flex-basis: 20%;
   }
 `
 
@@ -49,7 +49,7 @@ export const SubBox = styled.div`
   flex-basis: 100%;
   @media ${({ theme }) => theme.media.md} {
     padding: 10px 0 10px 0;
-    flex-basis: 75%;
+    flex-basis: 80%;
   }
   @media ${({ theme }) => theme.media.laptop} {
     padding-left: 15px;
