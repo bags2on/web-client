@@ -1,5 +1,5 @@
 import React from 'react'
-import { useLang } from '../../hooks'
+import { useLang } from '@/hooks'
 import { Container, Lang } from './LangSwitcher.styled'
 
 const LangSwitcher: React.FC = () => {

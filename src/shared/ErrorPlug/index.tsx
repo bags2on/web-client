@@ -14,7 +14,7 @@ const ErrorPlug: React.FC<ErrorPlugProps> = () => {
     <Container>
       <div>
         <ImageWrapper>
-          <Image width={200} height={100} src="/public/assets/Asset_2.svg" alt="asset 2" />
+          <Image width={200} height={100} src="/assets/Asset_2.svg" alt="asset 2" />
         </ImageWrapper>
         <Title>Не удалось получить данные с сервера</Title>
         <SubTitle>попробуйте перезагрузить страницу</SubTitle>

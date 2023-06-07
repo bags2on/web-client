@@ -2,7 +2,7 @@ import React from 'react'
 import Drawer from '@/shared/Drawer'
 import SidebarHead from './SidebarHead/SidebarHead'
 import SidebarNavList from './SidebarNavList/SidebarNavList'
-import LangSwitcher from '../../components/LangSwitcher/LangSwitcher'
+import LangSwitcher from '@/components/LangSwitcher'
 import { useTranslation } from 'next-i18next'
 
 import { Container, LanguageBox } from './Sidebar.styled'

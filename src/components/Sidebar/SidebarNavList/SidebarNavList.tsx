@@ -1,5 +1,5 @@
 import React from 'react'
-import Badge from '../../../shared/Badge'
+import Badge from '@/shared/Badge'
 import HomeIcon from '../../../../public/assets/home.svg'
 import UserIcon from '../../../../public/assets/user.svg'
 import HeartIcon from '../../../../public/assets/heart_2.svg'
@@ -8,8 +8,8 @@ import EyeIcon from '../../../../public/assets/eye.svg'
 import { routeNames } from '@/utils/navigation'
 import { useTranslation } from 'next-i18next'
 import { useQuery } from '@apollo/client'
-import { GET_FAVORITE_AMOUNT } from '../../../apollo/cache/queries/favorite'
-import { SharedMutations } from '../../../apollo/cache/mutations'
+import { GET_FAVORITE_AMOUNT } from '@/apollo/cache/queries/favorite'
+import { SharedMutations } from '@/apollo/cache/mutations'
 
 import { NavList, ListItem, ItemIcon, ItemText } from './SidebarNavList.styled'
 
