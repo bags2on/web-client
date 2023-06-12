@@ -7,7 +7,7 @@ export const Section = styled.section`
 `
 
 export const List = styled.ul`
-  max-width: 1400px;
+  max-width: 1500px;
   margin: 0 auto;
   padding: 0;
   list-style: none;
@@ -51,5 +51,6 @@ export const Info = styled.p`
   font-size: 16px;
   margin: 0;
   text-align: center;
+  font-weight: 500;
   color: var(--sub-title-color);
 `
