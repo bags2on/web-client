@@ -1,8 +1,7 @@
 import React from 'react'
-// import Grid from '@material-ui/core/Grid'
-import ExpandedGrid from '../../../shared/ExpandedGrid'
-import FlatProductItem from '../../../components/FlatProductItem/FlatProductItem'
-import { makeStyles } from '@material-ui/core'
+import FlatProductItem from '@/components/FlatProductItem'
+
+import { Container, ProductList, ListItem } from './SideList.styled'
 
 type ProductType = {
   id: string
@@ -16,29 +15,12 @@ interface SideListProps {
   products: Array<ProductType>
 }
 
-const useStyles = makeStyles(() => ({
-  root: {
-    width: 'inherit',
-    paddingTop: 2
-  },
-  list: {
-    margin: 0,
-    padding: 0,
-    listStyle: 'none'
-  },
-  item: {
-    margin: '8px 0'
-  }
-}))
-
 const SideList: React.FC<SideListProps> = ({ products }) => {
-  const classes = useStyles()
-
   return (
-    <div className={classes.root}>
-      <ExpandedGrid container component="ul" className={classes.list}>
+    <Container>
+      <ProductList>
         {products.map((product: ProductType) => (
-          <ExpandedGrid key={product.id} component="li" item className={classes.item} xs={12} md={6} laptop={12}>
+          <ListItem key={product.id}>
             <FlatProductItem
               id={product.id}
               title={product.title}
@@ -46,10 +28,10 @@ const SideList: React.FC<SideListProps> = ({ products }) => {
               imageURL={product.imageURL}
               discountPrice={product.discountPrice}
             />
-          </ExpandedGrid>
+          </ListItem>
         ))}
-      </ExpandedGrid>
-    </div>
+      </ProductList>
+    </Container>
   )
 }
 

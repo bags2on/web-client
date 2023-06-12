@@ -1,27 +1,13 @@
-import React from 'react'
+import React, { Children } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { makeStyles } from '@material-ui/core'
+import classes from './ProductsSlider.module.scss'
 
 interface ProductsSliderProps {
   speed?: number
+  children?: React.ReactNode
 }
 
-const useStyles = makeStyles(() => ({
-  root: {
-    maxWidth: '100% !important',
-    borderRadius: '0 !important',
-    padding: '5px 0 20px 0 !important',
-    '& > ul': {
-      padding: 0,
-      margin: 0,
-      listStyle: 'none'
-    }
-  }
-}))
-
 const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children }) => {
-  const classes = useStyles()
-
   return (
     <Swiper
       loop
@@ -30,7 +16,7 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children 
       speed={speed}
       slidesPerView={1}
       runCallbacksOnInit
-      className={classes.root}
+      className={classes.swiperContainer}
       spaceBetween={15}
       autoplay={{
         delay: 3000,
@@ -50,8 +36,13 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children 
           slidesPerView: 5
         }
       }}
+      /*
+        TODO: check issue
+        1. https://github.com/nolimits4web/swiper/issues/5635
+        2. https://github.com/nolimits4web/swiper/issues/5613
+      */
       onSwiper={(swiper) => {
-        const el = swiper.$el[0]
+        const el = swiper.el
         el.addEventListener('mouseenter', () => {
           swiper.autoplay.stop()
         })
@@ -61,7 +52,7 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children 
         })
       }}
     >
-      {React.Children.map(children, (child, index) => (
+      {Children.map(children, (child, index) => (
         <SwiperSlide tag="li" key={index} virtualIndex={index}>
           {child}
         </SwiperSlide>

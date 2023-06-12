@@ -1,106 +1,56 @@
 import React from 'react'
-import { makeStyles } from '@material-ui/core'
-import gift from '../../../assets/svg/gift.svg'
-import truck from '../../../assets/svg/truck.svg'
-import money from '../../../assets/svg/money.svg'
-import clock from '../../../assets/svg/clock.svg'
-import { useTranslation } from 'react-i18next'
+import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    width: '100%',
-    background: theme.palette.type === 'light' ? '#f8fafa' : '#282828',
-    padding: '20px 0'
-  },
-  list: {
-    maxWidth: 1400,
-    margin: '0 auto',
-    padding: 0,
-    listStyle: 'none',
-    '& li': {
-      padding: 1,
-      margin: '18px 0'
-    },
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-      alignItems: 'baseline',
-      '& li': {
-        flexGrow: 1,
-        flexBasis: '25%',
-        margin: 0,
-        padding: '0 15px'
-      }
-    }
-  },
-  iconWrap: {
-    height: '45px',
-    margin: '0 auto',
-    '& img': {
-      width: '100%',
-      height: '100%'
-    }
-  },
-  title: {
-    marginTop: '17px',
-    lineHeight: '1.5',
-    marginBottom: '10px',
-    textAlign: 'center',
-    fontWeight: 600,
-    color: theme.palette.primary.main
-  },
-  info: {
-    fontSize: 16,
-    margin: 0,
-    textAlign: 'center'
-  }
-}))
+import { Section, List, IconWrapper, Title, Info } from './Advantages.styled'
 
 const Advantages: React.FC = () => {
-  const classes = useStyles()
-  const { t } = useTranslation()
+  const { t } = useTranslation('home')
 
   const items = [
     {
-      title: t('home.advantages.discounts.title'),
-      info: t('home.advantages.discounts.info'),
-      icon: gift
+      title: 'advantages.discounts.title',
+      info: 'advantages.discounts.info',
+      icon: '/assets/gift.svg'
     },
     {
-      title: t('home.advantages.delivery.title'),
-      info: t('home.advantages.delivery.info'),
-      icon: truck
+      title: 'advantages.delivery.title',
+      info: 'advantages.delivery.info',
+      icon: '/assets/truck.svg'
     },
 
     {
-      title: t('home.advantages.workTime.title'),
-      info: t('home.advantages.workTime.info'),
-      icon: clock
+      title: 'advantages.workTime.title',
+      info: 'advantages.workTime.info',
+      icon: '/assets/clock.svg'
     },
     {
-      title: t('home.advantages.payment.title'),
-      info: t('home.advantages.payment.info'),
-      icon: money
+      title: 'advantages.payment.title',
+      info: 'advantages.payment.info',
+      icon: '/assets/money.svg'
     }
   ]
 
   return (
-    <section className={classes.root}>
-      <ul className={classes.list}>
+    <Section>
+      <List>
         {items.map((item, ind) => {
+          const title = t(item.title)
+
           return (
             <li key={ind}>
-              <div className={classes.iconWrap}>
-                <img src={item.icon} alt={item.title} />
-              </div>
+              <IconWrapper>
+                <Image src={item.icon} alt={'картинка - ' + title} width={150} height={150} />
+              </IconWrapper>
               <div>
-                <h3 className={classes.title}>{item.title}</h3>
-                <p className={classes.info}>{item.info}</p>
+                <Title>{title}</Title>
+                <Info>{t(item.info)}</Info>
               </div>
             </li>
           )
         })}
-      </ul>
-    </section>
+      </List>
+    </Section>
   )
 }
 

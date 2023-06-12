@@ -40,7 +40,7 @@ export const useResizeObserver = (
   const [height, setHeight] = useState<number>(0)
 
   const handleResize = useCallback(
-    (entries) => {
+    (entries: any[]) => {
       if (!Array.isArray(entries)) {
         return
       }
