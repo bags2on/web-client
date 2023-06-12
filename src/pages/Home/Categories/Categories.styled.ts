@@ -53,7 +53,8 @@ export const IconWrapper = styled.div<IconWrapperStyledProps>`
   margin-right: 8px;
   border-radius: 10px;
   background-color: ${({ $background }) => $background};
-  border: 1px solid ${({ $borderColor }) => $borderColor};
+  border: 1px solid
+    ${({ theme, $borderColor }) => (theme.type === 'light' ? $borderColor : 'transparent')};
 `
 
 export const CategoryIcon = styled(SvgIcon)<{ $strokeIcon: boolean }>`
@@ -62,11 +63,11 @@ export const CategoryIcon = styled(SvgIcon)<{ $strokeIcon: boolean }>`
   font-size: 50px;
   padding: 5px;
   transition: all 0.2s;
-  fill: ${({ theme }) => (theme.type === 'light' ? '#000' : theme.colors.primary)};
+  fill: #000;
   ${({ $strokeIcon }) =>
     $strokeIcon &&
     css`
-      stroke: ${({ theme }) => (theme.type === 'light' ? '#000' : theme.colors.primary)};
+      stroke: '#000';
     `}
   @media ${({ theme }) => theme.media.md} {
     padding: 10px;
@@ -80,7 +81,7 @@ export const InnerContainer = styled.div`
   padding: 12px;
   border-radius: 10px;
   transition: all 0.3s;
-  border: 1px solid #eeeeee;
+  border: 1px solid ${({ theme }) => (theme.type === 'light' ? '#eeeeee' : 'transparent')};
   background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#363636')};
   @media ${({ theme }) => theme.media.md} {
     padding: 11px 15px 11px 17px;
