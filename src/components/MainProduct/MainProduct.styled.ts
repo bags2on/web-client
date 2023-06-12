@@ -1,4 +1,4 @@
-import styled, { keyframes } from 'styled-components'
+import styled from 'styled-components'
 import Link from 'next/link'
 
 export const Container = styled.section`
@@ -7,18 +7,6 @@ export const Container = styled.section`
   overflow: hidden;
   border-radius: 20px;
   flex-basis: 30%;
-`
-
-const bgAnimation = keyframes`   
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
 `
 
 export const AnimatedBackground = styled.div`
@@ -37,7 +25,6 @@ export const AnimatedBackground = styled.div`
     #6fba82
   );
   background-size: 400% 400%;
-  animation: ${bgAnimation} 6s infinite;
 `
 
 export const InnerBox = styled(Link)`
