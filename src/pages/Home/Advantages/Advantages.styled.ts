@@ -45,11 +45,11 @@ export const Title = styled.p`
   line-height: 1.5;
   text-align: center;
   font-weight: 600;
-  color: ${({ theme }) => theme.colors.main};
 `
 
 export const Info = styled.p`
   font-size: 16px;
   margin: 0;
   text-align: center;
+  color: var(--sub-title-color);
 `

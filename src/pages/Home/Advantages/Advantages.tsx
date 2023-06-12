@@ -1,9 +1,5 @@
 import React from 'react'
 import Image from 'next/image'
-// import gift from '../../../assets/svg/gift.svg'
-// import truck from '../../../assets/svg/truck.svg'
-// import money from '../../../assets/svg/money.svg'
-// import clock from '../../../assets/svg/clock.svg'
 import { useTranslation } from 'next-i18next'
 
 import { Section, List, IconWrapper, Title, Info } from './Advantages.styled'
