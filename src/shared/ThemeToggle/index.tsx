@@ -1,18 +1,15 @@
 import React from 'react'
 import classes from './style.module.scss'
 
-interface NightToggleProps {
+interface IThemeToggle {
+  theme: 'light' | 'dark'
   themeChanger(checked: boolean): void
 }
 
-const NightToggle: React.FC<NightToggleProps> = ({ themeChanger }) => {
+const ThemeToggle: React.FC<IThemeToggle> = ({ theme, themeChanger }) => {
   const handleSwitch = (event: React.ChangeEvent<HTMLInputElement>): void => {
-    const checked: boolean = event.target.checked
-
-    themeChanger(checked)
+    themeChanger(event.target.checked)
   }
-
-  const defaultTheme = localStorage.getItem('theme')
 
   return (
     <div className={classes.root}>
@@ -23,9 +20,15 @@ const NightToggle: React.FC<NightToggleProps> = ({ themeChanger }) => {
           type="checkbox"
           autoComplete="off"
           onChange={handleSwitch}
-          checked={defaultTheme === 'dark'}
+          checked={theme === 'dark'}
         />
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="50px" height="50px" viewBox="0 0 83 70">
+        <svg
+          version="1.1"
+          xmlns="http://www.w3.org/2000/svg"
+          width="50px"
+          height="50px"
+          viewBox="0 0 83 70"
+        >
           <defs>
             <clipPath id="moonmask" className={classes.moonmask}>
               <circle cx="48" cy="35" r="15" />
@@ -56,4 +59,4 @@ const NightToggle: React.FC<NightToggleProps> = ({ themeChanger }) => {
   )
 }
 
-export default NightToggle
+export default ThemeToggle

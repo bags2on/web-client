@@ -5,9 +5,11 @@ import Sidebar from '../Sidebar/Sidebar'
 
 interface IRootLayout {
   children: React.ReactNode
+  theme: 'light' | 'dark'
+  onThemeChange(c: boolean): void
 }
 
-const RootLayout: React.FC<IRootLayout> = ({ children }) => {
+const RootLayout: React.FC<IRootLayout> = ({ children, theme, onThemeChange }) => {
   const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
 
   const handleCloseDrawer = (): void => {
@@ -22,10 +24,9 @@ const RootLayout: React.FC<IRootLayout> = ({ children }) => {
     <>
       <Sidebar
         isOpen={isDrawerOpen}
+        theme={theme}
         onClose={handleCloseDrawer}
-        themeChanger={() => {
-          console.log(1)
-        }}
+        themeChanger={onThemeChange}
       />
       <Header
         onCartOpen={() => {

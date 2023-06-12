@@ -2,9 +2,10 @@ import Head from 'next/head'
 import client from '../apollo/apollo'
 import type { AppProps } from 'next/app'
 import RootLayout from '@/components/RootLayout'
+import { useTheme } from '@/hooks'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from 'styled-components'
-import { GlobalStyles, lightTheme } from '@/utils/theme'
+import { GlobalStyles, lightTheme, darkTheme } from '@/utils/theme'
 import SwiperCore, { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper'
 
 import { appWithTranslation } from 'next-i18next'
@@ -18,15 +19,11 @@ import 'swiper/css/pagination'
 
 type AppPropsWithLayout = AppProps
 
-// import { Montserrat } from 'next/font/google'
-// const montserrat = Montserrat({
-//   weight: ['400', '500', '600'],
-//   display: 'swap'
-// })
-
 SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade, Thumbs])
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
+  const [theme, changeTheme] = useTheme()
+
   return (
     <>
       <Head>
@@ -39,9 +36,9 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </Head>
       <ApolloProvider client={client}>
-        <ThemeProvider theme={lightTheme}>
+        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
           <GlobalStyles />
-          <RootLayout>
+          <RootLayout theme={theme} onThemeChange={changeTheme}>
             <Component {...pageProps} />
           </RootLayout>
         </ThemeProvider>

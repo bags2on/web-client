@@ -34,7 +34,7 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body className="light">
+        <body>
           <Main />
           <div id="app-drawers" />
           <NextScript />

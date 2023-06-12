@@ -1,14 +1,15 @@
 import React from 'react'
-import NightToggle from '@/shared/NightToggle'
+import ThemeToggle from '@/shared/ThemeToggle'
 import Image from 'next/image'
 
 import { Container, LogoWrapper, ThemeWrapper } from './SidebarHead.styled'
 
 interface SidebarHeadProps {
+  theme: 'light' | 'dark'
   themeChanger(checked: boolean): void
 }
 
-const SidebarHead: React.FC<SidebarHeadProps> = ({ themeChanger }) => {
+const SidebarHead: React.FC<SidebarHeadProps> = ({ theme, themeChanger }) => {
   return (
     <Container>
       <LogoWrapper>
@@ -16,7 +17,7 @@ const SidebarHead: React.FC<SidebarHeadProps> = ({ themeChanger }) => {
       </LogoWrapper>
 
       <ThemeWrapper>
-        <NightToggle themeChanger={themeChanger} />
+        <ThemeToggle theme={theme} themeChanger={themeChanger} />
       </ThemeWrapper>
     </Container>
   )
