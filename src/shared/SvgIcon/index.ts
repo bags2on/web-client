@@ -7,4 +7,7 @@ export default styled.div`
   user-select: none;
   flex-shrink: 0;
   overflow: hidden;
+  & svg {
+    display: block;
+  }
 `

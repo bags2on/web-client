@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
-import SvgIcon from '../SvgIcon'
-import { ReactComponent as ExpandIcon } from '../../assets/svg/icons/expand-arrow.svg'
+import SvgIcon from '@/shared/SvgIcon'
+import ExpandIcon from '../../../public/assets/expand-arrow.svg'
 
 interface CollapseHeadProps {
   collapsed: boolean
@@ -30,7 +30,9 @@ export const CollapseHead: React.FC<CollapseHeadProps> = ({ title, collapsed, on
   return (
     <GroupHead onClick={onCollapse}>
       <Title>{title}</Title>
-      <TheExpandIcon $collapsed={collapsed}>{collapsed ? <ExpandIcon /> : <ExpandIcon />}</TheExpandIcon>
+      <TheExpandIcon $collapsed={collapsed}>
+        {collapsed ? <ExpandIcon /> : <ExpandIcon />}
+      </TheExpandIcon>
     </GroupHead>
   )
 }

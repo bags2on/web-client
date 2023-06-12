@@ -23,8 +23,8 @@ export const ListItem = styled.li`
     flex-basis: 33.333333%;
     max-width: 33.333333%;
   }
-  @media ${({ theme }) => theme.media.lg} {
-    max-width: 25%;
-    flex-basis: 25%;
+  @media ${({ theme }) => theme.media.xl} {
+    max-width: 16.6%;
+    flex-basis: 16.6%;
   }
 `

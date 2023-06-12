@@ -21,9 +21,7 @@ export type ITheme = {
   background: string
   colors: {
     primary: string
-    main: string
-    light: string
-    dark: string
+    font: string
   }
   media: {
     xs: string
@@ -65,12 +63,10 @@ const media = {
 
 export const lightTheme: DefaultTheme = {
   type: ThemeType.light,
-  background: '#fff',
+  background: '#fefefe',
   colors: {
     primary: BRAND_COLOR,
-    main: '#383838',
-    light: '#fff',
-    dark: '#303030' // TODO: Same?
+    font: '#343434'
   },
   media
 }
@@ -79,34 +75,33 @@ export const darkTheme: DefaultTheme = {
   type: ThemeType.dark,
   colors: {
     primary: BRAND_COLOR,
-    main: '#ff9900',
-    light: '#fff',
-    dark: '#303030'
+    font: '#fff'
   },
   background: '#1e1e1e',
   media
 }
 
 export const GlobalStyles = createGlobalStyle`
-  *,
-  *:after,
-  *:before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
+
   body {
-    margin: 0;
-    font-family: Montserrat,Roboto,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-family: Montserrat, Roboto, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+      'Segoe UI Symbol';
+    line-height: 1.5;
+    background-color: ${({ theme }) => theme.background};
+    color:  ${({ theme }) => theme.colors.font};
+    -webkit-font-smoothing: antialiased;
   }
+
   input::-webkit-outer-spin-button,
   input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
-  input[type=number] {
-    -moz-appearance: textfield;
+
+  a {
+    text-decoration: none;
   }
+ 
  
   /* ul {
     margin: 0;

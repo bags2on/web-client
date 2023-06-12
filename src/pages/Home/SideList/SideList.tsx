@@ -1,5 +1,5 @@
 import React from 'react'
-import FlatProductItem from '../../../components/FlatProductItem/FlatProductItem'
+import FlatProductItem from '@/components/FlatProductItem'
 
 import { Container, ProductList, ListItem } from './SideList.styled'
 

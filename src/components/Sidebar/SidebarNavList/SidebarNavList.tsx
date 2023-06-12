@@ -1,16 +1,15 @@
 import React from 'react'
-import Badge from '../../../shared/Badge'
-import { ReactComponent as HomeIcon } from '../../../assets/svg/icons/home.svg'
-import { ReactComponent as UserIcon } from '../../../assets/svg/icons/user.svg'
-import { ReactComponent as HeartIcon } from '../../../assets/svg/icons/heart_2.svg'
-import { ReactComponent as ListIcon } from '../../../assets/svg/icons/list.svg'
-import { ReactComponent as EyeIcon } from '../../../assets/svg/icons/eye.svg'
-import routes from '../../../utils/routes'
-import history from '../../../utils/history'
-import { useTranslation } from 'react-i18next'
+import Badge from '@/shared/Badge'
+import HomeIcon from '../../../../public/assets/home.svg'
+import UserIcon from '../../../../public/assets/user.svg'
+import HeartIcon from '../../../../public/assets/heart_2.svg'
+import ListIcon from '../../../../public/assets/list.svg'
+import EyeIcon from '../../../../public/assets/eye.svg'
+import { routeNames } from '@/utils/navigation'
+import { useTranslation } from 'next-i18next'
 import { useQuery } from '@apollo/client'
-import { GET_FAVORITE_AMOUNT } from '../../../apollo/cache/queries/favorite'
-import { SharedMutations } from '../../../apollo/cache/mutations'
+import { GET_FAVORITE_AMOUNT } from '@/apollo/cache/queries/favorite'
+import { SharedMutations } from '@/apollo/cache/mutations'
 
 import { NavList, ListItem, ItemIcon, ItemText } from './SidebarNavList.styled'
 
@@ -27,7 +26,7 @@ interface DrawerItem {
 const drawerItems: DrawerItem[] = [
   {
     icon: HomeIcon,
-    to: routes.root,
+    to: routeNames.root,
     i18n: 'home'
   },
   // {
@@ -37,18 +36,18 @@ const drawerItems: DrawerItem[] = [
   // },
   {
     icon: UserIcon,
-    to: routes.profile,
+    to: routeNames.profile,
     i18n: 'profile'
   },
   {
     icon: HeartIcon,
-    to: routes.favorite,
+    to: '/favorite', // TODO: add route
     i18n: 'favorite'
   },
 
   {
     icon: ListIcon,
-    to: routes.catalog,
+    to: routeNames.catalog,
     i18n: 'catalog'
   },
   {
@@ -63,7 +62,7 @@ interface FavoriteAmountQuery {
 }
 
 const SidebarNavList: React.FC<SidebarNavListProps> = ({ onClose }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
 
   const { data } = useQuery<FavoriteAmountQuery>(GET_FAVORITE_AMOUNT)
   const favoriteAmount = data?.favoriteAmount
@@ -76,9 +75,9 @@ const SidebarNavList: React.FC<SidebarNavListProps> = ({ onClose }) => {
       if (!isAuth) return
     }
 
-    setTimeout(() => {
-      history.push(path)
-    }, 250)
+    // setTimeout(() => {
+    //   history.push(path)
+    // }, 250)
   }
 
   return (

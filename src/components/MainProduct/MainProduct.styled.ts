@@ -1,5 +1,5 @@
-import styled, { keyframes } from 'styled-components'
-import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import Link from 'next/link'
 
 export const Container = styled.section`
   position: relative;
@@ -9,25 +9,22 @@ export const Container = styled.section`
   flex-basis: 30%;
 `
 
-const bgAnimation = keyframes`   
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-`
-
 export const AnimatedBackground = styled.div`
   width: 100%;
   height: 100%;
   position: absolute;
-  background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+  background: linear-gradient(
+    60deg,
+    #f79533,
+    #f37055,
+    #ef4e7b,
+    #a166ab,
+    #5073b8,
+    #1098ad,
+    #07b39b,
+    #6fba82
+  );
   background-size: 400% 400%;
-  animation: ${bgAnimation} 6s infinite;
 `
 
 export const InnerBox = styled(Link)`

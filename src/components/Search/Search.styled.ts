@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components'
 import { Field, Form } from 'formik'
-import { Link } from 'react-router-dom'
-import IconButton from '../../shared/IconButton'
-import SvgIcon from '../../shared/SvgIcon'
+import Link from 'next/link'
+import IconButton from '@/shared/IconButton'
+import SvgIcon from '@/shared/SvgIcon'
 
 export const Container = styled.div`
   flex-grow: 1;

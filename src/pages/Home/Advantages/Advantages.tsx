@@ -1,36 +1,33 @@
 import React from 'react'
-import gift from '../../../assets/svg/gift.svg'
-import truck from '../../../assets/svg/truck.svg'
-import money from '../../../assets/svg/money.svg'
-import clock from '../../../assets/svg/clock.svg'
-import { useTranslation } from 'react-i18next'
+import Image from 'next/image'
+import { useTranslation } from 'next-i18next'
 
 import { Section, List, IconWrapper, Title, Info } from './Advantages.styled'
 
 const Advantages: React.FC = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('home')
 
   const items = [
     {
-      title: t('home.advantages.discounts.title'),
-      info: t('home.advantages.discounts.info'),
-      icon: gift
+      title: 'advantages.discounts.title',
+      info: 'advantages.discounts.info',
+      icon: '/assets/gift.svg'
     },
     {
-      title: t('home.advantages.delivery.title'),
-      info: t('home.advantages.delivery.info'),
-      icon: truck
+      title: 'advantages.delivery.title',
+      info: 'advantages.delivery.info',
+      icon: '/assets/truck.svg'
     },
 
     {
-      title: t('home.advantages.workTime.title'),
-      info: t('home.advantages.workTime.info'),
-      icon: clock
+      title: 'advantages.workTime.title',
+      info: 'advantages.workTime.info',
+      icon: '/assets/clock.svg'
     },
     {
-      title: t('home.advantages.payment.title'),
-      info: t('home.advantages.payment.info'),
-      icon: money
+      title: 'advantages.payment.title',
+      info: 'advantages.payment.info',
+      icon: '/assets/money.svg'
     }
   ]
 
@@ -38,14 +35,16 @@ const Advantages: React.FC = () => {
     <Section>
       <List>
         {items.map((item, ind) => {
+          const title = t(item.title)
+
           return (
             <li key={ind}>
               <IconWrapper>
-                <img src={item.icon} alt={item.title} />
+                <Image src={item.icon} alt={'картинка - ' + title} width={150} height={150} />
               </IconWrapper>
               <div>
-                <Title>{item.title}</Title>
-                <Info>{item.info}</Info>
+                <Title>{title}</Title>
+                <Info>{t(item.info)}</Info>
               </div>
             </li>
           )

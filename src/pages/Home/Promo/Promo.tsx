@@ -1,49 +1,52 @@
 import React from 'react'
-import routes from '../../../utils/routes'
-import manImage from '../../../assets/svg/man.svg'
-import womanImage from '../../../assets/svg/woman.svg'
-import { useTranslation } from 'react-i18next'
+import Image from 'next/image'
+import { routeNames } from '@/utils/navigation'
+import { useTranslation } from 'next-i18next'
 
-import { Container, LinkWrapper, ImageBox, Content, ContentTitle, ButtonWrapper, FakeButton } from './Promo.styled'
+import {
+  Container,
+  LinkWrapper,
+  ImageBox,
+  Content,
+  ContentTitle,
+  ButtonWrapper,
+  FakeButton
+} from './Promo.styled'
 
 const Promo: React.FC = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('home')
 
   return (
     <Container>
-      <LinkWrapper
-        to={{
-          pathname: routes.catalog,
-          state: {
-            genderType: 'FEMALE'
-          }
-        }}
-      >
+      <LinkWrapper href={routeNames.catalog}>
         <ImageBox>
-          <img src={womanImage} alt={`банер: '${t('home.promo.female')}'`} />
+          <Image
+            src="/assets/rastr/promo-male.jpg"
+            alt={`банер: '${t('promo.male')}'`}
+            width={1000}
+            height={500}
+          />
         </ImageBox>
         <Content>
-          <ContentTitle>{t('home.promo.female')}</ContentTitle>
+          <ContentTitle>{t('promo.male')}</ContentTitle>
           <ButtonWrapper>
-            <FakeButton>{t('home.promo.action')}</FakeButton>
+            <FakeButton>{t('promo.action')}</FakeButton>
           </ButtonWrapper>
         </Content>
       </LinkWrapper>
-      <LinkWrapper
-        to={{
-          pathname: routes.catalog,
-          state: {
-            genderType: 'MALE'
-          }
-        }}
-      >
+      <LinkWrapper href={routeNames.catalog}>
         <ImageBox>
-          <img src={manImage} alt={`банер: '${t('home.promo.male')}'`} />
+          <Image
+            src="/assets/rastr/promo-female.jpg"
+            alt={`банер: '${t('promo.male')}'`}
+            width={1000}
+            height={500}
+          />
         </ImageBox>
         <Content>
-          <ContentTitle>{t('home.promo.male')}</ContentTitle>
+          <ContentTitle>{t('promo.female')}</ContentTitle>
           <ButtonWrapper>
-            <FakeButton>{t('home.promo.action')}</FakeButton>
+            <FakeButton>{t('promo.action')}</FakeButton>
           </ButtonWrapper>
         </Content>
       </LinkWrapper>

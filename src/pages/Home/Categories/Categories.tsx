@@ -1,51 +1,70 @@
 import React from 'react'
-import SvgIcon from '../../../shared/SvgIcon'
-import routes from '../../../utils/routes'
-import { useTranslation } from 'react-i18next'
-import { ReactComponent as BaggageIcon } from '../../../assets/svg/icons/baggage.svg'
-import { ReactComponent as WalletIcon } from '../../../assets/svg/icons/wallet.svg'
-import { ReactComponent as BagIcon } from '../../../assets/svg/icons/shopping-bag.svg'
-import { ReactComponent as OtherIcon } from '../../../assets/svg/icons/other.svg'
-import { ReactComponent as FlashIcon } from '../../../assets/svg/flash.svg'
+import SvgIcon from '@/shared/SvgIcon'
+import { routeNames } from '@/utils/navigation'
+import { useTranslation } from 'next-i18next'
+import BaggageIcon from '../../../../public/assets/baggage.svg'
+import WalletIcon from '../../../../public/assets/wallet.svg'
+import BagIcon from '../../../../public/assets/shopping-bag.svg'
+import OtherIcon from '../../../../public/assets/other.svg'
+import FlashIcon from '../../../../public/assets/flash.svg'
 
-import { Section, Title, Link, InnerContainer, CategoryList, CategoryItem, CategoryIcon } from './Categories.styled'
+import {
+  Section,
+  Title,
+  Link,
+  InnerContainer,
+  CategoryList,
+  CategoryItem,
+  IconWrapper,
+  CategoryIcon
+} from './Categories.styled'
 
 type categoryItemType = {
   icon: React.ElementType
   to: string
   i18n: string
   name: string
+  backgroundColor: string
+  borderColor: string
 }
 
 const categoriesValues: categoryItemType[] = [
   {
     icon: BaggageIcon,
-    to: routes.catalog,
+    to: routeNames.catalog,
     i18n: 'suitcases',
-    name: 'SUITCASE'
+    name: 'SUITCASE',
+    backgroundColor: '#edfdf1',
+    borderColor: '#c0e7ca'
   },
   {
     icon: WalletIcon,
-    to: routes.catalog,
+    to: routeNames.catalog,
     i18n: 'wallets',
-    name: 'WALLET'
+    name: 'WALLET',
+    backgroundColor: '#fdfddc',
+    borderColor: '#dee0af'
   },
   {
     icon: BagIcon,
-    to: routes.catalog,
+    to: routeNames.catalog,
     i18n: 'bags',
-    name: 'BAG'
+    name: 'BAG',
+    backgroundColor: '#f4f4ff',
+    borderColor: '#dbdbfa'
   },
   {
     icon: OtherIcon,
-    to: routes.catalog,
-    i18n: 'all',
-    name: ''
+    to: routeNames.catalog,
+    i18n: 'other',
+    name: '',
+    backgroundColor: '#e4fffa',
+    borderColor: '#c2ebe3'
   }
 ]
 
 const Categories: React.FC = () => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('home')
 
   return (
     <Section>
@@ -53,25 +72,23 @@ const Categories: React.FC = () => {
         <SvgIcon>
           <FlashIcon />
         </SvgIcon>
-        {t('home.categories')}
+        {t('headers.categories')}
       </Title>
       <div>
         <CategoryList>
           {categoriesValues.map((category, ind) => (
             <CategoryItem key={ind}>
-              <Link
-                to={{
-                  pathname: category.to,
-                  state: {
-                    categoryName: category.name
-                  }
-                }}
-              >
+              <Link href={category.to}>
                 <InnerContainer>
-                  <CategoryIcon $strokeIcon={category.i18n === 'wallets'}>
-                    <category.icon />
-                  </CategoryIcon>
-                  <span>{t(`shared.categories.${category.i18n}`)}</span>
+                  <IconWrapper
+                    $background={category.backgroundColor}
+                    $borderColor={category.borderColor}
+                  >
+                    <CategoryIcon $strokeIcon={category.i18n === 'wallets'}>
+                      <category.icon />
+                    </CategoryIcon>
+                  </IconWrapper>
+                  <span>{t(`categories.${category.i18n}`)}</span>
                 </InnerContainer>
               </Link>
             </CategoryItem>

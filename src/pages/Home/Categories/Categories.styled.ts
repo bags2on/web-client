@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import SvgIcon from '../../../shared/SvgIcon'
-import { Link as RRDLink } from 'react-router-dom'
+import NextLink from 'next/link'
 
 export const Section = styled.section`
   margin-bottom: 15px;
@@ -34,7 +34,7 @@ export const CategoryItem = styled.li`
   }
 `
 
-export const Link = styled(RRDLink)`
+export const Link = styled(NextLink)`
   display: block;
   margin: 5px;
   width: 100%;
@@ -42,46 +42,58 @@ export const Link = styled(RRDLink)`
   user-select: none;
   text-decoration: none;
   -webkit-tap-highlight-color: transparent;
-  -moz-appearance: none;
-  -webkit-appearance: none;
+`
+
+interface IconWrapperStyledProps {
+  $background: string
+  $borderColor: string
+}
+
+export const IconWrapper = styled.div<IconWrapperStyledProps>`
+  margin-right: 8px;
+  border-radius: 10px;
+  background-color: ${({ $background }) => $background};
+  border: 1px solid
+    ${({ theme, $borderColor }) => (theme.type === 'light' ? $borderColor : 'transparent')};
 `
 
 export const CategoryIcon = styled(SvgIcon)<{ $strokeIcon: boolean }>`
   color: inherit;
   min-width: auto;
-  font-size: 45px;
-  margin-right: 8px;
+  font-size: 50px;
+  padding: 5px;
   transition: all 0.2s;
-  fill: ${({ theme }) => (theme.type === 'light' ? '#000' : theme.colors.primary)};
+  fill: #000;
   ${({ $strokeIcon }) =>
     $strokeIcon &&
     css`
-      stroke-width: 1px;
-      stroke: ${({ theme }) => (theme.type === 'light' ? '#000' : theme.colors.primary)};
+      stroke: '#000';
     `}
+  @media ${({ theme }) => theme.media.md} {
+    padding: 10px;
+    font-size: 57px;
+  }
 `
 
 export const InnerContainer = styled.div`
   display: flex;
   align-items: center;
-  padding: 8px 12px;
-  border-radius: 8px;
-  height: 75px;
+  padding: 12px;
+  border-radius: 10px;
   transition: all 0.3s;
+  border: 1px solid ${({ theme }) => (theme.type === 'light' ? '#eeeeee' : 'transparent')};
   background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#363636')};
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
   @media ${({ theme }) => theme.media.md} {
+    padding: 11px 15px 11px 17px;
     &:hover {
-      box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
       & ${CategoryIcon} {
-        transform: scale(1.1);
+        transform: scale(1.2);
       }
     }
   }
   & > span {
-    margin: 0;
     font-size: 16px;
-    padding-top: 4px;
     font-weight: 500;
   }
 `

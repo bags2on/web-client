@@ -1,10 +1,10 @@
 import styled, { css } from 'styled-components'
-import SvgIcon from '../../shared/SvgIcon'
-import IconButton from '../../shared/IconButton'
-import { Link } from 'react-router-dom'
+import SvgIcon from '@/shared/SvgIcon'
+import IconButton from '@/shared/IconButton'
+import Link from 'next/link'
 
 export const TheHeader = styled.header`
-  position: fixed;
+  position: sticky;
   z-index: 500;
   top: 0;
   left: 0;
@@ -12,7 +12,8 @@ export const TheHeader = styled.header`
   flex-wrap: wrap;
   padding: 5px 0;
   background-color: #282828;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05), 0 2px 8px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05),
+    0 2px 8px rgba(0, 0, 0, 0.05);
   @media ${({ theme }) => theme.media.lg} {
     position: static;
     padding: 10px 17px;

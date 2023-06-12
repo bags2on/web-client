@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
-import SvgIcon from '../../shared/SvgIcon'
+import Link from 'next/link'
+import SvgIcon from '@/shared/SvgIcon'
 
 export const Container = styled.div`
   position: relative;
@@ -119,6 +119,7 @@ export const Tag = styled.div<{ $backgroundColor: string }>`
 
 export const ActionButtonWrapper = styled.div`
   flex-basis: 25%;
+  padding: 5px;
 `
 
 export const TheTrashIcon = styled(SvgIcon)`
