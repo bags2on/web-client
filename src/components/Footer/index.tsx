@@ -3,15 +3,15 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
 import PhoneIcon from '../../../public/assets/phone.svg'
-import InstagramIcon from '../../../public/assets/instagram.svg'
+// import InstagramIcon from '../../../public/assets/instagram.svg'
 import TelegramIcon from '../../../public/assets/telegram.svg'
-import FacebookIcon from '../../../public/assets/facebook.svg'
 import classes from './Footer.module.scss'
+import SvgIcon from '@/shared/SvgIcon'
 
 const Footer: React.FC = () => {
   return (
-    <div className={classes.wrapper}>
-      <footer className={classes.root}>
+    <footer className={classes.wrapper}>
+      <div className={classes.root}>
         <div className={classes.brand}>
           <Link href="#">
             <div className={classes.logo}>
@@ -19,34 +19,28 @@ const Footer: React.FC = () => {
             </div>
           </Link>
           <div className={classes.logoBox}>
-            <div className={clsx(classes.socialMediaIcon, classes.icon)}>
-              <PhoneIcon />
-            </div>
-            <p className={classes.phone}>099&nbsp;123&nbsp;45&nbsp;67</p>
+            <a className={classes.phone} href={'tel:' + process.env.NEXT_PUBLIC_CONTACT_PHONE}>
+              {process.env.NEXT_PUBLIC_CONTACT_PHONE}
+            </a>
+            <a
+              className={classes.makeCallPlug}
+              href={'tel:' + process.env.NEXT_PUBLIC_CONTACT_PHONE}
+            >
+              <SvgIcon className={clsx(classes.icon, classes.phoneIcon)}>
+                <PhoneIcon />
+              </SvgIcon>
+              <span>Позвонить</span>
+            </a>
           </div>
-          <ul className={classes.socialMedia}>
-            <li>
-              <Link href="#">
-                <div className={classes.socialMediaIcon}>
-                  <InstagramIcon />
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="#">
-                <div className={classes.socialMediaIcon}>
-                  <FacebookIcon />
-                </div>
-              </Link>
-            </li>
-            <li>
-              <Link href="#">
-                <div className={classes.socialMediaIcon}>
-                  <TelegramIcon />
-                </div>
-              </Link>
-            </li>
-          </ul>
+          <a
+            href={'https://t.me/' + process.env.NEXT_PUBLIC_TELEGRAM_USERNAME}
+            className={classes.telegramConnect}
+          >
+            <SvgIcon className={classes.telegramIcon}>
+              <TelegramIcon />
+            </SvgIcon>
+            <span>@{process.env.NEXT_PUBLIC_TELEGRAM_USERNAME}</span>
+          </a>
         </div>
         <div className={clsx(classes.column, classes.category)}>
           <h5>Категории</h5>
@@ -112,7 +106,7 @@ const Footer: React.FC = () => {
           <ul className={classes.contactDetails}>
             <li>
               <p>Телефон:</p>
-              <span>099 123 45 67</span>
+              <span>{process.env.NEXT_PUBLIC_CONTACT_PHONE}</span>
             </li>
             <li>
               <p>Эл. почта:</p>
@@ -128,11 +122,11 @@ const Footer: React.FC = () => {
             </li>
           </ul>
         </div>
-      </footer>
-      <div className={classes.subFooter}>
-        <span>{process.env.REACT_APP_NAME} © 2023</span>
       </div>
-    </div>
+      <div className={classes.subFooter}>
+        <span>{process.env.NEXT_PUBLIC_APP_NAME} © 2023</span>
+      </div>
+    </footer>
   )
 }
 
