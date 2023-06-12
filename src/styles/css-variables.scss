@@ -1,4 +1,4 @@
-.light {
+:root {
   --font-color: #343434;
   --footer-bg: #f8f8f8;
   --sub-footer-bg: #eaeaea;
@@ -14,7 +14,7 @@
   --base-scale: calc(100vw / 75);
 }
 
-.dark {
+[data-theme='dark'] {
   --font-color: #fff;
   --footer-bg: #333;
   --sub-footer-bg: #252121;
