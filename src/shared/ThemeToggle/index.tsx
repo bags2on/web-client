@@ -13,7 +13,6 @@ const ThemeToggle: React.FC<IThemeToggle> = ({ theme, themeChanger }) => {
 
   return (
     <div className={classes.root}>
-      <span className={classes.beta}>beta</span>
       <label>
         <input
           className={classes.toggleInput}
