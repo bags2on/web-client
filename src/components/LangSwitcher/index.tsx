@@ -1,17 +1,25 @@
 import React from 'react'
-import { useLang } from '@/hooks'
 import { Container, Lang } from './LangSwitcher.styled'
+import { useRouter } from 'next/router'
+
+const locales = {
+  ua: 'Ua',
+  ru: 'Ru'
+}
 
 const LangSwitcher: React.FC = () => {
-  const [currentLang, changeLang] = useLang()
+  const router = useRouter()
+  const { locale = 'ua', pathname, asPath, query } = router
 
-  const langs = ['ru', 'ua']
+  const handleLangSelect = (lang: string) => {
+    router.push({ pathname, query }, asPath, { locale: lang })
+  }
 
   return (
     <Container>
-      {langs.map((lang) => (
-        <Lang key={lang} $active={lang === currentLang} onClick={() => changeLang(lang)}>
-          {lang}
+      {Object.keys(locales).map((lang) => (
+        <Lang key={lang} $active={lang === locale} onClick={() => handleLangSelect(lang)}>
+          {locales[lang as keyof typeof locales]}
         </Lang>
       ))}
     </Container>

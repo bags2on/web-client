@@ -23,7 +23,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, theme, onClose, themeChanger 
         <SidebarHead theme={theme} themeChanger={themeChanger} />
         <SidebarNavList onClose={onClose} />
         <LanguageBox>
-          <span>{t('drawer.lang')}:</span>
+          <span>{t('drawer.lang')}</span>
           <LangSwitcher />
         </LanguageBox>
       </Container>
