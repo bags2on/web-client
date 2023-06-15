@@ -21,7 +21,7 @@ export type CartProductsVariables = CartProductsQueryVariables
 export type CartProductsCartProducts = NonNullable<NonNullable<CartProductsQuery['cartProducts']>[number]>
 
 export const CartProductsDocument = gql`
-  query CartProducts($input: [CartItem!]) {
+  query CartProducts($input: [CartItem!]!) {
     cartProducts(input: $input) {
       id
       title
