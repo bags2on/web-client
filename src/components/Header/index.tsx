@@ -8,6 +8,10 @@ import MenuIcon from '../../../public/assets/menu.svg'
 import HeartIcon from '../../../public/assets/heart.svg'
 import ProfileIcon from '../../../public/assets/avatar.svg'
 import CartIcon from '../../../public/assets/header_cart.svg'
+import { useQuery } from '@apollo/client'
+
+import { GET_HEADER_DATA } from '../../apollo/cache/queries/shared'
+import { SharedMutations } from '../../apollo/cache/mutations'
 
 import {
   TheHeader,
@@ -35,13 +39,10 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
-  // const { data } = useQuery<HeaderQuery>(GET_HEADER_DATA)
+  const { data } = useQuery<HeaderQuery>(GET_HEADER_DATA)
   const { t } = useTranslation()
 
-  const data: HeaderQuery = {
-    cartAmount: 3,
-    favoriteAmount: 0
-  }
+  console.log('000', data)
 
   const cartAmount = data?.cartAmount
   const favoriteAmount = data?.favoriteAmount
