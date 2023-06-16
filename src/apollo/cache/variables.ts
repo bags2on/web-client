@@ -1,7 +1,7 @@
 import { makeVar } from '@apollo/client'
 
 interface CartItem {
-  id: string
+  productId: string
   amount: number
 }
 

@@ -19,13 +19,13 @@ export type AttachedRating = {
 }
 
 export type CartItem = {
-  id: Scalars['String']
+  productId: Scalars['String']
   amount: Scalars['Int']
 }
 
 export type CartItemType = {
   __typename?: 'CartItemType'
-  id: Scalars['String']
+  productId: Scalars['String']
   amount: Scalars['Int']
 }
 
