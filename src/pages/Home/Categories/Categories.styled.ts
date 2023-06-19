@@ -52,9 +52,13 @@ interface IconWrapperStyledProps {
 export const IconWrapper = styled.div<IconWrapperStyledProps>`
   margin-right: 8px;
   border-radius: 10px;
-  background-color: ${({ $background }) => $background};
+  background-color: ${({ theme, $background }) => (theme.type === 'light' ? $background : 'none')};
   border: 1px solid
     ${({ theme, $borderColor }) => (theme.type === 'light' ? $borderColor : 'transparent')};
+  @media ${({ theme }) => theme.media.tablet} {
+    background-color: ${({ theme, $background }) =>
+      theme.type === 'light' ? $background : theme.colors.primary};
+  }
 `
 
 export const CategoryIcon = styled(SvgIcon)<{ $strokeIcon: boolean }>`
@@ -63,15 +67,19 @@ export const CategoryIcon = styled(SvgIcon)<{ $strokeIcon: boolean }>`
   font-size: 50px;
   padding: 5px;
   transition: all 0.2s;
-  fill: #000;
+  fill: ${({ theme }) => (theme.type === 'light' ? '#000' : theme.colors.primary)};
   ${({ $strokeIcon }) =>
     $strokeIcon &&
     css`
-      stroke: '#000';
+      stroke: ${({ theme }) => (theme.type === 'light' ? '#000' : theme.colors.primary)};
+      @media ${({ theme }) => theme.media.tablet} {
+        stroke: #000;
+      }
     `}
-  @media ${({ theme }) => theme.media.md} {
-    padding: 10px;
+  @media ${({ theme }) => theme.media.tablet} {
+    padding: 5px;
     font-size: 57px;
+    fill: #000;
   }
 `
 
@@ -88,7 +96,7 @@ export const InnerContainer = styled.div`
     &:hover {
       box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
       & ${CategoryIcon} {
-        transform: scale(1.2);
+        transform: scale(1.1);
       }
     }
   }
