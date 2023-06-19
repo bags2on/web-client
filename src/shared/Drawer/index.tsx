@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 
 import { Box, Backdrop } from './Drawer.styled'
@@ -21,45 +21,38 @@ function getPortalID(): string {
 }
 
 const Drawer: React.FC<DrawerProps> = ({ open, children, onClose, position = 'left' }) => {
-  const [mounted, setMounted] = React.useState(false)
+  const [mounted, setMounted] = useState(false)
 
   const bodyRef = useRef<HTMLElement | null>(null)
-  // const bodyRef = useRef(document.querySelector('body'))
 
   const portalRootRef = useRef<HTMLElement | null>(null)
-  // const portalRootRef = useRef(document.getElementById(portalID) || createPortalRoot(portalID))
 
   useEffect(() => {
     const portalID = getPortalID()
 
     bodyRef.current = document.getElementById('app-drawers')
-    portalRootRef.current = document.getElementById(portalID) || createPortalRoot(portalID)
+    portalRootRef.current = createPortalRoot(portalID)
 
     let portal: HTMLElement
-    let bodyEl: HTMLElement
 
     if (bodyRef.current) {
       bodyRef.current.appendChild(portalRootRef.current)
       portal = portalRootRef.current
-      bodyEl = bodyRef.current
     }
 
     setMounted(true)
 
     return () => {
       portal.remove()
-      bodyEl.style.overflow = ''
     }
   }, [])
 
   useEffect(() => {
     const updatePageScroll = () => {
-      if (bodyRef.current) {
-        if (open) {
-          document.body.style.overflow = 'hidden'
-        } else {
-          document.body.style.overflow = ''
-        }
+      if (open) {
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.style.overflow = ''
       }
     }
 
