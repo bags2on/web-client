@@ -56,9 +56,9 @@ const Drawer: React.FC<DrawerProps> = ({ open, children, onClose, position = 'le
     const updatePageScroll = () => {
       if (bodyRef.current) {
         if (open) {
-          bodyRef.current.style.overflow = 'hidden'
+          document.body.style.overflow = 'hidden'
         } else {
-          bodyRef.current.style.overflow = ''
+          document.body.style.overflow = ''
         }
       }
     }

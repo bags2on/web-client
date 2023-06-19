@@ -2,12 +2,12 @@ import styled, { css } from 'styled-components'
 
 interface BoxStyledProps {
   $open: boolean
-  $pos: 'left' | 'right' // 'left' by default
+  $pos: 'left' | 'right'
 }
 
 export const Box = styled.div<BoxStyledProps>`
   background: #fff;
-  height: 100%;
+  height: calc(var(--vh, 1vh) * 100);
   overflow: auto;
   position: fixed;
   box-shadow: ${({ $open }) => ($open ? '0 0 15px rgba(0, 0, 0, 0.5)' : 'none')};
@@ -43,6 +43,7 @@ export const Backdrop = styled.div<BackdropStyledProps>`
   right: 0;
   bottom: 0;
   z-index: -1;
+  height: calc(var(--vh, 1vh) * 100);
   backdrop-filter: blur(3px);
   background-color: rgba(0, 0, 0, 0.2);
   -webkit-tap-highlight-color: transparent;
