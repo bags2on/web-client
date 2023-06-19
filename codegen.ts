@@ -18,7 +18,6 @@ const config: CodegenConfig = {
       plugins: ['typescript-operations', 'typescript-react-apollo'],
       config: {
         preResolveTypes: true,
-        // avoidOptionals: true,
         withHooks: true,
         withRefetchFn: false,
         apolloClientVersion: 3
