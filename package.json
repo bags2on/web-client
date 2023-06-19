@@ -36,7 +36,6 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
-    "@apollo/rover": "^0.16.0",
     "@graphql-codegen/cli": "^4.0.1",
     "@graphql-codegen/client-preset": "^4.0.0",
     "@graphql-codegen/fragment-matcher": "^5.0.0",
