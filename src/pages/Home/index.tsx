@@ -4,24 +4,15 @@ import MainProduct from '../../components/MainProduct/MainProduct'
 import Carousel from '@/components/Carousel/Carousel'
 import Categories from './Categories/Categories'
 import Popular from './Popular/Popular'
-// import SideList from './SideList/SideList'
 import Featured from './Featured/Featured'
 import Promo from './Promo/Promo'
-import JoinUs from './JoinUs/JoinUs'
-import {
-  // TEMP_SIDE_LIST_DATA,
-  TEMP_FEATURED_DATA,
-  TEMP_MAIN_SLIDER_IMAGES,
-  TEMP_POPULAR_DATA
-} from './temp'
+import { TEMP_FEATURED_DATA, TEMP_MAIN_SLIDER_IMAGES, TEMP_POPULAR_DATA } from './temp'
 
 import {
   SliderContainer,
   HomeContainer,
   MainProductContainer,
-  SideListContainer,
-  PopularContainer,
-  SubBox
+  PopularContainer
 } from './Home.styled'
 
 const Home: React.FC = () => {
@@ -38,31 +29,17 @@ const Home: React.FC = () => {
         <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
       </SliderContainer>
       <HomeContainer>
-        <SideListContainer>
-          {/* <SideList products={TEMP_SIDE_LIST_DATA} /> */}
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              border: '2px dashed #696969',
-              borderRadius: 20
-            }}
-          ></div>
-        </SideListContainer>
-        <SubBox>
-          <Categories />
-          <MainProductContainer>
-            <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
-          </MainProductContainer>
-          <Featured products={TEMP_FEATURED_DATA} />
-          <Promo />
-        </SubBox>
+        <Categories />
+        <MainProductContainer>
+          <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
+        </MainProductContainer>
+        <Featured products={TEMP_FEATURED_DATA} />
+        <Promo />
       </HomeContainer>
       <PopularContainer>
         <Popular products={TEMP_POPULAR_DATA} />
       </PopularContainer>
       <Advantages />
-      <JoinUs />
     </div>
   )
 }

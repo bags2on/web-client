@@ -54,3 +54,8 @@ export const Info = styled.p`
   font-weight: 500;
   color: var(--sub-title-color);
 `
+
+export const BottomLine = styled.div`
+  height: 20px;
+  background-color: ${({ theme }) => theme.colors.primary};
+`

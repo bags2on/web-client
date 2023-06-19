@@ -24,8 +24,6 @@ export const SliderContainer = styled.div`
 
 export const HomeContainer = styled.div`
   ${containerStyles}
-  display: flex;
-  flex-direction: column-reverse;
   padding: 20px 10px 0 10px;
   @media ${({ theme }) => theme.media.laptop} {
     flex-direction: initial;
@@ -35,24 +33,6 @@ export const HomeContainer = styled.div`
 export const MainProductContainer = styled.div`
   @media ${({ theme }) => theme.media.tablet} {
     display: none;
-  }
-`
-
-export const SideListContainer = styled.div`
-  flex-basis: 100%;
-  @media ${({ theme }) => theme.media.md} {
-    flex-basis: 20%;
-  }
-`
-
-export const SubBox = styled.div`
-  flex-basis: 100%;
-  @media ${({ theme }) => theme.media.md} {
-    padding: 10px 0 10px 0;
-    flex-basis: 80%;
-  }
-  @media ${({ theme }) => theme.media.laptop} {
-    padding-left: 15px;
   }
 `
 
