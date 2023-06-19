@@ -1,8 +1,10 @@
 import * as Types from '../../types'
 
 import { gql } from '@apollo/client'
+import * as Apollo from '@apollo/client'
+const defaultOptions = {} as const
 export type CartProductsQueryVariables = Types.Exact<{
-  input?: Types.Maybe<Array<Types.CartItem> | Types.CartItem>
+  input: Array<Types.CartItem> | Types.CartItem
 }>
 
 export type CartProductsQuery = {
@@ -17,9 +19,6 @@ export type CartProductsQuery = {
   }>
 }
 
-export type CartProductsVariables = CartProductsQueryVariables
-export type CartProductsCartProducts = NonNullable<NonNullable<CartProductsQuery['cartProducts']>[number]>
-
 export const CartProductsDocument = gql`
   query CartProducts($input: [CartItem!]!) {
     cartProducts(input: $input) {
@@ -31,3 +30,44 @@ export const CartProductsDocument = gql`
     }
   }
 `
+
+/**
+ * __useCartProductsQuery__
+ *
+ * To run a query within a React component, call `useCartProductsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useCartProductsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useCartProductsQuery({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useCartProductsQuery(
+  baseOptions: Apollo.QueryHookOptions<CartProductsQuery, CartProductsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<CartProductsQuery, CartProductsQueryVariables>(
+    CartProductsDocument,
+    options
+  )
+}
+export function useCartProductsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<CartProductsQuery, CartProductsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<CartProductsQuery, CartProductsQueryVariables>(
+    CartProductsDocument,
+    options
+  )
+}
+export type CartProductsQueryHookResult = ReturnType<typeof useCartProductsQuery>
+export type CartProductsLazyQueryHookResult = ReturnType<typeof useCartProductsLazyQuery>
+export type CartProductsQueryResult = Apollo.QueryResult<
+  CartProductsQuery,
+  CartProductsQueryVariables
+>

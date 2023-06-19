@@ -1,4 +1,4 @@
-query CartProducts($input: [CartItem!]) {
+query CartProducts($input: [CartItem!]!) {
   cartProducts(input: $input) {
     id
     title

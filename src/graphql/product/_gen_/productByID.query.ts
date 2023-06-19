@@ -1,13 +1,16 @@
 import * as Types from '../../types'
 
 import { gql } from '@apollo/client'
+import * as Apollo from '@apollo/client'
+const defaultOptions = {} as const
 export type GetProductByIdQueryVariables = Types.Exact<{
-  id: Types.Scalars['ID']
+  id: Types.Scalars['ID']['input']
 }>
 
 export type GetProductByIdQuery = {
   __typename?: 'Query'
-  product?: Types.Maybe<
+  product?:
+    | { __typename: 'NotFound'; message: string }
     | {
         __typename: 'Product'
         id: string
@@ -27,28 +30,8 @@ export type GetProductByIdQuery = {
         }
         rating: { __typename?: 'AttachedRating'; rating: number }
       }
-    | { __typename: 'NotFound'; message: string }
-  >
+    | null
 }
-
-type DiscriminateUnion<T, U> = T extends U ? T : never
-
-export type GetProductByIdVariables = GetProductByIdQueryVariables
-export type GetProductByIdProduct = NonNullable<GetProductByIdQuery['product']>
-export type GetProductByIdProductInlineFragment = DiscriminateUnion<
-  NonNullable<GetProductByIdQuery['product']>,
-  { __typename?: 'Product' }
->
-export type GetProductByIdFeatures = NonNullable<
-  DiscriminateUnion<NonNullable<GetProductByIdQuery['product']>, { __typename?: 'Product' }>['features']
->
-export type GetProductByIdRating = NonNullable<
-  DiscriminateUnion<NonNullable<GetProductByIdQuery['product']>, { __typename?: 'Product' }>['rating']
->
-export type GetProductByIdNotFoundInlineFragment = DiscriminateUnion<
-  NonNullable<GetProductByIdQuery['product']>,
-  { __typename?: 'NotFound' }
->
 
 export const GetProductByIdDocument = gql`
   query getProductByID($id: ID!) {
@@ -79,3 +62,44 @@ export const GetProductByIdDocument = gql`
     }
   }
 `
+
+/**
+ * __useGetProductByIdQuery__
+ *
+ * To run a query within a React component, call `useGetProductByIdQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetProductByIdQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetProductByIdQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useGetProductByIdQuery(
+  baseOptions: Apollo.QueryHookOptions<GetProductByIdQuery, GetProductByIdQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<GetProductByIdQuery, GetProductByIdQueryVariables>(
+    GetProductByIdDocument,
+    options
+  )
+}
+export function useGetProductByIdLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<GetProductByIdQuery, GetProductByIdQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<GetProductByIdQuery, GetProductByIdQueryVariables>(
+    GetProductByIdDocument,
+    options
+  )
+}
+export type GetProductByIdQueryHookResult = ReturnType<typeof useGetProductByIdQuery>
+export type GetProductByIdLazyQueryHookResult = ReturnType<typeof useGetProductByIdLazyQuery>
+export type GetProductByIdQueryResult = Apollo.QueryResult<
+  GetProductByIdQuery,
+  GetProductByIdQueryVariables
+>
