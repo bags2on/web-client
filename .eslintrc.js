@@ -15,6 +15,7 @@ module.exports = {
         argsIgnorePattern: '^_',
         ignoreRestSiblings: true
       }
-    ]
+    ],
+    'import/no-anonymous-default-export': 0
   }
 }
