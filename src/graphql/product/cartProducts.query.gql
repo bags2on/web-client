@@ -3,7 +3,6 @@ query CartProducts($input: [CartItem!]!) {
     id
     title
     currentPrice
-    amount
     preview
   }
 }

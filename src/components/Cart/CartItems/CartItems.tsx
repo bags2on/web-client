@@ -3,14 +3,10 @@ import Summary from '../Summary/Summary'
 import ResponsePlug from './ResponsePlug'
 import ContentLoader from 'react-content-loader'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
-import { useQuery, useReactiveVar } from '@apollo/client'
+import { useReactiveVar } from '@apollo/client'
 import { CartMutations } from '../../../apollo/cache/mutations'
 import CrossIcon from '../../../../public/assets/cross.svg'
-import {
-  CartProductsDocument,
-  CartProductsQuery,
-  CartProductsVariables
-} from '../../../graphql/product/_gen_/cartProducts.query'
+import { useCartProductsQuery } from '../../../graphql/product/_gen_/cartProducts.query'
 import { cartItemsVar } from '../../../apollo/cache/variables'
 
 import {
@@ -31,30 +27,39 @@ interface CartItemsProps {
 const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   const cartItems = useReactiveVar(cartItemsVar)
 
+  const cartMap: Record<string, number> = {}
+
+  const normalizedCart = cartItems.reduce((acc, item) => {
+    if (acc[item.productId]) {
+      acc[item.productId] = acc[item.productId] += item.amount
+      return acc
+    }
+
+    acc[item.productId] = item.amount
+    return acc
+  }, cartMap)
+
   const isCartEmpty = cartItems.length === 0
 
-  const { data, loading, error } = useQuery<CartProductsQuery, CartProductsVariables>(
-    CartProductsDocument,
-    {
-      variables: {
-        input: cartItems
-      },
-      fetchPolicy: 'network-only',
-      skip: isCartEmpty,
-      notifyOnNetworkStatusChange: true,
-      onCompleted: (data) => {
-        if (data) {
-          const totalSumm = data.cartProducts.reduce(
-            (previousValue: number, item: CartItemType) =>
-              previousValue + item.currentPrice * item.amount,
-            0
-          )
+  const { data, loading, error } = useCartProductsQuery({
+    variables: {
+      input: cartItems
+    },
+    fetchPolicy: 'network-only',
+    skip: isCartEmpty,
+    notifyOnNetworkStatusChange: true,
+    onCompleted: (data) => {
+      if (data) {
+        const totalSumm = data.cartProducts.reduce(
+          (previousValue: number, item: CartItemType) =>
+            previousValue + item.currentPrice * normalizedCart[item.id],
+          0
+        )
 
-          CartMutations.updateCartPrice(totalSumm)
-        }
+        CartMutations.updateCartPrice(totalSumm)
       }
     }
-  )
+  })
 
   if (isCartEmpty) {
     return <ResponsePlug text="Корзина пуста" onClose={onClose} />
@@ -84,7 +89,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
       </TopControls>
       {loading ? (
         <ContentLoaderList>
-          {cartItems.map((_: unknown, index: number) => (
+          {cartItems.map((_, index: number) => (
             <li key={index}>
               <ContentLoader
                 backgroundColor="#F2E30C"
@@ -105,7 +110,12 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
         <>
           <ProductsList>
             {data?.cartProducts.map((product: CartItemType, index) => (
-              <CartItem key={index} product={product} onRemove={handleProductRemove} />
+              <CartItem
+                key={index}
+                amount={normalizedCart[product.id]}
+                product={product}
+                onRemove={handleProductRemove}
+              />
             ))}
           </ProductsList>
         </>

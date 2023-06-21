@@ -16,7 +16,6 @@ const Summary: React.FC<SummaryProps> = ({ isLoading, onCheckout }) => {
   const cartPrice = useReactiveVar(cartPriceVar)
 
   const handleButtonClick = (): void => {
-    console.log('order')
     onCheckout()
   }
 

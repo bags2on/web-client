@@ -1,9 +1,5 @@
 import { ReactiveVar } from '@apollo/client'
-
-interface CartItem {
-  id: string
-  amount: number
-}
+import { CartItem } from '../../types'
 
 export default (cartItemsVar: ReactiveVar<CartItem[]>): (() => void) => {
   return (): void => {

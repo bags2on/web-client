@@ -14,7 +14,6 @@ export type CartProductsQuery = {
     id: string
     title: string
     currentPrice: number
-    amount: number
     preview: string
   }>
 }
@@ -25,7 +24,6 @@ export const CartProductsDocument = gql`
       id
       title
       currentPrice
-      amount
       preview
     }
   }

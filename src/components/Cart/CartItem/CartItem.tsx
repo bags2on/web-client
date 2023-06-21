@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
+import Link from 'next/link'
 import ImagePlaceholder from '@/shared/ImagePlaceholder'
 import AmountController from '@/shared/AmountController'
-import Link from 'next/link'
 import { formatPrice } from '@/utils/helper'
 import { routeNames, generateLink } from '@/utils/navigation'
 import { CartMutations } from '../../../apollo/cache/mutations'
@@ -23,18 +23,19 @@ export type CartItemType = {
   id: string
   title: string
   currentPrice: number
-  amount: number
   preview: string
 }
 
 interface CartItemProps {
+  amount: number
   product: CartItemType
   onRemove: (id: string) => void
 }
 
-const CartItem: React.FC<CartItemProps> = ({ product, onRemove }) => {
-  const { id, title, preview, currentPrice, amount } = product
+const CartItem: React.FC<CartItemProps> = ({ product, amount, onRemove }) => {
   const [count, setCount] = useState<number>(amount)
+
+  const { id, title, preview, currentPrice } = product
 
   const handleAmountChange = (_: string, n: number): void => {
     CartMutations.updateProductAmount(id, n)
