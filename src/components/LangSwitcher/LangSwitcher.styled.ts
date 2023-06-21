@@ -21,6 +21,7 @@ export const Lang = styled.span<{ $active: boolean }>`
   ${({ $active, theme }) =>
     $active &&
     css`
+      color: #343434;
       background-color: ${theme.colors.primary};
       border-color: #343434;
     `}
