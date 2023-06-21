@@ -42,8 +42,6 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   const { data } = useQuery<HeaderQuery>(GET_HEADER_DATA)
   const { t } = useTranslation()
 
-  console.log('000', data)
-
   const cartAmount = data?.cartAmount
   const favoriteAmount = data?.favoriteAmount
 

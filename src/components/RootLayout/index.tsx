@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import Header from '../Header'
 import Footer from '../Footer'
 import Sidebar from '../Sidebar/Sidebar'
@@ -20,21 +20,21 @@ const RootLayout: React.FC<IRootLayout> = ({ children, theme, onThemeChange }) =
     FavoriteMutations.syncFavorite()
   }, [])
 
-  const handleOpenDrawer = (): void => {
+  const handleOpenDrawer = useCallback(() => {
     setDrawerOpen(true)
-  }
+  }, [])
 
-  const handleCloseDrawer = (): void => {
+  const handleCloseDrawer = useCallback(() => {
     setDrawerOpen(false)
-  }
+  }, [])
 
-  const handleCartOpen = (): void => {
+  const handleCartOpen = useCallback(() => {
     setCartOpen(true)
-  }
+  }, [])
 
-  const handleCartClose = (): void => {
+  const handleCartClose = useCallback(() => {
     setCartOpen(false)
-  }
+  }, [])
 
   return (
     <>
