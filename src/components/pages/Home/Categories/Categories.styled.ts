@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import SvgIcon from '../../../shared/SvgIcon'
+import SvgIcon from '@/shared/SvgIcon'
 import NextLink from 'next/link'
 
 export const Section = styled.section`

@@ -1,9 +1,9 @@
 import React from 'react'
 import CatalogItem from '@/components/CatalogItem'
-import Pagination from '../../../components/Pagination'
+import Pagination from '@/components/Pagination'
 import { routeNames } from '@/utils/navigation'
 import { useReactiveVar } from '@apollo/client'
-import { favoriteProductsVar } from '../../../apollo/cache/variables'
+import { favoriteProductsVar } from '@/apollo/cache/variables'
 
 import {
   Container,

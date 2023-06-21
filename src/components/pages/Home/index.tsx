@@ -1,6 +1,6 @@
 import React from 'react'
 import Advantages from './Advantages/Advantages'
-import MainProduct from '../../components/MainProduct/MainProduct'
+import MainProduct from '../../MainProduct/MainProduct'
 import Carousel from '@/components/Carousel/Carousel'
 import Categories from './Categories/Categories'
 import Popular from './Popular/Popular'

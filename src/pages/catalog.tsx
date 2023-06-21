@@ -1,8 +1,7 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { GetStaticProps } from 'next/types'
 import { i18n } from 'next-i18next'
-
-import Home from '../components/pages/Home'
+import { GetStaticProps } from 'next/types'
+import Catalog from '../components/pages/Catalog'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (process.env.NODE_ENV === 'development') {
@@ -10,11 +9,11 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
   return {
     props: {
-      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'home']))
+      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'catalog']))
     }
   }
 }
 
 export default function Index() {
-  return <Home />
+  return <Catalog />
 }

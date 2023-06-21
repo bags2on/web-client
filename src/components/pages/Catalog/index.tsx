@@ -3,35 +3,19 @@ import clsx from 'clsx'
 import Button from '@/shared/Button'
 import Filters from './Filters/Filters'
 import Products from './Products/Products'
-import ScaleLoader from '../../shared/loaders/ScaleLoader'
+import ScaleLoader from '@/shared/loaders/ScaleLoader'
 import ErrorPlug from '@/shared/ErrorPlug'
-import FilterIcon from '../../../public/assets/filter.svg'
-// import { useLocation, Redirect } from 'react-router-dom'
+import FilterIcon from '../../../../public/assets/filter.svg'
 import { useLazyQuery } from '@apollo/client'
 import {
   AllProductsDocument,
   AllProductsQuery,
   AllProductsQueryVariables
-} from '../../graphql/product/_gen_/products.query'
-import { CategoryType, Gender, MainTag, PriceRange } from '../../graphql/types'
+} from '@/graphql/product/_gen_/products.query'
+import { CategoryType, Gender, MainTag, PriceRange } from '@/graphql/types'
 import classes from './Catalog.module.scss'
 // import { routeNames } from '@/utils/navigation'
 import SvgIcon from '@/shared/SvgIcon'
-
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
-import { GetStaticProps } from 'next/types'
-import { i18n } from 'next-i18next'
-
-export const getStaticProps: GetStaticProps = async ({ locale }) => {
-  if (process.env.NODE_ENV === 'development') {
-    await i18n?.reloadResources()
-  }
-  return {
-    props: {
-      ...(await serverSideTranslations(locale ?? 'ru', ['common', 'catalog']))
-    }
-  }
-}
 
 type genderType = 'FEMALE' | 'MALE' | 'UNISEX'
 type availabilityType = 'inStock' | 'byOrder'
