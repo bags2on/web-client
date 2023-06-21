@@ -2,22 +2,14 @@ import React from 'react'
 import Summary from '../Summary/Summary'
 import ResponsePlug from './ResponsePlug'
 import ContentLoader from 'react-content-loader'
+import TopControls from '../TopControls/TopControls'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
 import { useReactiveVar } from '@apollo/client'
 import { CartMutations } from '../../../apollo/cache/mutations'
-import CrossIcon from '../../../../public/assets/cross.svg'
 import { useCartProductsQuery } from '../../../graphql/product/_gen_/cartProducts.query'
 import { cartItemsVar } from '../../../apollo/cache/variables'
 
-import {
-  Container,
-  ProductsList,
-  ClearButton,
-  ContentLoaderList,
-  TopControls,
-  CloseButton,
-  TheCloseIcon
-} from './CartItems.styled'
+import { Container, ProductsList, ContentLoaderList } from './CartItems.styled'
 
 interface CartItemsProps {
   onClose(): void
@@ -69,24 +61,13 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
     return <ResponsePlug text="Не удалось получить данные" onClose={onClose} />
   }
 
-  const handleClearAllClick = (): void => {
-    CartMutations.clearCart()
-  }
-
   const handleProductRemove = (id: string): void => {
     CartMutations.removeProduct(id)
   }
 
   return (
     <Container>
-      <TopControls>
-        <CloseButton disableRipple onClick={onClose}>
-          <TheCloseIcon>
-            <CrossIcon />
-          </TheCloseIcon>
-        </CloseButton>
-        <ClearButton onClick={handleClearAllClick}>Очистить корзину</ClearButton>
-      </TopControls>
+      <TopControls onCartClose={onClose} />
       {loading ? (
         <ContentLoaderList>
           {cartItems.map((_, index: number) => (
@@ -107,18 +88,16 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
           ))}
         </ContentLoaderList>
       ) : (
-        <>
-          <ProductsList>
-            {data?.cartProducts.map((product: CartItemType, index) => (
-              <CartItem
-                key={index}
-                amount={normalizedCart[product.id]}
-                product={product}
-                onRemove={handleProductRemove}
-              />
-            ))}
-          </ProductsList>
-        </>
+        <ProductsList>
+          {data?.cartProducts.map((product: CartItemType, index) => (
+            <CartItem
+              key={index}
+              amount={normalizedCart[product.id]}
+              product={product}
+              onRemove={handleProductRemove}
+            />
+          ))}
+        </ProductsList>
       )}
       <Summary isLoading={loading} onCheckout={onCheckout} />
     </Container>
