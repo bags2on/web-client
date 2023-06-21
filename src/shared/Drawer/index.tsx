@@ -67,7 +67,7 @@ const Drawer: React.FC<DrawerProps> = ({ open, children, onClose, position = 'le
           </Box>
           <Backdrop $open={open} onClick={onClose} />
         </div>,
-        portalRootRef.current
+        portalRootRef.current as Element
       )
     : null
 }

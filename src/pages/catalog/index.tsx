@@ -11,7 +11,7 @@ import { useLazyQuery } from '@apollo/client'
 import {
   AllProductsDocument,
   AllProductsQuery,
-  AllProductsVariables
+  AllProductsQueryVariables
 } from '../../graphql/product/_gen_/products.query'
 import { CategoryType, Gender, MainTag, PriceRange } from '../../graphql/types'
 import classes from './Catalog.module.scss'
@@ -33,10 +33,6 @@ export const getStaticProps: GetStaticProps = async ({ locale }) => {
   }
 }
 
-interface ParamTypes {
-  page: string
-}
-
 type genderType = 'FEMALE' | 'MALE' | 'UNISEX'
 type availabilityType = 'inStock' | 'byOrder'
 type mainTagType = 'STOCK' | 'NEW'
@@ -48,11 +44,6 @@ interface FilterValues {
   mainTag: mainTagType
   priceRange: [number, number]
   category: Array<categoryType>
-}
-
-interface LocationState {
-  categoryName?: categoryType | ''
-  genderType?: genderType | ''
 }
 
 type queryValues = {
@@ -111,7 +102,7 @@ const Catalog: React.FC = () => {
 
   const [getProducts, { loading, data, error }] = useLazyQuery<
     AllProductsQuery,
-    AllProductsVariables
+    AllProductsQueryVariables
   >(AllProductsDocument, {
     onCompleted: (data) => {
       if (data?.allProducts.priceRange) {

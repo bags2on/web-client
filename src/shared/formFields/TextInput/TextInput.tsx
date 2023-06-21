@@ -87,7 +87,7 @@ const TextInput: React.FC<TextInputProps> = ({
   autoComplete = 'off',
   hideErrorMessage = false,
   type = 'text',
-  multiline,
+  multiline = false,
   ...restProps
 }) => {
   const [field, meta] = useField(restProps)
@@ -96,10 +96,16 @@ const TextInput: React.FC<TextInputProps> = ({
 
   return (
     <div>
-      {!!multiline ? (
+      {multiline ? (
         <MultilineInput {...field} {...restProps} $error={isErr} autoComplete={autoComplete} />
       ) : (
-        <BaseInput {...field} {...restProps} type={type} autoComplete={autoComplete} $error={isErr} />
+        <BaseInput
+          {...field}
+          {...restProps}
+          type={type}
+          autoComplete={autoComplete}
+          $error={isErr}
+        />
       )}
       {!hideErrorMessage && <ErrorMessage $err={isErr}>{meta.touched && meta.error}</ErrorMessage>}
     </div>

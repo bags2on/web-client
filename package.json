@@ -30,6 +30,7 @@
     "react-content-loader": "^6.2.1",
     "react-dom": "18.2.0",
     "react-progressive-graceful-image": "^0.7.0",
+    "react-select": "^5.7.3",
     "styled-components": "^5.3.11",
     "swiper": "^9.3.2",
     "typescript": "5.0.4",

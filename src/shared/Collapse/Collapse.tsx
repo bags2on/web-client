@@ -11,7 +11,7 @@ const Collapse: React.FC<CollapseProps> = ({ open, children }) => {
 
   useEffect(() => {
     if (!height || !open || !ref.current) return undefined
-    // @ts-ignore
+
     const resizeObserver = new ResizeObserver((el) => {
       setHeight(el[0].contentRect.height)
     })

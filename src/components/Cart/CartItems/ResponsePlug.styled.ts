@@ -16,10 +16,11 @@ export const Content = styled.div`
   & > svg {
     width: 100%;
     height: auto;
-    fill: gray;
+    fill: ${({ theme }) => (theme.type === 'light' ? '#aeaeae' : '#fafafa')};
   }
   & > p {
     margin: 0;
+    font-weight: 500;
     font-size: 20px;
     font-weight: 500px;
     text-align: center;
@@ -27,7 +28,7 @@ export const Content = styled.div`
 `
 
 export const BackButton = styled(Button)`
-  max-width: 130px;
+  max-width: 70%;
   margin-top: 50px;
 `
 

@@ -1,5 +1,5 @@
 import { makeVar } from '@apollo/client'
-import type { CartItem } from './types'
+import { CartItem } from './types'
 
 export const cartItemsVar = makeVar<CartItem[]>([])
 export const cartPriceVar = makeVar<number>(0)

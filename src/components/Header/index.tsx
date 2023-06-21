@@ -11,7 +11,7 @@ import CartIcon from '../../../public/assets/header_cart.svg'
 import { useQuery } from '@apollo/client'
 
 import { GET_HEADER_DATA } from '../../apollo/cache/queries/shared'
-import { SharedMutations } from '../../apollo/cache/mutations'
+// import { SharedMutations } from '../../apollo/cache/mutations'
 
 import {
   TheHeader,
