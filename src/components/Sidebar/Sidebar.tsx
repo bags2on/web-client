@@ -2,10 +2,11 @@ import React from 'react'
 import Drawer from '@/shared/Drawer'
 import SidebarHead from './SidebarHead/SidebarHead'
 import SidebarNavList from './SidebarNavList/SidebarNavList'
+import SocialLink from './SocialLink/SocialLink'
 import LangSwitcher from '@/components/LangSwitcher'
 import { useTranslation } from 'next-i18next'
 
-import { Container, LanguageBox } from './Sidebar.styled'
+import { Container, LanguageBox, SocialBox } from './Sidebar.styled'
 
 interface SidebarProps {
   isOpen: boolean
@@ -26,6 +27,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, theme, onClose, themeChanger 
           <span>{t('drawer.lang')}</span>
           <LangSwitcher />
         </LanguageBox>
+        <SocialBox>
+          <SocialLink />
+        </SocialBox>
       </Container>
     </Drawer>
   )

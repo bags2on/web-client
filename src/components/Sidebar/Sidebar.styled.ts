@@ -17,3 +17,8 @@ export const LanguageBox = styled.div`
     margin-left: 10px;
   }
 `
+
+export const SocialBox = styled.div`
+  padding: 10px 15px;
+  padding-top: 30px;
+`
