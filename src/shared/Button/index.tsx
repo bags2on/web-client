@@ -37,6 +37,7 @@ const LoaderWrapper = styled.div`
 `
 
 const BaseButton = styled.button<BaseButtonProps>`
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -70,25 +71,19 @@ const BaseButton = styled.button<BaseButtonProps>`
           background-color: #363636;
           border-color: #6a6a6a;
           &:hover:not(:disabled) {
-            cursor: pointer;
             background-color: #323232;
           }
         `
       case ButtonColor.secondary:
         return css`
           color: #343434;
-          background-color: ${theme.colors.primary};
-          &:hover:not(:disabled) {
-            cursor: pointer;
-            background-color: #fff128;
-          }
+          background-color: #fff128;
         `
       case ButtonColor.success:
         return css`
           color: #343434;
           background-color: #32cd32;
           &:hover:not(:disabled) {
-            cursor: pointer;
             background-color: #45ff45;
           }
         `
@@ -97,7 +92,6 @@ const BaseButton = styled.button<BaseButtonProps>`
           color: #343434;
           background-color: #f44336;
           &:hover:not(:disabled) {
-            cursor: pointer;
             background-color: #f2554a;
           }
         `
