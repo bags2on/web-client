@@ -101,19 +101,31 @@ export const Title = styled(Link)<{ $outStock: boolean }>`
 
 export const Tag = styled.div<{ $backgroundColor: string }>`
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 75px;
-  border-top-left-radius: 8px;
-  border-bottom-right-radius: 8px;
+  top: 7px;
+  right: 5px;
+  width: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
   text-align: center;
-  padding: 7px 4px;
+  padding: 5px 3px;
   user-select: none;
   background-color: ${({ $backgroundColor }) => $backgroundColor};
   & span {
-    font-size: 14px;
+    font-size: 12px;
     color: #fff;
     font-weight: 500;
+  }
+
+  @media ${({ theme }) => theme.media.tablet} {
+    width: 85px;
+    padding: 5px 0;
+    top: 10px;
+    right: 10px;
+    & > span {
+      font-size: 15px;
+    }
   }
 `
 
