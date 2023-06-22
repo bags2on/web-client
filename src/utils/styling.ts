@@ -12,7 +12,7 @@ export const getColorByTagName = (name: string): string => {
 export const getProductMainTagColor = (name: string): string => {
   switch (name) {
     case 'NEW':
-      return '#00d058'
+      return '#6EBE90'
     case 'TOP':
       return '#FFC63D'
     case 'STOCK':

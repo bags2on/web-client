@@ -120,11 +120,11 @@ export const Tag = styled.div<{ $backgroundColor: string }>`
 
   @media ${({ theme }) => theme.media.tablet} {
     width: 85px;
-    padding: 5px 0;
+    padding: 4px 0;
     top: 10px;
     right: 10px;
     & > span {
-      font-size: 15px;
+      font-size: 14px;
     }
   }
 `
