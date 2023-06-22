@@ -7,7 +7,8 @@ import {
   Container,
   LinkWrapper,
   ImageBox,
-  Content,
+  FirstContent,
+  SecondContent,
   ContentTitle,
   ButtonWrapper,
   FakeButton
@@ -21,34 +22,34 @@ const Promo: React.FC = () => {
       <LinkWrapper href={routeNames.catalog}>
         <ImageBox>
           <Image
-            src="/assets/rastr/promo-male.jpg"
+            src="/assets/rastr/promo-1.jpeg"
             alt={`банер: '${t('promo.male')}'`}
             width={1000}
             height={500}
           />
         </ImageBox>
-        <Content>
-          <ContentTitle>{t('promo.male')}</ContentTitle>
+        <FirstContent>
+          <ContentTitle>{t('promo.firstTitle')}</ContentTitle>
           <ButtonWrapper>
             <FakeButton>{t('promo.action')}</FakeButton>
           </ButtonWrapper>
-        </Content>
+        </FirstContent>
       </LinkWrapper>
       <LinkWrapper href={routeNames.catalog}>
         <ImageBox>
           <Image
-            src="/assets/rastr/promo-female.jpg"
+            src="/assets/rastr/promo-2.jpeg"
             alt={`банер: '${t('promo.male')}'`}
             width={1000}
             height={500}
           />
         </ImageBox>
-        <Content>
-          <ContentTitle>{t('promo.female')}</ContentTitle>
+        <SecondContent>
+          <ContentTitle>{t('promo.secondTitle')}</ContentTitle>
           <ButtonWrapper>
             <FakeButton>{t('promo.action')}</FakeButton>
           </ButtonWrapper>
-        </Content>
+        </SecondContent>
       </LinkWrapper>
     </Container>
   )

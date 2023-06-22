@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import Link from 'next/link'
 
 export const Container = styled.section`
@@ -27,10 +27,10 @@ export const LinkWrapper = styled(Link)`
   overflow: hidden;
   flex-basis: 100%;
   border-radius: 6px;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  background-color: #cfffbc;
+  /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
+  background-color: #f3f3f3;
   -webkit-tap-highlight-color: transparent;
-  @media ${({ theme }) => theme.media.md} {
+  @media ${({ theme }) => theme.media.tablet} {
     flex-basis: 49%;
     padding: 0;
     &:hover {
@@ -41,12 +41,21 @@ export const LinkWrapper = styled(Link)`
   }
 `
 
-export const Content = styled.div`
+const contentStyles = css`
   position: absolute;
   user-select: none;
   top: 50%;
   left: 47%;
   transform: translate(0, -50%);
+`
+
+export const FirstContent = styled.div`
+  ${contentStyles}
+  left: 55%;
+`
+
+export const SecondContent = styled.div`
+  ${contentStyles}
 `
 
 export const ContentTitle = styled.p`
@@ -74,8 +83,13 @@ export const FakeButton = styled.div`
   border: 1px solid #343434;
   color: #343434;
   transition: all 0.2s;
-  &:hover {
-    background-color: #343434;
+  background-color: transparent;
+  @media ${({ theme }) => theme.media.tablet} {
     color: #fff;
+    background-color: #343434;
+    &:hover {
+      color: #343434;
+      background-color: transparent;
+    }
   }
 `
