@@ -6,7 +6,7 @@ import Categories from './Categories/Categories'
 import Popular from './Popular/Popular'
 import Featured from './Featured/Featured'
 import Promo from './Promo/Promo'
-import { TEMP_FEATURED_DATA, TEMP_MAIN_SLIDER_IMAGES, TEMP_POPULAR_DATA } from './temp'
+import { TEMP_MAIN_SLIDER_IMAGES } from './temp'
 
 import {
   SliderContainer,
@@ -15,7 +15,21 @@ import {
   PopularContainer
 } from './Home.styled'
 
-const Home: React.FC = () => {
+interface ProductType {
+  id: string
+  currentPrice: number
+  title: string
+  preview: string
+  basePrice: number
+  mainTag: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR'
+}
+
+interface HomeProps {
+  recommended: Array<ProductType>
+  popular: Array<ProductType>
+}
+
+const Home: React.FC<HomeProps> = ({ recommended, popular }) => {
   const mainProduct = {
     id: 'eh345vs',
     title: '#товарДня',
@@ -33,11 +47,11 @@ const Home: React.FC = () => {
         <MainProductContainer>
           <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
         </MainProductContainer>
-        <Featured products={TEMP_FEATURED_DATA} />
+        <Featured products={recommended} />
         <Promo />
       </HomeContainer>
       <PopularContainer>
-        <Popular products={TEMP_POPULAR_DATA} />
+        <Popular products={popular} />
       </PopularContainer>
       <Advantages />
     </div>

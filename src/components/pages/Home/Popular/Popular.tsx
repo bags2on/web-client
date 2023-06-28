@@ -7,7 +7,7 @@ import { Container, Title } from './Popular.styled'
 
 interface ProductType {
   id: string
-  price: number
+  currentPrice: number
   title: string
   preview: string
   basePrice: number
@@ -32,7 +32,7 @@ const Popular: React.FC<PopularProps> = ({ products }) => {
             id={product.id}
             url={product.preview}
             title={product.title}
-            price={product.price}
+            price={product.currentPrice}
             mainTag={product.mainTag}
             basePrice={product.basePrice}
             isFavorite={false} // TODO: get data form ac3

@@ -1,0 +1,20 @@
+query GetHomeData {
+  homeData {
+    recommended {
+      id
+      title
+      mainTag
+      currentPrice
+      basePrice
+      preview
+    }
+    popular {
+      id
+      title
+      mainTag
+      currentPrice
+      basePrice
+      preview
+    }
+  }
+}

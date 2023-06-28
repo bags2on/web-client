@@ -60,6 +60,12 @@ export type HideProductResponse = {
   isHidden: Scalars['Boolean']['output']
 }
 
+export type HomeDataResponse = {
+  __typename?: 'HomeDataResponse'
+  popular: Array<Product>
+  recommended: Array<Product>
+}
+
 export type LogInInput = {
   keyWord: Scalars['String']['input']
 }
@@ -258,6 +264,7 @@ export type Query = {
   allOrders: Array<Order>
   allProducts: ProductsResponse
   cartProducts: Array<Product>
+  homeData?: Maybe<HomeDataResponse>
   logInRoot?: Maybe<LogInRsponse>
   order?: Maybe<OrderByIdResult>
   product?: Maybe<ProductResult>
