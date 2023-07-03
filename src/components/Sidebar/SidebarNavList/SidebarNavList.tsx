@@ -10,6 +10,7 @@ import { useTranslation } from 'next-i18next'
 import { useQuery } from '@apollo/client'
 import { GET_FAVORITE_AMOUNT } from '@/apollo/cache/queries/favorite'
 import { SharedMutations } from '@/apollo/cache/mutations'
+import { useRouter } from 'next/router'
 
 import { NavList, ListItem, ItemIcon, ItemText } from './SidebarNavList.styled'
 
@@ -62,6 +63,7 @@ interface FavoriteAmountQuery {
 }
 
 const SidebarNavList: React.FC<SidebarNavListProps> = ({ onClose }) => {
+  const router = useRouter()
   const { t } = useTranslation('common')
 
   const { data } = useQuery<FavoriteAmountQuery>(GET_FAVORITE_AMOUNT)
@@ -75,9 +77,7 @@ const SidebarNavList: React.FC<SidebarNavListProps> = ({ onClose }) => {
       if (!isAuth) return
     }
 
-    // setTimeout(() => {
-    //   history.push(path)
-    // }, 250)
+    router.push(path)
   }
 
   return (
