@@ -15,7 +15,7 @@ interface FeaturesProps {
 }
 
 const Features: React.FC<FeaturesProps> = ({ color, material, type, category }) => {
-  const { t } = useTranslation()
+  const { t } = useTranslation('common')
 
   return (
     <Container>
