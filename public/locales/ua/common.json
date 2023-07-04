@@ -15,5 +15,16 @@
     "catalog": "Каталог",
     "history": "Історія перегляду",
     "lang": "Мова"
+  },
+  "product": {
+    "common": {
+      "category": "Категорія",
+      "type": "Тип",
+      "color": "Колір",
+      "material": "Матеріал",
+      "textile": "тканина",
+      "plastic": "пластик",
+      "leath": "шкіра"
+    }
   }
 }
