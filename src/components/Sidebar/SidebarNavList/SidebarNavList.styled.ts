@@ -21,11 +21,16 @@ export const ItemText = styled.div`
 
 export const ListItem = styled.li`
   display: flex;
-  align-items: center;
-  margin-bottom: 15px;
   cursor: pointer;
-  &:hover > ${ItemText} {
-    text-decoration: underline;
+  align-items: center;
+  padding: 11px 5px 11px 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  &:last-child {
+    margin-bottom: 15px;
+  }
+  &:hover {
+    background-color: ${({ theme }) => (theme.type === 'light' ? '#ededed' : '#353535')};
   }
 `
 
