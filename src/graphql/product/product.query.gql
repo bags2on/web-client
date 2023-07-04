@@ -4,6 +4,7 @@ query GetProduct($id: ID!) {
     ... on Product {
       id
       title
+      preview
       currentPrice
       basePrice
       tags
@@ -11,17 +12,18 @@ query GetProduct($id: ID!) {
       gender
       category
       description
+      images
       #       isHidden
       instock
-      #       features {
-      #         material
-      #         color
-      #         gender
-      #         category
-      #       }
-      #       rating {
-      #         rating
-      #       }
+      # features {
+      #   material
+      #   color
+      #   gender
+      #   category
+      # }
+      # rating {
+      #   rating
+      # }
     }
     ... on NotFound {
       message

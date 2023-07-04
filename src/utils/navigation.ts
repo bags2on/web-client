@@ -13,7 +13,7 @@ type RouteName =
 export const routeNames: Record<RouteName, string> = {
   root: '/',
   catalog: '/catalog',
-  product: '/p/:id',
+  product: '/product/:id',
   login: '/login',
   discounts: '/discounts',
   profile: '/profile',
