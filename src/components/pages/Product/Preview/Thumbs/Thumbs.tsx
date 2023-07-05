@@ -13,7 +13,7 @@ const Thumbs: React.FC<ThumbsProps> = ({ activeIndex, images, onChange }) => {
     <Container>
       <List>
         {images.map((image, index) => (
-          <ListItem key={index} $active={index === activeIndex} onClick={() => onChange(index + 1)}>
+          <ListItem key={index} $active={index === activeIndex} onClick={() => onChange(index)}>
             <Image src={image} alt={`боковое фото продукта №${index + 1}`} />
           </ListItem>
         ))}
