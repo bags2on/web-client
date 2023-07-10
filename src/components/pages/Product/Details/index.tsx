@@ -9,6 +9,7 @@ import { formatPrice } from '@/utils/helper'
 import ExclamationIcon from '../../../../../public/assets/exclamation-circle.svg'
 import CheckIcon from '../../../../../public/assets/check_mark.svg'
 import HeaderCartIcon from '../../../../../public/assets/header_cart.svg'
+import Collapse, { CollapseHead } from '@/shared/Collapse'
 
 import {
   Container,
@@ -21,12 +22,14 @@ import {
   DiscountPriceBox,
   Discount,
   Percentage,
+  DescriptionWrapper,
+  OrderButtonWrapper,
+  OrderButton,
+  TheOrderButtonIcon,
   Description,
-  ActionWrapper,
-  ActionButton,
-  LikeButton
+  LikeButton,
+  DescriptionTitle
 } from './Details.styled'
-import SvgIcon from '@/shared/SvgIcon'
 
 type featuresType = {
   material: string
@@ -63,19 +66,13 @@ const Details: React.FC<SummaryProps> = ({
   // rating
 }) => {
   const favoriteProducts = useReactiveVar(favoriteProductsVar)
-  // const [getProducts, { loading, data, error }] = useLazyQuery<AllProductsQuery, AllProductsVariables>(
-  //   AllProductsDocument,
-  //   {
-  //     onCompleted: (data) => {
-  //       if (data?.allProducts.priceRange) {
-  //         const { gt, lt } = data.allProducts.priceRange
-  //         setPriceRange([gt, lt])
-  //       }
-  //     }
-  //   }
-  // )
 
   const [isLiked, setLiked] = useState<boolean>(favoriteProducts.includes(id))
+  const [descExpand, setDescExpand] = useState(true)
+
+  const handleDescCollapse = () => {
+    setDescExpand((prev) => !prev)
+  }
 
   const features = {
     material: 'xxxx',
@@ -102,22 +99,19 @@ const Details: React.FC<SummaryProps> = ({
     setLiked(!isLiked)
   }
 
-  // const handleRatingVote = (rating: number): void => {}
-
   return (
     <Container>
       {tags && <Tags tags={tags} />}
       <Title>{title}</Title>
-      <Code>Код:&nbsp;{id}</Code>
+      <Code>Код товара:&nbsp;{id}</Code>
       <Box>
         <Availability $inStock={inStock}>
           <TheAvailabilityIcon>{inStock ? <CheckIcon /> : <ExclamationIcon />}</TheAvailabilityIcon>
           <span>{inStock ? 'В наличии' : 'Нет в наличии'}</span>
         </Availability>
-        <div>
-          <Rating starRating={rating} />
-        </div>
+        <Rating starRating={rating} />
       </Box>
+      {/*  */}
       {basePrice !== currentPrice && (
         <DiscountPriceBox>
           <Discount>{formatPrice(basePrice)}&nbsp;₴</Discount>
@@ -125,24 +119,31 @@ const Details: React.FC<SummaryProps> = ({
         </DiscountPriceBox>
       )}
       <CurrentPrice>{formatPrice(currentPrice)}&nbsp;₴</CurrentPrice>
-      <Description>
-        <p>Описание:</p>
-        <span>{description}</span>
-      </Description>
-      <ActionWrapper>
-        <ActionButton
+      {/*  */}
+      <DescriptionWrapper>
+        <CollapseHead
+          title={<DescriptionTitle>Описание</DescriptionTitle>}
+          collapsed={descExpand}
+          onCollapse={handleDescCollapse}
+        />
+        <Collapse open={descExpand}>
+          <Description>{description}</Description>
+        </Collapse>
+      </DescriptionWrapper>
+      <OrderButtonWrapper>
+        <OrderButton
+          color="secondary"
           onClick={handleAddToCart}
-          fullWidth
           startIcon={
-            <SvgIcon style={{ fontSize: 30, fill: '#fff' }}>
+            <TheOrderButtonIcon>
               <HeaderCartIcon />
-            </SvgIcon>
+            </TheOrderButtonIcon>
           }
         >
-          {inStock ? 'Купить' : 'Сообщить когда появиться'}
-        </ActionButton>
+          {inStock ? 'Добавить в корзину' : 'Сообщить когда появиться'}
+        </OrderButton>
         <LikeButton width={25} height={25} liked={isLiked} onClick={handleLikeClick} />
-      </ActionWrapper>
+      </OrderButtonWrapper>
       <Features
         color={features.color}
         material={features.material}

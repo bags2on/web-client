@@ -2,8 +2,12 @@ import styled from 'styled-components'
 
 export const Container = styled.div`
   margin-top: 20px;
-  max-width: 1300px;
+  max-width: 1500px;
   margin: 0 auto;
+  padding: 0 5px;
+  @media ${({ theme }) => theme.media.lg} {
+    padding: 0 25px;
+  }
 `
 
 export const Inner = styled.div`

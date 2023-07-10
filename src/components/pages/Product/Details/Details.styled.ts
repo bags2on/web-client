@@ -17,9 +17,10 @@ export const Title = styled.h1`
 
 export const Code = styled.p`
   color: #939191;
+  text-transform: uppercase;
   margin: 0;
   font-weight: 500;
-  font-size: 15px;
+  font-size: 14px;
   margin-bottom: 17px;
 `
 
@@ -27,6 +28,7 @@ export const Box = styled.div`
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+  margin-bottom: 25px;
 `
 
 interface AvailabilityStyledProps {
@@ -36,7 +38,6 @@ interface AvailabilityStyledProps {
 export const Availability = styled.div<AvailabilityStyledProps>`
   display: inline-flex;
   margin-right: 30px;
-  margin-bottom: 25px;
   border-radius: 15px;
   width: auto;
   padding: 7px 8px;
@@ -66,11 +67,12 @@ export const CurrentPrice = styled.p`
   margin: 0;
   font-size: 29px;
   line-height: 29px;
-  font-weight: 500;
+  font-weight: 600;
 `
 
 export const DiscountPriceBox = styled.div`
   color: #f44336;
+  margin-bottom: 3px;
 `
 
 export const Discount = styled.span`
@@ -90,34 +92,55 @@ export const Percentage = styled.span`
   background-color: #f44336;
 `
 
-export const Description = styled.div`
-  font-size: 16px;
-  line-height: 1.5;
+export const DescriptionWrapper = styled.div`
   margin-top: 20px;
-  & > p {
-    margin: 0;
-    padding-bottom: 6px;
-    font-weight: 600;
+  & > div {
+    padding-left: 0;
   }
 `
 
-export const ActionButton = styled(Button)`
-  max-width: 300;
+export const Description = styled.p`
+  margin: 0;
+  font-size: 16px;
+`
+
+export const DescriptionTitle = styled.p`
+  font-size: 20px;
+  margin: 10px 0;
+  font-weight: 600;
+`
+
+export const TheOrderButtonIcon = styled(SvgIcon)`
+  font-size: 30px;
+  fill: #fff;
+  margin-right: 10px;
+  transition: all 0.1s;
+`
+
+export const OrderButton = styled(Button)`
+  width: 100%;
+  max-width: 300px;
   background-color: #32cd32;
-  border-radius: 10px;
-  font-size: 18px;
+  border-radius: 14px;
+  font-size: 16px;
   line-height: 18px;
   text-transform: none;
-  font-weight: 500;
+  font-weight: 600;
   color: #fff;
-  transition: all 0.1s;
-  &:hover {
-    background-color: #4bea4b;
+  border: none;
+  &:active {
+    & ${TheOrderButtonIcon} {
+      transform: scale(1.2);
+    }
+  }
+  @media ${({ theme }) => theme.media.lg} {
+    font-size: 18px;
   }
 `
 
-export const ActionWrapper = styled.div`
+export const OrderButtonWrapper = styled.div`
   display: flex;
+  align-items: center;
   justify-content: center;
   margin-top: 30px;
   @media ${({ theme }) => theme.media.md} {
@@ -126,9 +149,10 @@ export const ActionWrapper = styled.div`
 `
 
 export const LikeButton = styled(SharedLikeButton)`
-  margin-left: 10px;
-  background-color: ${({ theme }) => (theme.type === 'light' ? '#f3f3f3' : '#363636')};
-  border-radius: 10px;
+  margin-left: 15px;
+  padding: 18px;
+  background-color: ${({ theme }) => (theme.type === 'light' ? '#f6f6f6' : '#363636')};
+  border-radius: 14px;
   &:hover {
     background-color: ${({ theme }) => (theme.type === 'light' ? '#f3f3f3' : '#363636')};
   }
