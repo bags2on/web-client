@@ -6,11 +6,15 @@ interface LikeButtonProps {
   liked: boolean
   width?: number
   height?: number
-  className?: string
   onClick: (e: React.MouseEvent) => void
 }
 
-const LikeButton: React.FC<LikeButtonProps> = ({ liked, className, width = 20, height = 20, ...restProps }) => {
+const LikeButton: React.FC<LikeButtonProps> = ({
+  liked,
+  width = 20,
+  height = 20,
+  ...restProps
+}) => {
   return (
     <Button {...restProps}>
       <Svg $liked={liked} $width={width} $height={height} viewBox="0 0 24 24">
