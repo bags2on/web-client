@@ -7,7 +7,7 @@ import { favoriteProductsVar } from '@/apollo/cache/variables'
 import { CartMutations, FavoriteMutations } from '@/apollo/cache/mutations'
 import { formatPrice } from '@/utils/helper'
 import ExclamationIcon from '../../../../../public/assets/exclamation-circle.svg'
-import CheckIcon from '../../../../../public/assets/check_mark.svg'
+import CheckIcon from '../../../../../public/assets/check-circle.svg'
 import HeaderCartIcon from '../../../../../public/assets/header_cart.svg'
 import Collapse, { CollapseHead } from '@/shared/Collapse'
 
@@ -120,16 +120,6 @@ const Details: React.FC<SummaryProps> = ({
       )}
       <CurrentPrice>{formatPrice(currentPrice)}&nbsp;₴</CurrentPrice>
       {/*  */}
-      <DescriptionWrapper>
-        <CollapseHead
-          title={<DescriptionTitle>Описание</DescriptionTitle>}
-          collapsed={descExpand}
-          onCollapse={handleDescCollapse}
-        />
-        <Collapse open={descExpand}>
-          <Description>{description}</Description>
-        </Collapse>
-      </DescriptionWrapper>
       <OrderButtonWrapper>
         <OrderButton
           color="secondary"
@@ -144,6 +134,16 @@ const Details: React.FC<SummaryProps> = ({
         </OrderButton>
         <LikeButton width={25} height={25} liked={isLiked} onClick={handleLikeClick} />
       </OrderButtonWrapper>
+      <DescriptionWrapper>
+        <CollapseHead
+          title={<DescriptionTitle>Описание</DescriptionTitle>}
+          collapsed={descExpand}
+          onCollapse={handleDescCollapse}
+        />
+        <Collapse open={descExpand}>
+          <Description>{description}</Description>
+        </Collapse>
+      </DescriptionWrapper>
       <Features
         color={features.color}
         material={features.material}
