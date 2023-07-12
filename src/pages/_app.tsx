@@ -6,7 +6,8 @@ import { useTheme } from '@/hooks'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyles, lightTheme, darkTheme } from '@/utils/theme'
-import SwiperCore, { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper'
+import SwiperCore from 'swiper'
+import { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper/modules'
 
 import { appWithTranslation } from 'next-i18next'
 
