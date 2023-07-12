@@ -10,10 +10,11 @@ interface CollapseHeadProps {
 }
 
 const GroupHead = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
-  padding: 8px 10px;
-  cursor: pointer;
+  align-items: center;
+  padding: 8px 0;
 `
 
 const Title = styled.span`
