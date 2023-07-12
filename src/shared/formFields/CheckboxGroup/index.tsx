@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Collapse, { CollapseHead } from '@/shared/Collapse'
 import Checkbox from '../Checkbox'
 
-import { Fieldset } from './CheckboxGroup.styled'
+import { Container, Fieldset } from './CheckboxGroup.styled'
 
 type optionType = {
   value: string
@@ -23,7 +23,7 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, options, name }) =
   }
 
   return (
-    <div>
+    <Container>
       <CollapseHead title={title} collapsed={isCollapsed} onCollapse={handleCollapse} />
       <Collapse open={isCollapsed}>
         <Fieldset>
@@ -34,7 +34,7 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, options, name }) =
           ))}
         </Fieldset>
       </Collapse>
-    </div>
+    </Container>
   )
 }
 
