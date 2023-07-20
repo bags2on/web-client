@@ -1,3 +1,4 @@
+import SvgIcon from '@/shared/SvgIcon'
 import styled from 'styled-components'
 
 export const Container = styled.ul`
@@ -25,12 +26,11 @@ export const Feature = styled.li`
   }
 `
 
-export const FeatureIcon = styled.div`
-  width: 45px;
+export const FeatureIcon = styled(SvgIcon)`
+  font-size: 40px;
   margin-right: 20px;
-  & svg {
-    fill: ${({ theme }) => (theme.type === 'dark' ? '#c0c0c0' : '#343434')};
-  }
+
+  fill: ${({ theme }) => (theme.type === 'dark' ? '#c0c0c0' : '#343434')};
 `
 
 export const FeatureInfo = styled.div`

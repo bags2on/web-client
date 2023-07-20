@@ -25,7 +25,11 @@ const Features: React.FC<FeaturesProps> = ({ color, material, type, category }) 
         </FeatureIcon>
         <FeatureInfo>
           <p>{t('product.common.material')}</p>
-          <span>{t(`product.common.${material}`)}</span>
+          <span>
+            {t(`product.common.${material}`, {
+              defaultValue: material
+            })}
+          </span>
         </FeatureInfo>
       </Feature>
       <Feature>
