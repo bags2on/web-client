@@ -3,9 +3,12 @@ import Link from 'next/link'
 
 export const Container = styled.section`
   display: flex;
-  padding: 0 5px 10px 5px;
+  padding: 0 10px 10px 10px;
+
   justify-content: space-between;
   flex-wrap: wrap;
+  max-width: 1500px;
+  margin: 0 auto;
 `
 
 export const ImageBox = styled.div`
@@ -26,7 +29,7 @@ export const LinkWrapper = styled(Link)`
   display: flex;
   overflow: hidden;
   flex-basis: 100%;
-  border-radius: 6px;
+  border-radius: 12px;
   /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
   background-color: #f3f3f3;
   -webkit-tap-highlight-color: transparent;
