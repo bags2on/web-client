@@ -56,6 +56,8 @@ export const IconWrapper = styled.div<IconWrapperStyledProps>`
   border: 1px solid
     ${({ theme, $borderColor }) => (theme.type === 'light' ? $borderColor : 'transparent')};
   @media ${({ theme }) => theme.media.tablet} {
+    margin-right: 12px;
+
     background-color: ${({ theme, $background }) =>
       theme.type === 'light' ? $background : theme.colors.primary};
   }
@@ -100,8 +102,25 @@ export const InnerContainer = styled.div`
       }
     }
   }
-  & > span {
-    font-size: 16px;
-    font-weight: 500;
+`
+
+export const Details = styled.div`
+  font-size: 17px;
+  font-weight: 500;
+  & p {
+    margin: 0;
+    line-height: 18px;
+    @media ${({ theme }) => theme.media.lg} {
+      font-weight: 600;
+    }
+  }
+
+  & span {
+    display: none;
+    font-size: 14px;
+    color: #999999;
+    @media ${({ theme }) => theme.media.lg} {
+      display: inline;
+    }
   }
 `

@@ -13,6 +13,7 @@ import {
   Title,
   Link,
   InnerContainer,
+  Details,
   CategoryList,
   CategoryItem,
   IconWrapper,
@@ -88,7 +89,10 @@ const Categories: React.FC = () => {
                       <category.icon />
                     </CategoryIcon>
                   </IconWrapper>
-                  <span>{t(`categories.${category.i18n}`)}</span>
+                  <Details>
+                    <p>{t(`categories.${category.i18n}`)}</p>
+                    <span>смотреть все</span>
+                  </Details>
                 </InnerContainer>
               </Link>
             </CategoryItem>
