@@ -14,9 +14,9 @@ export const getProductMainTagColor = (name: string): string => {
     case 'NEW':
       return '#6EBE90'
     case 'TOP':
-      return '#FFC63D'
+      return '#a3f271'
     case 'STOCK':
-      return '#d81e1e'
+      return '#fd3b3b'
     default:
       return 'lightgray'
   }

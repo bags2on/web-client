@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
-import { routeNames, generateLink } from '@/utils/navigation'
+import Link from 'next/link'
+import Image from 'next/image'
 import LikeButton from '@/shared/LikeButton'
 import ImagePlaceholder from '@/shared/ImagePlaceholder'
-import Link from 'next/link'
-import { formatPrice } from '@/utils/helper'
-import { getProductMainTagColor } from '@/utils/styling'
-import { useTranslation } from 'next-i18next'
-import { FavoriteMutations } from '../../apollo/cache/mutations'
 import TrashIcon from '../../../public/assets/trash.svg'
+import { formatPrice } from '@/utils/helper'
+import { useTranslation } from 'next-i18next'
+import { getProductMainTagColor } from '@/utils/styling'
+import { routeNames, generateLink } from '@/utils/navigation'
+import { FavoriteMutations } from '@/apollo/cache/mutations'
 
 import {
   Container,
@@ -21,7 +22,7 @@ import {
   ActionButtonWrapper,
   TheTrashIcon
 } from './CatalogItem.styled'
-import IconButton from '../../shared/IconButton'
+import IconButton from '@/shared/IconButton'
 
 interface CatalogItemProps {
   id: string
@@ -60,6 +61,19 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
     setLiked(!isLiked)
   }
 
+  function genTagView(tag: string): React.ReactNode | null {
+    switch (tag) {
+      case 'NEW':
+        return <span>{t(`productTag.${mainTag}`)}</span>
+      case 'TOP':
+        return <Image width={25} height={25} src="/assets/icons/fire.png" alt="смайлик - огонь" />
+      case 'STOCK':
+        return <span>-{Math.round(((basePrice - price) * 100) / basePrice)}%</span>
+      default:
+        return null
+    }
+  }
+
   return (
     <Container>
       <ImageWrapper $outStock={!inStock}>
@@ -90,9 +104,7 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
         </Title>
       </Info>
       {mainTag !== 'REGULAR' && (
-        <Tag $backgroundColor={getProductMainTagColor(mainTag)}>
-          <span>{t(`productTag.${mainTag}`)}</span>
-        </Tag>
+        <Tag $backgroundColor={getProductMainTagColor(mainTag)}>{genTagView(mainTag)}</Tag>
       )}
     </Container>
   )

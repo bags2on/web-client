@@ -95,7 +95,6 @@ export const Title = styled(Link)<{ $outStock: boolean }>`
 
   @media ${({ theme }) => theme.media.md} {
     font-size: 14px;
-    /* color: #878787; */
   }
 `
 
@@ -119,8 +118,7 @@ export const Tag = styled.div<{ $backgroundColor: string }>`
   }
 
   @media ${({ theme }) => theme.media.tablet} {
-    width: 85px;
-    padding: 4px 0;
+    padding: 5px 0;
     top: 10px;
     right: 10px;
     & > span {
