@@ -10,6 +10,8 @@ import { TEMP_MAIN_SLIDER_IMAGES } from './temp'
 
 import {
   SliderContainer,
+  MainContainer,
+  SideBox,
   HomeContainer,
   MainProductContainer,
   PopularContainer
@@ -37,24 +39,30 @@ const Home: React.FC<HomeProps> = ({ recommended, popular }) => {
   }
 
   return (
-    <div>
+    <>
       <SliderContainer>
         <Carousel items={TEMP_MAIN_SLIDER_IMAGES} />
         <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
       </SliderContainer>
-      <HomeContainer>
-        <Categories />
-        <MainProductContainer>
-          <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
-        </MainProductContainer>
-        <Featured products={recommended} />
-        <Promo />
-      </HomeContainer>
+      <MainContainer>
+        <SideBox>
+          <div />
+        </SideBox>
+        {/*  */}
+        <HomeContainer>
+          <Categories />
+          <MainProductContainer>
+            <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
+          </MainProductContainer>
+          <Featured products={recommended} />
+        </HomeContainer>
+      </MainContainer>
+      <Promo />
       <PopularContainer>
         <Popular products={popular} />
       </PopularContainer>
       <Advantages />
-    </div>
+    </>
   )
 }
 

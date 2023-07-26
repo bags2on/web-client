@@ -22,9 +22,39 @@ export const SliderContainer = styled.div`
   }
 `
 
+export const MainContainer = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1500px;
+  padding: 16px 10px 0 10px;
+  margin: 0 auto;
+  @media ${({ theme }) => theme.media.xl} {
+    flex-wrap: nowrap;
+  }
+`
+
+export const SideBox = styled.div`
+  flex-basis: 100%;
+  order: 2;
+  & > div {
+    width: 100%;
+    height: 200px;
+    border-radius: 14px;
+
+    background-color: #f3f3f3;
+  }
+  @media ${({ theme }) => theme.media.xl} {
+    flex-basis: 27%;
+    order: 1;
+    padding-right: 20px;
+    & > div {
+      height: 100%;
+    }
+  }
+`
+
 export const HomeContainer = styled.div`
-  ${containerStyles}
-  padding: 20px 10px 0 10px;
+  order: 1;
   @media ${({ theme }) => theme.media.laptop} {
     flex-direction: initial;
   }
