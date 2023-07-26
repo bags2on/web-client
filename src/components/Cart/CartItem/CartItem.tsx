@@ -5,7 +5,7 @@ import AmountController from '@/shared/AmountController'
 import { formatPrice } from '@/utils/helper'
 import { routeNames, generateLink } from '@/utils/navigation'
 import { CartMutations } from '../../../apollo/cache/mutations'
-import TrashIcon from '../../../../public/assets/trash.svg'
+import TrashIcon from '../../../../public/assets/icons/trash.svg'
 
 import {
   Container,

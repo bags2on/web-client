@@ -7,7 +7,7 @@ import { useTranslation } from 'next-i18next'
 
 import { Formik } from 'formik'
 import { TopSearchSchema, TopSearchType } from '@/utils/formValidationSchema'
-import SearchIcon from '../../../public/assets/search.svg'
+import SearchIcon from '../../../public/assets/icons/search.svg'
 // import { getProductMainTagColor } from '@/utils/styling'
 // import {
 //   SearchProductQuery,

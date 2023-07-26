@@ -1,6 +1,6 @@
 import React from 'react'
 import { Container, Title, IconBox, TheTelegramIcon } from './SocialLink.styled'
-import TelegramIcon from '../../../../public/assets/telegram.svg'
+import TelegramIcon from '../../../../public/assets/icons/telegram.svg'
 
 const SocialLink: React.FC = () => {
   return (

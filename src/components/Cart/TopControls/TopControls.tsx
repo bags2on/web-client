@@ -1,6 +1,6 @@
 import React from 'react'
-import CrossIcon from '../../../../public/assets/cross.svg'
-import TrashIcon from '../../../../public/assets/trash.svg'
+import CrossIcon from '../../../../public/assets/icons/cross.svg'
+import TrashIcon from '../../../../public/assets/icons/trash.svg'
 import { CartMutations } from '@/apollo/cache/mutations'
 
 import {

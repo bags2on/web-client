@@ -1,9 +1,9 @@
 import React from 'react'
-import MinusIcon from '../../../public/assets/minus.svg'
-import PlusIcon from '../../../public/assets/plus.svg'
-import IconButton from '../IconButton'
+import SvgIcon from '@/shared/SvgIcon'
+import IconButton from '@/shared/IconButton'
 import { Container, Counter } from './AmountController.styled'
-import SvgIcon from '../SvgIcon'
+import PlusIcon from '../../../public/assets/icons/plus.svg'
+import MinusIcon from '../../../public/assets/icons/minus.svg'
 
 interface AddSubInputProps {
   amount: number

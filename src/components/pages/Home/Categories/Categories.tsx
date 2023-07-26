@@ -2,11 +2,11 @@ import React from 'react'
 import SvgIcon from '@/shared/SvgIcon'
 import { routeNames } from '@/utils/navigation'
 import { useTranslation } from 'next-i18next'
-import BaggageIcon from '../../../../../public/assets/baggage.svg'
-import WalletIcon from '../../../../../public/assets/wallet.svg'
-import BagIcon from '../../../../../public/assets/shopping-bag.svg'
-import OtherIcon from '../../../../../public/assets/other.svg'
-import FlashIcon from '../../../../../public/assets/flash.svg'
+import BaggageIcon from '../../../../../public/assets/icons/baggage.svg'
+import WalletIcon from '../../../../../public/assets/icons/wallet.svg'
+import BagIcon from '../../../../../public/assets/icons/bag.svg'
+import OtherIcon from '../../../../../public/assets/icons/other.svg'
+import FlashIcon from '../../../../../public/assets/icons/flash.svg'
 
 import {
   Section,

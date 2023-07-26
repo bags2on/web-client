@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import SvgIcon from '@/shared/SvgIcon'
-import ExpandIcon from '../../../public/assets/expand-arrow.svg'
+import ExpandIcon from '../../../public/assets/icons/expand-arrow.svg'
 
 interface CollapseHeadProps {
   collapsed: boolean

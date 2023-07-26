@@ -5,7 +5,7 @@ import Filters from './Filters/Filters'
 import Products from './Products/Products'
 import ScaleLoader from '@/shared/loaders/ScaleLoader'
 import ErrorPlug from '@/shared/ErrorPlug'
-import FilterIcon from '../../../../public/assets/filter.svg'
+import FilterIcon from '../../../../public/assets/icons/filter.svg'
 import { useLazyQuery } from '@apollo/client'
 import {
   AllProductsDocument,

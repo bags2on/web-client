@@ -2,7 +2,7 @@ import React from 'react'
 import styled, { css } from 'styled-components'
 import IconButton from '@/shared/IconButton'
 import SvgIcon from '@/shared/SvgIcon'
-import ArrowIcon from '../../../../../public/assets/expand-arrow.svg'
+import ArrowIcon from '../../../../../public/assets/icons/expand-arrow.svg'
 import { useSwiper } from 'swiper/react'
 
 const navButton = css`

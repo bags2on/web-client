@@ -1,6 +1,6 @@
 import React from 'react'
 import EmptyCartIcon from '../../../../public/assets/emptycart.svg'
-import ArrowIcon from '../../../../public/assets/expand-arrow.svg'
+import ArrowIcon from '../../../../public/assets/icons/expand-arrow.svg'
 
 import { Container, Content, BackButton, ExpandIcon } from './ResponsePlug.styled'
 

@@ -1,12 +1,11 @@
 import React from 'react'
+import classes from './Footer.module.scss'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
-import PhoneIcon from '../../../public/assets/phone.svg'
-// import InstagramIcon from '../../../public/assets/instagram.svg'
-import TelegramIcon from '../../../public/assets/telegram.svg'
-import classes from './Footer.module.scss'
 import SvgIcon from '@/shared/SvgIcon'
+import PhoneIcon from '../../../public/assets/icons/phone.svg'
+import TelegramIcon from '../../../public/assets/icons/telegram.svg'
 
 const Footer: React.FC = () => {
   return (

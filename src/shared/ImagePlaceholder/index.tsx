@@ -1,5 +1,4 @@
 import React from 'react'
-// import Placeholder from '../../../public/assets/image_placeholder.svg'
 import ProgressiveImage from 'react-progressive-graceful-image'
 
 import {

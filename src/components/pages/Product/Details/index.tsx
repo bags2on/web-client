@@ -2,14 +2,14 @@ import React, { useState } from 'react'
 import Tags from './Tags'
 import Rating from '@/components/Rating'
 import Features from './Features/Features'
+import Collapse, { CollapseHead } from '@/shared/Collapse'
 import { useReactiveVar } from '@apollo/client'
 import { favoriteProductsVar } from '@/apollo/cache/variables'
 import { CartMutations, FavoriteMutations } from '@/apollo/cache/mutations'
 import { formatPrice } from '@/utils/helper'
-import ExclamationIcon from '../../../../../public/assets/exclamation-circle.svg'
-import CheckIcon from '../../../../../public/assets/check-circle.svg'
-import HeaderCartIcon from '../../../../../public/assets/header_cart.svg'
-import Collapse, { CollapseHead } from '@/shared/Collapse'
+import ExclamationIcon from '../../../../../public/assets/icons/exclamation-circle.svg'
+import CheckIcon from '../../../../../public/assets/icons/check-circle.svg'
+import HeaderCartIcon from '../../../../../public/assets/icons/header_cart.svg'
 
 import {
   Container,

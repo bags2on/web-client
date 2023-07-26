@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import StarIcon from '../../../public/assets/star.svg'
+import StarIcon from '../../../public/assets/icons/star.svg'
 import { SharedMutations } from '../../apollo/cache/mutations'
 import { Container, List, TheStarIcon, HiddenInput, Counter } from './Rating.styled'
 

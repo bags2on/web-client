@@ -11,23 +11,23 @@ const Advantages: React.FC = () => {
     {
       title: 'advantages.discounts.title',
       info: 'advantages.discounts.info',
-      icon: '/assets/gift.svg'
+      icon: '/assets/icons/gift.svg'
     },
     {
       title: 'advantages.delivery.title',
       info: 'advantages.delivery.info',
-      icon: '/assets/truck.svg'
+      icon: '/assets/icons/truck.svg'
     },
 
     {
       title: 'advantages.workTime.title',
       info: 'advantages.workTime.info',
-      icon: '/assets/clock.svg'
+      icon: '/assets/icons/clock.svg'
     },
     {
       title: 'advantages.payment.title',
       info: 'advantages.payment.info',
-      icon: '/assets/money.svg'
+      icon: '/assets/icons/money.svg'
     }
   ]
 
