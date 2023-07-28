@@ -6,6 +6,7 @@ import Categories from './Categories/Categories'
 import Popular from './Popular/Popular'
 import Featured from './Featured/Featured'
 import Promo from './Promo/Promo'
+import SidePromo from './SidePromo'
 import { TEMP_MAIN_SLIDER_IMAGES } from './temp'
 
 import {
@@ -46,7 +47,7 @@ const Home: React.FC<HomeProps> = ({ recommended, popular }) => {
       </SliderContainer>
       <MainContainer>
         <SideBox>
-          <div />
+          <SidePromo />
         </SideBox>
         {/*  */}
         <HomeContainer>

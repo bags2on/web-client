@@ -36,20 +36,11 @@ export const MainContainer = styled.div`
 export const SideBox = styled.div`
   flex-basis: 100%;
   order: 2;
-  & > div {
-    width: 100%;
-    height: 200px;
-    border-radius: 14px;
 
-    background-color: #f3f3f3;
-  }
   @media ${({ theme }) => theme.media.xl} {
     flex-basis: 27%;
     order: 1;
     padding-right: 20px;
-    & > div {
-      height: 100%;
-    }
   }
 `
 
