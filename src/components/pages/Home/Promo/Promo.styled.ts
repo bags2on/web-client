@@ -1,5 +1,6 @@
 import styled, { css } from 'styled-components'
 import Link from 'next/link'
+import { LinkMarkImage } from '@/shared/LinkBadge'
 
 export const Container = styled.section`
   display: flex;
@@ -37,6 +38,10 @@ export const LinkWrapper = styled(Link)`
     flex-basis: 49%;
     padding: 0;
     &:hover {
+      & ${LinkMarkImage} {
+        transform: translate(2px, -10%) rotate(40deg);
+      }
+
       & ${ImageBox} {
         transform: scale(1.1);
       }

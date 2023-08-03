@@ -1,14 +1,7 @@
 import styled from 'styled-components'
-import Image from 'next/image'
 import Link from 'next/link'
 
-export const LinkMarkImage = styled(Image)`
-  display: block;
-  width: 23px;
-  height: 23px;
-  transform: rotate(40deg);
-  transition: transform 0.3s;
-`
+import { LinkMarkImage } from '@/shared/LinkBadge'
 
 export const Container = styled(Link)`
   position: relative;
@@ -28,15 +21,6 @@ export const Container = styled(Link)`
   @media ${({ theme }) => theme.media.xl} {
     height: 100%;
   }
-`
-
-export const LinkMark = styled.div`
-  position: absolute;
-  top: 10px;
-  right: 13px;
-  background-color: #fff;
-  border-radius: 50%;
-  padding: 5px;
 `
 
 export const Info = styled.div`

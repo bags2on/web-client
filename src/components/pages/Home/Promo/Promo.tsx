@@ -1,8 +1,8 @@
 import React from 'react'
 import Image from 'next/image'
+import LinkBadge from '@/shared/LinkBadge'
 import { routeNames } from '@/utils/navigation'
 import { useTranslation } from 'next-i18next'
-
 import {
   Container,
   LinkWrapper,
@@ -20,6 +20,7 @@ const Promo: React.FC = () => {
   return (
     <Container>
       <LinkWrapper href={routeNames.catalog}>
+        <LinkBadge />
         <ImageBox>
           <Image
             src="/assets/rastr/promo-1.jpeg"
@@ -36,6 +37,7 @@ const Promo: React.FC = () => {
         </FirstContent>
       </LinkWrapper>
       <LinkWrapper href={routeNames.catalog}>
+        <LinkBadge />
         <ImageBox>
           <Image
             src="/assets/rastr/promo-2.jpeg"
