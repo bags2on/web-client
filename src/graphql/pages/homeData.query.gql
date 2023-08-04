@@ -3,6 +3,7 @@ query GetHomeData {
     recommended {
       id
       title
+      slug
       mainTag
       currentPrice
       basePrice
@@ -11,6 +12,7 @@ query GetHomeData {
     popular {
       id
       title
+      slug
       mainTag
       currentPrice
       basePrice

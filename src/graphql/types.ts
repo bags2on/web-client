@@ -211,6 +211,7 @@ export type Product = {
   mainTag: MainTag
   preview: Scalars['String']['output']
   rating: AttachedRating
+  slug: Scalars['String']['output']
   tags: Array<Scalars['String']['output']>
   title: Scalars['String']['output']
 }

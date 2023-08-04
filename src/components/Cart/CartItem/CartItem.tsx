@@ -3,7 +3,7 @@ import Link from 'next/link'
 import ImagePlaceholder from '@/shared/ImagePlaceholder'
 import AmountController from '@/shared/AmountController'
 import { formatPrice } from '@/utils/helper'
-import { routeNames, generateLink } from '@/utils/navigation'
+import { routeNames, generateProductLink } from '@/utils/navigation'
 import { CartMutations } from '../../../apollo/cache/mutations'
 import TrashIcon from '../../../../public/assets/icons/trash.svg'
 
@@ -21,6 +21,7 @@ import {
 
 export type CartItemType = {
   id: string
+  slug: string
   title: string
   currentPrice: number
   preview: string
@@ -35,7 +36,7 @@ interface CartItemProps {
 const CartItem: React.FC<CartItemProps> = ({ product, amount, onRemove }) => {
   const [count, setCount] = useState<number>(amount)
 
-  const { id, title, preview, currentPrice } = product
+  const { id, slug, title, preview, currentPrice } = product
 
   const handleAmountChange = (_: string, n: number): void => {
     CartMutations.updateProductAmount(id, n)
@@ -49,12 +50,12 @@ const CartItem: React.FC<CartItemProps> = ({ product, amount, onRemove }) => {
   return (
     <Container>
       <ImageWrapper>
-        <Link href={generateLink(routeNames.product, id)}>
+        <Link href={generateProductLink(routeNames.product, id, slug)}>
           <ImagePlaceholder plain src={preview} altText={title} />
         </Link>
       </ImageWrapper>
       <Info>
-        <Title title={title} href={generateLink(routeNames.product, id)}>
+        <Title title={title} href={generateProductLink(routeNames.product, id, slug)}>
           {title}
         </Title>
         <Price>Цена:&nbsp;&nbsp;{formatPrice(currentPrice)}&nbsp;₴</Price>

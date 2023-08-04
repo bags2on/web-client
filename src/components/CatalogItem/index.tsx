@@ -7,7 +7,7 @@ import TrashIcon from '../../../public/assets/icons/trash.svg'
 import { formatPrice } from '@/utils/helper'
 import { useTranslation } from 'next-i18next'
 import { getProductMainTagColor } from '@/utils/styling'
-import { routeNames, generateLink } from '@/utils/navigation'
+import { routeNames, generateProductLink } from '@/utils/navigation'
 import { FavoriteMutations } from '@/apollo/cache/mutations'
 
 import {
@@ -26,6 +26,7 @@ import IconButton from '@/shared/IconButton'
 
 interface CatalogItemProps {
   id: string
+  slug: string
   url: string
   title: string
   price: number
@@ -38,6 +39,7 @@ interface CatalogItemProps {
 
 const CatalogItem: React.FC<CatalogItemProps> = ({
   id,
+  slug,
   url,
   title,
   price,
@@ -77,7 +79,7 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
   return (
     <Container>
       <ImageWrapper $outStock={!inStock}>
-        <Link href={generateLink(routeNames.product, id)}>
+        <Link href={generateProductLink(routeNames.product, id, slug)}>
           <ImagePlaceholder src={url} altText={title} />
         </Link>
       </ImageWrapper>
@@ -99,7 +101,11 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
             )}
           </ActionButtonWrapper>
         </PriceBox>
-        <Title $outStock={!inStock} title={title} href={generateLink(routeNames.product, id)}>
+        <Title
+          $outStock={!inStock}
+          title={title}
+          href={generateProductLink(routeNames.product, id, slug)}
+        >
           {title}
         </Title>
       </Info>

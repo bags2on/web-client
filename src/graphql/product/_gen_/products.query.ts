@@ -24,6 +24,7 @@ export type AllProductsQuery = {
     products: Array<{
       __typename?: 'Product'
       id: string
+      slug: string
       title: string
       instock: boolean
       currentPrice: number
@@ -65,6 +66,7 @@ export const AllProductsDocument = gql`
       }
       products {
         id
+        slug
         title
         instock
         currentPrice

@@ -1,5 +1,5 @@
 import React from 'react'
-import { routeNames, generateLink } from '@/utils/navigation'
+import { routeNames, generateProductLink } from '@/utils/navigation'
 
 import {
   Container,
@@ -21,7 +21,7 @@ const MainProduct: React.FC<MainProductProps> = ({ id, title, price }) => {
   return (
     <Container>
       <AnimatedBackground />
-      <InnerBox href={generateLink(routeNames.product, id)}>
+      <InnerBox href={generateProductLink(routeNames.product, id, 'TODO')}>
         <Image
           src={
             'https://res.cloudinary.com/dct4oinuz/image/upload/v1683563023/bags2on/prada-black-leather_asdgjb.png'

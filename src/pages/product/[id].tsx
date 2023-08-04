@@ -5,16 +5,28 @@ import ProductPage from '@/components/pages/Product'
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { i18n } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
+import { productIdFromSlug } from '@/utils/navigation'
 
 interface Params extends ParsedUrlQuery {
   id: string
 }
 
-export const getServerSideProps: GetServerSideProps<{ product: QueryResult }> = async (ctx) => {
+export const getServerSideProps: GetServerSideProps<{
+  product: QueryResult
+  err: boolean
+}> = async (ctx) => {
   const params = ctx.params as Params
-  const productId = params.id
+  const slugURL = params.id
 
-  const data = await getProduct(productId)
+  let err = false
+  let data: QueryResult
+
+  try {
+    const productId = productIdFromSlug(slugURL)
+    data = await getProduct(productId)
+  } catch (error) {
+    err = true
+  }
 
   if (process.env.NODE_ENV === 'development') {
     await i18n?.reloadResources()
@@ -23,15 +35,17 @@ export const getServerSideProps: GetServerSideProps<{ product: QueryResult }> = 
   return {
     props: {
       ...(await serverSideTranslations(ctx.locale ?? 'ru', ['common'])),
-      product: data
+      product: data,
+      err
     }
   }
 }
 
 export default function ProductIndex({
-  product
+  product,
+  err
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
-  if (!product) {
+  if (!product || err) {
     return (
       <div>
         <h1>No product</h1>

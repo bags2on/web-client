@@ -20,6 +20,7 @@ import {
 
 interface ProductType {
   id: string
+  slug: string
   currentPrice: number
   title: string
   preview: string

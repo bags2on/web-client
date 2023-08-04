@@ -22,6 +22,7 @@ interface ProductsProps {
   products:
     | Array<{
         id: string
+        slug: string
         title: string
         instock: boolean
         currentPrice: number
@@ -67,6 +68,7 @@ const Products: React.FC<ProductsProps> = ({
             <ProductItem key={product.id}>
               <CatalogItem
                 id={product.id}
+                slug={product.slug}
                 url={product.preview}
                 title={product.title}
                 price={product.currentPrice}

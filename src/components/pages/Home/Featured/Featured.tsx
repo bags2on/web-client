@@ -6,6 +6,7 @@ import { Title, List, ListItem } from './Featured.styled'
 
 interface ProductType {
   id: string
+  slug: string
   currentPrice: number
   title: string
   preview: string
@@ -29,6 +30,7 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
             <CatalogItem
               inStock
               id={product.id}
+              slug={product.slug}
               url={product.preview}
               title={product.title}
               price={product.currentPrice}

@@ -23,4 +23,18 @@ export const routeNames: Record<RouteName, string> = {
   notFound: '/404'
 }
 
-export const generateLink = (path: string, id: string): string => path.replace(':id', id)
+export const generateProductLink = (path: string, id: string, slug: string): string => {
+  return path.replace(':id', id + 'i__' + slug)
+}
+
+export const productIdFromSlug = (slugURL: string): string => {
+  const slug = slugURL.match(/i__(.*)/)
+
+  if (slug === null) {
+    throw new Error('no slug matched')
+  }
+
+  const slugSide = slug[0]
+
+  return slugURL.substring(0, slugURL.length - slugSide.length)
+}
