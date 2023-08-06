@@ -1,6 +1,6 @@
 import React from 'react'
 import ProductsSlider from '@/components/ProductsSlider'
-import CatalogItem from '@/components/CatalogItem'
+import ProductItem from '@/components/ProductItem'
 
 import { Container, Title } from './Recommended.styled'
 
@@ -12,8 +12,9 @@ const Recommended: React.FC = () => {
       <Title>Рекомендуемые</Title>
       <ProductsSlider speed={500}>
         {TEMP_RECOMENDED.map((product) => (
-          <CatalogItem
+          <ProductItem
             inStock
+            slug="TODO_SLUG"
             key={product.id}
             id={product.id}
             url={product.preview}

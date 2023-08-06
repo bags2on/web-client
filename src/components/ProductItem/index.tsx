@@ -21,10 +21,10 @@ import {
   Tag,
   ActionButtonWrapper,
   TheTrashIcon
-} from './CatalogItem.styled'
+} from './ProductItem.styled'
 import IconButton from '@/shared/IconButton'
 
-interface CatalogItemProps {
+interface ProductItemProps {
   id: string
   slug: string
   url: string
@@ -37,7 +37,7 @@ interface CatalogItemProps {
   withDelete?: boolean
 }
 
-const CatalogItem: React.FC<CatalogItemProps> = ({
+const ProductItem: React.FC<ProductItemProps> = ({
   id,
   slug,
   url,
@@ -116,4 +116,4 @@ const CatalogItem: React.FC<CatalogItemProps> = ({
   )
 }
 
-export default CatalogItem
+export default ProductItem

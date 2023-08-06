@@ -41,8 +41,7 @@ export const ProductList = styled.ul`
   }
 `
 
-// xs={6} md={4} xl={3} desktop={2}
-export const ProductItem = styled.li`
+export const ProductItemWrapper = styled.li`
   flex-basis: 50%;
   max-width: 50%;
 

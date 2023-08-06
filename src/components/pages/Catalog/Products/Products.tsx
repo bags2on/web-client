@@ -1,5 +1,5 @@
 import React from 'react'
-import CatalogItem from '@/components/CatalogItem'
+import ProductItem from '@/components/ProductItem'
 import Pagination from '@/components/Pagination'
 import { routeNames } from '@/utils/navigation'
 import { useReactiveVar } from '@apollo/client'
@@ -8,7 +8,7 @@ import { favoriteProductsVar } from '@/apollo/cache/variables'
 import {
   Container,
   ProductList,
-  ProductItem,
+  ProductItemWrapper,
   NotFoundBox,
   PaginationWrapper,
   Smile,
@@ -65,8 +65,8 @@ const Products: React.FC<ProductsProps> = ({
           const isFavorite = favoriteProducts.includes(product.id)
 
           return (
-            <ProductItem key={product.id}>
-              <CatalogItem
+            <ProductItemWrapper key={product.id}>
+              <ProductItem
                 id={product.id}
                 slug={product.slug}
                 url={product.preview}
@@ -77,7 +77,7 @@ const Products: React.FC<ProductsProps> = ({
                 basePrice={product.basePrice}
                 isFavorite={isFavorite}
               />
-            </ProductItem>
+            </ProductItemWrapper>
           )
         })}
       </ProductList>
