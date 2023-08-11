@@ -1,8 +1,10 @@
 import * as Types from '../../types'
 
 import { gql } from '@apollo/client'
+import * as Apollo from '@apollo/client'
+const defaultOptions = {} as const
 export type SearchProductQueryVariables = Types.Exact<{
-  input: Types.Scalars['String']
+  input: Types.Scalars['String']['input']
 }>
 
 export type SearchProductQuery = {
@@ -17,11 +19,6 @@ export type SearchProductQuery = {
   }>
 }
 
-export type SearchProductVariables = SearchProductQueryVariables
-export type SearchProductSearchProductByName = NonNullable<
-  NonNullable<SearchProductQuery['searchProductByName']>[number]
->
-
 export const SearchProductDocument = gql`
   query SearchProduct($input: String!) {
     searchProductByName(input: $input) {
@@ -33,3 +30,44 @@ export const SearchProductDocument = gql`
     }
   }
 `
+
+/**
+ * __useSearchProductQuery__
+ *
+ * To run a query within a React component, call `useSearchProductQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSearchProductQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSearchProductQuery({
+ *   variables: {
+ *      input: // value for 'input'
+ *   },
+ * });
+ */
+export function useSearchProductQuery(
+  baseOptions: Apollo.QueryHookOptions<SearchProductQuery, SearchProductQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<SearchProductQuery, SearchProductQueryVariables>(
+    SearchProductDocument,
+    options
+  )
+}
+export function useSearchProductLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<SearchProductQuery, SearchProductQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<SearchProductQuery, SearchProductQueryVariables>(
+    SearchProductDocument,
+    options
+  )
+}
+export type SearchProductQueryHookResult = ReturnType<typeof useSearchProductQuery>
+export type SearchProductLazyQueryHookResult = ReturnType<typeof useSearchProductLazyQuery>
+export type SearchProductQueryResult = Apollo.QueryResult<
+  SearchProductQuery,
+  SearchProductQueryVariables
+>

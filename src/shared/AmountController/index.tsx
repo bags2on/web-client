@@ -1,8 +1,9 @@
 import React from 'react'
-import AddIcon from '@material-ui/icons/Add'
-import IconButton from '@material-ui/core/IconButton'
-import RemoveIcon from '@material-ui/icons/Remove'
-import { makeStyles } from '@material-ui/core'
+import SvgIcon from '@/shared/SvgIcon'
+import IconButton from '@/shared/IconButton'
+import { Container, Counter } from './AmountController.styled'
+import PlusIcon from '../../../public/assets/icons/plus.svg'
+import MinusIcon from '../../../public/assets/icons/minus.svg'
 
 interface AddSubInputProps {
   amount: number
@@ -11,29 +12,7 @@ interface AddSubInputProps {
   onChange(type: 'add' | 'sub', n: number): void
 }
 
-const useStyles = makeStyles(() => ({
-  root: {
-    display: 'inline-block',
-    border: '1px solid #dcdcdc',
-    borderRadius: 10
-  },
-  button: {
-    '&:hover': {
-      backgroundColor: 'transparent'
-    }
-  },
-  amount: {
-    width: 20,
-    display: 'inline-block',
-    textAlign: 'center',
-    userSelect: 'none',
-    fontWeight: 500
-  }
-}))
-
 const AmountController: React.FC<AddSubInputProps> = ({ min, max, amount, onChange }) => {
-  const classes = useStyles()
-
   const handleAddClick = (): void => {
     if (amount >= Number(max)) return
     onChange('add', amount + 1)
@@ -45,29 +24,31 @@ const AmountController: React.FC<AddSubInputProps> = ({ min, max, amount, onChan
   }
 
   return (
-    <div className={classes.root}>
+    <Container>
       <IconButton
         disableRipple
-        className={classes.button}
         onClick={handleSubClick}
         disabled={amount <= 1}
         aria-label="удалить одну единицу данного продукта"
       >
-        <RemoveIcon />
+        <SvgIcon>
+          <MinusIcon />
+        </SvgIcon>
       </IconButton>
-      <div className={classes.amount}>
+      <Counter>
         <span>{amount}</span>
-      </div>
+      </Counter>
       <IconButton
         disableRipple
-        className={classes.button}
         onClick={handleAddClick}
         disabled={!!max && amount >= max}
         aria-label="добавить одну единицу данного продукта"
       >
-        <AddIcon />
+        <SvgIcon>
+          <PlusIcon />
+        </SvgIcon>
       </IconButton>
-    </div>
+    </Container>
   )
 }
 

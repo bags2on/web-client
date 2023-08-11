@@ -1,45 +1,52 @@
 export type Maybe<T> = T | null
+export type InputMaybe<T> = Maybe<T>
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] }
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> }
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> }
+export type MakeEmpty<T extends { [key: string]: unknown }, K extends keyof T> = {
+  [_ in K]?: never
+}
+export type Incremental<T> =
+  | T
+  | { [P in keyof T]?: P extends ' $fragmentName' | '__typename' ? T[P] : never }
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
-  ID: string
-  String: string
-  Boolean: boolean
-  Int: number
-  Float: number
-  Date: any
-  Upload: any
+  ID: { input: string; output: string }
+  String: { input: string; output: string }
+  Boolean: { input: boolean; output: boolean }
+  Int: { input: number; output: number }
+  Float: { input: number; output: number }
+  Date: { input: any; output: any }
+  Upload: { input: any; output: any }
 }
 
 export type AttachedRating = {
   __typename?: 'AttachedRating'
-  rating: Scalars['Float']
+  rating: Scalars['Float']['output']
 }
 
 export type CartItem = {
-  id: Scalars['String']
-  amount: Scalars['Int']
+  amount: Scalars['Int']['input']
+  productId: Scalars['String']['input']
 }
 
 export type CartItemType = {
   __typename?: 'CartItemType'
-  id: Scalars['String']
-  amount: Scalars['Int']
+  amount: Scalars['Int']['output']
+  id: Scalars['String']['output']
 }
 
 export enum CategoryType {
+  Backpack = 'BACKPACK',
   Bag = 'BAG',
   Other = 'OTHER',
-  Wallet = 'WALLET',
-  Backpack = 'BACKPACK',
-  Suitcase = 'SUITCASE'
+  Suitcase = 'SUITCASE',
+  Wallet = 'WALLET'
 }
 
 export type DeleteProductResponse = {
   __typename?: 'DeleteProductResponse'
-  message: Scalars['String']
+  message: Scalars['String']['output']
 }
 
 export enum Gender {
@@ -50,224 +57,224 @@ export enum Gender {
 
 export type HideProductResponse = {
   __typename?: 'HideProductResponse'
-  isHidden: Scalars['Boolean']
+  isHidden: Scalars['Boolean']['output']
+}
+
+export type HomeDataResponse = {
+  __typename?: 'HomeDataResponse'
+  popular: Array<Product>
+  recommended: Array<Product>
 }
 
 export type LogInInput = {
-  keyWord: Scalars['String']
+  keyWord: Scalars['String']['input']
 }
 
 export type LogInRsponse = {
   __typename?: 'LogInRsponse'
-  token: Scalars['String']
+  token: Scalars['String']['output']
 }
 
 export enum MainTag {
-  Stock = 'STOCK',
   New = 'NEW',
-  Top = 'TOP',
-  Regular = 'REGULAR'
+  Regular = 'REGULAR',
+  Stock = 'STOCK',
+  Top = 'TOP'
 }
 
 export type Mutation = {
   __typename?: 'Mutation'
   createOrder?: Maybe<NewOrderResponse>
   createProduct?: Maybe<NewProductResponse>
-  updateProduct?: Maybe<UpdateProductResponse>
   deleteProduct?: Maybe<DeleteProductResponse>
   hideProduct?: Maybe<HideProductResponse>
   productRatingVote?: Maybe<ProductRatingVoteResponse>
+  updateProduct?: Maybe<UpdateProductResponse>
 }
 
 export type MutationCreateOrderArgs = {
-  input?: Maybe<NewOrderInput>
+  input: NewOrderInput
 }
 
 export type MutationCreateProductArgs = {
   input: NewProductInput
 }
 
-export type MutationUpdateProductArgs = {
-  input?: Maybe<UpdateProductInput>
-}
-
 export type MutationDeleteProductArgs = {
-  id: Scalars['ID']
+  id: Scalars['ID']['input']
 }
 
 export type MutationHideProductArgs = {
-  id: Scalars['ID']
-  isHidden: Scalars['Boolean']
+  id: Scalars['ID']['input']
+  isHidden: Scalars['Boolean']['input']
 }
 
 export type MutationProductRatingVoteArgs = {
   input: ProductRatingVoteInput
 }
 
+export type MutationUpdateProductArgs = {
+  input?: InputMaybe<UpdateProductInput>
+}
+
 export type NewOrderInput = {
-  name: Scalars['String']
-  surname: Scalars['String']
-  email: Scalars['String']
-  phone: Scalars['String']
-  cityId: Scalars['String']
-  postOfficeId: Scalars['String']
-  supplier: Scalars['String']
   cartItems: Array<CartItem>
+  cityId: Scalars['String']['input']
+  email: Scalars['String']['input']
+  name: Scalars['String']['input']
+  phone: Scalars['String']['input']
+  postOfficeId: Scalars['String']['input']
+  supplier: Scalars['String']['input']
+  surname: Scalars['String']['input']
 }
 
 export type NewOrderResponse = {
   __typename?: 'NewOrderResponse'
-  message: Scalars['String']
+  message: Scalars['String']['output']
 }
 
 export type NewProductInput = {
-  title: Scalars['String']
-  amount: Scalars['Int']
-  basePrice: Scalars['Int']
-  currentPrice?: Maybe<Scalars['Int']>
-  gender: Gender
-  instock: Scalars['Boolean']
-  mainTag: MainTag
+  amount: Scalars['Int']['input']
+  basePrice: Scalars['Int']['input']
   category: CategoryType
+  currentPrice?: InputMaybe<Scalars['Int']['input']>
+  description?: InputMaybe<Scalars['String']['input']>
   features: ProductFeaturesInput
-  description?: Maybe<Scalars['String']>
+  gender: Gender
+  instock: Scalars['Boolean']['input']
+  mainTag: MainTag
+  title: Scalars['String']['input']
 }
 
 export type NewProductResponse = {
   __typename?: 'NewProductResponse'
-  id: Scalars['ID']
+  id: Scalars['ID']['output']
 }
 
 export type NotFound = {
   __typename?: 'NotFound'
-  message: Scalars['String']
+  message: Scalars['String']['output']
 }
 
 export type Order = {
   __typename?: 'Order'
-  id: Scalars['ID']
-  receiverName: Scalars['String']
-  receiverSurname: Scalars['String']
-  receiverEmail: Scalars['String']
-  receiverPhone: Scalars['String']
-  cityId: Scalars['String']
-  postOfficeId: Scalars['String']
-  products: Array<Product>
-  status: Scalars['String']
   cartItems: Array<CartItemType>
-  supplier: Scalars['String']
-  createdAt: Scalars['Date']
+  cityId: Scalars['String']['output']
+  createdAt: Scalars['Date']['output']
+  id: Scalars['ID']['output']
+  postOfficeId: Scalars['String']['output']
+  products: Array<Product>
+  receiverEmail: Scalars['String']['output']
+  receiverName: Scalars['String']['output']
+  receiverPhone: Scalars['String']['output']
+  receiverSurname: Scalars['String']['output']
+  status: Scalars['String']['output']
+  supplier: Scalars['String']['output']
 }
 
-export type OrderByIdResult = Order | NotFound
+export type OrderByIdResult = NotFound | Order
 
 export type OrderFilter = {
-  status: Scalars['String']
+  status: Scalars['String']['input']
 }
 
 export type Pagination = {
   __typename?: 'Pagination'
-  totalPages: Scalars['Int']
-  currentPage: Scalars['Int']
+  currentPage: Scalars['Int']['output']
+  totalPages: Scalars['Int']['output']
 }
 
 export type PriceRange = {
-  lt: Scalars['Int']
-  gt: Scalars['Int']
+  gt: Scalars['Int']['input']
+  lt: Scalars['Int']['input']
 }
 
 export type PriceRangeType = {
   __typename?: 'PriceRangeType'
-  gt: Scalars['Int']
-  lt: Scalars['Int']
+  gt: Scalars['Int']['output']
+  lt: Scalars['Int']['output']
 }
 
 export type Product = {
   __typename?: 'Product'
-  id: Scalars['ID']
-  title: Scalars['String']
-  isHidden: Scalars['Boolean']
-  currentPrice: Scalars['Int']
-  basePrice: Scalars['Int']
-  amount: Scalars['Int']
-  instock: Scalars['Boolean']
-  gender: Gender
+  amount: Scalars['Int']['output']
+  basePrice: Scalars['Int']['output']
   category: CategoryType
-  preview: Scalars['String']
-  images: Array<Scalars['String']>
-  tags: Array<Scalars['String']>
-  mainTag: MainTag
-  description: Scalars['String']
+  currentPrice: Scalars['Int']['output']
+  description: Scalars['String']['output']
   features: ProductFeatures
+  gender: Gender
+  id: Scalars['ID']['output']
+  images: Array<Scalars['String']['output']>
+  instock: Scalars['Boolean']['output']
+  isHidden: Scalars['Boolean']['output']
+  mainTag: MainTag
+  preview: Scalars['String']['output']
   rating: AttachedRating
+  slug: Scalars['String']['output']
+  tags: Array<Scalars['String']['output']>
+  title: Scalars['String']['output']
 }
 
 export type ProductFeatures = {
   __typename?: 'ProductFeatures'
-  material: Scalars['String']
-  color: Scalars['String']
-  gender: Gender
   category: CategoryType
+  color: Scalars['String']['output']
+  gender: Gender
+  material: Scalars['String']['output']
 }
 
 export type ProductFeaturesInput = {
-  material: Scalars['String']
-  color: Scalars['String']
-  gender: Gender
   category: CategoryType
+  color: Scalars['String']['input']
+  gender: Gender
+  material: Scalars['String']['input']
 }
 
 export type ProductFilter = {
-  gender?: Maybe<Array<Maybe<Gender>>>
-  isHidden?: Maybe<Scalars['Boolean']>
-  instock?: Maybe<Scalars['Boolean']>
-  mainTag?: Maybe<MainTag>
-  price?: Maybe<PriceRange>
-  category?: Maybe<Array<Maybe<CategoryType>>>
-  page: Scalars['Int']
+  category?: InputMaybe<Array<InputMaybe<CategoryType>>>
+  gender?: InputMaybe<Array<InputMaybe<Gender>>>
+  instock?: InputMaybe<Scalars['Boolean']['input']>
+  isHidden?: InputMaybe<Scalars['Boolean']['input']>
+  mainTag?: InputMaybe<MainTag>
+  page: Scalars['Int']['input']
+  price?: InputMaybe<PriceRange>
 }
 
 export type ProductRatingVoteInput = {
-  productId: Scalars['String']
-  rating: Scalars['Int']
+  productId: Scalars['String']['input']
+  rating: Scalars['Int']['input']
 }
 
 export type ProductRatingVoteResponse = {
   __typename?: 'ProductRatingVoteResponse'
-  isSaved: Scalars['Boolean']
+  isSaved: Scalars['Boolean']['output']
 }
 
-export type ProductResult = Product | NotFound
+export type ProductResult = NotFound | Product
 
 export type ProductsResponse = {
   __typename?: 'ProductsResponse'
-  products: Array<Product>
-  priceRange: PriceRangeType
   pagination: Pagination
+  priceRange: PriceRangeType
+  products: Array<Product>
 }
 
 export type Query = {
   __typename?: 'Query'
-  order?: Maybe<OrderByIdResult>
   allOrders: Array<Order>
-  product?: Maybe<ProductResult>
   allProducts: ProductsResponse
   cartProducts: Array<Product>
+  homeData?: Maybe<HomeDataResponse>
+  logInRoot?: Maybe<LogInRsponse>
+  order?: Maybe<OrderByIdResult>
+  product?: Maybe<ProductResult>
   productsByID: Array<Product>
   searchProductByName: Array<Product>
-  logInRoot?: Maybe<LogInRsponse>
-}
-
-export type QueryOrderArgs = {
-  id: Scalars['ID']
 }
 
 export type QueryAllOrdersArgs = {
   input: OrderFilter
-}
-
-export type QueryProductArgs = {
-  id: Scalars['ID']
 }
 
 export type QueryAllProductsArgs = {
@@ -275,43 +282,51 @@ export type QueryAllProductsArgs = {
 }
 
 export type QueryCartProductsArgs = {
-  input?: Maybe<Array<CartItem>>
-}
-
-export type QueryProductsByIdArgs = {
-  input?: Maybe<Array<Scalars['String']>>
-}
-
-export type QuerySearchProductByNameArgs = {
-  input: Scalars['String']
+  input: Array<CartItem>
 }
 
 export type QueryLogInRootArgs = {
   input: LogInInput
 }
 
+export type QueryOrderArgs = {
+  id: Scalars['ID']['input']
+}
+
+export type QueryProductArgs = {
+  id: Scalars['ID']['input']
+}
+
+export type QueryProductsByIdArgs = {
+  input?: InputMaybe<Array<Scalars['String']['input']>>
+}
+
+export type QuerySearchProductByNameArgs = {
+  input: Scalars['String']['input']
+}
+
 export enum Role {
   Admin = 'ADMIN',
-  User = 'USER'
+  Customer = 'CUSTOMER'
 }
 
 export type UpdateProductInput = {
-  id: Scalars['ID']
-  title: Scalars['String']
-  amount: Scalars['Int']
-  basePrice: Scalars['Int']
-  currentPrice?: Maybe<Scalars['Int']>
-  gender: Gender
-  instock: Scalars['Boolean']
-  mainTag: MainTag
+  amount: Scalars['Int']['input']
+  basePrice: Scalars['Int']['input']
   category: CategoryType
-  description?: Maybe<Scalars['String']>
+  currentPrice: Scalars['Int']['input']
+  description?: InputMaybe<Scalars['String']['input']>
   features: ProductFeaturesInput
+  gender: Gender
+  id: Scalars['ID']['input']
+  instock: Scalars['Boolean']['input']
+  mainTag: MainTag
+  title: Scalars['String']['input']
 }
 
 export type UpdateProductResponse = {
   __typename?: 'UpdateProductResponse'
-  message: Scalars['String']
+  message: Scalars['String']['output']
 }
 
 export interface PossibleTypesResultData {
@@ -321,8 +336,8 @@ export interface PossibleTypesResultData {
 }
 const result: PossibleTypesResultData = {
   possibleTypes: {
-    OrderByIdResult: ['Order', 'NotFound'],
-    ProductResult: ['Product', 'NotFound']
+    OrderByIdResult: ['NotFound', 'Order'],
+    ProductResult: ['NotFound', 'Product']
   }
 }
 export default result

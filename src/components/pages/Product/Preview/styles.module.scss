@@ -1,0 +1,32 @@
+.swiperContainer {
+  & ul {
+    @include reset-list;
+  }
+}
+
+.subSwiperContainer {
+  margin-top: 20;
+  & ul {
+    @include reset-list;
+  }
+}
+
+.slideImage {
+  user-select: none;
+  width: 100%;
+  display: block;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+@media screen and (min-width: $md) {
+  .root {
+    display: flex;
+  }
+}
+
+@media screen and (min-width: $lg) {
+  .root {
+    margin-top: 80px;
+  }
+}

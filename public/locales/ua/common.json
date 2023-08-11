@@ -1,0 +1,30 @@
+{
+  "home": "головна",
+  "catalog": "каталог",
+  "mySearch": "Я шукаю...",
+  "productTag": {
+    "NEW": "New",
+    "TOP": "Топ",
+    "STOCK": "Акція"
+  },
+  "drawer": {
+    "home": "Головна",
+    "profile": "Кабінет",
+    "sales": "Знижки та Акції",
+    "favorite": "Обране",
+    "catalog": "Каталог",
+    "history": "Історія перегляду",
+    "lang": "Мова"
+  },
+  "product": {
+    "common": {
+      "category": "Категорія",
+      "type": "Тип",
+      "color": "Колір",
+      "material": "Матеріал",
+      "textile": "тканина",
+      "plastic": "пластик",
+      "leath": "шкіра"
+    }
+  }
+}

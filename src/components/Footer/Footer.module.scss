@@ -1,5 +1,3 @@
-@import '../../utils/shared.scss';
-
 $text-color: #939191;
 
 @mixin h5-title {
@@ -21,7 +19,7 @@ $text-color: #939191;
   flex-wrap: wrap;
   position: relative;
   padding: 30px 5% 15px 5%;
-  max-width: 1400px;
+  max-width: 1500px;
   margin: 0 auto;
 }
 
@@ -99,42 +97,62 @@ $text-color: #939191;
 
 .logoBox {
   display: flex;
+  align-items: center;
   padding-left: 4px;
+  margin-bottom: 10px;
 }
 
 .icon {
-  padding-top: 4px;
-  margin-right: 14px;
-  height: 42px !important;
-  font-size: 20px !important;
   fill: var(--sub-title-color);
+}
+
+.makeCallPlug {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--font-color);
+  padding: 10px;
+  border-radius: 10px;
+  margin-left: auto;
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    & > div {
+      fill: $main-color;
+    }
+  }
 }
 
 .phone {
-  margin: 0;
-  line-height: 1.3;
   color: var(--font-color);
-  font-weight: 500 !important;
-  font-size: 21px !important;
+  font-weight: 600;
+  font-size: 22px;
 }
 
-.socialMedia {
-  @include reset-list;
-  display: flex;
-  margin-top: 5px;
-}
-
-.socialMediaIcon {
-  fill: var(--sub-title-color);
-  margin-right: 15px;
+.phoneIcon {
+  margin-right: 9px;
   transition: fill 0.2s;
+}
+
+.telegramConnect {
+  background-color: rgb(34, 158, 217);
+  padding: 8px 10px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  & span {
+    color: #fff;
+    font-weight: 600;
+  }
   &:hover {
-    fill: $main-color;
+    & div {
+      transform: scale(1.2);
+    }
   }
-  & svg {
-    width: 19px;
-    height: 19px;
-  }
+}
+
+.telegramIcon {
+  fill: #fff;
+  margin-right: 10px;
 }
 
 .subFooter {
@@ -148,6 +166,10 @@ $text-color: #939191;
 }
 
 @media screen and (min-width: $lg) {
+  .makeCallPlug {
+    margin-left: 15px;
+  }
+
   .column {
     flex-basis: 25%;
     max-width: 200px;
@@ -195,9 +217,5 @@ $text-color: #939191;
 
   .category {
     margin-right: 110px;
-  }
-
-  .socialMedia {
-    padding-left: 5px;
   }
 }

@@ -1,0 +1,30 @@
+{
+  "home": "главная",
+  "catalog": "каталог",
+  "mySearch": "Я ищу...",
+  "productTag": {
+    "NEW": "New",
+    "TOP": "Топ",
+    "STOCK": "Акция"
+  },
+  "drawer": {
+    "home": "Главная",
+    "profile": "Профиль",
+    "sales": "Скидки и Акции",
+    "favorite": "Избранное",
+    "catalog": "Каталог",
+    "history": "История просмотра",
+    "lang": "Язык"
+  },
+  "product": {
+    "common": {
+      "category": "Категория",
+      "type": "Тип",
+      "color": "Цвет",
+      "material": "Материал",
+      "textile": "ткань",
+      "plastic": "пластик",
+      "leath": "кожа"
+    }
+  }
+}

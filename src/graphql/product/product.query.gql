@@ -1,0 +1,32 @@
+query GetProduct($id: ID!) {
+  product(id: $id) {
+    __typename
+    ... on Product {
+      id
+      title
+      preview
+      currentPrice
+      basePrice
+      tags
+      amount
+      gender
+      category
+      description
+      images
+      #       isHidden
+      instock
+      # features {
+      #   material
+      #   color
+      #   gender
+      #   category
+      # }
+      # rating {
+      #   rating
+      # }
+    }
+    ... on NotFound {
+      message
+    }
+  }
+}

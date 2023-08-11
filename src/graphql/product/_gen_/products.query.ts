@@ -1,14 +1,18 @@
 import * as Types from '../../types'
 
 import { gql } from '@apollo/client'
+import * as Apollo from '@apollo/client'
+const defaultOptions = {} as const
 export type AllProductsQueryVariables = Types.Exact<{
-  gender?: Types.Maybe<Array<Types.Maybe<Types.Gender>> | Types.Maybe<Types.Gender>>
-  isHidden?: Types.Maybe<Types.Scalars['Boolean']>
-  instock?: Types.Maybe<Types.Scalars['Boolean']>
-  mainTag?: Types.Maybe<Types.MainTag>
-  price?: Types.Maybe<Types.PriceRange>
-  category?: Types.Maybe<Array<Types.Maybe<Types.CategoryType>> | Types.Maybe<Types.CategoryType>>
-  page: Types.Scalars['Int']
+  gender?: Types.InputMaybe<Array<Types.InputMaybe<Types.Gender>> | Types.InputMaybe<Types.Gender>>
+  isHidden?: Types.InputMaybe<Types.Scalars['Boolean']['input']>
+  instock?: Types.InputMaybe<Types.Scalars['Boolean']['input']>
+  mainTag?: Types.InputMaybe<Types.MainTag>
+  price?: Types.InputMaybe<Types.PriceRange>
+  category?: Types.InputMaybe<
+    Array<Types.InputMaybe<Types.CategoryType>> | Types.InputMaybe<Types.CategoryType>
+  >
+  page: Types.Scalars['Int']['input']
 }>
 
 export type AllProductsQuery = {
@@ -20,6 +24,7 @@ export type AllProductsQuery = {
     products: Array<{
       __typename?: 'Product'
       id: string
+      slug: string
       title: string
       instock: boolean
       currentPrice: number
@@ -29,14 +34,6 @@ export type AllProductsQuery = {
     }>
   }
 }
-
-export type AllProductsVariables = AllProductsQueryVariables
-export type AllProductsAllProducts = NonNullable<AllProductsQuery['allProducts']>
-export type AllProductsPriceRange = NonNullable<NonNullable<AllProductsQuery['allProducts']>['priceRange']>
-export type AllProductsPagination = NonNullable<NonNullable<AllProductsQuery['allProducts']>['pagination']>
-export type AllProductsProducts = NonNullable<
-  NonNullable<NonNullable<AllProductsQuery['allProducts']>['products']>[number]
->
 
 export const AllProductsDocument = gql`
   query AllProducts(
@@ -69,6 +66,7 @@ export const AllProductsDocument = gql`
       }
       products {
         id
+        slug
         title
         instock
         currentPrice
@@ -79,3 +77,44 @@ export const AllProductsDocument = gql`
     }
   }
 `
+
+/**
+ * __useAllProductsQuery__
+ *
+ * To run a query within a React component, call `useAllProductsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllProductsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllProductsQuery({
+ *   variables: {
+ *      gender: // value for 'gender'
+ *      isHidden: // value for 'isHidden'
+ *      instock: // value for 'instock'
+ *      mainTag: // value for 'mainTag'
+ *      price: // value for 'price'
+ *      category: // value for 'category'
+ *      page: // value for 'page'
+ *   },
+ * });
+ */
+export function useAllProductsQuery(
+  baseOptions: Apollo.QueryHookOptions<AllProductsQuery, AllProductsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useQuery<AllProductsQuery, AllProductsQueryVariables>(AllProductsDocument, options)
+}
+export function useAllProductsLazyQuery(
+  baseOptions?: Apollo.LazyQueryHookOptions<AllProductsQuery, AllProductsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useLazyQuery<AllProductsQuery, AllProductsQueryVariables>(
+    AllProductsDocument,
+    options
+  )
+}
+export type AllProductsQueryHookResult = ReturnType<typeof useAllProductsQuery>
+export type AllProductsLazyQueryHookResult = ReturnType<typeof useAllProductsLazyQuery>
+export type AllProductsQueryResult = Apollo.QueryResult<AllProductsQuery, AllProductsQueryVariables>

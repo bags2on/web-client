@@ -1,6 +1,13 @@
 import { InMemoryCache } from '@apollo/client'
-import { cartItemsVar, cartPriceVar, favoriteProductsVar, isAuthenticatedVar, authModalVar } from './variables'
-import type { CartItem } from './variables'
+import {
+  cartItemsVar,
+  cartPriceVar,
+  favoriteProductsVar,
+  isAuthenticatedVar,
+  authModalVar
+} from './variables'
+
+import { CartItem } from './types'
 
 const cache: InMemoryCache = new InMemoryCache({
   typePolicies: {

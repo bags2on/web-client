@@ -1,17 +1,10 @@
 import { ReactiveVar } from '@apollo/client'
-
-interface CartItem {
-  id: string
-  amount: number
-}
+import { CartItem } from '../../types'
+import { saveToLocalStorage } from './helpers'
 
 export default (cartItemsVar: ReactiveVar<CartItem[]>): ((id: string) => void) => {
-  function saveLocal(updatedItems: CartItem[]): void {
-    window.localStorage.setItem('cart_products', JSON.stringify(updatedItems))
-  }
-
   function filter(items: CartItem[], id: string): CartItem[] {
-    return items.filter((cartItem) => cartItem.id !== id)
+    return items.filter((cartItem) => cartItem.productId !== id)
   }
 
   return (id: string): void => {
@@ -19,6 +12,6 @@ export default (cartItemsVar: ReactiveVar<CartItem[]>): ((id: string) => void) =
     const updatedItems = filter(items, id)
 
     cartItemsVar([...updatedItems])
-    saveLocal(updatedItems)
+    saveToLocalStorage(updatedItems)
   }
 }

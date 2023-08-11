@@ -1,0 +1,10 @@
+.swiperContainer {
+  max-width: 100%;
+  border-radius: 0;
+  padding: 5px 0 20px 0;
+  & > ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
+}

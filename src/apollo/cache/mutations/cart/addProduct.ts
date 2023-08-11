@@ -1,17 +1,10 @@
 import { ReactiveVar } from '@apollo/client'
-
-interface CartItem {
-  id: string
-  amount: number
-}
+import { CartItem } from '../../types'
+import { saveToLocalStorage } from './helpers'
 
 export default (cartItemsVar: ReactiveVar<CartItem[]>): ((arg0: CartItem) => void) => {
-  function saveLocal(updatedItems: CartItem[]): void {
-    window.localStorage.setItem('cart_products', JSON.stringify(updatedItems))
-  }
-
   function merege(items: CartItem[], newItem: CartItem): CartItem[] {
-    const itemIndex = items.findIndex((cartItem) => cartItem.id === newItem.id)
+    const itemIndex = items.findIndex((cartItem) => cartItem.productId === newItem.productId)
 
     if (itemIndex === -1) {
       items.push({ ...newItem })
@@ -27,6 +20,6 @@ export default (cartItemsVar: ReactiveVar<CartItem[]>): ((arg0: CartItem) => voi
     const updatedItems = merege(items, newItem)
 
     cartItemsVar([...updatedItems])
-    saveLocal(updatedItems)
+    saveToLocalStorage(updatedItems)
   }
 }
