@@ -23,7 +23,7 @@
     "i18next": "^19.3.4",
     "i18next-browser-languagedetector": "^4.0.2",
     "i18next-http-backend": "^1.1.0",
-    "node-sass": "^7.0.1",
+    "node-sass": "^9.0.0",
     "rc-slider": "^9.5.4",
     "react": "^17.0.2",
     "react-content-loader": "^6.0.3",
