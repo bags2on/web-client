@@ -77,7 +77,11 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
           <Form ref={formRef}>
             <TitleWrapper>
               <Title>{t('catalog:filters.title')}</Title>
-              {dirty && <ClearButton onClick={() => resetForm()}>очистить</ClearButton>}
+              {dirty && (
+                <ClearButton color="danger" onClick={() => resetForm()}>
+                  {t('catalog:filters.clear')}
+                </ClearButton>
+              )}
             </TitleWrapper>
             <Divider />
             <AutoSave onSave={handleSave} />
