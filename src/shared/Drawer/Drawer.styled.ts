@@ -11,7 +11,7 @@ export const Box = styled.div<BoxStyledProps>`
   overflow: auto;
   position: fixed;
   box-shadow: ${({ $open }) => ($open ? '0 0 15px rgba(0, 0, 0, 0.5)' : 'none')};
-  transition: transform 0.3s ease;
+  transition: transform 199ms ease-in;
   z-index: 1000;
   ${({ $pos, $open }) => {
     switch ($pos) {
