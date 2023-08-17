@@ -41,6 +41,7 @@ export const ClearButton = styled(Button)`
   font-size: 13px;
   padding: 5px 6px;
   border-radius: 7px;
+  border: none;
 `
 
 export const RadioWrapper = styled.div`
