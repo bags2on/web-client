@@ -24,6 +24,7 @@ const Title = styled.span`
 
 const TheExpandIcon = styled(SvgIcon)<{ $collapsed: boolean }>`
   transition: all 160ms linear;
+  fill: ${({ theme }) => (theme.type === 'light' ? '#343434' : '#fff')};
   transform: ${({ $collapsed }) => ($collapsed ? 'rotate(180deg);' : 'rotate(360deg);')};
 `
 
