@@ -7,6 +7,10 @@ export const Container = styled.div`
   padding: 20px 15px 35px 13px;
 `
 
+export const SliderWrapper = styled.div`
+  padding-left: 6px;
+`
+
 export const Slider = styled(RcSlider)`
   & .rc-slider-track {
     background-color: #ff9900;
@@ -14,6 +18,7 @@ export const Slider = styled(RcSlider)`
 
   & .rc-slider-handle {
     border-color: #ff9900;
+    background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#ff9900')};
   }
 
   & .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
@@ -33,15 +38,10 @@ export const SliderMark = styled.span`
 
 export const Controls = styled.div`
   margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 `
-
-/* TODO: make as global styles
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-*/
 
 export const PriceInput = styled.input`
   -moz-appearance: textfield;
@@ -53,12 +53,9 @@ export const PriceInput = styled.input`
   font-weight: 400;
   border-radius: 6px;
   transition: all 0.3s;
-
   border: 1px solid;
   color: ${({ theme }) => (theme.type === 'light' ? '#343434' : '#fff')};
-
   background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#3c4144')};
-
   border-color: ${({ theme }) => (theme.type === 'light' ? '#c4c4c4' : '#3c4144')};
 
   &:hover {
@@ -70,18 +67,18 @@ export const PriceInput = styled.input`
   }
 `
 export const SetButton = styled(Button)`
-  height: 34px;
-  margin-top: -1px;
+  max-height: 34px;
   font-size: 12px;
-  padding: 3px;
+  font-weight: 600;
   border-radius: 6px;
-  font-weight: 500;
-  transition: all 0.3s;
+  text-transform: uppercase;
   color: ${({ theme }) => (theme.type === 'light' ? '#343434' : '#fff')};
-  background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#2bab2b')};
-  border-color: ${({ theme }) => (theme.type === 'light' ? '#c4c4c4' : '#3c4144')};
+  background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#3c4144')};
   border: 1px solid;
+  border-color: ${({ theme }) => (theme.type === 'light' ? '#c4c4c4' : '#3c4144')};
   &:hover {
-    background-color: ${({ theme }) => (theme.type === 'light' ? '#efefef' : '#32cd32')};
+    color: #fff;
+    background-color: var(--green-light);
+    border-color: var(--green-light);
   }
 `
