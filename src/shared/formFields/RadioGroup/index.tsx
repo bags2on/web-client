@@ -2,8 +2,6 @@ import React from 'react'
 import { useField } from 'formik'
 import styled from 'styled-components'
 
-//  === 'light' ? '#343434' : theme.palette.secondary.main) + '!important'
-
 const COLOR = 'orange'
 
 const InputBox = styled.div`
@@ -33,14 +31,14 @@ const Label = styled.label`
     z-index: 1;
   }
   &::before {
-    background-color: #dcdcdc;
+    background-color: ${({ theme }) => (theme.type === 'light' ? '#dcdcdc' : '#3c4144')};
     border: 2px solid #dcdcdc;
     top: 0;
     left: 10px;
     transition: all 0.5s;
   }
   &::after {
-    background-color: #ffffff;
+    background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#3c4144')};
     top: 2px;
     left: 12px;
     transition: all 0.15s;
