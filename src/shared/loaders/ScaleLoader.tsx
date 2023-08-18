@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 interface styleProps {
-  fallback?: boolean
+  $fallback?: boolean
   dark?: boolean
 }
 
@@ -22,7 +22,7 @@ interface LoaderProps {
 const ScaleLoader: React.FC<LoaderProps> = ({ fallback = false, dark }) => {
   return (
     <SvgEl
-      fallback={fallback}
+      $fallback={fallback}
       dark={dark}
       xmlns="http://www.w3.org/2000/svg"
       width="24px"

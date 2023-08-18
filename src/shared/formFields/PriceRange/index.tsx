@@ -1,4 +1,4 @@
-import React, { useState, useLayoutEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFormikContext } from 'formik'
 import type { SliderProps } from 'rc-slider'
 
@@ -39,7 +39,7 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
   const [sliderMin, setSliderMin] = useState<number>(minInputValue)
   const [sliderMax, setSliderMax] = useState<number>(maxInputValue)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setMinInputValue(minPrice)
     setMaxInputValue(maxPrice)
 

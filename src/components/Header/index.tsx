@@ -72,7 +72,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
           </TheMenuIcon>
         </HeaderButton>
         <LogoLink href={routeNames.root}>
-          <Image width={150} height={40} priority src="/assets/logo.svg" alt="логотип" />
+          <Image width={150} height={40} src="/assets/logo.svg" alt="логотип" priority={true} />
         </LogoLink>
         <nav>
           <NavList>

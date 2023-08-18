@@ -37,10 +37,7 @@ export const LogoLink = styled(Link)`
     position: relative;
     top: 3px;
     width: 150px;
-    & > img {
-      width: 100%;
-      height: 100%;
-    }
+
     @media ${({ theme }) => theme.media.xl} {
       margin: 0 40px;
     }
