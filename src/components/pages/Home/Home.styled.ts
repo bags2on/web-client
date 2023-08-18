@@ -23,11 +23,10 @@ export const SliderContainer = styled.div`
 `
 
 export const MainContainer = styled.div`
+  ${containerStyles}
   display: flex;
   flex-wrap: wrap;
-  max-width: 1500px;
   padding: 16px 10px 0 10px;
-  margin: 0 auto;
   @media ${({ theme }) => theme.media.xl} {
     flex-wrap: nowrap;
   }

@@ -1,4 +1,5 @@
 import React from 'react'
+import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import Image from 'next/image'
 import { routeNames } from '@/utils/navigation'
@@ -42,6 +43,8 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   const { data } = useQuery<HeaderQuery>(GET_HEADER_DATA)
   const { t } = useTranslation()
 
+  const pathname = usePathname()
+
   const cartAmount = data?.cartAmount
   const favoriteAmount = data?.favoriteAmount
 
@@ -62,7 +65,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
 
   return (
     <TheHeader>
-      <Wrapper>
+      <Wrapper $expanded={pathname === routeNames.catalog}>
         <HeaderButton onClick={onDrawerOpen} disableRipple>
           <TheMenuIcon>
             <MenuIcon />

@@ -23,10 +23,10 @@ export const TheHeader = styled.header`
   }
 `
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ $expanded: boolean }>`
   display: flex;
   align-items: center;
-  max-width: 1500px;
+  max-width: ${({ $expanded }) => ($expanded ? 1700 : 1500)}px;
   margin: 0 auto;
 `
 
