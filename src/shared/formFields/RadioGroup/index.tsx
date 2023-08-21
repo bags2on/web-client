@@ -47,8 +47,10 @@ const Label = styled.label`
 
   &:hover {
     background-color: rgba(${COLOR}, 0.1);
+
     &::before {
-      border: 2px solid ${COLOR};
+      border: 2px solid;
+      border-color: ${({ theme }) => (theme.type === 'light' ? COLOR : theme.colors.primary)};
     }
   }
 `
@@ -58,8 +60,9 @@ const Input = styled.input`
   &:checked ~ ${Label} {
     &::before {
       box-sizing: content-box;
-      background-color: ${COLOR};
-      border: 2px solid ${COLOR};
+      background-color: ${({ theme }) => (theme.type === 'light' ? COLOR : theme.colors.primary)};
+      border: 2px solid;
+      border-color: ${({ theme }) => (theme.type === 'light' ? COLOR : theme.colors.primary)};
     }
     &::after {
       box-sizing: content-box;
