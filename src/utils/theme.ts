@@ -77,7 +77,7 @@ export const darkTheme: DefaultTheme = {
     primary: BRAND_COLOR,
     font: '#fff'
   },
-  background: '#1e1e1e',
+  background: '#0f0f0f',
   media
 }
 
