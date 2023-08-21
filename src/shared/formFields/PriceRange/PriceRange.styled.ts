@@ -13,12 +13,12 @@ export const SliderWrapper = styled.div`
 
 export const Slider = styled(RcSlider)`
   & .rc-slider-track {
-    background-color: #ff9900;
+    background-color: ${({ theme }) => (theme.type === 'light' ? '#ff9900' : theme.colors.primary)};
   }
 
   & .rc-slider-handle {
-    border-color: #ff9900;
-    background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#ff9900')};
+    border-color: ${({ theme }) => (theme.type === 'light' ? '#ff9900' : theme.colors.primary)};
+    background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : theme.colors.primary)};
   }
 
   & .rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging {
@@ -32,7 +32,7 @@ export const Slider = styled(RcSlider)`
 `
 
 export const SliderMark = styled.span`
-  color: #343434;
+  color: ${({ theme }) => (theme.type === 'light' ? '#343434' : '#fff')};
   font-weight: 500;
 `
 
