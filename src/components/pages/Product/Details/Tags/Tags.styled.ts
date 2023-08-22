@@ -4,7 +4,7 @@ export const Container = styled.ul`
   display: flex;
   list-style: none;
   padding: 0;
-  padding-bottom: 7px;
+  margin: 10px 0;
 `
 
 export const Tag = styled.li<{ $background: string }>`

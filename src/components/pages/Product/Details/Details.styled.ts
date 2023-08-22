@@ -5,6 +5,9 @@ import Button from '@/shared/Button'
 
 export const Container = styled.section`
   padding: 10px 10px 15px 10px;
+  @media ${({ theme }) => theme.media.lg} {
+    padding-top: 50px;
+  }
 `
 
 export const Title = styled.h1`
@@ -41,8 +44,8 @@ export const Availability = styled.div<AvailabilityStyledProps>`
   border-radius: 15px;
   width: auto;
   padding: 7px 8px;
-  color: #fff;
-  background-color: ${({ $inStock }) => ($inStock ? '#32CD32' : '#c0c0c0')};
+  color: ${({ $inStock }) => ($inStock ? '#57ae00' : '#8d8d8d')};
+  background-color: ${({ $inStock }) => ($inStock ? '#e2f9cd' : '#e4e4e4')};
   & > span {
     font-size: 13px;
     margin-left: 5px;
@@ -53,8 +56,8 @@ export const Availability = styled.div<AvailabilityStyledProps>`
   }
 `
 
-export const TheAvailabilityIcon = styled(SvgIcon)`
-  fill: #fff;
+export const TheAvailabilityIcon = styled(SvgIcon)<AvailabilityStyledProps>`
+  fill: ${({ $inStock }) => ($inStock ? '#57ae00' : '#8d8d8d')};
   font-size: 20px;
   margin-right: 3px;
 `
@@ -68,6 +71,9 @@ export const CurrentPrice = styled.p`
   font-size: 29px;
   line-height: 29px;
   font-weight: 600;
+  & span {
+    font-size: 25px;
+  }
 `
 
 export const DiscountPriceBox = styled.div`
@@ -114,7 +120,7 @@ export const TheOrderButtonIcon = styled(SvgIcon)`
   font-size: 30px;
   fill: #fff;
   margin-right: 10px;
-  transition: all 0.1s;
+  transition: all 250ms;
 `
 
 export const OrderButton = styled(Button)`
@@ -122,19 +128,20 @@ export const OrderButton = styled(Button)`
   max-width: 300px;
   background-color: #32cd32;
   border-radius: 14px;
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 15px;
+  line-height: 16px;
   text-transform: none;
   font-weight: 600;
   color: #fff;
   border: none;
-  &:active {
+  &:hover {
     & ${TheOrderButtonIcon} {
       transform: scale(1.2);
     }
   }
   @media ${({ theme }) => theme.media.lg} {
-    font-size: 18px;
+    font-size: 16px;
+    padding: 10px;
   }
 `
 
@@ -155,5 +162,8 @@ export const LikeButton = styled(SharedLikeButton)`
   border-radius: 14px;
   &:hover {
     background-color: ${({ theme }) => (theme.type === 'light' ? '#f3f3f3' : '#363636')};
+  }
+  @media ${({ theme }) => theme.media.lg} {
+    padding: 13px;
   }
 `

@@ -101,12 +101,13 @@ const Details: React.FC<SummaryProps> = ({
 
   return (
     <Container>
-      {tags && <Tags tags={tags} />}
       <Title>{title}</Title>
       <Code>Код товара:&nbsp;{id}</Code>
       <Box>
         <Availability $inStock={inStock}>
-          <TheAvailabilityIcon>{inStock ? <CheckIcon /> : <ExclamationIcon />}</TheAvailabilityIcon>
+          <TheAvailabilityIcon $inStock={inStock}>
+            {inStock ? <CheckIcon /> : <ExclamationIcon />}
+          </TheAvailabilityIcon>
           <span>{inStock ? 'В наличии' : 'Нет в наличии'}</span>
         </Availability>
         <Rating starRating={rating} />
@@ -118,7 +119,9 @@ const Details: React.FC<SummaryProps> = ({
           <Percentage>-{Math.round(((basePrice - currentPrice) * 100) / basePrice)}%</Percentage>
         </DiscountPriceBox>
       )}
-      <CurrentPrice>{formatPrice(currentPrice)}&nbsp;₴</CurrentPrice>
+      <CurrentPrice>
+        {formatPrice(currentPrice)}&nbsp;<span>₴</span>
+      </CurrentPrice>
       {/*  */}
       <OrderButtonWrapper>
         <OrderButton
@@ -134,6 +137,7 @@ const Details: React.FC<SummaryProps> = ({
         </OrderButton>
         <LikeButton width={25} height={25} liked={isLiked} onClick={handleLikeClick} />
       </OrderButtonWrapper>
+      {tags && tags.length > 1 && <Tags tags={tags} />}
       <DescriptionWrapper>
         <CollapseHead
           title={<DescriptionTitle>Описание</DescriptionTitle>}
