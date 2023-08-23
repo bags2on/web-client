@@ -30,6 +30,7 @@ import {
   LikeButton,
   DescriptionTitle
 } from './Details.styled'
+import Delivery from './Delivery'
 
 type featuresType = {
   material: string
@@ -138,6 +139,7 @@ const Details: React.FC<SummaryProps> = ({
         <LikeButton width={25} height={25} liked={isLiked} onClick={handleLikeClick} />
       </OrderButtonWrapper>
       {tags && tags.length > 1 && <Tags tags={tags} />}
+      <Delivery free={false} />
       <DescriptionWrapper>
         <CollapseHead
           title={<DescriptionTitle>Описание</DescriptionTitle>}

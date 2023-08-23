@@ -20,7 +20,6 @@ export const Title = styled.h1`
 
 export const Code = styled.p`
   color: #939191;
-  text-transform: uppercase;
   margin: 0;
   font-weight: 500;
   font-size: 14px;
@@ -108,6 +107,7 @@ export const DescriptionWrapper = styled.div`
 export const Description = styled.p`
   margin: 0;
   font-size: 16px;
+  font-weight: 500;
 `
 
 export const DescriptionTitle = styled.p`
