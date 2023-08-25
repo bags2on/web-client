@@ -13,6 +13,7 @@ const DeliveryItem = styled.li`
   align-items: center;
   justify-content: space-between;
   font-size: 14px;
+  line-height: 15px;
   font-weight: 500;
   margin-bottom: 13px;
   @media ${({ theme }) => theme.media.lg} {

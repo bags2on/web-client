@@ -98,7 +98,6 @@ export const Percentage = styled.span`
 `
 
 export const DescriptionWrapper = styled.div`
-  margin-top: 20px;
   & > div {
     padding-left: 0;
   }
