@@ -1,4 +1,5 @@
 .swiperContainer {
+  overflow: hidden;
   & ul {
     @include reset-list;
   }
