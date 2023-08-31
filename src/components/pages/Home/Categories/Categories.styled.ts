@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 import SvgIcon from '@/shared/SvgIcon'
 import NextLink from 'next/link'
+import NextImage from 'next/image'
 
 export const Section = styled.section`
   margin-bottom: 15px;
@@ -34,6 +35,36 @@ export const CategoryItem = styled.li`
   }
 `
 
+export const Image = styled(NextImage)`
+  width: 55px;
+  height: auto;
+  z-index: 100;
+  position: relative;
+  transition: transform 0.3s;
+  @media ${({ theme }) => theme.media.lg} {
+    width: 75px;
+  }
+`
+
+export const InnerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  padding: 5px 4px 5px 7px;
+  border-radius: 10px;
+  transition: all 0.3s;
+  border: 1px solid ${({ theme }) => (theme.type === 'light' ? '#eeeeee' : 'transparent')};
+  background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#363636')};
+  @media ${({ theme }) => theme.media.lg} {
+    padding: 11px 10px 11px 17px;
+    &:hover {
+      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+      & ${Image} {
+        transform: scale(1.1);
+      }
+    }
+  }
+`
+
 export const Link = styled(NextLink)`
   display: block;
   margin: 5px;
@@ -44,64 +75,28 @@ export const Link = styled(NextLink)`
   -webkit-tap-highlight-color: transparent;
 `
 
-interface IconWrapperStyledProps {
+export const ImageWrapper = styled.div`
+  margin-right: 8px;
+  position: relative;
+  @media ${({ theme }) => theme.media.lg} {
+    margin-right: 12px;
+  }
+`
+
+interface FallbackStyledProps {
   $background: string
   $borderColor: string
 }
 
-export const IconWrapper = styled.div<IconWrapperStyledProps>`
-  margin-right: 8px;
+export const Fallback = styled.div<FallbackStyledProps>`
+  position: absolute;
+  z-index: 50;
+  bottom: 6px;
   border-radius: 10px;
-  background-color: ${({ theme, $background }) => (theme.type === 'light' ? $background : 'none')};
-  border: 1px solid
-    ${({ theme, $borderColor }) => (theme.type === 'light' ? $borderColor : 'transparent')};
-  @media ${({ theme }) => theme.media.tablet} {
-    margin-right: 12px;
-
-    background-color: ${({ theme, $background }) =>
-      theme.type === 'light' ? $background : theme.colors.primary};
-  }
-`
-
-export const CategoryIcon = styled(SvgIcon)<{ $strokeIcon: boolean }>`
-  color: inherit;
-  min-width: auto;
-  font-size: 50px;
-  padding: 5px;
-  transition: all 0.2s;
-  fill: ${({ theme }) => (theme.type === 'light' ? '#000' : theme.colors.primary)};
-  ${({ $strokeIcon }) =>
-    $strokeIcon &&
-    css`
-      stroke: ${({ theme }) => (theme.type === 'light' ? '#000' : theme.colors.primary)};
-      @media ${({ theme }) => theme.media.tablet} {
-        stroke: #000;
-      }
-    `}
-  @media ${({ theme }) => theme.media.tablet} {
-    padding: 5px;
-    font-size: 57px;
-    fill: #000;
-  }
-`
-
-export const InnerContainer = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 12px;
-  border-radius: 10px;
-  transition: all 0.3s;
-  border: 1px solid ${({ theme }) => (theme.type === 'light' ? '#eeeeee' : 'transparent')};
-  background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#363636')};
-  @media ${({ theme }) => theme.media.md} {
-    padding: 11px 15px 11px 17px;
-    &:hover {
-      box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-      & ${CategoryIcon} {
-        transform: scale(1.1);
-      }
-    }
-  }
+  height: 51%;
+  width: 100%;
+  background-color: ${({ $background }) => $background};
+  border: 1px solid ${({ $borderColor }) => $borderColor};
 `
 
 export const Details = styled.div`
