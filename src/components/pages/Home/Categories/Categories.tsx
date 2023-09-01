@@ -1,64 +1,56 @@
 import React from 'react'
 import SvgIcon from '@/shared/SvgIcon'
+import FlashIcon from '../../../../../public/assets/icons/flash.svg'
 import { routeNames } from '@/utils/navigation'
 import { useTranslation } from 'next-i18next'
-import BaggageIcon from '../../../../../public/assets/icons/baggage.svg'
-import WalletIcon from '../../../../../public/assets/icons/wallet.svg'
-import BagIcon from '../../../../../public/assets/icons/bag.svg'
-import OtherIcon from '../../../../../public/assets/icons/other.svg'
-import FlashIcon from '../../../../../public/assets/icons/flash.svg'
 
 import {
   Section,
   Title,
   Link,
   InnerContainer,
-  Details,
   CategoryList,
   CategoryItem,
-  IconWrapper,
-  CategoryIcon
+  Details,
+  ImageWrapper,
+  Image,
+  Fallback
 } from './Categories.styled'
 
 type categoryItemType = {
-  icon: React.ElementType
+  img: string
   to: string
   i18n: string
-  name: string
   backgroundColor: string
   borderColor: string
 }
 
 const categoriesValues: categoryItemType[] = [
   {
-    icon: BaggageIcon,
+    img: '/assets/rastr/suitcase.png',
     to: routeNames.catalog,
     i18n: 'suitcases',
-    name: 'SUITCASE',
     backgroundColor: '#edfdf1',
     borderColor: '#c0e7ca'
   },
   {
-    icon: WalletIcon,
+    img: '/assets/rastr/wallet.png',
     to: routeNames.catalog,
     i18n: 'wallets',
-    name: 'WALLET',
     backgroundColor: '#fdfddc',
     borderColor: '#dee0af'
   },
   {
-    icon: BagIcon,
+    img: '/assets/rastr/bag.png',
     to: routeNames.catalog,
     i18n: 'bags',
-    name: 'BAG',
     backgroundColor: '#f4f4ff',
     borderColor: '#dbdbfa'
   },
   {
-    icon: OtherIcon,
+    img: '/assets/rastr/backpack.png',
     to: routeNames.catalog,
-    i18n: 'other',
-    name: '',
+    i18n: 'backpacks',
     backgroundColor: '#e4fffa',
     borderColor: '#c2ebe3'
   }
@@ -81,17 +73,22 @@ const Categories: React.FC = () => {
             <CategoryItem key={ind}>
               <Link href={category.to}>
                 <InnerContainer>
-                  <IconWrapper
-                    $background={category.backgroundColor}
-                    $borderColor={category.borderColor}
-                  >
-                    <CategoryIcon $strokeIcon={category.i18n === 'wallets'}>
-                      <category.icon />
-                    </CategoryIcon>
-                  </IconWrapper>
+                  <ImageWrapper>
+                    <Image
+                      priority
+                      src={category.img}
+                      width={360}
+                      height={360}
+                      alt={`Изображение категории - ${t(`categories.${category.i18n}`)}`}
+                    />
+                    <Fallback
+                      $background={category.backgroundColor}
+                      $borderColor={category.borderColor}
+                    />
+                  </ImageWrapper>
                   <Details>
                     <p>{t(`categories.${category.i18n}`)}</p>
-                    <span>смотреть все</span>
+                    <span>{t(`categories.seeAll`)}</span>
                   </Details>
                 </InnerContainer>
               </Link>

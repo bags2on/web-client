@@ -11,8 +11,6 @@ type QueryNotFoundData = Extract<GetProductQuery['product'], { __typename: 'NotF
 export type QueryResult = QueryProductData | QueryNotFoundData | null | undefined
 
 export default async (id: string): Promise<QueryResult> => {
-  console.log('XXXXX', id)
-
   const { data } = await client.query<GetProductQuery, GetProductQueryVariables>({
     query: GetProductDocument,
     variables: { id }

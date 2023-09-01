@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-
 import { Box, Backdrop } from './Drawer.styled'
 
 interface DrawerProps {
@@ -10,33 +9,20 @@ interface DrawerProps {
   children?: React.ReactNode
 }
 
-function createPortalRoot(id: string): HTMLDivElement {
-  const drawerRoot = document.createElement('div')
-  drawerRoot.setAttribute('id', id)
-  return drawerRoot
-}
-
-function getPortalID(): string {
-  return 'drawer-' + new Date().getTime()
-}
-
 const Drawer: React.FC<DrawerProps> = ({ open, children, onClose, position = 'left' }) => {
   const [mounted, setMounted] = useState(false)
 
-  const bodyRef = useRef<HTMLElement | null>(null)
-
+  const bodyContainerRef = useRef<HTMLElement | null>(null)
   const portalRootRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
-    const portalID = getPortalID()
-
-    bodyRef.current = document.getElementById('app-drawers')
-    portalRootRef.current = createPortalRoot(portalID)
+    bodyContainerRef.current = document.getElementById('app-drawers')
+    portalRootRef.current = document.createElement('div')
 
     let portal: HTMLElement
 
-    if (bodyRef.current) {
-      bodyRef.current.appendChild(portalRootRef.current)
+    if (bodyContainerRef.current) {
+      bodyContainerRef.current.appendChild(portalRootRef.current)
       portal = portalRootRef.current
     }
 
@@ -50,9 +36,13 @@ const Drawer: React.FC<DrawerProps> = ({ open, children, onClose, position = 'le
   useEffect(() => {
     const updatePageScroll = () => {
       if (open) {
-        document.body.style.overflow = 'hidden'
+        document.documentElement.style.overflowY = 'scroll'
+        document.documentElement.style.position = 'fixed'
+        document.documentElement.style.width = '100%'
       } else {
-        document.body.style.overflow = ''
+        document.documentElement.style.overflowY = 'auto'
+        document.documentElement.style.position = 'static'
+        document.documentElement.style.width = 'auto'
       }
     }
 

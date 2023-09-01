@@ -46,7 +46,7 @@ const Box = styled.span<{ $checked: boolean }>`
     top: 4px;
     left: 3px;
     fill: none;
-    stroke: #ffffff;
+    stroke: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#343434')};
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
@@ -59,8 +59,8 @@ const Box = styled.span<{ $checked: boolean }>`
   ${({ $checked }) =>
     $checked &&
     css`
-      background: orange;
-      border-color: orange;
+      background: ${({ theme }) => (theme.type === 'light' ? 'orange' : theme.colors.primary)};
+      border-color: ${({ theme }) => (theme.type === 'light' ? 'orange' : theme.colors.primary)};
       animation: ${wave} 0.4s ease;
       & svg {
         stroke-dashoffset: 0;
@@ -78,10 +78,8 @@ const Label = styled.label`
   border-radius: 5px;
   cursor: pointer;
   &:hover {
-    // TODO:
-    /* background-color: antiquewhite; */
     & > span {
-      border-color: orange;
+      border-color: ${({ theme }) => (theme.type === 'light' ? 'orange' : theme.colors.primary)};
     }
   }
 `

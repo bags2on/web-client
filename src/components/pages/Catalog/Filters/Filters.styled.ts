@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import Button from '@/shared/Button'
 
 export const Aside = styled.aside`
+  position: relative;
   padding: 10px 10px 20px 10px;
 `
 
@@ -32,12 +33,15 @@ export const Divider = styled.hr`
 `
 
 export const ClearButton = styled(Button)`
-  font-size: 11px;
-  padding: 3px;
-  background-color: #f44336;
-  &:hover {
-    background-color: #ff5346;
-  }
+  position: absolute;
+  right: 10px;
+  color: #fff;
+  font-weight: 600;
+  top: 17px;
+  font-size: 13px;
+  padding: 5px 6px;
+  border-radius: 7px;
+  border: none;
 `
 
 export const RadioWrapper = styled.div`

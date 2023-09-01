@@ -1,6 +1,7 @@
 {
   "filters": {
     "title": "Параметри",
+    "clear": "Очистити",
     "name": {
       "type": "Тип",
       "availability": "Наявність",

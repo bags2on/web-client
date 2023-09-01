@@ -8,7 +8,9 @@
     "suitcases": "Чемоданы",
     "bags": "Сумки",
     "wallets": "Кошельки",
-    "other": "Другое"
+    "backpacks": "Рюкзаки",
+    "other": "Другое",
+    "seeAll": "смотреть все"
   },
   "promo": {
     "firstTitle": "Что-то в дорогу",

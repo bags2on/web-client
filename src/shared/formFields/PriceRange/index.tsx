@@ -1,11 +1,19 @@
-import React, { useState, useLayoutEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useFormikContext } from 'formik'
 import type { SliderProps } from 'rc-slider'
 
 import Collapse, { CollapseHead } from '../../../shared/Collapse'
 
 import 'rc-slider/assets/index.css'
-import { Container, Slider, SliderMark, Controls, PriceInput, SetButton } from './PriceRange.styled'
+import {
+  Container,
+  SliderWrapper,
+  Slider,
+  SliderMark,
+  Controls,
+  PriceInput,
+  SetButton
+} from './PriceRange.styled'
 
 interface PriceRangeProps {
   title: string
@@ -31,7 +39,7 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
   const [sliderMin, setSliderMin] = useState<number>(minInputValue)
   const [sliderMax, setSliderMax] = useState<number>(maxInputValue)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     setMinInputValue(minPrice)
     setMaxInputValue(maxPrice)
 
@@ -87,17 +95,21 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
           <Controls>
             <PriceInput type="number" value={minInputValue} onChange={onMinChange} />
             <PriceInput type="number" value={maxInputValue} onChange={onMaxChange} />
-            <SetButton onClick={handlePriceSubmit}>ok</SetButton>
+            <SetButton color="secondary" onClick={handlePriceSubmit}>
+              ok
+            </SetButton>
           </Controls>
-          <Slider
-            range
-            min={min}
-            max={max}
-            step={step}
-            value={[sliderMin, sliderMax]}
-            onChange={onSliderChange}
-            marks={marks}
-          />
+          <SliderWrapper>
+            <Slider
+              range
+              min={min}
+              max={max}
+              step={step}
+              value={[sliderMin, sliderMax]}
+              onChange={onSliderChange}
+              marks={marks}
+            />
+          </SliderWrapper>
         </Container>
       </Collapse>
     </div>

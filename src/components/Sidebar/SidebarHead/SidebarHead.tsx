@@ -13,7 +13,7 @@ const SidebarHead: React.FC<SidebarHeadProps> = ({ theme, themeChanger }) => {
   return (
     <Container>
       <LogoWrapper>
-        <Image width={150} height={40} priority src="/assets/logo.svg" alt="логотип" />
+        <Image priority={true} width={150} height={40} src="/assets/logo.svg" alt="логотип" />
       </LogoWrapper>
 
       <ThemeWrapper>

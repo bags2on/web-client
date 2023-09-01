@@ -11,7 +11,7 @@ export const TheHeader = styled.header`
   right: 0;
   flex-wrap: wrap;
   padding: 5px 0;
-  background-color: #282828;
+  background-color: #1e1e1e;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05),
     0 2px 8px rgba(0, 0, 0, 0.05);
   @media ${({ theme }) => theme.media.lg} {
@@ -23,10 +23,10 @@ export const TheHeader = styled.header`
   }
 `
 
-export const Wrapper = styled.div`
+export const Wrapper = styled.div<{ $expanded: boolean }>`
   display: flex;
   align-items: center;
-  max-width: 1500px;
+  max-width: ${({ $expanded }) => ($expanded ? 1700 : 1500)}px;
   margin: 0 auto;
 `
 
@@ -37,10 +37,7 @@ export const LogoLink = styled(Link)`
     position: relative;
     top: 3px;
     width: 150px;
-    & > img {
-      width: 100%;
-      height: 100%;
-    }
+
     @media ${({ theme }) => theme.media.xl} {
       margin: 0 40px;
     }
