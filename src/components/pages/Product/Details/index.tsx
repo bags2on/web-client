@@ -23,7 +23,8 @@ import {
   Discount,
   Percentage,
   DescriptionWrapper,
-  OrderButtonWrapper,
+  ButtonsWrapper,
+  OrderNowButton,
   OrderButton,
   TheOrderButtonIcon,
   Description,
@@ -31,6 +32,7 @@ import {
   DescriptionTitle
 } from './Details.styled'
 import Delivery from './Delivery'
+import SizeGuide from './SizeGuide'
 
 type featuresType = {
   material: string
@@ -103,7 +105,6 @@ const Details: React.FC<SummaryProps> = ({
   return (
     <Container>
       <Title>{title}</Title>
-      <Code>Код товара:&nbsp;{id}</Code>
       <Box>
         <Availability $inStock={inStock}>
           <TheAvailabilityIcon $inStock={inStock}>
@@ -112,6 +113,7 @@ const Details: React.FC<SummaryProps> = ({
           <span>{inStock ? 'В наличии' : 'Нет в наличии'}</span>
         </Availability>
         <Rating starRating={rating} />
+        <Code>Код:&nbsp;{id}</Code>
       </Box>
       {/*  */}
       {basePrice !== currentPrice && (
@@ -124,8 +126,13 @@ const Details: React.FC<SummaryProps> = ({
         {formatPrice(currentPrice)}&nbsp;<span>₴</span>
       </CurrentPrice>
       {/*  */}
-      <OrderButtonWrapper>
+      <SizeGuide current="L" available={['M', '2XL', 'L']} />
+      <ButtonsWrapper>
+        <OrderNowButton fullWidth color="secondary">
+          Купить сейчас
+        </OrderNowButton>
         <OrderButton
+          fullWidth
           color="secondary"
           onClick={handleAddToCart}
           startIcon={
@@ -136,8 +143,9 @@ const Details: React.FC<SummaryProps> = ({
         >
           {inStock ? 'Добавить в корзину' : 'Сообщить когда появиться'}
         </OrderButton>
-        <LikeButton width={25} height={25} liked={isLiked} onClick={handleLikeClick} />
-      </OrderButtonWrapper>
+        {/* <LikeButton width={25} height={25} liked={isLiked} onClick={handleLikeClick} /> */}
+      </ButtonsWrapper>
+
       {tags && tags.length > 1 && <Tags tags={tags} />}
       <Delivery free={false} />
       <DescriptionWrapper>

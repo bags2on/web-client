@@ -1,29 +1,31 @@
-import styled from 'styled-components'
+import Button from '@/shared/Button'
 import SharedLikeButton from '@/shared/LikeButton'
 import SvgIcon from '@/shared/SvgIcon'
-import Button from '@/shared/Button'
+import styled from 'styled-components'
 
 export const Container = styled.section`
   padding: 10px 10px 15px 10px;
+  /* background-color: #efe; */
   @media ${({ theme }) => theme.media.lg} {
     padding-top: 50px;
   }
 `
 
 export const Title = styled.h1`
-  font-size: 29px;
+  font-size: 30px;
   font-weight: 600;
-  line-height: 30px;
+  line-height: 36px;
   margin: 0;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 `
 
 export const Code = styled.p`
   color: #939191;
   margin: 0;
   font-weight: 500;
-  font-size: 14px;
-  margin-bottom: 17px;
+  font-size: 17px;
+  line-height: 17px;
+  margin-left: 20px;
 `
 
 export const Box = styled.div`
@@ -40,24 +42,24 @@ interface AvailabilityStyledProps {
 export const Availability = styled.div<AvailabilityStyledProps>`
   display: inline-flex;
   margin-right: 30px;
-  border-radius: 15px;
+  border-radius: 12px;
   width: auto;
-  padding: 7px 8px;
+  padding: 7px 12px 7px 10px;
   color: ${({ $inStock }) => ($inStock ? '#57ae00' : '#8d8d8d')};
   background-color: ${({ $inStock }) => ($inStock ? '#e2f9cd' : '#e4e4e4')};
   & > span {
-    font-size: 13px;
+    font-size: 12px;
     margin-left: 5px;
     font-weight: 600;
   }
   @media ${({ theme }) => theme.media.md} {
-    margin-right: 80px;
+    margin-right: auto;
   }
 `
 
 export const TheAvailabilityIcon = styled(SvgIcon)<AvailabilityStyledProps>`
   fill: ${({ $inStock }) => ($inStock ? '#57ae00' : '#8d8d8d')};
-  font-size: 20px;
+  font-size: 18px;
   margin-right: 3px;
 `
 
@@ -70,6 +72,7 @@ export const CurrentPrice = styled.p`
   font-size: 29px;
   line-height: 29px;
   font-weight: 600;
+  margin-bottom: 30px;
   & span {
     font-size: 25px;
   }
@@ -117,40 +120,45 @@ export const DescriptionTitle = styled.p`
 
 export const TheOrderButtonIcon = styled(SvgIcon)`
   font-size: 30px;
-  fill: #fff;
+  fill: #232323;
   margin-right: 10px;
   transition: all 250ms;
 `
 
-export const OrderButton = styled(Button)`
-  width: 100%;
-  max-width: 300px;
-  background-color: #32cd32;
+export const ButtonsWrapper = styled.div`
+  margin: 30px 0;
+`
+
+export const OrderNowButton = styled(Button)`
+  color: #fff;
+  border: none;
+  padding: 18px;
+  font-size: 16px;
+  max-width: 500px;
+  font-weight: 600;
   border-radius: 14px;
-  font-size: 15px;
+  margin-bottom: 15px;
+  background-color: #232323;
+  &:hover {
+    background-color: #32cd32;
+  }
+`
+
+export const OrderButton = styled(Button)`
+  max-width: 500px;
+  background-color: transparent;
+  border-radius: 14px;
+  font-size: 16px;
   line-height: 16px;
   text-transform: none;
   font-weight: 600;
-  color: #fff;
-  border: none;
+  padding: 10px;
+  color: #232323;
+  border: 2px solid #232323;
   &:hover {
     & ${TheOrderButtonIcon} {
       transform: scale(1.2);
     }
-  }
-  @media ${({ theme }) => theme.media.lg} {
-    font-size: 16px;
-    padding: 10px;
-  }
-`
-
-export const OrderButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 30px;
-  @media ${({ theme }) => theme.media.md} {
-    justify-content: flex-start;
   }
 `
 

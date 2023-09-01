@@ -21,8 +21,8 @@ export const PreviewWrapper = styled.div`
   flex-basis: 100%;
   max-width: 100%;
   @media ${({ theme }) => theme.media.lg} {
-    flex-basis: 58.33%;
-    max-width: 58.33%;
+    flex-basis: 60%;
+    max-width: 60%;
   }
 `
 
@@ -31,8 +31,8 @@ export const DetailsWrapper = styled.div`
   flex-basis: 100%;
   max-width: 100%;
   @media ${({ theme }) => theme.media.lg} {
-    flex-basis: 41.66%;
-    max-width: 41.66%;
+    flex-basis: 40%;
+    max-width: 40%;
   }
 `
 
