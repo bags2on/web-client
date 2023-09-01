@@ -1,5 +1,4 @@
-import styled, { css } from 'styled-components'
-import SvgIcon from '@/shared/SvgIcon'
+import styled from 'styled-components'
 import NextLink from 'next/link'
 import NextImage from 'next/image'
 
