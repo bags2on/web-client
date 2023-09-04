@@ -11,6 +11,7 @@ interface SvgStyledProps {
   $width: number
   $height: number
   $hide?: boolean
+  $withText?: boolean
 }
 
 export const Svg = styled.svg<SvgStyledProps>`
@@ -20,7 +21,8 @@ export const Svg = styled.svg<SvgStyledProps>`
   fill: transparent;
   stroke: #f44336;
   overflow: visible !important;
-  stroke-width: 1.5px;
+  stroke-width: ${({ $withText }) => ($withText ? 2.5 : 1.5)}px;
+  margin-right: ${({ $withText }) => $withText && '10px'};
   transition: all 0.33s ease;
   & use:last-child {
     fill: #f44336;

@@ -1,11 +1,12 @@
 import React from 'react'
-
 import { Button, Svg } from './LikeButton.styled'
 
 interface LikeButtonProps {
   liked: boolean
   width?: number
   height?: number
+  text?: string
+  disableRipple?: boolean
   onClick: (e: React.MouseEvent) => void
 }
 
@@ -13,11 +14,12 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   liked,
   width = 20,
   height = 20,
+  text,
   ...restProps
 }) => {
   return (
     <Button {...restProps}>
-      <Svg $liked={liked} $width={width} $height={height} viewBox="0 0 24 24">
+      <Svg $liked={liked} $withText={!!text} $width={width} $height={height} viewBox="0 0 24 24">
         <use xlinkHref="#heart" />
         <use xlinkHref="#heart" />
       </Svg>
@@ -29,6 +31,7 @@ const LikeButton: React.FC<LikeButtonProps> = ({
           />
         </defs>
       </Svg>
+      {text && <span>{text}</span>}
     </Button>
   )
 }
