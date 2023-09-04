@@ -1,5 +1,4 @@
 import Button from '@/shared/Button'
-import SharedLikeButton from '@/shared/LikeButton'
 import SvgIcon from '@/shared/SvgIcon'
 import styled from 'styled-components'
 
@@ -126,7 +125,7 @@ export const TheOrderButtonIcon = styled(SvgIcon)`
 `
 
 export const ButtonsWrapper = styled.div`
-  margin: 30px 0;
+  margin: 30px 0 10px 0;
 `
 
 export const OrderNowButton = styled(Button)`
@@ -159,18 +158,5 @@ export const OrderButton = styled(Button)`
     & ${TheOrderButtonIcon} {
       transform: scale(1.2);
     }
-  }
-`
-
-export const LikeButton = styled(SharedLikeButton)`
-  margin-left: 15px;
-  padding: 18px;
-  background-color: ${({ theme }) => (theme.type === 'light' ? '#f6f6f6' : '#363636')};
-  border-radius: 14px;
-  &:hover {
-    background-color: ${({ theme }) => (theme.type === 'light' ? '#f3f3f3' : '#363636')};
-  }
-  @media ${({ theme }) => theme.media.lg} {
-    padding: 13px;
   }
 `

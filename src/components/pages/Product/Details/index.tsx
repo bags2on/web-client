@@ -3,9 +3,7 @@ import Tags from './Tags'
 import Rating from '@/components/Rating'
 import Features from './Features/Features'
 import Collapse, { CollapseHead } from '@/shared/Collapse'
-import { useReactiveVar } from '@apollo/client'
-import { favoriteProductsVar } from '@/apollo/cache/variables'
-import { CartMutations, FavoriteMutations } from '@/apollo/cache/mutations'
+import { CartMutations } from '@/apollo/cache/mutations'
 import { formatPrice } from '@/utils/helper'
 import ExclamationIcon from '../../../../../public/assets/icons/exclamation-circle.svg'
 import CheckIcon from '../../../../../public/assets/icons/check-circle.svg'
@@ -28,11 +26,11 @@ import {
   OrderButton,
   TheOrderButtonIcon,
   Description,
-  LikeButton,
   DescriptionTitle
 } from './Details.styled'
 import Delivery from './Delivery'
 import SizeGuide from './SizeGuide'
+import SubControls from './SubControls'
 
 type featuresType = {
   material: string
@@ -68,9 +66,6 @@ const Details: React.FC<SummaryProps> = ({
   // features,
   // rating
 }) => {
-  const favoriteProducts = useReactiveVar(favoriteProductsVar)
-
-  const [isLiked, setLiked] = useState<boolean>(favoriteProducts.includes(id))
   const [descExpand, setDescExpand] = useState(true)
 
   const handleDescCollapse = () => {
@@ -91,15 +86,6 @@ const Details: React.FC<SummaryProps> = ({
       productId: id,
       amount: 1
     })
-  }
-
-  const handleLikeClick = (): void => {
-    if (isLiked) {
-      FavoriteMutations.deleteFavorite(id)
-    } else {
-      FavoriteMutations.addToFavorite(id)
-    }
-    setLiked(!isLiked)
   }
 
   return (
@@ -143,8 +129,8 @@ const Details: React.FC<SummaryProps> = ({
         >
           {inStock ? 'Добавить в корзину' : 'Сообщить когда появиться'}
         </OrderButton>
-        {/* <LikeButton width={25} height={25} liked={isLiked} onClick={handleLikeClick} /> */}
       </ButtonsWrapper>
+      <SubControls productId={id} />
 
       {tags && tags.length > 1 && <Tags tags={tags} />}
       <Delivery free={false} />
