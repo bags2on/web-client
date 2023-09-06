@@ -1,20 +1,21 @@
 import React from 'react'
 import Preview from './Preview/Preview'
 import Details from './Details'
+import Info from './Info'
 import Recommended from './Recommended/Recommended'
 
-import { Container, Loader, Inner, PreviewWrapper, DetailsWrapper } from './Product.styled'
+import { Container, Inner, PreviewWrapper, DetailsWrapper } from './Product.styled'
 
-type featuresType = {
-  material: string
-  color: string
-  gender: string
-  category: string
-}
+// type featuresType = {
+//   material: string
+//   color: string
+//   gender: string
+//   category: string
+// }
 
-type productRating = {
-  rating: number
-}
+// type productRating = {
+//   rating: number
+// }
 
 interface ProductPageProps {
   id: string
@@ -50,16 +51,15 @@ const ProductDetails: React.FC<Iprops> = ({ product }) => {
           <Details
             id={product.id}
             title={product.title}
-            description={product.description}
             tags={product.tags}
             inStock={product.instock}
             basePrice={product.basePrice}
             currentPrice={product.currentPrice}
-            // features={product.features}
             // rating={product.rating}
           />
         </DetailsWrapper>
       </Inner>
+      <Info description={product.description} />
       <Recommended />
     </Container>
   )

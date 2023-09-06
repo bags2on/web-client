@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Tags from './Tags'
 import Rating from '@/components/Rating'
-import Features from './Features/Features'
-import Collapse, { CollapseHead } from '@/shared/Collapse'
 import { CartMutations } from '@/apollo/cache/mutations'
 import { formatPrice } from '@/utils/helper'
 import ExclamationIcon from '../../../../../public/assets/icons/exclamation-circle.svg'
@@ -20,66 +18,39 @@ import {
   DiscountPriceBox,
   Discount,
   Percentage,
-  DescriptionWrapper,
   ButtonsWrapper,
   OrderNowButton,
   OrderButton,
-  TheOrderButtonIcon,
-  Description,
-  DescriptionTitle
+  TheOrderButtonIcon
 } from './Details.styled'
 import Delivery from './Delivery'
 import SizeGuide from './SizeGuide'
 import SubControls from './SubControls'
 
-type featuresType = {
-  material: string
-  color: string
-  gender: string
-  category: string
-}
-
 type productRating = {
   rating: number
 }
 
-interface SummaryProps {
+interface DetailsProps {
   id: string
   title: string
   currentPrice: number
   tags?: string[]
-  description?: string
   basePrice: number
   inStock: boolean
-  features?: featuresType
   rating?: productRating
 }
 
-const Details: React.FC<SummaryProps> = ({
+const Details: React.FC<DetailsProps> = ({
   id,
   title,
   currentPrice,
   tags,
-  description,
   inStock,
   basePrice
-  // features,
   // rating
 }) => {
-  const [descExpand, setDescExpand] = useState(true)
-
-  const handleDescCollapse = () => {
-    setDescExpand((prev) => !prev)
-  }
-
-  const features = {
-    material: 'xxxx',
-    color: 'color',
-    gender: 'gender',
-    category: 'category'
-  }
-
-  const rating = 4
+  const TODO_rating = 4
 
   const handleAddToCart = (): void => {
     CartMutations.addProduct({
@@ -98,7 +69,7 @@ const Details: React.FC<SummaryProps> = ({
           </TheAvailabilityIcon>
           <span>{inStock ? 'В наличии' : 'Нет в наличии'}</span>
         </Availability>
-        <Rating starRating={rating} />
+        <Rating starRating={TODO_rating} />
         <Code>Код:&nbsp;{id}</Code>
       </Box>
       {/*  */}
@@ -134,22 +105,6 @@ const Details: React.FC<SummaryProps> = ({
 
       {tags && tags.length > 1 && <Tags tags={tags} />}
       <Delivery free={false} />
-      <DescriptionWrapper>
-        <CollapseHead
-          title={<DescriptionTitle>Описание</DescriptionTitle>}
-          collapsed={descExpand}
-          onCollapse={handleDescCollapse}
-        />
-        <Collapse open={descExpand}>
-          <Description>{description}</Description>
-        </Collapse>
-      </DescriptionWrapper>
-      <Features
-        color={features.color}
-        material={features.material}
-        type={features.gender}
-        category={features.category}
-      />
     </Container>
   )
 }

@@ -4,7 +4,6 @@ import styled from 'styled-components'
 
 export const Container = styled.section`
   padding: 10px 10px 15px 10px;
-  /* background-color: #efe; */
   @media ${({ theme }) => theme.media.lg} {
     padding-top: 50px;
   }
@@ -97,24 +96,6 @@ export const Percentage = styled.span`
   border-radius: 8px;
   padding: 2px 3px;
   background-color: #f44336;
-`
-
-export const DescriptionWrapper = styled.div`
-  & > div {
-    padding-left: 0;
-  }
-`
-
-export const Description = styled.p`
-  margin: 0;
-  font-size: 16px;
-  font-weight: 500;
-`
-
-export const DescriptionTitle = styled.p`
-  font-size: 20px;
-  margin: 10px 0;
-  font-weight: 600;
 `
 
 export const TheOrderButtonIcon = styled(SvgIcon)`

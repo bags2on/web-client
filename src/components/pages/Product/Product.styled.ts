@@ -35,10 +35,3 @@ export const DetailsWrapper = styled.div`
     max-width: 40%;
   }
 `
-
-export const Loader = styled.div`
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
-`
