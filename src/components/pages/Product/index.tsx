@@ -13,10 +13,6 @@ import { Container, Inner, PreviewWrapper, DetailsWrapper } from './Product.styl
 //   category: string
 // }
 
-// type productRating = {
-//   rating: number
-// }
-
 interface ProductPageProps {
   id: string
   title: string
@@ -28,17 +24,21 @@ interface ProductPageProps {
   basePrice: number
   instock: boolean
   // features: featuresType
-  // rating: productRating
+}
+
+interface TodoProps {
+  rating: number
 }
 
 interface Iprops {
   product: ProductPageProps
+  todo: TodoProps
 }
 
 const plug =
   'https://res.cloudinary.com/dct4oinuz/image/upload/v1626712628/bags2on/no_image_wqwwvv.jpg'
 
-const ProductDetails: React.FC<Iprops> = ({ product }) => {
+const ProductDetails: React.FC<Iprops> = ({ product, todo }) => {
   const previewImages = [product.preview, plug, plug, plug, plug]
 
   return (
@@ -55,7 +55,7 @@ const ProductDetails: React.FC<Iprops> = ({ product }) => {
             inStock={product.instock}
             basePrice={product.basePrice}
             currentPrice={product.currentPrice}
-            // rating={product.rating}
+            rating={todo.rating}
           />
         </DetailsWrapper>
       </Inner>

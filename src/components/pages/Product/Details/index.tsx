@@ -27,10 +27,6 @@ import Delivery from './Delivery'
 import SizeGuide from './SizeGuide'
 import SubControls from './SubControls'
 
-type productRating = {
-  rating: number
-}
-
 interface DetailsProps {
   id: string
   title: string
@@ -38,7 +34,7 @@ interface DetailsProps {
   tags?: string[]
   basePrice: number
   inStock: boolean
-  rating?: productRating
+  rating?: number
 }
 
 const Details: React.FC<DetailsProps> = ({
@@ -47,11 +43,9 @@ const Details: React.FC<DetailsProps> = ({
   currentPrice,
   tags,
   inStock,
-  basePrice
-  // rating
+  basePrice,
+  rating
 }) => {
-  const TODO_rating = 4
-
   const handleAddToCart = (): void => {
     CartMutations.addProduct({
       productId: id,
@@ -69,7 +63,7 @@ const Details: React.FC<DetailsProps> = ({
           </TheAvailabilityIcon>
           <span>{inStock ? 'В наличии' : 'Нет в наличии'}</span>
         </Availability>
-        <Rating starRating={TODO_rating} />
+        <Rating starRating={rating} />
         <Code>Код:&nbsp;{id}</Code>
       </Box>
       {/*  */}
