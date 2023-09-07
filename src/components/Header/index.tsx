@@ -113,4 +113,4 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   )
 }
 
-export default Header
+export default React.memo(Header)
