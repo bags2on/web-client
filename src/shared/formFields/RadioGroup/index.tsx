@@ -2,7 +2,7 @@ import React from 'react'
 import { useField } from 'formik'
 import styled from 'styled-components'
 
-const COLOR = 'orange'
+const COLOR = '#232323'
 
 const InputBox = styled.div`
   display: flex;
