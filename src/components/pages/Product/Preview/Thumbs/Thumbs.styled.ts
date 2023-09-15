@@ -5,7 +5,7 @@ export const Container = styled.div`
   margin-right: 15px;
   @media ${({ theme }) => theme.media.md} {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
   }
 `
 
@@ -26,15 +26,15 @@ export const ListItem = styled.li<{ $active: boolean }>`
   width: 100px;
   height: 100px;
   margin-bottom: 10px;
-  border-radius: 5px;
-  border: ${({ $active }) => ($active ? '1px solid #343434' : 'none')};
+  border-radius: 13px;
+  border: ${({ $active }) => ($active ? '2px solid #343434' : 'none')};
   &:hover {
     border: 1px dashed #343434;
   }
 `
 
 export const Image = styled.img`
-  border-radius: 5px;
+  border-radius: 10px;
   max-width: 95px;
   max-height: 95px;
 `

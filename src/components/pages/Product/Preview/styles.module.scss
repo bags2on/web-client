@@ -1,3 +1,7 @@
+.root {
+  padding-top: 11px;
+}
+
 .swiperContainer {
   overflow: hidden;
   & ul {
@@ -16,12 +20,14 @@
   user-select: none;
   width: 100%;
   display: block;
+  border-radius: 14px;
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 650px;
 }
 
 @media screen and (min-width: $md) {
   .root {
+    padding-top: 0;
     display: flex;
   }
 }
