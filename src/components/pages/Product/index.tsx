@@ -3,55 +3,33 @@ import Preview from './Preview/Preview'
 import Details from './Details'
 import Info from './Info'
 import Recommended from './Recommended/Recommended'
+import type { GetProductQuery } from '@/graphql/product/_gen_/product.query'
 
 import { Container, Inner, PreviewWrapper, DetailsWrapper } from './Product.styled'
-
-// type featuresType = {
-//   material: string
-//   color: string
-//   gender: string
-//   category: string
-// }
-
-interface ProductPageProps {
-  id: string
-  title: string
-  preview: string
-  currentPrice: number
-  tags?: string[]
-  images: string[]
-  description?: string
-  basePrice: number
-  instock: boolean
-  // features: featuresType
-}
 
 interface TodoProps {
   rating: number
 }
 
 interface Iprops {
-  product: ProductPageProps
+  product: Extract<GetProductQuery['product'], { __typename: 'Product' }>
   todo: TodoProps
 }
 
-const plug =
-  'https://res.cloudinary.com/dct4oinuz/image/upload/v1626712628/bags2on/no_image_wqwwvv.jpg'
-
 const ProductDetails: React.FC<Iprops> = ({ product, todo }) => {
-  const previewImages = [product.preview, plug, plug, plug, plug]
+  const TODO_TAGS: string[] = []
 
   return (
     <Container>
       <Inner>
         <PreviewWrapper>
-          <Preview images={previewImages} />
+          <Preview images={product.details.images} />
         </PreviewWrapper>
         <DetailsWrapper>
           <Details
             id={product.id}
             title={product.title}
-            tags={product.tags}
+            tags={TODO_TAGS}
             inStock={product.instock}
             basePrice={product.basePrice}
             currentPrice={product.currentPrice}
@@ -59,7 +37,7 @@ const ProductDetails: React.FC<Iprops> = ({ product, todo }) => {
           />
         </DetailsWrapper>
       </Inner>
-      <Info description={product.description} />
+      <Info description={product.details.description} />
       <Recommended />
     </Container>
   )

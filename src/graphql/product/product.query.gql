@@ -4,26 +4,19 @@ query GetProduct($id: ID!) {
     ... on Product {
       id
       title
-      preview
+      instock
       currentPrice
       basePrice
-      tags
-      amount
+      preview
       gender
       category
-      description
-      images
-      #       isHidden
-      instock
-      # features {
-      #   material
-      #   color
-      #   gender
-      #   category
-      # }
-      # rating {
-      #   rating
-      # }
+      details {
+        description
+        color
+        images
+        delivery
+        dimensions
+      }
     }
     ... on NotFound {
       message

@@ -15,16 +15,20 @@ export type GetProductQuery = {
         __typename: 'Product'
         id: string
         title: string
-        preview: string
+        instock: boolean
         currentPrice: number
         basePrice: number
-        tags: Array<string>
-        amount: number
+        preview: string
         gender: Types.Gender
         category: Types.CategoryType
-        description: string
-        images: Array<string>
-        instock: boolean
+        details: {
+          __typename?: 'ProductDetails'
+          description: string
+          color: string
+          images: Array<string>
+          delivery: string
+          dimensions: string
+        }
       }
     | null
 }
@@ -36,16 +40,19 @@ export const GetProductDocument = gql`
       ... on Product {
         id
         title
-        preview
+        instock
         currentPrice
         basePrice
-        tags
-        amount
+        preview
         gender
         category
-        description
-        images
-        instock
+        details {
+          description
+          color
+          images
+          delivery
+          dimensions
+        }
       }
       ... on NotFound {
         message

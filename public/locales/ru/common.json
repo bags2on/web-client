@@ -3,9 +3,9 @@
   "catalog": "каталог",
   "mySearch": "Я ищу...",
   "productTag": {
-    "NEW": "New",
-    "TOP": "Топ",
-    "STOCK": "Акция"
+    "new": "New",
+    "top": "Топ",
+    "stock": "Акция"
   },
   "drawer": {
     "home": "Главная",

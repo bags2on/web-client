@@ -11,11 +11,11 @@ export const getColorByTagName = (name: string): string => {
 
 export const getProductMainTagColor = (name: string): string => {
   switch (name) {
-    case 'NEW':
+    case 'new':
       return '#6EBE90'
-    case 'TOP':
+    case 'top':
       return '#a3f271'
-    case 'STOCK':
+    case 'stock':
       return '#fd3b3b'
     default:
       return 'lightgray'

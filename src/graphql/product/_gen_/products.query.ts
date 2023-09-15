@@ -29,7 +29,7 @@ export type AllProductsQuery = {
       instock: boolean
       currentPrice: number
       basePrice: number
-      mainTag: Types.MainTag
+      mainTag?: Types.MainTag | null
       preview: string
     }>
   }
