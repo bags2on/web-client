@@ -38,7 +38,7 @@ const PrevButton = styled(IconButton)`
     left: 3%;
   }
   @media ${({ theme }) => theme.media.laptop} {
-    left: 9%;
+    left: 5%;
   }
 `
 
@@ -48,7 +48,7 @@ const NextButton = styled(IconButton)`
     right: 3%;
   }
   @media ${({ theme }) => theme.media.laptop} {
-    right: 9%;
+    right: 5%;
   }
 `
 

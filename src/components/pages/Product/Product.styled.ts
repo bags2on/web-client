@@ -16,11 +16,18 @@ export const Inner = styled.div`
   flex-wrap: wrap;
 `
 
+const BREAKPOINT = 770
+
 export const PreviewWrapper = styled.div`
   flex-grow: 0;
   flex-basis: 100%;
   max-width: 100%;
-  @media ${({ theme }) => theme.media.lg} {
+  @media (min-width: ${BREAKPOINT}px) {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  @media ${({ theme }) => theme.media.xl} {
     flex-basis: 60%;
     max-width: 60%;
   }
@@ -30,7 +37,12 @@ export const DetailsWrapper = styled.div`
   flex-grow: 0;
   flex-basis: 100%;
   max-width: 100%;
-  @media ${({ theme }) => theme.media.lg} {
+  @media (min-width: ${BREAKPOINT}px) {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  @media ${({ theme }) => theme.media.xl} {
     flex-basis: 40%;
     max-width: 40%;
   }

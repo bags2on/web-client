@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import classes from './styles.module.scss'
 import Thumbs from './Thumbs/Thumbs'
 import NavButtons from './NavButtons'
-import Pagination from './Pagination'
 import { Swiper, SwiperSlide, SwiperClass } from 'swiper/react'
 
 interface PreviewProps {
@@ -44,11 +43,6 @@ const Preview: React.FC<PreviewProps> = ({ images }) => {
         ))}
         <NavButtons />
       </Swiper>
-      <Pagination
-        len={images.length}
-        current={currentIndex}
-        onPaginationChange={handlePaginationChange}
-      />
     </div>
   )
 }
