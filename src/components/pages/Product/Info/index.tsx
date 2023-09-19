@@ -1,11 +1,16 @@
 import React, { useState } from 'react'
 import { Tabs, TabContent } from '@/shared/Tabs'
+import Description from './Description'
 
 interface InfoProps {
-  description?: string
+  gender: string
+  description: string
+  category: string
+  dimensions: string
+  color: string
 }
 
-const Info: React.FC<InfoProps> = () => {
+const Info: React.FC<InfoProps> = ({ gender, description, dimensions, color, category }) => {
   const [activeTab, setActiveTab] = useState<number>(0)
 
   const handleTabChange = (tabIndex: number) => {
@@ -32,7 +37,13 @@ const Info: React.FC<InfoProps> = () => {
           ]}
         />
         <TabContent tabID={0} value={activeTab}>
-          <div>TabContent #1</div>
+          <Description
+            gender={gender}
+            description={description}
+            dimensions={dimensions}
+            color={color}
+            category={category}
+          />
         </TabContent>
         <TabContent tabID={1} value={activeTab}>
           <div>TabContent #2</div>

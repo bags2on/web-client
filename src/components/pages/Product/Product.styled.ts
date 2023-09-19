@@ -14,6 +14,10 @@ export const Inner = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 10px;
+  @media ${({ theme }) => theme.media.md} {
+    margin-bottom: 50px;
+  }
 `
 
 const BREAKPOINT = 770

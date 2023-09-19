@@ -3,6 +3,7 @@ query GetProduct($id: ID!) {
     __typename
     ... on Product {
       id
+      sku
       title
       instock
       currentPrice

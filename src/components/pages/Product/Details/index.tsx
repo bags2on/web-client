@@ -29,6 +29,7 @@ import SubControls from './SubControls'
 
 interface DetailsProps {
   id: string
+  sku: string
   title: string
   currentPrice: number
   tags?: string[]
@@ -39,6 +40,7 @@ interface DetailsProps {
 
 const Details: React.FC<DetailsProps> = ({
   id,
+  sku,
   title,
   currentPrice,
   tags,
@@ -64,7 +66,7 @@ const Details: React.FC<DetailsProps> = ({
           <span>{inStock ? 'В наличии' : 'Нет в наличии'}</span>
         </Availability>
         <Rating starRating={rating} />
-        <Code>Код:&nbsp;{id}</Code>
+        <Code>Код:&nbsp;{sku}</Code>
       </Box>
       {/*  */}
       {basePrice !== currentPrice && (

@@ -19,6 +19,8 @@ interface Iprops {
 const ProductDetails: React.FC<Iprops> = ({ product, todo }) => {
   const TODO_TAGS: string[] = []
 
+  const { description, dimensions, color } = product.details
+
   return (
     <Container>
       <Inner>
@@ -28,6 +30,7 @@ const ProductDetails: React.FC<Iprops> = ({ product, todo }) => {
         <DetailsWrapper>
           <Details
             id={product.id}
+            sku={product.sku}
             title={product.title}
             tags={TODO_TAGS}
             inStock={product.instock}
@@ -37,7 +40,13 @@ const ProductDetails: React.FC<Iprops> = ({ product, todo }) => {
           />
         </DetailsWrapper>
       </Inner>
-      <Info description={product.details.description} />
+      <Info
+        gender={product.gender}
+        description={description}
+        dimensions={dimensions}
+        color={color}
+        category={product.category}
+      />
       <Recommended />
     </Container>
   )

@@ -14,6 +14,7 @@ export type GetProductQuery = {
     | {
         __typename: 'Product'
         id: string
+        sku: string
         title: string
         instock: boolean
         currentPrice: number
@@ -39,6 +40,7 @@ export const GetProductDocument = gql`
       __typename
       ... on Product {
         id
+        sku
         title
         instock
         currentPrice
