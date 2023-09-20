@@ -44,7 +44,7 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   cursor: pointer;
   user-select: none;
-  width: 75px;
+  max-width: 75px;
   height: 75px;
   flex-shrink: 0;
   margin-right: 10px;
@@ -55,7 +55,7 @@ export const ListItem = styled.li`
   }
 
   @media ${({ theme }) => theme.media.xl} {
-    width: 100%;
+    max-width: 100%;
     height: auto;
     flex-shrink: 1;
     margin-right: 0;
