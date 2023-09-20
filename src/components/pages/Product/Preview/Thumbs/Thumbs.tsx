@@ -16,6 +16,8 @@ const Thumbs: React.FC<ThumbsProps> = ({ activeIndex, images, onChange }) => {
           <ListItem key={index} onClick={() => onChange(index)}>
             <Image
               src={url}
+              width={100}
+              height={100}
               alt={`навигационное фото продукта №${index + 1}`}
               $active={index === activeIndex}
             />

@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import NextImage from 'next/image'
 
 export const Container = styled.div`
   display: flex;
@@ -43,8 +44,8 @@ export const List = styled.ul`
 export const ListItem = styled.li`
   cursor: pointer;
   user-select: none;
-  width: 100%;
-  max-width: 75px;
+  width: 75px;
+  height: 75px;
   flex-shrink: 0;
   margin-right: 10px;
   -webkit-tap-highlight-color: transparent;
@@ -54,20 +55,25 @@ export const ListItem = styled.li`
   }
 
   @media ${({ theme }) => theme.media.xl} {
-    max-width: 100%;
+    width: 100%;
+    height: auto;
     flex-shrink: 1;
     margin-right: 0;
     margin-bottom: 10px;
   }
 `
 
-export const Image = styled.img<{ $active: boolean }>`
+export const Image = styled(NextImage)<{ $active: boolean }>`
   display: block;
   border-radius: 10px;
-  max-width: 100%;
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
   border: ${({ $active }) => ($active ? '1px solid #343434' : 'none')};
   &:hover {
     border: 1px dashed #343434;
+  }
+
+  @media ${({ theme }) => theme.media.xl} {
+    height: auto;
   }
 `

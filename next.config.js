@@ -14,6 +14,14 @@ const nextConfig = {
 
     return config
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'res.cloudinary.com'
+      }
+    ]
+  },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `@import '@/styles/globals.scss';`
