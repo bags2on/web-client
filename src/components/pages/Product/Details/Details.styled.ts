@@ -2,6 +2,8 @@ import Button from '@/shared/Button'
 import SvgIcon from '@/shared/SvgIcon'
 import styled from 'styled-components'
 
+const BREAKPOINT = 770
+
 export const Container = styled.section`
   padding: 10px 10px 15px 10px;
   @media ${({ theme }) => theme.media.lg} {
@@ -10,27 +12,48 @@ export const Container = styled.section`
 `
 
 export const Title = styled.h1`
-  font-size: 30px;
+  font-size: 22px;
+  line-height: 25px;
   font-weight: 600;
-  line-height: 36px;
-  margin: 0;
-  margin-bottom: 15px;
-`
-
-export const Code = styled.p`
-  color: #939191;
-  margin: 0;
-  font-weight: 500;
-  font-size: 17px;
-  line-height: 17px;
-  margin-left: 20px;
+  margin: 15px 0;
+  @media ${({ theme }) => theme.media.xl} {
+    margin-top: 0;
+    margin-bottom: 22px;
+    font-size: 27px;
+    line-height: 29px;
+  }
 `
 
 export const Box = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 25px;
+`
+
+export const BoxInner = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-basis: 100%;
+  @media ${({ theme }) => theme.media.laptop} {
+    flex-basis: auto;
+  }
+`
+
+export const Code = styled.p`
+  color: #343434;
+  margin: 0;
+  font-weight: 500;
+  font-size: 17px;
+  line-height: 17px;
+  margin-left: 20px;
+  & span {
+    color: #939191;
+  }
+  @media ${({ theme }) => theme.media.xl} {
+  }
 `
 
 interface AvailabilityStyledProps {
@@ -39,7 +62,7 @@ interface AvailabilityStyledProps {
 
 export const Availability = styled.div<AvailabilityStyledProps>`
   display: inline-flex;
-  margin-right: 30px;
+  margin-bottom: 20px;
   border-radius: 12px;
   width: auto;
   padding: 7px 12px 7px 10px;
@@ -50,8 +73,8 @@ export const Availability = styled.div<AvailabilityStyledProps>`
     margin-left: 5px;
     font-weight: 600;
   }
-  @media ${({ theme }) => theme.media.md} {
-    margin-right: auto;
+  @media ${({ theme }) => theme.media.laptop} {
+    margin-bottom: 0;
   }
 `
 
@@ -70,7 +93,7 @@ export const CurrentPrice = styled.p`
   font-size: 29px;
   line-height: 29px;
   font-weight: 600;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   & span {
     font-size: 25px;
   }
@@ -107,6 +130,17 @@ export const TheOrderButtonIcon = styled(SvgIcon)`
 
 export const ButtonsWrapper = styled.div`
   margin: 30px 0 10px 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  @media ${({ theme }) => theme.media.md} {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+  }
+
+  @media (min-width: ${BREAKPOINT}px) {
+    flex-wrap: wrap;
+  }
 `
 
 export const OrderNowButton = styled(Button)`
@@ -121,6 +155,15 @@ export const OrderNowButton = styled(Button)`
   background-color: #232323;
   &:hover {
     background-color: #32cd32;
+  }
+  @media ${({ theme }) => theme.media.md} {
+    margin-bottom: 0;
+    margin-right: 15px;
+  }
+
+  @media (min-width: ${BREAKPOINT}px) {
+    margin-bottom: 15px;
+    margin-right: 0;
   }
 `
 

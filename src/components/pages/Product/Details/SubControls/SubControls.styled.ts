@@ -6,9 +6,11 @@ import styled, { css } from 'styled-components'
 export const Container = styled.div`
   display: flex;
   align-items: center;
-  max-width: 500px;
   overflow-x: auto;
   flex-wrap: wrap;
+  @media ${({ theme }) => theme.media.lg} {
+    max-width: 500px;
+  }
 `
 
 const sharedStyles = css`
@@ -21,8 +23,17 @@ const sharedStyles = css`
   padding: 10px;
   border-radius: 10px;
   flex-grow: 1;
-  &:hover {
-    background-color: ${({ theme }) => (theme.type === 'light' ? '#ededed' : '#353535')};
+
+  @media (hover: hover) {
+    &:hover {
+      background-color: ${({ theme }) => (theme.type === 'light' ? '#ededed' : '#353535')};
+    }
+  }
+
+  @media (hover: none) {
+    &:active {
+      background-color: ${({ theme }) => (theme.type === 'light' ? '#ededed' : '#353535')};
+    }
   }
 
   @media ${({ theme }) => theme.media.desktop} {

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components'
 
 export const Title = styled.p`
+  margin: 0;
   font-weight: 600;
   font-size: 16px;
   margin-bottom: 11px;

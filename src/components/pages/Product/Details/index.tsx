@@ -12,6 +12,7 @@ import {
   Title,
   Code,
   Box,
+  BoxInner,
   Availability,
   TheAvailabilityIcon,
   CurrentPrice,
@@ -65,8 +66,12 @@ const Details: React.FC<DetailsProps> = ({
           </TheAvailabilityIcon>
           <span>{inStock ? 'В наличии' : 'Нет в наличии'}</span>
         </Availability>
-        <Rating starRating={rating} />
-        <Code>Код:&nbsp;{sku}</Code>
+        <BoxInner>
+          <Rating starRating={rating} />
+          <Code>
+            <span>Код:</span>&nbsp;{sku}
+          </Code>
+        </BoxInner>
       </Box>
       {/*  */}
       {basePrice !== currentPrice && (
