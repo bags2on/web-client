@@ -37,6 +37,7 @@ interface DetailsProps {
   basePrice: number
   inStock: boolean
   rating?: number
+  delivery: string
 }
 
 const Details: React.FC<DetailsProps> = ({
@@ -47,7 +48,8 @@ const Details: React.FC<DetailsProps> = ({
   tags,
   inStock,
   basePrice,
-  rating
+  rating,
+  delivery
 }) => {
   const handleAddToCart = (): void => {
     CartMutations.addProduct({
@@ -105,7 +107,7 @@ const Details: React.FC<DetailsProps> = ({
       <SubControls productId={id} />
 
       {tags && tags.length > 1 && <Tags tags={tags} />}
-      <Delivery free={false} />
+      <Delivery free={delivery === 'free'} />
     </Container>
   )
 }
