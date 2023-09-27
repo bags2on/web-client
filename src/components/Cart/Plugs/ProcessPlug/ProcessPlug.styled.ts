@@ -30,9 +30,18 @@ export const Content = styled.div`
 export const BackButton = styled(Button)`
   max-width: 70%;
   margin-top: 50px;
+  background-color: #232323;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+  border-radius: 14px;
+  font-weight: 600;
 `
 
 export const ExpandIcon = styled(SvgIcon)`
   font-size: 20px;
   transform: rotate(-90deg);
+  font-size: 23px;
+  fill: #fff;
+  margin-right: 10px;
 `

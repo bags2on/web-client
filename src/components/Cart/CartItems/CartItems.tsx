@@ -1,6 +1,6 @@
 import React from 'react'
 import Summary from '../Summary/Summary'
-import ResponsePlug from './ResponsePlug'
+import ProcessPlug from '../Plugs/ProcessPlug/ProcessPlug'
 import ContentLoader from 'react-content-loader'
 import TopControls from '../TopControls/TopControls'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
@@ -54,11 +54,11 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   })
 
   if (isCartEmpty) {
-    return <ResponsePlug text="Корзина пуста" onClose={onClose} />
+    return <ProcessPlug text="Корзина пуста" onClose={onClose} />
   }
 
   if (error) {
-    return <ResponsePlug text="Не удалось получить данные" onClose={onClose} />
+    return <ProcessPlug text="Не удалось получить данные" onClose={onClose} />
   }
 
   const handleProductRemove = (id: string): void => {
