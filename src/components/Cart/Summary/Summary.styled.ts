@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import Button from '@/shared/Button'
 
 export const Container = styled.div`
   width: 100%;
@@ -26,4 +27,11 @@ export const CartPrice = styled.p`
     font-size: 19px;
     font-weight: 600;
   }
+`
+
+export const OrderButton = styled(Button)`
+  background-color: var(--green-light);
+  font-weight: 600;
+  color: #fff;
+  border-radius: 14px;
 `
