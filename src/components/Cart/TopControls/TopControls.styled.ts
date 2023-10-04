@@ -38,6 +38,13 @@ export const Title = styled.p`
   }
 `
 
+export const TheTrashIcon = styled(SvgIcon)`
+  fill: #fff;
+  font-size: 18px;
+  margin-right: 4px;
+  transition: fill 0.2s;
+`
+
 export const ClearButton = styled(Button)`
   font-size: 14px;
   line-height: 14px;
@@ -46,10 +53,11 @@ export const ClearButton = styled(Button)`
   text-transform: none;
   border: none;
   color: #fff;
-`
-
-export const TheTrashIcon = styled(SvgIcon)`
-  fill: #fff;
-  font-size: 18px;
-  margin-right: 4px;
+  background-color: #232323;
+  &:hover:not(:disabled) {
+    background-color: #232323;
+    & ${TheTrashIcon} {
+      fill: #f44336;
+    }
+  }
 `
