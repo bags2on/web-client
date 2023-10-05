@@ -1,5 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
+import ArrowIcon from '../../../../public/assets/icons/expand-arrow.svg'
 import classes from './styles.module.scss'
 import { useTranslation } from 'next-i18next'
 import { routeNames } from '@/utils/navigation'
@@ -21,7 +22,8 @@ export default function NotFound() {
           </span>{' '}
           {t('page404.subTitle3')}
         </p>
-        <p>
+        <p className={classes.actionWrapper}>
+          <ArrowIcon className={classes.arrowIcon} />
           <Link className={classes.actionLink} href={routeNames.root}>
             {t('page404.action')}
           </Link>

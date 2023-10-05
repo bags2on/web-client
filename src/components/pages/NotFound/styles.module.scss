@@ -5,7 +5,7 @@ $title-content-ua: 'Помилка 404';
 $subtitle-content-ua: 'сторінка';
 
 $color-1: #f0f;
-$color-2: #0ff;
+$color-2: #f2e30c;
 
 .wrapper {
   height: calc(100vh - 58px);
@@ -18,9 +18,9 @@ $color-2: #0ff;
 .error {
   position: relative;
   margin: auto;
-  padding: 25px 35px;
+  padding: 3% 5%;
   z-index: 2;
-  max-width: 600px;
+  max-width: 700px;
 }
 .error .box {
   position: absolute;
@@ -54,9 +54,10 @@ $color-2: #0ff;
   box-shadow: inset 0px 0px 0px 1px currentColor;
   color: $color-2;
 }
+//
 .error h3 {
   position: relative;
-  font-size: 4vw;
+  font-size: 8vw;
   font-weight: 600;
   margin: 0;
   text-transform: uppercase;
@@ -134,12 +135,46 @@ $color-2: #0ff;
   animation: shiftleft 1.7s steps(2) infinite;
 }
 
+.actionWrapper {
+  display: flex;
+  align-items: center;
+}
+
 .actionLink {
   cursor: pointer;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: underline;
   font-size: 18px;
   color: #232323;
+  &:hover {
+    color: $color-1;
+  }
+}
+
+.arrowIcon {
+  fill: #232323;
+  display: block;
+  font-size: 1.5rem;
+  width: 1em;
+  height: 1em;
+  user-select: none;
+  flex-shrink: 0;
+  overflow: hidden;
+  transform: rotate(90deg);
+}
+
+@media screen and (min-width: $lg) {
+  .wrapper {
+    height: calc(100vh - 74px);
+  }
+
+  .error h3 {
+    font-size: 4vw;
+  }
+
+  .error {
+    padding: 25px 35px;
+  }
 }
 
 @-moz-keyframes dance {
