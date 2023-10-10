@@ -4,6 +4,7 @@ import ProcessPlug from '../Plugs/ProcessPlug/ProcessPlug'
 import ListSkeleton from './ListSkeleton'
 import TopControls from '../TopControls/TopControls'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
+import { useTranslation } from 'next-i18next'
 import { useReactiveVar } from '@apollo/client'
 import { CartMutations } from '../../../apollo/cache/mutations'
 import { useCartProductsQuery } from '../../../graphql/product/_gen_/cartProducts.query'
@@ -17,8 +18,10 @@ interface CartItemsProps {
 }
 
 const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
+  const { t } = useTranslation()
   const cartItems = useReactiveVar(cartItemsVar)
 
+  // TODO: put this logic into state elements
   const cartMap: Record<string, number> = {}
 
   const normalizedCart = cartItems.reduce((acc, item) => {
@@ -54,11 +57,11 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   })
 
   if (isCartEmpty) {
-    return <ProcessPlug text="Корзина пуста" onClose={onClose} />
+    return <ProcessPlug text={t('cart.emptyMsg')} onClose={onClose} />
   }
 
   if (error) {
-    return <ProcessPlug text="Не удалось получить данные" onClose={onClose} />
+    return <ProcessPlug text={t('cart.errorMsg')} onClose={onClose} />
   }
 
   const handleProductRemove = (id: string): void => {
@@ -72,14 +75,13 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
         <ListSkeleton itemsAmount={cartItems.length} />
       ) : (
         <ProductsList>
-          {data?.cartProducts.map((product: CartItemType, index) => (
-            <li key={index}>
-              <CartItem
-                amount={normalizedCart[product.id]}
-                product={product}
-                onRemove={handleProductRemove}
-              />
-            </li>
+          {data?.cartProducts.map((product: CartItemType) => (
+            <CartItem
+              key={product.id}
+              amount={normalizedCart[product.id]}
+              product={product}
+              onRemove={handleProductRemove}
+            />
           ))}
         </ProductsList>
       )}

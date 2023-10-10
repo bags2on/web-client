@@ -1,5 +1,6 @@
 import React from 'react'
 import Skeleton from './Skeleton'
+import { useTranslation } from 'next-i18next'
 import { useReactiveVar } from '@apollo/client'
 import { cartPriceVar } from '../../../apollo/cache/variables'
 import { formatPrice } from '@/utils/helper'
@@ -12,6 +13,7 @@ interface SummaryProps {
 }
 
 const Summary: React.FC<SummaryProps> = ({ isLoading, onCheckout }) => {
+  const { t } = useTranslation()
   const cartPrice = useReactiveVar(cartPriceVar)
 
   const handleButtonClick = (): void => {
@@ -26,11 +28,11 @@ const Summary: React.FC<SummaryProps> = ({ isLoading, onCheckout }) => {
     <Container>
       <InnerContainer>
         <CartPrice>
-          <span>Итого:</span>
+          <span>{t('cart.total')}:</span>
           <b>{formatPrice(cartPrice)}&nbsp;грн.</b>
         </CartPrice>
         <OrderButton fullWidth color="secondary" onClick={handleButtonClick}>
-          Оформить заказ
+          {t('cart.makeOrder')}
         </OrderButton>
       </InnerContainer>
     </Container>

@@ -2,6 +2,17 @@
   "home": "главная",
   "catalog": "каталог",
   "mySearch": "Я ищу...",
+  "cart": {
+    "topControls": {
+      "title1": "Ваши",
+      "title2": "товары",
+      "action": "Очистить"
+    },
+    "total": "Итого",
+    "makeOrder": "Оформить заказ",
+    "emptyMsg": "Корзина пуста",
+    "errorMsg": "Не удалось получить данные"
+  },
   "productTag": {
     "new": "New",
     "top": "Топ",

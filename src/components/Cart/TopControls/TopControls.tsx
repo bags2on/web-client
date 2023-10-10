@@ -1,6 +1,7 @@
 import React from 'react'
 import CrossIcon from '../../../../public/assets/icons/cross.svg'
 import TrashIcon from '../../../../public/assets/icons/trash.svg'
+import { useTranslation } from 'next-i18next'
 import { CartMutations } from '@/apollo/cache/mutations'
 
 import {
@@ -18,6 +19,8 @@ interface TopControlsProps {
 }
 
 const TopControls: React.FC<TopControlsProps> = ({ onCartClose }) => {
+  const { t } = useTranslation()
+
   const handleClearButtonClick = (): void => {
     CartMutations.clearCart()
   }
@@ -31,7 +34,7 @@ const TopControls: React.FC<TopControlsProps> = ({ onCartClose }) => {
           </TheCloseIcon>
         </CloseButton>
         <Title>
-          <b>Ваши</b>&nbsp;товары
+          <b>{t('cart.topControls.title1')}</b>&nbsp;{t('cart.topControls.title2')}
         </Title>
         <ClearButton
           color="danger"
@@ -42,7 +45,7 @@ const TopControls: React.FC<TopControlsProps> = ({ onCartClose }) => {
             </TheTrashIcon>
           }
         >
-          Очистить
+          {t('cart.topControls.action')}
         </ClearButton>
       </InnerContainer>
     </Container>

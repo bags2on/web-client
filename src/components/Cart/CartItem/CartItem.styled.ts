@@ -3,7 +3,7 @@ import IconButton from '@/shared/IconButton'
 import SvgIcon from '@/shared/SvgIcon'
 import Link from 'next/link'
 
-export const Container = styled.div`
+export const Container = styled.li`
   display: flex;
   position: relative;
   margin-bottom: 35px;

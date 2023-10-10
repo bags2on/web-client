@@ -2,6 +2,17 @@
   "home": "головна",
   "catalog": "каталог",
   "mySearch": "Я шукаю...",
+  "cart": {
+    "topControls": {
+      "title1": "Ваші",
+      "title2": "товари",
+      "action": "Очистити"
+    },
+    "total": "Разом",
+    "makeOrder": "Оформити замовлення",
+    "emptyMsg": "Кошик порожній",
+    "errorMsg": "Не вдалося отримати дані"
+  },
   "productTag": {
     "new": "New",
     "top": "Топ",
