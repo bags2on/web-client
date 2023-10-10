@@ -37,7 +37,7 @@ export const SideBox = styled.div`
   order: 2;
 
   @media ${({ theme }) => theme.media.xl} {
-    flex-basis: 27%;
+    flex-basis: 20%;
     order: 1;
     padding-right: 20px;
   }
@@ -47,6 +47,9 @@ export const HomeContainer = styled.div`
   order: 1;
   @media ${({ theme }) => theme.media.laptop} {
     flex-direction: initial;
+  }
+  @media ${({ theme }) => theme.media.xl} {
+    flex-basis: 80%;
   }
 `
 
