@@ -1,15 +1,15 @@
 import React from 'react'
-import EmptyCartIcon from '../../../../public/assets/emptycart.svg'
-import ArrowIcon from '../../../../public/assets/icons/expand-arrow.svg'
+import EmptyCartIcon from '../../../../../public/assets/emptycart.svg'
+import ArrowIcon from '../../../../../public/assets/icons/expand-arrow.svg'
 
-import { Container, Content, BackButton, ExpandIcon } from './ResponsePlug.styled'
+import { Container, Content, BackButton, ExpandIcon } from './ProcessPlug.styled'
 
-interface ResponsePlugProps {
+interface ProcessPlugProps {
   text: string
   onClose(): void
 }
 
-const ResponsePlug: React.FC<ResponsePlugProps> = ({ text, onClose }) => {
+const ProcessPlug: React.FC<ProcessPlugProps> = ({ text, onClose }) => {
   return (
     <Container>
       <Content>
@@ -32,4 +32,4 @@ const ResponsePlug: React.FC<ResponsePlugProps> = ({ text, onClose }) => {
   )
 }
 
-export default ResponsePlug
+export default ProcessPlug

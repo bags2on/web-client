@@ -18,7 +18,7 @@ export type ProductsByIdQuery = {
     instock: boolean
     currentPrice: number
     basePrice: number
-    mainTag: Types.MainTag
+    mainTag?: Types.MainTag | null
     preview: string
   }>
 }

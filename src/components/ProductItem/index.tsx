@@ -63,13 +63,13 @@ const ProductItem: React.FC<ProductItemProps> = ({
     setLiked(!isLiked)
   }
 
-  function genTagView(tag: string): React.ReactNode | null {
+  function genTagView(tag: string): React.ReactElement | null {
     switch (tag) {
-      case 'NEW':
+      case 'new':
         return <span>{t(`productTag.${mainTag}`)}</span>
-      case 'TOP':
+      case 'top':
         return <Image width={25} height={25} src="/assets/icons/fire.png" alt="смайлик - огонь" />
-      case 'STOCK':
+      case 'stock':
         return <span>-{Math.round(((basePrice - price) * 100) / basePrice)}%</span>
       default:
         return null
@@ -109,7 +109,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
           {title}
         </Title>
       </Info>
-      {mainTag !== 'REGULAR' && (
+      {mainTag && (
         <Tag $backgroundColor={getProductMainTagColor(mainTag)}>{genTagView(mainTag)}</Tag>
       )}
     </Container>

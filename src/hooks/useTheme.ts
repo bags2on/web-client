@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 
 type ThemeType = 'light' | 'dark'
 
@@ -16,10 +16,10 @@ export const useTheme = (): [ThemeType, (checked: boolean) => void] => {
     document.body.setAttribute('data-theme', localTheme)
   }, [theme])
 
-  const toggleThemeMode = (checked: boolean): void => {
+  const toggleTheme = useCallback((checked: boolean) => {
     setTheme(checked ? 'dark' : 'light')
     localStorage.setItem('theme', checked ? 'dark' : 'light')
-  }
+  }, [])
 
-  return [theme, toggleThemeMode]
+  return [theme, toggleTheme]
 }

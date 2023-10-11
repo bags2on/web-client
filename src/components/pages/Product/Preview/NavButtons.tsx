@@ -12,7 +12,7 @@ const navButton = css`
   height: 45px;
   margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
   z-index: 10;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   background-color: #fff;
@@ -26,6 +26,7 @@ const navButton = css`
     transform: scale(1.2);
   }
   @media ${({ theme }) => theme.media.md} {
+    display: flex;
     width: 50px;
     height: 50px;
   }
@@ -33,12 +34,22 @@ const navButton = css`
 
 const PrevButton = styled(IconButton)`
   ${navButton}
-  left: 10px;
+  @media ${({ theme }) => theme.media.md} {
+    left: 3%;
+  }
+  @media ${({ theme }) => theme.media.laptop} {
+    left: 5%;
+  }
 `
 
 const NextButton = styled(IconButton)`
   ${navButton}
-  right: 10px;
+  @media ${({ theme }) => theme.media.md} {
+    right: 3%;
+  }
+  @media ${({ theme }) => theme.media.laptop} {
+    right: 5%;
+  }
 `
 
 const PrevButtonIcon = styled(SvgIcon)`

@@ -7,8 +7,8 @@ interface styleProps {
 }
 
 const SvgEl = styled.svg<styleProps>`
-  width: ${({ fallback }) => (fallback ? '34px' : '24px')};
-  height: ${({ fallback }) => (fallback ? '40px' : '24px')};
+  width: ${({ $fallback }) => ($fallback ? '34px' : '24px')};
+  height: ${({ $fallback }) => ($fallback ? '40px' : '24px')};
   & > rect {
     fill: ${({ theme, dark }) => (dark ? '#343434' : theme.colors.primary)};
   }

@@ -1,15 +1,16 @@
 import React from 'react'
 import Summary from '../Summary/Summary'
-import ResponsePlug from './ResponsePlug'
-import ContentLoader from 'react-content-loader'
+import ProcessPlug from '../Plugs/ProcessPlug/ProcessPlug'
+import ListSkeleton from './ListSkeleton'
 import TopControls from '../TopControls/TopControls'
 import CartItem, { CartItemType } from '../CartItem/CartItem'
+import { useTranslation } from 'next-i18next'
 import { useReactiveVar } from '@apollo/client'
 import { CartMutations } from '../../../apollo/cache/mutations'
 import { useCartProductsQuery } from '../../../graphql/product/_gen_/cartProducts.query'
 import { cartItemsVar } from '../../../apollo/cache/variables'
 
-import { Container, ProductsList, ContentLoaderList } from './CartItems.styled'
+import { Container, ProductsList } from './CartItems.styled'
 
 interface CartItemsProps {
   onClose(): void
@@ -17,8 +18,10 @@ interface CartItemsProps {
 }
 
 const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
+  const { t } = useTranslation()
   const cartItems = useReactiveVar(cartItemsVar)
 
+  // TODO: put this logic into state elements
   const cartMap: Record<string, number> = {}
 
   const normalizedCart = cartItems.reduce((acc, item) => {
@@ -33,7 +36,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
 
   const isCartEmpty = cartItems.length === 0
 
-  const { data, loading, error } = useCartProductsQuery({
+  const { data, error, loading } = useCartProductsQuery({
     variables: {
       input: cartItems
     },
@@ -54,11 +57,11 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   })
 
   if (isCartEmpty) {
-    return <ResponsePlug text="Корзина пуста" onClose={onClose} />
+    return <ProcessPlug text={t('cart.emptyMsg')} onClose={onClose} />
   }
 
   if (error) {
-    return <ResponsePlug text="Не удалось получить данные" onClose={onClose} />
+    return <ProcessPlug text={t('cart.errorMsg')} onClose={onClose} />
   }
 
   const handleProductRemove = (id: string): void => {
@@ -69,29 +72,12 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
     <Container>
       <TopControls onCartClose={onClose} />
       {loading ? (
-        <ContentLoaderList>
-          {cartItems.map((_, index: number) => (
-            <li key={index}>
-              <ContentLoader
-                backgroundColor="#F2E30C"
-                foregroundColor="#ffd9a3"
-                width="100%"
-                height="210"
-                viewBox="0 0 400 210"
-              >
-                <rect x="20" y="5" rx="6" ry="6" width="130" height="155" />
-                <rect x="190" y="10" rx="0" ry="0" width="190" height="21" />
-                <rect x="190" y="47" rx="0" ry="0" width="130" height="20" />
-                <rect x="190" y="79" rx="0" ry="0" width="85" height="20" />
-              </ContentLoader>
-            </li>
-          ))}
-        </ContentLoaderList>
+        <ListSkeleton itemsAmount={cartItems.length} />
       ) : (
         <ProductsList>
-          {data?.cartProducts.map((product: CartItemType, index) => (
+          {data?.cartProducts.map((product: CartItemType) => (
             <CartItem
-              key={index}
+              key={product.id}
               amount={normalizedCart[product.id]}
               product={product}
               onRemove={handleProductRemove}

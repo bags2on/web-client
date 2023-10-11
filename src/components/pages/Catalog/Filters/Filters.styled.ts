@@ -18,7 +18,7 @@ export const Title = styled.p`
   font-size: 21px;
   text-align: center;
   position: relative;
-  font-weight: 500px;
+  font-weight: 500;
   @media ${({ theme }) => theme.media.lg} {
     text-align: start;
   }
@@ -36,6 +36,7 @@ export const ClearButton = styled(Button)`
   position: absolute;
   right: 10px;
   color: #fff;
+  background-color: ${({ theme }) => (theme.type === 'light' ? '#232323' : '#f44336')};
   font-weight: 600;
   top: 17px;
   font-size: 13px;

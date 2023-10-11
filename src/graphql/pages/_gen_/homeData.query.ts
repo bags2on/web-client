@@ -14,7 +14,7 @@ export type GetHomeDataQuery = {
       id: string
       title: string
       slug: string
-      mainTag: Types.MainTag
+      mainTag?: Types.MainTag | null
       currentPrice: number
       basePrice: number
       preview: string
@@ -24,7 +24,7 @@ export type GetHomeDataQuery = {
       id: string
       title: string
       slug: string
-      mainTag: Types.MainTag
+      mainTag?: Types.MainTag | null
       currentPrice: number
       basePrice: number
       preview: string

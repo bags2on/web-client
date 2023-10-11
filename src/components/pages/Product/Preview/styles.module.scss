@@ -1,5 +1,14 @@
+.root {
+  margin-top: 11px;
+  display: flex;
+  flex-wrap: wrap;
+  align-self: flex-start;
+}
+
 .swiperContainer {
   overflow: hidden;
+  border-radius: 14px;
+  flex-basis: 100%;
   & ul {
     @include reset-list;
   }
@@ -14,20 +23,36 @@
 
 .slideImage {
   user-select: none;
-  width: 100%;
   display: block;
+  width: 100%;
   margin: 0 auto;
-  max-width: 500px;
+  max-width: 700px;
 }
 
-@media screen and (min-width: $md) {
-  .root {
-    display: flex;
-  }
-}
+// @media screen and (min-width: $md) {}
 
 @media screen and (min-width: $lg) {
   .root {
     margin-top: 50px;
+  }
+}
+
+@media screen and (min-width: $xl) {
+  .root {
+    flex-wrap: nowrap;
+  }
+
+  .swiperContainer {
+    border-radius: 14px;
+  }
+}
+
+@media screen and (min-width: $desktop) {
+  .swiperContainer {
+    border-radius: 0;
+  }
+
+  .slideImage {
+    border-radius: 14px;
   }
 }

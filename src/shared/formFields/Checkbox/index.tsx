@@ -59,8 +59,8 @@ const Box = styled.span<{ $checked: boolean }>`
   ${({ $checked }) =>
     $checked &&
     css`
-      background: ${({ theme }) => (theme.type === 'light' ? 'orange' : theme.colors.primary)};
-      border-color: ${({ theme }) => (theme.type === 'light' ? 'orange' : theme.colors.primary)};
+      background: ${({ theme }) => (theme.type === 'light' ? '#232323' : theme.colors.primary)};
+      border-color: ${({ theme }) => (theme.type === 'light' ? '#232323' : theme.colors.primary)};
       animation: ${wave} 0.4s ease;
       & svg {
         stroke-dashoffset: 0;
@@ -79,7 +79,7 @@ const Label = styled.label`
   cursor: pointer;
   &:hover {
     & > span {
-      border-color: ${({ theme }) => (theme.type === 'light' ? 'orange' : theme.colors.primary)};
+      border-color: ${({ theme }) => (theme.type === 'light' ? '#232323' : theme.colors.primary)};
     }
   }
 `

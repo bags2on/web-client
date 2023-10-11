@@ -3,27 +3,21 @@ query GetProduct($id: ID!) {
     __typename
     ... on Product {
       id
+      sku
       title
-      preview
+      instock
       currentPrice
       basePrice
-      tags
-      amount
+      preview
       gender
       category
-      description
-      images
-      #       isHidden
-      instock
-      # features {
-      #   material
-      #   color
-      #   gender
-      #   category
-      # }
-      # rating {
-      #   rating
-      # }
+      details {
+        description
+        color
+        images
+        delivery
+        dimensions
+      }
     }
     ... on NotFound {
       message

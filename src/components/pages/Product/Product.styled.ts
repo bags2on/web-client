@@ -14,15 +14,26 @@ export const Inner = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
+  margin-bottom: 10px;
+  @media ${({ theme }) => theme.media.md} {
+    margin-bottom: 50px;
+  }
 `
+
+const BREAKPOINT = 770
 
 export const PreviewWrapper = styled.div`
   flex-grow: 0;
   flex-basis: 100%;
   max-width: 100%;
-  @media ${({ theme }) => theme.media.lg} {
-    flex-basis: 58.33%;
-    max-width: 58.33%;
+  @media (min-width: ${BREAKPOINT}px) {
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  @media ${({ theme }) => theme.media.xl} {
+    flex-basis: 60%;
+    max-width: 60%;
   }
 `
 
@@ -30,15 +41,13 @@ export const DetailsWrapper = styled.div`
   flex-grow: 0;
   flex-basis: 100%;
   max-width: 100%;
-  @media ${({ theme }) => theme.media.lg} {
-    flex-basis: 41.66%;
-    max-width: 41.66%;
+  @media (min-width: ${BREAKPOINT}px) {
+    flex-basis: 50%;
+    max-width: 50%;
   }
-`
 
-export const Loader = styled.div`
-  display: flex;
-  height: 100vh;
-  align-items: center;
-  justify-content: center;
+  @media ${({ theme }) => theme.media.xl} {
+    flex-basis: 40%;
+    max-width: 40%;
+  }
 `

@@ -77,7 +77,6 @@ export type LogInRsponse = {
 
 export enum MainTag {
   New = 'NEW',
-  Regular = 'REGULAR',
   Stock = 'STOCK',
   Top = 'TOP'
 }
@@ -85,19 +84,13 @@ export enum MainTag {
 export type Mutation = {
   __typename?: 'Mutation'
   createOrder?: Maybe<NewOrderResponse>
-  createProduct?: Maybe<NewProductResponse>
   deleteProduct?: Maybe<DeleteProductResponse>
   hideProduct?: Maybe<HideProductResponse>
   productRatingVote?: Maybe<ProductRatingVoteResponse>
-  updateProduct?: Maybe<UpdateProductResponse>
 }
 
 export type MutationCreateOrderArgs = {
   input: NewOrderInput
-}
-
-export type MutationCreateProductArgs = {
-  input: NewProductInput
 }
 
 export type MutationDeleteProductArgs = {
@@ -111,10 +104,6 @@ export type MutationHideProductArgs = {
 
 export type MutationProductRatingVoteArgs = {
   input: ProductRatingVoteInput
-}
-
-export type MutationUpdateProductArgs = {
-  input?: InputMaybe<UpdateProductInput>
 }
 
 export type NewOrderInput = {
@@ -131,24 +120,6 @@ export type NewOrderInput = {
 export type NewOrderResponse = {
   __typename?: 'NewOrderResponse'
   message: Scalars['String']['output']
-}
-
-export type NewProductInput = {
-  amount: Scalars['Int']['input']
-  basePrice: Scalars['Int']['input']
-  category: CategoryType
-  currentPrice?: InputMaybe<Scalars['Int']['input']>
-  description?: InputMaybe<Scalars['String']['input']>
-  features: ProductFeaturesInput
-  gender: Gender
-  instock: Scalars['Boolean']['input']
-  mainTag: MainTag
-  title: Scalars['String']['input']
-}
-
-export type NewProductResponse = {
-  __typename?: 'NewProductResponse'
-  id: Scalars['ID']['output']
 }
 
 export type NotFound = {
@@ -201,34 +172,27 @@ export type Product = {
   basePrice: Scalars['Int']['output']
   category: CategoryType
   currentPrice: Scalars['Int']['output']
-  description: Scalars['String']['output']
-  features: ProductFeatures
+  details: ProductDetails
   gender: Gender
   id: Scalars['ID']['output']
-  images: Array<Scalars['String']['output']>
   instock: Scalars['Boolean']['output']
   isHidden: Scalars['Boolean']['output']
-  mainTag: MainTag
+  mainTag?: Maybe<MainTag>
   preview: Scalars['String']['output']
   rating: AttachedRating
+  sku: Scalars['String']['output']
   slug: Scalars['String']['output']
-  tags: Array<Scalars['String']['output']>
   title: Scalars['String']['output']
 }
 
-export type ProductFeatures = {
-  __typename?: 'ProductFeatures'
-  category: CategoryType
+export type ProductDetails = {
+  __typename?: 'ProductDetails'
   color: Scalars['String']['output']
-  gender: Gender
-  material: Scalars['String']['output']
-}
-
-export type ProductFeaturesInput = {
-  category: CategoryType
-  color: Scalars['String']['input']
-  gender: Gender
-  material: Scalars['String']['input']
+  delivery: Scalars['String']['output']
+  description: Scalars['String']['output']
+  dimensions: Scalars['String']['output']
+  images: Array<Scalars['String']['output']>
+  productID: Scalars['ID']['output']
 }
 
 export type ProductFilter = {
@@ -308,25 +272,6 @@ export type QuerySearchProductByNameArgs = {
 export enum Role {
   Admin = 'ADMIN',
   Customer = 'CUSTOMER'
-}
-
-export type UpdateProductInput = {
-  amount: Scalars['Int']['input']
-  basePrice: Scalars['Int']['input']
-  category: CategoryType
-  currentPrice: Scalars['Int']['input']
-  description?: InputMaybe<Scalars['String']['input']>
-  features: ProductFeaturesInput
-  gender: Gender
-  id: Scalars['ID']['input']
-  instock: Scalars['Boolean']['input']
-  mainTag: MainTag
-  title: Scalars['String']['input']
-}
-
-export type UpdateProductResponse = {
-  __typename?: 'UpdateProductResponse'
-  message: Scalars['String']['output']
 }
 
 export interface PossibleTypesResultData {

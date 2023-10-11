@@ -7,12 +7,23 @@ import { i18n } from 'next-i18next'
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { productIdFromSlug } from '@/utils/navigation'
 
+function getRandomRating(): number {
+  const min = 3
+  const max = 5
+  return Math.floor(Math.random() * (max - min + 1) + min)
+}
+
 interface Params extends ParsedUrlQuery {
   id: string
 }
 
+interface TodoProps {
+  rating: number
+}
+
 export const getServerSideProps: GetServerSideProps<{
   product: QueryResult
+  todo: TodoProps
   err: boolean
 }> = async (ctx) => {
   const params = ctx.params as Params
@@ -32,10 +43,15 @@ export const getServerSideProps: GetServerSideProps<{
     await i18n?.reloadResources()
   }
 
+  const todo = {
+    rating: getRandomRating()
+  }
+
   return {
     props: {
       ...(await serverSideTranslations(ctx.locale ?? 'ru', ['common'])),
       product: data,
+      todo,
       err
     }
   }
@@ -43,6 +59,7 @@ export const getServerSideProps: GetServerSideProps<{
 
 export default function ProductIndex({
   product,
+  todo,
   err
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   if (!product || err) {
@@ -61,5 +78,5 @@ export default function ProductIndex({
     )
   }
 
-  return <ProductPage product={product} />
+  return <ProductPage product={product} todo={todo} />
 }

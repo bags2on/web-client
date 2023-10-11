@@ -14,7 +14,7 @@ export type SearchProductQuery = {
     id: string
     title: string
     instock: boolean
-    mainTag: Types.MainTag
+    mainTag?: Types.MainTag | null
     preview: string
   }>
 }

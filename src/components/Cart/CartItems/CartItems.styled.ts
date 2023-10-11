@@ -14,14 +14,3 @@ export const ProductsList = styled.ul`
   flex-grow: 1;
   overflow-y: auto;
 `
-
-export const ContentLoaderList = styled.ul`
-  margin: 0;
-  padding: 0;
-  padding-top: 30px;
-  list-style: none;
-  width: 100%;
-  & li {
-    width: 100%;
-  }
-`
