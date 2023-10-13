@@ -4,6 +4,7 @@ import type { AppProps } from 'next/app'
 import RootLayout from '@/components/RootLayout'
 import { useTheme } from '@/hooks'
 import { ApolloProvider } from '@apollo/client'
+import { ModalProvider } from 'styled-react-modal'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyles, lightTheme, darkTheme } from '@/utils/theme'
 import SwiperCore from 'swiper'
@@ -38,10 +39,12 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
       </Head>
       <ApolloProvider client={client}>
         <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-          <GlobalStyles />
-          <RootLayout theme={theme} onThemeChange={changeTheme}>
-            <Component {...pageProps} />
-          </RootLayout>
+          <ModalProvider>
+            <GlobalStyles />
+            <RootLayout theme={theme} onThemeChange={changeTheme}>
+              <Component {...pageProps} />
+            </RootLayout>
+          </ModalProvider>
         </ThemeProvider>
       </ApolloProvider>
     </>
