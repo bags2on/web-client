@@ -3,6 +3,8 @@ import Drawer from '@/shared/Drawer'
 import CartItems from './CartItems/CartItems'
 
 import { Container } from './Cart.styled'
+import { useRouter } from 'next/router'
+import { routeNames } from '@/utils/navigation'
 
 interface CartProps {
   isOpen: boolean
@@ -10,9 +12,11 @@ interface CartProps {
 }
 
 const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
+  const router = useRouter()
+
   const handleCheckout = (): void => {
     onClose()
-    // history.push(routes.checkout)
+    router.push(routeNames.checkout)
   }
 
   return (

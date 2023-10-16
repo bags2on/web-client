@@ -1,21 +1,23 @@
-import { useState, useLayoutEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 /*
   TODO: In mobile Chrome, it fires when autofilling fields
 */
 
-function getWindowDimensions(): [number, number] {
-  const { innerWidth, innerHeight } = window
-  return [innerWidth, innerHeight]
-}
-
 export const useWindowRatio = (): [number, number] => {
+  if (typeof window === 'undefined') return [0, 0]
+
+  function getWindowDimensions(): [number, number] {
+    const { innerWidth, innerHeight } = window
+    return [innerWidth, innerHeight]
+  }
+
   const [dimensions, setDimensions] = useState<[number, number]>(getWindowDimensions())
 
   const vh = (window.innerHeight * 0.01).toFixed(2)
   document.documentElement.style.setProperty('--vh', `${vh}px`)
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     function updateSize() {
       const vh = (window.innerHeight * 0.01).toFixed(2)
       document.documentElement.style.setProperty('--vh', `${vh}px`)
