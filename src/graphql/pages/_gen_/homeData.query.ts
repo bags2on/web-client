@@ -19,16 +19,6 @@ export type GetHomeDataQuery = {
       basePrice: number
       preview: string
     }>
-    popular: Array<{
-      __typename?: 'Product'
-      id: string
-      title: string
-      slug: string
-      mainTag?: Types.MainTag | null
-      currentPrice: number
-      basePrice: number
-      preview: string
-    }>
   } | null
 }
 
@@ -36,15 +26,6 @@ export const GetHomeDataDocument = gql`
   query GetHomeData {
     homeData {
       recommended {
-        id
-        title
-        slug
-        mainTag
-        currentPrice
-        basePrice
-        preview
-      }
-      popular {
         id
         title
         slug

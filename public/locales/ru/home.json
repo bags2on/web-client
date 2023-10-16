@@ -1,8 +1,7 @@
 {
   "headers": {
     "categories": "Категории",
-    "advise": "Рекомендуемые",
-    "popular": "Популярное"
+    "advise": "Рекомендуемые"
   },
   "categories": {
     "suitcases": "Чемоданы",

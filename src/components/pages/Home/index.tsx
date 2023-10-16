@@ -3,7 +3,6 @@ import Advantages from './Advantages/Advantages'
 import MainProduct from '../../MainProduct/MainProduct'
 import Carousel from '@/components/Carousel/Carousel'
 import Categories from './Categories/Categories'
-import Popular from './Popular/Popular'
 import Featured from './Featured/Featured'
 import Promo from './Promo/Promo'
 import SidePromo from './SidePromo'
@@ -14,8 +13,7 @@ import {
   MainContainer,
   SideBox,
   HomeContainer,
-  MainProductContainer,
-  PopularContainer
+  MainProductContainer
 } from './Home.styled'
 
 interface ProductType {
@@ -30,10 +28,9 @@ interface ProductType {
 
 interface HomeProps {
   recommended: Array<ProductType>
-  popular: Array<ProductType>
 }
 
-const Home: React.FC<HomeProps> = ({ recommended, popular }) => {
+const Home: React.FC<HomeProps> = ({ recommended }) => {
   const mainProduct = {
     id: 'eh345vs',
     title: '#товарДня',
@@ -60,9 +57,6 @@ const Home: React.FC<HomeProps> = ({ recommended, popular }) => {
         </HomeContainer>
       </MainContainer>
       <Promo />
-      <PopularContainer>
-        <Popular products={popular} />
-      </PopularContainer>
       <Advantages />
     </>
   )
