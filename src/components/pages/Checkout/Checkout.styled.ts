@@ -13,7 +13,7 @@ export const Form = styled(FormikForm)`
   justify-content: space-between;
 
   @media ${({ theme }) => theme.media.lg} {
-    max-width: 1400px;
+    max-width: 1500px;
     flex-wrap: nowrap;
     margin: 0 auto;
     padding: 20px 7px;
@@ -38,5 +38,9 @@ export const PreviewBox = styled.div`
   width: 100%;
   @media ${({ theme }) => theme.media.lg} {
     width: auto;
+  }
+
+  @media ${({ theme }) => theme.media.xl} {
+    flex-basis: 35%;
   }
 `
