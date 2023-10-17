@@ -17,10 +17,11 @@ const List = styled.ul`
 
 interface ListSkeletonProps {
   itemsAmount: number
+  max?: number
 }
 
-const ListSkeleton: React.FC<ListSkeletonProps> = ({ itemsAmount }) => {
-  const itemsLength = itemsAmount > 4 ? 4 : itemsAmount
+const ListSkeleton: React.FC<ListSkeletonProps> = ({ itemsAmount, max = 4 }) => {
+  const itemsLength = itemsAmount > max ? max : itemsAmount
 
   return (
     <List>

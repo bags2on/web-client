@@ -10,11 +10,14 @@ export const Info = styled.div`
 `
 
 export const TotalInfo = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   font-size: 22px;
+  line-height: 22px;
   font-weight: 500;
   & > b {
-    font-size: 18px;
-    margin-right: 50px;
+    font-size: 19px;
   }
 `
 

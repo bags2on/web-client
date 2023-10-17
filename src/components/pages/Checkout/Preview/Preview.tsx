@@ -1,7 +1,6 @@
 import React from 'react'
 import CartItems from './CartItems'
 import Summary from './Summary'
-import ScaleLoader from '@/shared/loaders/ScaleLoader'
 import SignupPromo from './SignupPromo'
 import { useQuery, useReactiveVar } from '@apollo/client'
 import { cartItemsVar } from '@/apollo/cache/variables'
@@ -13,7 +12,7 @@ import {
 } from '@/graphql/product/_gen_/cartProducts.query'
 import type { CartItemType } from '@/components/Cart/CartItem/CartItem'
 
-import { Container, Wrapper, LoaderWrapper } from './Preview.styled'
+import { Container, Wrapper } from './Preview.styled'
 
 interface PreviewProps {
   submitLoading: boolean
@@ -57,14 +56,6 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) =>
     }
   )
 
-  if (loading) {
-    return (
-      <LoaderWrapper>
-        <ScaleLoader fallback />
-      </LoaderWrapper>
-    )
-  }
-
   if (error) {
     // TODO: handle error
     return <h1>Error</h1>
@@ -73,8 +64,16 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) =>
   return (
     <Container>
       <Wrapper>
-        <CartItems cartItems={data?.cartProducts || []} />
-        <Summary submitLoading={submitLoading} orderCreationErr={orderCreationErr} />
+        <CartItems
+          loading={loading}
+          cartCount={cartItems.length}
+          cartProducts={data?.cartProducts || []}
+        />
+        <Summary
+          loading={loading}
+          submitLoading={submitLoading}
+          orderCreationErr={orderCreationErr}
+        />
       </Wrapper>
       <SignupPromo />
     </Container>
