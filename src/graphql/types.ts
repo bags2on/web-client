@@ -62,8 +62,15 @@ export type HideProductResponse = {
 
 export type HomeDataResponse = {
   __typename?: 'HomeDataResponse'
-  popular: Array<Product>
-  recommended: Array<Product>
+  featuredProducts: Array<Product>
+  sliderData: Array<HomeMainSlide>
+}
+
+export type HomeMainSlide = {
+  __typename?: 'HomeMainSlide'
+  actionURL: Scalars['String']['output']
+  color: Scalars['String']['output']
+  imageURL: Scalars['String']['output']
 }
 
 export type LogInInput = {

@@ -1,6 +1,12 @@
 query GetHomeData {
   homeData {
-    recommended {
+    sliderData {
+      actionURL
+      imageURL
+      color
+    }
+
+    featuredProducts {
       id
       title
       slug

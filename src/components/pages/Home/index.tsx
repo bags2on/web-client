@@ -6,7 +6,8 @@ import Categories from './Categories/Categories'
 import Featured from './Featured/Featured'
 import Promo from './Promo/Promo'
 import SidePromo from './SidePromo'
-import { TEMP_MAIN_SLIDER_IMAGES } from './temp'
+
+import type { Slide } from '@/components/Carousel/Carousel'
 
 import {
   SliderContainer,
@@ -27,10 +28,11 @@ interface ProductType {
 }
 
 interface HomeProps {
-  recommended: Array<ProductType>
+  featuredProducts: Array<ProductType>
+  sliderData: Array<Slide>
 }
 
-const Home: React.FC<HomeProps> = ({ recommended }) => {
+const Home: React.FC<HomeProps> = ({ sliderData, featuredProducts }) => {
   const mainProduct = {
     id: 'eh345vs',
     title: '#товарДня',
@@ -40,7 +42,7 @@ const Home: React.FC<HomeProps> = ({ recommended }) => {
   return (
     <>
       <SliderContainer>
-        <Carousel items={TEMP_MAIN_SLIDER_IMAGES} />
+        <Carousel slides={sliderData} />
         <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
       </SliderContainer>
       <MainContainer>
@@ -53,7 +55,7 @@ const Home: React.FC<HomeProps> = ({ recommended }) => {
           <MainProductContainer>
             <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
           </MainProductContainer>
-          <Featured products={recommended} />
+          <Featured products={featuredProducts} />
         </HomeContainer>
       </MainContainer>
       <Promo />
