@@ -1,11 +1,16 @@
 import React from 'react'
 import Tags from './Tags'
 import Rating from '@/components/Rating'
-import { CartMutations } from '@/apollo/cache/mutations'
-import { formatPrice } from '@/utils/helper'
 import ExclamationIcon from '../../../../../public/assets/icons/exclamation-circle.svg'
 import CheckIcon from '../../../../../public/assets/icons/check-circle.svg'
 import HeaderCartIcon from '../../../../../public/assets/icons/header_cart.svg'
+import Delivery from './Delivery'
+import SizeGuide from './SizeGuide'
+import SubControls from './SubControls'
+import { useRouter } from 'next/navigation'
+import { routeNames } from '@/utils/navigation'
+import { formatPrice } from '@/utils/helper'
+import { CartMutations } from '@/apollo/cache/mutations'
 
 import {
   Container,
@@ -24,9 +29,6 @@ import {
   OrderButton,
   TheOrderButtonIcon
 } from './Details.styled'
-import Delivery from './Delivery'
-import SizeGuide from './SizeGuide'
-import SubControls from './SubControls'
 
 interface DetailsProps {
   id: string
@@ -51,11 +53,26 @@ const Details: React.FC<DetailsProps> = ({
   rating,
   delivery
 }) => {
+  const router = useRouter()
+
   const handleAddToCart = (): void => {
+    if (inStock) {
+      CartMutations.addProduct({
+        productId: id,
+        amount: 1
+      })
+
+      return
+    }
+  }
+
+  const handleOrderNow = (): void => {
     CartMutations.addProduct({
       productId: id,
       amount: 1
     })
+
+    router.push(routeNames.checkout)
   }
 
   return (
@@ -88,7 +105,7 @@ const Details: React.FC<DetailsProps> = ({
       {/*  */}
       <SizeGuide current="L" available={['M', '2XL', 'L']} />
       <ButtonsWrapper>
-        <OrderNowButton fullWidth color="secondary">
+        <OrderNowButton fullWidth color="secondary" disabled={!inStock} onClick={handleOrderNow}>
           Купить сейчас
         </OrderNowButton>
         <OrderButton
