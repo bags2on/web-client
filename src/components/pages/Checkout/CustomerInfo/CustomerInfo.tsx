@@ -1,7 +1,7 @@
 import React from 'react'
+import StepTitle from '../common/StepTitle'
 import TextInput from '@/shared/formFields/TextInput/TextInput'
 import PhoneInput from '@/shared/formFields/PhoneInput'
-import AvatarIcon from '../../../../../public/assets/icons/profile.svg'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
 import { animated, useSpring } from 'react-spring'
@@ -9,10 +9,6 @@ import { animated, useSpring } from 'react-spring'
 import {
   Container,
   AnimatedBox,
-  EditPlug,
-  TitleWrapper,
-  TitleBox,
-  TheAvatarIcon,
   FieldsWrapper,
   Field,
   ContinueButton,
@@ -43,17 +39,14 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
 
   return (
     <Container>
-      <TitleWrapper $expand={isEdit} onClick={onEdit}>
-        <TitleBox>
-          <TheAvatarIcon
-            $valid={Boolean(values.surname && values.name && values.phone && values.email)}
-          >
-            <AvatarIcon />
-          </TheAvatarIcon>
-          <h2>Контактная информация</h2>
-        </TitleBox>
-        <EditPlug $hide={isEdit}>Изменить</EditPlug>
-      </TitleWrapper>
+      <StepTitle
+        step={1}
+        isEdit={isEdit}
+        onEdit={onEdit}
+        valid={Boolean(values.surname && values.name && values.phone && values.email)}
+      >
+        Контактная информация
+      </StepTitle>
       <AnimatedBox as={animated.div} style={{ ...slideInStyles, overflow: 'hidden' }}>
         <FieldsWrapper>
           <Field>

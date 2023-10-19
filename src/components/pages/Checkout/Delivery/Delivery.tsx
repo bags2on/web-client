@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import StepTitle from '../common/StepTitle'
 import Select from '@/shared/formFields/Select'
 import TextInput from '@/shared/formFields/TextInput/TextInput'
-import LocationIcon from '../../../../../public/assets/icons/location.svg'
 import SomethingWrongModal from '../Modals/SomethingWrong'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
@@ -9,16 +9,12 @@ import { animated, useSpring } from 'react-spring'
 
 import {
   Container,
-  TitleWrapper,
-  TitleBox,
-  ThePinIcon,
   DeliveriesList,
   DeliveriesItem,
   ImageWrapper,
   ServiceLabel,
   DeliveryInput,
   DeliveryService,
-  EditPlug,
   AnimatedBox,
   AreaContainer,
   FormField,
@@ -95,15 +91,14 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
 
   return (
     <Container>
-      <TitleWrapper $expand={isEdit} onClick={onEdit}>
-        <TitleBox>
-          <ThePinIcon $valid={Boolean(values.region && values.cityId && values.postOfficeId)}>
-            <LocationIcon />
-          </ThePinIcon>
-          <h2>Способ доставки</h2>
-        </TitleBox>
-        <EditPlug $hide={isEdit}>Изменить</EditPlug>
-      </TitleWrapper>
+      <StepTitle
+        step={2}
+        isEdit={isEdit}
+        onEdit={onEdit}
+        valid={Boolean(values.region && values.cityId && values.postOfficeId)}
+      >
+        Способ доставки
+      </StepTitle>
       <AnimatedBox as={animated.div} style={{ ...slideInStyles, overflow: 'hidden' }}>
         <DeliveriesList>
           <DeliveriesItem>

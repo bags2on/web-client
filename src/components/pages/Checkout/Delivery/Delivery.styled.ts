@@ -1,6 +1,5 @@
 import styled, { css } from 'styled-components'
 import Button from '@/shared/Button'
-import SvgIcon from '@/shared/SvgIcon'
 import { Field } from 'formik'
 
 export const Container = styled.section`
@@ -11,53 +10,6 @@ export const Container = styled.section`
 
     borderradius: 0;
   }
-`
-
-export const TitleWrapper = styled.div<{ $expand: boolean }>`
-  position: relative;
-  background-color: ${({ theme }) => (theme.type === 'light' ? '#e1e1e1' : '#343434')};
-  padding: 20px 10px 37px 10px;
-  border-radius: 10px;
-  transition: all 0.3s;
-
-  @media ${({ theme }) => theme.media.lg} {
-    background-color: transparent;
-    padding: 0;
-  }
-
-  ${({ $expand }) =>
-    $expand &&
-    css`
-      background-color: transparent;
-      justify-content: flex-start;
-      margin-bottom: 0;
-      padding-bottom: 0;
-    `}
-`
-
-export const TitleBox = styled.div`
-  display: flex;
-  align-items: center;
-  margin-bottom: 15px;
-  border-radius: 10px;
-  & > h2 {
-    margin: 0;
-  }
-  @media ${({ theme }) => theme.media.lg} {
-    justify-content: center;
-    margin-bottom: 30px;
-  }
-
-  @media ${({ theme }) => theme.media.xl} {
-    justify-content: start;
-  }
-`
-
-export const ThePinIcon = styled(SvgIcon)<{ $valid: boolean }>`
-  font-size: 32px;
-  line-height: 22px;
-  fill: ${({ $valid }) => ($valid ? 'limegreen' : '#979797')};
-  margin-right: 7px;
 `
 
 export const DeliveriesList = styled.ul`
@@ -143,23 +95,6 @@ export const DeliveryInput = styled(Field)`
       background-color: var(--green-light);
       border-color: var(--green-light);
     }
-  }
-`
-
-export const EditPlug = styled.span<{ $hide: boolean }>`
-  display: ${({ $hide }) => ($hide ? 'none' : 'block')};
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  bottom: 10px;
-  color: var(--green-light);
-  border-radius: 10px;
-  border: 2px solid var(--green-light);
-  padding: 5px 7px;
-  font-weight: 600;
-
-  @media ${({ theme }) => theme.media.lg} {
-    display: none;
   }
 `
 
