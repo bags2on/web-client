@@ -33,7 +33,7 @@ export const CollapseHead: React.FC<CollapseHeadProps> = ({ title, collapsed, on
     <GroupHead onClick={onCollapse}>
       <Title>{title}</Title>
       <TheExpandIcon $collapsed={collapsed}>
-        {collapsed ? <ExpandIcon /> : <ExpandIcon />}
+        <ExpandIcon />
       </TheExpandIcon>
     </GroupHead>
   )
