@@ -1,5 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
+import SvgIcon from '@/shared/SvgIcon'
+import ExpandArrowIcon from '../../../../../../public/assets/icons/expand-arrow.svg'
 
 interface StepTitleProps {
   step: number
@@ -58,7 +60,7 @@ export const StepNumber = styled.div<{ $valid: boolean; $expand: boolean }>`
   padding: 13px;
   margin-right: 7px;
   user-select: none;
-  background-color: #8b8b8b;
+  background-color: ${({ $valid }) => ($valid ? 'var(--green-light)' : '#8b8b8b')};
 
   @media ${({ theme }) => theme.media.lg} {
     background-color: ${({ $valid }) => ($valid ? 'var(--green-light)' : '#1e1e1e')};
@@ -83,6 +85,17 @@ const Title = styled.h2`
   }
 `
 
+const TheExpandIcon = styled(SvgIcon)<{ $collapsed: boolean }>`
+  margin-left: auto;
+  transition: all 160ms linear;
+  fill: ${({ theme }) => (theme.type === 'light' ? '#343434' : '#fff')};
+  transform: ${({ $collapsed }) => ($collapsed ? 'rotate(360deg);' : 'rotate(180deg);')};
+
+  @media ${({ theme }) => theme.media.lg} {
+    display: none;
+  }
+`
+
 const StepTitle: React.FC<StepTitleProps> = ({ step, valid, isEdit, onEdit, children }) => {
   return (
     <TitleWrapper $expand={isEdit} onClick={onEdit}>
@@ -91,6 +104,9 @@ const StepTitle: React.FC<StepTitleProps> = ({ step, valid, isEdit, onEdit, chil
           <span>{step}</span>
         </StepNumber>
         <Title>{children}</Title>
+        <TheExpandIcon $collapsed={isEdit}>
+          <ExpandArrowIcon />
+        </TheExpandIcon>
       </TitleBox>
     </TitleWrapper>
   )
