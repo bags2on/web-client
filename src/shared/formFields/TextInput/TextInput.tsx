@@ -39,13 +39,12 @@ const baseStyles = css<BaseInputStyles>`
   background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#434343')};
   color: ${({ theme }) => (theme.type === 'light' ? '#3c4144' : '#fff')};
   border: 1px solid;
-  border-color: ${({ $error }) => ($error ? '#ff182e' : '#6a6a6a')};
+  border-color: ${({ $error }) => ($error ? '#ff182e' : '#c5c5c5')};
   -webkit-tap-highlight-color: transparent;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 6px -1px, rgba(0, 0, 0, 0.06) 0px 2px 4px -1px;
   transition: all 0.2s;
 
   &:focus {
-    border: 1px solid #989898;
+    border-color: #5a5a5a;
   }
   &:focus::placeholder {
     opacity: 0.25;
@@ -74,12 +73,14 @@ const BaseInput = styled.input<BaseInputStyles>`
 const ErrorMessage = styled.p<{ $err: boolean }>`
   height: 24px;
   font-size: 13px;
+  font-weight: 500;
   margin: 0;
   color: #ff182e;
   padding-left: 10px;
   opacity: 1;
   transition: all 0.3s linear;
   transition: opacity 0.2s ease-in-out;
+  user-select: none;
   opacity: ${({ $err }) => ($err ? 1 : 0)};
 `
 
