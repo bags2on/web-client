@@ -1,6 +1,7 @@
 import React from 'react'
 import styled, { css } from 'styled-components'
 import SvgIcon from '@/shared/SvgIcon'
+import CheckIcon from '../../../../../../public/assets/icons/check.svg'
 import ExpandArrowIcon from '../../../../../../public/assets/icons/expand-arrow.svg'
 
 interface StepTitleProps {
@@ -96,12 +97,23 @@ const TheExpandIcon = styled(SvgIcon)<{ $collapsed: boolean }>`
   }
 `
 
+const TheCheckIcon = styled(SvgIcon)`
+  fill: #fff;
+  font-size: 15px;
+`
+
 const StepTitle: React.FC<StepTitleProps> = ({ step, valid, isEdit, onEdit, children }) => {
   return (
     <TitleWrapper $expand={isEdit} onClick={onEdit}>
       <TitleBox $expand={isEdit}>
         <StepNumber $valid={valid} $expand={isEdit}>
-          <span>{step}</span>
+          {valid ? (
+            <TheCheckIcon>
+              <CheckIcon />
+            </TheCheckIcon>
+          ) : (
+            <span>{step}</span>
+          )}
         </StepNumber>
         <Title>{children}</Title>
         <TheExpandIcon $collapsed={isEdit}>
