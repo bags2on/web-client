@@ -1,19 +1,13 @@
 import React from 'react'
 import StepTitle from '../common/StepTitle'
+import ContinueButton from '../common/ContinueButton'
 import TextInput from '@/shared/formFields/TextInput/TextInput'
 import PhoneInput from '@/shared/formFields/PhoneInput'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
 import { animated, useSpring } from 'react-spring'
 
-import {
-  Container,
-  AnimatedBox,
-  FieldsWrapper,
-  Field,
-  ContinueButton,
-  Divider
-} from './CustomerInfo.styled'
+import { Container, AnimatedBox, FieldsWrapper, Field, Divider } from './CustomerInfo.styled'
 
 interface CustomerInfoProps {
   isEdit: boolean
@@ -24,12 +18,14 @@ interface CustomerInfoProps {
 const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue }) => {
   const { values } = useFormikContext<CheckoutOrderType>()
 
+  const isValuesValid = Boolean(values.surname && values.name && values.phone && values.email)
+
   const slideInStyles = useSpring({
     config: { duration: 250 },
     from: { opacity: 0, height: 0 },
     to: {
       opacity: isEdit ? 1 : 0,
-      height: isEdit ? 445 : 0
+      height: isEdit ? 475 : 0
     }
   })
 
@@ -39,12 +35,7 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
 
   return (
     <Container>
-      <StepTitle
-        step={1}
-        isEdit={isEdit}
-        onEdit={onEdit}
-        valid={Boolean(values.surname && values.name && values.phone && values.email)}
-      >
+      <StepTitle step={1} isEdit={isEdit} onEdit={onEdit} valid={isValuesValid}>
         Контактная информация
       </StepTitle>
       <AnimatedBox as={animated.div} style={{ ...slideInStyles, overflow: 'hidden' }}>
@@ -66,7 +57,7 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
             <TextInput name="email" type="email" />
           </Field>
         </FieldsWrapper>
-        <ContinueButton fullWidth onClick={handleNextClick}>
+        <ContinueButton disabled={!isValuesValid} onClick={handleNextClick}>
           Продолжить
         </ContinueButton>
       </AnimatedBox>

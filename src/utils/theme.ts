@@ -33,6 +33,7 @@ export type ITheme = {
     laptop: string
     desktop: string
   }
+  breakpoints: Breakpoints
 }
 
 // **********************************
@@ -68,7 +69,8 @@ export const lightTheme: DefaultTheme = {
     primary: BRAND_COLOR,
     font: '#343434'
   },
-  media
+  media,
+  breakpoints
 }
 
 export const darkTheme: DefaultTheme = {
@@ -78,7 +80,8 @@ export const darkTheme: DefaultTheme = {
     font: '#fff'
   },
   background: '#0f0f0f',
-  media
+  media,
+  breakpoints
 }
 
 export const GlobalStyles = createGlobalStyle`

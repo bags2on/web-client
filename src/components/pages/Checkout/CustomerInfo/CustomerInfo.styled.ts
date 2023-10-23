@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import Button from '@/shared/Button'
 
 export const Container = styled.section`
   margin-bottom: 30px;
@@ -26,10 +25,6 @@ export const FieldsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
-  @media ${({ theme }) => theme.media.xl} {
-    max-width: 560px;
-  }
 `
 
 export const Field = styled.div`
@@ -37,11 +32,12 @@ export const Field = styled.div`
   & > span {
     font-size: 15px;
     color: ${({ theme }) => (theme.type === 'light' ? '#6a6a6a' : '#fff')};
-    font-weight: 500px;
+    font-weight: 500;
     padding-left: 7px;
     margin-bottom: 5px;
+    user-select: none;
   }
-  @media screen and (min-width: 1000px) {
+  @media screen and (min-width: ${({ theme }) => theme.breakpoints.laptop}px) {
     flex-basis: 48%;
   }
 `
@@ -51,16 +47,5 @@ export const Divider = styled.div`
     margin-top: 15px;
     border-bottom: 2px solid;
     border-bottom-color: ${({ theme }) => (theme.type === 'light' ? '#dcdcdc' : '#646464')};
-  }
-`
-
-export const ContinueButton = styled(Button)`
-  background-color: var(--green-light);
-  &:hover {
-    background-color: var(--green-light);
-  }
-
-  @media ${({ theme }) => theme.media.lg} {
-    display: none;
   }
 `
