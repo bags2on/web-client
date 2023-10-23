@@ -49,6 +49,7 @@ const BaseButton = styled.button<BaseButtonProps>`
   border-radius: 8px;
   border: 1px solid;
   transition: all 0.3s;
+  user-select: none;
   -webkit-tap-highlight-color: transparent;
   &:disabled {
     cursor: not-allowed;
