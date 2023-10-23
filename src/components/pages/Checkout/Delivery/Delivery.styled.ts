@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components'
-import Button from '@/shared/Button'
 import { Field } from 'formik'
 
 export const Container = styled.section`
@@ -128,16 +127,5 @@ export const AreaContainer = styled.div`
   justify-content: space-between;
   @media ${({ theme }) => theme.media.xl} {
     justify-content: flex-start;
-  }
-`
-
-export const ContinueButton = styled(Button)`
-  background-color: var(--green-light);
-  &:hover {
-    background-color: var(--green-light);
-  }
-
-  @media ${({ theme }) => theme.media.lg} {
-    display: none;
   }
 `

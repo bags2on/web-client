@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
+import Image from 'next/image'
 import StepTitle from '../common/StepTitle'
+import ContinueButton from '../common/ContinueButton'
 import Select from '@/shared/formFields/Select'
 import TextInput from '@/shared/formFields/TextInput/TextInput'
 import SomethingWrongModal from '../Modals/SomethingWrong'
@@ -17,10 +19,8 @@ import {
   DeliveryService,
   AnimatedBox,
   AreaContainer,
-  FormField,
-  ContinueButton
+  FormField
 } from './Delivery.styled'
-import Image from 'next/image'
 
 interface DeliveryProps {
   isEdit: boolean
@@ -46,6 +46,8 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
   const [areas, setAreas] = useState<AreasType>()
   const [areasLoading, setAreasLoading] = useState<boolean>(true)
   const [areasError, setAreasError] = useState<boolean>(false)
+
+  const isValuesValid = Boolean(values.region && values.cityId && values.postOfficeId)
 
   const slideInStyles = useSpring({
     config: { duration: 250 },
@@ -91,12 +93,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
 
   return (
     <Container>
-      <StepTitle
-        step={2}
-        isEdit={isEdit}
-        onEdit={onEdit}
-        valid={Boolean(values.region && values.cityId && values.postOfficeId)}
-      >
+      <StepTitle step={2} isEdit={isEdit} onEdit={onEdit} valid={isValuesValid}>
         Способ доставки
       </StepTitle>
       <AnimatedBox as={animated.div} style={{ ...slideInStyles, overflow: 'hidden' }}>
@@ -136,7 +133,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
           <span>Выберите отделение</span>
           <TextInput name="postOfficeId" />
         </FormField>
-        <ContinueButton fullWidth onClick={onContinue}>
+        <ContinueButton disabled={!isValuesValid} onClick={onContinue}>
           Продолжить
         </ContinueButton>
       </AnimatedBox>
