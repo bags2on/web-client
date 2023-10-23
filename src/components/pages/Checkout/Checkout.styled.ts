@@ -21,6 +21,7 @@ export const Form = styled(FormikForm)`
 `
 
 export const DeliveryBox = styled.div`
+  width: 100%;
   padding: 20px 10px 20px 10px;
   background-color: ${({ theme }) => (theme.type === 'light' ? '#f2f2f2' : 'transparent')};
   @media ${({ theme }) => theme.media.lg} {

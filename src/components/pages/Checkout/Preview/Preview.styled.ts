@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.section`
   padding: 10px;
+  margin: 0 auto;
   @media ${({ theme }) => theme.media.lg} {
     max-width: 450px;
     padding: 0;
