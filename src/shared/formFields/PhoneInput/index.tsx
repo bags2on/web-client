@@ -5,10 +5,9 @@ import { Input, ErrorMessage } from './PhoneInput.styled'
 
 interface PhoneInputProps {
   name: string
-  error?: boolean
 }
 
-const PhoneInput: React.FC<PhoneInputProps> = ({ name, error = false }) => {
+const PhoneInput: React.FC<PhoneInputProps> = ({ name }) => {
   const [field, meta] = useField({ name })
 
   const { onChange, ...fieldOther } = field
@@ -20,13 +19,13 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name, error = false }) => {
   return (
     <div>
       <Input
-        {...fieldOther}
-        $err={!!meta.error}
+        $err={Boolean(meta.touched && meta.error)}
         format="+38 (###) ###-####"
         mask="_"
         autoComplete="off"
         allowEmptyFormatting
         onValueChange={handleValueChange}
+        {...fieldOther}
       />
       <ErrorMessage $err={!!meta.error}>{meta.touched && meta.error}</ErrorMessage>
     </div>

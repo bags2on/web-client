@@ -1,17 +1,18 @@
 import styled from 'styled-components'
-import { PatternFormat, NumberFormatValues } from 'react-number-format'
+import { PatternFormat } from 'react-number-format'
 
 export const Input = styled(PatternFormat)<{ $err: boolean }>`
   width: 100%;
   padding: 13px;
-  font-weight: 400px;
+  padding: 13px 8px 11px 10px;
+  font-weight: 500;
   background-color: ${({ theme }) => (theme.type === 'light' ? '#fff' : '#3c4144')};
   border-radius: 8px;
   border: 1px solid;
-  font-size: 1rem;
+  font-size: 15px;
   border-color: ${({ $err }) => ($err ? 'red' : 'rgba(0, 0, 0, 0.23)')};
   outline: none;
-  box-shadow: rgb(0 0 0 / 10%) 0px 4px 6px -1px, rgb(0 0 0 / 6%) 0px 2px 4px -1px;
+  line-height: inherit;
   color: ${({ theme }) => (theme.type === 'light' ? '#3c4144' : '#fff')};
   margin-bottom: 5px;
   &:hover {
@@ -31,6 +32,7 @@ export const ErrorMessage = styled.p<{ $err: boolean }>`
   font-size: 13px;
   margin: 0;
   color: #ff182e;
+  font-weight: 500;
   padding-left: 10px;
   opacity: 1;
   transition: all 0.3s linear;

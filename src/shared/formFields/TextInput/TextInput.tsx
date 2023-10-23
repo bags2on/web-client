@@ -27,7 +27,6 @@ const baseStyles = css<BaseInputStyles>`
   box-sizing: border-box;
   user-select: text;
   width: 100%;
-  box-sizing: border-box;
   font-size: 15px;
   font-weight: 500;
   padding: 13px 8px 11px 10px;
