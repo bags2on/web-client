@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'
 import { useMutation } from '@apollo/client'
 import { CREATE_ORDER } from '@/graphql/order'
-import { useWindowRatio } from '@/hooks'
+import { useWindowRatio, useCheckoutPageState } from '@/hooks'
 import { CheckoutOrderSchema, CheckoutOrderType } from '@/utils/formValidationSchema'
 
 import { Container, Form, DeliveryBox, PreviewBox } from './Checkout.styled'
@@ -18,13 +18,14 @@ const Checkout: React.FC = () => {
   const [windowWidth] = useWindowRatio()
   const router = useRouter()
 
+  const [state, dispatch] = useCheckoutPageState({
+    waitDataSyncing: true,
+    isInfoOpen: false,
+    isDeliveryOpen: false
+  })
+
   const [isOrderSuccess, setOrderSuccess] = useState<boolean>(false)
   const [orderErr, setOrderErr] = useState<boolean>(false)
-
-  const [loadingCart, setLoading] = useState<boolean>(true)
-
-  const [isInfoEdit, setInfoEdit] = useState<boolean>(false)
-  const [isDeliveryEdit, setDeliveryEdit] = useState<boolean>(false)
 
   const [createOrder, { loading }] = useMutation(CREATE_ORDER)
 
@@ -33,29 +34,26 @@ const Checkout: React.FC = () => {
     if (!data.length) {
       router.back()
     } else {
-      setLoading(false)
+      dispatch.dataSynced()
     }
-  }, [router])
+  }, [router, dispatch])
 
   const handleInfoEditOpen = (): void => {
     if (windowWidth >= 900) return
-    if (isDeliveryEdit) setDeliveryEdit(false)
-    setInfoEdit((prev) => !prev)
+    dispatch.openInfo()
   }
 
   const handleDeliveryEditOpen = (): void => {
     if (windowWidth >= 900) return
-    if (isInfoEdit) setInfoEdit(false)
-    setDeliveryEdit((prev) => !prev)
+    dispatch.openDelivery()
   }
 
   const handleInfoChecked = () => {
-    setInfoEdit(false)
-    setDeliveryEdit(true)
+    dispatch.infoChecked()
   }
 
   const handleDeliveryChecked = () => {
-    setDeliveryEdit(false)
+    dispatch.closeDelivery()
   }
 
   const handleSubmit = async (values: CheckoutOrderType): Promise<void> => {
@@ -75,7 +73,7 @@ const Checkout: React.FC = () => {
     router.replace(routeNames.root)
   }
 
-  if (loadingCart) {
+  if (state.waitDataSyncing) {
     return <PageLoader />
   }
 
@@ -101,12 +99,12 @@ const Checkout: React.FC = () => {
           <Form>
             <DeliveryBox>
               <CustomerInfo
-                isEdit={isInfoEdit}
+                isEdit={state.isInfoOpen}
                 onEdit={handleInfoEditOpen}
                 onContinue={handleInfoChecked}
               />
               <Delivery
-                isEdit={isDeliveryEdit}
+                isEdit={state.isDeliveryOpen}
                 onEdit={handleDeliveryEditOpen}
                 onContinue={handleDeliveryChecked}
               />
