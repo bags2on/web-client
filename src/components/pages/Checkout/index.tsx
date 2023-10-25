@@ -9,13 +9,12 @@ import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'
 import { useMutation } from '@apollo/client'
 import { CREATE_ORDER } from '@/graphql/order'
-import { useWindowRatio, useCheckoutPageState } from '@/hooks'
+import { useCheckoutPageState } from '@/hooks'
 import { CheckoutOrderSchema, CheckoutOrderType } from '@/utils/formValidationSchema'
 
 import { Container, Form, DeliveryBox, PreviewBox } from './Checkout.styled'
 
 const Checkout: React.FC = () => {
-  const [windowWidth] = useWindowRatio()
   const router = useRouter()
 
   const [state, dispatch] = useCheckoutPageState({
@@ -39,12 +38,10 @@ const Checkout: React.FC = () => {
   }, [router, dispatch])
 
   const handleInfoEditOpen = (): void => {
-    if (windowWidth >= 900) return
     dispatch.openInfo()
   }
 
   const handleDeliveryEditOpen = (): void => {
-    if (windowWidth >= 900) return
     dispatch.openDelivery()
   }
 

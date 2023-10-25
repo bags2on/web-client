@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components'
 import SvgIcon from '@/shared/SvgIcon'
 import CheckIcon from '../../../../../../public/assets/icons/check.svg'
 import ExpandArrowIcon from '../../../../../../public/assets/icons/expand-arrow.svg'
+import { useWindowSize } from '@/hooks'
 
 interface StepTitleProps {
   step: number
@@ -103,8 +104,15 @@ const TheCheckIcon = styled(SvgIcon)`
 `
 
 const StepTitle: React.FC<StepTitleProps> = ({ step, valid, isEdit, onEdit, children }) => {
+  const [width] = useWindowSize()
+
+  const handleTitleClick = () => {
+    if (width >= 900) return
+    onEdit()
+  }
+
   return (
-    <TitleWrapper $expand={isEdit} onClick={onEdit}>
+    <TitleWrapper $expand={isEdit} onClick={handleTitleClick}>
       <TitleBox $expand={isEdit}>
         <StepNumber $valid={valid} $expand={isEdit}>
           {valid ? (
