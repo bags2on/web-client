@@ -12,7 +12,9 @@ export const TheHeader = styled.header`
   flex-wrap: wrap;
   padding: 5px 0;
   background-color: #1e1e1e;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), 0 1px 4px rgba(0, 0, 0, 0.05),
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.05),
+    0 1px 4px rgba(0, 0, 0, 0.05),
     0 2px 8px rgba(0, 0, 0, 0.05);
   @media ${({ theme }) => theme.media.lg} {
     position: static;

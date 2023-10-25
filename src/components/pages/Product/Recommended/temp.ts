@@ -5,7 +5,8 @@ export default [
     instock: true,
     currentPrice: 900,
     basePrice: 900,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1614954158/bags2on/products/okokvb_jfllrc.png',
+    preview:
+      'https://res.cloudinary.com/dct4oinuz/image/upload/v1614954158/bags2on/products/okokvb_jfllrc.png',
     mainTag: 'REGULAR'
   },
   {
@@ -14,7 +15,8 @@ export default [
     instock: true,
     currentPrice: 3200,
     basePrice: 3700,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1614954158/bags2on/products/je87b_cixhwg.png',
+    preview:
+      'https://res.cloudinary.com/dct4oinuz/image/upload/v1614954158/bags2on/products/je87b_cixhwg.png',
     mainTag: 'REGULAR'
   },
   {
@@ -23,7 +25,8 @@ export default [
     instock: true,
     currentPrice: 350,
     basePrice: 350,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1614954158/bags2on/products/avdmth_kxlwwf.png',
+    preview:
+      'https://res.cloudinary.com/dct4oinuz/image/upload/v1614954158/bags2on/products/avdmth_kxlwwf.png',
     mainTag: 'REGULAR'
   },
   {
@@ -32,7 +35,8 @@ export default [
     instock: true,
     currentPrice: 1850,
     basePrice: 1850,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856813/bags2on/products/s-e_eqwf02.jpg',
+    preview:
+      'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856813/bags2on/products/s-e_eqwf02.jpg',
     mainTag: 'REGULAR'
   },
   {
@@ -41,7 +45,8 @@ export default [
     instock: true,
     currentPrice: 600,
     basePrice: 850,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856813/bags2on/products/ths_ktraik.jpg',
+    preview:
+      'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856813/bags2on/products/ths_ktraik.jpg',
     mainTag: 'STOCK'
   },
   {
@@ -50,7 +55,8 @@ export default [
     instock: true,
     currentPrice: 1500,
     basePrice: 1500,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856813/bags2on/products/wh_ggue4g.jpg',
+    preview:
+      'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856813/bags2on/products/wh_ggue4g.jpg',
     mainTag: 'NEW'
   },
   {
@@ -59,7 +65,8 @@ export default [
     instock: true,
     currentPrice: 900,
     basePrice: 1100,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856812/bags2on/products/pdp_ocxu7g.jpg',
+    preview:
+      'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856812/bags2on/products/pdp_ocxu7g.jpg',
     mainTag: 'STOCK'
   },
   {
@@ -68,7 +75,8 @@ export default [
     instock: true,
     currentPrice: 1300,
     basePrice: 1300,
-    preview: 'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856812/bags2on/products/ewb_ifo0gx.jpg',
+    preview:
+      'https://res.cloudinary.com/dct4oinuz/image/upload/v1635856812/bags2on/products/ewb_ifo0gx.jpg',
     mainTag: 'REGULAR'
   }
 ]

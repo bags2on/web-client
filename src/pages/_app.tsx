@@ -11,6 +11,7 @@ import SwiperCore from 'swiper'
 import { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper/modules'
 
 import { appWithTranslation } from 'next-i18next'
+import nextI18NextConfig from '../../next-i18next.config'
 
 import '../../node_modules/modern-normalize/modern-normalize.css'
 import '@/styles/css-variables.scss'
@@ -51,4 +52,5 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   )
 }
 
-export default appWithTranslation(MyApp)
+// INFO: https://github.com/i18next/next-i18next/issues/1917
+export default appWithTranslation(MyApp, nextI18NextConfig)

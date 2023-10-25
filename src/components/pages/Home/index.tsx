@@ -24,7 +24,7 @@ interface ProductType {
   title: string
   preview: string
   basePrice: number
-  mainTag: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR'
+  mainTag?: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR' | null
 }
 
 interface HomeProps {

@@ -40,6 +40,7 @@ export const useResizeObserver = (
   const [height, setHeight] = useState<number>(0)
 
   const handleResize = useCallback(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (entries: any[]) => {
       if (!Array.isArray(entries)) {
         return
