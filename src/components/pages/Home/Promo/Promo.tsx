@@ -24,7 +24,7 @@ const Promo: React.FC = () => {
         <ImageBox>
           <Image
             src="/assets/rastr/promo-1.jpeg"
-            alt={`банер: '${t('promo.male')}'`}
+            alt={`банер: '${t('promo.firstTitle')}'`}
             width={1000}
             height={500}
           />
@@ -41,7 +41,7 @@ const Promo: React.FC = () => {
         <ImageBox>
           <Image
             src="/assets/rastr/promo-2.jpeg"
-            alt={`банер: '${t('promo.male')}'`}
+            alt={`банер: '${t('promo.secondTitle')}'`}
             width={1000}
             height={500}
           />

@@ -9,17 +9,13 @@ export type GetHomeDataQuery = {
   __typename?: 'Query'
   homeData?: {
     __typename?: 'HomeDataResponse'
-    recommended: Array<{
-      __typename?: 'Product'
-      id: string
-      title: string
-      slug: string
-      mainTag?: Types.MainTag | null
-      currentPrice: number
-      basePrice: number
-      preview: string
+    sliderData: Array<{
+      __typename?: 'HomeMainSlide'
+      actionURL: string
+      imageURL: string
+      color: string
     }>
-    popular: Array<{
+    featuredProducts: Array<{
       __typename?: 'Product'
       id: string
       title: string
@@ -35,16 +31,12 @@ export type GetHomeDataQuery = {
 export const GetHomeDataDocument = gql`
   query GetHomeData {
     homeData {
-      recommended {
-        id
-        title
-        slug
-        mainTag
-        currentPrice
-        basePrice
-        preview
+      sliderData {
+        actionURL
+        imageURL
+        color
       }
-      popular {
+      featuredProducts {
         id
         title
         slug

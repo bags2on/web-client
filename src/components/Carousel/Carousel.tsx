@@ -3,17 +3,16 @@ import NavButtons from './NavButtons'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import classes from './Carousel.module.scss'
 
-export type CarouselItem = {
-  url: string
-  text: string
+export type Slide = {
+  actionURL: string
+  imageURL: string
   color: string
-  imageUrl: string
 }
 interface CarouselProps {
-  items: CarouselItem[]
+  slides: Slide[]
 }
 
-const Carousel: React.FC<CarouselProps> = ({ items }) => {
+const Carousel: React.FC<CarouselProps> = ({ slides }) => {
   return (
     <Swiper
       loop
@@ -33,14 +32,14 @@ const Carousel: React.FC<CarouselProps> = ({ items }) => {
       }}
       className={classes.swiperContainer}
     >
-      {items.map((slide, index) => (
-        <SwiperSlide tag="li" key={slide.text} virtualIndex={index}>
+      {slides.map((slide, index) => (
+        <SwiperSlide tag="li" key={slide.color} virtualIndex={index}>
           <div
-            aria-label={slide.text}
+            aria-label={slide.color}
             className={classes.slideImageBox}
             style={{
               backgroundColor: slide.color,
-              backgroundImage: `url(${slide.imageUrl})`
+              backgroundImage: `url(${slide.imageURL})`
             }}
           />
         </SwiperSlide>

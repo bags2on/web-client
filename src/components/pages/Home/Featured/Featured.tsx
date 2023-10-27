@@ -11,7 +11,7 @@ interface ProductType {
   title: string
   preview: string
   basePrice: number
-  mainTag: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR'
+  mainTag?: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR' | null
 }
 
 interface FeaturedProps {
@@ -34,7 +34,7 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
               url={product.preview}
               title={product.title}
               price={product.currentPrice}
-              mainTag={product.mainTag}
+              mainTag={product.mainTag || ''}
               basePrice={product.basePrice}
               isFavorite={false} // TODO: get data form ac3
             />

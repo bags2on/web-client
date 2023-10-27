@@ -1,8 +1,7 @@
 {
   "headers": {
     "categories": "Категорії",
-    "advise": "Рекомендовані",
-    "popular": "Часто купують"
+    "advise": "Рекомендовані"
   },
   "categories": {
     "suitcases": "Валізи",

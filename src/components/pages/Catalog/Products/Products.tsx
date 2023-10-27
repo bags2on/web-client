@@ -27,7 +27,7 @@ interface ProductsProps {
         instock: boolean
         currentPrice: number
         basePrice: number
-        mainTag: string
+        mainTag?: string | null
         preview: string
       }>
     | undefined
@@ -73,7 +73,7 @@ const Products: React.FC<ProductsProps> = ({
                 title={product.title}
                 price={product.currentPrice}
                 inStock={product.instock}
-                mainTag={product.mainTag}
+                mainTag={product.mainTag || ''}
                 basePrice={product.basePrice}
                 isFavorite={isFavorite}
               />

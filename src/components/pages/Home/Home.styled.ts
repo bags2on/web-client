@@ -58,7 +58,3 @@ export const MainProductContainer = styled.div`
     display: none;
   }
 `
-
-export const PopularContainer = styled.div`
-  ${containerStyles}
-`

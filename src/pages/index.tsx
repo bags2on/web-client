@@ -29,5 +29,5 @@ export default function HomeIndex({ homeData }: InferGetStaticPropsType<typeof g
     )
   }
 
-  return <Home recommended={homeData.recommended} popular={homeData.popular} />
+  return <Home sliderData={homeData.sliderData} featuredProducts={homeData.featuredProducts} />
 }

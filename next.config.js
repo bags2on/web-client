@@ -22,6 +22,9 @@ const nextConfig = {
       }
     ]
   },
+  eslint: {
+    ignoreDuringBuilds: false
+  },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `@import '@/styles/globals.scss';`

@@ -4,12 +4,14 @@ import type { AppProps } from 'next/app'
 import RootLayout from '@/components/RootLayout'
 import { useTheme } from '@/hooks'
 import { ApolloProvider } from '@apollo/client'
+import { ModalProvider } from 'styled-react-modal'
 import { ThemeProvider } from 'styled-components'
 import { GlobalStyles, lightTheme, darkTheme } from '@/utils/theme'
 import SwiperCore from 'swiper'
 import { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper/modules'
 
 import { appWithTranslation } from 'next-i18next'
+import nextI18NextConfig from '../../next-i18next.config'
 
 import '../../node_modules/modern-normalize/modern-normalize.css'
 import '@/styles/css-variables.scss'
@@ -38,14 +40,17 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
       </Head>
       <ApolloProvider client={client}>
         <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-          <GlobalStyles />
-          <RootLayout theme={theme} onThemeChange={changeTheme}>
-            <Component {...pageProps} />
-          </RootLayout>
+          <ModalProvider>
+            <GlobalStyles />
+            <RootLayout theme={theme} onThemeChange={changeTheme}>
+              <Component {...pageProps} />
+            </RootLayout>
+          </ModalProvider>
         </ThemeProvider>
       </ApolloProvider>
     </>
   )
 }
 
-export default appWithTranslation(MyApp)
+// INFO: https://github.com/i18next/next-i18next/issues/1917
+export default appWithTranslation(MyApp, nextI18NextConfig)
