@@ -1,19 +1,26 @@
 import React from 'react'
+import styled, { css } from 'styled-components'
 import { useField } from 'formik'
-import styled from 'styled-components'
 
 const COLOR = '#232323'
 
-const InputBox = styled.div`
+const Container = styled.div<{ $row: boolean }>`
+  display: flex;
+  flex-direction: ${({ $row }) => ($row ? 'row' : 'column')};
+`
+
+const InputBox = styled.div<{ $row: boolean }>`
   display: flex;
   align-items: center;
   margin-bottom: 12px;
+  margin-right: ${({ $row }) => ($row ? '3%' : '0')};
 `
 
-const Label = styled.label`
+const Label = styled.label<{ $disabled: boolean }>`
   border-radius: 100%;
-  padding: 3px 15px 3px 45px;
-  cursor: pointer;
+  cursor: ${({ $disabled }) => ($disabled ? 'not-allowed' : 'pointer')};
+  color: ${({ $disabled }) => $disabled && '#aeaeae'};
+  padding: 4px 15px 3px 45px;
   position: relative;
   font-weight: 500;
   font-size: 15px;
@@ -51,6 +58,11 @@ const Label = styled.label`
     &::before {
       border: 2px solid;
       border-color: ${({ theme }) => (theme.type === 'light' ? COLOR : theme.colors.primary)};
+      ${({ $disabled }) =>
+        $disabled &&
+        css`
+          border-color: #dcdcdc;
+        `}
     }
   }
 `
@@ -83,18 +95,19 @@ type option = {
 interface RadioGroup {
   name: string
   options: option[]
+  asRow?: boolean
 }
 
-const RadioGroup: React.FC<RadioGroup> = ({ options, ...restProps }) => {
+const RadioGroup: React.FC<RadioGroup> = ({ asRow = false, options, ...restProps }) => {
   const [field] = useField(restProps)
 
   return (
-    <div>
-      {options.map(({ value, label }, ind) => {
+    <Container $row={asRow}>
+      {options.map(({ value, label, disabled = false }, ind) => {
         const inputId = ind + value
 
         return (
-          <InputBox key={value + ind}>
+          <InputBox key={value + ind} $row={asRow}>
             <Input
               id={inputId}
               type="radio"
@@ -102,12 +115,15 @@ const RadioGroup: React.FC<RadioGroup> = ({ options, ...restProps }) => {
               value={value}
               name={field.name}
               checked={value === field.value}
+              disabled={disabled}
             />
-            <Label htmlFor={inputId}>{label}</Label>
+            <Label $disabled={disabled} htmlFor={inputId}>
+              {label}
+            </Label>
           </InputBox>
         )
       })}
-    </div>
+    </Container>
   )
 }
 
