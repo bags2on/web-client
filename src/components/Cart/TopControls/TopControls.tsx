@@ -37,7 +37,7 @@ const TopControls: React.FC<TopControlsProps> = ({ onCartClose }) => {
           <b>{t('cart.topControls.title1')}</b>&nbsp;{t('cart.topControls.title2')}
         </Title>
         <ClearButton
-          color="danger"
+          color="secondary"
           onClick={handleClearButtonClick}
           startIcon={
             <TheTrashIcon>
