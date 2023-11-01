@@ -16,7 +16,9 @@ export const CheckoutOrderSchema = yup.object({
   phone: yup.string().min(10, '* недостаточно значений').required('* обязательное поле'),
   region: yup.string().required('* обязательное поле'),
   cityId: yup.string().required('* обязательное поле'),
-  postOfficeId: yup.string().required('* обязательное поле')
+  postOfficeId: yup.string().required('* обязательное поле'),
+  supplier: yup.string().required(),
+  '_np-delivery-type': yup.string().required()
 })
 
 export const AccountSettingsSchema = yup.object({

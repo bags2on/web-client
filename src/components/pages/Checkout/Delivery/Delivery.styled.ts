@@ -6,8 +6,7 @@ export const Container = styled.section`
   border-radius: 10px;
   @media ${({ theme }) => theme.media.lg} {
     background-color: transparent;
-
-    borderradius: 0;
+    border-radius: 0;
   }
 `
 
@@ -104,28 +103,5 @@ export const AnimatedBox = styled.div`
     padding: 0 5px;
     opacity: 1 !important;
     height: auto !important;
-  }
-`
-
-export const FormField = styled.div`
-  width: 100%;
-  & > span {
-    font-size: 15px;
-    color: ${({ theme }) => (theme.type === 'light' ? '#6a6a6a' : '#fff')};
-    font-weight: 500;
-    padding-left: 7px;
-    margin-bottom: 5px;
-  }
-  @media screen and (min-width: 1000px) {
-    max-width: 300px;
-  }
-`
-
-export const AreaContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  @media ${({ theme }) => theme.media.xl} {
-    justify-content: flex-start;
   }
 `

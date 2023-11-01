@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import StepTitle from '../common/StepTitle'
 import ContinueButton from '../common/ContinueButton'
-import Select from '@/shared/formFields/Select'
-import TextInput from '@/shared/formFields/TextInput/TextInput'
 import SomethingWrongModal from '../Modals/SomethingWrong'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
 import { animated, useSpring } from 'react-spring'
+
+import NovaPoshta from './NovaPoshta'
+import UkrPoshta from './UkrPoshta'
 
 import {
   Container,
@@ -17,9 +18,7 @@ import {
   ServiceLabel,
   DeliveryInput,
   DeliveryService,
-  AnimatedBox,
-  AreaContainer,
-  FormField
+  AnimatedBox
 } from './Delivery.styled'
 
 interface DeliveryProps {
@@ -28,27 +27,25 @@ interface DeliveryProps {
   onContinue(): void
 }
 
-const API_URL = process.env.REACT_APP_API_URL
-
-type area = {
-  id: string
-  name: string
-  areas: Array<area>
-}
-interface AreasType {
-  name: string
-  areas: Array<area>
+export type PopularCity = {
+  city_id: string
+  city_name: string
+  nova_poshta_id: string
+  ukrposhta_id: string
 }
 
 const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
   const { values } = useFormikContext<CheckoutOrderType>()
 
-  const [areas, setAreas] = useState<AreasType>()
-  const [areasLoading, setAreasLoading] = useState<boolean>(true)
+  // const [deliveryService, setDeliveryService] = useState<'nova' | 'ukr'>('nova')
+
+  const [popularCities, setPopularCities] = useState<PopularCity[]>([])
+  const [citieLoading, setCitieLoading] = useState<boolean>(true)
   const [areasError, setAreasError] = useState<boolean>(false)
 
   const isValuesValid = Boolean(values.region && values.cityId && values.postOfficeId)
 
+  // INFO TODO: put this in a separate component with children
   const slideInStyles = useSpring({
     config: { duration: 250 },
     from: { opacity: 0, height: 0 },
@@ -62,34 +59,23 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
     const controller = new AbortController()
     const { signal } = controller
 
-    fetch(API_URL + '/areas', { signal })
+    fetch('/api/getCities', { signal })
       .then(async (resp) => {
         const data = await resp.json()
-        setAreas(data)
-        setAreasLoading(false)
+        // console.log(data)
+
+        setPopularCities(data)
+        setCitieLoading(false)
       })
       .catch(() => {
         setAreasError(true)
+        setCitieLoading(false)
       })
 
     return () => {
       controller.abort()
     }
   }, [])
-
-  const areasOptions =
-    areas?.areas.map(({ name }) => ({
-      label: name,
-      value: name
-    })) || []
-
-  const cities = areas?.areas.find((currentArea) => currentArea.name === values.region)?.areas
-
-  const citiesOptions =
-    cities?.map((city) => ({
-      label: city.name,
-      value: city.name
-    })) || []
 
   return (
     <Container>
@@ -119,20 +105,10 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
             </ServiceLabel>
           </DeliveriesItem>
         </DeliveriesList>
-        <AreaContainer>
-          <FormField>
-            <span>Область</span>
-            <Select name="region" disabled={areasLoading} options={areasOptions} />
-          </FormField>
-          <FormField>
-            <span>Город</span>
-            <Select name="cityId" disabled={!values.region} options={citiesOptions} />
-          </FormField>
-        </AreaContainer>
-        <FormField>
-          <span>Выберите отделение</span>
-          <TextInput name="postOfficeId" />
-        </FormField>
+        {/*  */}
+        <NovaPoshta current={values.supplier} cities={popularCities} />
+        <UkrPoshta current={values.supplier} />
+        {/*  */}
         <ContinueButton disabled={!isValuesValid} onClick={onContinue}>
           Продолжить
         </ContinueButton>
