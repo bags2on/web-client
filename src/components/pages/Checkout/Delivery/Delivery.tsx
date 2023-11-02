@@ -59,15 +59,21 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
     const controller = new AbortController()
     const { signal } = controller
 
-    fetch('/api/getCities', { signal })
+    fetch('/api/getPopularCities', { signal })
       .then(async (resp) => {
         const data = await resp.json()
         // console.log(data)
 
-        setPopularCities(data)
-        setCitieLoading(false)
+        if (resp.status === 200) {
+          setPopularCities(data)
+          setCitieLoading(false)
+        } else {
+          throw new Error(data.error)
+        }
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log('ERROR:', error.message)
+
         setAreasError(true)
         setCitieLoading(false)
       })
