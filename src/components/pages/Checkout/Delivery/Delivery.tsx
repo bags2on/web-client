@@ -7,6 +7,7 @@ import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
 import { animated, useSpring } from 'react-spring'
 
+import ShowService from '../common/ShowService'
 import NovaPoshta from './NovaPoshta'
 import UkrPoshta from './UkrPoshta'
 
@@ -112,8 +113,12 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
           </DeliveriesItem>
         </DeliveriesList>
         {/*  */}
-        <NovaPoshta current={values.supplier} cities={popularCities} />
-        <UkrPoshta current={values.supplier} />
+        <ShowService as="nova-poshta" current={values.supplier}>
+          <NovaPoshta cities={popularCities} />
+        </ShowService>
+        <ShowService as="ukr-poshta" current={values.supplier}>
+          <UkrPoshta />
+        </ShowService>
         {/*  */}
         <ContinueButton disabled={!isValuesValid} onClick={onContinue}>
           Продолжить

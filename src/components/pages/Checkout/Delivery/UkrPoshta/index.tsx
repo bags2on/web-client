@@ -1,14 +1,8 @@
 import React from 'react'
 
-interface UkrPoshtaProps {
-  current: string
-}
+interface UkrPoshtaProps {}
 
-const UkrPoshta: React.FC<UkrPoshtaProps> = ({ current }) => {
-  if ('ukr-poshta' !== current) {
-    return null
-  }
-
+const UkrPoshta: React.FC<UkrPoshtaProps> = () => {
   return <div>UkrPoshta</div>
 }
 

@@ -9,7 +9,6 @@ import type { PopularCity } from '../Delivery'
 import AsyncSelect from 'react-select/async'
 
 interface NovaPoshtaProps {
-  current: string
   cities: PopularCity[]
 }
 
@@ -45,11 +44,7 @@ export const CityItem = styled.li`
   }
 `
 
-const NovaPoshta: React.FC<NovaPoshtaProps> = ({ current, cities }) => {
-  if ('nova-poshta' !== current) {
-    return null
-  }
-
+const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
   const { values, setFieldValue } = useFormikContext<CheckoutOrderType>()
 
   const memCitiesOptions = useMemo(
