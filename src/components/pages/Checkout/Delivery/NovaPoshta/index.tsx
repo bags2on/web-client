@@ -1,12 +1,13 @@
-import React, { useMemo } from 'react'
+import React, { useState, useMemo } from 'react'
 import RadioGroup from '@/shared/formFields/RadioGroup'
 import styled from 'styled-components'
-import { useFormikContext } from 'formik'
-import type { CheckoutOrderType } from '@/utils/formValidationSchema'
+// import { useFormikContext } from 'formik'
+// import type { CheckoutOrderType } from '@/utils/formValidationSchema'
 import { deliveryTypeOptions, pupularCities } from './data'
 import type { PopularCity } from '../Delivery'
 
 import AsyncSelect from 'react-select/async'
+import Warehouses from './Warehouses'
 
 interface NovaPoshtaProps {
   cities: PopularCity[]
@@ -45,7 +46,9 @@ export const CityItem = styled.li`
 `
 
 const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
-  const { values, setFieldValue } = useFormikContext<CheckoutOrderType>()
+  // const { values } = useFormikContext<CheckoutOrderType>()
+
+  const [cityId, setCityId] = useState<string>('')
 
   const memCitiesOptions = useMemo(
     () =>
@@ -76,7 +79,7 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
     })
 
   const handleSelectChange = (cityId: string) => {
-    setFieldValue('postOfficeId', cityId)
+    setCityId(cityId)
   }
 
   return (
@@ -116,36 +119,8 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
           </CityItem>
         ))}
       </CitiesList>
-      <p>{values.postOfficeId}</p>
-      {values.postOfficeId && (
-        <>
-          <span>Отделения</span>
-          <AsyncSelect
-            // menuIsOpen
-            isClearable
-            onChange={(newValue, action) => {
-              // console.log(newValue, action.action)
-              if (action.action === 'select-option' || action.action === 'clear') {
-                if (newValue) {
-                  handleSelectChange(newValue.value)
-                } else {
-                  handleSelectChange('')
-                }
-              }
-            }}
-            name="postOfficeId"
-            defaultOptions={memCitiesOptions}
-            loadOptions={promiseOptions}
-            placeholder={'Укажите отделение'}
-            styles={{
-              menu: ({ position, ...provided }) => ({
-                ...provided,
-                position: 'static'
-              })
-            }}
-          />
-        </>
-      )}
+      {/* <p>{cityId}</p> */}
+      {cityId && <Warehouses cityId={cityId} />}
     </Container>
   )
 }
