@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import AsyncSelect from 'react-select/async'
+import { List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized'
+import type { MenuListProps, GroupBase } from 'react-select'
+import type { ListRowProps } from 'react-virtualized'
 
 interface WarehousesProps {
   cityId: string
@@ -13,6 +16,49 @@ type WarehousesOption = {
 type Warehouses = {
   id: string
   description: string
+}
+
+const VirtualizedList = ({
+  children
+}: MenuListProps<WarehousesOption, false, GroupBase<WarehousesOption>>) => {
+  const rows = children
+  // console.log(rows)
+
+  const cellCache = useMemo(() => {
+    return new CellMeasurerCache({
+      fixedWidth: true,
+      defaultHeight: 30
+    })
+  }, [])
+
+  if (!Array.isArray(rows)) {
+    return <>{children}</>
+  }
+
+  const rowRenderer = ({ key, parent, index, style }: ListRowProps) => (
+    <CellMeasurer cache={cellCache} key={key} columnIndex={0} rowIndex={index} parent={parent}>
+      <div key={key} style={style}>
+        {rows[index]}
+      </div>
+    </CellMeasurer>
+  )
+
+  return (
+    <div style={{ height: '300px' }}>
+      <AutoSizer>
+        {({ width, height }) => (
+          <List
+            width={width}
+            height={height}
+            deferredMeasurementCache={cellCache}
+            rowHeight={cellCache.rowHeight}
+            rowCount={rows.length}
+            rowRenderer={rowRenderer}
+          />
+        )}
+      </AutoSizer>
+    </div>
+  )
 }
 
 const Warehouses: React.FC<WarehousesProps> = ({ cityId }) => {
@@ -52,7 +98,8 @@ const Warehouses: React.FC<WarehousesProps> = ({ cityId }) => {
         }
       })
       .catch((error) => {
-        console.log('ERROR:', error.message)
+        setLoading(false)
+        console.warn('ERROR:', error)
       })
 
     return () => {
@@ -76,6 +123,7 @@ const Warehouses: React.FC<WarehousesProps> = ({ cityId }) => {
     <div>
       <span>Отделения</span>
       <AsyncSelect
+        components={{ MenuList: VirtualizedList }}
         cacheOptions
         isClearable
         isLoading={loading}
@@ -93,8 +141,9 @@ const Warehouses: React.FC<WarehousesProps> = ({ cityId }) => {
         loadOptions={loadWarehouses}
         placeholder={'Укажите отделение'}
         styles={{
-          menu: ({ position, ...provided }) => ({
+          menu: ({ position, fontWeight, ...provided }) => ({
             ...provided,
+            fontWeight: 500,
             position: 'static'
           })
         }}
