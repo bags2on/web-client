@@ -127,6 +127,23 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
             menu: ({ position, ...provided }) => ({
               ...provided,
               position: 'static'
+            }),
+            menuList: (provided) => ({
+              ...provided,
+              '::-webkit-scrollbar': {
+                width: '4px',
+                height: '0px'
+              },
+              '::-webkit-scrollbar-track': {
+                background: '#f1f1f1'
+              },
+              '::-webkit-scrollbar-thumb': {
+                background: '#888',
+                borderRadius: '15px'
+              },
+              '::-webkit-scrollbar-thumb:hover': {
+                background: '#555'
+              }
             })
           }}
         />
