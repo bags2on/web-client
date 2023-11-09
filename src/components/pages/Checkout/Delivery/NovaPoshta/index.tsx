@@ -1,13 +1,10 @@
-import React, { useState, useMemo } from 'react'
-import RadioGroup from '@/shared/formFields/RadioGroup'
+import React, { useEffect, useState, useMemo } from 'react'
 import styled from 'styled-components'
-// import { useFormikContext } from 'formik'
-// import type { CheckoutOrderType } from '@/utils/formValidationSchema'
-import { deliveryTypeOptions, pupularCities } from './data'
-import type { PopularCity } from '../Delivery'
-
-import AsyncSelect from 'react-select/async'
 import Warehouses from './Warehouses'
+import AsyncSelect from 'react-select/async'
+import RadioGroup from '@/shared/formFields/RadioGroup'
+import { deliveryTypeOptions } from './data'
+import type { PopularCity } from '../Delivery'
 
 interface NovaPoshtaProps {
   cities: PopularCity[]
@@ -45,12 +42,19 @@ export const CityItem = styled.li`
   }
 `
 
+type CityOption = {
+  label: string
+  value: string
+}
+
+const pupularCities = ['Харків', 'Київ', 'Одеса', 'Дніпро', 'Львів']
+
 const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
-  // const { values } = useFormikContext<CheckoutOrderType>()
+  const [selectValue, setSelectValue] = useState<CityOption | null>(null)
 
   const [cityId, setCityId] = useState<string>('')
 
-  const memCitiesOptions = useMemo(
+  const memCitiesOptions: CityOption[] = useMemo(
     () =>
       cities.map((city) => ({
         label: city.city_name,
@@ -59,13 +63,12 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
     [cities]
   )
 
+  useEffect(() => {
+    setCityId(selectValue ? selectValue.value : '')
+  }, [selectValue])
+
   const promiseOptions = (inputValue: string) =>
-    new Promise<
-      Array<{
-        label: string
-        value: string
-      }>
-    >((resolve) => {
+    new Promise<Array<CityOption>>((resolve) => {
       setTimeout(() => {
         const c = cities
           .map((city) => ({
@@ -82,17 +85,34 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
     setCityId(cityId)
   }
 
+  const handleCityQuikSet = (city: CityOption) => {
+    setSelectValue(city)
+  }
+
+  const selectedCities = pupularCities.map((baseCity) => {
+    const city = cities.find((city) =>
+      city.city_name.toLocaleLowerCase().includes(baseCity.toLocaleLowerCase())
+    )
+
+    return {
+      label: city ? city.city_name : '',
+      value: city ? city.nova_poshta_id : '',
+      baseLabel: baseCity
+    }
+  })
+
   return (
     <Container>
       <RadioGroup asRow name="_np-delivery-type" options={deliveryTypeOptions} />
       <FormField>
         <span>Город</span>
         <AsyncSelect
-          // menuIsOpen
+          cacheOptions
+          value={selectValue}
           isClearable
-          onChange={(newValue, action) => {
-            // console.log(newValue, action.action)
-            if (action.action === 'select-option' || action.action === 'clear') {
+          onChange={(newValue, { action }) => {
+            setSelectValue(newValue)
+            if (action === 'select-option' || action === 'clear') {
               if (newValue) {
                 handleSelectChange(newValue.value)
               } else {
@@ -100,7 +120,6 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
               }
             }
           }}
-          name="postOfficeId"
           defaultOptions={memCitiesOptions}
           loadOptions={promiseOptions}
           placeholder={'Укажите город'}
@@ -113,13 +132,12 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
         />
       </FormField>
       <CitiesList>
-        {pupularCities.map((city) => (
-          <CityItem key={city.id}>
-            <span>{city.title}</span>
+        {selectedCities.map(({ baseLabel, value, label }) => (
+          <CityItem key={baseLabel} onClick={() => handleCityQuikSet({ label, value })}>
+            <span>{baseLabel}</span>
           </CityItem>
         ))}
       </CitiesList>
-      {/* <p>{cityId}</p> */}
       {cityId && <Warehouses cityId={cityId} />}
     </Container>
   )

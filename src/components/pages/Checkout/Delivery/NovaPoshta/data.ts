@@ -15,26 +15,3 @@ export const deliveryTypeOptions = [
     disabled: true
   }
 ]
-
-export const pupularCities = [
-  {
-    id: 'kh',
-    title: 'Харків'
-  },
-  {
-    id: 'kv',
-    title: 'Киев'
-  },
-  {
-    id: 'od',
-    title: 'Одесса'
-  },
-  {
-    id: 'dn',
-    title: 'Днепр'
-  },
-  {
-    id: 'lv',
-    title: 'Львов'
-  }
-]
