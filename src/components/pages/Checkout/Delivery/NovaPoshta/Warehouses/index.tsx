@@ -22,7 +22,8 @@ const VirtualizedList = ({
   children
 }: MenuListProps<WarehousesOption, false, GroupBase<WarehousesOption>>) => {
   const rows = children
-  // console.log(rows)
+
+  const [rowWidth, setRowWidth] = useState<number>(0)
 
   const cellCache = useMemo(() => {
     return new CellMeasurerCache({
@@ -30,6 +31,10 @@ const VirtualizedList = ({
       defaultHeight: 30
     })
   }, [])
+
+  const resizeAll = () => {
+    cellCache.clearAll()
+  }
 
   if (!Array.isArray(rows)) {
     return <>{children}</>
@@ -46,16 +51,25 @@ const VirtualizedList = ({
   return (
     <div style={{ height: '300px' }}>
       <AutoSizer>
-        {({ width, height }) => (
-          <List
-            width={width}
-            height={height}
-            deferredMeasurementCache={cellCache}
-            rowHeight={cellCache.rowHeight}
-            rowCount={rows.length}
-            rowRenderer={rowRenderer}
-          />
-        )}
+        {({ width, height }) => {
+          // console.log(width, height)
+
+          if (rowWidth !== width) {
+            setTimeout(resizeAll, 0)
+            setRowWidth(width)
+          }
+
+          return (
+            <List
+              width={width}
+              height={height}
+              deferredMeasurementCache={cellCache}
+              rowHeight={cellCache.rowHeight}
+              rowCount={rows.length}
+              rowRenderer={rowRenderer}
+            />
+          )
+        }}
       </AutoSizer>
     </div>
   )
