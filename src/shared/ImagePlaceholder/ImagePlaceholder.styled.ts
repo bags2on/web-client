@@ -1,6 +1,20 @@
 import styled, { css, keyframes } from 'styled-components'
 
-export const Picture = styled.picture<{ $plain: boolean }>`
+const areaStyles = css`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  outline: none;
+  object-fit: cover;
+  user-select: none;
+`
+
+export const Container = styled.div<{ $plain: boolean }>`
   display: block;
   outline: none;
   position: relative;
@@ -19,7 +33,7 @@ const shineKeyframes = keyframes`
   }
 `
 
-export const Shine = styled.div<{ $plain: boolean }>`
+export const Shine = styled.div`
   width: 100%;
   height: 100%;
   transition: 0.3s;
@@ -27,40 +41,9 @@ export const Shine = styled.div<{ $plain: boolean }>`
   background-size: 300% 300%;
   opacity: 0.8;
   animation: ${shineKeyframes} 1.3s infinite;
-  border-top-left-radius: ${({ $plain }) => ($plain ? '0' : '8px')};
-  border-top-right-radius: ${({ $plain }) => ($plain ? '0' : '8px')};
+  border-radius: 8px;
 `
 
-export const PlaceholderBox = styled.div`
-  position: absolute;
-  outline: none;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`
-
-const areaStyles = css`
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  max-width: 100%;
-  max-height: 100%;
-  margin: auto;
-  outline: none;
-  object-fit: cover;
-  user-select: none;
-`
-
-export const Image = styled.img`
-  ${areaStyles}
-`
-
-export const PlaceholderContainer = styled.div`
+export const Placeholder = styled.div`
   ${areaStyles}
 `
