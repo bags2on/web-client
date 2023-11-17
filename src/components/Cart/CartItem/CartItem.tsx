@@ -51,7 +51,7 @@ const CartItem: React.FC<CartItemProps> = ({ product, amount, onRemove }) => {
     <Container>
       <ImageWrapper>
         <Link href={generateProductLink(routeNames.product, id, slug)}>
-          <ImagePlaceholder plain src={preview} altText={title} />
+          <ImagePlaceholder src={preview} altText={title} />
         </Link>
       </ImageWrapper>
       <Info>

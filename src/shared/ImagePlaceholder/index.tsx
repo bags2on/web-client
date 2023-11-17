@@ -5,10 +5,9 @@ import { Container, Shine, Placeholder } from './ImagePlaceholder.styled'
 export interface ImagePlaceholderProps {
   src: string
   altText: string
-  plain?: boolean
 }
 
-const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText, plain = false }) => {
+const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText }) => {
   const [loading, setLoading] = useState(true)
 
   const plug = (
@@ -22,7 +21,7 @@ const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText, plain
   }
 
   return (
-    <Container $plain={plain}>
+    <Container>
       <Image
         fill
         sizes="(max-width: 600px) 150px, 100vw"

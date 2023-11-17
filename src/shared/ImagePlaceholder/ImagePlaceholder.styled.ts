@@ -14,14 +14,14 @@ const areaStyles = css`
   user-select: none;
 `
 
-export const Container = styled.div<{ $plain: boolean }>`
+export const Container = styled.div`
   display: block;
   outline: none;
   position: relative;
   overflow: hidden;
   transform: translatez(0);
-  padding-top: ${({ $plain }) => ($plain ? '0px' : '100%')};
-  height: ${({ $plain }) => ($plain ? '100%' : 'auto')};
+  padding-top: 100%;
+  height: auto;
 `
 
 const shineKeyframes = keyframes`
