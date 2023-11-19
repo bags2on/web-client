@@ -1,40 +1,40 @@
-import React from 'react'
-import ProgressiveImage from 'react-progressive-graceful-image'
-
-import {
-  Picture,
-  Shine,
-  PlaceholderContainer,
-  PlaceholderBox,
-  Image
-} from './ImagePlaceholder.styled'
+import React, { useState } from 'react'
+import Image from 'next/image'
+import { Container, Shine, Placeholder } from './ImagePlaceholder.styled'
 
 export interface ImagePlaceholderProps {
   src: string
   altText: string
-  plain?: boolean
 }
 
-const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText, plain = false }) => {
-  const placeholderPlug = (
-    <PlaceholderContainer>
-      <Shine $plain={plain} />
-      <PlaceholderBox>{/* <Placeholder height={50} width={50} /> */}</PlaceholderBox>
-    </PlaceholderContainer>
+const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText }) => {
+  const [loading, setLoading] = useState(true)
+
+  const plug = (
+    <Placeholder>
+      <Shine />
+    </Placeholder>
   )
 
-  const plainPlug = <Shine $plain={plain} />
-
-  const plug = plain ? plainPlug : placeholderPlug
+  const handleImageLoad = () => {
+    setLoading(false)
+  }
 
   return (
-    <Picture $plain={plain}>
-      <ProgressiveImage src={src} placeholder="xcxc">
-        {(src, loading) => {
-          return loading ? plug : <Image src={src} alt={altText} />
+    <Container>
+      <Image
+        fill
+        sizes="(max-width: 600px) 150px, 100vw"
+        src={src}
+        alt={altText}
+        quality={100}
+        onLoad={handleImageLoad}
+        style={{
+          opacity: loading ? '0' : '100'
         }}
-      </ProgressiveImage>
-    </Picture>
+      />
+      {loading && plug}
+    </Container>
   )
 }
 

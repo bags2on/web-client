@@ -39,23 +39,25 @@ export const Title = styled.p`
 `
 
 export const TheTrashIcon = styled(SvgIcon)`
-  fill: #fff;
-  font-size: 18px;
+  fill: #858585;
+  font-size: 15px;
   margin-right: 4px;
   transition: fill 0.2s;
 `
 
 export const ClearButton = styled(Button)`
-  font-size: 14px;
+  font-size: 13px;
   line-height: 14px;
+  font-weight: 600;
   padding: 8px 7px;
   align-self: center;
   text-transform: none;
   border: none;
-  color: #fff;
-  background-color: #232323;
+  color: #9b9b9b;
+  background-color: #e1e1e1;
+  margin-right: 5px;
   &:hover:not(:disabled) {
-    background-color: #232323;
+    background-color: #d7d7d7;
     & ${TheTrashIcon} {
       fill: #f44336;
     }
