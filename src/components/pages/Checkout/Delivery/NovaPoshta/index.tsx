@@ -95,6 +95,8 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
 
   const handleCityQuikSet = (city: CityOption) => {
     setSelectValue(city)
+    setCityId(city.value)
+    setFieldValue('cityName', city.label)
   }
 
   const selectedCities = pupularCities.map((baseCity) => {
