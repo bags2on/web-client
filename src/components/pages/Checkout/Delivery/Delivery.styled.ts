@@ -94,6 +94,11 @@ export const DeliveryInput = styled(Field)`
       border-color: var(--green-light);
     }
   }
+  &:disabled + ${DeliveryService} {
+    cursor: not-allowed;
+    border-color: rgb(149 149 149 / 20%);
+    background-color: rgb(149 149 149 / 20%);
+  }
 `
 
 export const AnimatedBox = styled.div`

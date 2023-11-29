@@ -103,7 +103,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
           </DeliveriesItem>
           <DeliveriesItem>
             <ServiceLabel>
-              <DeliveryInput type="radio" name="supplier" value="ukr-poshta" />
+              <DeliveryInput type="radio" name="supplier" disabled value="ukr-poshta" />
               <DeliveryService>
                 <ImageWrapper>
                   <Image fill={true} src="/assets/ukr_poshta.svg" alt="логотип 'Укр Почта'" />
