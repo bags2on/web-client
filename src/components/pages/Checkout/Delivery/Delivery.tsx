@@ -44,7 +44,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
   const [citieLoading, setCitieLoading] = useState<boolean>(true)
   const [areasError, setAreasError] = useState<boolean>(false)
 
-  const isValuesValid = Boolean(values.region && values.cityId && values.postOfficeId)
+  const isValuesValid = Boolean(values.cityId && values.postOfficeId)
 
   // INFO TODO: put this in a separate component with children
   const slideInStyles = useSpring({

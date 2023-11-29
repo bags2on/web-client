@@ -87,7 +87,6 @@ const Checkout: React.FC = () => {
           email: '',
           phone: '',
           supplier: 'nova-poshta',
-          region: '',
           cityId: '',
           postOfficeId: '',
           '_np-delivery-type': 'department'

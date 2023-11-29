@@ -5,6 +5,8 @@ import AsyncSelect from 'react-select/async'
 import RadioGroup from '@/shared/formFields/RadioGroup'
 import { deliveryTypeOptions } from './data'
 import type { PopularCity } from '../Delivery'
+import { useFormikContext } from 'formik'
+import { CheckoutOrderType } from '@/utils/formValidationSchema'
 
 interface NovaPoshtaProps {
   cities: PopularCity[]
@@ -51,6 +53,7 @@ const pupularCities = ['Харків', 'Київ', 'Одеса', 'Дніпро',
 
 const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
   const [selectValue, setSelectValue] = useState<CityOption | null>(null)
+  const { setFieldValue } = useFormikContext<CheckoutOrderType>()
 
   const [cityId, setCityId] = useState<string>('')
 
@@ -83,6 +86,11 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
 
   const handleSelectChange = (cityId: string) => {
     setCityId(cityId)
+    setFieldValue('cityId', cityId)
+  }
+
+  const handleWarehouseChange = (warehouse: string) => {
+    setFieldValue('postOfficeId', warehouse)
   }
 
   const handleCityQuikSet = (city: CityOption) => {
@@ -155,7 +163,7 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
           </CityItem>
         ))}
       </CitiesList>
-      {cityId && <Warehouses cityId={cityId} />}
+      {cityId && <Warehouses cityId={cityId} onSelect={handleWarehouseChange} />}
     </Container>
   )
 }

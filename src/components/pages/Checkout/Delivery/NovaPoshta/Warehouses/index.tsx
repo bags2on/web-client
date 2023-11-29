@@ -6,6 +6,7 @@ import type { ListRowProps } from 'react-virtualized'
 
 interface WarehousesProps {
   cityId: string
+  onSelect(id: string): void
 }
 
 type WarehousesOption = {
@@ -75,7 +76,7 @@ const VirtualizedList = ({
   )
 }
 
-const Warehouses: React.FC<WarehousesProps> = ({ cityId }) => {
+const Warehouses: React.FC<WarehousesProps> = ({ cityId, onSelect }) => {
   const [warehouses, setWarehouses] = useState<WarehousesOption[]>([])
   const [selectValue, setSelectValue] = useState<WarehousesOption | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
@@ -130,7 +131,7 @@ const Warehouses: React.FC<WarehousesProps> = ({ cityId }) => {
     })
 
   const handleSelectChange = (value: string) => {
-    console.log(value)
+    onSelect(value)
   }
 
   return (
