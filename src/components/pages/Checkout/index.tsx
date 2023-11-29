@@ -84,11 +84,11 @@ const Checkout: React.FC = () => {
         initialValues={{
           name: '',
           surname: '',
-          email: '',
           phone: '',
+          email: '',
           supplier: 'nova-poshta',
-          cityId: '',
-          postOfficeId: '',
+          cityName: '',
+          postOfficeName: '',
           '_np-delivery-type': 'department'
         }}
       >

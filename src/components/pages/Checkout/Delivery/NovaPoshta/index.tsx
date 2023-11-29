@@ -86,11 +86,11 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
 
   const handleSelectChange = (cityId: string) => {
     setCityId(cityId)
-    setFieldValue('cityId', cityId)
+    setFieldValue('cityName', cityId)
   }
 
   const handleWarehouseChange = (warehouse: string) => {
-    setFieldValue('postOfficeId', warehouse)
+    setFieldValue('postOfficeName', warehouse)
   }
 
   const handleCityQuikSet = (city: CityOption) => {
