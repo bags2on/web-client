@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react'
 import styled from 'styled-components'
 import Warehouses from './Warehouses'
 import AsyncSelect from 'react-select/async'
+import { components, InputProps } from 'react-select'
 import RadioGroup from '@/shared/formFields/RadioGroup'
 import { deliveryTypeOptions } from './data'
 import type { PopularCity } from '../Delivery'
@@ -50,6 +51,12 @@ type CityOption = {
 }
 
 const pupularCities = ['Харків', 'Київ', 'Одеса', 'Дніпро', 'Львів']
+
+const SelectInput = (props: InputProps<CityOption, false>) => {
+  // Disable autocomplete on field
+  // https://stackoverflow.com/a/30976223/15604836
+  return <components.Input {...props} autoComplete="chrome-off" />
+}
 
 const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
   const [selectValue, setSelectValue] = useState<CityOption | null>(null)
@@ -130,6 +137,7 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
               }
             }
           }}
+          components={{ Input: SelectInput }}
           defaultOptions={memCitiesOptions}
           loadOptions={promiseOptions}
           placeholder={'Укажите город'}
