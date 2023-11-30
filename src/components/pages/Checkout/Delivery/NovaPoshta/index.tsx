@@ -45,6 +45,10 @@ export const CityItem = styled.li`
   }
 `
 
+export const RadioWrapper = styled.div`
+  overflow-x: auto;
+`
+
 type CityOption = {
   label: string
   value: string
@@ -118,7 +122,9 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
 
   return (
     <Container>
-      <RadioGroup asRow name="_np-delivery-type" options={novaDeliveryTypeOptions} />
+      <RadioWrapper>
+        <RadioGroup asRow name="_np-delivery-type" options={novaDeliveryTypeOptions} />
+      </RadioWrapper>
       <FormField>
         <span>Город</span>
         <AsyncSelect

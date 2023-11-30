@@ -19,9 +19,13 @@ export const DeliveriesList = styled.ul`
 `
 
 export const DeliveriesItem = styled.li`
-  flex-basis: 33%;
+  flex-basis: 43%;
   margin-right: 7px;
   -webkit-tap-highlight-color: transparent;
+  @media ${({ theme }) => theme.media.md} {
+    flex-basis: 30%;
+    margin-right: 15px;
+  }
   @media ${({ theme }) => theme.media.xl} {
     flex-basis: 25%;
     margin-right: 15px;
@@ -51,7 +55,7 @@ export const DeliveryService = styled.div`
   cursor: pointer;
   border-radius: 10px;
   border: 1px solid #d7d7d7;
-  padding: 10px 10px;
+  /* padding: 3px; */
   transition: border-color 0.3s;
   background-color: #fff;
   &:hover {
@@ -74,6 +78,10 @@ export const DeliveryService = styled.div`
     background-size: 12px;
     background-repeat: no-repeat;
     background-position: 50% 50%;
+  }
+
+  @media ${({ theme }) => theme.media.lg} {
+    padding: 10px;
   }
 `
 
