@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState, startTransition } from 'react'
 import AsyncSelect from 'react-select/async'
 import { List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized'
 import type { MenuListProps, GroupBase } from 'react-select'
@@ -19,6 +19,11 @@ type Warehouses = {
   description: string
 }
 
+const cellCache = new CellMeasurerCache({
+  fixedWidth: true,
+  defaultHeight: 30
+})
+
 const VirtualizedList = ({
   children
 }: MenuListProps<WarehousesOption, false, GroupBase<WarehousesOption>>) => {
@@ -26,15 +31,11 @@ const VirtualizedList = ({
 
   const [rowWidth, setRowWidth] = useState<number>(0)
 
-  const cellCache = useMemo(() => {
-    return new CellMeasurerCache({
-      fixedWidth: true,
-      defaultHeight: 30
-    })
-  }, [])
-
-  const resizeAll = () => {
+  const resizeAll = (width: number) => {
     cellCache.clearAll()
+    startTransition(() => {
+      setRowWidth(width)
+    })
   }
 
   if (!Array.isArray(rows)) {
@@ -53,11 +54,8 @@ const VirtualizedList = ({
     <div style={{ height: '300px' }}>
       <AutoSizer>
         {({ width, height }) => {
-          // console.log(width, height)
-
           if (rowWidth !== width) {
-            setTimeout(resizeAll, 0)
-            setRowWidth(width)
+            resizeAll(width)
           }
 
           return (
