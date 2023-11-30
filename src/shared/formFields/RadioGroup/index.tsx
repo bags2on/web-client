@@ -24,6 +24,7 @@ const Label = styled.label<{ $disabled: boolean }>`
   position: relative;
   font-weight: 500;
   font-size: 15px;
+  flex-shrink: 0;
   line-height: 15px;
   user-select: none;
   transition: all 0.5s;
