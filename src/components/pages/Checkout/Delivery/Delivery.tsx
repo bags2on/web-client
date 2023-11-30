@@ -5,7 +5,7 @@ import ContinueButton from '../common/ContinueButton'
 import SomethingWrongModal from '../Modals/SomethingWrong'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
-import { animated, useSpring } from 'react-spring'
+import { animated, useSpring } from '@react-spring/web'
 
 import ShowService from '../common/ShowService'
 import NovaPoshta from './NovaPoshta'

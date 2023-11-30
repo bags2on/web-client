@@ -5,7 +5,7 @@ import TextInput from '@/shared/formFields/TextInput/TextInput'
 import PhoneInput from '@/shared/formFields/PhoneInput'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
-import { animated, useSpring } from 'react-spring'
+import { animated, useSpring } from '@react-spring/web'
 
 import { Container, AnimatedBox, FieldsWrapper, Field, Divider } from './CustomerInfo.styled'
 
