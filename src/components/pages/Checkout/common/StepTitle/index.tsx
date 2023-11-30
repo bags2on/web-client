@@ -41,7 +41,7 @@ export const TitleBox = styled.div<{ $expand: boolean }>`
   justify-content: start;
   margin-bottom: ${({ $expand }) => ($expand ? 20 : 0)}px;
   border-radius: 10px;
-
+  user-select: none;
   @media ${({ theme }) => theme.media.lg} {
     margin-bottom: 30px;
   }
