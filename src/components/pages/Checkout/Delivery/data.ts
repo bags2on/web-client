@@ -1,4 +1,6 @@
-export const deliveryTypeOptions = [
+export const pupularCities = ['Харків', 'Київ', 'Одеса', 'Дніпро', 'Львів']
+
+export const novaDeliveryTypeOptions = [
   {
     label: 'В отделение',
     value: 'department',

@@ -4,7 +4,7 @@ import Warehouses from './Warehouses'
 import AsyncSelect from 'react-select/async'
 import { components, InputProps } from 'react-select'
 import RadioGroup from '@/shared/formFields/RadioGroup'
-import { deliveryTypeOptions } from './data'
+import { pupularCities, novaDeliveryTypeOptions } from '../data'
 import type { PopularCity } from '../Delivery'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
@@ -49,8 +49,6 @@ type CityOption = {
   label: string
   value: string
 }
-
-const pupularCities = ['Харків', 'Київ', 'Одеса', 'Дніпро', 'Львів']
 
 const SelectInput = (props: InputProps<CityOption, false>) => {
   // Disable autocomplete on field
@@ -120,7 +118,7 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
 
   return (
     <Container>
-      <RadioGroup asRow name="_np-delivery-type" options={deliveryTypeOptions} />
+      <RadioGroup asRow name="_np-delivery-type" options={novaDeliveryTypeOptions} />
       <FormField>
         <span>Город</span>
         <AsyncSelect
