@@ -109,12 +109,19 @@ export const DeliveryInput = styled(Field)`
   }
 `
 
-export const AnimatedBox = styled.div`
+export const Animated = styled.div`
   padding: 0 10px;
 
   @media ${({ theme }) => theme.media.lg} {
     padding: 0 5px;
     opacity: 1 !important;
     height: auto !important;
+  }
+`
+
+export const AnimatedInner = styled.div`
+  padding: 10px 0;
+  @media ${({ theme }) => theme.media.lg} {
+    padding: 0;
   }
 `
