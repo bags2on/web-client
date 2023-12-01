@@ -46,7 +46,7 @@ export const reducer = (state: State, action: Action): State => {
   return state
 }
 
-export const useCheckoutPageState = (initState: State): [State, Api] => {
+export const usePageState = (initState: State): [State, Api] => {
   const [state, dispatch] = useReducer(reducer, { ...initState })
 
   const api: Api = useMemo(
