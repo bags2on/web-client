@@ -2,9 +2,12 @@ import React, { useEffect, useState, useMemo } from 'react'
 import styled from 'styled-components'
 import Warehouses from './Warehouses'
 import AsyncSelect from 'react-select/async'
+import { components, InputProps } from 'react-select'
 import RadioGroup from '@/shared/formFields/RadioGroup'
-import { deliveryTypeOptions } from './data'
+import { pupularCities, novaDeliveryTypeOptions } from '../data'
 import type { PopularCity } from '../Delivery'
+import { useFormikContext } from 'formik'
+import { CheckoutOrderType } from '@/utils/formValidationSchema'
 
 interface NovaPoshtaProps {
   cities: PopularCity[]
@@ -42,15 +45,24 @@ export const CityItem = styled.li`
   }
 `
 
+export const RadioWrapper = styled.div`
+  overflow-x: auto;
+`
+
 type CityOption = {
   label: string
   value: string
 }
 
-const pupularCities = ['Харків', 'Київ', 'Одеса', 'Дніпро', 'Львів']
+const SelectInput = (props: InputProps<CityOption, false>) => {
+  // Disable autocomplete on field
+  // https://stackoverflow.com/a/30976223/15604836
+  return <components.Input {...props} autoComplete="chrome-off" />
+}
 
 const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
   const [selectValue, setSelectValue] = useState<CityOption | null>(null)
+  const { setFieldValue } = useFormikContext<CheckoutOrderType>()
 
   const [cityId, setCityId] = useState<string>('')
 
@@ -83,10 +95,17 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
 
   const handleSelectChange = (cityId: string) => {
     setCityId(cityId)
+    setFieldValue('cityName', cityId)
+  }
+
+  const handleWarehouseChange = (warehouse: string) => {
+    setFieldValue('postOfficeName', warehouse)
   }
 
   const handleCityQuikSet = (city: CityOption) => {
     setSelectValue(city)
+    setCityId(city.value)
+    setFieldValue('cityName', city.label)
   }
 
   const selectedCities = pupularCities.map((baseCity) => {
@@ -103,7 +122,9 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
 
   return (
     <Container>
-      <RadioGroup asRow name="_np-delivery-type" options={deliveryTypeOptions} />
+      <RadioWrapper>
+        <RadioGroup asRow name="_np-delivery-type" options={novaDeliveryTypeOptions} />
+      </RadioWrapper>
       <FormField>
         <span>Город</span>
         <AsyncSelect
@@ -120,6 +141,7 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
               }
             }
           }}
+          components={{ Input: SelectInput }}
           defaultOptions={memCitiesOptions}
           loadOptions={promiseOptions}
           placeholder={'Укажите город'}
@@ -155,7 +177,7 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
           </CityItem>
         ))}
       </CitiesList>
-      {cityId && <Warehouses cityId={cityId} />}
+      {cityId && <Warehouses cityId={cityId} onSelect={handleWarehouseChange} />}
     </Container>
   )
 }

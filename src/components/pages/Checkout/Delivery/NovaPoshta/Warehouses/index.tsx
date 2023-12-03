@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import AsyncSelect from 'react-select/async'
 import { List, AutoSizer, CellMeasurer, CellMeasurerCache } from 'react-virtualized'
 import type { MenuListProps, GroupBase } from 'react-select'
@@ -6,6 +6,7 @@ import type { ListRowProps } from 'react-virtualized'
 
 interface WarehousesProps {
   cityId: string
+  onSelect(id: string): void
 }
 
 type WarehousesOption = {
@@ -18,21 +19,17 @@ type Warehouses = {
   description: string
 }
 
+const cellCache = new CellMeasurerCache({
+  fixedWidth: true,
+  defaultHeight: 30
+})
+
 const VirtualizedList = ({
   children
 }: MenuListProps<WarehousesOption, false, GroupBase<WarehousesOption>>) => {
   const rows = children
 
-  const [rowWidth, setRowWidth] = useState<number>(0)
-
-  const cellCache = useMemo(() => {
-    return new CellMeasurerCache({
-      fixedWidth: true,
-      defaultHeight: 30
-    })
-  }, [])
-
-  const resizeAll = () => {
+  const recalculateRowHeight = () => {
     cellCache.clearAll()
   }
 
@@ -52,12 +49,7 @@ const VirtualizedList = ({
     <div style={{ height: '300px' }}>
       <AutoSizer>
         {({ width, height }) => {
-          // console.log(width, height)
-
-          if (rowWidth !== width) {
-            setTimeout(resizeAll, 0)
-            setRowWidth(width)
-          }
+          recalculateRowHeight()
 
           return (
             <List
@@ -75,7 +67,7 @@ const VirtualizedList = ({
   )
 }
 
-const Warehouses: React.FC<WarehousesProps> = ({ cityId }) => {
+const Warehouses: React.FC<WarehousesProps> = ({ cityId, onSelect }) => {
   const [warehouses, setWarehouses] = useState<WarehousesOption[]>([])
   const [selectValue, setSelectValue] = useState<WarehousesOption | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
@@ -130,7 +122,7 @@ const Warehouses: React.FC<WarehousesProps> = ({ cityId }) => {
     })
 
   const handleSelectChange = (value: string) => {
-    console.log(value)
+    onSelect(value)
   }
 
   return (

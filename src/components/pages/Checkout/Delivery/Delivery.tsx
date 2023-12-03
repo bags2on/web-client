@@ -3,9 +3,10 @@ import Image from 'next/image'
 import StepTitle from '../common/StepTitle'
 import ContinueButton from '../common/ContinueButton'
 import SomethingWrongModal from '../Modals/SomethingWrong'
+import { useElementSize } from '@/hooks'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
-import { animated, useSpring } from 'react-spring'
+import { animated, useSpring } from '@react-spring/web'
 
 import ShowService from '../common/ShowService'
 import NovaPoshta from './NovaPoshta'
@@ -19,7 +20,8 @@ import {
   ServiceLabel,
   DeliveryInput,
   DeliveryService,
-  AnimatedBox
+  Animated,
+  AnimatedInner
 } from './Delivery.styled'
 
 interface DeliveryProps {
@@ -40,11 +42,13 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
 
   // const [deliveryService, setDeliveryService] = useState<'nova' | 'ukr'>('nova')
 
+  const [animatedRef, animatedEl] = useElementSize()
+
   const [popularCities, setPopularCities] = useState<PopularCity[]>([])
   const [citieLoading, setCitieLoading] = useState<boolean>(true)
   const [areasError, setAreasError] = useState<boolean>(false)
 
-  const isValuesValid = Boolean(values.region && values.cityId && values.postOfficeId)
+  const isValuesValid = Boolean(values.cityName && values.postOfficeName)
 
   // INFO TODO: put this in a separate component with children
   const slideInStyles = useSpring({
@@ -52,7 +56,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
     from: { opacity: 0, height: 0 },
     to: {
       opacity: isEdit ? 1 : 0,
-      height: isEdit ? 475 : 0
+      height: isEdit ? animatedEl.height : 0
     }
   })
 
@@ -89,41 +93,43 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
       <StepTitle step={2} isEdit={isEdit} onEdit={onEdit} valid={isValuesValid}>
         Способ доставки
       </StepTitle>
-      <AnimatedBox as={animated.div} style={{ ...slideInStyles, overflow: 'hidden' }}>
-        <DeliveriesList>
-          <DeliveriesItem>
-            <ServiceLabel>
-              <DeliveryInput type="radio" name="supplier" value="nova-poshta" />
-              <DeliveryService>
-                <ImageWrapper>
-                  <Image fill={true} src="/assets/nova_poshta.svg" alt="логотип 'Новая Почта'" />
-                </ImageWrapper>
-              </DeliveryService>
-            </ServiceLabel>
-          </DeliveriesItem>
-          <DeliveriesItem>
-            <ServiceLabel>
-              <DeliveryInput type="radio" name="supplier" value="ukr-poshta" />
-              <DeliveryService>
-                <ImageWrapper>
-                  <Image fill={true} src="/assets/ukr_poshta.svg" alt="логотип 'Укр Почта'" />
-                </ImageWrapper>
-              </DeliveryService>
-            </ServiceLabel>
-          </DeliveriesItem>
-        </DeliveriesList>
-        {/*  */}
-        <ShowService as="nova-poshta" current={values.supplier}>
-          <NovaPoshta cities={popularCities} />
-        </ShowService>
-        <ShowService as="ukr-poshta" current={values.supplier}>
-          <UkrPoshta />
-        </ShowService>
-        {/*  */}
-        <ContinueButton disabled={!isValuesValid} onClick={onContinue}>
-          Продолжить
-        </ContinueButton>
-      </AnimatedBox>
+      <Animated as={animated.div} style={{ ...slideInStyles, overflow: 'hidden' }}>
+        <AnimatedInner ref={animatedRef}>
+          <DeliveriesList>
+            <DeliveriesItem>
+              <ServiceLabel>
+                <DeliveryInput type="radio" name="supplier" value="nova-poshta" />
+                <DeliveryService>
+                  <ImageWrapper>
+                    <Image fill={true} src="/assets/nova_poshta.svg" alt="логотип 'Новая Почта'" />
+                  </ImageWrapper>
+                </DeliveryService>
+              </ServiceLabel>
+            </DeliveriesItem>
+            <DeliveriesItem>
+              <ServiceLabel>
+                <DeliveryInput type="radio" name="supplier" disabled value="ukr-poshta" />
+                <DeliveryService>
+                  <ImageWrapper>
+                    <Image fill={true} src="/assets/ukr_poshta.svg" alt="логотип 'Укр Почта'" />
+                  </ImageWrapper>
+                </DeliveryService>
+              </ServiceLabel>
+            </DeliveriesItem>
+          </DeliveriesList>
+          {/*  */}
+          <ShowService as="nova-poshta" current={values.supplier}>
+            <NovaPoshta cities={popularCities} />
+          </ShowService>
+          <ShowService as="ukr-poshta" current={values.supplier}>
+            <UkrPoshta />
+          </ShowService>
+          {/*  */}
+          <ContinueButton disabled={!isValuesValid} onClick={onContinue}>
+            Продолжить
+          </ContinueButton>
+        </AnimatedInner>
+      </Animated>
       <SomethingWrongModal open={areasError} />
     </Container>
   )

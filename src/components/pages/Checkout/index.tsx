@@ -9,7 +9,7 @@ import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'
 import { useMutation } from '@apollo/client'
 import { CREATE_ORDER } from '@/graphql/order'
-import { useCheckoutPageState } from '@/hooks'
+import { usePageState } from './usePageState'
 import { CheckoutOrderSchema, CheckoutOrderType } from '@/utils/formValidationSchema'
 
 import { Container, Form, DeliveryBox, PreviewBox } from './Checkout.styled'
@@ -17,7 +17,7 @@ import { Container, Form, DeliveryBox, PreviewBox } from './Checkout.styled'
 const Checkout: React.FC = () => {
   const router = useRouter()
 
-  const [state, dispatch] = useCheckoutPageState({
+  const [state, dispatch] = usePageState({
     waitDataSyncing: true,
     isInfoOpen: false,
     isDeliveryOpen: false
@@ -84,12 +84,11 @@ const Checkout: React.FC = () => {
         initialValues={{
           name: '',
           surname: '',
-          email: '',
           phone: '',
+          email: '',
           supplier: 'nova-poshta',
-          region: '',
-          cityId: '',
-          postOfficeId: '',
+          cityName: '',
+          postOfficeName: '',
           '_np-delivery-type': 'department'
         }}
       >

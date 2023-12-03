@@ -1,40 +1,39 @@
-import * as yup from 'yup'
+import { object, string, InferType } from 'yup'
 
-export const LoginSchema = yup.object({
-  email: yup.string().email().required(),
-  password: yup.string().required()
+export const LoginSchema = object({
+  email: string().email().required(),
+  password: string().required()
 })
 
-export const TopSearchSchema = yup.object({
-  searchQuery: yup.string()
+export const TopSearchSchema = object({
+  searchQuery: string()
 })
 
-export const CheckoutOrderSchema = yup.object({
-  name: yup.string().max(30, '* максимум 30 символов').required('* обязательное поле'),
-  surname: yup.string().max(30, '* максимум 30 символов').required('* обязательное поле'),
-  email: yup.string().email('* некорректный email').required('* обязательное поле'),
-  phone: yup.string().min(10, '* недостаточно значений').required('* обязательное поле'),
-  region: yup.string().required('* обязательное поле'),
-  cityId: yup.string().required('* обязательное поле'),
-  postOfficeId: yup.string().required('* обязательное поле'),
-  supplier: yup.string().required(),
-  '_np-delivery-type': yup.string().required()
+export const CheckoutOrderSchema = object({
+  name: string().max(30, '* максимум 30 символов').required('* обязательное поле'),
+  surname: string().max(30, '* максимум 30 символов').required('* обязательное поле'),
+  email: string().email('* некорректный email').required('* обязательное поле'),
+  phone: string().min(10, '* недостаточно значений').required('* обязательное поле'),
+  supplier: string().required(),
+  cityName: string().required('* обязательное поле'),
+  postOfficeName: string().required('* обязательное поле'),
+  '_np-delivery-type': string().required()
 })
 
-export const AccountSettingsSchema = yup.object({
-  name: yup.string().max(30, '* максимум 30 символов'),
-  surname: yup.string().max(30, '* максимум 30 символов'),
-  email: yup.string().email('* некорректный email'),
-  phone: yup.string().min(10, '* недостаточно значений'),
-  city: yup.string()
+export const AccountSettingsSchema = object({
+  name: string().max(30, '* максимум 30 символов'),
+  surname: string().max(30, '* максимум 30 символов'),
+  email: string().email('* некорректный email'),
+  phone: string().min(10, '* недостаточно значений'),
+  city: string()
 })
 
-export const JoinUsSchema = yup.object({
-  email: yup.string().email().max(70).required()
+export const JoinUsSchema = object({
+  email: string().email().max(70).required()
 })
 
-export type LoginSchemaType = yup.InferType<typeof LoginSchema>
-export type TopSearchType = yup.InferType<typeof TopSearchSchema>
-export type CheckoutOrderType = yup.InferType<typeof CheckoutOrderSchema>
-export type JoinUsSchemaType = yup.InferType<typeof JoinUsSchema>
-export type AccountSettingsSchemaType = yup.InferType<typeof AccountSettingsSchema>
+export type LoginSchemaType = InferType<typeof LoginSchema>
+export type TopSearchType = InferType<typeof TopSearchSchema>
+export type CheckoutOrderType = InferType<typeof CheckoutOrderSchema>
+export type JoinUsSchemaType = InferType<typeof JoinUsSchema>
+export type AccountSettingsSchemaType = InferType<typeof AccountSettingsSchema>
