@@ -17,15 +17,7 @@ import { useQuery } from '@apollo/client'
 import { GET_HEADER_DATA } from '../../apollo/cache/queries/shared'
 // import { SharedMutations } from '../../apollo/cache/mutations'
 
-import {
-  TheMenuIcon,
-  TheHeartIcon,
-  TheProfileIcon,
-  TheCartIcon,
-  HeaderButton,
-  CartButton,
-  DynamicButton
-} from './Header.styled'
+import { HeaderButton, CartButton, DynamicButton } from './Header.styled'
 
 interface HeaderQuery {
   cartAmount: number
@@ -70,9 +62,9 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
         )}
       >
         <HeaderButton onClick={onDrawerOpen} disableRipple>
-          <TheMenuIcon>
+          <div className={clsx('svg-icon', styles['menu-icon'])}>
             <MenuIcon />
-          </TheMenuIcon>
+          </div>
         </HeaderButton>
         <Link href={routeNames.root} className={styles.logo}>
           <Image width={150} height={40} src="/assets/logo.svg" alt="логотип" priority={true} />
@@ -96,23 +88,23 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
         {/*  */}
         <DynamicButton onClick={handleFavoritesClick} disableRipple>
           <Badge content={favoriteAmount}>
-            <TheHeartIcon>
+            <div className={clsx('svg-icon', styles['heart-icon'])}>
               <HeartIcon />
-            </TheHeartIcon>
+            </div>
           </Badge>
         </DynamicButton>
         <DynamicButton onClick={handleProfileClick} disableRipple>
           <Badge content={0} max={5}>
-            <TheProfileIcon>
+            <div className={clsx('svg-icon', styles['profile-icon'])}>
               <ProfileIcon />
-            </TheProfileIcon>
+            </div>
           </Badge>
         </DynamicButton>
         <CartButton onClick={handleCartClick} disableRipple>
           <Badge content={cartAmount}>
-            <TheCartIcon>
+            <div className={clsx('svg-icon', styles['cart-icon'])}>
               <CartIcon />
-            </TheCartIcon>
+            </div>
           </Badge>
         </CartButton>
       </div>

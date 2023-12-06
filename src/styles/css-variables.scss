@@ -1,3 +1,15 @@
+.svg-icon {
+  font-size: 1.5rem;
+  width: 1em;
+  height: 1em;
+  user-select: none;
+  flex-shrink: 0;
+  overflow: hidden;
+  & svg {
+    display: block;
+  }
+}
+
 :root {
   --font-color: #343434;
   --footer-bg: #f8f8f8;
