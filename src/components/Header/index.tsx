@@ -1,7 +1,10 @@
 import React from 'react'
+import styles from './Header.module.scss'
+import clsx from 'clsx'
+import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
-import Image from 'next/image'
 import { routeNames } from '@/utils/navigation'
 import Badge from '@/shared/Badge'
 import Search from '@/components/Search'
@@ -15,11 +18,6 @@ import { GET_HEADER_DATA } from '../../apollo/cache/queries/shared'
 // import { SharedMutations } from '../../apollo/cache/mutations'
 
 import {
-  TheHeader,
-  Wrapper,
-  LogoLink,
-  NavList,
-  NavListLink,
   TheMenuIcon,
   TheHeartIcon,
   TheProfileIcon,
@@ -64,25 +62,34 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   }
 
   return (
-    <TheHeader>
-      <Wrapper $expanded={pathname === routeNames.catalog}>
+    <header className={styles.header}>
+      <div
+        className={clsx(
+          styles.wrapper,
+          pathname === routeNames.catalog && styles['wrapper-expand']
+        )}
+      >
         <HeaderButton onClick={onDrawerOpen} disableRipple>
           <TheMenuIcon>
             <MenuIcon />
           </TheMenuIcon>
         </HeaderButton>
-        <LogoLink href={routeNames.root}>
+        <Link href={routeNames.root} className={styles.logo}>
           <Image width={150} height={40} src="/assets/logo.svg" alt="логотип" priority={true} />
-        </LogoLink>
+        </Link>
         <nav>
-          <NavList>
+          <ul className={styles.navlist}>
             <li>
-              <NavListLink href={routeNames.root}>{t('home')}</NavListLink>
+              <Link href={routeNames.root} className={styles['nav-link']}>
+                {t('home')}
+              </Link>
             </li>
             <li>
-              <NavListLink href={routeNames.catalog}>{t('catalog')}</NavListLink>
+              <Link href={routeNames.catalog} className={styles['nav-link']}>
+                {t('catalog')}
+              </Link>
             </li>
-          </NavList>
+          </ul>
         </nav>
         {/*  */}
         <Search />
@@ -108,8 +115,8 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
             </TheCartIcon>
           </Badge>
         </CartButton>
-      </Wrapper>
-    </TheHeader>
+      </div>
+    </header>
   )
 }
 
