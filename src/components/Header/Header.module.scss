@@ -140,3 +140,15 @@
     }
   }
 }
+
+.dynamic {
+  display: none;
+  @include _minMD {
+    display: block;
+    padding: 11px;
+  }
+}
+
+.cart-button {
+  padding: 11px;
+}

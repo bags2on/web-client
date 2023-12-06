@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from './Header.module.scss'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -7,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
 import { routeNames } from '@/utils/navigation'
 import Badge from '@/shared/Badge'
+import IconButton from '@/shared/IconButton'
 import Search from '@/components/Search'
 import MenuIcon from '../../../public/assets/icons/menu.svg'
 import HeartIcon from '../../../public/assets/icons/heart.svg'
@@ -17,7 +17,7 @@ import { useQuery } from '@apollo/client'
 import { GET_HEADER_DATA } from '../../apollo/cache/queries/shared'
 // import { SharedMutations } from '../../apollo/cache/mutations'
 
-import { HeaderButton, CartButton, DynamicButton } from './Header.styled'
+import styles from './Header.module.scss'
 
 interface HeaderQuery {
   cartAmount: number
@@ -61,11 +61,11 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
           pathname === routeNames.catalog && styles['wrapper-expand']
         )}
       >
-        <HeaderButton onClick={onDrawerOpen} disableRipple>
+        <IconButton disableRipple>
           <div className={clsx('svg-icon', styles['menu-icon'])}>
             <MenuIcon />
           </div>
-        </HeaderButton>
+        </IconButton>
         <Link href={routeNames.root} className={styles.logo}>
           <Image width={150} height={40} src="/assets/logo.svg" alt="логотип" priority={true} />
         </Link>
@@ -86,27 +86,27 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
         {/*  */}
         <Search />
         {/*  */}
-        <DynamicButton onClick={handleFavoritesClick} disableRipple>
+        <IconButton _сlassName={styles.dynamic} onClick={handleFavoritesClick} disableRipple>
           <Badge content={favoriteAmount}>
             <div className={clsx('svg-icon', styles['heart-icon'])}>
               <HeartIcon />
             </div>
           </Badge>
-        </DynamicButton>
-        <DynamicButton onClick={handleProfileClick} disableRipple>
+        </IconButton>
+        <IconButton _сlassName={styles.dynamic} onClick={handleProfileClick} disableRipple>
           <Badge content={0} max={5}>
             <div className={clsx('svg-icon', styles['profile-icon'])}>
               <ProfileIcon />
             </div>
           </Badge>
-        </DynamicButton>
-        <CartButton onClick={handleCartClick} disableRipple>
+        </IconButton>
+        <IconButton _сlassName={styles['cart-button']} onClick={handleCartClick} disableRipple>
           <Badge content={cartAmount}>
             <div className={clsx('svg-icon', styles['cart-icon'])}>
               <CartIcon />
             </div>
           </Badge>
-        </CartButton>
+        </IconButton>
       </div>
     </header>
   )
