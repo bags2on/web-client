@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
+import clsx from 'clsx'
+import IconButton from '@/shared/IconButton'
 // import ScaleLoader from '@/shared/loaders/ScaleLoader'
 // import Image from 'next/image'
 // import { routeNames, generateLink } from '@/utils/navigation'
 // import { useLazyQuery } from '@apollo/client'
 import { useTranslation } from 'next-i18next'
 
-import { Formik } from 'formik'
+import { Formik, Form, Field } from 'formik'
 import { TopSearchSchema, TopSearchType } from '@/utils/formValidationSchema'
 import SearchIcon from '../../../public/assets/icons/search.svg'
 // import { getProductMainTagColor } from '@/utils/styling'
@@ -15,21 +17,7 @@ import SearchIcon from '../../../public/assets/icons/search.svg'
 //   SearchProductDocument
 // } from '../../graphql/product/_gen_/searchProduct.query'
 
-import {
-  Container,
-  SearchForm,
-  SearchInput,
-  SearchButton,
-  TheSearchIcon,
-  // LinkWrapper,
-  // ProductList,
-  // Results,
-  // LoaderBox,
-  // InfoBox,
-  // ProductTitle,
-  // ProductMainTag,
-  Overlay
-} from './Search.styled'
+import styles from './Search.module.scss'
 
 const Search = () => {
   const { t } = useTranslation()
@@ -46,7 +34,7 @@ const Search = () => {
   const handleSearch = (_values: TopSearchType): void => {
     // const value = values.searchQuery.trim()
 
-    setInputValue('')
+    setInputValue(_values.searchQuery || '')
 
     // if (value && value !== inputValue) {
     //   getProducts({
@@ -57,7 +45,7 @@ const Search = () => {
     // }
   }
 
-  const removeFocus = (): void => setWithFocus(false)
+  // const removeFocus = (): void => setWithFocus(false)
 
   const initialValues: TopSearchType = { searchQuery: '' }
 
@@ -110,26 +98,29 @@ const Search = () => {
   // }
 
   return (
-    <Container>
+    <div className={styles.container}>
       <Formik
         onSubmit={handleSearch}
         initialValues={initialValues}
         validationSchema={TopSearchSchema}
       >
         {(): React.ReactElement => (
-          <SearchForm tabIndex={0} onFocus={() => setWithFocus(true)} noValidate>
-            <SearchInput
+          <Form className={styles.form} tabIndex={0} onFocus={() => setWithFocus(true)} noValidate>
+            <Field
               name="searchQuery"
               autoComplete="off"
               placeholder={t('mySearch')}
-              $withData={withFocus && inputValue}
+              className={clsx({
+                [styles['search-input']]: true,
+                [styles['with-data']]: withFocus && inputValue
+              })}
             />
-            <SearchButton type="submit">
-              <TheSearchIcon>
+            <IconButton type="submit" _сlassName={styles['search-button']}>
+              <div className={clsx('svg-icon', styles['search-icon'])}>
                 <SearchIcon />
-              </TheSearchIcon>
-            </SearchButton>
-          </SearchForm>
+              </div>
+            </IconButton>
+          </Form>
         )}
       </Formik>
       {/* {inputValue && withFocus && (
@@ -143,8 +134,8 @@ const Search = () => {
           )}
         </Results>
       )} */}
-      <Overlay $show={Boolean(withFocus && inputValue)} onClick={removeFocus} />
-    </Container>
+      <div className={clsx(styles.overlay, withFocus && inputValue && styles['overlay-show'])} />
+    </div>
   )
 }
 
