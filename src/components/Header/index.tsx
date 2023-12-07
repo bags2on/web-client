@@ -61,7 +61,7 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
           pathname === routeNames.catalog && styles['wrapper-expand']
         )}
       >
-        <IconButton disableRipple>
+        <IconButton disableRipple onClick={onDrawerOpen}>
           <div className={clsx('svg-icon', styles['menu-icon'])}>
             <MenuIcon />
           </div>
