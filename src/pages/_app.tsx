@@ -5,7 +5,8 @@ import RootLayout from '@/components/RootLayout'
 import { useTheme } from '@/hooks'
 import { ApolloProvider } from '@apollo/client'
 import { ModalProvider } from 'styled-react-modal'
-import { ThemeProvider } from 'styled-components'
+import { ThemeProvider as StyledThemeProvider } from 'styled-components'
+import { ThemeProvider } from '@/providers/theme'
 import { GlobalStyles, lightTheme, darkTheme } from '@/utils/theme'
 import SwiperCore from 'swiper'
 import { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper/modules'
@@ -39,14 +40,16 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </Head>
       <ApolloProvider client={client}>
-        <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-          <ModalProvider>
-            <GlobalStyles />
-            <RootLayout theme={theme} onThemeChange={changeTheme}>
-              <Component {...pageProps} />
-            </RootLayout>
-          </ModalProvider>
-        </ThemeProvider>
+        <StyledThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
+          <ThemeProvider>
+            <ModalProvider>
+              <GlobalStyles />
+              <RootLayout theme={theme} onThemeChange={changeTheme}>
+                <Component {...pageProps} />
+              </RootLayout>
+            </ModalProvider>
+          </ThemeProvider>
+        </StyledThemeProvider>
       </ApolloProvider>
     </>
   )
