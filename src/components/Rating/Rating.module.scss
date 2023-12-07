@@ -1,0 +1,32 @@
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.list {
+  display: inline-flex;
+  margin: 0;
+  padding: 0;
+}
+
+.starIcon {
+  fill: #c0c0c0;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: all 0.2s;
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.starIcon.active {
+  fill: #ffc107;
+}
+
+.counter {
+  margin-left: 3px;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 24px;
+}
