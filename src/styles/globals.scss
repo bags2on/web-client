@@ -44,11 +44,18 @@ $desktop: 1400px;
   }
 }
 
+@mixin _minTablet {
+  @media (min-width: $tablet) {
+    @content;
+  }
+}
+
 @mixin _minLG {
   @media (min-width: $lg) {
     @content;
   }
 }
+
 @mixin _minXL {
   @media (min-width: $xl) {
     @content;
