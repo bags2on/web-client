@@ -1,5 +1,6 @@
 import React, { useRef } from 'react'
-import styled, { keyframes } from 'styled-components'
+import clsx from 'clsx'
+import styles from './IconButton.module.scss'
 import ScaleLoader from '@/shared/loaders/ScaleLoader'
 
 interface IconButtonProps {
@@ -10,67 +11,10 @@ interface IconButtonProps {
   disabled?: boolean // TODO: disabled styles
   darkLoader?: boolean
   disableRipple?: boolean
+  className?: string
+  _сlassName?: string // TODO: delete afret migration on CSS modules
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void
 }
-
-const RIPPLE_CLASSNAME = 'button-ripple'
-
-const ripple = keyframes`
-  to {
-    transform: scale(1.4);
-    opacity: 0;
-  }
-`
-
-const Button = styled.button`
-  color: inherit;
-  border: none;
-  cursor: pointer;
-  margin: 0;
-  display: inline-flex;
-  outline: 0;
-  z-index: 0;
-  position: relative;
-  align-items: center;
-  user-select: none;
-  vertical-align: middle;
-  -moz-appearance: none;
-  justify-content: center;
-  text-decoration: none;
-  background-color: transparent;
-  -webkit-appearance: none;
-  -webkit-tap-highlight-color: transparent;
-  flex: 0 0 auto;
-  padding: 12px;
-  overflow: visible;
-  font-size: 1.5rem;
-  text-align: center;
-  transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-  border-radius: 50%;
-
-  & .${RIPPLE_CLASSNAME} {
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    overflow: hidden;
-    position: absolute;
-    border-radius: inherit;
-    pointer-events: none;
-    background-position: center;
-    transform: scale(0);
-    animation: ${ripple} 600ms linear;
-    background-color: currentColor;
-    opacity: 0.5;
-  }
-`
-
-const ButtonLabel = styled.span`
-  width: 100%;
-  display: flex;
-  align-items: inherit;
-  justify-content: inherit;
-`
 
 const IconButton: React.FC<IconButtonProps> = ({
   loading,
@@ -78,6 +22,8 @@ const IconButton: React.FC<IconButtonProps> = ({
   darkLoader,
   disableRipple = false,
   onClick,
+  className,
+  _сlassName,
   ...otherProps
 }) => {
   const rippleEl = useRef<HTMLSpanElement | null>(null)
@@ -88,7 +34,7 @@ const IconButton: React.FC<IconButtonProps> = ({
       const circle = document.createElement('span')
       const diameter = Math.max(button.clientWidth, button.clientHeight)
       circle.style.width = circle.style.height = `${diameter}px`
-      circle.classList.add(RIPPLE_CLASSNAME)
+      circle.classList.add(styles['button-ripple'])
 
       if (rippleEl.current) {
         rippleEl.current.remove()
@@ -105,9 +51,17 @@ const IconButton: React.FC<IconButtonProps> = ({
   }
 
   return (
-    <Button {...otherProps} onClick={handleRippleClick}>
-      {loading ? <ScaleLoader dark={darkLoader} /> : <ButtonLabel>{children}</ButtonLabel>}
-    </Button>
+    <button
+      className={clsx(styles.button, _сlassName, className)}
+      onClick={handleRippleClick}
+      {...otherProps}
+    >
+      {loading ? (
+        <ScaleLoader dark={darkLoader} />
+      ) : (
+        <span className={styles.inner}>{children}</span>
+      )}
+    </button>
   )
 }
 

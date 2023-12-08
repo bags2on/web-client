@@ -6,7 +6,7 @@ import SocialLink from './SocialLink/SocialLink'
 import LangSwitcher from '@/components/LangSwitcher'
 import { useTranslation } from 'next-i18next'
 
-import { Container, LanguageBox, SocialBox } from './Sidebar.styled'
+import styles from './Sidebar.module.scss'
 
 interface SidebarProps {
   isOpen: boolean
@@ -20,17 +20,17 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, theme, onClose, themeChanger 
 
   return (
     <Drawer open={isOpen} position="left" onClose={onClose}>
-      <Container>
+      <div className={styles.container}>
         <SidebarHead theme={theme} themeChanger={themeChanger} />
         <SidebarNavList onClose={onClose} />
-        <LanguageBox>
+        <div className={styles.langSwitch}>
           <span>{t('drawer.lang')}</span>
           <LangSwitcher />
-        </LanguageBox>
-        <SocialBox>
+        </div>
+        <div className={styles.social}>
           <SocialLink />
-        </SocialBox>
-      </Container>
+        </div>
+      </div>
     </Drawer>
   )
 }
