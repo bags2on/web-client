@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 // import history from '../../utils/history'
-import { List, PaginationItem } from './Pagination.styled'
+import clsx from 'clsx'
+import styles from './Pagination.module.scss'
 
 interface PaginationProps {
   total: number
@@ -66,19 +67,20 @@ const Pagination: React.FC<PaginationProps> = ({ total, currentPage, route }) =>
 
   return (
     <section>
-      <List>
+      <ul className={styles.list}>
         {items.map((page, ind) => {
           return (
-            <PaginationItem
+            <li
               key={ind}
-              $current={current === page}
+              // $current={current === page}
               onClick={() => handlePaginationChange(page)}
+              className={clsx(styles.item, current === page && styles.current)}
             >
               {page}
-            </PaginationItem>
+            </li>
           )
         })}
-      </List>
+      </ul>
     </section>
   )
 }
