@@ -1,0 +1,21 @@
+.container {
+  height: 100%;
+  width: 75vw;
+  max-width: 350px;
+  background-color: var(--sidebar-bkg);
+}
+
+.langSwitch {
+  display: flex;
+  align-items: center;
+  & > span {
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 10px;
+  }
+}
+
+.social {
+  padding: 10px 15px;
+  padding-top: 30px;
+}

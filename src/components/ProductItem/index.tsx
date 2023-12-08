@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
+import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
 import LikeButton from '@/shared/LikeButton'
+import IconButton from '@/shared/IconButton'
 import ImagePlaceholder from '@/shared/ImagePlaceholder'
 import TrashIcon from '../../../public/assets/icons/trash.svg'
 import { formatPrice } from '@/utils/helper'
@@ -10,19 +12,7 @@ import { getProductMainTagColor } from '@/utils/styling'
 import { routeNames, generateProductLink } from '@/utils/navigation'
 import { FavoriteMutations } from '@/apollo/cache/mutations'
 
-import {
-  Container,
-  ImageWrapper,
-  Info,
-  PriceBox,
-  Price,
-  Discount,
-  Title,
-  Tag,
-  ActionButtonWrapper,
-  TheTrashIcon
-} from './ProductItem.styled'
-import IconButton from '@/shared/IconButton'
+import styles from './ProductItem.module.scss'
 
 interface ProductItemProps {
   id: string
@@ -77,42 +67,57 @@ const ProductItem: React.FC<ProductItemProps> = ({
   }
 
   return (
-    <Container>
-      <ImageWrapper $outStock={!inStock}>
+    <div className={styles.container}>
+      <div className={clsx(styles.imageWrapper, !inStock && styles.outStock)}>
         <Link href={generateProductLink(routeNames.product, id, slug)}>
           <ImagePlaceholder src={url} altText={title} />
         </Link>
-      </ImageWrapper>
-      <Info>
-        <PriceBox>
-          <Price $outStock={!inStock} $discount={basePrice !== price}>
-            {basePrice !== price && <Discount>{formatPrice(basePrice)}&nbsp;₴</Discount>}
+      </div>
+      <div className={styles.info}>
+        <div className={styles.priceBox}>
+          <div
+            className={clsx({
+              [styles.price]: true,
+              [styles.discount]: basePrice !== price,
+              [styles.outStock]: !inStock
+            })}
+          >
+            {basePrice !== price && (
+              <p className={styles['discount-price']}>{formatPrice(basePrice)}&nbsp;₴</p>
+            )}
             <span>{formatPrice(price)}&nbsp;₴</span>
-          </Price>
-          <ActionButtonWrapper>
+          </div>
+          <div className={styles.buttonWrapper}>
             {withDelete ? (
               <IconButton onClick={handleActionClick}>
-                <TheTrashIcon>
+                <div className={clsx('svg-icon', styles.trashIcon)}>
                   <TrashIcon />
-                </TheTrashIcon>
+                </div>
               </IconButton>
             ) : (
               <LikeButton liked={isLiked} onClick={handleActionClick} />
             )}
-          </ActionButtonWrapper>
-        </PriceBox>
-        <Title
-          $outStock={!inStock}
+          </div>
+        </div>
+        <Link
+          className={clsx(styles.title, !inStock && styles.outStock)}
           title={title}
           href={generateProductLink(routeNames.product, id, slug)}
         >
           {title}
-        </Title>
-      </Info>
+        </Link>
+      </div>
       {mainTag && (
-        <Tag $backgroundColor={getProductMainTagColor(mainTag)}>{genTagView(mainTag)}</Tag>
+        <div
+          className={styles.tag}
+          style={{
+            backgroundColor: getProductMainTagColor(mainTag)
+          }}
+        >
+          {genTagView(mainTag)}
+        </div>
       )}
-    </Container>
+    </div>
   )
 }
 

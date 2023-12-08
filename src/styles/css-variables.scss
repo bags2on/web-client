@@ -1,3 +1,28 @@
+.svg-icon {
+  font-size: 1.5rem;
+  width: 1em;
+  height: 1em;
+  user-select: none;
+  flex-shrink: 0;
+  overflow: hidden;
+  & svg {
+    display: block;
+  }
+}
+
+.hide {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  clip-path: inset(100%);
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
 :root {
   --font-color: #343434;
   --footer-bg: #f8f8f8;
@@ -12,6 +37,11 @@
   --catalog-filter-btn-color: #343434;
   --catalog-filter-btn-bgc: transparent;
   --base-scale: calc(100vw / 75);
+
+  // new
+  --sidebar-bkg: #fefefe;
+  --pagination-bkg: #f3f4f7;
+  --pagination-active-bkg: #fff;
 }
 
 [data-theme='dark'] {
@@ -28,4 +58,9 @@
   --catalog-filter-btn-color: #f2e30c;
   --catalog-filter-btn-bgc: #363636;
   --base-scale: calc(100vw / 75);
+
+  // new
+  --sidebar-bkg: #0f0f0f;
+  --pagination-bkg: #444444;
+  --pagination-active-bkg: #696c72;
 }

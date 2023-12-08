@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
+import clsx from 'clsx'
 import StarIcon from '../../../public/assets/icons/star.svg'
 import { SharedMutations } from '../../apollo/cache/mutations'
-import { Container, List, TheStarIcon, HiddenInput, Counter } from './Rating.styled'
+import styles from './Rating.module.scss'
 
 interface RatingProps {
   starsAmount?: number
@@ -20,8 +21,8 @@ const Rating: React.FC<RatingProps> = ({ starsAmount = 5, starRating = 0 }) => {
   }
 
   return (
-    <Container>
-      <List>
+    <div className={styles.container}>
+      <ul className={styles.list}>
         {[...Array(starsAmount)].map((_, index: number) => {
           const ratingValue = index + 1
 
@@ -31,20 +32,24 @@ const Rating: React.FC<RatingProps> = ({ starsAmount = 5, starRating = 0 }) => {
                 onMouseEnter={(): void => setInteractValue(ratingValue)}
                 onMouseLeave={(): void => setInteractValue(0)}
               >
-                <HiddenInput type="radio" value={ratingValue} />
-                <TheStarIcon
-                  $active={ratingValue <= (interactValue || rating)}
+                <input type="radio" value={ratingValue} className="hide" />
+                <div
+                  className={clsx({
+                    'svg-icon': true,
+                    [styles.starIcon]: true,
+                    [styles.active]: ratingValue <= (interactValue || rating)
+                  })}
                   onClick={(): void => handleRatingChange(ratingValue)}
                 >
                   <StarIcon />
-                </TheStarIcon>
+                </div>
               </label>
             </li>
           )
         })}
-      </List>
-      <Counter>{starRating}</Counter>
-    </Container>
+      </ul>
+      <span className={styles.counter}>{starRating}</span>
+    </div>
   )
 }
 

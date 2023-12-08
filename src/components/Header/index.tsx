@@ -1,9 +1,12 @@
 import React from 'react'
+import clsx from 'clsx'
+import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
-import Image from 'next/image'
 import { routeNames } from '@/utils/navigation'
 import Badge from '@/shared/Badge'
+import IconButton from '@/shared/IconButton'
 import Search from '@/components/Search'
 import MenuIcon from '../../../public/assets/icons/menu.svg'
 import HeartIcon from '../../../public/assets/icons/heart.svg'
@@ -14,20 +17,7 @@ import { useQuery } from '@apollo/client'
 import { GET_HEADER_DATA } from '../../apollo/cache/queries/shared'
 // import { SharedMutations } from '../../apollo/cache/mutations'
 
-import {
-  TheHeader,
-  Wrapper,
-  LogoLink,
-  NavList,
-  NavListLink,
-  TheMenuIcon,
-  TheHeartIcon,
-  TheProfileIcon,
-  TheCartIcon,
-  HeaderButton,
-  CartButton,
-  DynamicButton
-} from './Header.styled'
+import styles from './Header.module.scss'
 
 interface HeaderQuery {
   cartAmount: number
@@ -64,52 +54,61 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
   }
 
   return (
-    <TheHeader>
-      <Wrapper $expanded={pathname === routeNames.catalog}>
-        <HeaderButton onClick={onDrawerOpen} disableRipple>
-          <TheMenuIcon>
+    <header className={styles.header}>
+      <div
+        className={clsx(
+          styles.wrapper,
+          pathname === routeNames.catalog && styles['wrapper-expand']
+        )}
+      >
+        <IconButton disableRipple onClick={onDrawerOpen}>
+          <div className={clsx('svg-icon', styles['menu-icon'])}>
             <MenuIcon />
-          </TheMenuIcon>
-        </HeaderButton>
-        <LogoLink href={routeNames.root}>
+          </div>
+        </IconButton>
+        <Link href={routeNames.root} className={styles.logo}>
           <Image width={150} height={40} src="/assets/logo.svg" alt="логотип" priority={true} />
-        </LogoLink>
+        </Link>
         <nav>
-          <NavList>
+          <ul className={styles.navlist}>
             <li>
-              <NavListLink href={routeNames.root}>{t('home')}</NavListLink>
+              <Link href={routeNames.root} className={styles['nav-link']}>
+                {t('home')}
+              </Link>
             </li>
             <li>
-              <NavListLink href={routeNames.catalog}>{t('catalog')}</NavListLink>
+              <Link href={routeNames.catalog} className={styles['nav-link']}>
+                {t('catalog')}
+              </Link>
             </li>
-          </NavList>
+          </ul>
         </nav>
         {/*  */}
         <Search />
         {/*  */}
-        <DynamicButton onClick={handleFavoritesClick} disableRipple>
+        <IconButton _сlassName={styles.dynamic} onClick={handleFavoritesClick} disableRipple>
           <Badge content={favoriteAmount}>
-            <TheHeartIcon>
+            <div className={clsx('svg-icon', styles['heart-icon'])}>
               <HeartIcon />
-            </TheHeartIcon>
+            </div>
           </Badge>
-        </DynamicButton>
-        <DynamicButton onClick={handleProfileClick} disableRipple>
+        </IconButton>
+        <IconButton _сlassName={styles.dynamic} onClick={handleProfileClick} disableRipple>
           <Badge content={0} max={5}>
-            <TheProfileIcon>
+            <div className={clsx('svg-icon', styles['profile-icon'])}>
               <ProfileIcon />
-            </TheProfileIcon>
+            </div>
           </Badge>
-        </DynamicButton>
-        <CartButton onClick={handleCartClick} disableRipple>
+        </IconButton>
+        <IconButton _сlassName={styles['cart-button']} onClick={handleCartClick} disableRipple>
           <Badge content={cartAmount}>
-            <TheCartIcon>
+            <div className={clsx('svg-icon', styles['cart-icon'])}>
               <CartIcon />
-            </TheCartIcon>
+            </div>
           </Badge>
-        </CartButton>
-      </Wrapper>
-    </TheHeader>
+        </IconButton>
+      </div>
+    </header>
   )
 }
 

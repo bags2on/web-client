@@ -1,9 +1,4 @@
-import styled, { css } from 'styled-components'
-import SvgIcon from '@/shared/SvgIcon'
-import IconButton from '@/shared/IconButton'
-import Link from 'next/link'
-
-export const TheHeader = styled.header`
+.header {
   position: sticky;
   z-index: 500;
   top: 0;
@@ -16,37 +11,44 @@ export const TheHeader = styled.header`
     0 1px 2px rgba(0, 0, 0, 0.05),
     0 1px 4px rgba(0, 0, 0, 0.05),
     0 2px 8px rgba(0, 0, 0, 0.05);
-  @media ${({ theme }) => theme.media.lg} {
+
+  @include _minLG {
     position: static;
     padding: 10px 17px;
   }
-  @media ${({ theme }) => theme.media.xl} {
+
+  @include _minXL {
     padding: 13px 50px;
   }
-`
+}
 
-export const Wrapper = styled.div<{ $expanded: boolean }>`
+.wrapper {
   display: flex;
   align-items: center;
-  max-width: ${({ $expanded }) => ($expanded ? 1700 : 1500)}px;
   margin: 0 auto;
-`
+  max-width: 1500px;
+}
 
-export const LogoLink = styled(Link)`
+.wrapper-expand {
+  max-width: 1700px;
+}
+
+.logo {
   display: none;
-  @media ${({ theme }) => theme.media.lg} {
+
+  @include _minLG {
     display: block;
     position: relative;
     top: 3px;
     width: 150px;
-
-    @media ${({ theme }) => theme.media.xl} {
-      margin: 0 40px;
-    }
   }
-`
 
-export const NavList = styled.ul`
+  @include _minXL {
+    margin: 0 40px;
+  }
+}
+
+.navlist {
   display: none;
   padding: 0;
   margin: 0;
@@ -57,26 +59,28 @@ export const NavList = styled.ul`
     padding-left: 16px;
     padding-right: 16px;
   }
-  @media ${({ theme }) => theme.media.lg} {
+  @include _minLG {
     display: flex;
     align-items: center;
   }
-`
+}
 
-export const NavListLink = styled(Link)`
+.nav-link {
   position: relative;
-  @media ${({ theme }) => theme.media.lg} {
+
+  @include _minLG {
     font-size: 14px;
     font-weight: 600;
     text-decoration: none;
     text-transform: uppercase;
-    color: ${({ theme }) => theme.colors.primary};
+    color: $main-color;
     transition: color 0.3s;
+
     &::after {
       content: '';
       position: absolute;
       border-bottom: 2px solid;
-      border-bottom-color: ${({ theme }) => theme.colors.primary};
+      border-bottom-color: $main-color;
       bottom: -7px;
       left: 0;
       right: 0;
@@ -90,6 +94,7 @@ export const NavListLink = styled(Link)`
       -o-transition: all 0.3s ease 0s;
       -ms-transition: all 0.3s ease 0s;
     }
+
     &:hover {
       &::after {
         width: 45%;
@@ -98,67 +103,52 @@ export const NavListLink = styled(Link)`
       }
     }
   }
-`
+}
 
-export const TheMenuIcon = styled(SvgIcon)`
-  fill: ${({ theme }) => theme.colors.primary};
-`
+.menu-icon {
+  fill: $main-color;
+}
 
-export const TheHeartIcon = styled(SvgIcon)`
+.heart-icon {
   font-size: 24px;
   fill: none;
-  stroke: ${({ theme }) => theme.colors.primary};
+  stroke: $main-color;
   transition: all 0.3s;
   &:hover {
     transform: scale(1.2);
   }
-`
+}
 
-export const TheProfileIcon = styled(SvgIcon)`
+.profile-icon {
   font-size: 24px;
-  fill: ${({ theme }) => theme.colors.primary};
+  fill: $main-color;
   transition: all 0.3s;
   &:hover {
     transform: scale(1.2);
   }
-`
+}
 
-export const TheCartIcon = styled(SvgIcon)`
+.cart-icon {
   font-size: 27px;
-  fill: ${({ theme }) => theme.colors.primary};
-  stroke: ${({ theme }) => theme.colors.primary};
-  @media ${({ theme }) => theme.media.md} {
+  fill: $main-color;
+  stroke: $main-color;
+  @include _minMD {
     font-size: 25px;
     transition: all 0.3s;
     &:hover {
       transform: scale(1.2);
     }
   }
-`
+}
 
-const headerButton = css`
-  &:hover {
-    background: none;
-    & svg {
-      transition: all 0.3s;
-    }
-  }
-`
-export const HeaderButton = styled(IconButton)`
-  ${headerButton}
-`
-
-export const CartButton = styled(IconButton)`
-  ${headerButton}
-  padding: 11px;
-`
-
-export const DynamicButton = styled(IconButton)`
+.dynamic {
   display: none;
-  color: ${({ theme }) => theme.colors.primary};
-  @media ${({ theme }) => theme.media.md} {
+  @include _minMD {
     display: block;
     padding: 11px;
   }
-  ${headerButton}
-`
+}
+
+.cart-button {
+  padding: 11px;
+}
