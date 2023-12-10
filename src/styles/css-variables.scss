@@ -42,6 +42,9 @@
   --sidebar-bkg: #fefefe;
   --pagination-bkg: #f3f4f7;
   --pagination-active-bkg: #fff;
+  --checkout-bkg: #f3f3f3;
+  --checkout-form-bkg: #f2f2f2;
+  --checkout-form-bkg-lg: #fff;
 }
 
 [data-theme='dark'] {
@@ -63,4 +66,7 @@
   --sidebar-bkg: #0f0f0f;
   --pagination-bkg: #444444;
   --pagination-active-bkg: #696c72;
+  --checkout-bkg: none;
+  --checkout-form-bkg: none;
+  --checkout-form-bkg-lg: #323232;
 }
