@@ -1,23 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
-import UIButton from '@/shared/Button'
-
-const Button = styled(UIButton)`
-  background-color: var(--green-light);
-  font-weight: 600;
-  color: #fff;
-  border-radius: 14px;
-
-  @media (hover: none) {
-    &:active:not(:disabled) {
-      opacity: 0.6;
-    }
-  }
-
-  @media ${({ theme }) => theme.media.lg} {
-    display: none;
-  }
-`
+import Button from '@/shared/Button'
+import styles from './ContinueButton.module.scss'
 
 interface ContinueButtonProps {
   disabled: boolean
@@ -27,7 +10,7 @@ interface ContinueButtonProps {
 
 const ContinueButton: React.FC<ContinueButtonProps> = ({ children, ...restProps }) => {
   return (
-    <Button color="secondary" fullWidth {...restProps}>
+    <Button color="secondary" className={styles.button} fullWidth {...restProps}>
       {children}
     </Button>
   )

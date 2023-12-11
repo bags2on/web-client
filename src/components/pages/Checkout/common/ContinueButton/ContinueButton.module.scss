@@ -1,0 +1,16 @@
+.button {
+  background-color: var(--green-light);
+  font-weight: 600;
+  color: #fff;
+  border-radius: 14px;
+
+  @media (hover: none) {
+    &:active:not(:disabled) {
+      opacity: 0.6;
+    }
+  }
+
+  @include _minLG {
+    display: none;
+  }
+}
