@@ -11,8 +11,7 @@ import {
   CartProductsQueryVariables
 } from '@/graphql/product/_gen_/cartProducts.query'
 import type { CartItemType } from '@/components/Cart/CartItem/CartItem'
-
-import { Container, Wrapper } from './Preview.styled'
+import styles from './Preview.module.scss'
 
 interface PreviewProps {
   submitLoading: boolean
@@ -62,8 +61,8 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) =>
   }
 
   return (
-    <Container>
-      <Wrapper>
+    <section className={styles.container}>
+      <div className={styles.wrapper}>
         <CartItems
           loading={loading}
           cartCount={cartItems.length}
@@ -74,9 +73,9 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) =>
           submitLoading={submitLoading}
           orderCreationErr={orderCreationErr}
         />
-      </Wrapper>
+      </div>
       <SignupPromo />
-    </Container>
+    </section>
   )
 }
 
