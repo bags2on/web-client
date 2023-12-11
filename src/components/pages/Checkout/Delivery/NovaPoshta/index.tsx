@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useMemo } from 'react'
-import styled from 'styled-components'
 import Warehouses from './Warehouses'
 import AsyncSelect from 'react-select/async'
 import { components, InputProps } from 'react-select'
@@ -9,45 +8,11 @@ import type { PopularCity } from '../Delivery'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
 
+import styles from './NovaPoshta.module.scss'
+
 interface NovaPoshtaProps {
   cities: PopularCity[]
 }
-
-export const Container = styled.div``
-
-export const FormField = styled.div`
-  /* position: relative; */
-  width: 100%;
-  & > span {
-    font-size: 15px;
-    color: ${({ theme }) => (theme.type === 'light' ? '#6a6a6a' : '#fff')};
-    font-weight: 500;
-    padding-left: 7px;
-    margin-bottom: 7px;
-  }
-`
-
-export const CitiesList = styled.ul`
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: space-between;
-  margin: 5px 0;
-`
-
-export const CityItem = styled.li`
-  color: #0670eb;
-  font-size: 14px;
-  cursor: pointer;
-  font-weight: 500;
-  &:hover {
-    text-decoration: underline;
-  }
-`
-
-export const RadioWrapper = styled.div`
-  overflow-x: auto;
-`
 
 type CityOption = {
   label: string
@@ -121,11 +86,11 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
   })
 
   return (
-    <Container>
-      <RadioWrapper>
+    <div className={styles.container}>
+      <div className={styles.radioWrapper}>
         <RadioGroup asRow name="_np-delivery-type" options={novaDeliveryTypeOptions} />
-      </RadioWrapper>
-      <FormField>
+      </div>
+      <div className={styles.fieldWrapper}>
         <span>Город</span>
         <AsyncSelect
           cacheOptions
@@ -169,16 +134,20 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
             })
           }}
         />
-      </FormField>
-      <CitiesList>
+      </div>
+      <ul className={styles.citiesList}>
         {selectedCities.map(({ baseLabel, value, label }) => (
-          <CityItem key={baseLabel} onClick={() => handleCityQuikSet({ label, value })}>
+          <li
+            key={baseLabel}
+            onClick={() => handleCityQuikSet({ label, value })}
+            className={styles.cityItem}
+          >
             <span>{baseLabel}</span>
-          </CityItem>
+          </li>
         ))}
-      </CitiesList>
+      </ul>
       {cityId && <Warehouses cityId={cityId} onSelect={handleWarehouseChange} />}
-    </Container>
+    </div>
   )
 }
 
