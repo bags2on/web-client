@@ -1,15 +1,13 @@
-import styled from 'styled-components'
-
-export const Container = styled.div`
+.container {
   padding: 15px 10px 0 15px;
   margin-top: 10px;
-`
+}
 
-export const Info = styled.div`
+.info {
   margin-bottom: 15px;
-`
+}
 
-export const TotalInfo = styled.div`
+.totalPrice {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -19,19 +17,19 @@ export const TotalInfo = styled.div`
   & > b {
     font-size: 19px;
   }
-`
+}
 
-export const ConditionsInfo = styled.div`
+.conditions {
   padding: 0 20px;
   & > p {
     text-align: center;
     font-size: 13px;
-    color: ${({ theme }) => (theme.type === 'light' ? '#6c757d' : '#f1f1f1')};
+    color: #6c757d; // dark #f1f1f1
     padding-left: 3px;
   }
-`
+}
 
-export const MakeOrderErr = styled.div`
+.error {
   font-weight: 500;
   margin-top: 10px;
   font-size: 16px;
@@ -43,4 +41,4 @@ export const MakeOrderErr = styled.div`
     margin: 0;
     margin-top: 5px;
   }
-`
+}
