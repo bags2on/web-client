@@ -1,23 +1,18 @@
-import styled from 'styled-components'
-import SvgIcon from '@/shared/SvgIcon'
-import IconButton from '@/shared/IconButton'
-
-export const Container = styled.div`
+.container {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-`
+}
 
-export const Title = styled.h2`
+.title {
   padding-left: 7px;
-`
+}
 
-export const ItemsList = styled.ul`
+.list {
   margin: 0;
   padding: 15px 10px 0 10px;
-  list-style: none;
-  max-height: 500;
+  max-height: 500px;
   overflow: auto;
   &::-webkit-scrollbar {
     width: 6px;
@@ -30,22 +25,21 @@ export const ItemsList = styled.ul`
     border-radius: 10px;
     background-color: rgba(0, 0, 0, 0.2);
   }
-`
+}
 
-export const ClearButton = styled(IconButton)`
+.clearButton {
   font-size: 5px;
   border-radius: 10px;
   width: 50px;
   height: 50px;
-  & svg {
-    font-size: 20px;
-  }
+  transition: all 0.3s;
   &:hover {
     background-color: transparent;
+    transform: scale(1.1);
   }
-`
+}
 
-export const TheTrashIcon = styled(SvgIcon)`
-  fill: #dc143c;
+.trashIcon {
   font-size: 20px;
-`
+  fill: #dc143c;
+}
