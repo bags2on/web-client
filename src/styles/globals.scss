@@ -56,6 +56,12 @@ $desktop: 1400px;
   }
 }
 
+@mixin _minLaptop {
+  @media (min-width: $laptop) {
+    @content;
+  }
+}
+
 @mixin _minXL {
   @media (min-width: $xl) {
     @content;

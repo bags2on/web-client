@@ -7,7 +7,7 @@ import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
 import { animated, useSpring } from '@react-spring/web'
 
-import { Container, AnimatedBox, FieldsWrapper, Field, Divider } from './CustomerInfo.styled'
+import styles from './CustomerInfo.module.scss'
 
 interface CustomerInfoProps {
   isEdit: boolean
@@ -34,35 +34,35 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
   }
 
   return (
-    <Container>
+    <section className={styles.container}>
       <StepTitle step={1} isEdit={isEdit} onEdit={onEdit} valid={isValuesValid}>
         Контактная информация
       </StepTitle>
-      <AnimatedBox as={animated.div} style={{ ...slideInStyles, overflow: 'hidden' }}>
-        <FieldsWrapper>
-          <Field>
+      <animated.div className={styles.animated} style={{ ...slideInStyles, overflow: 'hidden' }}>
+        <div className={styles.fields}>
+          <div className={styles.field}>
             <span>Имя</span>
             <TextInput name="name" />
-          </Field>
-          <Field>
+          </div>
+          <div className={styles.field}>
             <span>Фамилия</span>
             <TextInput name="surname" />
-          </Field>
-          <Field>
+          </div>
+          <div className={styles.field}>
             <span>Телефон</span>
             <PhoneInput name="phone" />
-          </Field>
-          <Field>
+          </div>
+          <div className={styles.field}>
             <span>E-mail</span>
             <TextInput name="email" type="email" />
-          </Field>
-        </FieldsWrapper>
+          </div>
+        </div>
         <ContinueButton disabled={!isValuesValid} onClick={handleNextClick}>
           Продолжить
         </ContinueButton>
-      </AnimatedBox>
-      <Divider />
-    </Container>
+      </animated.div>
+      <div className={styles.divider} />
+    </section>
   )
 }
 
