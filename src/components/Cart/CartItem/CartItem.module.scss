@@ -1,9 +1,4 @@
-import styled from 'styled-components'
-import IconButton from '@/shared/IconButton'
-import SvgIcon from '@/shared/SvgIcon'
-import Link from 'next/link'
-
-export const Container = styled.li`
+.container {
   display: flex;
   position: relative;
   margin-bottom: 35px;
@@ -18,23 +13,23 @@ export const Container = styled.li`
     left: 50%;
     transform: translate(-50%, -50%);
   }
-`
+}
 
-export const ImageWrapper = styled.div`
+.imageWrapper {
   width: 100%;
   min-width: 100px;
   max-width: 180px;
   position: relative;
   margin-right: 20px;
-`
+}
 
-export const Info = styled.div`
+.info {
   width: 100%;
   max-width: 900px;
   padding-top: 5%;
-`
+}
 
-export const Title = styled(Link)`
+.title {
   display: inline-block;
   max-width: 200px;
   margin: 0;
@@ -52,42 +47,41 @@ export const Title = styled(Link)`
     color: orange;
     outline: none;
   }
-`
+}
 
-export const Price = styled.span`
+.price {
   color: #707070;
   font-size: 16px;
   line-height: 16px;
   font-weight: 500;
-`
+}
 
-export const Controls = styled.div`
+.controls {
   display: flex;
   justify-content: space-between;
   margin-top: 15px;
-`
+}
 
-export const Amount = styled.p`
+.amount {
   margin: 0;
   padding-left: 1px;
   font-size: 16px;
   font-weight: 500;
-`
+}
 
-export const DeleteButton = styled(IconButton)`
+.deleteButton {
   color: #a7a7a7;
   font-size: 12px;
   border-radius: 10px;
   padding: 0px 17px;
-  background-color: ${({ theme }) => (theme.type === 'light' ? '#eeeeee' : '#363636')};
+  background-color: #eee; // dark #363636
   fill: #9b9b9b;
   &:hover {
-    color: #dc143c;
     fill: #434343;
   }
-`
+}
 
-export const TheTrashIcon = styled(SvgIcon)`
+.trashIcon {
   font-size: 20px;
   transition: fill 0.2s;
-`
+}
