@@ -1,0 +1,15 @@
+.mark {
+  position: absolute;
+  z-index: 300;
+  background-color: #fff;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+.icon {
+  display: block;
+  width: 23px;
+  height: 23px;
+  transform: rotate(40deg);
+  transition: transform 0.3s;
+}

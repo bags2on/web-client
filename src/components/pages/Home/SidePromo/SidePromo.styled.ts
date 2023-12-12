@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import Link from 'next/link'
 
-import { LinkMarkImage } from '@/shared/LinkBadge'
+import { iconClassname } from '@/shared/LinkBadge'
 
 export const Container = styled(Link)`
   position: relative;
@@ -13,7 +13,7 @@ export const Container = styled(Link)`
 
   background-color: #f3f3f3;
   &:hover {
-    & ${LinkMarkImage} {
+    & .${iconClassname} {
       transform: translate(2px, -10%) rotate(40deg);
     }
   }
