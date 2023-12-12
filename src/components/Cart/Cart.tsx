@@ -1,10 +1,10 @@
 import React from 'react'
 import Drawer from '@/shared/Drawer'
 import CartItems from './CartItems/CartItems'
-
-import { Container } from './Cart.styled'
 import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'
+
+import styles from './Cart.module.scss'
 
 interface CartProps {
   isOpen: boolean
@@ -21,9 +21,9 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
 
   return (
     <Drawer position="right" onClose={onClose} open={isOpen}>
-      <Container>
+      <div className={styles.container}>
         {isOpen && <CartItems key={1} onClose={onClose} onCheckout={handleCheckout} />}
-      </Container>
+      </div>
     </Drawer>
   )
 }
