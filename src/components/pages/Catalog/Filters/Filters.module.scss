@@ -1,50 +1,46 @@
-import styled from 'styled-components'
-import Button from '@/shared/Button'
-
-export const Aside = styled.aside`
+.container {
   position: relative;
   padding: 10px 10px 20px 10px;
-`
+}
 
-export const TitleWrapper = styled.div`
+.titleWrapper {
   display: flex;
   justify-content: space-between;
   margin: 10px 0 15px 10px;
-`
+}
 
-export const Title = styled.p`
+.title {
   margin: 0;
   line-height: 22px;
   font-size: 21px;
   text-align: center;
   position: relative;
   font-weight: 500;
-  @media ${({ theme }) => theme.media.lg} {
+  @include _minLG {
     text-align: start;
   }
-`
+}
 
-export const Divider = styled.hr`
+.divider {
   margin: 0;
-  border: none;
   height: 2px;
   margin-bottom: 10px;
   background-color: #d8bbbb80;
-`
+}
 
-export const ClearButton = styled(Button)`
+.clearButton {
   position: absolute;
   right: 10px;
   color: #fff;
-  background-color: ${({ theme }) => (theme.type === 'light' ? '#232323' : '#f44336')};
+  background-color: #232323; // dark #f44336
   font-weight: 600;
   top: 17px;
   font-size: 13px;
   padding: 5px 6px;
   border-radius: 7px;
   border: none;
-`
+}
 
-export const RadioWrapper = styled.div`
+.tagSectionWrapper {
   padding: 8px 10px;
-`
+}
