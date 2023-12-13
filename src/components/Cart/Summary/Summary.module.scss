@@ -1,21 +1,18 @@
-import styled from 'styled-components'
-import Button from '@/shared/Button'
-
-export const Container = styled.div`
+.container {
   width: 100%;
   position: sticky;
   bottom: 0;
   padding: 15px 10px 25px 15px;
-  background-color: ${({ theme }) => (theme.type === 'light' ? '#f3f3f3' : '#282828')};
-`
+  background-color: #f3f3f3; // dark #282828
+}
 
-export const InnerContainer = styled.div`
+.inner {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-`
+}
 
-export const CartPrice = styled.p`
+.cartPrice {
   margin: 0;
   margin-bottom: 8px;
   font-size: 18px;
@@ -27,11 +24,15 @@ export const CartPrice = styled.p`
     font-size: 19px;
     font-weight: 600;
   }
-`
+}
 
-export const OrderButton = styled(Button)`
+.orderButton {
   background-color: var(--green-light);
   font-weight: 600;
   color: #fff;
   border-radius: 14px;
-`
+}
+
+.skeleton {
+  padding: 15px 10px 19px 15px;
+}
