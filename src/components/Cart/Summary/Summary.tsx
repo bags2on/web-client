@@ -1,6 +1,6 @@
 import React from 'react'
-import Skeleton from './Skeleton'
 import Button from '@/shared/Button'
+import Skeleton from './Skeleton'
 import { useTranslation } from 'next-i18next'
 import { useReactiveVar } from '@apollo/client'
 import { cartPriceVar } from '../../../apollo/cache/variables'

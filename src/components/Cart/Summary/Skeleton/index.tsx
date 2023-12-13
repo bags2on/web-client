@@ -1,6 +1,6 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
-import styles from './Summary.module.scss'
+import styles from '../Summary.module.scss'
 
 const Skeleton = () => {
   return (
