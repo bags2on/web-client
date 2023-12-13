@@ -1,53 +1,51 @@
-import styled from 'styled-components'
-
-export const Container = styled.div`
+.container {
   margin-top: 20px;
   max-width: 1500px;
   margin: 0 auto;
   padding: 0 5px;
-  @media ${({ theme }) => theme.media.lg} {
+  @include _minLG {
     padding: 0 25px;
   }
-`
+}
 
-export const Inner = styled.div`
+.inner {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 10px;
-  @media ${({ theme }) => theme.media.md} {
+  @include _minMD {
     margin-bottom: 50px;
   }
-`
+}
 
-const BREAKPOINT = 770
+$wrapper-bp: 770px;
 
-export const PreviewWrapper = styled.div`
+.previewWrapper {
   flex-grow: 0;
   flex-basis: 100%;
   max-width: 100%;
-  @media (min-width: ${BREAKPOINT}px) {
+  @media (min-width: $wrapper-bp) {
     flex-basis: 50%;
     max-width: 50%;
   }
 
-  @media ${({ theme }) => theme.media.xl} {
+  @include _minXL {
     flex-basis: 60%;
     max-width: 60%;
   }
-`
+}
 
-export const DetailsWrapper = styled.div`
+.detailsWrapper {
   flex-grow: 0;
   flex-basis: 100%;
   max-width: 100%;
-  @media (min-width: ${BREAKPOINT}px) {
+  @media (min-width: $wrapper-bp) {
     flex-basis: 50%;
     max-width: 50%;
   }
 
-  @media ${({ theme }) => theme.media.xl} {
+  @include _minXL {
     flex-basis: 40%;
     max-width: 40%;
   }
-`
+}
