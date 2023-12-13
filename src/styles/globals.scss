@@ -67,3 +67,9 @@ $desktop: 1400px;
     @content;
   }
 }
+
+@mixin _minDesktop {
+  @media (min-width: $desktop) {
+    @content;
+  }
+}

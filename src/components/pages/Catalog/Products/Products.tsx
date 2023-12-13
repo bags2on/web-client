@@ -1,20 +1,12 @@
 import React from 'react'
+import Button from '@/shared/Button'
 import ProductItem from '@/components/ProductItem'
 import Pagination from '@/components/Pagination'
 import { routeNames } from '@/utils/navigation'
 import { useReactiveVar } from '@apollo/client'
 import { favoriteProductsVar } from '@/apollo/cache/variables'
 
-import {
-  Container,
-  ProductList,
-  ProductItemWrapper,
-  NotFoundBox,
-  PaginationWrapper,
-  Smile,
-  Message,
-  ActionButton
-} from './Products.styled'
+import styles from './Products.module.scss'
 
 interface ProductsProps {
   totalPages: number
@@ -46,26 +38,26 @@ const Products: React.FC<ProductsProps> = ({
 
   if (!products.length) {
     return (
-      <NotFoundBox>
+      <div className={styles.notFound}>
         <div>
-          <Smile>:(</Smile>
-          <Message>Извините, но по вашему запросу ничего не найдено</Message>
-          <ActionButton fullWidth onClick={onActionButtonClick}>
+          <p className={styles.smile}>:(</p>
+          <p className={styles.message}>Извините, но по вашему запросу ничего не найдено</p>
+          <Button fullWidth onClick={onActionButtonClick} className={styles.actionButton}>
             посмотреть все
-          </ActionButton>
+          </Button>
         </div>
-      </NotFoundBox>
+      </div>
     )
   }
 
   return (
-    <Container>
-      <ProductList>
+    <div className={styles.container}>
+      <ul className={styles.productList}>
         {products.map((product) => {
           const isFavorite = favoriteProducts.includes(product.id)
 
           return (
-            <ProductItemWrapper key={product.id}>
+            <li key={product.id} className={styles.productWrapper}>
               <ProductItem
                 id={product.id}
                 slug={product.slug}
@@ -77,14 +69,14 @@ const Products: React.FC<ProductsProps> = ({
                 basePrice={product.basePrice}
                 isFavorite={isFavorite}
               />
-            </ProductItemWrapper>
+            </li>
           )
         })}
-      </ProductList>
-      <PaginationWrapper>
+      </ul>
+      <div className={styles.paginationWrapper}>
         <Pagination route={routeNames.catalog} total={totalPages} currentPage={currentPage} />
-      </PaginationWrapper>
-    </Container>
+      </div>
+    </div>
   )
 }
 
