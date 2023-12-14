@@ -62,7 +62,7 @@ interface FavoriteAmountQuery {
   favoriteAmount: number
 }
 
-const SidebarNavList: React.FC<SidebarNavListProps> = ({ onClose }) => {
+const Navigation: React.FC<SidebarNavListProps> = ({ onClose }) => {
   const router = useRouter()
   const { t } = useTranslation('common')
 
@@ -104,4 +104,4 @@ const SidebarNavList: React.FC<SidebarNavListProps> = ({ onClose }) => {
   )
 }
 
-export default SidebarNavList
+export default Navigation

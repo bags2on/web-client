@@ -1,7 +1,7 @@
 import React from 'react'
 import Drawer from '@/shared/Drawer'
 import SidebarHead from './SidebarHead/SidebarHead'
-import SidebarNavList from './SidebarNavList/SidebarNavList'
+import Navigation from './Navigation'
 import SocialLink from './SocialLink/SocialLink'
 import LangSwitcher from '@/components/LangSwitcher'
 import { useTranslation } from 'next-i18next'
@@ -22,7 +22,7 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, theme, onClose, themeChanger 
     <Drawer open={isOpen} position="left" onClose={onClose}>
       <div className={styles.container}>
         <SidebarHead theme={theme} themeChanger={themeChanger} />
-        <SidebarNavList onClose={onClose} />
+        <Navigation onClose={onClose} />
         <div className={styles.langSwitch}>
           <span>{t('drawer.lang')}</span>
           <LangSwitcher />
