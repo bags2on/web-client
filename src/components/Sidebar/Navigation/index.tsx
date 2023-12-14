@@ -1,4 +1,5 @@
 import React from 'react'
+import clsx from 'clsx'
 import Badge from '@/shared/Badge'
 import HomeIcon from '../../../../public/assets/icons/home.svg'
 import UserIcon from '../../../../public/assets/icons/user.svg'
@@ -12,7 +13,7 @@ import { GET_FAVORITE_AMOUNT } from '@/apollo/cache/queries/favorite'
 import { SharedMutations } from '@/apollo/cache/mutations'
 import { useRouter } from 'next/router'
 
-import { NavList, ListItem, ItemIcon, ItemText } from './SidebarNavList.styled'
+import styles from './Navigation.module.scss'
 
 interface SidebarNavListProps {
   onClose(): void
@@ -81,26 +82,26 @@ const Navigation: React.FC<SidebarNavListProps> = ({ onClose }) => {
   }
 
   return (
-    <NavList>
+    <ul className={styles.navList}>
       {drawerItems.map((item) => (
-        <ListItem key={item.to} onClick={(): void => goTo(item.to)}>
+        <li key={item.to} onClick={(): void => goTo(item.to)} className={styles.listItem}>
           {item.i18n === 'favorite' ? (
             <Badge content={favoriteAmount}>
-              <ItemIcon>
+              <div className={clsx('svg-icon', styles.icon)}>
                 <item.icon />
-              </ItemIcon>
+              </div>
             </Badge>
           ) : (
-            <ItemIcon>
+            <div className={clsx('svg-icon', styles.icon)}>
               <item.icon />
-            </ItemIcon>
+            </div>
           )}
-          <ItemText>
+          <div className={styles.text}>
             <p>{t(`drawer.${item.i18n}`)}</p>
-          </ItemText>
-        </ListItem>
+          </div>
+        </li>
       ))}
-    </NavList>
+    </ul>
   )
 }
 

@@ -1,0 +1,36 @@
+.navList {
+  margin: 0;
+  padding: 0;
+  padding-left: 10px;
+  padding-top: 20px;
+}
+
+.listItem {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 11px 5px 11px 10px;
+  border-radius: 10px;
+  transition: background-color 0.3s;
+  &:last-child {
+    margin-bottom: 15px;
+  }
+  &:hover {
+    background-color: #ededed; // dark #353535
+  }
+}
+
+.icon {
+  fill: #343434; // dark $main-color
+  font-size: 33px;
+}
+
+.text {
+  margin-left: 15px;
+  & > p {
+    margin: 0;
+    font-size: 18px;
+    line-height: 18px;
+    font-weight: 500;
+  }
+}
