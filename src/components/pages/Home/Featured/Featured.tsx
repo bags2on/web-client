@@ -2,7 +2,7 @@ import React from 'react'
 import ProductItem from '@/components/ProductItem'
 import { useTranslation } from 'next-i18next'
 
-import { Title, List, ListItem } from './Featured.styled'
+import styles from './Featured.module.scss'
 
 interface ProductType {
   id: string
@@ -23,10 +23,10 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
 
   return (
     <section>
-      <Title>{t('home:headers.advise')}</Title>
-      <List>
+      <h2 className={styles.title}>{t('home:headers.advise')}</h2>
+      <ul className={styles.list}>
         {products.map((product: ProductType) => (
-          <ListItem key={product.id}>
+          <li key={product.id} className={styles.listItem}>
             <ProductItem
               inStock
               id={product.id}
@@ -38,9 +38,9 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
               basePrice={product.basePrice}
               isFavorite={false} // TODO: get data form ac3
             />
-          </ListItem>
+          </li>
         ))}
-      </List>
+      </ul>
     </section>
   )
 }
