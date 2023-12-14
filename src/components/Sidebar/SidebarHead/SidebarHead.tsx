@@ -2,7 +2,7 @@ import React from 'react'
 import ThemeToggle from '@/shared/ThemeToggle'
 import Image from 'next/image'
 
-import { Container, LogoWrapper, ThemeWrapper } from './SidebarHead.styled'
+import styles from './SidebarHead.module.scss'
 
 interface SidebarHeadProps {
   theme: 'light' | 'dark'
@@ -11,15 +11,15 @@ interface SidebarHeadProps {
 
 const SidebarHead: React.FC<SidebarHeadProps> = ({ theme, themeChanger }) => {
   return (
-    <Container>
-      <LogoWrapper>
+    <div className={styles.container}>
+      <div className={styles.logoWrapper}>
         <Image priority={true} width={150} height={40} src="/assets/logo.svg" alt="логотип" />
-      </LogoWrapper>
+      </div>
 
-      <ThemeWrapper>
+      <div className={styles.themeSwitcher}>
         <ThemeToggle theme={theme} themeChanger={themeChanger} />
-      </ThemeWrapper>
-    </Container>
+      </div>
+    </div>
   )
 }
 
