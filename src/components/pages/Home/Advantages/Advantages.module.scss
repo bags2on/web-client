@@ -1,21 +1,18 @@
-import styled from 'styled-components'
-
-export const Section = styled.section`
+.container {
   width: 100%;
-  background-color: ${({ theme }) => (theme.type === 'light' ? '#f8fafa' : '#282828')};
+  background-color: #f8fafa; // dark #282828
   padding: 20px 0;
-`
+}
 
-export const List = styled.ul`
+.list {
   max-width: 1500px;
   margin: 0 auto;
   padding: 0;
-  list-style: none;
   & li {
     padding: 1px;
     margin: 18px 0;
   }
-  @media ${({ theme }) => theme.media.md} {
+  @include _minMD {
     display: flex;
     align-items: baseline;
     & li {
@@ -26,9 +23,9 @@ export const List = styled.ul`
       padding: 0 15px;
     }
   }
-`
+}
 
-export const IconWrapper = styled.div`
+.iconWrapper {
   height: 45px;
   margin: 0 auto;
   & img {
@@ -36,26 +33,26 @@ export const IconWrapper = styled.div`
     width: 100%;
     height: 100%;
   }
-`
+}
 
-export const Title = styled.p`
+.title {
   font-size: 16px;
   margin-top: 17px;
   margin-bottom: 10px;
   line-height: 1.5;
   text-align: center;
   font-weight: 600;
-`
+}
 
-export const Info = styled.p`
+.subTitle {
   font-size: 16px;
   margin: 0;
   text-align: center;
   font-weight: 500;
   color: var(--sub-title-color);
-`
+}
 
-export const BottomLine = styled.div`
-  height: 20px;
-  background-color: ${({ theme }) => theme.colors.primary};
-`
+.divider {
+  height: 15px;
+  background-color: $main-color;
+}

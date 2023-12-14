@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { useTranslation } from 'next-i18next'
 
-import { Section, List, IconWrapper, Title, Info, BottomLine } from './Advantages.styled'
+import styles from './Advantages.module.scss'
 
 const Advantages: React.FC = () => {
   const { t } = useTranslation('home')
@@ -33,26 +33,26 @@ const Advantages: React.FC = () => {
 
   return (
     <>
-      <Section>
-        <List>
+      <section className={styles.container}>
+        <ul className={styles.list}>
           {items.map((item, ind) => {
             const title = t(item.title)
 
             return (
               <li key={ind}>
-                <IconWrapper>
+                <div className={styles.iconWrapper}>
                   <Image src={item.icon} alt={'картинка - ' + title} width={150} height={150} />
-                </IconWrapper>
+                </div>
                 <div>
-                  <Title>{title}</Title>
-                  <Info>{t(item.info)}</Info>
+                  <p className={styles.title}>{title}</p>
+                  <p className={styles.subTitle}>{t(item.info)}</p>
                 </div>
               </li>
             )
           })}
-        </List>
-      </Section>
-      <BottomLine />
+        </ul>
+      </section>
+      <div className={styles.divider} />
     </>
   )
 }
