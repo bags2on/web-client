@@ -1,21 +1,12 @@
 import React from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
 import SvgIcon from '@/shared/SvgIcon'
 import FlashIcon from '../../../../../public/assets/icons/flash.svg'
 import { routeNames } from '@/utils/navigation'
 import { useTranslation } from 'next-i18next'
 
-import {
-  Section,
-  Title,
-  Link,
-  InnerContainer,
-  CategoryList,
-  CategoryItem,
-  Details,
-  ImageWrapper,
-  Image,
-  Fallback
-} from './Categories.styled'
+import styles from './Categories.module.scss'
 
 type categoryItemType = {
   img: string
@@ -60,43 +51,47 @@ const Categories: React.FC = () => {
   const { t } = useTranslation('home')
 
   return (
-    <Section>
-      <Title>
+    <section className={styles.container}>
+      <h1 className={styles.title}>
         <SvgIcon>
           <FlashIcon />
         </SvgIcon>
         {t('headers.categories')}
-      </Title>
+      </h1>
       <div>
-        <CategoryList>
+        <ul className={styles.categoryList}>
           {categoriesValues.map((category, ind) => (
-            <CategoryItem key={ind}>
-              <Link href={category.to}>
-                <InnerContainer>
-                  <ImageWrapper>
+            <li key={ind} className={styles.categoryItem}>
+              <Link href={category.to} className={styles.linkWrapper}>
+                <div className={styles.inner}>
+                  <div className={styles.imageWrapper}>
                     <Image
                       priority
                       src={category.img}
                       width={360}
                       height={360}
                       alt={`Изображение категории - ${t(`categories.${category.i18n}`)}`}
+                      className={styles.image}
                     />
-                    <Fallback
-                      $background={category.backgroundColor}
-                      $borderColor={category.borderColor}
+                    <div
+                      className={styles.fallback}
+                      style={{
+                        backgroundColor: category.backgroundColor,
+                        borderColor: category.borderColor
+                      }}
                     />
-                  </ImageWrapper>
-                  <Details>
+                  </div>
+                  <div className={styles.details}>
                     <p>{t(`categories.${category.i18n}`)}</p>
                     <span>{t(`categories.seeAll`)}</span>
-                  </Details>
-                </InnerContainer>
+                  </div>
+                </div>
               </Link>
-            </CategoryItem>
+            </li>
           ))}
-        </CategoryList>
+        </ul>
       </div>
-    </Section>
+    </section>
   )
 }
 
