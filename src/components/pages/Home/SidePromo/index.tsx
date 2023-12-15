@@ -1,30 +1,28 @@
 import React from 'react'
+import Link from 'next/link'
+import LinkBadge from '@/shared/LinkBadge'
 import { useTranslation } from 'next-i18next'
 import { routeNames } from '@/utils/navigation'
-import {
-  Container,
-  Info,
-  PromoTitle,
-  PromoPattern,
-  ButtonWrapper,
-  FakeButton
-} from './SidePromo.styled'
-import LinkBadge from '@/shared/LinkBadge'
+
+import styles from './SidePromo.module.scss'
 
 const SidePromo: React.FC = () => {
   const { t } = useTranslation('home')
 
   return (
-    <Container href={routeNames.catalog}>
-      <LinkBadge />
-      <Info>
-        <PromoTitle>Скидки</PromoTitle>
-        <ButtonWrapper>
-          <FakeButton>{t('promo.action')}</FakeButton>
-        </ButtonWrapper>
-      </Info>
-      <PromoPattern />
-    </Container>
+    <Link href={routeNames.catalog} className={styles.wrapper}>
+      <LinkBadge>
+        <div className={styles.inner}>
+          <div className={styles.info}>
+            <p className={styles.title}>Скидки</p>
+            <div className={styles.plugWrapper}>
+              <div className={styles.plug}>{t('promo.action')}</div>
+            </div>
+          </div>
+          <div className={styles.promoPattern} />
+        </div>
+      </LinkBadge>
+    </Link>
   )
 }
 
