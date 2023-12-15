@@ -1,8 +1,4 @@
-import styled, { css } from 'styled-components'
-import Link from 'next/link'
-import { iconClassname } from '@/shared/LinkBadge'
-
-export const Container = styled.section`
+.container {
   display: flex;
   padding: 0 10px 10px 10px;
 
@@ -10,19 +6,9 @@ export const Container = styled.section`
   flex-wrap: wrap;
   max-width: 1500px;
   margin: 0 auto;
-`
+}
 
-export const ImageBox = styled.div`
-  width: 100%;
-  user-select: none;
-  transition: all 0.3s;
-  & > img {
-    width: 100%;
-    height: 100%;
-  }
-`
-
-export const LinkWrapper = styled(Link)`
+.linkWrapper {
   cursor: pointer;
   position: relative;
   text-decoration: none;
@@ -34,39 +20,40 @@ export const LinkWrapper = styled(Link)`
   /* box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; */
   background-color: #f3f3f3;
   -webkit-tap-highlight-color: transparent;
-  @media ${({ theme }) => theme.media.tablet} {
+  @include _minTablet {
     flex-basis: 49%;
     padding: 0;
     &:hover {
-      & .${iconClassname} {
-        transform: translate(2px, -10%) rotate(40deg);
-      }
-
-      & ${ImageBox} {
+      & .imageBox {
         transform: scale(1.1);
       }
     }
   }
-`
+}
 
-const contentStyles = css`
+.imageBox {
+  width: 100%;
+  user-select: none;
+  transition: all 0.3s;
+  & > img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.content {
   position: absolute;
   user-select: none;
   top: 50%;
   left: 47%;
   transform: translate(0, -50%);
-`
+}
 
-export const FirstContent = styled.div`
-  ${contentStyles}
+.leftContent {
   left: 55%;
-`
+}
 
-export const SecondContent = styled.div`
-  ${contentStyles}
-`
-
-export const ContentTitle = styled.p`
+.title {
   font-size: 23px;
   font-weight: 500;
   margin: 0;
@@ -74,16 +61,16 @@ export const ContentTitle = styled.p`
   user-select: none;
   text-align: center;
   margin-bottom: 3px;
-`
+}
 
-export const ButtonWrapper = styled.div`
+.buttonWrapper {
   margin-top: 17px;
   margin: 0 auto;
   display: flex;
   justify-content: center;
-`
+}
 
-export const FakeButton = styled.div`
+.plug {
   display: inline-block;
   font-weight: 500;
   padding: 8px 10px;
@@ -92,7 +79,7 @@ export const FakeButton = styled.div`
   color: #343434;
   transition: all 0.2s;
   background-color: transparent;
-  @media ${({ theme }) => theme.media.tablet} {
+  @include _minTablet {
     color: #fff;
     background-color: #343434;
     &:hover {
@@ -100,4 +87,4 @@ export const FakeButton = styled.div`
       background-color: transparent;
     }
   }
-`
+}
