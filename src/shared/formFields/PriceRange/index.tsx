@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react'
+import Button from '@/shared/Button'
+import Slider from 'rc-slider'
+import Collapse, { CollapseHead } from '@/shared/Collapse'
 import { useFormikContext } from 'formik'
 import type { SliderProps } from 'rc-slider'
 
-import Collapse, { CollapseHead } from '../../../shared/Collapse'
-
+import styles from './PriceRange.module.scss'
 import 'rc-slider/assets/index.css'
-import {
-  Container,
-  SliderWrapper,
-  Slider,
-  SliderMark,
-  Controls,
-  PriceInput,
-  SetButton
-} from './PriceRange.styled'
 
 interface PriceRangeProps {
   title: string
@@ -80,10 +73,10 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
 
   const marks: SliderProps['marks'] = {
     [min]: {
-      label: <SliderMark>{min}</SliderMark>
+      label: <span className={styles.sliderMark}>{min}</span>
     },
     [max]: {
-      label: <SliderMark>{max}</SliderMark>
+      label: <span className={styles.sliderMark}>{max}</span>
     }
   }
 
@@ -91,26 +84,37 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
     <div>
       <CollapseHead title={title} collapsed={isCollapsed} onCollapse={handleCollapse} />
       <Collapse open={isCollapsed}>
-        <Container>
-          <Controls>
-            <PriceInput type="number" value={minInputValue} onChange={onMinChange} />
-            <PriceInput type="number" value={maxInputValue} onChange={onMaxChange} />
-            <SetButton color="secondary" onClick={handlePriceSubmit}>
+        <div className={styles.container}>
+          <div className={styles.controls}>
+            <input
+              type="number"
+              value={minInputValue}
+              onChange={onMinChange}
+              className={styles.priceInput}
+            />
+            <input
+              type="number"
+              value={maxInputValue}
+              onChange={onMaxChange}
+              className={styles.priceInput}
+            />
+            <Button color="secondary" onClick={handlePriceSubmit} className={styles.setButton}>
               ok
-            </SetButton>
-          </Controls>
-          <SliderWrapper>
+            </Button>
+          </div>
+          <div className={styles.sliderWrapper}>
             <Slider
               range
               min={min}
               max={max}
               step={step}
               value={[sliderMin, sliderMax]}
-              onChange={onSliderChange}
               marks={marks}
+              onChange={onSliderChange}
+              className={styles.slider}
             />
-          </SliderWrapper>
-        </Container>
+          </div>
+        </div>
       </Collapse>
     </div>
   )
