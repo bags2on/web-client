@@ -1,7 +1,7 @@
 import React from 'react'
+import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
-import SvgIcon from '@/shared/SvgIcon'
 import FlashIcon from '../../../../../public/assets/icons/flash.svg'
 import { routeNames } from '@/utils/navigation'
 import { useTranslation } from 'next-i18next'
@@ -53,9 +53,9 @@ const Categories: React.FC = () => {
   return (
     <section className={styles.container}>
       <h1 className={styles.title}>
-        <SvgIcon>
+        <div className={clsx('svg-icon', styles.flashIcon)}>
           <FlashIcon />
-        </SvgIcon>
+        </div>
         {t('headers.categories')}
       </h1>
       <div>
