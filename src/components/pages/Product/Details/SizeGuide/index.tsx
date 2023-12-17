@@ -1,5 +1,7 @@
 import React from 'react'
-import { Title, List, ListItem } from './SizeGuide.styled'
+import clsx from 'clsx'
+
+import styles from './SizeGuide.module.scss'
 
 type availableSizes = 'S' | 'M' | 'L' | 'XL' | '2XL'
 
@@ -15,18 +17,21 @@ const SizeGuide: React.FC<SizeGuideProps> = ({ current, available }) => {
 
   return (
     <div>
-      <Title>Выбрать размер</Title>
-      <List>
+      <p className={styles.title}>Выбрать размер</p>
+      <ul className={styles.list}>
         {sizes.map((size) => (
-          <ListItem
+          <li
             key={size}
-            $active={size === current}
-            $inactive={!Object.prototype.hasOwnProperty.call(normalized, size)}
+            className={clsx({
+              [styles.sizeItem]: true,
+              [styles.active]: size === current,
+              [styles.inactive]: !Object.prototype.hasOwnProperty.call(normalized, size)
+            })}
           >
             {size}
-          </ListItem>
+          </li>
         ))}
-      </List>
+      </ul>
     </div>
   )
 }
