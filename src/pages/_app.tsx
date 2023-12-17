@@ -13,7 +13,7 @@ import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../../next-i18next.config'
 
 import '../../node_modules/modern-normalize/modern-normalize.css'
-import '@/styles/css-variables.scss'
+import '@/styles/global.scss'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'

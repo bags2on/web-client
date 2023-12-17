@@ -62,7 +62,7 @@ const nextConfig = {
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
-    prependData: `@import '@/styles/globals.scss';`
+    prependData: `@import '@/styles/scss-globals.scss';`
   },
   i18n
 }
