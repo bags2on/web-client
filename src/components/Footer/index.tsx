@@ -3,7 +3,6 @@ import classes from './Footer.module.scss'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
-import SvgIcon from '@/shared/SvgIcon'
 import PhoneIcon from '../../../public/assets/icons/phone.svg'
 import TelegramIcon from '../../../public/assets/icons/telegram.svg'
 
@@ -25,9 +24,9 @@ const Footer: React.FC = () => {
               className={classes.makeCallPlug}
               href={'tel:' + process.env.NEXT_PUBLIC_CONTACT_PHONE}
             >
-              <SvgIcon className={clsx(classes.icon, classes.phoneIcon)}>
+              <div className={clsx('svg-icon', classes.phoneIcon)}>
                 <PhoneIcon />
-              </SvgIcon>
+              </div>
               <span>Позвонить</span>
             </a>
           </div>
@@ -35,9 +34,9 @@ const Footer: React.FC = () => {
             href={'https://t.me/' + process.env.NEXT_PUBLIC_TELEGRAM_USERNAME}
             className={classes.telegramConnect}
           >
-            <SvgIcon className={classes.telegramIcon}>
+            <div className={clsx('svg-icon', classes.telegramIcon)}>
               <TelegramIcon />
-            </SvgIcon>
+            </div>
             <span>@{process.env.NEXT_PUBLIC_TELEGRAM_USERNAME}</span>
           </a>
         </div>
