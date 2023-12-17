@@ -10,6 +10,7 @@ interface LikeButtonProps {
   height?: number
   text?: string
   disableRipple?: boolean
+  className?: string
   onClick: (e: React.MouseEvent) => void
 }
 
@@ -18,10 +19,11 @@ const LikeButton: React.FC<LikeButtonProps> = ({
   width = 20,
   height = 20,
   text,
+  className,
   ...restProps
 }) => {
   return (
-    <IconButton className={styles.button} {...restProps}>
+    <IconButton className={clsx(styles.button, className)} {...restProps}>
       <svg
         viewBox="0 0 24 24"
         width={width}
