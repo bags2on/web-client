@@ -1,3 +1,26 @@
+body {
+  font-family: Montserrat, Roboto, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    'Segoe UI Symbol';
+  line-height: 1.5;
+  background-color: #fefefe; // dark #0f0f0f
+  color: #343434; // dark #fff
+  -webkit-font-smoothing: antialiased;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
 .svg-icon {
   // font-size: 1.5rem; // TODO: broken inheritance
   width: 1em;

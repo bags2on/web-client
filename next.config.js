@@ -64,12 +64,6 @@ const nextConfig = {
     includePaths: [path.join(__dirname, 'styles')],
     prependData: `@import '@/styles/globals.scss';`
   },
-  compiler: {
-    styledComponents: {
-      ssr: true,
-      displayName: process.env.NODE_ENV === 'development'
-    }
-  },
   i18n
 }
 
