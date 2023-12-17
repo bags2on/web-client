@@ -41,8 +41,6 @@ const Details: React.FC<DetailsProps> = ({
 }) => {
   const router = useRouter()
 
-  // inStock = false
-
   const handleAddToCart = (): void => {
     if (inStock) {
       CartMutations.addProduct({
