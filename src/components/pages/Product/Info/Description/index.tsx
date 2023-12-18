@@ -1,5 +1,6 @@
 import React from 'react'
-import styled from 'styled-components'
+
+import styles from './Description.module.scss'
 
 interface DescriptionProps {
   gender: string
@@ -9,61 +10,7 @@ interface DescriptionProps {
   color: string
 }
 
-const Container = styled.div`
-  padding: 10px 5px;
-`
-
-const Title = styled.h2`
-  margin-top: 0;
-  margin: 10px 0 5px 0;
-  font-size: 24px;
-`
-
-const DescText = styled.p`
-  margin-top: 0;
-  font-weight: 500;
-  font-size: 16px;
-  @media ${({ theme }) => theme.media.lg} {
-    font-size: 17px;
-  }
-`
-
-const Inner = styled.div`
-  max-width: 700px;
-`
-
-const Detail = styled.p`
-  margin: 0;
-  margin-bottom: 3px;
-  font-weight: 500;
-  display: flex;
-  justify-content: space-between;
-  font-size: 16px;
-`
-
-const DetailTitle = styled.span`
-  color: #777;
-  flex-shrink: 0;
-`
-
-const Divider = styled.span`
-  margin-right: 4%;
-  margin-left: 2%;
-  color: #777;
-`
-
-const DetailInfo = styled.span`
-  flex-basis: 60%;
-  color: #000;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow-wrap: break-word;
-  @media ${({ theme }) => theme.media.lg} {
-    flex-basis: 75%;
-  }
-`
-
+// TODO: build it with loop
 const Description: React.FC<DescriptionProps> = ({
   gender,
   description,
@@ -72,44 +19,44 @@ const Description: React.FC<DescriptionProps> = ({
   category
 }) => {
   return (
-    <Container>
-      <Title>Описание</Title>
-      <DescText>{description}</DescText>
-      <Inner>
+    <div className={styles.container}>
+      <h2 className={styles.title}>Описание</h2>
+      <p className={styles.descText}>{description}</p>
+      <div className={styles.inner}>
         {dimensions && (
-          <Detail>
-            <DetailTitle>Размер</DetailTitle>
-            <DetailInfo>
-              <Divider>:</Divider>
+          <div className={styles.detail}>
+            <span className={styles.detailTitle}>Размер</span>
+            <span className={styles.info}>
+              <span className={styles.divider}>:</span>
               {dimensions} см.
-            </DetailInfo>
-          </Detail>
+            </span>
+          </div>
         )}
         {color && (
-          <Detail>
-            <DetailTitle>Цвет</DetailTitle>
-            <DetailInfo>
-              <Divider>:</Divider>
+          <div className={styles.detail}>
+            <span className={styles.detailTitle}>Цвет</span>
+            <span className={styles.info}>
+              <span className={styles.divider}>:</span>
               {color}
-            </DetailInfo>
-          </Detail>
+            </span>
+          </div>
         )}
-        <Detail>
-          <DetailTitle>Тип</DetailTitle>
-          <DetailInfo>
-            <Divider>:</Divider>
+        <div className={styles.detail}>
+          <span className={styles.detailTitle}>Тип</span>
+          <span className={styles.info}>
+            <span className={styles.divider}>:</span>
             {gender}
-          </DetailInfo>
-        </Detail>
-        <Detail>
-          <DetailTitle>Категория</DetailTitle>
-          <DetailInfo>
-            <Divider>:</Divider>
+          </span>
+        </div>
+        <div className={styles.detail}>
+          <span className={styles.detailTitle}>Категория</span>
+          <span className={styles.info}>
+            <span className={styles.divider}>:</span>
             {category}
-          </DetailInfo>
-        </Detail>
-      </Inner>
-    </Container>
+          </span>
+        </div>
+      </div>
+    </div>
   )
 }
 

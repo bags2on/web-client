@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 
-import { Container, ImageWrapper, Title, SubTitle } from './ErrorPlug.styled'
+import styles from './ErrorPlug.module.scss'
 
 interface ErrorPlugProps {
   message?: string
@@ -9,15 +9,15 @@ interface ErrorPlugProps {
 
 const ErrorPlug: React.FC<ErrorPlugProps> = () => {
   return (
-    <Container>
+    <div className={styles.container}>
       <div>
-        <ImageWrapper>
+        <div className={styles.imageWrapper}>
           <Image width={200} height={100} src="/assets/asset_2.svg" alt="asset 2" />
-        </ImageWrapper>
-        <Title>Не удалось получить данные с сервера</Title>
-        <SubTitle>попробуйте перезагрузить страницу</SubTitle>
+        </div>
+        <h1 className={styles.title}>Не удалось получить данные</h1>
+        <p className={styles.subTitle}>попробуйте перезагрузить страницу</p>
       </div>
-    </Container>
+    </div>
   )
 }
 

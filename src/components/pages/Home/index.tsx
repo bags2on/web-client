@@ -1,4 +1,5 @@
 import React from 'react'
+import clsx from 'clsx'
 import Advantages from './Advantages/Advantages'
 import MainProduct from '../../MainProduct/MainProduct'
 import Carousel from '@/components/Carousel/Carousel'
@@ -9,13 +10,7 @@ import SidePromo from './SidePromo'
 
 import type { Slide } from '@/components/Carousel/Carousel'
 
-import {
-  SliderContainer,
-  MainContainer,
-  SideBox,
-  HomeContainer,
-  MainProductContainer
-} from './Home.styled'
+import styles from './Home.module.scss'
 
 interface ProductType {
   id: string
@@ -41,23 +36,23 @@ const Home: React.FC<HomeProps> = ({ sliderData, featuredProducts }) => {
 
   return (
     <>
-      <SliderContainer>
+      <div className={clsx(styles.containerShare, styles.sliderContainer)}>
         <Carousel slides={sliderData} />
         <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
-      </SliderContainer>
-      <MainContainer>
-        <SideBox>
+      </div>
+      <div className={clsx(styles.containerShare, styles.mainContainer)}>
+        <div className={styles.sideBox}>
           <SidePromo />
-        </SideBox>
+        </div>
         {/*  */}
-        <HomeContainer>
+        <div className={styles.homeContainer}>
           <Categories />
-          <MainProductContainer>
+          <div className={styles.mainProductWrapper}>
             <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
-          </MainProductContainer>
+          </div>
           <Featured products={featuredProducts} />
-        </HomeContainer>
-      </MainContainer>
+        </div>
+      </div>
       <Promo />
       <Advantages />
     </>

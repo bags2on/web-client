@@ -1,10 +1,11 @@
 import React from 'react'
+import styles from './Summary.module.scss'
 import Button from '@/shared/Button'
 import { useReactiveVar } from '@apollo/client'
 import { cartPriceVar } from '@/apollo/cache/variables'
 import { formatPrice } from '@/utils/helper'
-import { Container, Info, TotalInfo, ConditionsInfo, MakeOrderErr } from './Summary.styled'
 import ContentLoader from 'react-content-loader'
+
 interface SummaryProps {
   loading: boolean
   submitLoading: boolean
@@ -15,8 +16,8 @@ const Summary: React.FC<SummaryProps> = ({ loading, submitLoading, orderCreation
   const cartPrice = useReactiveVar(cartPriceVar)
 
   return (
-    <Container>
-      <Info>
+    <div className={styles.container}>
+      <div className={styles.info}>
         {loading ? (
           <ContentLoader
             backgroundColor="#eeeeee"
@@ -29,12 +30,12 @@ const Summary: React.FC<SummaryProps> = ({ loading, submitLoading, orderCreation
             <rect x="71%" y="0" rx="6" ry="6" width="120" height="27" />
           </ContentLoader>
         ) : (
-          <TotalInfo>
+          <div className={styles.totalPrice}>
             <b>Итого:</b>
             <span>{formatPrice(cartPrice)}&nbsp;грн.</span>
-          </TotalInfo>
+          </div>
         )}
-      </Info>
+      </div>
       <Button
         fullWidth
         color="secondary"
@@ -45,15 +46,15 @@ const Summary: React.FC<SummaryProps> = ({ loading, submitLoading, orderCreation
         Подтвердить заказ
       </Button>
       {orderCreationErr && (
-        <MakeOrderErr>
+        <div className={styles.error}>
           <b>Внимание!</b>
           <p>Произошла ошибка, повторите попытку позже</p>
-        </MakeOrderErr>
+        </div>
       )}
-      <ConditionsInfo>
+      <div className={styles.conditions}>
         <p>Подтверждая заказ, я принимаю условия пользовательского соглашения</p>
-      </ConditionsInfo>
-    </Container>
+      </div>
+    </div>
   )
 }
 

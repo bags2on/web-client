@@ -1,0 +1,55 @@
+.containerShare {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.sliderContainer {
+  display: flex;
+  @include _minLG {
+    padding: 0 5px;
+  }
+  @include _minTablet {
+    padding: 16px 10px 0 10px;
+  }
+  & section:nth-of-type(2) {
+    display: none;
+    @include _minTablet {
+      display: block;
+    }
+  }
+}
+
+.mainContainer {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 16px 10px 0 10px;
+  @include _minXL {
+    flex-wrap: nowrap;
+  }
+}
+
+.sideBox {
+  flex-basis: 100%;
+  order: 2;
+  @include _minXL {
+    flex-basis: 20%;
+    order: 1;
+    padding-right: 20px;
+  }
+}
+
+.homeContainer {
+  order: 1;
+  @include _minLaptop {
+    flex-direction: initial;
+  }
+  @include _minXL {
+    flex-basis: 80%;
+  }
+}
+
+.mainProductWrapper {
+  @include _minTablet {
+    display: none;
+  }
+}

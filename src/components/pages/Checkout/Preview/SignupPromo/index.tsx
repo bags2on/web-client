@@ -3,7 +3,7 @@ import { SharedMutations } from '@/apollo/cache/mutations'
 import { isAuthenticatedVar } from '@/apollo/cache/variables'
 import { useReactiveVar } from '@apollo/client'
 
-import { Container, TopBox, BottomBox } from './SignupPromo.styled'
+import styles from './SignupPromo.module.scss'
 
 const SignupPromo: React.FC = () => {
   const isAuthenticated = useReactiveVar(isAuthenticatedVar)
@@ -15,15 +15,15 @@ const SignupPromo: React.FC = () => {
   }
 
   return (
-    <Container onClick={handleClick}>
-      <TopBox>
+    <div className={styles.container} onClick={handleClick}>
+      <div className={styles.top}>
         <span>-15%</span>
-      </TopBox>
-      <BottomBox>
-        <p>приветственный бонус</p>
+      </div>
+      <div className={styles.bottom}>
+        <p>Приветственный бонус</p>
         <p>на первую покупку</p>
-      </BottomBox>
-    </Container>
+      </div>
+    </div>
   )
 }
 

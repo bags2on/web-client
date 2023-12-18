@@ -1,24 +1,13 @@
 import React from 'react'
+import Link from 'next/link'
+import Modal from '@/components/Modal'
 import Button from '@/shared/Button'
 import LetterCheckIcon from '../../../../../../public/assets/letter-check.svg'
 import LetterIcon from '../../../../../../public/assets/icons/letter.svg'
 import LocationIcon from '../../../../../../public/assets/icons/location.svg'
-
-import {
-  Modal,
-  Container,
-  ImageBox,
-  SvgImage,
-  OrderInfo,
-  Title,
-  SubTitle,
-  InfoList,
-  InfoItem,
-  LinkToProfile,
-  ButtonWrapper
-} from './OrderSuccess.styled'
-import SvgIcon from '@/shared/SvgIcon'
 import { routeNames } from '@/utils/navigation'
+
+import styles from './OrderSuccess.module.scss'
 
 interface OrderSuccessProps {
   open: boolean
@@ -27,42 +16,44 @@ interface OrderSuccessProps {
 
 const OrderSuccess: React.FC<OrderSuccessProps> = ({ open, onClose }) => {
   return (
-    <Modal isOpen={open}>
-      <Container>
-        <ImageBox>
-          <SvgImage>
+    <Modal open={open}>
+      <div className={styles.container}>
+        <div className={styles.imageBox}>
+          <div className={styles.image}>
             <LetterCheckIcon />
-          </SvgImage>
-        </ImageBox>
-        <OrderInfo>
-          <Title>Вы успешно создали заказ!</Title>
-          <SubTitle>
+          </div>
+        </div>
+        <div className={styles.info}>
+          <h3 className={styles.title}>Вы успешно создали заказ!</h3>
+          <div className={styles.subTitle}>
             <p>Мы свяжемся с вами в ближайшее время для подтверждения</p>
-          </SubTitle>
-          <InfoList>
-            <InfoItem>
-              <SvgIcon>
+          </div>
+          <ul className={styles.infoList}>
+            <li className={styles.infoItem}>
+              <div className="svg-icon">
                 <LetterIcon />
-              </SvgIcon>
+              </div>
               <p>Проверьте свой почтовый ящик для уточнения деталей</p>
-            </InfoItem>
-            <InfoItem>
-              <SvgIcon>
+            </li>
+            <li className={styles.infoItem}>
+              <div className="svg-icon">
                 <LocationIcon />
-              </SvgIcon>
+              </div>
               <p>
                 Вы можете отследить статус покупки в&nbsp;
-                <LinkToProfile href={routeNames.profile}>личном кабинете</LinkToProfile>
+                <Link href={routeNames.profile} className={styles.linkToProfile}>
+                  личном кабинете
+                </Link>
               </p>
-            </InfoItem>
-          </InfoList>
-          <ButtonWrapper>
+            </li>
+          </ul>
+          <div className={styles.buttonWrapper}>
             <Button fullWidth color="secondary" onClick={onClose}>
-              ok
+              Ok
             </Button>
-          </ButtonWrapper>
-        </OrderInfo>
-      </Container>
+          </div>
+        </div>
+      </div>
     </Modal>
   )
 }

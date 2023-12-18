@@ -15,7 +15,6 @@ import {
 import { CategoryType, Gender, MainTag, PriceRange } from '@/graphql/types'
 import classes from './Catalog.module.scss'
 // import { routeNames } from '@/utils/navigation'
-import SvgIcon from '@/shared/SvgIcon'
 
 type genderType = 'FEMALE' | 'MALE' | 'UNISEX'
 type availabilityType = 'inStock' | 'byOrder'
@@ -176,9 +175,9 @@ const Catalog: React.FC = () => {
                 disabled={loading}
                 fullWidth
                 startIcon={
-                  <SvgIcon>
+                  <div className={clsx('svg-icon')}>
                     <FilterIcon />
-                  </SvgIcon>
+                  </div>
                 }
               >
                 фильтр

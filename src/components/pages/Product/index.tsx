@@ -5,7 +5,7 @@ import Info from './Info'
 import Recommended from './Recommended/Recommended'
 import type { GetProductQuery } from '@/graphql/product/_gen_/product.query'
 
-import { Container, Inner, PreviewWrapper, DetailsWrapper } from './Product.styled'
+import styles from './Product.module.scss'
 
 interface TodoProps {
   rating: number
@@ -22,12 +22,12 @@ const ProductDetails: React.FC<Iprops> = ({ product, todo }) => {
   const { description, dimensions, color, delivery } = product.details
 
   return (
-    <Container>
-      <Inner>
-        <PreviewWrapper>
+    <div className={styles.container}>
+      <div className={styles.inner}>
+        <div className={styles.previewWrapper}>
           <Preview images={product.details.images} />
-        </PreviewWrapper>
-        <DetailsWrapper>
+        </div>
+        <div className={styles.detailsWrapper}>
           <Details
             id={product.id}
             sku={product.sku}
@@ -39,8 +39,8 @@ const ProductDetails: React.FC<Iprops> = ({ product, todo }) => {
             rating={todo.rating}
             delivery={delivery}
           />
-        </DetailsWrapper>
-      </Inner>
+        </div>
+      </div>
       <Info
         gender={product.gender}
         description={description}
@@ -49,7 +49,7 @@ const ProductDetails: React.FC<Iprops> = ({ product, todo }) => {
         category={product.category}
       />
       <Recommended />
-    </Container>
+    </div>
   )
 }
 

@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
+import clsx from 'clsx'
 import { createPortal } from 'react-dom'
-import { Box, Backdrop } from './Drawer.styled'
+
+import styles from './Drawer.module.scss'
 
 interface DrawerProps {
   open: boolean
@@ -52,10 +54,24 @@ const Drawer: React.FC<DrawerProps> = ({ open, children, onClose, position = 'le
   return mounted
     ? createPortal(
         <div>
-          <Box $open={open} $pos={position}>
+          <div
+            className={clsx({
+              [styles.box]: true,
+              [styles.left]: position === 'left',
+              [styles.leftOpen]: position === 'left' && open,
+              [styles.right]: position === 'right',
+              [styles.rightOpen]: position === 'right' && open
+            })}
+          >
             {children}
-          </Box>
-          <Backdrop $open={open} onClick={onClose} />
+          </div>
+          <div
+            className={clsx({
+              [styles.backdrop]: true,
+              [styles.backdropOpen]: open
+            })}
+            onClick={onClose}
+          />
         </div>,
         portalRootRef.current as Element
       )

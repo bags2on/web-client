@@ -4,7 +4,7 @@ import CustomerInfo from './CustomerInfo/CustomerInfo'
 import Delivery from './Delivery/Delivery'
 import Preview from './Preview/Preview'
 import OrderSuccessModal from './Modals/OrderSuccess'
-import { Formik } from 'formik'
+import { Formik, Form } from 'formik'
 import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'
 import { useMutation } from '@apollo/client'
@@ -12,7 +12,7 @@ import { CREATE_ORDER } from '@/graphql/order'
 import { usePageState } from './usePageState'
 import { CheckoutOrderSchema, CheckoutOrderType } from '@/utils/formValidationSchema'
 
-import { Container, Form, DeliveryBox, PreviewBox } from './Checkout.styled'
+import styles from './Checkout.module.scss'
 
 const Checkout: React.FC = () => {
   const router = useRouter()
@@ -75,7 +75,7 @@ const Checkout: React.FC = () => {
   }
 
   return (
-    <Container>
+    <div className={styles.container}>
       <Formik
         validateOnBlur
         validateOnChange={false}
@@ -93,8 +93,8 @@ const Checkout: React.FC = () => {
         }}
       >
         {() => (
-          <Form>
-            <DeliveryBox>
+          <Form className={styles.pageForm}>
+            <div className={styles.formContent}>
               <CustomerInfo
                 isEdit={state.isInfoOpen}
                 onEdit={handleInfoEditOpen}
@@ -105,15 +105,15 @@ const Checkout: React.FC = () => {
                 onEdit={handleDeliveryEditOpen}
                 onContinue={handleDeliveryChecked}
               />
-            </DeliveryBox>
-            <PreviewBox>
+            </div>
+            <div className={styles.preview}>
               <Preview submitLoading={loading} orderCreationErr={orderErr} />
-            </PreviewBox>
+            </div>
           </Form>
         )}
       </Formik>
       <OrderSuccessModal open={isOrderSuccess} onClose={hanldeModalClose} />
-    </Container>
+    </div>
   )
 }
 

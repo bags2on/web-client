@@ -102,10 +102,6 @@ $text-color: #939191;
   margin-bottom: 10px;
 }
 
-.icon {
-  fill: var(--sub-title-color);
-}
-
 .makeCallPlug {
   display: flex;
   align-items: center;
@@ -129,8 +125,10 @@ $text-color: #939191;
 }
 
 .phoneIcon {
+  font-size: 18px;
   margin-right: 9px;
   transition: fill 0.2s;
+  fill: var(--sub-title-color);
 }
 
 .telegramConnect {
@@ -153,6 +151,7 @@ $text-color: #939191;
 .telegramIcon {
   fill: #fff;
   margin-right: 10px;
+  font-size: 18px;
 }
 
 .subFooter {

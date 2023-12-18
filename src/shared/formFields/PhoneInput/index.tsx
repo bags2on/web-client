@@ -1,7 +1,10 @@
 import React from 'react'
+import clsx from 'clsx'
 import { NumberFormatValues } from 'react-number-format'
 import { useField } from 'formik'
-import { Input, ErrorMessage } from './PhoneInput.styled'
+import { PatternFormat } from 'react-number-format'
+
+import styles from './PhoneInput.module.scss'
 
 interface PhoneInputProps {
   name: string
@@ -18,16 +21,26 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name }) => {
 
   return (
     <div>
-      <Input
-        $err={Boolean(meta.touched && meta.error)}
+      <PatternFormat
         format="+38 (###) ###-####"
         mask="_"
         autoComplete="off"
         allowEmptyFormatting
         onValueChange={handleValueChange}
+        className={clsx({
+          [styles.base]: true,
+          [styles.error]: Boolean(meta.touched && meta.error)
+        })}
         {...fieldOther}
       />
-      <ErrorMessage $err={!!meta.error}>{meta.touched && meta.error}</ErrorMessage>
+      <p
+        className={clsx({
+          [styles.message]: true,
+          [styles.withError]: !!meta.error
+        })}
+      >
+        {meta.touched && meta.error}
+      </p>
     </div>
   )
 }

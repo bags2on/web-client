@@ -1,0 +1,24 @@
+.container {
+  position: relative;
+  padding: 70px 0 30px 20px;
+  background-color: #1e1e1e;
+  border-bottom: 1px #aeaeae solid;
+  @include _minLG {
+    padding-top: 60px;
+  }
+}
+
+.logoWrapper {
+  width: 190px;
+  & > img {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.themeSwitcher {
+  position: absolute;
+  padding: 0;
+  top: 15px;
+  right: 18px;
+}

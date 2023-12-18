@@ -1,11 +1,12 @@
 import React from 'react'
+import Button from '@/shared/Button'
 import Skeleton from './Skeleton'
 import { useTranslation } from 'next-i18next'
 import { useReactiveVar } from '@apollo/client'
 import { cartPriceVar } from '../../../apollo/cache/variables'
 import { formatPrice } from '@/utils/helper'
 
-import { Container, InnerContainer, CartPrice, OrderButton } from './Summary.styled'
+import styles from './Summary.module.scss'
 
 interface SummaryProps {
   isLoading: boolean
@@ -25,17 +26,22 @@ const Summary: React.FC<SummaryProps> = ({ isLoading, onCheckout }) => {
   }
 
   return (
-    <Container>
-      <InnerContainer>
-        <CartPrice>
+    <div className={styles.container}>
+      <div className={styles.inner}>
+        <p className={styles.cartPrice}>
           <span>{t('cart.total')}:</span>
           <b>{formatPrice(cartPrice)}&nbsp;грн.</b>
-        </CartPrice>
-        <OrderButton fullWidth color="secondary" onClick={handleButtonClick}>
+        </p>
+        <Button
+          fullWidth
+          color="secondary"
+          onClick={handleButtonClick}
+          className={styles.orderButton}
+        >
           {t('cart.makeOrder')}
-        </OrderButton>
-      </InnerContainer>
-    </Container>
+        </Button>
+      </div>
+    </div>
   )
 }
 

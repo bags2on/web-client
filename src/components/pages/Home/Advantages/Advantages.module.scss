@@ -1,0 +1,58 @@
+.container {
+  width: 100%;
+  background-color: #f8fafa; // dark #282828
+  padding: 20px 0;
+}
+
+.list {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 0;
+  & li {
+    padding: 1px;
+    margin: 18px 0;
+  }
+  @include _minMD {
+    display: flex;
+    align-items: baseline;
+    & li {
+      flex-grow: 1;
+      flex-basis: 25%;
+      width: 25%;
+      margin: 0;
+      padding: 0 15px;
+    }
+  }
+}
+
+.iconWrapper {
+  height: 45px;
+  margin: 0 auto;
+  & img {
+    user-select: none;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.title {
+  font-size: 16px;
+  margin-top: 17px;
+  margin-bottom: 10px;
+  line-height: 1.5;
+  text-align: center;
+  font-weight: 600;
+}
+
+.subTitle {
+  font-size: 16px;
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
+  color: var(--sub-title-color);
+}
+
+.divider {
+  height: 15px;
+  background-color: $main-color;
+}
