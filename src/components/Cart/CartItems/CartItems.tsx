@@ -10,7 +10,7 @@ import { CartMutations } from '../../../apollo/cache/mutations'
 import { useCartProductsQuery } from '../../../graphql/product/_gen_/cartProducts.query'
 import { cartItemsVar } from '../../../apollo/cache/variables'
 
-import { Container, ProductsList } from './CartItems.styled'
+import styles from './CartItems.module.scss'
 
 interface CartItemsProps {
   onClose(): void
@@ -69,12 +69,12 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   }
 
   return (
-    <Container>
+    <div className={styles.container}>
       <TopControls onCartClose={onClose} />
       {loading ? (
         <ListSkeleton itemsAmount={cartItems.length} />
       ) : (
-        <ProductsList>
+        <ul className={styles.list}>
           {data?.cartProducts.map((product: CartItemType) => (
             <CartItem
               key={product.id}
@@ -83,10 +83,10 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
               onRemove={handleProductRemove}
             />
           ))}
-        </ProductsList>
+        </ul>
       )}
       <Summary isLoading={loading} onCheckout={onCheckout} />
-    </Container>
+    </div>
   )
 }
 

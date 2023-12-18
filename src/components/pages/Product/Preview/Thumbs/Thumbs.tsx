@@ -1,6 +1,8 @@
 import React from 'react'
+import clsx from 'clsx'
+import Image from 'next/image'
 
-import { Container, List, ListItem, Image } from './Thumbs.styled'
+import styles from './Thumbs.module.scss'
 
 interface ThumbsProps {
   activeIndex: number
@@ -10,21 +12,21 @@ interface ThumbsProps {
 
 const Thumbs: React.FC<ThumbsProps> = ({ activeIndex, images, onChange }) => {
   return (
-    <Container>
-      <List>
+    <div className={styles.container}>
+      <ul className={styles.list}>
         {images.map((url, index) => (
-          <ListItem key={index} onClick={() => onChange(index)}>
+          <li key={index} onClick={() => onChange(index)} className={styles.listItem}>
             <Image
               src={url}
               width={100}
               height={100}
               alt={`навигационное фото продукта №${index + 1}`}
-              $active={index === activeIndex}
+              className={clsx(styles.image, index === activeIndex && styles.active)}
             />
-          </ListItem>
+          </li>
         ))}
-      </List>
-    </Container>
+      </ul>
+    </div>
   )
 }
 

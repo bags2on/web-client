@@ -1,7 +1,7 @@
 import React from 'react'
 import { getColorByTagName } from '@/utils/styling'
 
-import { Container, Tag } from './Tags.styled'
+import styles from './Tags.module.scss'
 
 interface TagsProps {
   tags: string[]
@@ -9,13 +9,19 @@ interface TagsProps {
 
 const Tags: React.FC<TagsProps> = ({ tags }) => {
   return (
-    <Container>
+    <ul className={styles.container}>
       {tags.map((tag: string, index: number) => (
-        <Tag key={index} $background={getColorByTagName(tag)}>
+        <li
+          key={index}
+          className={styles.tag}
+          style={{
+            backgroundColor: getColorByTagName(tag)
+          }}
+        >
           {tag}
-        </Tag>
+        </li>
       ))}
-    </Container>
+    </ul>
   )
 }
 

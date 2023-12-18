@@ -1,6 +1,7 @@
 import React from 'react'
-import { Container, Lang } from './LangSwitcher.styled'
+import clsx from 'clsx'
 import { useRouter } from 'next/router'
+import styles from './LangSwitcher.module.scss'
 
 const locales = {
   ua: 'Ua',
@@ -16,13 +17,17 @@ const LangSwitcher: React.FC = () => {
   }
 
   return (
-    <Container>
+    <div className={styles.container}>
       {Object.keys(locales).map((lang) => (
-        <Lang key={lang} $active={lang === locale} onClick={() => handleLangSelect(lang)}>
+        <span
+          key={lang}
+          onClick={() => handleLangSelect(lang)}
+          className={clsx(styles.lang, lang === locale && styles.current)}
+        >
           {locales[lang as keyof typeof locales]}
-        </Lang>
+        </span>
       ))}
-    </Container>
+    </div>
   )
 }
 

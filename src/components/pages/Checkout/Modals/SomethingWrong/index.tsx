@@ -1,12 +1,12 @@
 import React from 'react'
-import StyledModal from 'styled-react-modal'
+import Modal from '@/components/Modal'
 
 interface SomethingWrongProps {
   open: boolean
 }
 
 const SomethingWrong: React.FC<SomethingWrongProps> = ({ open }) => {
-  return <StyledModal isOpen={false}>SomethingWrong Modal</StyledModal>
+  return <Modal open={false}>SomethingWrong Modal</Modal>
 }
 
 export default SomethingWrong

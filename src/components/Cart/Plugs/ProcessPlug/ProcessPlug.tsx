@@ -1,8 +1,10 @@
 import React from 'react'
+import clsx from 'clsx'
+import Button from '@/shared/Button'
 import EmptyCartIcon from '../../../../../public/assets/emptycart.svg'
 import ArrowIcon from '../../../../../public/assets/icons/expand-arrow.svg'
 
-import { Container, Content, BackButton, ExpandIcon } from './ProcessPlug.styled'
+import styles from './ProcessPlug.module.scss'
 
 interface ProcessPlugProps {
   text: string
@@ -11,24 +13,25 @@ interface ProcessPlugProps {
 
 const ProcessPlug: React.FC<ProcessPlugProps> = ({ text, onClose }) => {
   return (
-    <Container>
-      <Content>
+    <div className={styles.container}>
+      <div className={styles.content}>
         <EmptyCartIcon />
         <p>{text}</p>
-      </Content>
-      <BackButton
+      </div>
+      <Button
         fullWidth
         onClick={onClose}
         color="secondary"
+        className={styles.backButton}
         startIcon={
-          <ExpandIcon>
+          <div className={clsx('svg-icon', styles.icon)}>
             <ArrowIcon />
-          </ExpandIcon>
+          </div>
         }
       >
         Назад
-      </BackButton>
-    </Container>
+      </Button>
+    </div>
   )
 }
 

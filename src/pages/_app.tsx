@@ -1,13 +1,11 @@
 import Head from 'next/head'
+import Modal from 'react-modal'
 import client from '../apollo/apollo'
 import type { AppProps } from 'next/app'
 import RootLayout from '@/components/RootLayout'
 import { useTheme } from '@/hooks'
 import { ApolloProvider } from '@apollo/client'
-import { ModalProvider } from 'styled-react-modal'
-import { ThemeProvider as StyledThemeProvider } from 'styled-components'
 import { ThemeProvider } from '@/providers/theme'
-import { GlobalStyles, lightTheme, darkTheme } from '@/utils/theme'
 import SwiperCore from 'swiper'
 import { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper/modules'
 
@@ -15,13 +13,15 @@ import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../../next-i18next.config'
 
 import '../../node_modules/modern-normalize/modern-normalize.css'
-import '@/styles/css-variables.scss'
+import '@/styles/global.scss'
 import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
 
 type AppPropsWithLayout = AppProps
+
+Modal.setAppElement('#__next')
 
 SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade, Thumbs])
 
@@ -40,16 +40,11 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </Head>
       <ApolloProvider client={client}>
-        <StyledThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
-          <ThemeProvider>
-            <ModalProvider>
-              <GlobalStyles />
-              <RootLayout theme={theme} onThemeChange={changeTheme}>
-                <Component {...pageProps} />
-              </RootLayout>
-            </ModalProvider>
-          </ThemeProvider>
-        </StyledThemeProvider>
+        <ThemeProvider>
+          <RootLayout theme={theme} onThemeChange={changeTheme}>
+            <Component {...pageProps} />
+          </RootLayout>
+        </ThemeProvider>
       </ApolloProvider>
     </>
   )

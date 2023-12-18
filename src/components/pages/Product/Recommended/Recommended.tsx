@@ -2,14 +2,14 @@ import React from 'react'
 import ProductsSlider from '@/components/ProductsSlider'
 import ProductItem from '@/components/ProductItem'
 
-import { Container, Title } from './Recommended.styled'
+import styles from './Recommended.module.scss'
 
 import TEMP_RECOMENDED from './temp'
 
 const Recommended: React.FC = () => {
   return (
-    <Container>
-      <Title>Рекомендуемые</Title>
+    <section className={styles.container}>
+      <h2 className={styles.title}>Рекомендуемые</h2>
       <ProductsSlider speed={500}>
         {TEMP_RECOMENDED.map((product) => (
           <ProductItem
@@ -26,7 +26,7 @@ const Recommended: React.FC = () => {
           />
         ))}
       </ProductsSlider>
-    </Container>
+    </section>
   )
 }
 

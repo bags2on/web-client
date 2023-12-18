@@ -1,19 +1,6 @@
 import React from 'react'
 import CartItemSkeleton from '../../CartItem/Skeleton'
-import styled from 'styled-components'
-
-const List = styled.ul`
-  margin: 0;
-  padding: 0;
-  padding-top: 20px;
-  width: 100%;
-  flex-grow: 1;
-  overflow-y: hidden;
-  & li {
-    width: 100%;
-    margin-bottom: 15px;
-  }
-`
+import styles from '../CartItems.module.scss'
 
 interface ListSkeletonProps {
   itemsAmount: number
@@ -24,11 +11,11 @@ const ListSkeleton: React.FC<ListSkeletonProps> = ({ itemsAmount, max = 4 }) => 
   const itemsLength = itemsAmount > max ? max : itemsAmount
 
   return (
-    <List>
+    <ul className={styles.skeletonList}>
       {[...Array(itemsLength)].map((_, index: number) => (
         <CartItemSkeleton key={index} />
       ))}
-    </List>
+    </ul>
   )
 }
 

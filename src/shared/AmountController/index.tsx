@@ -1,9 +1,10 @@
 import React from 'react'
-import SvgIcon from '@/shared/SvgIcon'
+import clsx from 'clsx'
 import IconButton from '@/shared/IconButton'
-import { Container, Counter } from './AmountController.styled'
 import PlusIcon from '../../../public/assets/icons/plus.svg'
 import MinusIcon from '../../../public/assets/icons/minus.svg'
+
+import styles from './AmountController.module.scss'
 
 interface AddSubInputProps {
   amount: number
@@ -24,31 +25,33 @@ const AmountController: React.FC<AddSubInputProps> = ({ min, max, amount, onChan
   }
 
   return (
-    <Container>
+    <div className={styles.container}>
       <IconButton
         disableRipple
         onClick={handleSubClick}
         disabled={amount <= 1}
         aria-label="удалить одну единицу данного продукта"
+        className={styles.button}
       >
-        <SvgIcon>
+        <div className={clsx('svg-icon', styles.icon)}>
           <MinusIcon />
-        </SvgIcon>
+        </div>
       </IconButton>
-      <Counter>
+      <div className={styles.counter}>
         <span>{amount}</span>
-      </Counter>
+      </div>
       <IconButton
         disableRipple
         onClick={handleAddClick}
         disabled={!!max && amount >= max}
         aria-label="добавить одну единицу данного продукта"
+        className={styles.button}
       >
-        <SvgIcon>
+        <div className={clsx('svg-icon', styles.icon)}>
           <PlusIcon />
-        </SvgIcon>
+        </div>
       </IconButton>
-    </Container>
+    </div>
   )
 }
 

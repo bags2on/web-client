@@ -1,23 +1,15 @@
 import React, { useState } from 'react'
+import clsx from 'clsx'
 import Link from 'next/link'
+import TrashIcon from '../../../../public/assets/icons/trash.svg'
+import IconButton from '@/shared/IconButton'
 import ImagePlaceholder from '@/shared/ImagePlaceholder'
 import AmountController from '@/shared/AmountController'
 import { formatPrice } from '@/utils/helper'
 import { routeNames, generateProductLink } from '@/utils/navigation'
 import { CartMutations } from '../../../apollo/cache/mutations'
-import TrashIcon from '../../../../public/assets/icons/trash.svg'
 
-import {
-  Container,
-  ImageWrapper,
-  Info,
-  Title,
-  Price,
-  Controls,
-  Amount,
-  DeleteButton,
-  TheTrashIcon
-} from './CartItem.styled'
+import styles from './CartItem.module.scss'
 
 export type CartItemType = {
   id: string
@@ -48,34 +40,39 @@ const CartItem: React.FC<CartItemProps> = ({ product, amount, onRemove }) => {
   }
 
   return (
-    <Container>
-      <ImageWrapper>
+    <li className={styles.container}>
+      <div className={styles.imageWrapper}>
         <Link href={generateProductLink(routeNames.product, id, slug)}>
           <ImagePlaceholder src={preview} altText={title} />
         </Link>
-      </ImageWrapper>
-      <Info>
-        <Title title={title} href={generateProductLink(routeNames.product, id, slug)}>
+      </div>
+      <div className={styles.info}>
+        <Link
+          title={title}
+          href={generateProductLink(routeNames.product, id, slug)}
+          className={styles.title}
+        >
           {title}
-        </Title>
-        <Price>Цена:&nbsp;&nbsp;{formatPrice(currentPrice)}&nbsp;₴</Price>
-        <Amount>
+        </Link>
+        <span className={styles.price}>Цена:&nbsp;&nbsp;{formatPrice(currentPrice)}&nbsp;₴</span>
+        <p className={styles.amount}>
           {count}&nbsp;шт:&nbsp;&nbsp;{formatPrice(count * currentPrice)}&nbsp;грн.
-        </Amount>
-        <Controls>
+        </p>
+        <div className={styles.controls}>
           <AmountController min={1} max={100} amount={count} onChange={handleAmountChange} />
-          <DeleteButton
+          <IconButton
             disableRipple
             onClick={handleProductRemove}
             aria-label={`Удалить "${title}"`}
+            className={styles.deleteButton}
           >
-            <TheTrashIcon>
+            <div className={clsx('svg-icon', styles.trashIcon)}>
               <TrashIcon />
-            </TheTrashIcon>
-          </DeleteButton>
-        </Controls>
-      </Info>
-    </Container>
+            </div>
+          </IconButton>
+        </div>
+      </div>
+    </li>
   )
 }
 

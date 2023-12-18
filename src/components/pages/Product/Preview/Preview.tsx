@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import classes from './styles.module.scss'
 import Thumbs from './Thumbs/Thumbs'
 import NavButtons from './NavButtons'
 import { Swiper, SwiperSlide, SwiperClass } from 'swiper/react'
+
+import styles from './Preview.module.scss'
 
 interface PreviewProps {
   images: string[]
@@ -20,7 +21,7 @@ const Preview: React.FC<PreviewProps> = ({ images }) => {
   }
 
   return (
-    <div className={classes.root}>
+    <div className={styles.root}>
       <Thumbs activeIndex={currentIndex} images={images} onChange={handlePaginationChange} />
       <Swiper
         loop
@@ -28,7 +29,7 @@ const Preview: React.FC<PreviewProps> = ({ images }) => {
         tag="div"
         wrapperTag="ul"
         slidesPerView={1}
-        className={classes.swiperContainer}
+        className={styles.swiperContainer}
         onSwiper={(swiper) => {
           setSwiper(swiper)
         }}
@@ -38,7 +39,7 @@ const Preview: React.FC<PreviewProps> = ({ images }) => {
       >
         {images.map((image, index) => (
           <SwiperSlide tag="li" key={index} virtualIndex={index}>
-            <img src={image} className={classes.slideImage} alt={`фото №${index + 1}`} />
+            <img src={image} className={styles.slideImage} alt={`фото №${index + 1}`} />
           </SwiperSlide>
         ))}
         <NavButtons />

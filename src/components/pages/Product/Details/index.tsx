@@ -1,4 +1,6 @@
 import React from 'react'
+import clsx from 'clsx'
+import Button from '@/shared/Button'
 import Tags from './Tags'
 import Rating from '@/components/Rating'
 import ExclamationIcon from '../../../../../public/assets/icons/exclamation-circle.svg'
@@ -12,23 +14,7 @@ import { routeNames } from '@/utils/navigation'
 import { formatPrice } from '@/utils/helper'
 import { CartMutations } from '@/apollo/cache/mutations'
 
-import {
-  Container,
-  Title,
-  Code,
-  Box,
-  BoxInner,
-  Availability,
-  TheAvailabilityIcon,
-  CurrentPrice,
-  DiscountPriceBox,
-  Discount,
-  Percentage,
-  ButtonsWrapper,
-  OrderNowButton,
-  OrderButton,
-  TheOrderButtonIcon
-} from './Details.styled'
+import styles from './Details.module.scss'
 
 interface DetailsProps {
   id: string
@@ -76,56 +62,71 @@ const Details: React.FC<DetailsProps> = ({
   }
 
   return (
-    <Container>
-      <Title>{title}</Title>
-      <Box>
-        <Availability $inStock={inStock}>
-          <TheAvailabilityIcon $inStock={inStock}>
+    <section className={styles.container}>
+      <h1 className={styles.title}>{title}</h1>
+      <div className={styles.availability}>
+        <div className={clsx(styles.availabilityPlug, !inStock && styles.availabilityOutStock)}>
+          <div
+            className={clsx({
+              ['svg-icon']: true,
+              [styles.availabilityIcon]: true,
+              [styles.availabilityIconInStock]: inStock
+            })}
+          >
             {inStock ? <CheckIcon /> : <ExclamationIcon />}
-          </TheAvailabilityIcon>
+          </div>
           <span>{inStock ? 'В наличии' : 'Нет в наличии'}</span>
-        </Availability>
-        <BoxInner>
+        </div>
+        <div className={styles.inner}>
           <Rating starRating={rating} />
-          <Code>
+          <p className={styles.skuCode}>
             <span>Код:</span>&nbsp;{sku}
-          </Code>
-        </BoxInner>
-      </Box>
+          </p>
+        </div>
+      </div>
       {/*  */}
       {basePrice !== currentPrice && (
-        <DiscountPriceBox>
-          <Discount>{formatPrice(basePrice)}&nbsp;₴</Discount>
-          <Percentage>-{Math.round(((basePrice - currentPrice) * 100) / basePrice)}%</Percentage>
-        </DiscountPriceBox>
+        <div className={styles.discountPriceBox}>
+          <span className={styles.discountPrice}>{formatPrice(basePrice)}&nbsp;₴</span>
+          <span className={styles.percentage}>
+            -{Math.round(((basePrice - currentPrice) * 100) / basePrice)}%
+          </span>
+        </div>
       )}
-      <CurrentPrice>
+      <p className={styles.currentPrice}>
         {formatPrice(currentPrice)}&nbsp;<span>₴</span>
-      </CurrentPrice>
+      </p>
       {/*  */}
       <SizeGuide current="L" available={['M', '2XL', 'L']} />
-      <ButtonsWrapper>
-        <OrderNowButton fullWidth color="secondary" disabled={!inStock} onClick={handleOrderNow}>
+      <div className={styles.buttonsWrapper}>
+        <Button
+          fullWidth
+          color="secondary"
+          disabled={!inStock}
+          onClick={handleOrderNow}
+          className={styles.orderNowButton}
+        >
           Купить сейчас
-        </OrderNowButton>
-        <OrderButton
+        </Button>
+        <Button
           fullWidth
           color="secondary"
           onClick={handleAddToCart}
+          className={styles.orderButton}
           startIcon={
-            <TheOrderButtonIcon>
+            <div className={clsx('svg-icon', styles.orderButtonIcon)}>
               <HeaderCartIcon />
-            </TheOrderButtonIcon>
+            </div>
           }
         >
           {inStock ? 'Добавить в корзину' : 'Сообщить когда появиться'}
-        </OrderButton>
-      </ButtonsWrapper>
+        </Button>
+      </div>
       <SubControls productId={id} />
 
       {tags && tags.length > 1 && <Tags tags={tags} />}
       <Delivery free={delivery === 'free'} />
-    </Container>
+    </section>
   )
 }
 

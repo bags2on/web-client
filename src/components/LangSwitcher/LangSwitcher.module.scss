@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  margin-left: 20px;
+}
+
+.lang {
+  cursor: pointer;
+  font-weight: 500;
+  border: 1px solid #bbbbbb;
+  display: block;
+  padding: 6px 18px;
+  font-size: 17px;
+  line-height: 23px;
+  user-select: none;
+  margin-right: 7px;
+  border-radius: 7px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.lang.current {
+  color: #343434;
+  background-color: $main-color;
+  border-color: #343434;
+}

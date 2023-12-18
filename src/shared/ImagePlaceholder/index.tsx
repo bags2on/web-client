@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Image from 'next/image'
-import { Container, Shine, Placeholder } from './ImagePlaceholder.styled'
+
+import styles from './ImagePlaceholder.module.scss'
 
 export interface ImagePlaceholderProps {
   src: string
@@ -11,9 +12,9 @@ const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText }) => 
   const [loading, setLoading] = useState(true)
 
   const plug = (
-    <Placeholder>
-      <Shine />
-    </Placeholder>
+    <div className={styles.placeholder}>
+      <div className={styles.shine} />
+    </div>
   )
 
   const handleImageLoad = () => {
@@ -21,7 +22,7 @@ const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText }) => 
   }
 
   return (
-    <Container>
+    <div className={styles.container}>
       <Image
         fill
         sizes="(max-width: 600px) 150px, 100vw"
@@ -34,7 +35,7 @@ const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText }) => 
         }}
       />
       {loading && plug}
-    </Container>
+    </div>
   )
 }
 

@@ -1,17 +1,14 @@
 import React, { useState } from 'react'
+import clsx from 'clsx'
+import Button from '@/shared/Button'
+import LikeButton from '@/shared/LikeButton'
 import { useReactiveVar } from '@apollo/client'
 import { FavoriteMutations } from '@/apollo/cache/mutations'
 import { favoriteProductsVar } from '@/apollo/cache/variables'
 import CommentIcon from '../../../../../../public/assets/icons/comment.svg'
 import ShareIcon from '../../../../../../public/assets/icons/share.svg'
 
-import {
-  Container,
-  ControlButton,
-  ButtonIcon,
-  ButtonSharedIcon,
-  LikeButton
-} from './SubControls.styled'
+import styles from './SubControls.module.scss'
 
 interface SubControlsProps {
   productId: string
@@ -32,17 +29,18 @@ const SubControls: React.FC<SubControlsProps> = ({ productId }) => {
   }
 
   return (
-    <Container>
-      <ControlButton
+    <div className={styles.container}>
+      <Button
         color="secondary"
+        className={styles.controlButton}
         startIcon={
-          <ButtonIcon>
+          <div className={clsx('svg-icon', styles.icon)}>
             <CommentIcon />
-          </ButtonIcon>
+          </div>
         }
       >
         Комментарии
-      </ControlButton>
+      </Button>
       {/*  */}
       <LikeButton
         text={isLiked ? 'Избранное' : 'В избранное'}
@@ -51,19 +49,21 @@ const SubControls: React.FC<SubControlsProps> = ({ productId }) => {
         height={18}
         liked={isLiked}
         onClick={handleLikeClick}
+        className={clsx(styles.controlButton, styles.likeButton)}
       />
       {/*  */}
-      <ControlButton
+      <Button
         color="secondary"
+        className={styles.controlButton}
         startIcon={
-          <ButtonSharedIcon>
+          <div className={clsx('svg-icon', styles.icon, styles.shareIcon)}>
             <ShareIcon />
-          </ButtonSharedIcon>
+          </div>
         }
       >
         Поделиться
-      </ControlButton>
-    </Container>
+      </Button>
+    </div>
   )
 }
 

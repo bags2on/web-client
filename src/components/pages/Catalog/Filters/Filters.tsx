@@ -1,14 +1,14 @@
 import React from 'react'
+import Button from '@/shared/Button'
 import RadioGroup from '@/shared/formFields/RadioGroup'
 import CheckBoxGroup from '@/shared/formFields/CheckboxGroup'
 import PriceRange from '@/shared/formFields/PriceRange'
-import fieldProps, { IFilterItem } from './fields-data'
+import fieldProps, { IFilterItem } from './data'
 import AutoSave from '@/shared/AutoSave'
 import { useTranslation } from 'next-i18next'
-
 import { Formik, Form } from 'formik'
 
-import { Aside, TitleWrapper, Title, Divider, ClearButton, RadioWrapper } from './Filters.styled'
+import styles from './Filters.module.scss'
 
 type PriceRange = {
   lt: number
@@ -58,7 +58,7 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
   const categoriesOptions = categories.options.map(addI18)
 
   return (
-    <Aside>
+    <aside className={styles.container}>
       <Formik
         enableReinitialize
         onReset={(_, { setValues }) => {
@@ -75,15 +75,15 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
       >
         {({ dirty, resetForm }): React.ReactElement => (
           <Form ref={formRef}>
-            <TitleWrapper>
-              <Title>{t('catalog:filters.title')}</Title>
+            <div className={styles.titleWrapper}>
+              <p className={styles.title}>{t('catalog:filters.title')}</p>
               {dirty && (
-                <ClearButton color="danger" onClick={() => resetForm()}>
+                <Button color="danger" onClick={() => resetForm()} className={styles.clearButton}>
                   {t('catalog:filters.clear')}
-                </ClearButton>
+                </Button>
               )}
-            </TitleWrapper>
-            <Divider />
+            </div>
+            <div className={styles.divider} />
             <AutoSave onSave={handleSave} />
             <CheckBoxGroup
               title={t('catalog:filters.name.type')}
@@ -95,9 +95,9 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
               title={t('catalog:filters.name.availability')}
               options={availabilityOptions}
             />
-            <RadioWrapper>
+            <div className={styles.tagSectionWrapper}>
               <RadioGroup name="mainTag" options={tagsOptions} />
-            </RadioWrapper>
+            </div>
             <PriceRange
               name="priceRange"
               min={minPrice}
@@ -112,7 +112,7 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
           </Form>
         )}
       </Formik>
-    </Aside>
+    </aside>
   )
 }
 

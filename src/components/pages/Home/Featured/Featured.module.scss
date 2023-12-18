@@ -1,0 +1,27 @@
+.title {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 15px 0 5px 10px;
+}
+
+.list {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+.listItem {
+  padding: 1px;
+  flex-basis: 50%;
+  flex-grow: 0;
+  @include _minMD {
+    flex-basis: 33.333333%;
+    max-width: 33.333333%;
+  }
+  @include _minXL {
+    max-width: 16.6%;
+    flex-basis: 16.6%;
+  }
+}

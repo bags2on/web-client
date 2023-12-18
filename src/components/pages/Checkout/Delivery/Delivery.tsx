@@ -1,28 +1,18 @@
 import React, { useState, useEffect } from 'react'
+import clsx from 'clsx'
 import Image from 'next/image'
 import StepTitle from '../common/StepTitle'
 import ContinueButton from '../common/ContinueButton'
 import SomethingWrongModal from '../Modals/SomethingWrong'
 import { useElementSize } from '@/hooks'
-import { useFormikContext } from 'formik'
+import { Field, useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
 import { animated, useSpring } from '@react-spring/web'
-
 import ShowService from '../common/ShowService'
 import NovaPoshta from './NovaPoshta'
 import UkrPoshta from './UkrPoshta'
 
-import {
-  Container,
-  DeliveriesList,
-  DeliveriesItem,
-  ImageWrapper,
-  ServiceLabel,
-  DeliveryInput,
-  DeliveryService,
-  Animated,
-  AnimatedInner
-} from './Delivery.styled'
+import styles from './Delivery.module.scss'
 
 interface DeliveryProps {
   isEdit: boolean
@@ -89,34 +79,45 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
   }, [])
 
   return (
-    <Container>
+    <section className={styles.container}>
       <StepTitle step={2} isEdit={isEdit} onEdit={onEdit} valid={isValuesValid}>
         Способ доставки
       </StepTitle>
-      <Animated as={animated.div} style={{ ...slideInStyles, overflow: 'hidden' }}>
-        <AnimatedInner ref={animatedRef}>
-          <DeliveriesList>
-            <DeliveriesItem>
-              <ServiceLabel>
-                <DeliveryInput type="radio" name="supplier" value="nova-poshta" />
-                <DeliveryService>
-                  <ImageWrapper>
+      <animated.div className={styles.animated} style={{ ...slideInStyles, overflow: 'hidden' }}>
+        <div ref={animatedRef} className={styles.animatedInner}>
+          <ul className={styles.servicesList}>
+            <li className={styles.servicesItem}>
+              <label className={styles.serviceLabel}>
+                <Field
+                  type="radio"
+                  name="supplier"
+                  value="nova-poshta"
+                  className={clsx('hide', styles.deliveryInput)}
+                />
+                <div className={styles.deliveryService}>
+                  <div className={styles.serviceImageWrapper}>
                     <Image fill={true} src="/assets/nova_poshta.svg" alt="логотип 'Новая Почта'" />
-                  </ImageWrapper>
-                </DeliveryService>
-              </ServiceLabel>
-            </DeliveriesItem>
-            <DeliveriesItem>
-              <ServiceLabel>
-                <DeliveryInput type="radio" name="supplier" disabled value="ukr-poshta" />
-                <DeliveryService>
-                  <ImageWrapper>
+                  </div>
+                </div>
+              </label>
+            </li>
+            <li className={styles.servicesItem}>
+              <label className={styles.serviceLabel}>
+                <Field
+                  type="radio"
+                  name="supplier"
+                  disabled
+                  value="ukr-poshta"
+                  className={clsx('hide', styles.deliveryInput)}
+                />
+                <div className={styles.deliveryService}>
+                  <div className={styles.serviceImageWrapper}>
                     <Image fill={true} src="/assets/ukr_poshta.svg" alt="логотип 'Укр Почта'" />
-                  </ImageWrapper>
-                </DeliveryService>
-              </ServiceLabel>
-            </DeliveriesItem>
-          </DeliveriesList>
+                  </div>
+                </div>
+              </label>
+            </li>
+          </ul>
           {/*  */}
           <ShowService as="nova-poshta" current={values.supplier}>
             <NovaPoshta cities={popularCities} />
@@ -128,10 +129,10 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
           <ContinueButton disabled={!isValuesValid} onClick={onContinue}>
             Продолжить
           </ContinueButton>
-        </AnimatedInner>
-      </Animated>
+        </div>
+      </animated.div>
       <SomethingWrongModal open={areasError} />
-    </Container>
+    </section>
   )
 }
 
