@@ -1,10 +1,10 @@
 import Head from 'next/head'
+import Modal from 'react-modal'
 import client from '../apollo/apollo'
 import type { AppProps } from 'next/app'
 import RootLayout from '@/components/RootLayout'
 import { useTheme } from '@/hooks'
 import { ApolloProvider } from '@apollo/client'
-import { ModalProvider } from 'styled-react-modal'
 import { ThemeProvider } from '@/providers/theme'
 import SwiperCore from 'swiper'
 import { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper/modules'
@@ -20,6 +20,8 @@ import 'swiper/css/effect-fade'
 import 'swiper/css/pagination'
 
 type AppPropsWithLayout = AppProps
+
+Modal.setAppElement('#__next')
 
 SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade, Thumbs])
 
@@ -39,11 +41,9 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
       </Head>
       <ApolloProvider client={client}>
         <ThemeProvider>
-          <ModalProvider>
-            <RootLayout theme={theme} onThemeChange={changeTheme}>
-              <Component {...pageProps} />
-            </RootLayout>
-          </ModalProvider>
+          <RootLayout theme={theme} onThemeChange={changeTheme}>
+            <Component {...pageProps} />
+          </RootLayout>
         </ThemeProvider>
       </ApolloProvider>
     </>

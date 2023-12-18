@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
+import Modal from '@/components/Modal'
 import Button from '@/shared/Button'
-import StyledModal from 'styled-react-modal'
 import LetterCheckIcon from '../../../../../../public/assets/letter-check.svg'
 import LetterIcon from '../../../../../../public/assets/icons/letter.svg'
 import LocationIcon from '../../../../../../public/assets/icons/location.svg'
@@ -16,7 +16,7 @@ interface OrderSuccessProps {
 
 const OrderSuccess: React.FC<OrderSuccessProps> = ({ open, onClose }) => {
   return (
-    <Modal isOpen={open}>
+    <Modal open={open}>
       <div className={styles.container}>
         <div className={styles.imageBox}>
           <div className={styles.image}>
@@ -57,9 +57,5 @@ const OrderSuccess: React.FC<OrderSuccessProps> = ({ open, onClose }) => {
     </Modal>
   )
 }
-
-const Modal = StyledModal.styled`
-  background-color: #fff;
-`
 
 export default OrderSuccess
