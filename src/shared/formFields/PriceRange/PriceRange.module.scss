@@ -16,20 +16,20 @@
 
 .slider {
   & :global(.rc-slider-track) {
-    background-color: #ff9900; // dark colors.primary
+    background-color: #232323; // dark colors.primary
   }
 
   & > :global(.rc-slider-handle) {
-    border-color: #ff9900; // dark colors.primary
+    border-color: #232323; // dark colors.primary
     background-color: #fff; // dark colors.primary
     &:hover {
-      border-color: #ff9900;
+      border-color: #acacac;
     }
   }
 
   & :global(.rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-dragging) {
-    border-color: #ff9900;
-    box-shadow: 0 0 0 5px #ff9900;
+    border-color: #232323;
+    box-shadow: 0 0 0 5px #232323;
   }
 }
 
