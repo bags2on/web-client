@@ -5,7 +5,6 @@
 }
 
 .viewBox {
-  background-color: var(--catalog-bg-primary);
   flex-grow: 0;
   border-radius: 7px;
   max-width: 100%;
@@ -75,7 +74,6 @@
   max-width: 300px;
   height: calc(100 * var(--vh));
   overflow-x: hidden;
-  background-color: var(--catalog-bg-primary);
   transition: all 0.3s;
 }
 
@@ -111,7 +109,7 @@
 
 @media screen and (min-width: $lg) {
   .root {
-    background-color: var(--catalog-bg-secondary);
+    background-color: #fafafa;
   }
 
   .controlContainer {
