@@ -58,7 +58,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
       case 'new':
         return <span>{t(`productTag.${mainTag}`)}</span>
       case 'top':
-        return <Image width={25} height={25} src="/assets/icons/fire.png" alt="смайлик - огонь" />
+        return <Image width={19} height={19} src="/assets/icons/fire.png" alt="смайлик - огонь" />
       case 'stock':
         return <span>-{Math.round(((basePrice - price) * 100) / basePrice)}%</span>
       default:
