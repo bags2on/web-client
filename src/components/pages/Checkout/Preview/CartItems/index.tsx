@@ -6,7 +6,7 @@ import ListSkeleton from '@/components/Cart/CartItems/ListSkeleton'
 import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'
 import { CartMutations } from '@/apollo/cache/mutations'
-import CartItem, { CartItemType } from '@/components/Cart/CartItem/CartItem'
+import CartItem, { CartItemType } from '@/components/CartItem'
 
 import styles from './CartItems.module.scss'
 

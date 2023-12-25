@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
-import TrashIcon from '../../../../public/assets/icons/trash.svg'
+import TrashIcon from '../../../public/assets/icons/trash.svg'
 import IconButton from '@/shared/IconButton'
 import ImagePlaceholder from '@/shared/ImagePlaceholder'
 import AmountController from '@/shared/AmountController'
 import { formatPrice } from '@/utils/helper'
 import { routeNames, generateProductLink } from '@/utils/navigation'
-import { CartMutations } from '../../../apollo/cache/mutations'
+import { CartMutations } from '@/apollo/cache/mutations'
 
 import styles from './CartItem.module.scss'
 

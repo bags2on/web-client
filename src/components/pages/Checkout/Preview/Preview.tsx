@@ -10,7 +10,7 @@ import {
   CartProductsQuery,
   CartProductsQueryVariables
 } from '@/graphql/product/_gen_/cartProducts.query'
-import type { CartItemType } from '@/components/Cart/CartItem/CartItem'
+import type { CartItemType } from '@/components/CartItem'
 import styles from './Preview.module.scss'
 
 interface PreviewProps {
