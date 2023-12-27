@@ -21,6 +21,8 @@ interface PreviewProps {
 const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) => {
   const cartItems = useReactiveVar(cartItemsVar)
 
+  const [l, setl] = React.useState(true)
+
   const cartMap: Record<string, number> = {}
 
   const normalizedCart = cartItems.reduce((acc, item) => {
@@ -49,6 +51,10 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) =>
             0
           )
 
+          setTimeout(() => {
+            setl(false)
+          }, 2000)
+
           CartMutations.updateCartPrice(totalSumm)
         }
       }
@@ -64,15 +70,11 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) =>
     <section className={styles.container}>
       <div className={styles.wrapper}>
         <CartItems
-          loading={loading}
+          loading={l}
           cartCount={cartItems.length}
           cartProducts={data?.cartProducts || []}
         />
-        <Summary
-          loading={loading}
-          submitLoading={submitLoading}
-          orderCreationErr={orderCreationErr}
-        />
+        <Summary loading={l} submitLoading={submitLoading} orderCreationErr={orderCreationErr} />
       </div>
       <SignupPromo />
     </section>
