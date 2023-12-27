@@ -5,8 +5,10 @@ const themes = {
   dark: 'dark'
 }
 
-const storageKey = 'theme'
-type ThemeType = keyof typeof themes
+export type ThemeType = keyof typeof themes
+
+const DEFAULT_THEME = 'light'
+const STORAGE_KEY = 'theme'
 
 export type ThemeContextType = {
   theme: ThemeType
@@ -16,17 +18,21 @@ export type ThemeContextType = {
 export const ThemeContext = React.createContext<ThemeContextType | null>(null)
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<ThemeType>('light')
+  const [theme, setTheme2] = useState<ThemeType>(DEFAULT_THEME)
 
   useEffect(() => {
-    let localTheme = localStorage.getItem(storageKey) || 'light'
+    let localTheme = localStorage.getItem(STORAGE_KEY) || DEFAULT_THEME
 
-    if (!themes[localTheme as ThemeType]) localTheme = theme
+    if (!themes[localTheme as ThemeType]) localTheme = DEFAULT_THEME
 
     setTheme(localTheme as ThemeType)
-    localStorage.setItem(storageKey, localTheme)
-    document.body.setAttribute('data-theme', localTheme)
-  }, [theme])
+  }, [])
+
+  const setTheme = (theme: ThemeType) => {
+    localStorage.setItem(STORAGE_KEY, theme)
+    document.body.setAttribute('data-theme', theme)
+    setTheme2(theme)
+  }
 
   return (
     <ThemeContext.Provider

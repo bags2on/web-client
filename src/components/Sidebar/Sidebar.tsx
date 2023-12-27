@@ -10,18 +10,16 @@ import styles from './Sidebar.module.scss'
 
 interface SidebarProps {
   isOpen: boolean
-  theme: 'light' | 'dark'
   onClose(): void
-  themeChanger(checked: boolean): void
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, theme, onClose, themeChanger }) => {
+const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
   const { t } = useTranslation()
 
   return (
     <Drawer open={isOpen} position="left" onClose={onClose}>
       <div className={styles.container}>
-        <SidebarHead theme={theme} themeChanger={themeChanger} />
+        <SidebarHead />
         <Navigation onClose={onClose} />
         <div className={styles.langSwitch}>
           <span>{t('drawer.lang')}</span>
