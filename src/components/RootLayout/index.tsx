@@ -10,7 +10,7 @@ interface RootLayoutProps {
 }
 
 const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
-  const [isDrawerOpen, setDrawerOpen] = useState<boolean>(true)
+  const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
   const [isCartOpen, setCartOpen] = useState<boolean>(false)
 
   useEffect(() => {
