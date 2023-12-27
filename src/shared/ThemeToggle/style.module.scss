@@ -18,7 +18,7 @@ $line-size: 3px;
   cursor: pointer;
 }
 
-svg .moon {
+.moon {
   @include shape();
   stroke: $light;
   transition:
@@ -32,7 +32,7 @@ svg .moon {
   stroke: $dark;
 }
 
-svg .moonmask {
+.moonmask {
   transition: transform $time;
   transform: translateX(0px);
 }
@@ -41,7 +41,7 @@ svg .moonmask {
   transform: translateX(-12px);
 }
 
-svg .sunmask {
+.sunmask {
   transition: transform $time;
   transform: translateX(0px);
 }
@@ -68,7 +68,7 @@ svg .sunmask {
   stroke: $dark;
 }
 
-svg .sun {
+.sun {
   @include shape();
   transition: stroke $time;
   stroke: $light;
