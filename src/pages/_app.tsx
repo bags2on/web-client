@@ -25,7 +25,8 @@ const montserrat = Montserrat({
   weight: ['400', '500', '600'],
   subsets: ['latin', 'cyrillic'],
   style: 'normal',
-  variable: '--font-montserrat'
+  variable: '--font-montserrat',
+  display: 'swap'
 })
 
 Modal.setAppElement('#__next')
