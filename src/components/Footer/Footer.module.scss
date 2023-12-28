@@ -73,9 +73,9 @@ $text-color: #939191;
     color: var(--sub-title-color);
     margin-top: 0;
     margin-bottom: 6px;
-    transition: color 0.2s;
+    transition: all 0.2s;
     &:hover {
-      color: $main-color;
+      font-weight: 600;
     }
   }
 }

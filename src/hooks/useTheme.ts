@@ -1,25 +1,15 @@
-import { useState, useEffect, useCallback } from 'react'
-
-type ThemeType = 'light' | 'dark'
+import { useContext } from 'react'
+import { ThemeContext } from '@/providers/theme'
+import type { ThemeType, ThemeContextType } from '@/providers/theme'
 
 export const useTheme = (): [ThemeType, (checked: boolean) => void] => {
-  const [theme, setTheme] = useState<ThemeType>('light')
+  const context = useContext(ThemeContext) as ThemeContextType
 
-  useEffect(() => {
-    let localTheme = localStorage.getItem('theme') || 'light'
+  const { theme, setTheme } = context
 
-    if (localTheme !== 'light' && localTheme !== 'dark') {
-      localTheme = theme
-    }
-
-    setTheme(localTheme as ThemeType)
-    document.body.setAttribute('data-theme', localTheme)
-  }, [theme])
-
-  const toggleTheme = useCallback((checked: boolean) => {
-    setTheme(checked ? 'dark' : 'light')
-    localStorage.setItem('theme', checked ? 'dark' : 'light')
-  }, [])
+  const toggleTheme = (checked: boolean) => {
+    setTheme(checked ? 'light' : 'dark')
+  }
 
   return [theme, toggleTheme]
 }

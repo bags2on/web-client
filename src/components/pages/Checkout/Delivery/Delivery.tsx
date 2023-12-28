@@ -7,7 +7,6 @@ import SomethingWrongModal from '../Modals/SomethingWrong'
 import { useElementSize } from '@/hooks'
 import { Field, useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
-import { animated, useSpring } from '@react-spring/web'
 import ShowService from '../common/ShowService'
 import NovaPoshta from './NovaPoshta'
 import UkrPoshta from './UkrPoshta'
@@ -39,16 +38,6 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
   const [areasError, setAreasError] = useState<boolean>(false)
 
   const isValuesValid = Boolean(values.cityName && values.postOfficeName)
-
-  // INFO TODO: put this in a separate component with children
-  const slideInStyles = useSpring({
-    config: { duration: 250 },
-    from: { opacity: 0, height: 0 },
-    to: {
-      opacity: isEdit ? 1 : 0,
-      height: isEdit ? animatedEl.height : 0
-    }
-  })
 
   useEffect(() => {
     const controller = new AbortController()
@@ -83,7 +72,15 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
       <StepTitle step={2} isEdit={isEdit} onEdit={onEdit} valid={isValuesValid}>
         Способ доставки
       </StepTitle>
-      <animated.div className={styles.animated} style={{ ...slideInStyles, overflow: 'hidden' }}>
+      <div
+        className={clsx({
+          [styles.animated]: true,
+          [styles.animatedOpen]: isEdit
+        })}
+        style={{
+          height: isEdit ? animatedEl.height : 0
+        }}
+      >
         <div ref={animatedRef} className={styles.animatedInner}>
           <ul className={styles.servicesList}>
             <li className={styles.servicesItem}>
@@ -130,7 +127,7 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
             Продолжить
           </ContinueButton>
         </div>
-      </animated.div>
+      </div>
       <SomethingWrongModal open={areasError} />
     </section>
   )

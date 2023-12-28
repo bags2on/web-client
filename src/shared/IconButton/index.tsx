@@ -5,14 +5,13 @@ import ScaleLoader from '@/shared/loaders/ScaleLoader'
 
 interface IconButtonProps {
   to?: string
-  type?: 'button' | 'reset' | 'submit' | undefined
+  type?: 'button' | 'reset' | 'submit'
   children: React.ReactNode
   loading?: boolean
   disabled?: boolean // TODO: disabled styles
   darkLoader?: boolean
   disableRipple?: boolean
   className?: string
-  _сlassName?: string // TODO: delete afret migration on CSS modules
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void
 }
 
@@ -21,9 +20,9 @@ const IconButton: React.FC<IconButtonProps> = ({
   children,
   darkLoader,
   disableRipple = false,
+  type = 'button',
   onClick,
   className,
-  _сlassName,
   ...otherProps
 }) => {
   const rippleEl = useRef<HTMLSpanElement | null>(null)
@@ -52,8 +51,9 @@ const IconButton: React.FC<IconButtonProps> = ({
 
   return (
     <button
-      className={clsx(styles.button, _сlassName, className)}
+      className={clsx(styles.button, className)}
       onClick={handleRippleClick}
+      type={type}
       {...otherProps}
     >
       {loading ? (

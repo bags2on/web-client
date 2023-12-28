@@ -115,7 +115,7 @@ const Search = () => {
                 [styles['with-data']]: withFocus && inputValue
               })}
             />
-            <IconButton type="submit" _сlassName={styles['search-button']}>
+            <IconButton type="submit" className={styles['search-button']}>
               <div className={clsx('svg-icon', styles['search-icon'])}>
                 <SearchIcon />
               </div>

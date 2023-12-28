@@ -3,12 +3,11 @@ import Modal from 'react-modal'
 import client from '../apollo/apollo'
 import type { AppProps } from 'next/app'
 import RootLayout from '@/components/RootLayout'
-import { useTheme } from '@/hooks'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@/providers/theme'
 import SwiperCore from 'swiper'
 import { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper/modules'
-
+import { Montserrat } from 'next/font/google'
 import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../../next-i18next.config'
 
@@ -21,13 +20,19 @@ import 'swiper/css/pagination'
 
 type AppPropsWithLayout = AppProps
 
+const montserrat = Montserrat({
+  weight: ['400', '500', '600'],
+  subsets: ['latin', 'cyrillic'],
+  style: 'normal',
+  variable: '--font-montserrat',
+  display: 'swap'
+})
+
 Modal.setAppElement('#__next')
 
 SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade, Thumbs])
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
-  const [theme, changeTheme] = useTheme()
-
   return (
     <>
       <Head>
@@ -36,12 +41,17 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <link rel="icon" href="/favicon.ico" />
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
       </Head>
       <ApolloProvider client={client}>
         <ThemeProvider>
-          <RootLayout theme={theme} onThemeChange={changeTheme}>
+          <RootLayout>
+            <style jsx global>
+              {`
+                html {
+                  font-family: ${montserrat.style.fontFamily};
+                }
+              `}
+            </style>
             <Component {...pageProps} />
           </RootLayout>
         </ThemeProvider>

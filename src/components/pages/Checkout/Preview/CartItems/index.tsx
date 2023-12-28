@@ -6,13 +6,14 @@ import ListSkeleton from '@/components/Cart/CartItems/ListSkeleton'
 import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'
 import { CartMutations } from '@/apollo/cache/mutations'
-import CartItem, { CartItemType } from '@/components/Cart/CartItem/CartItem'
+import CartItem from '@/components/CartItem'
+import type { cartItem } from '@/types'
 
 import styles from './CartItems.module.scss'
 
 interface CartItemsProps {
   cartCount: number
-  cartProducts: CartItemType[]
+  cartProducts: cartItem[]
   loading: boolean
 }
 
@@ -42,7 +43,7 @@ const CartItems: React.FC<CartItemsProps> = ({ loading, cartProducts, cartCount 
         <ListSkeleton max={3} itemsAmount={cartCount} />
       ) : (
         <ul className={styles.list}>
-          {cartProducts.map((product: CartItemType) => (
+          {cartProducts.map((product) => (
             <CartItem
               key={product.id}
               amount={1}

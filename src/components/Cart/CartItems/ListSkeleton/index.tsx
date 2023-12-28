@@ -1,5 +1,5 @@
 import React from 'react'
-import CartItemSkeleton from '../../CartItem/Skeleton'
+import CartItemSkeleton from '@/components/CartItem/Skeleton'
 import styles from '../CartItems.module.scss'
 
 interface ListSkeletonProps {

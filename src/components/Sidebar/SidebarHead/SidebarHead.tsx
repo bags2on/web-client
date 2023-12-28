@@ -1,15 +1,10 @@
 import React from 'react'
-import ThemeToggle from '@/shared/ThemeToggle'
 import Image from 'next/image'
+import ThemeToggle from '@/shared/ThemeToggle'
 
 import styles from './SidebarHead.module.scss'
 
-interface SidebarHeadProps {
-  theme: 'light' | 'dark'
-  themeChanger(checked: boolean): void
-}
-
-const SidebarHead: React.FC<SidebarHeadProps> = ({ theme, themeChanger }) => {
+const SidebarHead: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.logoWrapper}>
@@ -17,7 +12,7 @@ const SidebarHead: React.FC<SidebarHeadProps> = ({ theme, themeChanger }) => {
       </div>
 
       <div className={styles.themeSwitcher}>
-        <ThemeToggle theme={theme} themeChanger={themeChanger} />
+        <ThemeToggle />
       </div>
     </div>
   )

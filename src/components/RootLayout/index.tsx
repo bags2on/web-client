@@ -5,13 +5,11 @@ import Sidebar from '../Sidebar/Sidebar'
 import Cart from '../Cart/Cart'
 import { CartMutations, FavoriteMutations } from '@/apollo/cache/mutations'
 
-interface IRootLayout {
+interface RootLayoutProps {
   children: React.ReactNode
-  theme: 'light' | 'dark'
-  onThemeChange(c: boolean): void
 }
 
-const RootLayout: React.FC<IRootLayout> = ({ children, theme, onThemeChange }) => {
+const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
   const [isCartOpen, setCartOpen] = useState<boolean>(false)
 
@@ -38,12 +36,7 @@ const RootLayout: React.FC<IRootLayout> = ({ children, theme, onThemeChange }) =
 
   return (
     <>
-      <Sidebar
-        isOpen={isDrawerOpen}
-        theme={theme}
-        onClose={handleCloseDrawer}
-        themeChanger={onThemeChange}
-      />
+      <Sidebar isOpen={isDrawerOpen} onClose={handleCloseDrawer} />
       <Cart isOpen={isCartOpen} onClose={handleCartClose} />
       <Header onCartOpen={handleCartOpen} onDrawerOpen={handleOpenDrawer} />
       <main>{children}</main>

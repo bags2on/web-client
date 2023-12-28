@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import Loader from '@/shared/loaders/ScaleLoader'
 import styles from './Button.module.scss'
 
-enum ButtonColor {
+const enum ButtonColor {
   primary = 'primary',
   secondary = 'secondary',
   success = 'success',

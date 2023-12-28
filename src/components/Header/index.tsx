@@ -86,21 +86,21 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
         {/*  */}
         <Search />
         {/*  */}
-        <IconButton _сlassName={styles.dynamic} onClick={handleFavoritesClick} disableRipple>
+        <IconButton className={styles.dynamic} onClick={handleFavoritesClick} disableRipple>
           <Badge content={favoriteAmount}>
             <div className={clsx('svg-icon', styles['heart-icon'])}>
               <HeartIcon />
             </div>
           </Badge>
         </IconButton>
-        <IconButton _сlassName={styles.dynamic} onClick={handleProfileClick} disableRipple>
+        <IconButton className={styles.dynamic} onClick={handleProfileClick} disableRipple>
           <Badge content={0} max={5}>
             <div className={clsx('svg-icon', styles['profile-icon'])}>
               <ProfileIcon />
             </div>
           </Badge>
         </IconButton>
-        <IconButton _сlassName={styles['cart-button']} onClick={handleCartClick} disableRipple>
+        <IconButton className={styles['cart-button']} onClick={handleCartClick} disableRipple>
           <Badge content={cartAmount}>
             <div className={clsx('svg-icon', styles['cart-icon'])}>
               <CartIcon />

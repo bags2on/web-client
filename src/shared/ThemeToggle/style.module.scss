@@ -12,19 +12,18 @@ $line-size: 3px;
 .root {
   position: relative;
   -webkit-tap-highlight-color: transparent;
-  label {
-    cursor: pointer;
-  }
 }
 
-.toggleInput {
-  @include hide;
+.container {
+  cursor: pointer;
 }
 
-svg .moon {
+.moon {
   @include shape();
   stroke: $light;
-  transition: transform $time, stroke $time;
+  transition:
+    transform $time,
+    stroke $time;
   transform: translateX(0px);
 }
 
@@ -33,7 +32,7 @@ svg .moon {
   stroke: $dark;
 }
 
-svg .moonmask {
+.moonmask {
   transition: transform $time;
   transform: translateX(0px);
 }
@@ -42,7 +41,7 @@ svg .moonmask {
   transform: translateX(-12px);
 }
 
-svg .sunmask {
+.sunmask {
   transition: transform $time;
   transform: translateX(0px);
 }
@@ -55,7 +54,9 @@ svg .sunmask {
   stroke: $light;
   stroke-dasharray: 10px;
   stroke-dashoffset: 0px;
-  transition: stroke-dashoffset $time, stroke $time;
+  transition:
+    stroke-dashoffset $time,
+    stroke $time;
 }
 
 .beams line {
@@ -67,7 +68,7 @@ svg .sunmask {
   stroke: $dark;
 }
 
-svg .sun {
+.sun {
   @include shape();
   transition: stroke $time;
   stroke: $light;

@@ -1,6 +1,6 @@
 // Product related
 
-export enum Category {
+export const enum Category {
   Suitcase = 'suitcase',
   Bag = 'bag',
   Wallet = 'wallet',
@@ -8,13 +8,13 @@ export enum Category {
   Other = 'other'
 }
 
-export enum Gender {
+export const enum Gender {
   Female = 'female',
   Male = 'male',
   Unisex = 'unisex'
 }
 
-export enum ProductMainTag {
+export const enum ProductMainTag {
   New = 'new',
   Stock = 'stock',
   Top = 'top'
