@@ -1,11 +1,11 @@
 import React from 'react'
+import clsx from 'clsx'
 import StepTitle from '../common/StepTitle'
 import ContinueButton from '../common/ContinueButton'
 import TextInput from '@/shared/formFields/TextInput/TextInput'
 import PhoneInput from '@/shared/formFields/PhoneInput'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
-import { animated, useSpring } from '@react-spring/web'
 
 import styles from './CustomerInfo.module.scss'
 
@@ -20,15 +20,6 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
 
   const isValuesValid = Boolean(values.surname && values.name && values.phone && values.email)
 
-  const slideInStyles = useSpring({
-    config: { duration: 250 },
-    from: { opacity: 0, height: 0 },
-    to: {
-      opacity: isEdit ? 1 : 0,
-      height: isEdit ? 475 : 0
-    }
-  })
-
   const handleNextClick = () => {
     onContinue()
   }
@@ -38,7 +29,13 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
       <StepTitle step={1} isEdit={isEdit} onEdit={onEdit} valid={isValuesValid}>
         Контактная информация
       </StepTitle>
-      <animated.div className={styles.animated} style={{ ...slideInStyles, overflow: 'hidden' }}>
+
+      <div
+        className={clsx({
+          [styles.animated]: true,
+          [styles.animatedOpen]: isEdit
+        })}
+      >
         <div className={styles.fields}>
           <div className={styles.field}>
             <span>Имя</span>
@@ -60,7 +57,7 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
         <ContinueButton disabled={!isValuesValid} onClick={handleNextClick}>
           Продолжить
         </ContinueButton>
-      </animated.div>
+      </div>
       <div className={styles.divider} />
     </section>
   )
