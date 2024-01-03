@@ -4,6 +4,7 @@ import Footer from '../Footer'
 import Sidebar from '../Sidebar/Sidebar'
 import Cart from '../Cart/Cart'
 import { FavoriteMutations } from '@/apollo/cache/mutations'
+import { useCartStore } from '@/store/store'
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -15,6 +16,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
 
   useEffect(() => {
     FavoriteMutations.syncFavorite()
+    useCartStore.persist.rehydrate()
   }, [])
 
   const handleOpenDrawer = useCallback(() => {

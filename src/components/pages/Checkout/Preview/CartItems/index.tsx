@@ -22,6 +22,20 @@ const CartItems: React.FC<CartItemsProps> = ({ loading, cartProducts, cartCount 
 
   const clearCart = useCartStore((state) => state.clear)
   const removeCartItem = useCartStore((state) => state.remove)
+  const cartItems = useCartStore((state) => state.cartItems)
+
+  // TODO: put this logic into state elements
+  const cartMap: Record<string, number> = {}
+
+  const normalizedCart = cartItems.reduce((acc, item) => {
+    if (acc[item.productId]) {
+      acc[item.productId] = acc[item.productId] += item.amount
+      return acc
+    }
+
+    acc[item.productId] = item.amount
+    return acc
+  }, cartMap)
 
   const handleClearAllClick = (): void => {
     clearCart()
@@ -49,7 +63,7 @@ const CartItems: React.FC<CartItemsProps> = ({ loading, cartProducts, cartCount 
           {cartProducts.map((product) => (
             <CartItem
               key={product.id}
-              amount={1}
+              amount={normalizedCart[product.id]}
               product={product}
               onRemove={handleProductRemove}
             />
