@@ -5,7 +5,7 @@ import ListSkeleton from './ListSkeleton'
 import TopControls from '../TopControls/TopControls'
 import CartItem, { CartItemType } from '@/components/CartItem'
 import { useTranslation } from 'next-i18next'
-import { useCartStore } from '@/store/store'
+import { useCartStore } from '@/store/cart'
 import { useCartProductsQuery } from '../../../graphql/product/_gen_/cartProducts.query'
 
 import styles from './CartItems.module.scss'

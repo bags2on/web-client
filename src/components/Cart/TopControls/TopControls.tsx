@@ -4,7 +4,7 @@ import Button from '@/shared/Button'
 import IconButton from '@/shared/IconButton'
 import CrossIcon from '../../../../public/assets/icons/cross.svg'
 import TrashIcon from '../../../../public/assets/icons/trash.svg'
-import { useCartStore } from '@/store/store'
+import { useCartStore } from '@/store/cart'
 import { useTranslation } from 'next-i18next'
 
 import styles from './TopControls.module.scss'

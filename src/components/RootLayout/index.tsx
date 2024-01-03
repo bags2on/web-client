@@ -4,7 +4,7 @@ import Footer from '../Footer'
 import Sidebar from '../Sidebar/Sidebar'
 import Cart from '../Cart/Cart'
 import { FavoriteMutations } from '@/apollo/cache/mutations'
-import { useCartStore } from '@/store/store'
+import { useCartStore } from '@/store/cart'
 
 interface RootLayoutProps {
   children: React.ReactNode

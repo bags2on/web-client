@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { useTranslation } from 'next-i18next'
+import { useCartStore } from '@/store/cart'
 import { routeNames } from '@/utils/navigation'
 import Badge from '@/shared/Badge'
 import IconButton from '@/shared/IconButton'
@@ -18,7 +19,6 @@ import { GET_HEADER_DATA } from '../../apollo/cache/queries/shared'
 // import { SharedMutations } from '../../apollo/cache/mutations'
 
 import styles from './Header.module.scss'
-import { useCartStore } from '@/store/store'
 
 interface HeaderQuery {
   cartAmount: number

@@ -5,7 +5,7 @@ import TrashIcon from '../../../public/assets/icons/trash.svg'
 import IconButton from '@/shared/IconButton'
 import ImagePlaceholder from '@/shared/ImagePlaceholder'
 import AmountController from '@/shared/AmountController'
-import { useCartStore } from '@/store/store'
+import { useCartStore } from '@/store/cart'
 import { formatPrice } from '@/utils/helper'
 import { routeNames, generateProductLink } from '@/utils/navigation'
 

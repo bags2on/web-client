@@ -3,13 +3,14 @@ import CartItems from './CartItems'
 import Summary from './Summary'
 import SignupPromo from './SignupPromo'
 import { useQuery } from '@apollo/client'
-import { useCartStore } from '@/store/store'
+import { useCartStore } from '@/store/cart'
 import {
   CartProductsDocument,
   CartProductsQuery,
   CartProductsQueryVariables
 } from '@/graphql/product/_gen_/cartProducts.query'
 import type { CartItemType } from '@/components/CartItem'
+
 import styles from './Preview.module.scss'
 
 interface PreviewProps {
