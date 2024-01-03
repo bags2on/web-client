@@ -3,7 +3,7 @@ import Header from '../Header'
 import Footer from '../Footer'
 import Sidebar from '../Sidebar/Sidebar'
 import Cart from '../Cart/Cart'
-import { CartMutations, FavoriteMutations } from '@/apollo/cache/mutations'
+import { FavoriteMutations } from '@/apollo/cache/mutations'
 
 interface RootLayoutProps {
   children: React.ReactNode
@@ -14,7 +14,6 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   const [isCartOpen, setCartOpen] = useState<boolean>(false)
 
   useEffect(() => {
-    CartMutations.syncCart()
     FavoriteMutations.syncFavorite()
   }, [])
 
