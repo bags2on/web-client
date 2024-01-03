@@ -23,9 +23,21 @@ export const useCartStore = create<CartState & CartActions>((set, get) => ({
   cartAmount: () => get().cartItems.reduce((acc, p) => acc + p.amount, 0),
   // cartPrice: () => get().cartItems.reduce((acc, p) => acc + p.price, 0),
   addItem: (newItem: CartItem) =>
-    set((state) => ({
-      cartItems: [...state.cartItems, { ...newItem }]
-    })),
+    set((state) => {
+      const cartItems = [...state.cartItems]
+
+      const itemIndex = cartItems.findIndex((cartItem) => cartItem.productId === newItem.productId)
+
+      if (itemIndex >= 0) {
+        cartItems[itemIndex].amount += newItem.amount
+      } else {
+        cartItems.push({ ...newItem })
+      }
+
+      return {
+        cartItems
+      }
+    }),
   updateAmount: (id: string, amount: number) =>
     set((state) => {
       const cartItems = [...state.cartItems]
