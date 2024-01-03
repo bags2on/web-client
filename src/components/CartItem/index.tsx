@@ -5,9 +5,9 @@ import TrashIcon from '../../../public/assets/icons/trash.svg'
 import IconButton from '@/shared/IconButton'
 import ImagePlaceholder from '@/shared/ImagePlaceholder'
 import AmountController from '@/shared/AmountController'
+import { useCartStore } from '@/store/store'
 import { formatPrice } from '@/utils/helper'
 import { routeNames, generateProductLink } from '@/utils/navigation'
-import { CartMutations } from '@/apollo/cache/mutations'
 
 import styles from './CartItem.module.scss'
 
@@ -28,10 +28,12 @@ interface CartItemProps {
 const CartItem: React.FC<CartItemProps> = ({ product, amount, onRemove }) => {
   const [count, setCount] = useState<number>(amount)
 
+  const updateAmount = useCartStore((state) => state.updateAmount)
+
   const { id, slug, title, preview, currentPrice } = product
 
   const handleAmountChange = (_: string, n: number): void => {
-    CartMutations.updateProductAmount(id, n)
+    updateAmount(id, n)
     setCount(n)
   }
 

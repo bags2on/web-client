@@ -9,10 +9,10 @@ import HeaderCartIcon from '../../../../../public/assets/icons/header_cart.svg'
 import Delivery from './Delivery'
 import SizeGuide from './SizeGuide'
 import SubControls from './SubControls'
+import { useCartStore } from '@/store/store'
 import { useRouter } from 'next/navigation'
 import { routeNames } from '@/utils/navigation'
 import { formatPrice } from '@/utils/helper'
-import { CartMutations } from '@/apollo/cache/mutations'
 
 import styles from './Details.module.scss'
 
@@ -41,9 +41,11 @@ const Details: React.FC<DetailsProps> = ({
 }) => {
   const router = useRouter()
 
+  const addItem = useCartStore((state) => state.addItem)
+
   const handleAddToCart = (): void => {
     if (inStock) {
-      CartMutations.addProduct({
+      addItem({
         productId: id,
         amount: 1
       })
@@ -53,7 +55,7 @@ const Details: React.FC<DetailsProps> = ({
   }
 
   const handleOrderNow = (): void => {
-    CartMutations.addProduct({
+    addItem({
       productId: id,
       amount: 1
     })

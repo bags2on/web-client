@@ -18,6 +18,7 @@ import { GET_HEADER_DATA } from '../../apollo/cache/queries/shared'
 // import { SharedMutations } from '../../apollo/cache/mutations'
 
 import styles from './Header.module.scss'
+import { useCartStore } from '@/store/store'
 
 interface HeaderQuery {
   cartAmount: number
@@ -35,7 +36,8 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
 
   const pathname = usePathname()
 
-  const cartAmount = data?.cartAmount
+  const cartAmount = useCartStore((state) => state.cartAmount())
+
   const favoriteAmount = data?.favoriteAmount
 
   const handleCartClick = (): void => {
