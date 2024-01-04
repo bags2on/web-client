@@ -1,12 +1,12 @@
 import React from 'react'
 import clsx from 'clsx'
+import CartItem from '@/components/CartItem'
 import IconButton from '@/shared/IconButton'
 import TrashIcon from '../../../../../../public/assets/icons/trash.svg'
 import ListSkeleton from '@/components/Cart/CartItems/ListSkeleton'
+import { useCartStore } from '@/store/cart'
 import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'
-import { CartMutations } from '@/apollo/cache/mutations'
-import CartItem from '@/components/CartItem'
 import type { cartItem } from '@/types'
 
 import styles from './CartItems.module.scss'
@@ -20,13 +20,30 @@ interface CartItemsProps {
 const CartItems: React.FC<CartItemsProps> = ({ loading, cartProducts, cartCount }) => {
   const router = useRouter()
 
+  const clearCart = useCartStore((state) => state.clear)
+  const removeCartItem = useCartStore((state) => state.remove)
+  const cartItems = useCartStore((state) => state.cartItems)
+
+  // TODO: put this logic into state elements
+  const cartMap: Record<string, number> = {}
+
+  const normalizedCart = cartItems.reduce((acc, item) => {
+    if (acc[item.productId]) {
+      acc[item.productId] = acc[item.productId] += item.amount
+      return acc
+    }
+
+    acc[item.productId] = item.amount
+    return acc
+  }, cartMap)
+
   const handleClearAllClick = (): void => {
-    CartMutations.clearCart()
+    clearCart()
     router.replace(routeNames.root)
   }
 
   const handleProductRemove = (id: string): void => {
-    CartMutations.removeProduct(id)
+    removeCartItem(id)
   }
 
   return (
@@ -46,7 +63,7 @@ const CartItems: React.FC<CartItemsProps> = ({ loading, cartProducts, cartCount 
           {cartProducts.map((product) => (
             <CartItem
               key={product.id}
-              amount={1}
+              amount={normalizedCart[product.id]}
               product={product}
               onRemove={handleProductRemove}
             />

@@ -2,15 +2,15 @@ import React from 'react'
 import CartItems from './CartItems'
 import Summary from './Summary'
 import SignupPromo from './SignupPromo'
-import { useQuery, useReactiveVar } from '@apollo/client'
-import { cartItemsVar } from '@/apollo/cache/variables'
-import { CartMutations } from '@/apollo/cache/mutations'
+import { useQuery } from '@apollo/client'
+import { useCartStore } from '@/store/cart'
 import {
   CartProductsDocument,
   CartProductsQuery,
   CartProductsQueryVariables
 } from '@/graphql/product/_gen_/cartProducts.query'
 import type { CartItemType } from '@/components/CartItem'
+
 import styles from './Preview.module.scss'
 
 interface PreviewProps {
@@ -19,7 +19,8 @@ interface PreviewProps {
 }
 
 const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) => {
-  const cartItems = useReactiveVar(cartItemsVar)
+  const cartItems = useCartStore((state) => state.cartItems)
+  const setCartPrice = useCartStore((state) => state.setCartPrice)
 
   const [l, setl] = React.useState(true)
 
@@ -53,9 +54,8 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) =>
 
           setTimeout(() => {
             setl(false)
+            setCartPrice(totalSumm)
           }, 2000)
-
-          CartMutations.updateCartPrice(totalSumm)
         }
       }
     }

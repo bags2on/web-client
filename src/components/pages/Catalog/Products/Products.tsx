@@ -3,8 +3,7 @@ import Button from '@/shared/Button'
 import ProductItem from '@/components/ProductItem'
 import Pagination from '@/components/Pagination'
 import { routeNames } from '@/utils/navigation'
-import { useReactiveVar } from '@apollo/client'
-import { favoriteProductsVar } from '@/apollo/cache/variables'
+import { useFavoriteStore } from '@/store/favorite'
 
 import styles from './Products.module.scss'
 
@@ -32,7 +31,7 @@ const Products: React.FC<ProductsProps> = ({
   products,
   onActionButtonClick
 }) => {
-  const favoriteProducts = useReactiveVar(favoriteProductsVar)
+  const favoriteItems = useFavoriteStore((state) => state.favoriteItems)
 
   if (products === undefined) return null
 
@@ -54,7 +53,7 @@ const Products: React.FC<ProductsProps> = ({
     <div className={styles.container}>
       <ul className={styles.productList}>
         {products.map((product) => {
-          const isFavorite = favoriteProducts.includes(product.id)
+          const isFavorite = favoriteItems.includes(product.id)
 
           return (
             <li key={product.id} className={styles.productWrapper}>

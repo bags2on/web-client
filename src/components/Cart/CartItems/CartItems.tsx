@@ -5,10 +5,8 @@ import ListSkeleton from './ListSkeleton'
 import TopControls from '../TopControls/TopControls'
 import CartItem, { CartItemType } from '@/components/CartItem'
 import { useTranslation } from 'next-i18next'
-import { useReactiveVar } from '@apollo/client'
-import { CartMutations } from '../../../apollo/cache/mutations'
+import { useCartStore } from '@/store/cart'
 import { useCartProductsQuery } from '../../../graphql/product/_gen_/cartProducts.query'
-import { cartItemsVar } from '../../../apollo/cache/variables'
 
 import styles from './CartItems.module.scss'
 
@@ -18,8 +16,10 @@ interface CartItemsProps {
 }
 
 const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
+  const cartItems = useCartStore((state) => state.cartItems)
+  const removeCartItem = useCartStore((state) => state.remove)
+  const setCartPrice = useCartStore((state) => state.setCartPrice)
   const { t } = useTranslation()
-  const cartItems = useReactiveVar(cartItemsVar)
 
   // TODO: put this logic into state elements
   const cartMap: Record<string, number> = {}
@@ -51,7 +51,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
           0
         )
 
-        CartMutations.updateCartPrice(totalSumm)
+        setCartPrice(totalSumm)
       }
     }
   })
@@ -65,7 +65,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
   }
 
   const handleProductRemove = (id: string): void => {
-    CartMutations.removeProduct(id)
+    removeCartItem(id)
   }
 
   return (

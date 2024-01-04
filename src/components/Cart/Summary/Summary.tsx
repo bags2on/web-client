@@ -1,10 +1,9 @@
 import React from 'react'
 import Button from '@/shared/Button'
 import Skeleton from './Skeleton'
-import { useTranslation } from 'next-i18next'
-import { useReactiveVar } from '@apollo/client'
-import { cartPriceVar } from '../../../apollo/cache/variables'
 import { formatPrice } from '@/utils/helper'
+import { useCartStore } from '@/store/cart'
+import { useTranslation } from 'next-i18next'
 
 import styles from './Summary.module.scss'
 
@@ -14,8 +13,8 @@ interface SummaryProps {
 }
 
 const Summary: React.FC<SummaryProps> = ({ isLoading, onCheckout }) => {
+  const cartPrice = useCartStore((state) => state.cartPrice)
   const { t } = useTranslation()
-  const cartPrice = useReactiveVar(cartPriceVar)
 
   const handleButtonClick = (): void => {
     onCheckout()

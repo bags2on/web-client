@@ -2,9 +2,7 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 import Button from '@/shared/Button'
 import LikeButton from '@/shared/LikeButton'
-import { useReactiveVar } from '@apollo/client'
-import { FavoriteMutations } from '@/apollo/cache/mutations'
-import { favoriteProductsVar } from '@/apollo/cache/variables'
+import { useFavoriteStore } from '@/store/favorite'
 import CommentIcon from '../../../../../../public/assets/icons/comment.svg'
 import ShareIcon from '../../../../../../public/assets/icons/share.svg'
 
@@ -15,15 +13,17 @@ interface SubControlsProps {
 }
 
 const SubControls: React.FC<SubControlsProps> = ({ productId }) => {
-  const favoriteProducts = useReactiveVar(favoriteProductsVar)
+  const favoriteItems = useFavoriteStore((state) => state.favoriteItems)
+  const addToFavorite = useFavoriteStore((state) => state.add)
+  const removeFavorite = useFavoriteStore((state) => state.remove)
 
-  const [isLiked, setLiked] = useState<boolean>(favoriteProducts.includes(productId))
+  const [isLiked, setLiked] = useState<boolean>(favoriteItems.includes(productId))
 
   const handleLikeClick = (): void => {
     if (isLiked) {
-      FavoriteMutations.deleteFavorite(productId)
+      removeFavorite(productId)
     } else {
-      FavoriteMutations.addToFavorite(productId)
+      addToFavorite(productId)
     }
     setLiked(!isLiked)
   }

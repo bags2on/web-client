@@ -1,8 +1,7 @@
 import React from 'react'
 import styles from './Summary.module.scss'
 import Button from '@/shared/Button'
-import { useReactiveVar } from '@apollo/client'
-import { cartPriceVar } from '@/apollo/cache/variables'
+import { useCartStore } from '@/store/cart'
 import { formatPrice } from '@/utils/helper'
 import ContentLoader from 'react-content-loader'
 
@@ -13,7 +12,7 @@ interface SummaryProps {
 }
 
 const Summary: React.FC<SummaryProps> = ({ loading, submitLoading, orderCreationErr }) => {
-  const cartPrice = useReactiveVar(cartPriceVar)
+  const cartPrice = useCartStore((state) => state.cartPrice)
 
   return (
     <div className={styles.container}>

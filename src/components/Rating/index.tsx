@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import StarIcon from '../../../public/assets/icons/star.svg'
-import { SharedMutations } from '../../apollo/cache/mutations'
 import styles from './Rating.module.scss'
+import { useUserStore } from '@/store/user'
 
 interface RatingProps {
   starsAmount?: number
@@ -13,9 +13,10 @@ const Rating: React.FC<RatingProps> = ({ starsAmount = 5, starRating = 0 }) => {
   const [rating, setRating] = useState<number>(Math.round(starRating))
   const [interactValue, setInteractValue] = useState<number>(0)
 
+  const isAuthenticated = useUserStore((state) => state.isAuthenticated)
+
   const handleRatingChange = (newRating: number) => {
-    const isAuth = SharedMutations.checkAuthentication()
-    if (!isAuth) return
+    if (!isAuthenticated) return
 
     setRating(newRating)
   }
