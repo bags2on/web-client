@@ -7,10 +7,9 @@ import HeartIcon from '../../../../public/assets/icons/heart_2.svg'
 import ListIcon from '../../../../public/assets/icons/list.svg'
 import EyeIcon from '../../../../public/assets/icons/eye.svg'
 import { routeNames } from '@/utils/navigation'
+import { useUserStore } from '@/store/user'
 import { useTranslation } from 'next-i18next'
-import { useQuery } from '@apollo/client'
-import { GET_FAVORITE_AMOUNT } from '@/apollo/cache/queries/favorite'
-import { SharedMutations } from '@/apollo/cache/mutations'
+import { useFavoriteStore } from '@/store/favorite'
 import { useRouter } from 'next/router'
 
 import styles from './Navigation.module.scss'
@@ -59,23 +58,18 @@ const drawerItems: DrawerItem[] = [
   }
 ]
 
-interface FavoriteAmountQuery {
-  favoriteAmount: number
-}
-
 const Navigation: React.FC<SidebarNavListProps> = ({ onClose }) => {
   const router = useRouter()
-  const { t } = useTranslation('common')
 
-  const { data } = useQuery<FavoriteAmountQuery>(GET_FAVORITE_AMOUNT)
-  const favoriteAmount = data?.favoriteAmount
+  const isAuthenticated = useUserStore((state) => state.isAuthenticated)
+  const favoriteAmount = useFavoriteStore((state) => state.amount())
+  const { t } = useTranslation('common')
 
   const goTo = (path: string): void => {
     onClose()
 
     if (path === '/profile') {
-      const isAuth = SharedMutations.checkAuthentication()
-      if (!isAuth) return
+      if (!isAuthenticated) return
     }
 
     router.push(path)

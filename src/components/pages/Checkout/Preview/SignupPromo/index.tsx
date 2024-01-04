@@ -1,17 +1,15 @@
 import React from 'react'
-import { SharedMutations } from '@/apollo/cache/mutations'
-import { isAuthenticatedVar } from '@/apollo/cache/variables'
-import { useReactiveVar } from '@apollo/client'
+import { useUserStore } from '@/store/user'
 
 import styles from './SignupPromo.module.scss'
 
 const SignupPromo: React.FC = () => {
-  const isAuthenticated = useReactiveVar(isAuthenticatedVar)
+  const isAuthenticated = useUserStore((state) => state.isAuthenticated)
 
   if (isAuthenticated) return null
 
   const handleClick = () => {
-    SharedMutations.checkAuthentication()
+    console.log('click')
   }
 
   return (

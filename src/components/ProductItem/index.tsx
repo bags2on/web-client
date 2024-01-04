@@ -8,9 +8,9 @@ import ImagePlaceholder from '@/shared/ImagePlaceholder'
 import TrashIcon from '../../../public/assets/icons/trash.svg'
 import { formatPrice } from '@/utils/helper'
 import { useTranslation } from 'next-i18next'
+import { useFavoriteStore } from '@/store/favorite'
 import { getProductMainTagColor } from '@/utils/styling'
 import { routeNames, generateProductLink } from '@/utils/navigation'
-import { FavoriteMutations } from '@/apollo/cache/mutations'
 
 import styles from './ProductItem.module.scss'
 
@@ -39,15 +39,17 @@ const ProductItem: React.FC<ProductItemProps> = ({
   isFavorite,
   withDelete = false
 }) => {
-  const { t } = useTranslation('common')
+  const addToFavorite = useFavoriteStore((state) => state.add)
+  const removeFavorite = useFavoriteStore((state) => state.remove)
 
+  const { t } = useTranslation('common')
   const [isLiked, setLiked] = useState<boolean>(isFavorite)
 
   const handleActionClick = (): void => {
     if (isLiked) {
-      FavoriteMutations.deleteFavorite(id)
+      removeFavorite(id)
     } else {
-      FavoriteMutations.addToFavorite(id)
+      addToFavorite(id)
     }
 
     setLiked(!isLiked)

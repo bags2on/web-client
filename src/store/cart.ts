@@ -5,6 +5,7 @@ import type { CartItem } from './types'
 type CartState = {
   cartAmount: () => number
   cartItems: CartItem[]
+  cartPrice: number
 }
 
 type CartActions = {
@@ -12,14 +13,15 @@ type CartActions = {
   clear: () => void
   remove: (id: string) => void
   updateAmount: (id: string, amount: number) => void
+  setCartPrice: (price: number) => void
 }
 
 export const useCartStore = create<CartState & CartActions>()(
   persist(
     (set, get) => ({
+      cartPrice: 0,
       cartItems: [],
       cartAmount: () => get().cartItems.reduce((acc, p) => acc + p.amount, 0),
-      // cartPrice: () => get().cartItems.reduce((acc, p) => acc + p.price, 0),
       addItem: (newItem: CartItem) =>
         set((state) => {
           const cartItems = [...state.cartItems]
@@ -53,6 +55,10 @@ export const useCartStore = create<CartState & CartActions>()(
       remove: (id: string) =>
         set((state) => ({
           cartItems: state.cartItems.filter((cartItem) => cartItem.productId !== id)
+        })),
+      setCartPrice: (price: number) =>
+        set(() => ({
+          cartPrice: price
         })),
       clear: () =>
         set(() => ({

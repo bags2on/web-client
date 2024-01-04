@@ -16,10 +16,10 @@ interface CartItemsProps {
 }
 
 const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
-  const { t } = useTranslation()
-
   const cartItems = useCartStore((state) => state.cartItems)
   const removeCartItem = useCartStore((state) => state.remove)
+  const setCartPrice = useCartStore((state) => state.setCartPrice)
+  const { t } = useTranslation()
 
   // TODO: put this logic into state elements
   const cartMap: Record<string, number> = {}
@@ -51,10 +51,7 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
           0
         )
 
-        console.log(totalSumm)
-
-        // TODO: state require
-        // .updateCartPrice(totalSumm)
+        setCartPrice(totalSumm)
       }
     }
   })

@@ -20,6 +20,7 @@ interface PreviewProps {
 
 const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) => {
   const cartItems = useCartStore((state) => state.cartItems)
+  const setCartPrice = useCartStore((state) => state.setCartPrice)
 
   const [l, setl] = React.useState(true)
 
@@ -51,13 +52,10 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) =>
             0
           )
 
-          console.log(totalSumm)
-
           setTimeout(() => {
             setl(false)
+            setCartPrice(totalSumm)
           }, 2000)
-
-          // .updateCartPrice(totalSumm)
         }
       }
     }
