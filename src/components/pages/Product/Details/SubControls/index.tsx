@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import clsx from 'clsx'
 import Button from '@/shared/Button'
 import LikeButton from '@/shared/LikeButton'
@@ -17,7 +17,7 @@ const SubControls: React.FC<SubControlsProps> = ({ productId }) => {
   const addToFavorite = useFavoriteStore((state) => state.add)
   const removeFavorite = useFavoriteStore((state) => state.remove)
 
-  const [isLiked, setLiked] = useState<boolean>(favoriteItems.includes(productId))
+  const isLiked = favoriteItems.includes(productId)
 
   const handleLikeClick = (): void => {
     if (isLiked) {
@@ -25,7 +25,6 @@ const SubControls: React.FC<SubControlsProps> = ({ productId }) => {
     } else {
       addToFavorite(productId)
     }
-    setLiked(!isLiked)
   }
 
   return (
