@@ -10,7 +10,7 @@ interface SizeGuideProps {
   available: Array<availableSizes>
 }
 
-const SizeGuide: React.FC<SizeGuideProps> = ({ current, available }) => {
+export function SizeGuide({ current, available }: SizeGuideProps) {
   const sizes = ['S', 'M', 'L', 'XL', '2XL']
 
   const normalized = available.reduce((acc, size) => ({ ...acc, [size]: undefined }), {})
@@ -35,5 +35,3 @@ const SizeGuide: React.FC<SizeGuideProps> = ({ current, available }) => {
     </div>
   )
 }
-
-export default SizeGuide

@@ -6,9 +6,7 @@ interface ShowServiceProps {
   children: React.ReactElement
 }
 
-const ShowService: React.FC<ShowServiceProps> = ({ as, current, children }) => {
+export function ShowService({ as, current, children }: ShowServiceProps) {
   if (as !== current) return null
   return children
 }
-
-export default ShowService

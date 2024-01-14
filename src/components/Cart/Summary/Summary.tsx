@@ -12,7 +12,7 @@ interface SummaryProps {
   onCheckout(): void
 }
 
-const Summary: React.FC<SummaryProps> = ({ isLoading, onCheckout }) => {
+export function Summary({ isLoading, onCheckout }: SummaryProps) {
   const cartPrice = useCartStore((state) => state.cartPrice)
   const { t } = useTranslation()
 
@@ -43,5 +43,3 @@ const Summary: React.FC<SummaryProps> = ({ isLoading, onCheckout }) => {
     </div>
   )
 }
-
-export default Summary

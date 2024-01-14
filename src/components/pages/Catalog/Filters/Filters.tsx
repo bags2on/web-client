@@ -31,7 +31,7 @@ interface FiltersProps {
   onSubmit(values: any): void
 }
 
-const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSubmit }) => {
+export function Filters({ priceRange, initValues, formRef, onSubmit }: FiltersProps) {
   const { t } = useTranslation(['common', 'catalog'])
 
   const { gender, availability, tags, categories } = fieldProps
@@ -115,5 +115,3 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
     </aside>
   )
 }
-
-export default Filters

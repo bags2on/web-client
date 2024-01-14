@@ -10,7 +10,7 @@ interface PhoneInputProps {
   name: string
 }
 
-const PhoneInput: React.FC<PhoneInputProps> = ({ name }) => {
+export function PhoneInput({ name }: PhoneInputProps) {
   const [field, meta] = useField({ name })
 
   const { onChange, ...fieldOther } = field
@@ -44,5 +44,3 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name }) => {
     </div>
   )
 }
-
-export default PhoneInput

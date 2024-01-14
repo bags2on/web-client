@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import PageLoader from '@/shared/PageLoader'
-import CustomerInfo from './CustomerInfo/CustomerInfo'
-import Delivery from './Delivery/Delivery'
+import { CustomerInfo } from './CustomerInfo/CustomerInfo'
+import { Delivery } from './Delivery/Delivery'
 import Preview from './Preview/Preview'
-import OrderSuccessModal from './Modals/OrderSuccess'
+import { OrderSuccessModal } from './Modals/OrderSuccess'
 import { Formik, Form } from 'formik'
 import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'
@@ -14,7 +14,7 @@ import { CheckoutOrderSchema, CheckoutOrderType } from '@/utils/formValidationSc
 
 import styles from './Checkout.module.scss'
 
-const Checkout: React.FC = () => {
+export function CheckoutIndex() {
   const router = useRouter()
 
   const [state, dispatch] = usePageState({
@@ -116,5 +116,3 @@ const Checkout: React.FC = () => {
     </div>
   )
 }
-
-export default Checkout

@@ -1,9 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
-import StepTitle from '../common/StepTitle'
-import ContinueButton from '../common/ContinueButton'
+import { StepTitle } from '../common/StepTitle'
+import { ContinueButton } from '../common/ContinueButton'
 import TextInput from '@/shared/formFields/TextInput/TextInput'
-import PhoneInput from '@/shared/formFields/PhoneInput'
+import { PhoneInput } from '@/shared/formFields/PhoneInput'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
 
@@ -15,7 +15,7 @@ interface CustomerInfoProps {
   onContinue(): void
 }
 
-const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue }) => {
+export function CustomerInfo({ isEdit, onEdit, onContinue }: CustomerInfoProps) {
   const { values } = useFormikContext<CheckoutOrderType>()
 
   const isValuesValid = Boolean(values.surname && values.name && values.phone && values.email)
@@ -62,5 +62,3 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
     </section>
   )
 }
-
-export default CustomerInfo

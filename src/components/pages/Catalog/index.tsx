@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import Button from '@/shared/Button'
-import Filters from './Filters/Filters'
-import Products from './Products/Products'
+import { Filters } from './Filters/Filters'
+import { Products } from './Products/Products'
 import ScaleLoader from '@/shared/loaders/ScaleLoader'
 import ErrorPlug from '@/shared/ErrorPlug'
 import FilterIcon from '../../../../public/assets/icons/filter.svg'
@@ -62,7 +62,7 @@ function getQueryValues(values: FilterValues): queryValues {
   }
 }
 
-const Catalog: React.FC = () => {
+export function Catalog() {
   // const { page } = useParams<ParamTypes>()
 
   const page = 1
@@ -225,5 +225,3 @@ const Catalog: React.FC = () => {
     </div>
   )
 }
-
-export default Catalog

@@ -14,7 +14,7 @@ interface StepTitleProps {
   children: React.ReactNode
 }
 
-const StepTitle: React.FC<StepTitleProps> = ({ step, valid, isEdit, onEdit, children }) => {
+export function StepTitle({ step, valid, isEdit, onEdit, children }: StepTitleProps) {
   const [width] = useWindowSize()
 
   const handleTitleClick = () => {
@@ -54,5 +54,3 @@ const StepTitle: React.FC<StepTitleProps> = ({ step, valid, isEdit, onEdit, chil
     </div>
   )
 }
-
-export default StepTitle

@@ -25,7 +25,7 @@ interface CartItemProps {
   onRemove: (id: string) => void
 }
 
-const CartItem: React.FC<CartItemProps> = ({ product, amount, onRemove }) => {
+export function CartItem({ product, amount, onRemove }: CartItemProps) {
   const [count, setCount] = useState<number>(amount)
 
   const updateAmount = useCartStore((state) => state.updateAmount)
@@ -77,5 +77,3 @@ const CartItem: React.FC<CartItemProps> = ({ product, amount, onRemove }) => {
     </li>
   )
 }
-
-export default CartItem

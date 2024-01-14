@@ -10,7 +10,7 @@ interface MainProductProps {
   title?: string
 }
 
-const MainProduct: React.FC<MainProductProps> = ({ id, title, price }) => {
+export function MainProduct({ id, title, price }: MainProductProps) {
   return (
     <section className={styles.container}>
       <div className={styles.background} />
@@ -39,5 +39,3 @@ const MainProduct: React.FC<MainProductProps> = ({ id, title, price }) => {
     </section>
   )
 }
-
-export default MainProduct

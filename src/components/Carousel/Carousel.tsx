@@ -1,5 +1,5 @@
 import React from 'react'
-import NavButtons from './NavButtons'
+import { NavButtons } from './NavButtons'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import classes from './Carousel.module.scss'
 
@@ -12,7 +12,7 @@ interface CarouselProps {
   slides: Slide[]
 }
 
-const Carousel: React.FC<CarouselProps> = ({ slides }) => {
+export function Carousel({ slides }: CarouselProps) {
   return (
     <Swiper
       loop
@@ -48,5 +48,3 @@ const Carousel: React.FC<CarouselProps> = ({ slides }) => {
     </Swiper>
   )
 }
-
-export default Carousel

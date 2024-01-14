@@ -4,7 +4,7 @@ import ThemeToggle from '@/shared/ThemeToggle'
 
 import styles from './SidebarHead.module.scss'
 
-const SidebarHead: React.FC = () => {
+export function SidebarHead() {
   return (
     <div className={styles.container}>
       <div className={styles.logoWrapper}>
@@ -17,5 +17,3 @@ const SidebarHead: React.FC = () => {
     </div>
   )
 }
-
-export default SidebarHead

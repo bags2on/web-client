@@ -8,12 +8,10 @@ interface ModalProps {
   children: React.ReactNode
 }
 
-const Modal: React.FC<ModalProps> = ({ open, children }) => {
+export function Modal({ open, children }: ModalProps) {
   return (
     <ReactModal isOpen={open} className={styles.content} overlayClassName={styles.overlay}>
       {children}
     </ReactModal>
   )
 }
-
-export default Modal

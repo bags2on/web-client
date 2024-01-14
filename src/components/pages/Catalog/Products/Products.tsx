@@ -25,12 +25,12 @@ interface ProductsProps {
   onActionButtonClick(): void
 }
 
-const Products: React.FC<ProductsProps> = ({
+export function Products({
   totalPages,
   currentPage,
   products,
   onActionButtonClick
-}) => {
+}: ProductsProps) {
   const favoriteItems = useFavoriteStore((state) => state.favoriteItems)
 
   if (products === undefined) return null
@@ -78,5 +78,3 @@ const Products: React.FC<ProductsProps> = ({
     </div>
   )
 }
-
-export default Products

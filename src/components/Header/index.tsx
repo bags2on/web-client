@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -22,7 +22,7 @@ interface HeaderProps {
   onCartOpen(): void
 }
 
-const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
+export const Header = memo(function Header({ onDrawerOpen, onCartOpen }: HeaderProps) {
   const pathname = usePathname()
 
   const cartAmount = useCartStore((state) => state.cartAmount())
@@ -98,6 +98,4 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
       </div>
     </header>
   )
-}
-
-export default React.memo(Header)
+})

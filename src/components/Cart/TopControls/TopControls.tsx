@@ -8,11 +8,12 @@ import { useCartStore } from '@/store/cart'
 import { useTranslation } from 'next-i18next'
 
 import styles from './TopControls.module.scss'
+
 interface TopControlsProps {
   onCartClose(): void
 }
 
-const TopControls: React.FC<TopControlsProps> = ({ onCartClose }) => {
+export function TopControls({ onCartClose }: TopControlsProps) {
   const { t } = useTranslation()
 
   const clearCart = useCartStore((state) => state.clear)
@@ -48,5 +49,3 @@ const TopControls: React.FC<TopControlsProps> = ({ onCartClose }) => {
     </div>
   )
 }
-
-export default TopControls

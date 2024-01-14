@@ -1,9 +1,9 @@
 import React from 'react'
 import Drawer from '@/shared/Drawer'
-import SidebarHead from './SidebarHead/SidebarHead'
+import { SidebarHead } from './SidebarHead/SidebarHead'
 import Navigation from './Navigation'
 import SocialLink from './SocialLink/SocialLink'
-import LangSwitcher from '@/components/LangSwitcher'
+import { LangSwitcher } from '@/components/LangSwitcher'
 import { useTranslation } from 'next-i18next'
 
 import styles from './Sidebar.module.scss'

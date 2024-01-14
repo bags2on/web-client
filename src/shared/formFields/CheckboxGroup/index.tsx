@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Checkbox from '../Checkbox'
-import Collapse, { CollapseHead } from '@/shared/Collapse'
+import { Collapse, CollapseHead } from '@/shared/Collapse'
 
 import styles from './CheckboxGroup.module.scss'
 

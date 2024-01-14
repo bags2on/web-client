@@ -7,7 +7,7 @@ import ExclamationIcon from '../../../../../public/assets/icons/exclamation-circ
 import CheckIcon from '../../../../../public/assets/icons/check-circle.svg'
 import HeaderCartIcon from '../../../../../public/assets/icons/header_cart.svg'
 import Delivery from './Delivery'
-import SizeGuide from './SizeGuide'
+import { SizeGuide } from './SizeGuide'
 import SubControls from './SubControls'
 import { useCartStore } from '@/store/cart'
 import { useRouter } from 'next/navigation'

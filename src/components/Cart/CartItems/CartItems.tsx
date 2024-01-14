@@ -1,9 +1,9 @@
-import React from 'react'
-import Summary from '../Summary/Summary'
-import ProcessPlug from '../Plugs/ProcessPlug/ProcessPlug'
-import ListSkeleton from './ListSkeleton'
-import TopControls from '../TopControls/TopControls'
-import CartItem, { CartItemType } from '@/components/CartItem'
+import React, { memo } from 'react'
+import { Summary } from '../Summary/Summary'
+import { ProcessPlug } from '../Plugs/ProcessPlug/ProcessPlug'
+import { ListSkeleton } from './ListSkeleton'
+import { TopControls } from '../TopControls/TopControls'
+import { CartItem, CartItemType } from '@/components/CartItem'
 import { useTranslation } from 'next-i18next'
 import { useCartStore } from '@/store/cart'
 import { useCartProductsQuery } from '../../../graphql/product/_gen_/cartProducts.query'
@@ -15,7 +15,7 @@ interface CartItemsProps {
   onCheckout(): void
 }
 
-const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
+export const CartItems = memo(function CartItems({ onClose, onCheckout }: CartItemsProps) {
   const cartItems = useCartStore((state) => state.cartItems)
   const removeCartItem = useCartStore((state) => state.remove)
   const setCartPrice = useCartStore((state) => state.setCartPrice)
@@ -88,6 +88,4 @@ const CartItems: React.FC<CartItemsProps> = ({ onClose, onCheckout }) => {
       <Summary isLoading={loading} onCheckout={onCheckout} />
     </div>
   )
-}
-
-export default React.memo(CartItems)
+})

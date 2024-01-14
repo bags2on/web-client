@@ -8,12 +8,10 @@ interface ContinueButtonProps {
   onClick(): void
 }
 
-const ContinueButton: React.FC<ContinueButtonProps> = ({ children, ...restProps }) => {
+export function ContinueButton({ children, ...restProps }: ContinueButtonProps) {
   return (
     <Button color="secondary" className={styles.button} fullWidth {...restProps}>
       {children}
     </Button>
   )
 }
-
-export default ContinueButton

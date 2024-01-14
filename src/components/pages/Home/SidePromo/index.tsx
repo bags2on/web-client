@@ -6,7 +6,7 @@ import { routeNames } from '@/utils/navigation'
 
 import styles from './SidePromo.module.scss'
 
-const SidePromo: React.FC = () => {
+export function SidePromo() {
   const { t } = useTranslation('home')
 
   return (
@@ -25,5 +25,3 @@ const SidePromo: React.FC = () => {
     </Link>
   )
 }
-
-export default SidePromo
