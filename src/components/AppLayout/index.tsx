@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Header } from '../Header'
 import { Footer } from '../Footer'
-import { Sidebar } from '../Sidebar/Sidebar'
+import { Sidebar } from '@/components/Sidebar'
 import { Cart } from '../Cart'
 import { useCartStore } from '@/store/cart'
 import { useFavoriteStore } from '@/store/favorite'
@@ -13,8 +13,8 @@ interface AppLayoutProps {
 }
 
 export function AppLayout({ children }: AppLayoutProps) {
-  const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
-  const [isCartOpen, setCartOpen] = useState<boolean>(false)
+  const [isSidebarOpen, setSidebarOpen] = useState(false)
+  const [isCartOpen, setCartOpen] = useState(false)
 
   useEffect(() => {
     useCartStore.persist.rehydrate()
@@ -24,11 +24,11 @@ export function AppLayout({ children }: AppLayoutProps) {
   }, [])
 
   const handleOpenDrawer = useCallback(() => {
-    setDrawerOpen(true)
+    setSidebarOpen(true)
   }, [])
 
   const handleCloseDrawer = useCallback(() => {
-    setDrawerOpen(false)
+    setSidebarOpen(false)
   }, [])
 
   const handleCartOpen = useCallback(() => {
@@ -41,7 +41,7 @@ export function AppLayout({ children }: AppLayoutProps) {
 
   return (
     <>
-      <Sidebar isOpen={isDrawerOpen} onClose={handleCloseDrawer} />
+      <Sidebar isOpen={isSidebarOpen} onClose={handleCloseDrawer} />
       <Cart isOpen={isCartOpen} onClose={handleCartClose} />
       <Header onCartOpen={handleCartOpen} onDrawerOpen={handleOpenDrawer} />
       <main>{children}</main>
