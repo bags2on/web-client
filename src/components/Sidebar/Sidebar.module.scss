@@ -2,20 +2,24 @@
   height: 100%;
   width: 75vw;
   max-width: 350px;
+  display: flex;
+  flex-direction: column;
+
   background-color: var(--sidebar-bkg);
 }
 
 .langSwitch {
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
   & > span {
     font-weight: 500;
     font-size: 18px;
-    margin-left: 10px;
   }
 }
 
 .social {
-  padding: 10px 15px;
-  padding-top: 30px;
+  padding: 30px 15px 0 15px;
+  flex-grow: 1;
 }

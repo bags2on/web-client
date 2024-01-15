@@ -1,8 +1,8 @@
 import React from 'react'
 import { Drawer } from '@/shared/Drawer'
-import { SidebarHead } from './SidebarHead/SidebarHead'
+import { SidebarHead } from './SidebarHead'
 import { Navigation } from './Navigation'
-import { SocialLink } from './SocialLink/SocialLink'
+import { Promo } from './Promo'
 import { LangSwitcher } from '@/components/LangSwitcher'
 import { useTranslation } from 'next-i18next'
 
@@ -26,7 +26,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
           <LangSwitcher />
         </div>
         <div className={styles.social}>
-          <SocialLink />
+          <Promo />
         </div>
       </div>
     </Drawer>
