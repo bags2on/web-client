@@ -2,7 +2,7 @@ import React from 'react'
 
 export interface ConditionalRenderProps {
   condition: boolean
-  wrap: (child: React.ReactNode) => React.ReactNode
+  wrap: (child: React.ReactNode) => React.ReactElement
   children: React.ReactNode
 }
 
