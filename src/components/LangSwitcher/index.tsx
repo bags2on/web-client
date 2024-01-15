@@ -27,6 +27,7 @@ export function LangSwitcher() {
           {locales[lang as keyof typeof locales]}
         </span>
       ))}
+      <div className={clsx(styles.island, locale === 'ua' && styles.ua)} />
     </div>
   )
 }
