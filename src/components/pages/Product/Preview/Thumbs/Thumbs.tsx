@@ -10,7 +10,7 @@ interface ThumbsProps {
   onChange(index: number): void
 }
 
-const Thumbs: React.FC<ThumbsProps> = ({ activeIndex, images, onChange }) => {
+export function Thumbs({ activeIndex, images, onChange }: ThumbsProps) {
   return (
     <div className={styles.container}>
       <ul className={styles.list}>
@@ -29,5 +29,3 @@ const Thumbs: React.FC<ThumbsProps> = ({ activeIndex, images, onChange }) => {
     </div>
   )
 }
-
-export default Thumbs

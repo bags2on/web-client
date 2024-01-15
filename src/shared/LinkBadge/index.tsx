@@ -2,13 +2,13 @@ import React from 'react'
 import Image from 'next/image'
 import styles from './LinkBadge.module.scss'
 
-interface LinkBadgeProps {
+export interface LinkBadgeProps {
   top?: number
   right?: number
   children: React.ReactNode
 }
 
-const LinkBadge: React.FC<LinkBadgeProps> = ({ top = 10, right = 13, children }) => {
+export function LinkBadge({ top = 10, right = 13, children }: LinkBadgeProps) {
   return (
     <div className={styles.container}>
       <div
@@ -30,5 +30,3 @@ const LinkBadge: React.FC<LinkBadgeProps> = ({ top = 10, right = 13, children })
     </div>
   )
 }
-
-export default LinkBadge

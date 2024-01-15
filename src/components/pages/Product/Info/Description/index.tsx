@@ -11,13 +11,13 @@ interface DescriptionProps {
 }
 
 // TODO: build it with loop
-const Description: React.FC<DescriptionProps> = ({
+export function Description({
   gender,
   description,
   dimensions,
   color,
   category
-}) => {
+}: DescriptionProps) {
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Описание</h2>
@@ -59,5 +59,3 @@ const Description: React.FC<DescriptionProps> = ({
     </div>
   )
 }
-
-export default Description

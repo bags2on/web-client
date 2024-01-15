@@ -1,7 +1,7 @@
 import React from 'react'
-import ScaleLoader from '@/shared/loaders/ScaleLoader'
+import { ScaleLoader } from '@/shared/loaders/ScaleLoader'
 
-const PageLoader = () => {
+export function PageLoader() {
   return (
     <div
       style={{
@@ -16,5 +16,3 @@ const PageLoader = () => {
     </div>
   )
 }
-
-export default PageLoader

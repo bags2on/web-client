@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react'
 import clsx from 'clsx'
-import Loader from '@/shared/loaders/ScaleLoader'
+import { ScaleLoader } from '@/shared/loaders/ScaleLoader'
 import styles from './Button.module.scss'
 
 const enum ButtonColor {
@@ -10,7 +10,7 @@ const enum ButtonColor {
   danger = 'danger'
 }
 
-interface BottonProps {
+interface ButtonProps {
   to?: string
   type?: 'button' | 'reset' | 'submit'
   color?: 'primary' | 'secondary' | 'success' | 'danger'
@@ -27,7 +27,7 @@ interface BottonProps {
   className?: string
 }
 
-const Button: React.ForwardRefRenderFunction<HTMLButtonElement, BottonProps> = (
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
   {
     loading,
     children,
@@ -41,7 +41,7 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, BottonProps> = (
     ...otherProps
   },
   ref
-) => {
+) {
   let colorClass: string
 
   switch (color as ButtonColor) {
@@ -78,7 +78,7 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, BottonProps> = (
       {!loading && startIcon}
       {loading ? (
         <div className={styles.loader}>
-          <Loader dark={color !== ButtonColor.primary} />
+          <ScaleLoader dark={color !== ButtonColor.primary} />
         </div>
       ) : (
         <span>{children}</span>
@@ -86,6 +86,4 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, BottonProps> = (
       {!loading && endIcon}
     </button>
   )
-}
-
-export default forwardRef(Button)
+})

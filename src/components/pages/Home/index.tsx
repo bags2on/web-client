@@ -1,11 +1,11 @@
 import React from 'react'
 import clsx from 'clsx'
-import Advantages from './Advantages/Advantages'
+import { Advantages } from './Advantages/Advantages'
 import { MainProduct } from '../../MainProduct/MainProduct'
 import { Carousel } from '@/components/Carousel/Carousel'
-import Categories from './Categories/Categories'
-import Featured from './Featured/Featured'
-import Promo from './Promo/Promo'
+import { Categories } from './Categories/Categories'
+import { Featured } from './Featured/Featured'
+import { Promo } from './Promo/Promo'
 import { SidePromo } from './SidePromo'
 
 import type { Slide } from '@/components/Carousel/Carousel'
@@ -27,7 +27,7 @@ interface HomeProps {
   sliderData: Array<Slide>
 }
 
-export function Home({ sliderData, featuredProducts }: HomeProps) {
+export function HomeIndex({ sliderData, featuredProducts }: HomeProps) {
   const mainProduct = {
     id: 'eh345vs',
     title: '#товарДня',

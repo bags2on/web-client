@@ -2,13 +2,13 @@ import React from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
-import LinkBadge from '@/shared/LinkBadge'
+import { LinkBadge } from '@/shared/LinkBadge'
 import { routeNames } from '@/utils/navigation'
 import { useTranslation } from 'next-i18next'
 
 import styles from './Promo.module.scss'
 
-const Promo: React.FC = () => {
+export function Promo() {
   const { t } = useTranslation('home')
 
   return (
@@ -52,5 +52,3 @@ const Promo: React.FC = () => {
     </section>
   )
 }
-
-export default Promo

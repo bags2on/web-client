@@ -12,7 +12,7 @@ interface TabsPorps {
   onChange(tabIndex: number): void
 }
 
-const Tabs: React.FC<TabsPorps> = ({ activeTab, tabs, onChange }) => {
+export function Tabs({ activeTab, tabs, onChange }: TabsPorps) {
   const handleTabClick = (tabIndex: number, disabled: boolean): void => {
     if (disabled) return
 
@@ -37,5 +37,3 @@ const Tabs: React.FC<TabsPorps> = ({ activeTab, tabs, onChange }) => {
     </ul>
   )
 }
-
-export default Tabs

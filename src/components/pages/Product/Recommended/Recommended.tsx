@@ -1,12 +1,12 @@
 import React from 'react'
-import ProductsSlider from '@/components/ProductsSlider'
-import ProductItem from '@/components/ProductItem'
+import { ProductsSlider } from '@/components/ProductsSlider'
+import { ProductItem } from '@/components/ProductItem'
 
 import styles from './Recommended.module.scss'
 
 import TEMP_RECOMENDED from './temp'
 
-const Recommended: React.FC = () => {
+export function Recommended() {
   return (
     <section className={styles.container}>
       <h2 className={styles.title}>Рекомендуемые</h2>
@@ -29,5 +29,3 @@ const Recommended: React.FC = () => {
     </section>
   )
 }
-
-export default Recommended

@@ -9,7 +9,7 @@ interface BadgeProps {
   content?: string | number
 }
 
-const Badge: React.FC<BadgeProps> = ({ children, content, color = '#f44336', max = 100 }) => {
+export function Badge({ children, content, color = '#f44336', max = 100 }: BadgeProps) {
   let show = ''
 
   if (typeof content === 'number') {
@@ -38,5 +38,3 @@ const Badge: React.FC<BadgeProps> = ({ children, content, color = '#f44336', max
     </span>
   )
 }
-
-export default Badge

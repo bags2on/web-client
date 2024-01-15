@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { CartItem } from '@/components/CartItem'
-import IconButton from '@/shared/IconButton'
+import { IconButton } from '@/shared/IconButton'
 import TrashIcon from '../../../../../../public/assets/icons/trash.svg'
 import { ListSkeleton } from '@/components/Cart/CartItems/ListSkeleton'
 import { useCartStore } from '@/store/cart'
@@ -17,7 +17,7 @@ interface CartItemsProps {
   loading: boolean
 }
 
-const CartItems: React.FC<CartItemsProps> = ({ loading, cartProducts, cartCount }) => {
+export function CartItems({ loading, cartProducts, cartCount }: CartItemsProps) {
   const router = useRouter()
 
   const clearCart = useCartStore((state) => state.clear)
@@ -73,5 +73,3 @@ const CartItems: React.FC<CartItemsProps> = ({ loading, cartProducts, cartCount 
     </div>
   )
 }
-
-export default CartItems

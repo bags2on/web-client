@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
-import IconButton from '@/shared/IconButton'
-// import ScaleLoader from '@/shared/loaders/ScaleLoader'
+import { IconButton } from '@/shared/IconButton'
+// import {ScaleLoader} from '@/shared/loaders/ScaleLoader'
 // import Image from 'next/image'
 // import { routeNames, generateLink } from '@/utils/navigation'
 // import { useLazyQuery } from '@apollo/client'
@@ -19,7 +19,7 @@ import SearchIcon from '../../../public/assets/icons/search.svg'
 
 import styles from './Search.module.scss'
 
-const Search = () => {
+export function Search() {
   const { t } = useTranslation()
   const [inputValue, setInputValue] = useState<string>('')
   const [withFocus, setWithFocus] = useState<boolean>(false)
@@ -138,5 +138,3 @@ const Search = () => {
     </div>
   )
 }
-
-export default Search

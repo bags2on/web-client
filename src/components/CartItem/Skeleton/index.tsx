@@ -1,7 +1,7 @@
 import React from 'react'
 import ContentLoader from 'react-content-loader'
 
-const Skeleton = () => {
+export function CartItemSkeleton() {
   return (
     <li style={{ padding: '15px 10px 0 10px' }}>
       <ContentLoader backgroundColor="#eeeeee" foregroundColor="#e1e1e1" width="100%">
@@ -13,5 +13,3 @@ const Skeleton = () => {
     </li>
   )
 }
-
-export default Skeleton

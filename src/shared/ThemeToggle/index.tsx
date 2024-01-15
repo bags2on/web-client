@@ -4,7 +4,7 @@ import { useTheme } from '@/hooks'
 
 import styles from './style.module.scss'
 
-const ThemeToggle: React.FC = () => {
+export function ThemeToggle() {
   const [theme, setTheme] = useTheme()
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -57,5 +57,3 @@ const ThemeToggle: React.FC = () => {
     </div>
   )
 }
-
-export default ThemeToggle

@@ -10,13 +10,13 @@ type option = {
   disabled?: boolean
 }
 
-interface RadioGroup {
+interface RadioGroupProps {
   name: string
   options: option[]
   asRow?: boolean
 }
 
-const RadioGroup: React.FC<RadioGroup> = ({ asRow = false, options, ...restProps }) => {
+export function RadioGroup({ asRow = false, options, ...restProps }: RadioGroupProps) {
   const [field] = useField(restProps)
 
   return (
@@ -48,5 +48,3 @@ const RadioGroup: React.FC<RadioGroup> = ({ asRow = false, options, ...restProps
     </div>
   )
 }
-
-export default RadioGroup

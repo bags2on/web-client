@@ -11,7 +11,7 @@ interface DrawerProps {
   children?: React.ReactNode
 }
 
-const Drawer: React.FC<DrawerProps> = ({ open, children, onClose, position = 'left' }) => {
+export function Drawer({ open, children, onClose, position = 'left' }: DrawerProps) {
   const [mounted, setMounted] = useState(false)
 
   const bodyContainerRef = useRef<HTMLElement | null>(null)
@@ -77,5 +77,3 @@ const Drawer: React.FC<DrawerProps> = ({ open, children, onClose, position = 'le
       )
     : null
 }
-
-export default Drawer

@@ -1,8 +1,8 @@
 import React from 'react'
-import Drawer from '@/shared/Drawer'
+import { Drawer } from '@/shared/Drawer'
 import { SidebarHead } from './SidebarHead/SidebarHead'
-import Navigation from './Navigation'
-import SocialLink from './SocialLink/SocialLink'
+import { Navigation } from './Navigation'
+import { SocialLink } from './SocialLink/SocialLink'
 import { LangSwitcher } from '@/components/LangSwitcher'
 import { useTranslation } from 'next-i18next'
 
@@ -13,7 +13,7 @@ interface SidebarProps {
   onClose(): void
 }
 
-const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
+export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const { t } = useTranslation()
 
   return (
@@ -32,5 +32,3 @@ const Sidebar: React.FC<SidebarProps> = ({ isOpen, onClose }) => {
     </Drawer>
   )
 }
-
-export default Sidebar

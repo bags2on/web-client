@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { Header } from '../Header'
 import { Footer } from '../Footer'
-import Sidebar from '../Sidebar/Sidebar'
+import { Sidebar } from '../Sidebar/Sidebar'
 import { Cart } from '../Cart'
 import { useCartStore } from '@/store/cart'
 import { useFavoriteStore } from '@/store/favorite'
 import { useUiStore } from '@/store/ui'
 import { useUserStore } from '@/store/user'
 
-interface RootLayoutProps {
+interface AppLayoutProps {
   children: React.ReactNode
 }
 
-const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
+export function AppLayout({ children }: AppLayoutProps) {
   const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
   const [isCartOpen, setCartOpen] = useState<boolean>(false)
 
@@ -49,5 +49,3 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
     </>
   )
 }
-
-export default RootLayout

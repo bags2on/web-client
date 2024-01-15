@@ -67,7 +67,7 @@ const VirtualizedList = ({
   )
 }
 
-const Warehouses: React.FC<WarehousesProps> = ({ cityId, onSelect }) => {
+export function Warehouses({ cityId, onSelect }: WarehousesProps) {
   const [warehouses, setWarehouses] = useState<WarehousesOption[]>([])
   const [selectValue, setSelectValue] = useState<WarehousesOption | null>(null)
   const [loading, setLoading] = useState<boolean>(false)
@@ -157,5 +157,3 @@ const Warehouses: React.FC<WarehousesProps> = ({ cityId, onSelect }) => {
     </div>
   )
 }
-
-export default Warehouses

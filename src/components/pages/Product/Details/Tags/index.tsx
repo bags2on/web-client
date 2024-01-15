@@ -7,7 +7,7 @@ interface TagsProps {
   tags: string[]
 }
 
-const Tags: React.FC<TagsProps> = ({ tags }) => {
+export function Tags({ tags }: TagsProps) {
   return (
     <ul className={styles.container}>
       {tags.map((tag: string, index: number) => (
@@ -24,5 +24,3 @@ const Tags: React.FC<TagsProps> = ({ tags }) => {
     </ul>
   )
 }
-
-export default Tags

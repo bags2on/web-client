@@ -1,7 +1,7 @@
 import React, { useRef } from 'react'
 import clsx from 'clsx'
 import styles from './IconButton.module.scss'
-import ScaleLoader from '@/shared/loaders/ScaleLoader'
+import { ScaleLoader } from '@/shared/loaders/ScaleLoader'
 
 interface IconButtonProps {
   to?: string
@@ -15,7 +15,7 @@ interface IconButtonProps {
   onClick?(event: React.MouseEvent<HTMLButtonElement>): void
 }
 
-const IconButton: React.FC<IconButtonProps> = ({
+export function IconButton({
   loading,
   children,
   darkLoader,
@@ -24,7 +24,7 @@ const IconButton: React.FC<IconButtonProps> = ({
   onClick,
   className,
   ...otherProps
-}) => {
+}: IconButtonProps) {
   const rippleEl = useRef<HTMLSpanElement | null>(null)
 
   const handleRippleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -64,5 +64,3 @@ const IconButton: React.FC<IconButtonProps> = ({
     </button>
   )
 }
-
-export default IconButton

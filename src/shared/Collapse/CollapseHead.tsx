@@ -10,7 +10,7 @@ interface CollapseHeadProps {
   onCollapse(): void
 }
 
-export const CollapseHead: React.FC<CollapseHeadProps> = ({ title, collapsed, onCollapse }) => {
+export function CollapseHead({ title, collapsed, onCollapse }: CollapseHeadProps) {
   return (
     <div onClick={onCollapse} className={styles.groupHead}>
       <span>{title}</span>

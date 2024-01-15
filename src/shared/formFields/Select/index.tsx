@@ -13,8 +13,6 @@ interface SelectProps {
   //   options?: Promise<Option[]>
 }
 
-const Select: React.FC<SelectProps> = ({ options, disabled }) => {
+export function Select({ options, disabled }: SelectProps) {
   return <AsyncSelect isDisabled={disabled} options={options} />
 }
-
-export default Select

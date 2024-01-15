@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import Button from '@/shared/Button'
+import { Button } from '@/shared/Button'
 import EmptyCartIcon from '../../../../../public/assets/emptycart.svg'
 import ArrowIcon from '../../../../../public/assets/icons/expand-arrow.svg'
 

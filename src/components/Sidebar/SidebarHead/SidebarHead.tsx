@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import ThemeToggle from '@/shared/ThemeToggle'
+import { ThemeToggle } from '@/shared/ThemeToggle'
 
 import styles from './SidebarHead.module.scss'
 

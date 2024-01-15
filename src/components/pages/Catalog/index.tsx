@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
-import Button from '@/shared/Button'
+import FilterIcon from '../../../../public/assets/icons/filter.svg'
+import { Button } from '@/shared/Button'
 import { Filters } from './Filters/Filters'
 import { Products } from './Products/Products'
-import ScaleLoader from '@/shared/loaders/ScaleLoader'
-import ErrorPlug from '@/shared/ErrorPlug'
-import FilterIcon from '../../../../public/assets/icons/filter.svg'
+import { ScaleLoader } from '@/shared/loaders/ScaleLoader'
+import { ErrorPlug } from '@/shared/ErrorPlug'
 import { useLazyQuery } from '@apollo/client'
 import {
   AllProductsDocument,
@@ -13,6 +13,7 @@ import {
   AllProductsQueryVariables
 } from '@/graphql/product/_gen_/products.query'
 import { CategoryType, Gender, MainTag, PriceRange } from '@/graphql/types'
+
 import classes from './Catalog.module.scss'
 // import { routeNames } from '@/utils/navigation'
 
@@ -62,7 +63,7 @@ function getQueryValues(values: FilterValues): queryValues {
   }
 }
 
-export function Catalog() {
+export function CatalogIndex() {
   // const { page } = useParams<ParamTypes>()
 
   const page = 1

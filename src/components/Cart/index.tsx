@@ -1,5 +1,5 @@
 import React from 'react'
-import Drawer from '@/shared/Drawer'
+import { Drawer } from '@/shared/Drawer'
 import { CartItems } from './CartItems/CartItems'
 import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'

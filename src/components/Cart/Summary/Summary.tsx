@@ -1,6 +1,6 @@
 import React from 'react'
-import Button from '@/shared/Button'
-import Skeleton from './Skeleton'
+import { Button } from '@/shared/Button'
+import { Skeleton } from './Skeleton'
 import { formatPrice } from '@/utils/helper'
 import { useCartStore } from '@/store/cart'
 import { useTranslation } from 'next-i18next'

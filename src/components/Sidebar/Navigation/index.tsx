@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import Badge from '@/shared/Badge'
+import { Badge } from '@/shared/Badge'
 import HomeIcon from '../../../../public/assets/icons/home.svg'
 import UserIcon from '../../../../public/assets/icons/user.svg'
 import HeartIcon from '../../../../public/assets/icons/heart_2.svg'
@@ -58,7 +58,7 @@ const drawerItems: DrawerItem[] = [
   }
 ]
 
-const Navigation: React.FC<SidebarNavListProps> = ({ onClose }) => {
+export function Navigation({ onClose }: SidebarNavListProps) {
   const router = useRouter()
 
   const isAuthenticated = useUserStore((state) => state.isAuthenticated)
@@ -98,5 +98,3 @@ const Navigation: React.FC<SidebarNavListProps> = ({ onClose }) => {
     </ul>
   )
 }
-
-export default Navigation

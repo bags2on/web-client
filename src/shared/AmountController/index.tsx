@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import IconButton from '@/shared/IconButton'
+import { IconButton } from '@/shared/IconButton'
 import PlusIcon from '../../../public/assets/icons/plus.svg'
 import MinusIcon from '../../../public/assets/icons/minus.svg'
 
@@ -13,7 +13,7 @@ interface AddSubInputProps {
   onChange(type: 'add' | 'sub', n: number): void
 }
 
-const AmountController: React.FC<AddSubInputProps> = ({ min, max, amount, onChange }) => {
+export function AmountController({ min, max, amount, onChange }: AddSubInputProps) {
   const handleAddClick = (): void => {
     if (amount >= Number(max)) return
     onChange('add', amount + 1)
@@ -54,5 +54,3 @@ const AmountController: React.FC<AddSubInputProps> = ({ min, max, amount, onChan
     </div>
   )
 }
-
-export default AmountController

@@ -1,5 +1,5 @@
 import React from 'react'
-import Button from '@/shared/Button'
+import { Button } from '@/shared/Button'
 import styles from './ContinueButton.module.scss'
 
 interface ContinueButtonProps {

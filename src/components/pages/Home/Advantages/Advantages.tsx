@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next'
 
 import styles from './Advantages.module.scss'
 
-const Advantages: React.FC = () => {
+export function Advantages() {
   const { t } = useTranslation('home')
 
   const items = [
@@ -56,5 +56,3 @@ const Advantages: React.FC = () => {
     </>
   )
 }
-
-export default Advantages

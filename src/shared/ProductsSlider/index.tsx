@@ -7,7 +7,7 @@ interface ProductsSliderProps {
   children?: React.ReactNode
 }
 
-const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children }) => {
+export function ProductsSlider({ speed = 1000, children }: ProductsSliderProps) {
   return (
     <Swiper
       loop
@@ -60,5 +60,3 @@ const ProductsSlider: React.FC<ProductsSliderProps> = ({ speed = 1000, children 
     </Swiper>
   )
 }
-
-export default ProductsSlider

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import LinkBadge from '@/shared/LinkBadge'
+import { LinkBadge } from '@/shared/LinkBadge'
 import { useTranslation } from 'next-i18next'
 import { routeNames } from '@/utils/navigation'
 

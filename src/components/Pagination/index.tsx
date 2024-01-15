@@ -9,7 +9,7 @@ interface PaginationProps {
   route: string
 }
 
-const Pagination: React.FC<PaginationProps> = ({ total, currentPage, route }) => {
+export function Pagination({ total, currentPage, route }: PaginationProps) {
   const [current, setCurrent] = useState<number>(currentPage > total ? total : currentPage)
   const [items, setItems] = useState<(string | number)[]>([])
 
@@ -84,5 +84,3 @@ const Pagination: React.FC<PaginationProps> = ({ total, currentPage, route }) =>
     </section>
   )
 }
-
-export default Pagination

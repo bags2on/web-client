@@ -1,5 +1,5 @@
 import React from 'react'
-import ProductItem from '@/components/ProductItem'
+import { ProductItem } from '@/components/ProductItem'
 import { useTranslation } from 'next-i18next'
 
 import styles from './Featured.module.scss'
@@ -18,7 +18,7 @@ interface FeaturedProps {
   products: Array<ProductType>
 }
 
-const Featured: React.FC<FeaturedProps> = ({ products }) => {
+export function Featured({ products }: FeaturedProps) {
   const { t } = useTranslation()
 
   return (
@@ -44,5 +44,3 @@ const Featured: React.FC<FeaturedProps> = ({ products }) => {
     </section>
   )
 }
-
-export default Featured

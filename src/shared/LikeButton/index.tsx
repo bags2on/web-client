@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import IconButton from '@/shared/IconButton'
+import { IconButton } from '@/shared/IconButton'
 
 import styles from './LikeButton.module.scss'
 

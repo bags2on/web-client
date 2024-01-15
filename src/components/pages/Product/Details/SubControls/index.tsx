@@ -1,10 +1,10 @@
 import React from 'react'
 import clsx from 'clsx'
-import Button from '@/shared/Button'
-import { LikeButton } from '@/shared/LikeButton'
-import { useFavoriteStore } from '@/store/favorite'
 import CommentIcon from '../../../../../../public/assets/icons/comment.svg'
 import ShareIcon from '../../../../../../public/assets/icons/share.svg'
+import { Button } from '@/shared/Button'
+import { LikeButton } from '@/shared/LikeButton'
+import { useFavoriteStore } from '@/store/favorite'
 
 import styles from './SubControls.module.scss'
 
@@ -12,7 +12,7 @@ interface SubControlsProps {
   productId: string
 }
 
-const SubControls: React.FC<SubControlsProps> = ({ productId }) => {
+export function SubControls({ productId }: SubControlsProps) {
   const favoriteItems = useFavoriteStore((state) => state.favoriteItems)
   const addToFavorite = useFavoriteStore((state) => state.add)
   const removeFavorite = useFavoriteStore((state) => state.remove)
@@ -65,5 +65,3 @@ const SubControls: React.FC<SubControlsProps> = ({ productId }) => {
     </div>
   )
 }
-
-export default SubControls

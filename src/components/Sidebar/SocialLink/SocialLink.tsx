@@ -4,7 +4,7 @@ import TelegramIcon from '../../../../public/assets/icons/telegram.svg'
 
 import styles from './SocialLink.module.scss'
 
-const SocialLink: React.FC = () => {
+export function SocialLink() {
   return (
     <a href={'https://t.me/' + process.env.NEXT_PUBLIC_TELEGRAM_USERNAME} className={styles.link}>
       <p className={styles.title}>
@@ -18,5 +18,3 @@ const SocialLink: React.FC = () => {
     </a>
   )
 }
-
-export default SocialLink

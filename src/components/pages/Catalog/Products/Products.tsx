@@ -1,7 +1,7 @@
 import React from 'react'
-import Button from '@/shared/Button'
-import ProductItem from '@/components/ProductItem'
-import Pagination from '@/components/Pagination'
+import { Button } from '@/shared/Button'
+import { ProductItem } from '@/components/ProductItem'
+import { Pagination } from '@/components/Pagination'
 import { routeNames } from '@/utils/navigation'
 import { useFavoriteStore } from '@/store/favorite'
 
