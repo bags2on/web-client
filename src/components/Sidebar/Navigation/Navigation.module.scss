@@ -1,8 +1,7 @@
 .navList {
   margin: 0;
-  padding: 0;
-  padding-left: 10px;
-  padding-top: 20px;
+  padding: 15px 7px;
+  padding-top: 7px;
 }
 
 .listItem {
@@ -11,10 +10,8 @@
   align-items: center;
   padding: 11px 5px 11px 10px;
   border-radius: 10px;
-  transition: background-color 0.3s;
-  &:last-child {
-    margin-bottom: 15px;
-  }
+  transition: background-color 0.2s;
+
   &:hover {
     background-color: #ededed; // dark #353535
   }
@@ -26,7 +23,7 @@
 }
 
 .text {
-  margin-left: 15px;
+  margin-left: 17px;
   & > p {
     margin: 0;
     font-size: 18px;
