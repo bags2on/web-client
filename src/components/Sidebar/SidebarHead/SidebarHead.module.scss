@@ -1,14 +1,11 @@
 .container {
   position: relative;
-  padding: 70px 0 30px 20px;
-  background-color: #1e1e1e;
-  border-bottom: 1px #aeaeae solid;
-  @include _minLG {
-    padding-top: 60px;
-  }
+  padding: 50px 0 25px 20px;
+  background-color: #141414;
 }
 
 .logoWrapper {
+  user-select: none;
   width: 190px;
   & > img {
     width: 100%;
@@ -19,6 +16,6 @@
 .themeSwitcher {
   position: absolute;
   padding: 0;
-  top: 15px;
+  top: 10px;
   right: 18px;
 }
