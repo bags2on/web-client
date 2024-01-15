@@ -65,8 +65,18 @@ export function useCartProductsLazyQuery(
     options
   )
 }
+export function useCartProductsSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<CartProductsQuery, CartProductsQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<CartProductsQuery, CartProductsQueryVariables>(
+    CartProductsDocument,
+    options
+  )
+}
 export type CartProductsQueryHookResult = ReturnType<typeof useCartProductsQuery>
 export type CartProductsLazyQueryHookResult = ReturnType<typeof useCartProductsLazyQuery>
+export type CartProductsSuspenseQueryHookResult = ReturnType<typeof useCartProductsSuspenseQuery>
 export type CartProductsQueryResult = Apollo.QueryResult<
   CartProductsQuery,
   CartProductsQueryVariables

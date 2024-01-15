@@ -36,7 +36,7 @@ export type CartItemType = {
   id: Scalars['String']['output']
 }
 
-export enum CategoryType {
+export const enum CategoryType {
   Backpack = 'BACKPACK',
   Bag = 'BAG',
   Other = 'OTHER',
@@ -49,7 +49,7 @@ export type DeleteProductResponse = {
   message: Scalars['String']['output']
 }
 
-export enum Gender {
+export const enum Gender {
   Female = 'FEMALE',
   Male = 'MALE',
   Unisex = 'UNISEX'
@@ -82,7 +82,7 @@ export type LogInRsponse = {
   token: Scalars['String']['output']
 }
 
-export enum MainTag {
+export const enum MainTag {
   New = 'NEW',
   Stock = 'STOCK',
   Top = 'TOP'
@@ -276,7 +276,7 @@ export type QuerySearchProductByNameArgs = {
   input: Scalars['String']['input']
 }
 
-export enum Role {
+export const enum Role {
   Admin = 'ADMIN',
   Customer = 'CUSTOMER'
 }

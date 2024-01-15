@@ -79,6 +79,16 @@ export function useGetHomeDataLazyQuery(
     options
   )
 }
+export function useGetHomeDataSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<GetHomeDataQuery, GetHomeDataQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<GetHomeDataQuery, GetHomeDataQueryVariables>(
+    GetHomeDataDocument,
+    options
+  )
+}
 export type GetHomeDataQueryHookResult = ReturnType<typeof useGetHomeDataQuery>
 export type GetHomeDataLazyQueryHookResult = ReturnType<typeof useGetHomeDataLazyQuery>
+export type GetHomeDataSuspenseQueryHookResult = ReturnType<typeof useGetHomeDataSuspenseQuery>
 export type GetHomeDataQueryResult = Apollo.QueryResult<GetHomeDataQuery, GetHomeDataQueryVariables>

@@ -91,6 +91,16 @@ export function useGetProductLazyQuery(
   const options = { ...defaultOptions, ...baseOptions }
   return Apollo.useLazyQuery<GetProductQuery, GetProductQueryVariables>(GetProductDocument, options)
 }
+export function useGetProductSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<GetProductQuery, GetProductQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<GetProductQuery, GetProductQueryVariables>(
+    GetProductDocument,
+    options
+  )
+}
 export type GetProductQueryHookResult = ReturnType<typeof useGetProductQuery>
 export type GetProductLazyQueryHookResult = ReturnType<typeof useGetProductLazyQuery>
+export type GetProductSuspenseQueryHookResult = ReturnType<typeof useGetProductSuspenseQuery>
 export type GetProductQueryResult = Apollo.QueryResult<GetProductQuery, GetProductQueryVariables>
