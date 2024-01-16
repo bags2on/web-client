@@ -122,7 +122,7 @@ export const Footer = memo(function Footer() {
         </div>
       </div>
       <div className={classes.subFooter}>
-        <span>{process.env.NEXT_PUBLIC_APP_NAME} © 2023</span>
+        <span>{process.env.NEXT_PUBLIC_APP_NAME} © 2024</span>
       </div>
     </footer>
   )
