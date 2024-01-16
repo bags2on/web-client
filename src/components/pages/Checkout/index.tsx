@@ -13,6 +13,7 @@ import { usePageState } from './usePageState'
 import { CheckoutOrderSchema, CheckoutOrderType } from '@/utils/formValidationSchema'
 
 import styles from './Checkout.module.scss'
+import { useCartStore } from '@/store/cart'
 
 export function CheckoutIndex() {
   const router = useRouter()
@@ -26,16 +27,17 @@ export function CheckoutIndex() {
   const [isOrderSuccess, setOrderSuccess] = useState<boolean>(false)
   const [orderErr, setOrderErr] = useState<boolean>(false)
 
+  const cartItems = useCartStore((state) => state.cartItems)
+
   const [createOrder, { loading }] = useMutation(CREATE_ORDER)
 
   useEffect(() => {
-    const data = JSON.parse(window.localStorage.getItem('cart_products') || '[]')
-    if (!data.length) {
+    if (!cartItems.length) {
       router.back()
     } else {
       dispatch.dataSynced()
     }
-  }, [router, dispatch])
+  }, [router, dispatch, cartItems])
 
   const handleInfoEditOpen = (): void => {
     dispatch.openInfo()
