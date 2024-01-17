@@ -2,8 +2,8 @@ import React from 'react'
 import clsx from 'clsx'
 import { StepTitle } from '../common/StepTitle'
 import { ContinueButton } from '../common/ContinueButton'
-import { TextInput } from '@/shared/formFields/TextInput/TextInput'
-import { PhoneInput } from '@/shared/formFields/PhoneInput'
+import { TextInput } from '@/components/ui/TextInput'
+import { PhoneInput } from '@/components/ui/PhoneInput'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
 
@@ -36,24 +36,20 @@ export function CustomerInfo({ isEdit, onEdit, onContinue }: CustomerInfoProps) 
           [styles.animatedOpen]: isEdit
         })}
       >
-        <div className={styles.fields}>
-          <div className={styles.field}>
-            <span>Имя</span>
-            <TextInput name="name" />
-          </div>
-          <div className={styles.field}>
-            <span>Фамилия</span>
-            <TextInput name="surname" />
-          </div>
-          <div className={styles.field}>
-            <span>Телефон</span>
-            <PhoneInput name="phone" />
-          </div>
-          <div className={styles.field}>
-            <span>E-mail</span>
-            <TextInput name="email" type="email" />
-          </div>
-        </div>
+        <ul className={styles.fields}>
+          <li>
+            <TextInput name="name" label="Имя" />
+          </li>
+          <li>
+            <TextInput name="surname" label="Фамилия" />
+          </li>
+          <li>
+            <PhoneInput name="phone" label="Телефон" />
+          </li>
+          <li>
+            <TextInput name="email" type="email" label="E-mail" />
+          </li>
+        </ul>
         <ContinueButton disabled={!isValuesValid} onClick={handleNextClick}>
           Продолжить
         </ContinueButton>
