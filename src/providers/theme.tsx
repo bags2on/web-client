@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 const themes = {
   light: 'light',
   dark: 'dark'
-}
+} as const
 
 export type ThemeType = keyof typeof themes
 
