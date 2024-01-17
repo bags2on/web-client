@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@/shared/Button'
+import { Button } from '@/components/ui/Button'
 import { Skeleton } from './Skeleton'
 import { formatPrice } from '@/utils/helper'
 import { useCartStore } from '@/store/cart'

@@ -2,7 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import CommentIcon from '../../../../../../public/assets/icons/comment.svg'
 import ShareIcon from '../../../../../../public/assets/icons/share.svg'
-import { Button } from '@/shared/Button'
+import { Button } from '@/components/ui/Button'
 import { LikeButton } from '@/shared/LikeButton'
 import { useFavoriteStore } from '@/store/favorite'
 

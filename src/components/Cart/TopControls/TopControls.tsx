@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { Button } from '@/shared/Button'
+import { Button } from '@/components/ui/Button'
 import { IconButton } from '@/shared/IconButton'
 import CrossIcon from '../../../../public/assets/icons/cross.svg'
 import TrashIcon from '../../../../public/assets/icons/trash.svg'

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@/shared/Button'
+import { Button } from '@/components/ui/Button'
 import { ProductItem } from '@/components/ProductItem'
 import { Pagination } from '@/components/Pagination'
 import { routeNames } from '@/utils/navigation'

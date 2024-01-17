@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { Modal } from '@/components/Modal'
-import { Button } from '@/shared/Button'
+import { Button } from '@/components/ui/Button'
 import LetterCheckIcon from '../../../../../../public/assets/letter-check.svg'
 import LetterIcon from '../../../../../../public/assets/icons/letter.svg'
 import LocationIcon from '../../../../../../public/assets/icons/location.svg'

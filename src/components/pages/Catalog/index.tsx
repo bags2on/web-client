@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import FilterIcon from '../../../../public/assets/icons/filter.svg'
-import { Button } from '@/shared/Button'
+import { Button } from '@/components/ui/Button'
 import { Filters } from './Filters/Filters'
 import { Products } from './Products/Products'
 import { ScaleLoader } from '@/shared/loaders/ScaleLoader'

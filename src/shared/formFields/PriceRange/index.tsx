@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Slider from 'rc-slider'
-import { Button } from '@/shared/Button'
+import { Button } from '@/components/ui/Button'
 import { Collapse, CollapseHead } from '@/shared/Collapse'
 import { useFormikContext } from 'formik'
 import type { SliderProps } from 'rc-slider'

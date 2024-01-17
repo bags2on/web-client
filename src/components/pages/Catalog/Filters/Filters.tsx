@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button } from '@/shared/Button'
+import { Button } from '@/components/ui/Button'
 import { RadioGroup } from '@/shared/formFields/RadioGroup'
 import { CheckBoxGroup } from '@/shared/formFields/CheckboxGroup'
 import { PriceRange } from '@/shared/formFields/PriceRange'

@@ -32,8 +32,10 @@ export function CheckoutIndex() {
   const [createOrder, { loading }] = useMutation(CREATE_ORDER)
 
   useEffect(() => {
+    console.log(cartItems)
+
     if (!cartItems.length) {
-      router.back()
+      // router.back()
     } else {
       dispatch.dataSynced()
     }
