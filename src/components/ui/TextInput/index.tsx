@@ -8,6 +8,7 @@ export interface TextInputProps {
   name: string
   type?: string
   rows?: number
+  label?: string
   disabled?: boolean
   multiline?: boolean
   maxLength?: number
@@ -23,6 +24,7 @@ export function TextInput({
   hideErrorMessage = false,
   type = 'text',
   multiline = false,
+  label,
   ...restProps
 }: TextInputProps) {
   const [field, meta] = useField(restProps)
@@ -31,6 +33,7 @@ export function TextInput({
 
   return (
     <div>
+      {label && <span className={styles.label}>{label}</span>}
       {multiline ? (
         <textarea
           {...field}

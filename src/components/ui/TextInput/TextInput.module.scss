@@ -1,3 +1,12 @@
+.label {
+  font-size: 15px;
+  color: #4a4a4a;
+  font-weight: 500;
+  padding-left: 4px;
+  margin-bottom: 5px;
+  user-select: none;
+}
+
 .base {
   font: inherit;
   display: block;
@@ -16,7 +25,7 @@
   background-color: #fff; // dark #434343
   color: #3c4144; // dark #fff
   border: 1px solid;
-  border-color: #c5c5c5;
+  border-color: #e3e3e3;
   -webkit-tap-highlight-color: transparent;
   transition: all 0.2s;
 
