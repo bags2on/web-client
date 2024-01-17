@@ -8,7 +8,7 @@
   line-height: 18px;
   font-weight: 500;
   padding: 15px 30px;
-  border-radius: 8px;
+  border-radius: 14px;
   border: 1px solid;
   transition: all 0.3s;
   user-select: none;
@@ -52,11 +52,22 @@
   background-color: #fff128;
 }
 
-.success {
-  color: #343434;
-  background-color: #32cd32;
-  &:hover:not(:disabled) {
-    background-color: #45ff45;
+.accept {
+  color: #fff;
+  border: none;
+  background-color: var(--green-light);
+  font-weight: 600;
+
+  @media (hover: none) {
+    &:active:not(:disabled) {
+      background-color: #38e938;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background-color: #38e938;
+    }
   }
 }
 

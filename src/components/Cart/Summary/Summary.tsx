@@ -31,12 +31,7 @@ export function Summary({ isLoading, onCheckout }: SummaryProps) {
           <span>{t('cart.total')}:</span>
           <b>{formatPrice(cartPrice)}&nbsp;грн.</b>
         </p>
-        <Button
-          fullWidth
-          color="secondary"
-          onClick={handleButtonClick}
-          className={styles.orderButton}
-        >
+        <Button color="accept" fullWidth onClick={handleButtonClick}>
           {t('cart.makeOrder')}
         </Button>
       </div>

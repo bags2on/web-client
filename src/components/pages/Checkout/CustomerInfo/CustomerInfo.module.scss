@@ -48,6 +48,12 @@
   }
 }
 
+.continueButton {
+  @include _minLG {
+    display: none;
+  }
+}
+
 .divider {
   @include _minLG {
     margin-top: 15px;

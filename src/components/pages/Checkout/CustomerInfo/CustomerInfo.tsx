@@ -1,7 +1,7 @@
 import React from 'react'
 import clsx from 'clsx'
 import { StepTitle } from '../common/StepTitle'
-import { ContinueButton } from '../common/ContinueButton'
+import { Button } from '@/components/ui/Button'
 import { TextInput } from '@/components/ui/TextInput'
 import { PhoneInput } from '@/components/ui/PhoneInput'
 import { useFormikContext } from 'formik'
@@ -50,9 +50,15 @@ export function CustomerInfo({ isEdit, onEdit, onContinue }: CustomerInfoProps) 
             <TextInput name="email" type="email" label="E-mail" />
           </li>
         </ul>
-        <ContinueButton disabled={!isValuesValid} onClick={handleNextClick}>
+        <Button
+          color="accept"
+          fullWidth
+          disabled={!isValuesValid}
+          onClick={handleNextClick}
+          className={styles.continueButton}
+        >
           Продолжить
-        </ContinueButton>
+        </Button>
       </div>
       <div className={styles.divider} />
     </section>

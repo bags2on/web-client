@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { StepTitle } from '../common/StepTitle'
-import { ContinueButton } from '../common/ContinueButton'
+import { Button } from '@/components/ui/Button'
 import { SomethingWrongModal } from '../Modals/SomethingWrong'
 import { useElementSize } from '@/hooks'
 import { Field, useFormikContext } from 'formik'
@@ -123,9 +123,15 @@ export function Delivery({ isEdit, onEdit, onContinue }: DeliveryProps) {
             <UkrPoshta />
           </ShowService>
           {/*  */}
-          <ContinueButton disabled={!isValuesValid} onClick={onContinue}>
+          <Button
+            color="accept"
+            fullWidth
+            disabled={!isValuesValid}
+            onClick={onContinue}
+            className={styles.continueButton}
+          >
             Продолжить
-          </ContinueButton>
+          </Button>
         </div>
       </div>
       <SomethingWrongModal open={areasError} />

@@ -37,7 +37,7 @@ export function Summary({ loading, submitLoading, orderCreationErr }: SummaryPro
       </div>
       <Button
         fullWidth
-        color="secondary"
+        color="accept"
         type="submit"
         loading={submitLoading || loading}
         disabled={submitLoading || loading}

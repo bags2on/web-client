@@ -121,3 +121,9 @@
     background-color: rgb(149 149 149 / 20%);
   }
 }
+
+.continueButton {
+  @include _minLG {
+    display: none;
+  }
+}

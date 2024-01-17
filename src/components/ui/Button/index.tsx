@@ -6,14 +6,14 @@ import styles from './Button.module.scss'
 const enum ButtonColor {
   primary = 'primary',
   secondary = 'secondary',
-  success = 'success',
+  accept = 'accept',
   danger = 'danger'
 }
 
 interface ButtonProps {
   to?: string
   type?: 'button' | 'reset' | 'submit'
-  color?: 'primary' | 'secondary' | 'success' | 'danger'
+  color?: keyof typeof ButtonColor
   children: React.ReactNode
   startIcon?: React.ReactNode
   endIcon?: React.ReactNode
@@ -48,8 +48,8 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button
     case ButtonColor.secondary:
       colorClass = styles.secondary
       break
-    case ButtonColor.success:
-      colorClass = styles.success
+    case ButtonColor.accept:
+      colorClass = styles.accept
       break
     case ButtonColor.danger:
       colorClass = styles.danger
