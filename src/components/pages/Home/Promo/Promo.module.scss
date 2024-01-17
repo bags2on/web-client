@@ -75,13 +75,11 @@
   font-weight: 500;
   padding: 8px 10px;
   border-radius: 14px;
-  border: 1px solid #343434;
-  color: #343434;
+  border: 1px solid #232323;
   transition: all 0.2s;
-  background-color: transparent;
+  color: #fff;
+  background-color: #232323;
   @include _minTablet {
-    color: #fff;
-    background-color: #343434;
     &:hover {
       color: #343434;
       background-color: transparent;
