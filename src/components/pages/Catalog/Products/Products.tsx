@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button } from '@/components/ui/Button'
 import { ProductItem } from '@/components/ProductItem'
-import { Pagination } from '@/components/Pagination'
-import { routeNames } from '@/utils/navigation'
+import { Pagination } from '@/components/ui/Pagination'
+// import { routeNames } from '@/utils/navigation'
 import { useFavoriteStore } from '@/store/favorite'
 
 import styles from './Products.module.scss'
@@ -32,6 +32,10 @@ export function Products({
   onActionButtonClick
 }: ProductsProps) {
   const favoriteItems = useFavoriteStore((state) => state.favoriteItems)
+
+  const handlePagination = (page: number) => {
+    console.log(`go page ${page}`)
+  }
 
   if (products === undefined) return null
 
@@ -73,7 +77,7 @@ export function Products({
         })}
       </ul>
       <div className={styles.paginationWrapper}>
-        <Pagination route={routeNames.catalog} total={totalPages} currentPage={currentPage} />
+        <Pagination total={totalPages} currentPage={currentPage} onChange={handlePagination} />
       </div>
     </div>
   )
