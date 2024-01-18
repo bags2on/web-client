@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import classes from './Footer.module.scss'
 import clsx from 'clsx'
 import Link from 'next/link'
@@ -6,7 +6,7 @@ import Image from 'next/image'
 import PhoneIcon from '../../../public/assets/icons/phone.svg'
 import TelegramIcon from '../../../public/assets/icons/telegram.svg'
 
-const Footer: React.FC = () => {
+export const Footer = memo(function Footer() {
   return (
     <footer className={classes.wrapper}>
       <div className={classes.root}>
@@ -122,10 +122,8 @@ const Footer: React.FC = () => {
         </div>
       </div>
       <div className={classes.subFooter}>
-        <span>{process.env.NEXT_PUBLIC_APP_NAME} © 2023</span>
+        <span>{process.env.NEXT_PUBLIC_APP_NAME} © 2024</span>
       </div>
     </footer>
   )
-}
-
-export default React.memo(Footer)
+})

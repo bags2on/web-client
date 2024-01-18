@@ -8,7 +8,7 @@ export interface ImagePlaceholderProps {
   altText: string
 }
 
-const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText }) => {
+export function ImagePlaceholder({ src, altText }: ImagePlaceholderProps) {
   const [loading, setLoading] = useState(true)
 
   const plug = (
@@ -38,5 +38,3 @@ const ImagePlaceholder: React.FC<ImagePlaceholderProps> = ({ src, altText }) => 
     </div>
   )
 }
-
-export default ImagePlaceholder

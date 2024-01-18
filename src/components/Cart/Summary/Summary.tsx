@@ -1,6 +1,6 @@
 import React from 'react'
-import Button from '@/shared/Button'
-import Skeleton from './Skeleton'
+import { Button } from '@/components/ui/Button'
+import { Skeleton } from './Skeleton'
 import { formatPrice } from '@/utils/helper'
 import { useCartStore } from '@/store/cart'
 import { useTranslation } from 'next-i18next'
@@ -12,7 +12,7 @@ interface SummaryProps {
   onCheckout(): void
 }
 
-const Summary: React.FC<SummaryProps> = ({ isLoading, onCheckout }) => {
+export function Summary({ isLoading, onCheckout }: SummaryProps) {
   const cartPrice = useCartStore((state) => state.cartPrice)
   const { t } = useTranslation()
 
@@ -31,17 +31,10 @@ const Summary: React.FC<SummaryProps> = ({ isLoading, onCheckout }) => {
           <span>{t('cart.total')}:</span>
           <b>{formatPrice(cartPrice)}&nbsp;грн.</b>
         </p>
-        <Button
-          fullWidth
-          color="secondary"
-          onClick={handleButtonClick}
-          className={styles.orderButton}
-        >
+        <Button color="accept" fullWidth onClick={handleButtonClick}>
           {t('cart.makeOrder')}
         </Button>
       </div>
     </div>
   )
 }
-
-export default Summary

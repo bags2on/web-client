@@ -6,7 +6,7 @@ interface AutoSaveProps {
   onSave(values: any): void
 }
 
-const AutoSave: React.FC<AutoSaveProps> = ({ onSave }) => {
+export function AutoSave({ onSave }: AutoSaveProps) {
   const { values } = useFormikContext()
   const [mount, setMount] = useState(false)
 
@@ -20,5 +20,3 @@ const AutoSave: React.FC<AutoSaveProps> = ({ onSave }) => {
 
   return null
 }
-
-export default AutoSave

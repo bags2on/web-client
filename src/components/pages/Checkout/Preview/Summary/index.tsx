@@ -1,9 +1,9 @@
 import React from 'react'
 import styles from './Summary.module.scss'
-import Button from '@/shared/Button'
+import ContentLoader from 'react-content-loader'
+import { Button } from '@/components/ui/Button'
 import { useCartStore } from '@/store/cart'
 import { formatPrice } from '@/utils/helper'
-import ContentLoader from 'react-content-loader'
 
 interface SummaryProps {
   loading: boolean
@@ -11,7 +11,7 @@ interface SummaryProps {
   orderCreationErr: boolean
 }
 
-const Summary: React.FC<SummaryProps> = ({ loading, submitLoading, orderCreationErr }) => {
+export function Summary({ loading, submitLoading, orderCreationErr }: SummaryProps) {
   const cartPrice = useCartStore((state) => state.cartPrice)
 
   return (
@@ -37,7 +37,7 @@ const Summary: React.FC<SummaryProps> = ({ loading, submitLoading, orderCreation
       </div>
       <Button
         fullWidth
-        color="secondary"
+        color="accept"
         type="submit"
         loading={submitLoading || loading}
         disabled={submitLoading || loading}
@@ -56,5 +56,3 @@ const Summary: React.FC<SummaryProps> = ({ loading, submitLoading, orderCreation
     </div>
   )
 }
-
-export default Summary

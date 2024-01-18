@@ -5,7 +5,7 @@ interface CollapseProps {
   children: React.ReactNode
 }
 
-const Collapse: React.FC<CollapseProps> = ({ open, children }) => {
+export function Collapse({ open, children }: CollapseProps) {
   const [height, setHeight] = useState<number | undefined>(open ? undefined : 0)
   const ref = useRef<HTMLDivElement>(null)
 
@@ -40,5 +40,3 @@ const Collapse: React.FC<CollapseProps> = ({ open, children }) => {
     </div>
   )
 }
-
-export default Collapse

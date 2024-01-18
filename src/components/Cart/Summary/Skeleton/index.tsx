@@ -2,7 +2,7 @@ import React from 'react'
 import ContentLoader from 'react-content-loader'
 import styles from '../Summary.module.scss'
 
-const Skeleton = () => {
+export function Skeleton() {
   return (
     <div className={styles.skeleton}>
       <ContentLoader
@@ -19,5 +19,3 @@ const Skeleton = () => {
     </div>
   )
 }
-
-export default Skeleton

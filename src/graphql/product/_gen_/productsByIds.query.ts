@@ -71,8 +71,18 @@ export function useProductsByIdLazyQuery(
     options
   )
 }
+export function useProductsByIdSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<ProductsByIdQuery, ProductsByIdQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<ProductsByIdQuery, ProductsByIdQueryVariables>(
+    ProductsByIdDocument,
+    options
+  )
+}
 export type ProductsByIdQueryHookResult = ReturnType<typeof useProductsByIdQuery>
 export type ProductsByIdLazyQueryHookResult = ReturnType<typeof useProductsByIdLazyQuery>
+export type ProductsByIdSuspenseQueryHookResult = ReturnType<typeof useProductsByIdSuspenseQuery>
 export type ProductsByIdQueryResult = Apollo.QueryResult<
   ProductsByIdQuery,
   ProductsByIdQueryVariables

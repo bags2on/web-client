@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import Header from '../Header'
-import Footer from '../Footer'
-import Sidebar from '../Sidebar/Sidebar'
-import Cart from '../Cart/Cart'
+import { Header } from '../Header'
+import { Footer } from '../Footer'
+import { Sidebar } from '@/components/Sidebar'
+import { Cart } from '../Cart'
 import { useCartStore } from '@/store/cart'
 import { useFavoriteStore } from '@/store/favorite'
 import { useUiStore } from '@/store/ui'
 import { useUserStore } from '@/store/user'
 
-interface RootLayoutProps {
+interface AppLayoutProps {
   children: React.ReactNode
 }
 
-const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
-  const [isDrawerOpen, setDrawerOpen] = useState<boolean>(false)
-  const [isCartOpen, setCartOpen] = useState<boolean>(false)
+export function AppLayout({ children }: AppLayoutProps) {
+  const [isSidebarOpen, setSidebarOpen] = useState(false)
+  const [isCartOpen, setCartOpen] = useState(false)
 
   useEffect(() => {
     useCartStore.persist.rehydrate()
@@ -24,11 +24,11 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
   }, [])
 
   const handleOpenDrawer = useCallback(() => {
-    setDrawerOpen(true)
+    setSidebarOpen(true)
   }, [])
 
   const handleCloseDrawer = useCallback(() => {
-    setDrawerOpen(false)
+    setSidebarOpen(false)
   }, [])
 
   const handleCartOpen = useCallback(() => {
@@ -41,7 +41,7 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
 
   return (
     <>
-      <Sidebar isOpen={isDrawerOpen} onClose={handleCloseDrawer} />
+      <Sidebar isOpen={isSidebarOpen} onClose={handleCloseDrawer} />
       <Cart isOpen={isCartOpen} onClose={handleCartClose} />
       <Header onCartOpen={handleCartOpen} onDrawerOpen={handleOpenDrawer} />
       <main>{children}</main>
@@ -49,5 +49,3 @@ const RootLayout: React.FC<RootLayoutProps> = ({ children }) => {
     </>
   )
 }
-
-export default RootLayout

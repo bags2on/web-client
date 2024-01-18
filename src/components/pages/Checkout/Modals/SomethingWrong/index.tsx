@@ -1,12 +1,10 @@
 import React from 'react'
-import Modal from '@/components/Modal'
+import { Modal } from '@/components/Modal'
 
-interface SomethingWrongProps {
+interface SomethingWrongModalProps {
   open: boolean
 }
 
-const SomethingWrong: React.FC<SomethingWrongProps> = ({ open }) => {
+export function SomethingWrongModal({ open }: SomethingWrongModalProps) {
   return <Modal open={false}>SomethingWrong Modal</Modal>
 }
-
-export default SomethingWrong

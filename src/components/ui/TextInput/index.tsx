@@ -4,10 +4,11 @@ import { useField } from 'formik'
 
 import styles from './TextInput.module.scss'
 
-interface TextInputProps {
+export interface TextInputProps {
   name: string
   type?: string
   rows?: number
+  label?: string
   disabled?: boolean
   multiline?: boolean
   maxLength?: number
@@ -18,19 +19,21 @@ interface TextInputProps {
   onChange?(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void
 }
 
-const TextInput: React.FC<TextInputProps> = ({
+export function TextInput({
   autoComplete = 'off',
   hideErrorMessage = false,
   type = 'text',
   multiline = false,
+  label,
   ...restProps
-}) => {
+}: TextInputProps) {
   const [field, meta] = useField(restProps)
 
   const isErr = meta.touched && !!meta.error
 
   return (
     <div>
+      {label && <span className={styles.label}>{label}</span>}
       {multiline ? (
         <textarea
           {...field}
@@ -55,5 +58,3 @@ const TextInput: React.FC<TextInputProps> = ({
     </div>
   )
 }
-
-export default TextInput

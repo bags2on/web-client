@@ -1,8 +1,7 @@
 import Head from 'next/head'
 import Modal from 'react-modal'
 import client from '../apollo/apollo'
-import type { AppProps } from 'next/app'
-import RootLayout from '@/components/RootLayout'
+import { AppLayout } from '@/components/AppLayout'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@/providers/theme'
 import SwiperCore from 'swiper'
@@ -10,6 +9,7 @@ import { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper/mod
 import { Montserrat } from 'next/font/google'
 import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../../next-i18next.config'
+import type { AppProps } from 'next/app'
 
 import '../../node_modules/modern-normalize/modern-normalize.css'
 import '@/styles/global.scss'
@@ -44,7 +44,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
       </Head>
       <ApolloProvider client={client}>
         <ThemeProvider>
-          <RootLayout>
+          <AppLayout>
             <style jsx global>
               {`
                 html {
@@ -53,7 +53,7 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
               `}
             </style>
             <Component {...pageProps} />
-          </RootLayout>
+          </AppLayout>
         </ThemeProvider>
       </ApolloProvider>
     </>

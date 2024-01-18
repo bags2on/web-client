@@ -3,7 +3,7 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next/types'
 import { i18n } from 'next-i18next'
 import getHomeData, { QueryResult } from './api/getHomeData'
 
-import Home from '../components/pages/Home'
+import { HomeIndex } from '../components/pages/Home'
 
 export const getStaticProps: GetStaticProps<{ homeData: QueryResult }> = async ({ locale }) => {
   if (process.env.NODE_ENV === 'development') {
@@ -20,7 +20,7 @@ export const getStaticProps: GetStaticProps<{ homeData: QueryResult }> = async (
   }
 }
 
-export default function HomeIndex({ homeData }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function Home({ homeData }: InferGetStaticPropsType<typeof getStaticProps>) {
   if (!homeData) {
     return (
       <div>
@@ -29,5 +29,5 @@ export default function HomeIndex({ homeData }: InferGetStaticPropsType<typeof g
     )
   }
 
-  return <Home sliderData={homeData.sliderData} featuredProducts={homeData.featuredProducts} />
+  return <HomeIndex sliderData={homeData.sliderData} featuredProducts={homeData.featuredProducts} />
 }

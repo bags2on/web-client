@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Tabs, TabContent } from '@/shared/Tabs'
-import Description from './Description'
+import { Description } from './Description'
 
 interface InfoProps {
   gender: string
@@ -10,7 +10,7 @@ interface InfoProps {
   color: string
 }
 
-const Info: React.FC<InfoProps> = ({ gender, description, dimensions, color, category }) => {
+export function Info({ gender, description, dimensions, color, category }: InfoProps) {
   const [activeTab, setActiveTab] = useState<number>(0)
 
   const handleTabChange = (tabIndex: number) => {
@@ -55,5 +55,3 @@ const Info: React.FC<InfoProps> = ({ gender, description, dimensions, color, cat
     </div>
   )
 }
-
-export default Info

@@ -6,7 +6,7 @@ interface NavButtonsProps {
   nextClassName: string
 }
 
-const NavButtons: React.FC<NavButtonsProps> = ({ prevClassName, nextClassName }) => {
+export function NavButtons({ prevClassName, nextClassName }: NavButtonsProps) {
   const swiper = useSwiper()
 
   const handlePrevClick = () => {
@@ -24,5 +24,3 @@ const NavButtons: React.FC<NavButtonsProps> = ({ prevClassName, nextClassName })
     </>
   )
 }
-
-export default NavButtons

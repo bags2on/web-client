@@ -9,7 +9,7 @@ interface RatingProps {
   starRating?: number
 }
 
-const Rating: React.FC<RatingProps> = ({ starsAmount = 5, starRating = 0 }) => {
+export function Rating({ starsAmount = 5, starRating = 0 }: RatingProps) {
   const [rating, setRating] = useState<number>(Math.round(starRating))
   const [interactValue, setInteractValue] = useState<number>(0)
 
@@ -53,5 +53,3 @@ const Rating: React.FC<RatingProps> = ({ starsAmount = 5, starRating = 0 }) => {
     </div>
   )
 }
-
-export default Rating

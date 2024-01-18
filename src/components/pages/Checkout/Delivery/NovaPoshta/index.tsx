@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useMemo } from 'react'
-import Warehouses from './Warehouses'
+import { Warehouses } from './Warehouses'
 import AsyncSelect from 'react-select/async'
 import { components, InputProps } from 'react-select'
-import RadioGroup from '@/shared/formFields/RadioGroup'
+import { RadioGroup } from '@/shared/formFields/RadioGroup'
 import { pupularCities, novaDeliveryTypeOptions } from '../data'
 import type { PopularCity } from '../Delivery'
 import { useFormikContext } from 'formik'
@@ -25,7 +25,7 @@ const SelectInput = (props: InputProps<CityOption, false>) => {
   return <components.Input {...props} autoComplete="chrome-off" />
 }
 
-const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
+export function NovaPoshta({ cities }: NovaPoshtaProps) {
   const [selectValue, setSelectValue] = useState<CityOption | null>(null)
   const { setFieldValue } = useFormikContext<CheckoutOrderType>()
 
@@ -150,5 +150,3 @@ const NovaPoshta: React.FC<NovaPoshtaProps> = ({ cities }) => {
     </div>
   )
 }
-
-export default NovaPoshta

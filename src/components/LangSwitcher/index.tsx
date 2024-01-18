@@ -8,7 +8,7 @@ const locales = {
   ru: 'Ru'
 }
 
-const LangSwitcher: React.FC = () => {
+export function LangSwitcher() {
   const router = useRouter()
   const { locale = 'ua', pathname, asPath, query } = router
 
@@ -27,8 +27,7 @@ const LangSwitcher: React.FC = () => {
           {locales[lang as keyof typeof locales]}
         </span>
       ))}
+      <div className={clsx(styles.island, locale === 'ua' && styles.ua)} />
     </div>
   )
 }
-
-export default LangSwitcher

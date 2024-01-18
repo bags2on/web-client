@@ -3,12 +3,12 @@ import clsx from 'clsx'
 
 import styles from './ScaleLoader.module.scss'
 
-interface LoaderProps {
+export interface ScaleLoaderProps {
   fallback?: boolean
   dark?: boolean
 }
 
-const ScaleLoader: React.FC<LoaderProps> = ({ fallback = false, dark }) => {
+export function ScaleLoader({ fallback = false, dark }: ScaleLoaderProps) {
   return (
     <svg
       className={clsx({
@@ -77,5 +77,3 @@ const ScaleLoader: React.FC<LoaderProps> = ({ fallback = false, dark }) => {
     </svg>
   )
 }
-
-export default ScaleLoader

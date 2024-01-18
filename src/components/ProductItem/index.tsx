@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
-import LikeButton from '@/shared/LikeButton'
-import IconButton from '@/shared/IconButton'
-import ImagePlaceholder from '@/shared/ImagePlaceholder'
+import { LikeButton } from '@/shared/LikeButton'
+import { IconButton } from '@/shared/IconButton'
+import { ImagePlaceholder } from '@/shared/ImagePlaceholder'
 import TrashIcon from '../../../public/assets/icons/trash.svg'
 import { formatPrice } from '@/utils/helper'
 import { useTranslation } from 'next-i18next'
@@ -27,7 +27,7 @@ interface ProductItemProps {
   withDelete?: boolean
 }
 
-const ProductItem: React.FC<ProductItemProps> = ({
+export function ProductItem({
   id,
   slug,
   url,
@@ -38,7 +38,7 @@ const ProductItem: React.FC<ProductItemProps> = ({
   basePrice,
   isFavorite,
   withDelete = false
-}) => {
+}: ProductItemProps) {
   const addToFavorite = useFavoriteStore((state) => state.add)
   const removeFavorite = useFavoriteStore((state) => state.remove)
 
@@ -122,5 +122,3 @@ const ProductItem: React.FC<ProductItemProps> = ({
     </div>
   )
 }
-
-export default ProductItem

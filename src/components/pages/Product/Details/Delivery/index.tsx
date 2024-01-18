@@ -8,7 +8,7 @@ interface DeliveryProps {
   free: boolean
 }
 
-const Delivery: React.FC<DeliveryProps> = ({ free }) => {
+export function Delivery({ free }: DeliveryProps) {
   return (
     <ul className={styles.container}>
       <li className={styles.deliveryItem}>
@@ -52,5 +52,3 @@ const Delivery: React.FC<DeliveryProps> = ({ free }) => {
     </ul>
   )
 }
-
-export default Delivery

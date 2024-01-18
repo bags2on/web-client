@@ -1,9 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
-import StepTitle from '../common/StepTitle'
-import ContinueButton from '../common/ContinueButton'
-import TextInput from '@/shared/formFields/TextInput/TextInput'
-import PhoneInput from '@/shared/formFields/PhoneInput'
+import { StepTitle } from '../common/StepTitle'
+import { Button } from '@/components/ui/Button'
+import { TextInput } from '@/components/ui/TextInput'
+import { PhoneInput } from '@/components/ui/PhoneInput'
 import { useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
 
@@ -15,7 +15,7 @@ interface CustomerInfoProps {
   onContinue(): void
 }
 
-const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue }) => {
+export function CustomerInfo({ isEdit, onEdit, onContinue }: CustomerInfoProps) {
   const { values } = useFormikContext<CheckoutOrderType>()
 
   const isValuesValid = Boolean(values.surname && values.name && values.phone && values.email)
@@ -36,31 +36,31 @@ const CustomerInfo: React.FC<CustomerInfoProps> = ({ isEdit, onEdit, onContinue 
           [styles.animatedOpen]: isEdit
         })}
       >
-        <div className={styles.fields}>
-          <div className={styles.field}>
-            <span>Имя</span>
-            <TextInput name="name" />
-          </div>
-          <div className={styles.field}>
-            <span>Фамилия</span>
-            <TextInput name="surname" />
-          </div>
-          <div className={styles.field}>
-            <span>Телефон</span>
-            <PhoneInput name="phone" />
-          </div>
-          <div className={styles.field}>
-            <span>E-mail</span>
-            <TextInput name="email" type="email" />
-          </div>
-        </div>
-        <ContinueButton disabled={!isValuesValid} onClick={handleNextClick}>
+        <ul className={styles.fields}>
+          <li>
+            <TextInput name="name" label="Имя" />
+          </li>
+          <li>
+            <TextInput name="surname" label="Фамилия" />
+          </li>
+          <li>
+            <PhoneInput name="phone" label="Телефон" />
+          </li>
+          <li>
+            <TextInput name="email" type="email" label="E-mail" />
+          </li>
+        </ul>
+        <Button
+          color="accept"
+          fullWidth
+          disabled={!isValuesValid}
+          onClick={handleNextClick}
+          className={styles.continueButton}
+        >
           Продолжить
-        </ContinueButton>
+        </Button>
       </div>
       <div className={styles.divider} />
     </section>
   )
 }
-
-export default CustomerInfo

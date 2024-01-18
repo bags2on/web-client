@@ -3,7 +3,7 @@ import { useUserStore } from '@/store/user'
 
 import styles from './SignupPromo.module.scss'
 
-const SignupPromo: React.FC = () => {
+export function SignupPromo() {
   const isAuthenticated = useUserStore((state) => state.isAuthenticated)
 
   if (isAuthenticated) return null
@@ -24,5 +24,3 @@ const SignupPromo: React.FC = () => {
     </div>
   )
 }
-
-export default SignupPromo

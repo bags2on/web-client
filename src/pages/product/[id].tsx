@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from 'querystring'
 import getProduct, { QueryResult } from '../api/getProduct'
-import ProductPage from '@/components/pages/Product'
+import { ProductIndex } from '@/components/pages/Product'
 
 import type { GetServerSideProps, InferGetServerSidePropsType } from 'next'
 import { i18n } from 'next-i18next'
@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps<{
   }
 }
 
-export default function ProductIndex({
+export default function Product({
   product,
   todo,
   err
@@ -78,5 +78,5 @@ export default function ProductIndex({
     )
   }
 
-  return <ProductPage product={product} todo={todo} />
+  return <ProductIndex product={product} todo={todo} />
 }

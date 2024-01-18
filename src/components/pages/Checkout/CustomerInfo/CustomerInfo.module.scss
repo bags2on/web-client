@@ -38,20 +38,19 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding: 0;
+  margin: 0;
+  & > li {
+    flex-basis: 100%;
+    @include _minLaptop {
+      flex-basis: 48%;
+    }
+  }
 }
 
-.field {
-  flex-basis: 100%;
-  & > span {
-    font-size: 15px;
-    color: #6a6a6a;
-    font-weight: 500;
-    padding-left: 7px;
-    margin-bottom: 5px;
-    user-select: none;
-  }
-  @include _minLaptop {
-    flex-basis: 48%;
+.continueButton {
+  @include _minLG {
+    display: none;
   }
 }
 

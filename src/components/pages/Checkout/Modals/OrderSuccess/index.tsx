@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
-import Modal from '@/components/Modal'
-import Button from '@/shared/Button'
+import { Modal } from '@/components/Modal'
+import { Button } from '@/components/ui/Button'
 import LetterCheckIcon from '../../../../../../public/assets/letter-check.svg'
 import LetterIcon from '../../../../../../public/assets/icons/letter.svg'
 import LocationIcon from '../../../../../../public/assets/icons/location.svg'
@@ -9,12 +9,12 @@ import { routeNames } from '@/utils/navigation'
 
 import styles from './OrderSuccess.module.scss'
 
-interface OrderSuccessProps {
+interface OrderSuccessModalProps {
   open: boolean
   onClose(): void
 }
 
-const OrderSuccess: React.FC<OrderSuccessProps> = ({ open, onClose }) => {
+export function OrderSuccessModal({ open, onClose }: OrderSuccessModalProps) {
   return (
     <Modal open={open}>
       <div className={styles.container}>
@@ -57,5 +57,3 @@ const OrderSuccess: React.FC<OrderSuccessProps> = ({ open, onClose }) => {
     </Modal>
   )
 }
-
-export default OrderSuccess

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Checkbox from '../Checkbox'
-import Collapse, { CollapseHead } from '@/shared/Collapse'
+import { Checkbox } from '../Checkbox'
+import { Collapse, CollapseHead } from '@/shared/Collapse'
 
 import styles from './CheckboxGroup.module.scss'
 
@@ -15,7 +15,7 @@ interface CheckBoxGroupProps {
   options: Array<optionType>
 }
 
-const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, options, name }) => {
+export function CheckBoxGroup({ title, options, name }: CheckBoxGroupProps) {
   const [isCollapsed, setCollapsed] = useState<boolean>(true)
 
   const handleCollapse = (): void => {
@@ -37,5 +37,3 @@ const CheckBoxGroup: React.FC<CheckBoxGroupProps> = ({ title, options, name }) =
     </div>
   )
 }
-
-export default CheckBoxGroup

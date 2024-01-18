@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import Button from '@/shared/Button'
 import Slider from 'rc-slider'
-import Collapse, { CollapseHead } from '@/shared/Collapse'
+import { Button } from '@/components/ui/Button'
+import { Collapse, CollapseHead } from '@/shared/Collapse'
 import { useFormikContext } from 'formik'
 import type { SliderProps } from 'rc-slider'
 
@@ -20,7 +20,7 @@ interface FormFields {
   priceRange: Array<number>
 }
 
-const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1 }) => {
+export function PriceRange({ title, name, min, max, step = 1 }: PriceRangeProps) {
   const { values, setFieldValue } = useFormikContext<FormFields>()
 
   const [minPrice, maxPrice] = values.priceRange || [0, 0]
@@ -119,5 +119,3 @@ const PriceRange: React.FC<PriceRangeProps> = ({ title, name, min, max, step = 1
     </div>
   )
 }
-
-export default PriceRange

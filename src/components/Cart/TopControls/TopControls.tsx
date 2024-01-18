@@ -1,18 +1,19 @@
 import React from 'react'
 import clsx from 'clsx'
-import Button from '@/shared/Button'
-import IconButton from '@/shared/IconButton'
+import { Button } from '@/components/ui/Button'
+import { IconButton } from '@/shared/IconButton'
 import CrossIcon from '../../../../public/assets/icons/cross.svg'
 import TrashIcon from '../../../../public/assets/icons/trash.svg'
 import { useCartStore } from '@/store/cart'
 import { useTranslation } from 'next-i18next'
 
 import styles from './TopControls.module.scss'
+
 interface TopControlsProps {
   onCartClose(): void
 }
 
-const TopControls: React.FC<TopControlsProps> = ({ onCartClose }) => {
+export function TopControls({ onCartClose }: TopControlsProps) {
   const { t } = useTranslation()
 
   const clearCart = useCartStore((state) => state.clear)
@@ -48,5 +49,3 @@ const TopControls: React.FC<TopControlsProps> = ({ onCartClose }) => {
     </div>
   )
 }
-
-export default TopControls

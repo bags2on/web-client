@@ -1,12 +1,11 @@
-export interface IFilterItem {
+export interface FilterItem {
   label: string
   value: string
   disabled?: boolean
 }
 
 export interface FilterSection {
-  // options: Partial<IFilterItem>[]
-  options: IFilterItem[]
+  options: FilterItem[]
 }
 
 const gender: FilterSection = {

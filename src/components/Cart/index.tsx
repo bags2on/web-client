@@ -1,6 +1,6 @@
 import React from 'react'
-import Drawer from '@/shared/Drawer'
-import CartItems from './CartItems/CartItems'
+import { Drawer } from '@/shared/Drawer'
+import { CartItems } from './CartItems/CartItems'
 import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'
 
@@ -11,7 +11,7 @@ interface CartProps {
   onClose(): void
 }
 
-const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
+export function Cart({ isOpen, onClose }: CartProps) {
   const router = useRouter()
 
   const handleCheckout = (): void => {
@@ -27,5 +27,3 @@ const Cart: React.FC<CartProps> = ({ isOpen, onClose }) => {
     </Drawer>
   )
 }
-
-export default Cart

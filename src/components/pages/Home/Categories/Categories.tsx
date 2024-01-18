@@ -47,7 +47,7 @@ const categoriesValues: categoryItemType[] = [
   }
 ]
 
-const Categories: React.FC = () => {
+export function Categories() {
   const { t } = useTranslation('home')
 
   return (
@@ -94,5 +94,3 @@ const Categories: React.FC = () => {
     </section>
   )
 }
-
-export default Categories

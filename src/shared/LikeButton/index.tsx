@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import IconButton from '@/shared/IconButton'
+import { IconButton } from '@/shared/IconButton'
 
 import styles from './LikeButton.module.scss'
 
@@ -14,14 +14,14 @@ interface LikeButtonProps {
   onClick: (e: React.MouseEvent) => void
 }
 
-const LikeButton: React.FC<LikeButtonProps> = ({
+export function LikeButton({
   liked,
   width = 20,
   height = 20,
   text,
   className,
   ...restProps
-}) => {
+}: LikeButtonProps) {
   return (
     <IconButton className={clsx(styles.button, className)} {...restProps}>
       <svg
@@ -57,5 +57,3 @@ const LikeButton: React.FC<LikeButtonProps> = ({
     </IconButton>
   )
 }
-
-export default LikeButton

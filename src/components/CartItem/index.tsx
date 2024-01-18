@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import TrashIcon from '../../../public/assets/icons/trash.svg'
-import IconButton from '@/shared/IconButton'
-import ImagePlaceholder from '@/shared/ImagePlaceholder'
-import AmountController from '@/shared/AmountController'
+import { IconButton } from '@/shared/IconButton'
+import { ImagePlaceholder } from '@/shared/ImagePlaceholder'
+import { AmountController } from '@/shared/AmountController'
 import { useCartStore } from '@/store/cart'
 import { formatPrice } from '@/utils/helper'
 import { routeNames, generateProductLink } from '@/utils/navigation'
@@ -25,7 +25,7 @@ interface CartItemProps {
   onRemove: (id: string) => void
 }
 
-const CartItem: React.FC<CartItemProps> = ({ product, amount, onRemove }) => {
+export function CartItem({ product, amount, onRemove }: CartItemProps) {
   const [count, setCount] = useState<number>(amount)
 
   const updateAmount = useCartStore((state) => state.updateAmount)
@@ -77,5 +77,3 @@ const CartItem: React.FC<CartItemProps> = ({ product, amount, onRemove }) => {
     </li>
   )
 }
-
-export default CartItem

@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
-import StepTitle from '../common/StepTitle'
-import ContinueButton from '../common/ContinueButton'
-import SomethingWrongModal from '../Modals/SomethingWrong'
+import { StepTitle } from '../common/StepTitle'
+import { Button } from '@/components/ui/Button'
+import { SomethingWrongModal } from '../Modals/SomethingWrong'
 import { useElementSize } from '@/hooks'
 import { Field, useFormikContext } from 'formik'
 import { CheckoutOrderType } from '@/utils/formValidationSchema'
-import ShowService from '../common/ShowService'
-import NovaPoshta from './NovaPoshta'
-import UkrPoshta from './UkrPoshta'
+import { ShowService } from '../common/ShowService'
+import { NovaPoshta } from './NovaPoshta'
+import { UkrPoshta } from './UkrPoshta'
 
 import styles from './Delivery.module.scss'
 
@@ -26,7 +26,7 @@ export type PopularCity = {
   ukrposhta_id: string
 }
 
-const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
+export function Delivery({ isEdit, onEdit, onContinue }: DeliveryProps) {
   const { values } = useFormikContext<CheckoutOrderType>()
 
   // const [deliveryService, setDeliveryService] = useState<'nova' | 'ukr'>('nova')
@@ -123,14 +123,18 @@ const Delivery: React.FC<DeliveryProps> = ({ isEdit, onEdit, onContinue }) => {
             <UkrPoshta />
           </ShowService>
           {/*  */}
-          <ContinueButton disabled={!isValuesValid} onClick={onContinue}>
+          <Button
+            color="accept"
+            fullWidth
+            disabled={!isValuesValid}
+            onClick={onContinue}
+            className={styles.continueButton}
+          >
             Продолжить
-          </ContinueButton>
+          </Button>
         </div>
       </div>
       <SomethingWrongModal open={areasError} />
     </section>
   )
 }
-
-export default Delivery

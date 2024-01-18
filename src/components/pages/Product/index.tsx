@@ -1,8 +1,8 @@
 import React from 'react'
-import Preview from './Preview/Preview'
-import Details from './Details'
-import Info from './Info'
-import Recommended from './Recommended/Recommended'
+import { Preview } from './Preview/Preview'
+import { Details } from './Details'
+import { Info } from './Info'
+import { Recommended } from './Recommended/Recommended'
 import type { GetProductQuery } from '@/graphql/product/_gen_/product.query'
 
 import styles from './Product.module.scss'
@@ -11,12 +11,12 @@ interface TodoProps {
   rating: number
 }
 
-interface Iprops {
+interface ProductIndexProps {
   product: Extract<GetProductQuery['product'], { __typename: 'Product' }>
   todo: TodoProps
 }
 
-const ProductDetails: React.FC<Iprops> = ({ product, todo }) => {
+export function ProductIndex({ product, todo }: ProductIndexProps) {
   const TODO_TAGS: string[] = []
 
   const { description, dimensions, color, delivery } = product.details
@@ -52,5 +52,3 @@ const ProductDetails: React.FC<Iprops> = ({ product, todo }) => {
     </div>
   )
 }
-
-export default ProductDetails

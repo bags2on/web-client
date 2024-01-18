@@ -1,6 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import Button from '@/shared/Button'
+import { Button } from '@/components/ui/Button'
 import EmptyCartIcon from '../../../../../public/assets/emptycart.svg'
 import ArrowIcon from '../../../../../public/assets/icons/expand-arrow.svg'
 
@@ -11,7 +11,7 @@ interface ProcessPlugProps {
   onClose(): void
 }
 
-const ProcessPlug: React.FC<ProcessPlugProps> = ({ text, onClose }) => {
+export function ProcessPlug({ text, onClose }: ProcessPlugProps) {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
@@ -34,5 +34,3 @@ const ProcessPlug: React.FC<ProcessPlugProps> = ({ text, onClose }) => {
     </div>
   )
 }
-
-export default ProcessPlug

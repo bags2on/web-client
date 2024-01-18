@@ -65,8 +65,18 @@ export function useSearchProductLazyQuery(
     options
   )
 }
+export function useSearchProductSuspenseQuery(
+  baseOptions?: Apollo.SuspenseQueryHookOptions<SearchProductQuery, SearchProductQueryVariables>
+) {
+  const options = { ...defaultOptions, ...baseOptions }
+  return Apollo.useSuspenseQuery<SearchProductQuery, SearchProductQueryVariables>(
+    SearchProductDocument,
+    options
+  )
+}
 export type SearchProductQueryHookResult = ReturnType<typeof useSearchProductQuery>
 export type SearchProductLazyQueryHookResult = ReturnType<typeof useSearchProductLazyQuery>
+export type SearchProductSuspenseQueryHookResult = ReturnType<typeof useSearchProductSuspenseQuery>
 export type SearchProductQueryResult = Apollo.QueryResult<
   SearchProductQuery,
   SearchProductQueryVariables

@@ -3,11 +3,7 @@ import Image from 'next/image'
 
 import styles from './ErrorPlug.module.scss'
 
-interface ErrorPlugProps {
-  message?: string
-}
-
-const ErrorPlug: React.FC<ErrorPlugProps> = () => {
+export function ErrorPlug() {
   return (
     <div className={styles.container}>
       <div>
@@ -20,5 +16,3 @@ const ErrorPlug: React.FC<ErrorPlugProps> = () => {
     </div>
   )
 }
-
-export default ErrorPlug

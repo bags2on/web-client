@@ -1,5 +1,5 @@
 import React from 'react'
-import CartItemSkeleton from '@/components/CartItem/Skeleton'
+import { CartItemSkeleton } from '@/components/CartItem/Skeleton'
 import styles from '../CartItems.module.scss'
 
 interface ListSkeletonProps {
@@ -7,7 +7,7 @@ interface ListSkeletonProps {
   max?: number
 }
 
-const ListSkeleton: React.FC<ListSkeletonProps> = ({ itemsAmount, max = 4 }) => {
+export function ListSkeleton({ itemsAmount, max = 4 }: ListSkeletonProps) {
   const itemsLength = itemsAmount > max ? max : itemsAmount
 
   return (
@@ -18,5 +18,3 @@ const ListSkeleton: React.FC<ListSkeletonProps> = ({ itemsAmount, max = 4 }) => 
     </ul>
   )
 }
-
-export default ListSkeleton

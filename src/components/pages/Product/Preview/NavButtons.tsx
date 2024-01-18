@@ -1,12 +1,12 @@
 import React from 'react'
 import clsx from 'clsx'
-import IconButton from '@/shared/IconButton'
+import { IconButton } from '@/shared/IconButton'
 import ArrowIcon from '../../../../../public/assets/icons/expand-arrow.svg'
 import { useSwiper } from 'swiper/react'
 
 import styles from './Preview.module.scss'
 
-const NavButtons: React.FC = () => {
+export function NavButtons() {
   const swiper = useSwiper()
 
   const handlePrevClick = () => {
@@ -38,5 +38,3 @@ const NavButtons: React.FC = () => {
     </>
   )
 }
-
-export default NavButtons

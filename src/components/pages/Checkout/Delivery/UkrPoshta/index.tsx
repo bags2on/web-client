@@ -1,9 +1,7 @@
 import React from 'react'
 
-interface UkrPoshtaProps {}
+// interface UkrPoshtaProps {}
 
-const UkrPoshta: React.FC<UkrPoshtaProps> = () => {
+export function UkrPoshta() {
   return <div>UkrPoshta</div>
 }
-
-export default UkrPoshta

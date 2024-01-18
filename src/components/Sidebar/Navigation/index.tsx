@@ -1,11 +1,12 @@
 import React from 'react'
 import clsx from 'clsx'
-import Badge from '@/shared/Badge'
 import HomeIcon from '../../../../public/assets/icons/home.svg'
 import UserIcon from '../../../../public/assets/icons/user.svg'
 import HeartIcon from '../../../../public/assets/icons/heart_2.svg'
 import ListIcon from '../../../../public/assets/icons/list.svg'
 import EyeIcon from '../../../../public/assets/icons/eye.svg'
+import { Badge } from '@/shared/Badge'
+import { ConditionalRender } from '@/components/ConditionalRender'
 import { routeNames } from '@/utils/navigation'
 import { useUserStore } from '@/store/user'
 import { useTranslation } from 'next-i18next'
@@ -18,13 +19,12 @@ interface SidebarNavListProps {
   onClose(): void
 }
 
-interface DrawerItem {
+const drawerItems: {
   icon: React.ElementType
   to: string
   i18n: string
-}
-
-const drawerItems: DrawerItem[] = [
+  withBadge?: boolean
+}[] = [
   {
     icon: HomeIcon,
     to: routeNames.root,
@@ -43,7 +43,8 @@ const drawerItems: DrawerItem[] = [
   {
     icon: HeartIcon,
     to: '/favorite', // TODO: add route
-    i18n: 'favorite'
+    i18n: 'favorite',
+    withBadge: true
   },
 
   {
@@ -58,7 +59,7 @@ const drawerItems: DrawerItem[] = [
   }
 ]
 
-const Navigation: React.FC<SidebarNavListProps> = ({ onClose }) => {
+export function Navigation({ onClose }: SidebarNavListProps) {
   const router = useRouter()
 
   const isAuthenticated = useUserStore((state) => state.isAuthenticated)
@@ -78,18 +79,15 @@ const Navigation: React.FC<SidebarNavListProps> = ({ onClose }) => {
   return (
     <ul className={styles.navList}>
       {drawerItems.map((item) => (
-        <li key={item.to} onClick={(): void => goTo(item.to)} className={styles.listItem}>
-          {item.i18n === 'favorite' ? (
-            <Badge content={favoriteAmount}>
-              <div className={clsx('svg-icon', styles.icon)}>
-                <item.icon />
-              </div>
-            </Badge>
-          ) : (
+        <li key={item.to} onClick={() => goTo(item.to)} className={styles.listItem}>
+          <ConditionalRender
+            condition={!!item.withBadge}
+            wrap={(children) => <Badge content={favoriteAmount}>{children}</Badge>}
+          >
             <div className={clsx('svg-icon', styles.icon)}>
               <item.icon />
             </div>
-          )}
+          </ConditionalRender>
           <div className={styles.text}>
             <p>{t(`drawer.${item.i18n}`)}</p>
           </div>
@@ -98,5 +96,3 @@ const Navigation: React.FC<SidebarNavListProps> = ({ onClose }) => {
     </ul>
   )
 }
-
-export default Navigation

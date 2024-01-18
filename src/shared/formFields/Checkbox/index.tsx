@@ -12,7 +12,7 @@ interface CheckboxProps {
   onChange?(event: React.ChangeEvent<HTMLInputElement>): void
 }
 
-const Checkbox: React.FC<CheckboxProps> = ({ name, value, label, onChange, checked = false }) => {
+export function Checkbox({ name, value, label, onChange, checked = false }: CheckboxProps) {
   const [field] = useField({ name, value, type: 'checkbox' })
 
   const isChecked = field.checked || checked
@@ -34,5 +34,3 @@ const Checkbox: React.FC<CheckboxProps> = ({ name, value, label, onChange, check
     </label>
   )
 }
-
-export default Checkbox

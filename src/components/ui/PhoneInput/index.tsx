@@ -8,9 +8,10 @@ import styles from './PhoneInput.module.scss'
 
 interface PhoneInputProps {
   name: string
+  label?: string
 }
 
-const PhoneInput: React.FC<PhoneInputProps> = ({ name }) => {
+export function PhoneInput({ name, label }: PhoneInputProps) {
   const [field, meta] = useField({ name })
 
   const { onChange, ...fieldOther } = field
@@ -21,6 +22,7 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name }) => {
 
   return (
     <div>
+      {label && <span className={styles.label}>{label}</span>}
       <PatternFormat
         format="+38 (###) ###-####"
         mask="_"
@@ -44,5 +46,3 @@ const PhoneInput: React.FC<PhoneInputProps> = ({ name }) => {
     </div>
   )
 }
-
-export default PhoneInput

@@ -5,7 +5,7 @@ import classes from './styles.module.scss'
 import { useTranslation } from 'next-i18next'
 import { routeNames } from '@/utils/navigation'
 
-export default function NotFound() {
+export function NotFound() {
   const { t, i18n } = useTranslation()
 
   return (

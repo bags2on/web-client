@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -7,9 +7,9 @@ import { usePathname } from 'next/navigation'
 import { useCartStore } from '@/store/cart'
 import { useTranslation } from 'next-i18next'
 import { useFavoriteStore } from '@/store/favorite'
-import Badge from '@/shared/Badge'
-import IconButton from '@/shared/IconButton'
-import Search from '@/components/Search'
+import { Badge } from '@/shared/Badge'
+import { IconButton } from '@/shared/IconButton'
+import { Search } from '@/components/Search'
 import MenuIcon from '../../../public/assets/icons/menu.svg'
 import HeartIcon from '../../../public/assets/icons/heart.svg'
 import ProfileIcon from '../../../public/assets/icons/profile.svg'
@@ -22,7 +22,7 @@ interface HeaderProps {
   onCartOpen(): void
 }
 
-const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
+export const Header = memo(function Header({ onDrawerOpen, onCartOpen }: HeaderProps) {
   const pathname = usePathname()
 
   const cartAmount = useCartStore((state) => state.cartAmount())
@@ -98,6 +98,4 @@ const Header: React.FC<HeaderProps> = ({ onDrawerOpen, onCartOpen }) => {
       </div>
     </header>
   )
-}
-
-export default React.memo(Header)
+})

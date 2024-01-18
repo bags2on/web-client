@@ -1,10 +1,10 @@
 import React from 'react'
-import Button from '@/shared/Button'
-import RadioGroup from '@/shared/formFields/RadioGroup'
-import CheckBoxGroup from '@/shared/formFields/CheckboxGroup'
-import PriceRange from '@/shared/formFields/PriceRange'
-import fieldProps, { IFilterItem } from './data'
-import AutoSave from '@/shared/AutoSave'
+import { Button } from '@/components/ui/Button'
+import { RadioGroup } from '@/shared/formFields/RadioGroup'
+import { CheckBoxGroup } from '@/shared/formFields/CheckboxGroup'
+import { PriceRange } from '@/shared/formFields/PriceRange'
+import fieldProps, { FilterItem } from './data'
+import { AutoSave } from '@/shared/AutoSave'
 import { useTranslation } from 'next-i18next'
 import { Formik, Form } from 'formik'
 
@@ -31,7 +31,7 @@ interface FiltersProps {
   onSubmit(values: any): void
 }
 
-const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSubmit }) => {
+export function Filters({ priceRange, initValues, formRef, onSubmit }: FiltersProps) {
   const { t } = useTranslation(['common', 'catalog'])
 
   const { gender, availability, tags, categories } = fieldProps
@@ -47,7 +47,7 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
     onSubmit(values)
   }
 
-  const addI18 = (option: IFilterItem) => ({
+  const addI18 = (option: FilterItem) => ({
     ...option,
     label: t(option.label)
   })
@@ -115,5 +115,3 @@ const Filters: React.FC<FiltersProps> = ({ priceRange, initValues, formRef, onSu
     </aside>
   )
 }
-
-export default Filters

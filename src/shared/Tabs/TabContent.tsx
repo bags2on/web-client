@@ -6,11 +6,9 @@ interface TabContentProps {
   children?: React.ReactNode
 }
 
-const TabContent: React.FC<TabContentProps> = ({ tabID, value, children }) => {
+export function TabContent({ tabID, value, children }: TabContentProps) {
   if (tabID !== value) {
     return null
   }
   return <div>{children}</div>
 }
-
-export default TabContent

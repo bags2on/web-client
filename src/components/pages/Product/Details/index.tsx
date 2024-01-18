@@ -1,14 +1,14 @@
 import React from 'react'
 import clsx from 'clsx'
-import Button from '@/shared/Button'
-import Tags from './Tags'
-import Rating from '@/components/Rating'
 import ExclamationIcon from '../../../../../public/assets/icons/exclamation-circle.svg'
 import CheckIcon from '../../../../../public/assets/icons/check-circle.svg'
 import HeaderCartIcon from '../../../../../public/assets/icons/header_cart.svg'
-import Delivery from './Delivery'
-import SizeGuide from './SizeGuide'
-import SubControls from './SubControls'
+import { Button } from '@/components/ui/Button'
+import { Tags } from './Tags'
+import { Rating } from '@/components/Rating'
+import { Delivery } from './Delivery'
+import { SizeGuide } from './SizeGuide'
+import { SubControls } from './SubControls'
 import { useCartStore } from '@/store/cart'
 import { useRouter } from 'next/navigation'
 import { routeNames } from '@/utils/navigation'
@@ -28,7 +28,7 @@ interface DetailsProps {
   delivery: string
 }
 
-const Details: React.FC<DetailsProps> = ({
+export function Details({
   id,
   sku,
   title,
@@ -38,7 +38,7 @@ const Details: React.FC<DetailsProps> = ({
   basePrice,
   rating,
   delivery
-}) => {
+}: DetailsProps) {
   const router = useRouter()
 
   const addItem = useCartStore((state) => state.addItem)
@@ -131,5 +131,3 @@ const Details: React.FC<DetailsProps> = ({
     </section>
   )
 }
-
-export default Details

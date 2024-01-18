@@ -1,7 +1,7 @@
 import React from 'react'
-import CartItems from './CartItems'
-import Summary from './Summary'
-import SignupPromo from './SignupPromo'
+import { CartItems } from './CartItems'
+import { Summary } from './Summary'
+import { SignupPromo } from './SignupPromo'
 import { useQuery } from '@apollo/client'
 import { useCartStore } from '@/store/cart'
 import {
@@ -18,7 +18,7 @@ interface PreviewProps {
   orderCreationErr: boolean
 }
 
-const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) => {
+export function Preview({ submitLoading, orderCreationErr }: PreviewProps) {
   const cartItems = useCartStore((state) => state.cartItems)
   const setCartPrice = useCartStore((state) => state.setCartPrice)
 
@@ -80,5 +80,3 @@ const Preview: React.FC<PreviewProps> = ({ submitLoading, orderCreationErr }) =>
     </section>
   )
 }
-
-export default Preview

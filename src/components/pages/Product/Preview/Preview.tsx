@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import Thumbs from './Thumbs/Thumbs'
-import NavButtons from './NavButtons'
+import { Thumbs } from './Thumbs/Thumbs'
+import { NavButtons } from './NavButtons'
 import { Swiper, SwiperSlide, SwiperClass } from 'swiper/react'
 
 import styles from './Preview.module.scss'
@@ -9,7 +9,7 @@ interface PreviewProps {
   images: string[]
 }
 
-const Preview: React.FC<PreviewProps> = ({ images }) => {
+export function Preview({ images }: PreviewProps) {
   const [swiper, setSwiper] = useState<SwiperClass>()
   const [currentIndex, setCurrentIndex] = useState<number>(0)
 
@@ -47,5 +47,3 @@ const Preview: React.FC<PreviewProps> = ({ images }) => {
     </div>
   )
 }
-
-export default Preview
