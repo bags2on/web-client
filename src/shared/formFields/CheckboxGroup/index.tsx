@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Checkbox } from '../Checkbox'
+import { Checkbox } from '@/components/ui/Checkbox'
 import { Collapse, CollapseHead } from '@/shared/Collapse'
 
 import styles from './CheckboxGroup.module.scss'
