@@ -21,6 +21,9 @@ const hashOnlyIdent = (context, _, exportName) =>
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production'
+  },
   webpack(config, options) {
     config.module.rules.push({
       test: /\.svg$/i,
