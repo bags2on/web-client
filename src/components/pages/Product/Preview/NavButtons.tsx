@@ -2,35 +2,23 @@ import React from 'react'
 import clsx from 'clsx'
 import { IconButton } from '@/shared/IconButton'
 import ArrowIcon from '../../../../../public/assets/icons/expand-arrow.svg'
-import { useSwiper } from 'swiper/react'
 
 import styles from './Preview.module.scss'
 
-export function NavButtons() {
-  const swiper = useSwiper()
+interface NavButtonsProps {
+  onPrev(): void
+  onNext(): void
+}
 
-  const handlePrevClick = () => {
-    swiper.slidePrev()
-  }
-
-  const handleNextClick = () => {
-    swiper.slideNext()
-  }
-
+export function NavButtons({ onPrev, onNext }: NavButtonsProps) {
   return (
     <>
-      <IconButton
-        onClick={handlePrevClick}
-        className={clsx(styles.navigationButton, styles.prevButton)}
-      >
+      <IconButton onClick={onPrev} className={clsx(styles.navigationButton, styles.prevButton)}>
         <div className={clsx('svg-icon', styles.prevButtonIcon)}>
           <ArrowIcon />
         </div>
       </IconButton>
-      <IconButton
-        onClick={handleNextClick}
-        className={clsx(styles.navigationButton, styles.nextButton)}
-      >
+      <IconButton onClick={onNext} className={clsx(styles.navigationButton, styles.nextButton)}>
         <div className={clsx('svg-icon', styles.nextButtonIcon)}>
           <ArrowIcon />
         </div>

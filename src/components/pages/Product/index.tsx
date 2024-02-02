@@ -7,6 +7,8 @@ import type { GetProductQuery } from '@/graphql/product/_gen_/product.query'
 
 import styles from './Product.module.scss'
 
+import 'keen-slider/keen-slider.min.css'
+
 interface TodoProps {
   rating: number
 }
