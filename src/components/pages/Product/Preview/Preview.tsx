@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 import { Thumbs } from './Thumbs/Thumbs'
 import { NavButtons } from './NavButtons'
+import { ImagePlaceholder } from '@/shared/ImagePlaceholder'
 import { useKeenSlider } from 'keen-slider/react'
 
 import styles from './Preview.module.scss'
@@ -16,8 +17,11 @@ export function Preview({ images }: PreviewProps) {
   const [sliderRef, instanceRef] = useKeenSlider({
     initial: 0,
     loop: true,
-
-    slides: { spacing: 10, perView: 'auto' },
+    slides: {
+      spacing: 10,
+      perView: 'auto',
+      number: images.length
+    },
     slideChanged(slider) {
       setCurrentIndex(slider.track.details.rel)
     }
@@ -45,7 +49,7 @@ export function Preview({ images }: PreviewProps) {
         <ul ref={sliderRef} className={clsx('keen-slider', styles.previewSlider)}>
           {images.map((image, index) => (
             <li key={index} className="keen-slider__slide">
-              <img src={image} className={styles.slideImage} alt={`фото №${index + 1}`} />
+              <ImagePlaceholder priority src={image} altText={`фото №${index + 1}`} />
             </li>
           ))}
         </ul>

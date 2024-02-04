@@ -2,7 +2,6 @@
   margin-top: 11px;
   display: flex;
   flex-wrap: wrap;
-  align-self: flex-start;
 
   @include _minLG {
     margin-top: 20px;
@@ -13,32 +12,36 @@
   }
 }
 
-.swiperContainer {
-  overflow: hidden;
-  border-radius: 14px;
+.sliderWrapper {
+  position: relative;
   flex-basis: 100%;
-  & ul {
-    @include reset-list;
-  }
+  border-radius: 14px;
 
   @include _minXL {
-    border-radius: 14px;
+    flex-basis: 85%;
+    max-width: 85%;
   }
 }
 
-.subSwiperContainer {
-  margin-top: 20;
-  & ul {
-    @include reset-list;
+.previewSlider {
+  cursor: grab;
+  @include reset-list;
+  border-radius: 14px;
+  transition: height 300ms;
+  height: auto;
+  & li {
+    min-width: 100% !important;
+    max-width: 100% !important;
+    min-height: auto !important;
   }
 }
 
 .slideImage {
-  user-select: none;
-  display: block;
   width: 100%;
-  margin: 0 auto;
-  max-width: 700px;
+  display: block;
+  user-select: none;
+  border-radius: 14px;
+  object-fit: cover;
 
   @include _minDesktop {
     border-radius: 14px;
@@ -47,10 +50,9 @@
 
 .navigationButton {
   position: absolute;
-  top: 50%;
+  top: 45%;
   width: 45px;
   height: 45px;
-  margin-top: calc(0px - (var(--swiper-navigation-size) / 2));
   z-index: 10;
   display: none;
   align-items: center;
@@ -77,7 +79,7 @@
     left: 3%;
   }
   @include _minLaptop {
-    left: 5%;
+    left: 4%;
   }
 }
 
@@ -91,7 +93,7 @@
     right: 3%;
   }
   @include _minLaptop {
-    right: 5%;
+    right: 4%;
   }
 }
 
