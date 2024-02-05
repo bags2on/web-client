@@ -1,9 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
 import { IconButton } from '@/shared/IconButton'
-import ArrowIcon from '../../../../../public/assets/icons/expand-arrow.svg'
+import ArrowIcon from '../../../../public/assets/icons/expand-arrow.svg'
 
-import styles from './Preview.module.scss'
+import styles from './NavButtons.module.scss'
 
 interface NavButtonsProps {
   onPrev(): void
@@ -13,12 +13,20 @@ interface NavButtonsProps {
 export function NavButtons({ onPrev, onNext }: NavButtonsProps) {
   return (
     <>
-      <IconButton onClick={onPrev} className={clsx(styles.navigationButton, styles.prevButton)}>
+      <IconButton
+        onClick={onPrev}
+        disableRipple
+        className={clsx(styles.navigationButton, styles.prevButton)}
+      >
         <div className={clsx('svg-icon', styles.prevButtonIcon)}>
           <ArrowIcon />
         </div>
       </IconButton>
-      <IconButton onClick={onNext} className={clsx(styles.navigationButton, styles.nextButton)}>
+      <IconButton
+        onClick={onNext}
+        disableRipple
+        className={clsx(styles.navigationButton, styles.nextButton)}
+      >
         <div className={clsx('svg-icon', styles.nextButtonIcon)}>
           <ArrowIcon />
         </div>

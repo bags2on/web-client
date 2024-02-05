@@ -2,7 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
-import { NavButtons } from '@/shared/NavButtons'
+import { NavButtons } from '@/components/ui/NavButtons'
 import { useKeenSlider } from 'keen-slider/react'
 import { autoSwitchPlugin } from '@/utils/keen-slider'
 
