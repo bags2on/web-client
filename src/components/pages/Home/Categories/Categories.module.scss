@@ -49,15 +49,11 @@
   padding: 5px 4px 5px 7px;
   border-radius: 10px;
   transition: all 0.3s;
-  border: 1px solid;
-  border-color: #eeeeee; // dark transparent
-  background-color: #fff; // dark #363636
+  background-color: #f3f3f3; // dark #363636
+
   @include _minLG {
     padding: 11px 10px 11px 17px;
     &:hover {
-      box-shadow:
-        rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
-        rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
       & .image {
         transform: scale(1.1);
       }
@@ -66,16 +62,18 @@
 }
 
 .imageWrapper {
-  margin-right: 8px;
+  margin-right: 4px;
+  flex-basis: 30%;
   position: relative;
   @include _minLG {
-    margin-right: 12px;
+    margin-right: 8px;
   }
 }
 
 .image {
-  width: 55px;
-  height: auto;
+  display: block;
+  width: 100%;
+  height: 100%;
   z-index: 100;
   position: relative;
   transition: transform 0.3s;
@@ -84,25 +82,19 @@
   }
 }
 
-.fallback {
-  position: absolute;
-  z-index: 50;
-  bottom: 6px;
-  border-radius: 10px;
-  height: 51%;
-  width: 100%;
-  border: 1px solid;
-}
-
 .details {
-  font-size: 17px;
+  font-size: 1.1rem;
+  flex-basis: 70%;
   font-weight: 500;
+  @include _minMD {
+    font-weight: 500;
+    font-size: 17px;
+  }
 
   & p {
     margin: 0;
-    line-height: 18px;
     @include _minLG {
-      font-weight: 600;
+      line-height: 18px;
     }
   }
 
