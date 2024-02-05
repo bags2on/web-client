@@ -3,7 +3,8 @@ import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
 import { NavButtons } from '@/shared/NavButtons'
-import { useKeenSlider, KeenSliderPlugin } from 'keen-slider/react'
+import { useKeenSlider } from 'keen-slider/react'
+import { autoSwitchPlugin } from '@/utils/keen-slider'
 
 import styles from './Carousel.module.scss'
 
@@ -17,35 +18,6 @@ interface CarouselProps {
   slides: Slide[]
 }
 
-const autoSwitchPlugin: KeenSliderPlugin = (slider) => {
-  let timeout: ReturnType<typeof setTimeout>
-  let mouseOver = false
-  function clearNextTimeout() {
-    clearTimeout(timeout)
-  }
-  function nextTimeout() {
-    clearTimeout(timeout)
-    if (mouseOver) return
-    timeout = setTimeout(() => {
-      slider.next()
-    }, 4500)
-  }
-  slider.on('created', () => {
-    slider.container.addEventListener('mouseover', () => {
-      mouseOver = true
-      clearNextTimeout()
-    })
-    slider.container.addEventListener('mouseout', () => {
-      mouseOver = false
-      nextTimeout()
-    })
-    nextTimeout()
-  })
-  slider.on('dragStarted', clearNextTimeout)
-  slider.on('animationEnded', nextTimeout)
-  slider.on('updated', nextTimeout)
-}
-
 export function MainCarousel({ slides }: CarouselProps) {
   const [sliderRef, instanceRef] = useKeenSlider(
     {
@@ -57,7 +29,7 @@ export function MainCarousel({ slides }: CarouselProps) {
         number: slides.length
       }
     },
-    [autoSwitchPlugin]
+    [autoSwitchPlugin(4500)]
   )
 
   const handlePrevClick = () => {
