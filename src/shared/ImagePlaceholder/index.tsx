@@ -6,9 +6,10 @@ import styles from './ImagePlaceholder.module.scss'
 export interface ImagePlaceholderProps {
   src: string
   altText: string
+  priority?: boolean
 }
 
-export function ImagePlaceholder({ src, altText }: ImagePlaceholderProps) {
+export function ImagePlaceholder({ src, altText, priority }: ImagePlaceholderProps) {
   const [loading, setLoading] = useState(true)
 
   const plug = (
@@ -29,9 +30,11 @@ export function ImagePlaceholder({ src, altText }: ImagePlaceholderProps) {
         src={src}
         alt={altText}
         quality={100}
+        priority={priority}
         onLoad={handleImageLoad}
         style={{
-          opacity: loading ? '0' : '100'
+          opacity: loading ? '0' : '100',
+          objectFit: 'contain'
         }}
       />
       {loading && plug}

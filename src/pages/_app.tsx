@@ -4,8 +4,6 @@ import client from '../apollo/apollo'
 import { AppLayout } from '@/components/AppLayout'
 import { ApolloProvider } from '@apollo/client'
 import { ThemeProvider } from '@/providers/theme'
-import SwiperCore from 'swiper'
-import { Autoplay, EffectFade, Navigation, Pagination, Thumbs } from 'swiper/modules'
 import { Montserrat } from 'next/font/google'
 import { appWithTranslation } from 'next-i18next'
 import nextI18NextConfig from '../../next-i18next.config'
@@ -13,10 +11,6 @@ import type { AppProps } from 'next/app'
 
 import '../../node_modules/modern-normalize/modern-normalize.css'
 import '@/styles/global.scss'
-import 'swiper/css'
-import 'swiper/css/navigation'
-import 'swiper/css/effect-fade'
-import 'swiper/css/pagination'
 
 type AppPropsWithLayout = AppProps
 
@@ -29,8 +23,6 @@ const montserrat = Montserrat({
 })
 
 Modal.setAppElement('#__next')
-
-SwiperCore.use([Navigation, Pagination, Autoplay, EffectFade, Thumbs])
 
 const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (

@@ -2,13 +2,15 @@ import React from 'react'
 import clsx from 'clsx'
 import { Advantages } from './Advantages/Advantages'
 import { MainProduct } from '../../MainProduct/MainProduct'
-import { Carousel } from '@/components/Carousel/Carousel'
+import { MainCarousel } from '@/components/Carousel'
 import { Categories } from './Categories/Categories'
 import { Featured } from './Featured/Featured'
 import { Promo } from './Promo/Promo'
 import { SidePromo } from './SidePromo'
 
-import type { Slide } from '@/components/Carousel/Carousel'
+import type { Slide } from '@/components/Carousel'
+
+import 'keen-slider/keen-slider.min.css'
 
 import styles from './Home.module.scss'
 
@@ -37,8 +39,10 @@ export function HomeIndex({ sliderData, featuredProducts }: HomeProps) {
   return (
     <>
       <div className={clsx(styles.containerShare, styles.sliderContainer)}>
-        <Carousel slides={sliderData} />
-        <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
+        <MainCarousel slides={sliderData} />
+        <div>
+          <MainProduct id={mainProduct.id} title={mainProduct.title} price={mainProduct.price} />
+        </div>
       </div>
       <div className={clsx(styles.containerShare, styles.mainContainer)}>
         <div className={styles.sideBox}>

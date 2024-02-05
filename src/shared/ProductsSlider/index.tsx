@@ -1,62 +1,71 @@
 import React, { Children } from 'react'
-import { Swiper, SwiperSlide } from 'swiper/react'
-import classes from './ProductsSlider.module.scss'
+import clsx from 'clsx'
+import { useKeenSlider, KeenSliderPlugin } from 'keen-slider/react'
+
+import styles from './ProductsSlider.module.scss'
 
 interface ProductsSliderProps {
-  speed?: number
   children?: React.ReactNode
 }
 
-export function ProductsSlider({ speed = 1000, children }: ProductsSliderProps) {
-  return (
-    <Swiper
-      loop
-      wrapperTag="ul"
-      grabCursor
-      speed={speed}
-      slidesPerView={1}
-      runCallbacksOnInit
-      className={classes.swiperContainer}
-      spaceBetween={15}
-      autoplay={{
-        delay: 3000,
-        disableOnInteraction: false
-      }}
-      breakpoints={{
-        0: {
-          slidesPerView: 2
-        },
-        600: {
-          slidesPerView: 3
-        },
-        900: {
-          slidesPerView: 4
-        },
-        1000: {
-          slidesPerView: 5
-        }
-      }}
-      /*
-        TODO: check issue
-        1. https://github.com/nolimits4web/swiper/issues/5635
-        2. https://github.com/nolimits4web/swiper/issues/5613
-      */
-      onSwiper={(swiper) => {
-        const el = swiper.el
-        el.addEventListener('mouseenter', () => {
-          swiper.autoplay.stop()
-        })
+const autoSwitchPlugin: KeenSliderPlugin = (slider) => {
+  let timeout: ReturnType<typeof setTimeout>
+  let mouseOver = false
+  function clearNextTimeout() {
+    clearTimeout(timeout)
+  }
+  function nextTimeout() {
+    clearTimeout(timeout)
+    if (mouseOver) return
+    timeout = setTimeout(() => {
+      slider.next()
+    }, 3000)
+  }
+  slider.on('created', () => {
+    slider.container.addEventListener('mouseover', () => {
+      mouseOver = true
+      clearNextTimeout()
+    })
+    slider.container.addEventListener('mouseout', () => {
+      mouseOver = false
+      nextTimeout()
+    })
+    nextTimeout()
+  })
+  slider.on('dragStarted', clearNextTimeout)
+  slider.on('animationEnded', nextTimeout)
+  slider.on('updated', nextTimeout)
+}
 
-        el.addEventListener('mouseleave', () => {
-          swiper.autoplay.start()
-        })
-      }}
-    >
+export function ProductsSlider({ children }: ProductsSliderProps) {
+  const [sliderRef, instanceRef] = useKeenSlider(
+    {
+      initial: 0,
+      loop: true,
+      slides: {
+        spacing: 15,
+        perView: 2,
+        number: Children.count(children)
+      },
+      breakpoints: {
+        '(min-width: 900px)': {
+          slides: { perView: 4 }
+        },
+        '(min-width: 1000px)': {
+          slides: { perView: 5 }
+        }
+      }
+    },
+    [autoSwitchPlugin]
+  )
+
+  return (
+    <ul ref={sliderRef} className={clsx('keen-slider', styles.slider)}>
       {Children.map(children, (child, index) => (
-        <SwiperSlide tag="li" key={index} virtualIndex={index}>
+        <li key={index} className="keen-slider__slide">
           {child}
-        </SwiperSlide>
+        </li>
       ))}
-    </Swiper>
+    </ul>
   )
 }

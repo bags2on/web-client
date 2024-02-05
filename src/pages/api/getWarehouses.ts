@@ -7,6 +7,8 @@ type RequestData = {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   try {
+    // TODO: re-think
+    // maybe use "no body" request https://nextjs.org/docs/pages/building-your-application/routing/api-routes#request-helpers
     const { city_id, provider }: RequestData = JSON.parse(req.body)
 
     if (!city_id || !provider) {

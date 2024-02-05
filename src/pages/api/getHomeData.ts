@@ -8,7 +8,7 @@ import {
 type HomeData = GetHomeDataQuery['homeData']
 export type QueryResult = HomeData | undefined | null
 
-export default async (): Promise<QueryResult> => {
+export default async function handler(): Promise<QueryResult> {
   const { data } = await client.query<GetHomeDataQuery, GetHomeDataQueryVariables>({
     query: GetHomeDataDocument
   })

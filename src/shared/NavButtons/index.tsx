@@ -1,9 +1,9 @@
 import React from 'react'
 import clsx from 'clsx'
 import { IconButton } from '@/shared/IconButton'
-import ArrowIcon from '../../../../../public/assets/icons/expand-arrow.svg'
+import ArrowIcon from '../../../public/assets/icons/expand-arrow.svg'
 
-import styles from './Preview.module.scss'
+import styles from './NavButtons.module.scss'
 
 interface NavButtonsProps {
   onPrev(): void

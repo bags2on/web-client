@@ -1,5 +1,5 @@
 import React from 'react'
-import { ProductsSlider } from '@/components/ProductsSlider'
+import { ProductsSlider } from '@/shared/ProductsSlider'
 import { ProductItem } from '@/components/ProductItem'
 
 import styles from './Recommended.module.scss'
@@ -10,7 +10,7 @@ export function Recommended() {
   return (
     <section className={styles.container}>
       <h2 className={styles.title}>Рекомендуемые</h2>
-      <ProductsSlider speed={500}>
+      <ProductsSlider>
         {TEMP_RECOMENDED.map((product) => (
           <ProductItem
             inStock
