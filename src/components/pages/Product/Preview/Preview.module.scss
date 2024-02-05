@@ -28,6 +28,7 @@
   @include reset-list;
   border-radius: 14px;
   transition: height 300ms;
+  z-index: 0;
   height: auto;
   & li {
     min-width: 100% !important;
