@@ -89,8 +89,8 @@ export function CatalogIndex() {
     AllProductsQueryVariables
   >(AllProductsDocument, {
     onCompleted: (data) => {
-      if (data?.allProducts.priceRange) {
-        const { gt, lt } = data.allProducts.priceRange
+      if (data?.products.priceRange) {
+        const { gt, lt } = data.products.priceRange
         setPriceRange([gt, lt])
       }
     }
@@ -105,32 +105,32 @@ export function CatalogIndex() {
   }
 
   useEffect(() => {
-    window.scrollTo({ top: 0 })
-
     if (categoryName || genderType) history.replaceState({}, '')
 
-    const filters = sessionStorage.getItem('filters')
+    // const filters = sessionStorage.getItem('filters')
 
-    if (filters) {
-      const values = JSON.parse(filters) as FilterValues
+    // if (filters) {
+    //   const values = JSON.parse(filters) as FilterValues
 
-      getProducts({
-        variables: { ...getQueryValues(values), page: numOfPage }
-      })
-    } else {
-      getProducts({
-        variables: {
-          gender: genderType ? ([genderType] as Gender[]) : [],
-          instock: undefined,
-          category: categoryName ? ([categoryName] as CategoryType[]) : [],
-          page: numOfPage
-        }
-      })
-    }
+    //   getProducts({
+    //     variables: { ...getQueryValues(values), page: numOfPage }
+    //   })
+    // } else {
+    getProducts({
+      variables: {
+        gender: genderType ? ([genderType] as Gender[]) : [],
+        instock: undefined,
+        category: categoryName ? ([categoryName] as CategoryType[]) : [],
+        page: numOfPage
+      }
+    })
+    // }
   }, [numOfPage])
 
   const handleFiltersSubmit = (values: FilterValues) => {
-    sessionStorage.setItem('filters', JSON.stringify(values))
+    // sessionStorage.setItem('filters', JSON.stringify(values))
+
+    console.log('--->', values)
 
     getProducts({
       variables: { ...getQueryValues(values), page: numOfPage }
@@ -162,7 +162,7 @@ export function CatalogIndex() {
     return <ErrorPlug />
   }
 
-  const totalPages = data?.allProducts.pagination.totalPages
+  const totalPages = data?.products.pagination.totalPages
 
   return (
     <div className={classes.root}>
@@ -208,7 +208,7 @@ export function CatalogIndex() {
                 <Products
                   totalPages={totalPages ? totalPages : 1}
                   currentPage={isNaN(numOfPage) ? 1 : numOfPage}
-                  products={data?.allProducts.products}
+                  products={data?.products.products}
                   onActionButtonClick={handleReftesh}
                 />
               </div>

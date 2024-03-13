@@ -37,11 +37,11 @@ export type CartItemType = {
 }
 
 export const enum CategoryType {
-  Backpack = 'BACKPACK',
-  Bag = 'BAG',
-  Other = 'OTHER',
-  Suitcase = 'SUITCASE',
-  Wallet = 'WALLET'
+  Backpack = 'backpack',
+  Bag = 'bag',
+  Other = 'other',
+  Suitcase = 'suitcase',
+  Wallet = 'wallet'
 }
 
 export type DeleteProductResponse = {
@@ -50,9 +50,9 @@ export type DeleteProductResponse = {
 }
 
 export const enum Gender {
-  Female = 'FEMALE',
-  Male = 'MALE',
-  Unisex = 'UNISEX'
+  Female = 'female',
+  Male = 'male',
+  Unisex = 'unisex'
 }
 
 export type HideProductResponse = {
@@ -83,9 +83,9 @@ export type LogInRsponse = {
 }
 
 export const enum MainTag {
-  New = 'NEW',
-  Stock = 'STOCK',
-  Top = 'TOP'
+  New = 'new',
+  Stock = 'stock',
+  Top = 'top'
 }
 
 export type Mutation = {
@@ -203,10 +203,10 @@ export type ProductDetails = {
 }
 
 export type ProductFilter = {
-  category?: InputMaybe<Array<InputMaybe<CategoryType>>>
-  gender?: InputMaybe<Array<InputMaybe<Gender>>>
+  category?: InputMaybe<Array<CategoryType>>
+  gender?: InputMaybe<Array<Gender>>
   instock?: InputMaybe<Scalars['Boolean']['input']>
-  isHidden?: InputMaybe<Scalars['Boolean']['input']>
+  isHidden: Scalars['Boolean']['input']
   mainTag?: InputMaybe<MainTag>
   page: Scalars['Int']['input']
   price?: InputMaybe<PriceRange>
@@ -234,22 +234,18 @@ export type ProductsResponse = {
 export type Query = {
   __typename?: 'Query'
   allOrders: Array<Order>
-  allProducts: ProductsResponse
   cartProducts: Array<Product>
   homeData?: Maybe<HomeDataResponse>
   logInRoot?: Maybe<LogInRsponse>
   order?: Maybe<OrderByIdResult>
   product?: Maybe<ProductResult>
+  products: ProductsResponse
   productsByID: Array<Product>
   searchProductByName: Array<Product>
 }
 
 export type QueryAllOrdersArgs = {
   input: OrderFilter
-}
-
-export type QueryAllProductsArgs = {
-  filter: ProductFilter
 }
 
 export type QueryCartProductsArgs = {
@@ -266,6 +262,10 @@ export type QueryOrderArgs = {
 
 export type QueryProductArgs = {
   id: Scalars['ID']['input']
+}
+
+export type QueryProductsArgs = {
+  filter: ProductFilter
 }
 
 export type QueryProductsByIdArgs = {

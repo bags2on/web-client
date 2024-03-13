@@ -12,15 +12,15 @@ const gender: FilterSection = {
   options: [
     {
       label: 'catalog:filters.gender.female',
-      value: 'FEMALE'
+      value: 'female'
     },
     {
       label: 'catalog:filters.gender.male',
-      value: 'MALE'
+      value: 'male'
     },
     {
       label: 'catalog:filters.gender.unisex',
-      value: 'UNISEX'
+      value: 'unisex'
     }
   ]
 }
@@ -47,12 +47,12 @@ const tags: FilterSection = {
     },
     {
       label: 'catalog:filters.tag.new',
-      value: 'NEW',
+      value: 'new',
       disabled: false
     },
     {
       label: 'catalog:filters.tag.discounts',
-      value: 'STOCK',
+      value: 'stock',
       disabled: false
     }
   ]
@@ -62,23 +62,23 @@ const categories: FilterSection = {
   options: [
     {
       label: 'catalog:filters.categories.suitcases',
-      value: 'SUITCASE'
+      value: 'suitcase'
     },
     {
       label: 'catalog:filters.categories.bags',
-      value: 'BAG'
+      value: 'bag'
     },
     {
       label: 'catalog:filters.categories.wallets',
-      value: 'WALLET'
+      value: 'wallet'
     },
     {
       label: 'catalog:filters.categories.backpack',
-      value: 'BACKPACK'
+      value: 'backpack'
     },
     {
       label: 'catalog:filters.categories.other',
-      value: 'OTHER'
+      value: 'other'
     }
   ]
 }

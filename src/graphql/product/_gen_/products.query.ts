@@ -4,20 +4,18 @@ import { gql } from '@apollo/client'
 import * as Apollo from '@apollo/client'
 const defaultOptions = {} as const
 export type AllProductsQueryVariables = Types.Exact<{
-  gender?: Types.InputMaybe<Array<Types.InputMaybe<Types.Gender>> | Types.InputMaybe<Types.Gender>>
+  gender?: Types.InputMaybe<Array<Types.Gender> | Types.Gender>
   isHidden?: Types.InputMaybe<Types.Scalars['Boolean']['input']>
   instock?: Types.InputMaybe<Types.Scalars['Boolean']['input']>
   mainTag?: Types.InputMaybe<Types.MainTag>
   price?: Types.InputMaybe<Types.PriceRange>
-  category?: Types.InputMaybe<
-    Array<Types.InputMaybe<Types.CategoryType>> | Types.InputMaybe<Types.CategoryType>
-  >
+  category?: Types.InputMaybe<Array<Types.CategoryType> | Types.CategoryType>
   page: Types.Scalars['Int']['input']
 }>
 
 export type AllProductsQuery = {
   __typename?: 'Query'
-  allProducts: {
+  products: {
     __typename?: 'ProductsResponse'
     priceRange: { __typename?: 'PriceRangeType'; gt: number; lt: number }
     pagination: { __typename?: 'Pagination'; totalPages: number; currentPage: number }
@@ -37,15 +35,15 @@ export type AllProductsQuery = {
 
 export const AllProductsDocument = gql`
   query AllProducts(
-    $gender: [Gender]
+    $gender: [Gender!]
     $isHidden: Boolean = false
     $instock: Boolean
     $mainTag: MainTag
     $price: PriceRange
-    $category: [CategoryType]
+    $category: [CategoryType!]
     $page: Int!
   ) {
-    allProducts(
+    products(
       filter: {
         gender: $gender
         isHidden: $isHidden

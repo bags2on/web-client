@@ -1,13 +1,13 @@
 query AllProducts(
-  $gender: [Gender]
+  $gender: [Gender!]
   $isHidden: Boolean = false
   $instock: Boolean
   $mainTag: MainTag
   $price: PriceRange
-  $category: [CategoryType]
+  $category: [CategoryType!]
   $page: Int!
 ) {
-  allProducts(
+  products(
     filter: {
       gender: $gender
       isHidden: $isHidden
