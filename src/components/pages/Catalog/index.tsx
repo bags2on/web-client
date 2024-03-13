@@ -12,22 +12,20 @@ import {
   AllProductsQuery,
   AllProductsQueryVariables
 } from '@/graphql/product/_gen_/products.query'
-import { CategoryType, Gender, MainTag, PriceRange } from '@/graphql/types'
+import { PriceRange } from '@/graphql/types'
+import { FormProvider, useForm, SubmitHandler } from 'react-hook-form'
+import type { Gender, MainTag, Category } from '@/types'
 
 import classes from './Catalog.module.scss'
+
 // import { routeNames } from '@/utils/navigation'
 
-type genderType = 'FEMALE' | 'MALE' | 'UNISEX'
-type availabilityType = 'inStock' | 'byOrder'
-type mainTagType = 'STOCK' | 'NEW'
-type categoryType = 'BAG' | 'WALLET' | 'BACKPACK' | 'SUITCASE' | 'OTHER'
-
-interface FilterValues {
-  availability: Array<availabilityType>
-  gender: Array<genderType>
-  mainTag: mainTagType
+type FormValues = {
+  gender: Array<keyof typeof Gender>
+  availability: Array<'inStock' | 'byOrder'>
+  mainTag?: MainTag
   priceRange: [number, number]
-  category: Array<categoryType>
+  category: Array<keyof typeof Category>
 }
 
 type queryValues = {
@@ -35,11 +33,11 @@ type queryValues = {
   price: PriceRange | undefined
   mainTag: MainTag
   gender: Gender[]
-  category: CategoryType[]
+  category: Category[]
 }
 
-function getQueryValues(values: FilterValues): queryValues {
-  const { gender, availability, mainTag, priceRange, category } = values as FilterValues
+function getQueryValues(values: FormValues): queryValues {
+  const { gender, availability, mainTag, priceRange, category } = values
 
   let price
 
@@ -59,7 +57,7 @@ function getQueryValues(values: FilterValues): queryValues {
     price,
     mainTag: (mainTag || undefined) as MainTag,
     gender: gender as Gender[],
-    category: category as CategoryType[]
+    category: category as Category[]
   }
 }
 
@@ -76,6 +74,31 @@ export function CatalogIndex() {
       categoryName: ''
     }
   }
+
+  const formMethods = useForm<FormValues>({
+    mode: 'onChange',
+    // resolver: valibotResolver(currentValidationSchema),
+    defaultValues: {
+      gender: [],
+      availability: [],
+      category: []
+    }
+  })
+
+  const { watch, handleSubmit } = formMethods
+
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log(data.gender)
+
+    // getProducts({
+    //   variables: { ...getQueryValues(values), page: numOfPage }
+    // })
+  }
+
+  useEffect(() => {
+    const subscription = watch(() => handleSubmit(onSubmit)())
+    return () => subscription.unsubscribe()
+  }, [handleSubmit, watch])
 
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0])
   const [isOpen, setOpen] = useState<boolean>(false)
@@ -96,18 +119,8 @@ export function CatalogIndex() {
     }
   })
 
-  const filtersInitialValues = {
-    gender: genderType ? [genderType] : [],
-    availability: [],
-    mainTag: '',
-    priceRange: priceRange,
-    category: categoryName ? [categoryName] : []
-  }
-
   useEffect(() => {
     if (categoryName || genderType) history.replaceState({}, '')
-
-    // const filters = sessionStorage.getItem('filters')
 
     // if (filters) {
     //   const values = JSON.parse(filters) as FilterValues
@@ -120,22 +133,12 @@ export function CatalogIndex() {
       variables: {
         gender: genderType ? ([genderType] as Gender[]) : [],
         instock: undefined,
-        category: categoryName ? ([categoryName] as CategoryType[]) : [],
+        category: categoryName ? ([categoryName] as Category[]) : [],
         page: numOfPage
       }
     })
     // }
   }, [numOfPage])
-
-  const handleFiltersSubmit = (values: FilterValues) => {
-    // sessionStorage.setItem('filters', JSON.stringify(values))
-
-    console.log('--->', values)
-
-    getProducts({
-      variables: { ...getQueryValues(values), page: numOfPage }
-    })
-  }
 
   const handleFilterClick = (): void => {
     document.body.style.overflow = 'hidden'
@@ -147,11 +150,8 @@ export function CatalogIndex() {
     setOpen(false)
   }
 
-  const formikRef = React.useRef<HTMLFormElement>(null)
-
   const handleReftesh = (): void => {
-    if (formikRef) formikRef.current?.reset()
-    // appHistory.push(routes.catalog + '/1')
+    console.log('form reset')
   }
 
   if (error) {
@@ -164,65 +164,64 @@ export function CatalogIndex() {
 
   const totalPages = data?.products.pagination.totalPages
 
+  // <form onSubmit={formMethods.handleSubmit(handleSubmit)}>
+
   return (
     <div className={classes.root}>
-      <div className={classes.wrapper}>
-        <div className={classes.pageContainer}>
-          <div className={classes.controlContainer}>
-            <div className={classes.filterButtonWrapper}>
-              <Button
-                onClick={handleFilterClick}
-                // className={classes.filterButton}
-                disabled={loading}
-                fullWidth
-                startIcon={
-                  <div className={clsx('svg-icon')}>
-                    <FilterIcon />
-                  </div>
-                }
+      <FormProvider {...formMethods}>
+        <div className={classes.wrapper}>
+          <div className={classes.pageContainer}>
+            <div className={classes.controlContainer}>
+              <div className={classes.filterButtonWrapper}>
+                <Button
+                  onClick={handleFilterClick}
+                  // className={classes.filterButton}
+                  disabled={loading}
+                  fullWidth
+                  startIcon={
+                    <div className={clsx('svg-icon')}>
+                      <FilterIcon />
+                    </div>
+                  }
+                >
+                  фильтр
+                </Button>
+              </div>
+              <div
+                className={clsx({
+                  [classes.filtersBox]: true,
+                  [classes.filtersBoxVisible]: isOpen
+                })}
               >
-                фильтр
-              </Button>
+                <Filters priceRange={priceRange} />
+              </div>
             </div>
-            <div
-              className={clsx({
-                [classes.filtersBox]: true,
-                [classes.filtersBoxVisible]: isOpen
-              })}
-            >
-              <Filters
-                initValues={filtersInitialValues}
-                priceRange={priceRange}
-                formRef={formikRef}
-                onSubmit={handleFiltersSubmit}
-              />
+            <div className={classes.viewBox}>
+              {loading ? (
+                <div className={classes.loaderWapper}>
+                  <ScaleLoader fallback={true} />
+                </div>
+              ) : (
+                <div className={classes.productsContainer}>
+                  <Products
+                    totalPages={totalPages ? totalPages : 1}
+                    currentPage={isNaN(numOfPage) ? 1 : numOfPage}
+                    products={data?.products.products}
+                    onActionButtonClick={handleReftesh}
+                  />
+                </div>
+              )}
             </div>
           </div>
-          <div className={classes.viewBox}>
-            {loading ? (
-              <div className={classes.loaderWapper}>
-                <ScaleLoader fallback={true} />
-              </div>
-            ) : (
-              <div className={classes.productsContainer}>
-                <Products
-                  totalPages={totalPages ? totalPages : 1}
-                  currentPage={isNaN(numOfPage) ? 1 : numOfPage}
-                  products={data?.products.products}
-                  onActionButtonClick={handleReftesh}
-                />
-              </div>
-            )}
-          </div>
+          <div
+            onClick={handleDrawerClose}
+            className={clsx({
+              [classes.overlay]: true,
+              [classes.overlayVisible]: isOpen
+            })}
+          />
         </div>
-        <div
-          onClick={handleDrawerClose}
-          className={clsx({
-            [classes.overlay]: true,
-            [classes.overlayVisible]: isOpen
-          })}
-        />
-      </div>
+      </FormProvider>
     </div>
   )
 }
