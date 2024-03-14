@@ -41,8 +41,8 @@ const availability: FilterSection = {
 const tags: FilterSection = {
   options: [
     {
-      label: 'catalog:filters.tag.all',
-      value: '',
+      label: 'Топ', //'catalog:filters.tag.all',
+      value: 'top',
       disabled: false
     },
     {

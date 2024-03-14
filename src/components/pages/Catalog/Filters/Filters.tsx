@@ -78,10 +78,10 @@ export function Filters({ priceRange }: FiltersProps) {
           title={t('catalog:filters.name.availability')}
           options={availabilityOptions}
         />
-        {/* <div className={styles.tagSectionWrapper}>
+        <div className={styles.tagSectionWrapper}>
           <RadioGroup name="mainTag" options={tagsOptions} />
         </div>
-        <PriceRange
+        {/* <PriceRange
           name="priceRange"
           min={minPrice}
           max={maxPrice}

@@ -23,7 +23,7 @@ import classes from './Catalog.module.scss'
 type FormValues = {
   gender: Array<keyof typeof Gender>
   availability: Array<'inStock' | 'byOrder'>
-  mainTag?: MainTag
+  mainTag: keyof typeof MainTag | ''
   priceRange: [number, number]
   category: Array<keyof typeof Category>
 }
@@ -76,11 +76,12 @@ export function CatalogIndex() {
   }
 
   const formMethods = useForm<FormValues>({
-    mode: 'onChange',
+    mode: 'onSubmit',
     // resolver: valibotResolver(currentValidationSchema),
     defaultValues: {
       gender: [],
       availability: [],
+      mainTag: '',
       category: []
     }
   })
@@ -88,17 +89,12 @@ export function CatalogIndex() {
   const { watch, handleSubmit } = formMethods
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data.gender)
+    console.log(data.mainTag)
 
     // getProducts({
     //   variables: { ...getQueryValues(values), page: numOfPage }
     // })
   }
-
-  useEffect(() => {
-    const subscription = watch(() => handleSubmit(onSubmit)())
-    return () => subscription.unsubscribe()
-  }, [handleSubmit, watch])
 
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0])
   const [isOpen, setOpen] = useState<boolean>(false)
@@ -118,6 +114,11 @@ export function CatalogIndex() {
       }
     }
   })
+
+  useEffect(() => {
+    const subscription = watch(() => handleSubmit(onSubmit)())
+    return () => subscription.unsubscribe()
+  }, [handleSubmit, watch])
 
   useEffect(() => {
     if (categoryName || genderType) history.replaceState({}, '')
