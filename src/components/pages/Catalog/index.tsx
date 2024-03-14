@@ -20,11 +20,11 @@ import classes from './Catalog.module.scss'
 
 // import { routeNames } from '@/utils/navigation'
 
-type FormValues = {
+export type FormValues = {
   gender: Array<keyof typeof Gender>
   availability: Array<'inStock' | 'byOrder'>
   mainTag: keyof typeof MainTag | ''
-  priceRange: [number, number]
+  priceRange: [number, number] | null
   category: Array<keyof typeof Category>
 }
 
@@ -75,27 +75,6 @@ export function CatalogIndex() {
     }
   }
 
-  const formMethods = useForm<FormValues>({
-    mode: 'onSubmit',
-    // resolver: valibotResolver(currentValidationSchema),
-    defaultValues: {
-      gender: [],
-      availability: [],
-      mainTag: '',
-      category: []
-    }
-  })
-
-  const { watch, handleSubmit } = formMethods
-
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data.mainTag)
-
-    // getProducts({
-    //   variables: { ...getQueryValues(values), page: numOfPage }
-    // })
-  }
-
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0])
   const [isOpen, setOpen] = useState<boolean>(false)
 
@@ -115,6 +94,29 @@ export function CatalogIndex() {
     }
   })
 
+  const formMethods = useForm<FormValues>({
+    mode: 'onSubmit',
+    defaultValues: {
+      gender: [],
+      availability: [],
+      mainTag: '',
+      priceRange: null,
+      category: []
+    }
+  })
+
+  const { watch, handleSubmit } = formMethods
+
+  // const priceRange = getValues('priceRange')
+
+  const onSubmit: SubmitHandler<FormValues> = (data) => {
+    console.log('-- range --', data.priceRange)
+
+    // getProducts({
+    //   variables: { ...getQueryValues(values), page: numOfPage }
+    // })
+  }
+
   useEffect(() => {
     const subscription = watch(() => handleSubmit(onSubmit)())
     return () => subscription.unsubscribe()
@@ -123,13 +125,6 @@ export function CatalogIndex() {
   useEffect(() => {
     if (categoryName || genderType) history.replaceState({}, '')
 
-    // if (filters) {
-    //   const values = JSON.parse(filters) as FilterValues
-
-    //   getProducts({
-    //     variables: { ...getQueryValues(values), page: numOfPage }
-    //   })
-    // } else {
     getProducts({
       variables: {
         gender: genderType ? ([genderType] as Gender[]) : [],

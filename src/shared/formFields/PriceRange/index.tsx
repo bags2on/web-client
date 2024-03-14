@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import Slider from 'rc-slider'
 import { Button } from '@/components/ui/Button'
 import { Collapse, CollapseHead } from '@/shared/Collapse'
-import { useFormikContext } from 'formik'
 import type { SliderProps } from 'rc-slider'
 
 import styles from './PriceRange.module.scss'
@@ -10,73 +9,103 @@ import 'rc-slider/assets/index.css'
 
 interface PriceRangeProps {
   title: string
-  name: string
   min: number
   max: number
+  defaultMin: number
+  defaultMax: number
   step?: number
+  onSet(range: [number, number]): void
 }
 
-interface FormFields {
-  priceRange: Array<number>
-}
+export function PriceRange({
+  title,
+  // min,
+  // max,
+  // defaultMin,
+  // defaultMax,
+  step = 1,
+  onSet
+}: PriceRangeProps) {
+  const [isCollapsed, setCollapsed] = useState(true)
 
-export function PriceRange({ title, name, min, max, step = 1 }: PriceRangeProps) {
-  const { values, setFieldValue } = useFormikContext<FormFields>()
+  const [[min, max], setRange] = useState([100, 1000])
+  const [[defaultMin, defaultMax], setDefaultRange] = useState([min, max])
 
-  const [minPrice, maxPrice] = values.priceRange || [0, 0]
-  const [isCollapsed, setCollapsed] = useState<boolean>(true)
+  // console.log('defaultMin', defaultMin, defaultMax)
+  console.log('cmin/max', min, max)
 
-  const [minInputValue, setMinInputValue] = useState<number>(minPrice)
-  const [maxInputValue, setMaxInputValue] = useState<number>(maxPrice)
+  const [minInputValue, setMinInputValue] = useState(min)
+  const [maxInputValue, setMaxInputValue] = useState(max)
 
-  const [sliderMin, setSliderMin] = useState<number>(minInputValue)
-  const [sliderMax, setSliderMax] = useState<number>(maxInputValue)
+  const [sliderMin, setSliderMin] = useState(min)
+  const [sliderMax, setSliderMax] = useState(max)
 
   useEffect(() => {
-    setMinInputValue(minPrice)
-    setMaxInputValue(maxPrice)
+    const cmin = min
+    const cmax = max
 
-    setSliderMin(minPrice)
-    setSliderMax(maxPrice)
-  }, [minPrice, maxPrice])
+    console.log('OBSERVED', cmin, cmax)
+
+    setMinInputValue(cmin)
+    setMaxInputValue(cmax)
+
+    setSliderMin(cmin)
+    setSliderMax(cmax)
+  }, [min, max])
+
+  // useEffect(() => {
+  // setMinInputValue(minPrice)
+  // setMaxInputValue(maxPrice)
+
+  // setSliderMin(minPrice)
+  // setSliderMax(maxPrice)
+  // }, [minPrice, maxPrice])
 
   const handleCollapse = (): void => {
     setCollapsed(!isCollapsed)
   }
 
   const onSliderChange = (values: number | number[]): void => {
-    const [min, max] = values as number[]
+    if (Array.isArray(values)) {
+      const [min, max] = values
 
-    setMinInputValue(min)
-    setMaxInputValue(max)
+      setMinInputValue(min)
+      setMaxInputValue(max)
 
-    setSliderMin(min)
-    setSliderMax(max)
+      setSliderMin(min)
+      setSliderMax(max)
+    }
   }
 
   const onMinChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const min = +event.target.value
     setMinInputValue(min)
+    setSliderMin(min)
   }
 
   const onMaxChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const max = +event.target.value
     setMaxInputValue(max)
+    setSliderMax(max)
   }
 
   const handlePriceSubmit = (): void => {
-    setSliderMin(minInputValue)
-    setSliderMax(maxInputValue)
+    console.log('set', [minInputValue, maxInputValue])
 
-    setFieldValue(name, [minInputValue, maxInputValue])
+    // onSet([minInputValue, maxInputValue])
+  }
+
+  const handleSetCustom = () => {
+    console.log('c')
+    setRange([300, 400])
   }
 
   const marks: SliderProps['marks'] = {
-    [min]: {
-      label: <span className={styles.sliderMark}>{min}</span>
+    [defaultMin]: {
+      label: <span className={styles.sliderMark}>{defaultMin}</span>
     },
-    [max]: {
-      label: <span className={styles.sliderMark}>{max}</span>
+    [defaultMax]: {
+      label: <span className={styles.sliderMark}>{defaultMax}</span>
     }
   }
 
@@ -101,13 +130,17 @@ export function PriceRange({ title, name, min, max, step = 1 }: PriceRangeProps)
             <Button color="secondary" onClick={handlePriceSubmit} className={styles.setButton}>
               ok
             </Button>
+            <Button color="secondary" onClick={handleSetCustom} className={styles.setButton}>
+              set custom
+            </Button>
           </div>
           <div className={styles.sliderWrapper}>
             <Slider
-              range
-              min={min}
-              max={max}
               step={step}
+              range
+              min={defaultMin}
+              max={defaultMax}
+              defaultValue={[defaultMin, defaultMax]}
               value={[sliderMin, sliderMax]}
               marks={marks}
               onChange={onSliderChange}
