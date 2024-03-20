@@ -4,6 +4,7 @@ import { ProductItem } from '@/components/ProductItem'
 import { Pagination } from '@/components/ui/Pagination'
 // import { routeNames } from '@/utils/navigation'
 import { useFavoriteStore } from '@/store/favorite'
+import type { ProductTag } from '@/types'
 
 import styles from './Products.module.scss'
 
@@ -15,10 +16,10 @@ interface ProductsProps {
         id: string
         slug: string
         title: string
-        instock: boolean
+        inStock: boolean
         currentPrice: number
         basePrice: number
-        mainTag?: string | null
+        tag?: keyof typeof ProductTag | null
         preview: string
       }>
     | undefined
@@ -67,8 +68,8 @@ export function Products({
                 url={product.preview}
                 title={product.title}
                 price={product.currentPrice}
-                inStock={product.instock}
-                mainTag={product.mainTag || ''}
+                inStock={product.inStock}
+                tag={product.tag}
                 basePrice={product.basePrice}
                 isFavorite={isFavorite}
               />
