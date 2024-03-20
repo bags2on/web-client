@@ -24,10 +24,10 @@ export type AllProductsQuery = {
       id: string
       slug: string
       title: string
-      instock: boolean
+      inStock: boolean
       currentPrice: number
       basePrice: number
-      mainTag?: Types.MainTag | null
+      tag?: Types.ProductTag | null
       preview: string
     }>
   }
@@ -66,10 +66,10 @@ export const AllProductsDocument = gql`
         id
         slug
         title
-        instock
+        inStock
         currentPrice
         basePrice
-        mainTag
+        tag
         preview
       }
     }

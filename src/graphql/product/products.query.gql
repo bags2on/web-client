@@ -30,10 +30,10 @@ query AllProducts(
       id
       slug
       title
-      instock
+      inStock
       currentPrice
       basePrice
-      mainTag
+      tag
       preview
     }
   }
