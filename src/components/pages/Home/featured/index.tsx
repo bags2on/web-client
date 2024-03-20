@@ -1,21 +1,22 @@
 import React from 'react'
 import { ProductItem } from '@/components/ProductItem'
 import { useTranslation } from 'next-i18next'
+import type { ProductTag } from '@/types'
 
-import styles from './Featured.module.scss'
+import styles from './styles.module.scss'
 
-interface ProductType {
+interface Product {
   id: string
+  title: string
+  tag?: keyof typeof ProductTag | null
   slug: string
   currentPrice: number
-  title: string
-  preview: string
   basePrice: number
-  mainTag?: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR' | null
+  preview: string
 }
 
 interface FeaturedProps {
-  products: Array<ProductType>
+  products: Product[]
 }
 
 export function Featured({ products }: FeaturedProps) {
@@ -25,7 +26,7 @@ export function Featured({ products }: FeaturedProps) {
     <section>
       <h2 className={styles.title}>{t('home:headers.advise')}</h2>
       <ul className={styles.list}>
-        {products.map((product: ProductType) => (
+        {products.map((product) => (
           <li key={product.id} className={styles.listItem}>
             <ProductItem
               inStock
@@ -34,7 +35,7 @@ export function Featured({ products }: FeaturedProps) {
               url={product.preview}
               title={product.title}
               price={product.currentPrice}
-              mainTag={product.mainTag || ''}
+              tag={product.tag}
               basePrice={product.basePrice}
               isFavorite={false} // TODO: get data form ac3
             />
