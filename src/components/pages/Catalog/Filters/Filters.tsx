@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/Button'
 import { RadioGroup } from '@/shared/formFields/RadioGroup'
 import { CheckBoxGroup } from '@/shared/formFields/CheckboxGroup'
@@ -9,11 +9,6 @@ import { useFormContext } from 'react-hook-form'
 import type { FormValues } from '../index'
 
 import styles from './Filters.module.scss'
-
-type PriceRange = {
-  lt: number
-  gt: number
-}
 
 interface FiltersProps {
   priceRange: [number, number]
@@ -30,19 +25,10 @@ export function Filters({ priceRange }: FiltersProps) {
     setValue
   } = useFormContext<FormValues>()
 
-  const [defaultRange, setDefaultRange] = useState<[number, number]>(priceRange)
-
-  const [gt, lt] = defaultRange
-
-  console.log(defaultRange)
-
-  const memoRange: [number, number] = useMemo(() => [gt, lt], [gt, lt])
+  const [currentRange, setCurrentRange] = useState(priceRange)
 
   useEffect(() => {
-    // setRange(priceRange)
-    console.log('refresh efaults')
-
-    setDefaultRange(priceRange)
+    setCurrentRange(priceRange)
   }, [priceRange])
 
   const addI18 = (option: FilterItem) => ({
@@ -51,12 +37,12 @@ export function Filters({ priceRange }: FiltersProps) {
   })
 
   const handleReset = () => {
-    setDefaultRange([0, 0]) // rhf field to undefined
+    setCurrentRange([0, 0]) // rhf field to undefined
     reset()
   }
 
   const handlePriceRange = (newRange: [number, number]) => {
-    if (newRange[0] === defaultRange[0] && newRange[1] === defaultRange[1]) return
+    if (newRange[0] === currentRange[0] && newRange[1] === currentRange[1]) return
     setValue('priceRange', newRange, { shouldDirty: true })
   }
 
@@ -93,9 +79,8 @@ export function Filters({ priceRange }: FiltersProps) {
           <RadioGroup name="mainTag" options={tagsOptions} />
         </div>
         <PriceRange
-          range={memoRange}
-          min={defaultRange[0]}
-          max={defaultRange[1]}
+          min={currentRange[0]}
+          max={currentRange[1]}
           onSet={handlePriceRange}
           title={t('catalog:filters.name.price')}
         />

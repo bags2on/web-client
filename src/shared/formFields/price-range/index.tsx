@@ -12,30 +12,25 @@ interface PriceRangeProps {
   min: number
   max: number
   step?: number
-  range: [number, number]
   onSet(range: [number, number]): void
 }
 
-export function PriceRange({ title, min, max, step = 1, range, onSet }: PriceRangeProps) {
+export function PriceRange({ title, min, max, step = 1, onSet }: PriceRangeProps) {
   const [isCollapsed, setCollapsed] = useState(true)
 
-  const [minInputValue, setMinInputValue] = useState(range[0])
-  const [maxInputValue, setMaxInputValue] = useState(range[1])
+  const [minInputValue, setMinInputValue] = useState(min)
+  const [maxInputValue, setMaxInputValue] = useState(max)
 
-  const [sliderMin, setSliderMin] = useState(range[0])
-  const [sliderMax, setSliderMax] = useState(range[1])
+  const [sliderMin, setSliderMin] = useState(min)
+  const [sliderMax, setSliderMax] = useState(max)
 
   useEffect(() => {
-    const [cmin, cmax] = range
+    setMinInputValue(min)
+    setMaxInputValue(max)
 
-    console.log('OBSERVED', cmin, cmax)
-
-    setMinInputValue(cmin)
-    setMaxInputValue(cmax)
-
-    setSliderMin(cmin)
-    setSliderMax(cmax)
-  }, [range])
+    setSliderMin(min)
+    setSliderMax(max)
+  }, [min, max])
 
   const handleCollapse = (): void => {
     setCollapsed(!isCollapsed)
@@ -65,9 +60,7 @@ export function PriceRange({ title, min, max, step = 1, range, onSet }: PriceRan
     setSliderMax(max)
   }
 
-  const handlePriceSubmit = (): void => {
-    console.log('ok click', [minInputValue, maxInputValue])
-
+  const handleSubmit = () => {
     onSet([minInputValue, maxInputValue])
   }
 
@@ -98,7 +91,7 @@ export function PriceRange({ title, min, max, step = 1, range, onSet }: PriceRan
               onChange={onMaxChange}
               className={styles.priceInput}
             />
-            <Button color="secondary" onClick={handlePriceSubmit} className={styles.setButton}>
+            <Button color="secondary" onClick={handleSubmit} className={styles.setButton}>
               ok
             </Button>
           </div>
