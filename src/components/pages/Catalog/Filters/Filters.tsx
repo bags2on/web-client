@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { Button } from '@/components/ui/Button'
 import { RadioGroup } from '@/shared/formFields/RadioGroup'
 import { CheckBoxGroup } from '@/shared/formFields/CheckboxGroup'
-import { PriceRange } from '@/shared/formFields/PriceRange'
+import { PriceRange } from '@/shared/formFields/price-range'
 import fieldProps, { FilterItem } from './data'
 import { useTranslation } from 'next-i18next'
 import { useFormContext } from 'react-hook-form'
@@ -26,19 +26,22 @@ export function Filters({ priceRange }: FiltersProps) {
 
   const {
     reset,
-    getValues,
     formState: { isDirty },
     setValue
   } = useFormContext<FormValues>()
 
-  const [range, setRange] = useState<[number, number]>(priceRange)
-
   const [defaultRange, setDefaultRange] = useState<[number, number]>(priceRange)
 
-  const [minPrice, maxPrice] = getValues('priceRange') || defaultRange
+  const [gt, lt] = defaultRange
 
-  React.useEffect(() => {
+  console.log(defaultRange)
+
+  const memoRange: [number, number] = useMemo(() => [gt, lt], [gt, lt])
+
+  useEffect(() => {
     // setRange(priceRange)
+    console.log('refresh efaults')
+
     setDefaultRange(priceRange)
   }, [priceRange])
 
@@ -48,27 +51,14 @@ export function Filters({ priceRange }: FiltersProps) {
   })
 
   const handleReset = () => {
-    console.log('reset to:', defaultRange)
-    // setRange([...defaultRange])
+    setDefaultRange([0, 0]) // rhf field to undefined
     reset()
   }
 
   const handlePriceRange = (newRange: [number, number]) => {
-    console.log('SET', newRange)
+    if (newRange[0] === defaultRange[0] && newRange[1] === defaultRange[1]) return
     setValue('priceRange', newRange, { shouldDirty: true })
   }
-
-  // React.useEffect(() => {
-  //   const t = setTimeout(() => {
-  //     console.log('sybcth')
-
-  //     setRange([899, 1000])
-  //   }, 7_000)
-
-  //   return () => {
-  //     clearTimeout(t)
-  //   }
-  // }, [defaultRange])
 
   const genderOptions = gender.options.map(addI18)
   const availabilityOptions = availability.options.map(addI18)
@@ -92,19 +82,20 @@ export function Filters({ priceRange }: FiltersProps) {
           name="gender"
           options={genderOptions}
         />
-        <CheckBoxGroup
-          name="availability"
-          title={t('catalog:filters.name.availability')}
-          options={availabilityOptions}
-        />
+        <div style={{ backgroundColor: 'limegreen' }}>
+          <CheckBoxGroup
+            name="availability"
+            title={t('catalog:filters.name.availability')}
+            options={availabilityOptions}
+          />
+        </div>
         <div className={styles.tagSectionWrapper}>
           <RadioGroup name="mainTag" options={tagsOptions} />
         </div>
         <PriceRange
-          min={minPrice}
-          max={maxPrice}
-          defaultMin={defaultRange[0]}
-          defaultMax={defaultRange[1]}
+          range={memoRange}
+          min={defaultRange[0]}
+          max={defaultRange[1]}
           onSet={handlePriceRange}
           title={t('catalog:filters.name.price')}
         />

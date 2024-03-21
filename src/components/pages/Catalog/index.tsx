@@ -12,11 +12,16 @@ import {
   AllProductsQuery,
   AllProductsQueryVariables
 } from '@/graphql/product/_gen_/products.query'
-import { PriceRange } from '@/graphql/types'
 import { FormProvider, useForm, SubmitHandler } from 'react-hook-form'
 import type { Gender, ProductTag, Category } from '@/types'
+import type { CategoryType } from '@/graphql/types'
 
 import classes from './Catalog.module.scss'
+
+type PriceRangeType = {
+  gt: number
+  lt: number
+}
 
 // import { routeNames } from '@/utils/navigation'
 
@@ -24,62 +29,15 @@ export type FormValues = {
   gender: Array<keyof typeof Gender>
   availability: Array<'inStock' | 'byOrder'>
   mainTag: keyof typeof ProductTag | ''
-  priceRange: [number, number] | null
+  priceRange: [number, number]
   category: Array<keyof typeof Category>
 }
 
-type queryValues = {
-  instock: boolean | undefined
-  price: PriceRange | undefined
-  mainTag: ProductTag
-  gender: Gender[]
-  category: Category[]
-}
-
-function getQueryValues(values: FormValues): queryValues {
-  const { gender, availability, mainTag, priceRange, category } = values
-
-  let price
-
-  const [gt, lt] = priceRange
-
-  if (gt && lt) price = { gt, lt }
-
-  let instock: boolean | undefined
-
-  if (availability.length === 1) {
-    const map = { inStock: true, byOrder: false }
-    instock = map[availability[0]]
-  }
-
-  return {
-    instock,
-    price,
-    mainTag: (mainTag || undefined) as ProductTag,
-    gender: gender as Gender[],
-    category: category as Category[]
-  }
-}
-
 export function CatalogIndex() {
-  // const { page } = useParams<ParamTypes>()
-
-  const page = 1
-
-  // const location = useLocation<LocationState>()
-
-  const location = {
-    state: {
-      genderType: '',
-      categoryName: ''
-    }
-  }
-
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0])
   const [isOpen, setOpen] = useState<boolean>(false)
 
-  const { categoryName, genderType } = location.state || { categoryName: '', genderType: '' }
-
+  const page = 1
   const numOfPage = !isNaN(Number(page)) ? Number(page) : 1
 
   const [getProducts, { loading, data, error }] = useLazyQuery<
@@ -100,21 +58,44 @@ export function CatalogIndex() {
       gender: [],
       availability: [],
       mainTag: '',
-      priceRange: null,
+      priceRange: undefined,
       category: []
     }
   })
 
   const { watch, handleSubmit } = formMethods
 
-  // const priceRange = getValues('priceRange')
-
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log('-- range --', data.priceRange)
+    console.log('-- API --', data)
 
-    // getProducts({
-    //   variables: { ...getQueryValues(values), page: numOfPage }
-    // })
+    const { gender, availability, mainTag, priceRange, category } = data
+
+    let price: PriceRangeType | undefined
+
+    if (priceRange) {
+      const [gt, lt] = priceRange
+      price = { gt, lt }
+    }
+
+    let instock: boolean | undefined
+
+    if (availability.length === 1) {
+      const map = { inStock: true, byOrder: false }
+      instock = map[availability[0]]
+    }
+
+    const categoryData = category as unknown as CategoryType
+
+    getProducts({
+      variables: {
+        page: numOfPage,
+        price,
+        instock,
+        category: categoryData
+        // gender: null,
+        // mainTag: null
+      }
+    })
   }
 
   useEffect(() => {
@@ -123,18 +104,12 @@ export function CatalogIndex() {
   }, [handleSubmit, watch])
 
   useEffect(() => {
-    if (categoryName || genderType) history.replaceState({}, '')
-
     getProducts({
       variables: {
-        gender: genderType ? ([genderType] as Gender[]) : [],
-        instock: undefined,
-        category: categoryName ? ([categoryName] as Category[]) : [],
         page: numOfPage
       }
     })
-    // }
-  }, [numOfPage])
+  }, [numOfPage, getProducts])
 
   const handleFilterClick = (): void => {
     document.body.style.overflow = 'hidden'
@@ -159,8 +134,6 @@ export function CatalogIndex() {
   }
 
   const totalPages = data?.products.pagination.totalPages
-
-  // <form onSubmit={formMethods.handleSubmit(handleSubmit)}>
 
   return (
     <div className={classes.root}>
