@@ -8,11 +8,11 @@
   }
 }
 
-.productList {
+.list {
   display: flex;
   flex-wrap: wrap;
   margin: 0;
-  padding: 5px;
+  padding: 0;
 
   @include _minLG {
     padding: 10px 10px 0 10px;

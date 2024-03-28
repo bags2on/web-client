@@ -1,3 +1,5 @@
+$controls-brd-radius: 10px;
+
 .wrapper {
   max-width: 1700px;
   margin: 0 auto;
@@ -27,10 +29,17 @@
   padding: 0 7px;
 }
 
-.controlContainer {
+// todo
+.what {
   flex-grow: 0;
   max-width: 100%;
   flex-basis: 100%;
+
+  @include _minLG {
+    width: auto;
+    max-width: initial;
+    flex-basis: initial;
+  }
 }
 
 .productsContainer {
@@ -39,26 +48,48 @@
   height: 100%;
 }
 
-.filterButtonWrapper {
+.controls {
   display: flex;
   justify-content: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+
+  @include _minMD {
+    justify-content: flex-end;
+  }
+
+  @include _minLG {
+    @include hide;
+  }
+}
+
+.control {
+  background: #e7e7e7;
+  border: none;
+  font-weight: 600;
+  width: 100%;
+  border-radius: $controls-brd-radius;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.sortButton {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: 2px solid #dadada;
+}
+
+.sortIcon {
+  margin-right: 10px;
+  font-size: 27px;
 }
 
 .filterButton {
-  max-width: 335px;
-  background: none;
-  border: 2px solid;
-  font-weight: 600;
-  color: var(--catalog-filter-btn-color);
-  background: var(--catalog-filter-btn-bgc);
-  &:disabled {
-    color: var(--sub-title-color);
-    border-color: var(--sub-title-color);
-  }
-  &:hover {
-    background: none;
-  }
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.filterIcon {
+  margin-right: 10px;
 }
 
 .filtersBox {
@@ -83,24 +114,26 @@
 
 .overlay {
   display: none;
+  overflow: hidden;
   position: fixed;
-  z-index: 1000;
   top: 0;
   left: 0;
-  width: 100%;
-  height: calc(100 * var(--vh));
-  background-color: rgba(0, 0, 0, 0.5);
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  backdrop-filter: blur(3px);
+  background-color: rgba(0, 0, 0, 0.2);
+  -webkit-tap-highlight-color: transparent;
 }
 
 .overlayVisible {
   display: block;
+  @include _minLG {
+    display: none;
+  }
 }
 
 @media screen and (min-width: $md) {
-  .filterButtonWrapper {
-    justify-content: flex-end;
-  }
-
   .filterButton {
     max-width: 170px;
     margin-right: 5px;
@@ -108,16 +141,6 @@
 }
 
 @media screen and (min-width: $lg) {
-  .root {
-    background-color: #fafafa;
-  }
-
-  .controlContainer {
-    width: auto;
-    max-width: initial;
-    flex-basis: initial;
-  }
-
   .loaderWapper {
     height: 100%;
   }
@@ -130,19 +153,11 @@
     flex-basis: initial;
   }
 
-  .filterButtonWrapper {
-    @include hide;
-  }
-
   .filtersBox {
     position: static;
     right: 0;
     height: 100%;
     border-radius: 7px;
-  }
-
-  .overlay {
-    display: none !important;
   }
 }
 

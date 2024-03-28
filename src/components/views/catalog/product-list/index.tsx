@@ -56,7 +56,7 @@ export function ProductList({
 
   return (
     <div className={styles.container}>
-      <ul className={styles.productList}>
+      <ul className={styles.list}>
         {products.map((product) => {
           const isFavorite = favoriteItems.includes(product.id)
 

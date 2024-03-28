@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import FilterIcon from '../../../../public/assets/icons/filter.svg'
+import SortIcon from '../../../../public/assets/icons/sort.svg'
 import { Button } from '@/components/ui/Button'
 import { Filters } from './filters'
 import { ProductList } from './product-list'
@@ -139,20 +140,31 @@ export function CatalogIndex() {
       <FormProvider {...formMethods}>
         <div className={styles.wrapper}>
           <div className={styles.pageContainer}>
-            <div className={styles.controlContainer}>
-              <div className={styles.filterButtonWrapper}>
+            <div className={styles.what}>
+              <div className={styles.controls}>
                 <Button
+                  color="secondary"
                   onClick={handleFilterClick}
-                  // className={styles.filterButton}
-                  disabled={loading}
-                  fullWidth
+                  className={clsx(styles.control, styles.sortButton)}
                   startIcon={
-                    <div className={clsx('svg-icon')}>
+                    <div className={clsx('svg-icon', styles.sortIcon)}>
+                      <SortIcon />
+                    </div>
+                  }
+                >
+                  По умолчанию
+                </Button>
+                <Button
+                  color="secondary"
+                  onClick={handleFilterClick}
+                  className={clsx(styles.control, styles.filterButton)}
+                  startIcon={
+                    <div className={clsx('svg-icon', styles.filterIcon)}>
                       <FilterIcon />
                     </div>
                   }
                 >
-                  фильтр
+                  Фильтр
                 </Button>
               </div>
               <div
