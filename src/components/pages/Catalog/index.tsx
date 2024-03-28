@@ -13,8 +13,7 @@ import {
   AllProductsQueryVariables
 } from '@/graphql/product/_gen_/products.query'
 import { FormProvider, useForm, SubmitHandler } from 'react-hook-form'
-import type { Gender } from '@/types'
-import type { CategoryType, ProductTag } from '@/graphql/types'
+import type { CategoryType, ProductTag, Gender } from '@/graphql/types'
 
 import classes from './Catalog.module.scss'
 
@@ -24,7 +23,7 @@ type PriceRangeType = {
 }
 
 export type FormValues = {
-  gender: Array<keyof typeof Gender>
+  gender: Array<Lowercase<keyof typeof Gender>>
   availability: Array<'inStock' | 'byOrder'>
   tag: Lowercase<keyof typeof ProductTag> | null
   priceRange: [number, number]
@@ -84,6 +83,7 @@ export function CatalogIndex() {
 
     const categoryData = category as unknown as CategoryType
     const tagData = tag as unknown as ProductTag
+    const genderData = gender as unknown as Gender
 
     getProducts({
       variables: {
@@ -91,8 +91,8 @@ export function CatalogIndex() {
         price,
         instock,
         category: categoryData,
-        tag: tagData
-        // gender: null,
+        tag: tagData,
+        gender: genderData
       }
     })
   }

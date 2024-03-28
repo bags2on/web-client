@@ -63,11 +63,13 @@ export function Filters({ priceRange }: FiltersProps) {
           )}
         </div>
         <div className={styles.divider} />
-        <CheckBoxGroup
-          title={t('catalog:filters.name.type')}
-          name="gender"
-          options={genderOptions}
-        />
+        <div style={{ backgroundColor: 'limegreen' }}>
+          <CheckBoxGroup
+            title={t('catalog:filters.name.type')}
+            name="gender"
+            options={genderOptions}
+          />
+        </div>
         <div style={{ backgroundColor: 'limegreen' }}>
           <CheckBoxGroup
             name="availability"
@@ -80,12 +82,14 @@ export function Filters({ priceRange }: FiltersProps) {
             <RadioGroup name="tag" options={tagsOptions} />
           </div>
         </div>
-        <PriceRange
-          min={currentRange[0]}
-          max={currentRange[1]}
-          onSet={handlePriceRange}
-          title={t('catalog:filters.name.price')}
-        />
+        <div style={{ backgroundColor: 'limegreen' }}>
+          <PriceRange
+            min={currentRange[0]}
+            max={currentRange[1]}
+            onSet={handlePriceRange}
+            title={t('catalog:filters.name.price')}
+          />
+        </div>
         <div style={{ backgroundColor: 'limegreen' }}>
           <CheckBoxGroup
             title={t('catalog:filters.name.category')}
