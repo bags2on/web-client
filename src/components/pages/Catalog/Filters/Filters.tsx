@@ -86,11 +86,13 @@ export function Filters({ priceRange }: FiltersProps) {
           onSet={handlePriceRange}
           title={t('catalog:filters.name.price')}
         />
-        <CheckBoxGroup
-          title={t('catalog:filters.name.category')}
-          name="category"
-          options={categoriesOptions}
-        />
+        <div style={{ backgroundColor: 'limegreen' }}>
+          <CheckBoxGroup
+            title={t('catalog:filters.name.category')}
+            name="category"
+            options={categoriesOptions}
+          />
+        </div>
       </form>
     </aside>
   )
