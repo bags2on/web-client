@@ -6,7 +6,7 @@ import { Pagination } from '@/components/ui/Pagination'
 import { useFavoriteStore } from '@/store/favorite'
 import type { ProductTag } from '@/types'
 
-import styles from './Products.module.scss'
+import styles from './styles.module.scss'
 
 interface ProductsProps {
   totalPages: number
@@ -26,7 +26,7 @@ interface ProductsProps {
   onActionButtonClick(): void
 }
 
-export function Products({
+export function ProductList({
   totalPages,
   currentPage,
   products,

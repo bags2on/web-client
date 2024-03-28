@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import FilterIcon from '../../../../public/assets/icons/filter.svg'
 import { Button } from '@/components/ui/Button'
-import { Filters } from './Filters/Filters'
-import { Products } from './Products/Products'
+import { Filters } from './filters'
+import { ProductList } from './product-list'
 import { ScaleLoader } from '@/shared/loaders/ScaleLoader'
 import { ErrorPlug } from '@/shared/ErrorPlug'
 import { useLazyQuery } from '@apollo/client'
@@ -15,7 +15,7 @@ import {
 import { FormProvider, useForm, SubmitHandler } from 'react-hook-form'
 import type { CategoryType, ProductTag, Gender } from '@/graphql/types'
 
-import classes from './Catalog.module.scss'
+import styles from './styles.module.scss'
 
 type PriceRangeType = {
   gt: number
@@ -135,15 +135,15 @@ export function CatalogIndex() {
   const totalPages = data?.products.pagination.totalPages
 
   return (
-    <div className={classes.root}>
+    <div className={styles.root}>
       <FormProvider {...formMethods}>
-        <div className={classes.wrapper}>
-          <div className={classes.pageContainer}>
-            <div className={classes.controlContainer}>
-              <div className={classes.filterButtonWrapper}>
+        <div className={styles.wrapper}>
+          <div className={styles.pageContainer}>
+            <div className={styles.controlContainer}>
+              <div className={styles.filterButtonWrapper}>
                 <Button
                   onClick={handleFilterClick}
-                  // className={classes.filterButton}
+                  // className={styles.filterButton}
                   disabled={loading}
                   fullWidth
                   startIcon={
@@ -157,21 +157,21 @@ export function CatalogIndex() {
               </div>
               <div
                 className={clsx({
-                  [classes.filtersBox]: true,
-                  [classes.filtersBoxVisible]: isOpen
+                  [styles.filtersBox]: true,
+                  [styles.filtersBoxVisible]: isOpen
                 })}
               >
                 <Filters priceRange={priceRange} />
               </div>
             </div>
-            <div className={classes.viewBox}>
+            <div className={styles.viewBox}>
               {loading ? (
-                <div className={classes.loaderWapper}>
+                <div className={styles.loaderWapper}>
                   <ScaleLoader fallback={true} />
                 </div>
               ) : (
-                <div className={classes.productsContainer}>
-                  <Products
+                <div className={styles.productsContainer}>
+                  <ProductList
                     totalPages={totalPages ? totalPages : 1}
                     currentPage={isNaN(numOfPage) ? 1 : numOfPage}
                     products={data?.products.products}
@@ -184,8 +184,8 @@ export function CatalogIndex() {
           <div
             onClick={handleDrawerClose}
             className={clsx({
-              [classes.overlay]: true,
-              [classes.overlayVisible]: isOpen
+              [styles.overlay]: true,
+              [styles.overlayVisible]: isOpen
             })}
           />
         </div>

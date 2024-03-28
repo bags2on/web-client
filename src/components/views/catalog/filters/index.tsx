@@ -3,12 +3,12 @@ import { Button } from '@/components/ui/Button'
 import { RadioGroup } from '@/shared/formFields/RadioGroup'
 import { CheckBoxGroup } from '@/shared/formFields/CheckboxGroup'
 import { PriceRange } from '@/shared/formFields/price-range'
-import fieldProps, { FilterItem } from './data'
+import fieldProps, { FilterItem } from './fliters-data'
 import { useTranslation } from 'next-i18next'
 import { useFormContext } from 'react-hook-form'
 import type { FormValues } from '../index'
 
-import styles from './Filters.module.scss'
+import styles from './styles.module.scss'
 
 interface FiltersProps {
   priceRange: [number, number]
@@ -37,7 +37,7 @@ export function Filters({ priceRange }: FiltersProps) {
   })
 
   const handleReset = () => {
-    setCurrentRange([0, 0]) // rhf field to undefined
+    setCurrentRange([0, 0]) // in this case RHF set field to undefined
     reset()
   }
 
@@ -63,40 +63,30 @@ export function Filters({ priceRange }: FiltersProps) {
           )}
         </div>
         <div className={styles.divider} />
-        <div style={{ backgroundColor: 'limegreen' }}>
-          <CheckBoxGroup
-            title={t('catalog:filters.name.type')}
-            name="gender"
-            options={genderOptions}
-          />
+        <CheckBoxGroup
+          title={t('catalog:filters.name.type')}
+          name="gender"
+          options={genderOptions}
+        />
+        <CheckBoxGroup
+          name="availability"
+          title={t('catalog:filters.name.availability')}
+          options={availabilityOptions}
+        />
+        <div className={styles.tagSectionWrapper}>
+          <RadioGroup name="tag" options={tagsOptions} />
         </div>
-        <div style={{ backgroundColor: 'limegreen' }}>
-          <CheckBoxGroup
-            name="availability"
-            title={t('catalog:filters.name.availability')}
-            options={availabilityOptions}
-          />
-        </div>
-        <div style={{ backgroundColor: 'limegreen' }}>
-          <div className={styles.tagSectionWrapper}>
-            <RadioGroup name="tag" options={tagsOptions} />
-          </div>
-        </div>
-        <div style={{ backgroundColor: 'limegreen' }}>
-          <PriceRange
-            min={currentRange[0]}
-            max={currentRange[1]}
-            onSet={handlePriceRange}
-            title={t('catalog:filters.name.price')}
-          />
-        </div>
-        <div style={{ backgroundColor: 'limegreen' }}>
-          <CheckBoxGroup
-            title={t('catalog:filters.name.category')}
-            name="category"
-            options={categoriesOptions}
-          />
-        </div>
+        <PriceRange
+          min={currentRange[0]}
+          max={currentRange[1]}
+          onSet={handlePriceRange}
+          title={t('catalog:filters.name.price')}
+        />
+        <CheckBoxGroup
+          title={t('catalog:filters.name.category')}
+          name="category"
+          options={categoriesOptions}
+        />
       </form>
     </aside>
   )
