@@ -7,7 +7,7 @@ export type AllProductsQueryVariables = Types.Exact<{
   gender?: Types.InputMaybe<Array<Types.Gender> | Types.Gender>
   isHidden?: Types.InputMaybe<Types.Scalars['Boolean']['input']>
   instock?: Types.InputMaybe<Types.Scalars['Boolean']['input']>
-  mainTag?: Types.InputMaybe<Types.MainTag>
+  tag?: Types.InputMaybe<Types.ProductTag>
   price?: Types.InputMaybe<Types.PriceRange>
   category?: Types.InputMaybe<Array<Types.CategoryType> | Types.CategoryType>
   page: Types.Scalars['Int']['input']
@@ -38,7 +38,7 @@ export const AllProductsDocument = gql`
     $gender: [Gender!]
     $isHidden: Boolean = false
     $instock: Boolean
-    $mainTag: MainTag
+    $tag: ProductTag
     $price: PriceRange
     $category: [CategoryType!]
     $page: Int!
@@ -48,7 +48,7 @@ export const AllProductsDocument = gql`
         gender: $gender
         isHidden: $isHidden
         instock: $instock
-        mainTag: $mainTag
+        tag: $tag
         price: $price
         category: $category
         page: $page
@@ -91,7 +91,7 @@ export const AllProductsDocument = gql`
  *      gender: // value for 'gender'
  *      isHidden: // value for 'isHidden'
  *      instock: // value for 'instock'
- *      mainTag: // value for 'mainTag'
+ *      tag: // value for 'tag'
  *      price: // value for 'price'
  *      category: // value for 'category'
  *      page: // value for 'page'

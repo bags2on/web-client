@@ -82,12 +82,6 @@ export type LogInRsponse = {
   token: Scalars['String']['output']
 }
 
-export const enum MainTag {
-  New = 'new',
-  Stock = 'stock',
-  Top = 'top'
-}
-
 export type Mutation = {
   __typename?: 'Mutation'
   createOrder?: Maybe<NewOrderResponse>
@@ -175,7 +169,7 @@ export type PriceRangeType = {
 export type Product = {
   __typename?: 'Product'
   amount: Scalars['Int']['output']
-  availableColors: ProductColors
+  availableColors?: Maybe<Array<ProductColors>>
   basePrice: Scalars['Int']['output']
   brandName: Scalars['String']['output']
   category: CategoryType
@@ -184,10 +178,12 @@ export type Product = {
   currentPrice: Scalars['Int']['output']
   defaultSizeID: Scalars['Int']['output']
   description?: Maybe<Scalars['String']['output']>
+  gender: Gender
   id: Scalars['ID']['output']
   images: Array<Scalars['String']['output']>
   inStock: Scalars['Boolean']['output']
   isHidden: Scalars['Boolean']['output']
+  parentId: Scalars['ID']['output']
   preview: Scalars['String']['output']
   sizeName: Scalars['String']['output']
   sku: Scalars['String']['output']
@@ -199,8 +195,11 @@ export type Product = {
 
 export type ProductColors = {
   __typename?: 'ProductColors'
+  Amount: Scalars['Int']['output']
+  InStock: Scalars['Boolean']['output']
   color: Scalars['String']['output']
   id: Scalars['ID']['output']
+  title: Scalars['String']['output']
 }
 
 export type ProductDetails = {
@@ -218,9 +217,9 @@ export type ProductFilter = {
   gender?: InputMaybe<Array<Gender>>
   instock?: InputMaybe<Scalars['Boolean']['input']>
   isHidden: Scalars['Boolean']['input']
-  mainTag?: InputMaybe<MainTag>
   page: Scalars['Int']['input']
   price?: InputMaybe<PriceRange>
+  tag?: InputMaybe<ProductTag>
 }
 
 export type ProductRatingVoteInput = {

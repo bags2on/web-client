@@ -13,8 +13,8 @@ import {
   AllProductsQueryVariables
 } from '@/graphql/product/_gen_/products.query'
 import { FormProvider, useForm, SubmitHandler } from 'react-hook-form'
-import type { Gender, ProductTag, Category } from '@/types'
-import type { CategoryType } from '@/graphql/types'
+import type { Gender } from '@/types'
+import type { CategoryType, ProductTag } from '@/graphql/types'
 
 import classes from './Catalog.module.scss'
 
@@ -23,14 +23,12 @@ type PriceRangeType = {
   lt: number
 }
 
-// import { routeNames } from '@/utils/navigation'
-
 export type FormValues = {
   gender: Array<keyof typeof Gender>
   availability: Array<'inStock' | 'byOrder'>
-  mainTag: keyof typeof ProductTag | ''
+  tag: Lowercase<keyof typeof ProductTag> | null
   priceRange: [number, number]
-  category: Array<keyof typeof Category>
+  category: Array<Lowercase<keyof typeof CategoryType>>
 }
 
 export function CatalogIndex() {
@@ -57,7 +55,7 @@ export function CatalogIndex() {
     defaultValues: {
       gender: [],
       availability: [],
-      mainTag: '',
+      tag: null,
       priceRange: undefined,
       category: []
     }
@@ -68,7 +66,7 @@ export function CatalogIndex() {
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log('-- API --', data)
 
-    const { gender, availability, mainTag, priceRange, category } = data
+    const { gender, availability, tag, priceRange, category } = data
 
     let price: PriceRangeType | undefined
 
@@ -85,15 +83,16 @@ export function CatalogIndex() {
     }
 
     const categoryData = category as unknown as CategoryType
+    const tagData = tag as unknown as ProductTag
 
     getProducts({
       variables: {
         page: numOfPage,
         price,
         instock,
-        category: categoryData
+        category: categoryData,
+        tag: tagData
         // gender: null,
-        // mainTag: null
       }
     })
   }

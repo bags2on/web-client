@@ -2,7 +2,7 @@ query AllProducts(
   $gender: [Gender!]
   $isHidden: Boolean = false
   $instock: Boolean
-  $mainTag: MainTag
+  $tag: ProductTag
   $price: PriceRange
   $category: [CategoryType!]
   $page: Int!
@@ -12,7 +12,7 @@ query AllProducts(
       gender: $gender
       isHidden: $isHidden
       instock: $instock
-      mainTag: $mainTag
+      tag: $tag
       price: $price
       category: $category
       page: $page

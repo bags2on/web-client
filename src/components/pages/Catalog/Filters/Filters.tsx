@@ -75,8 +75,10 @@ export function Filters({ priceRange }: FiltersProps) {
             options={availabilityOptions}
           />
         </div>
-        <div className={styles.tagSectionWrapper}>
-          <RadioGroup name="mainTag" options={tagsOptions} />
+        <div style={{ backgroundColor: 'limegreen' }}>
+          <div className={styles.tagSectionWrapper}>
+            <RadioGroup name="tag" options={tagsOptions} />
+          </div>
         </div>
         <PriceRange
           min={currentRange[0]}
