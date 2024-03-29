@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import clsx from 'clsx'
-import FilterIcon from '../../../../public/assets/icons/filter.svg'
-import SortIcon from '../../../../public/assets/icons/sort.svg'
-import { Button } from '@/components/ui/Button'
 import { Filters } from './filters'
 import { ProductList } from './product-list'
 import { ScaleLoader } from '@/shared/loaders/ScaleLoader'
 import { ErrorPlug } from '@/shared/ErrorPlug'
+import { Controls } from './controls'
 import { useLazyQuery } from '@apollo/client'
 import {
   AllProductsDocument,
@@ -33,7 +31,7 @@ export type FormValues = {
 
 export function CatalogIndex() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0])
-  const [isOpen, setOpen] = useState<boolean>(false)
+  const [isOpen, setOpen] = useState(true)
 
   const page = 1
   const numOfPage = !isNaN(Number(page)) ? Number(page) : 1
@@ -112,12 +110,12 @@ export function CatalogIndex() {
   }, [numOfPage, getProducts])
 
   const handleFilterClick = (): void => {
-    document.body.style.overflow = 'hidden'
+    document.documentElement.style.position = 'fixed'
     setOpen(true)
   }
 
   const handleDrawerClose = (): void => {
-    document.body.style.overflow = 'unset'
+    document.documentElement.style.position = 'static'
     setOpen(false)
   }
 
@@ -142,35 +140,12 @@ export function CatalogIndex() {
           <div className={styles.pageContainer}>
             <div className={styles.what}>
               <div className={styles.controls}>
-                <Button
-                  color="secondary"
-                  onClick={handleFilterClick}
-                  className={clsx(styles.control, styles.sortButton)}
-                  startIcon={
-                    <div className={clsx('svg-icon', styles.sortIcon)}>
-                      <SortIcon />
-                    </div>
-                  }
-                >
-                  По умолчанию
-                </Button>
-                <Button
-                  color="secondary"
-                  onClick={handleFilterClick}
-                  className={clsx(styles.control, styles.filterButton)}
-                  startIcon={
-                    <div className={clsx('svg-icon', styles.filterIcon)}>
-                      <FilterIcon />
-                    </div>
-                  }
-                >
-                  Фильтр
-                </Button>
+                <Controls onFilterClick={handleFilterClick} />
               </div>
               <div
                 className={clsx({
-                  [styles.filtersBox]: true,
-                  [styles.filtersBoxVisible]: isOpen
+                  [styles.filters]: true,
+                  [styles.filtersVisible]: isOpen
                 })}
               >
                 <Filters priceRange={priceRange} />

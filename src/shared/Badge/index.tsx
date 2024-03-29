@@ -7,9 +7,18 @@ interface BadgeProps {
   color?: string
   children: React.ReactNode
   content?: string | number
+  className?: string
+  dotClassName?: string
 }
 
-export function Badge({ children, content, color = '#f44336', max = 100 }: BadgeProps) {
+export function Badge({
+  children,
+  content,
+  color = '#f44336',
+  max = 100,
+  className,
+  dotClassName
+}: BadgeProps) {
   let show = ''
 
   if (typeof content === 'number') {
@@ -25,10 +34,10 @@ export function Badge({ children, content, color = '#f44336', max = 100 }: Badge
   }
 
   return (
-    <span className={styles.container}>
+    <span className={clsx(styles.container, className)}>
       {children}
       <span
-        className={clsx(styles.dot, content ? styles.visibleIn : styles.visibleOut)}
+        className={clsx(styles.dot, content ? styles.visibleIn : styles.visibleOut, dotClassName)}
         style={{
           backgroundColor: color
         }}
