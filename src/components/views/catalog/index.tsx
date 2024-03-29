@@ -31,7 +31,7 @@ export type FormValues = {
 
 export function CatalogIndex() {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 0])
-  const [isOpen, setOpen] = useState(true)
+  const [isOpen, setOpen] = useState(false)
 
   const page = 1
   const numOfPage = !isNaN(Number(page)) ? Number(page) : 1
@@ -124,6 +124,8 @@ export function CatalogIndex() {
   }
 
   if (error) {
+    console.log(error)
+
     if (error.message === 'invalid page') {
       // return <Redirect to={routeNames.catalog} />
       console.log(error)
