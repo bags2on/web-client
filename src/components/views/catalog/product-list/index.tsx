@@ -1,8 +1,7 @@
-import React from 'react'
+import clsx from 'clsx'
 import { Button } from '@/components/ui/Button'
 import { ProductItem } from '@/components/ProductItem'
 import { Pagination } from '@/components/ui/Pagination'
-// import { routeNames } from '@/utils/navigation'
 import { useFavoriteStore } from '@/store/favorite'
 import type { ProductTag } from '@/types'
 
@@ -23,15 +22,10 @@ interface ProductsProps {
         preview: string
       }>
     | undefined
-  onActionButtonClick(): void
+  onReset(): void
 }
 
-export function ProductList({
-  totalPages,
-  currentPage,
-  products,
-  onActionButtonClick
-}: ProductsProps) {
+export function ProductList({ totalPages, currentPage, products, onReset }: ProductsProps) {
   const favoriteItems = useFavoriteStore((state) => state.favoriteItems)
 
   const handlePagination = (page: number) => {
@@ -43,11 +37,11 @@ export function ProductList({
   if (!products.length) {
     return (
       <div className={styles.notFound}>
-        <div>
+        <div className={styles.notFoundInner}>
           <p className={styles.smile}>:(</p>
           <p className={styles.message}>Извините, но по вашему запросу ничего не найдено</p>
-          <Button fullWidth onClick={onActionButtonClick} className={styles.actionButton}>
-            посмотреть все
+          <Button color="primary" onClick={onReset} className={styles.actionButton}>
+            Смотреть все
           </Button>
         </div>
       </div>
@@ -77,7 +71,7 @@ export function ProductList({
           )
         })}
       </ul>
-      <div className={styles.paginationWrapper}>
+      <div className={clsx(styles.pagination, totalPages === 1 && styles.paginationHide)}>
         <Pagination total={totalPages} currentPage={currentPage} onChange={handlePagination} />
       </div>
     </div>

@@ -12,15 +12,15 @@ import styles from './styles.module.scss'
 
 interface FiltersProps {
   priceRange: [number, number]
+  onReset(): void
 }
 
-export function Filters({ priceRange }: FiltersProps) {
+export function Filters({ priceRange, onReset }: FiltersProps) {
   const { t } = useTranslation(['common', 'catalog'])
 
   const { gender, availability, tags, categories } = fieldProps
 
   const {
-    reset,
     formState: { isDirty },
     setValue
   } = useFormContext<FormValues>()
@@ -38,7 +38,7 @@ export function Filters({ priceRange }: FiltersProps) {
 
   const handleReset = () => {
     setCurrentRange([0, 0]) // in this case RHF set field to undefined
-    reset()
+    onReset()
   }
 
   const handlePriceRange = (newRange: [number, number]) => {

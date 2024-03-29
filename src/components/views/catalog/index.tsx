@@ -6,13 +6,13 @@ import { ScaleLoader } from '@/shared/loaders/ScaleLoader'
 import { ErrorPlug } from '@/shared/ErrorPlug'
 import { Controls } from './controls'
 import { useLazyQuery } from '@apollo/client'
+import { FormProvider, useForm, SubmitHandler } from 'react-hook-form'
+import type { CategoryType, ProductTag, Gender } from '@/graphql/types'
 import {
   AllProductsDocument,
   AllProductsQuery,
   AllProductsQueryVariables
 } from '@/graphql/product/_gen_/products.query'
-import { FormProvider, useForm, SubmitHandler } from 'react-hook-form'
-import type { CategoryType, ProductTag, Gender } from '@/graphql/types'
 
 import styles from './styles.module.scss'
 
@@ -59,7 +59,7 @@ export function CatalogIndex() {
     }
   })
 
-  const { watch, handleSubmit } = formMethods
+  const { watch, handleSubmit, reset } = formMethods
 
   const onSubmit: SubmitHandler<FormValues> = (data) => {
     console.log('-- API --', data)
@@ -119,8 +119,8 @@ export function CatalogIndex() {
     setOpen(false)
   }
 
-  const handleReftesh = (): void => {
-    console.log('form reset')
+  const handleReset = (): void => {
+    reset()
   }
 
   if (error) {
@@ -136,21 +136,18 @@ export function CatalogIndex() {
   const totalPages = data?.products.pagination.totalPages
 
   return (
-    <div className={styles.root}>
+    <div>
       <FormProvider {...formMethods}>
         <div className={styles.wrapper}>
           <div className={styles.pageContainer}>
             <div className={styles.what}>
-              <div className={styles.controls}>
-                <Controls onFilterClick={handleFilterClick} />
-              </div>
               <div
                 className={clsx({
                   [styles.filters]: true,
                   [styles.filtersVisible]: isOpen
                 })}
               >
-                <Filters priceRange={priceRange} />
+                <Filters onReset={handleReset} priceRange={priceRange} />
               </div>
             </div>
             <div className={styles.viewBox}>
@@ -159,12 +156,13 @@ export function CatalogIndex() {
                   <ScaleLoader fallback={true} />
                 </div>
               ) : (
-                <div className={styles.productsContainer}>
+                <div className={styles.productsView}>
+                  <Controls onFilterClick={handleFilterClick} />
                   <ProductList
                     totalPages={totalPages ? totalPages : 1}
                     currentPage={isNaN(numOfPage) ? 1 : numOfPage}
                     products={data?.products.products}
-                    onActionButtonClick={handleReftesh}
+                    onReset={handleReset}
                   />
                 </div>
               )}

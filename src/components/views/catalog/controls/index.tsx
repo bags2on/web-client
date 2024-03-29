@@ -17,7 +17,7 @@ export function Controls({ onFilterClick }: ControlsProps) {
   } = useFormContext()
 
   return (
-    <>
+    <div className={styles.container}>
       <Button
         color="secondary"
         className={clsx(styles.control, styles.sortButton)}
@@ -47,6 +47,6 @@ export function Controls({ onFilterClick }: ControlsProps) {
           Фильтр
         </Button>
       </Badge>
-    </>
+    </div>
   )
 }
