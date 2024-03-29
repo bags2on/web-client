@@ -25,12 +25,13 @@
   position: absolute;
   top: 7px;
   right: 7px;
-  width: 60px;
+  width: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 4px 5px;
+  padding: 3px;
+  border-radius: 5px;
   user-select: none;
   & span {
     font-size: 12px;
@@ -41,8 +42,6 @@
 
 .imageWrapper {
   position: relative;
-  margin-bottom: 10px;
-
   opacity: 1;
   -webkit-appearance: none;
   -webkit-tap-highlight-color: transparent;
@@ -92,10 +91,10 @@
 }
 
 .title {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   color: #343434;
-  line-height: 18px;
+  line-height: 17px;
   height: 35px;
   display: block;
   clear: both;
