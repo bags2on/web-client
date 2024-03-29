@@ -1,4 +1,4 @@
-import React, { memo } from 'react'
+import { memo } from 'react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -15,7 +15,7 @@ import HeartIcon from '../../../public/assets/icons/heart.svg'
 import ProfileIcon from '../../../public/assets/icons/profile.svg'
 import CartIcon from '../../../public/assets/icons/header_cart.svg'
 
-import styles from './Header.module.scss'
+import styles from './styles.module.scss'
 
 interface HeaderProps {
   onDrawerOpen(): void
