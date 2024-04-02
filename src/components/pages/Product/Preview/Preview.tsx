@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import clsx from 'clsx'
 import { Thumbs } from './Thumbs/Thumbs'
-import { NavButtons } from './NavButtons'
+import { NavButtons } from '@/components/ui/NavButtons'
 import { ImagePlaceholder } from '@/shared/ImagePlaceholder'
 import { useKeenSlider } from 'keen-slider/react'
 

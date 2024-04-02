@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import { Checkbox } from '@/components/ui/Checkbox'
+import { useState } from 'react'
+import { Checkbox } from '@/components/ui/checkbox'
 import { Collapse, CollapseHead } from '@/shared/Collapse'
-
+import { useFormContext } from 'react-hook-form'
 import styles from './CheckboxGroup.module.scss'
 
 type optionType = {
@@ -16,9 +16,10 @@ interface CheckBoxGroupProps {
 }
 
 export function CheckBoxGroup({ title, options, name }: CheckBoxGroupProps) {
-  const [isCollapsed, setCollapsed] = useState<boolean>(true)
+  const { register } = useFormContext()
+  const [isCollapsed, setCollapsed] = useState(true)
 
-  const handleCollapse = (): void => {
+  const handleCollapse = () => {
     setCollapsed((prev) => !prev)
   }
 
@@ -29,7 +30,7 @@ export function CheckBoxGroup({ title, options, name }: CheckBoxGroupProps) {
         <fieldset className={styles.fieldset}>
           {options.map(({ label, value }) => (
             <div key={value}>
-              <Checkbox name={name} label={label} value={value} />
+              <Checkbox name={name} label={label} value={value} register={register} />
             </div>
           ))}
         </fieldset>

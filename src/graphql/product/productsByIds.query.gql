@@ -1,11 +1,11 @@
-query ProductsByID($input: [String!]) {
-  productsByID(input: $input) {
+query ProductsByID($ids: [ID!]!) {
+  productsByID(ids: $ids) {
     id
     title
-    instock
+    inStock
     currentPrice
     basePrice
-    mainTag
+    tag
     preview
   }
 }

@@ -39,11 +39,19 @@
 
 // Color types
 .primary {
-  color: $main-color;
-  background-color: #363636;
-  border-color: #6a6a6a;
-  &:hover:not(:disabled) {
-    background-color: #323232;
+  color: #fff;
+  background-color: #232323;
+
+  @media (hover: none) {
+    &:active:not(:disabled) {
+      background-color: #383838;
+    }
+  }
+
+  @media (hover: hover) {
+    &:hover:not(:disabled) {
+      background-color: #383838;
+    }
   }
 }
 

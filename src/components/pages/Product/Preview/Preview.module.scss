@@ -28,6 +28,7 @@
   @include reset-list;
   border-radius: 14px;
   transition: height 300ms;
+  z-index: 0;
   height: auto;
   & li {
     min-width: 100% !important;
@@ -46,57 +47,4 @@
   @include _minDesktop {
     border-radius: 14px;
   }
-}
-
-.navigationButton {
-  position: absolute;
-  top: 45%;
-  width: 45px;
-  height: 45px;
-  z-index: 10;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-  border-radius: 50%;
-  transition: all 0.3s;
-  color: #afafaf;
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  &:active {
-    transform: scale(1.2);
-  }
-  @include _minMD {
-    display: flex;
-    width: 50px;
-    height: 50px;
-  }
-}
-
-.prevButton {
-  @include _minMD {
-    left: 3%;
-  }
-  @include _minLaptop {
-    left: 4%;
-  }
-}
-
-.prevButtonIcon {
-  fill: #000;
-  transform: rotate(-90deg);
-}
-
-.nextButton {
-  @include _minMD {
-    right: 3%;
-  }
-  @include _minLaptop {
-    right: 4%;
-  }
-}
-
-.nextButtonIcon {
-  transform: rotate(90deg);
 }

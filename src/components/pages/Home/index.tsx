@@ -4,9 +4,11 @@ import { Advantages } from './Advantages/Advantages'
 import { MainProduct } from '../../MainProduct/MainProduct'
 import { MainCarousel } from '@/components/Carousel'
 import { Categories } from './Categories/Categories'
-import { Featured } from './Featured/Featured'
+import { Featured } from './featured'
 import { Promo } from './Promo/Promo'
 import { SidePromo } from './SidePromo'
+
+import type { ProductTag } from '@/types'
 
 import type { Slide } from '@/components/Carousel'
 
@@ -16,16 +18,16 @@ import styles from './Home.module.scss'
 
 interface ProductType {
   id: string
+  title: string
+  tag?: keyof typeof ProductTag | null
   slug: string
   currentPrice: number
-  title: string
-  preview: string
   basePrice: number
-  mainTag?: 'NEW' | 'TOP' | 'STOCK' | 'REGULAR' | null
+  preview: string
 }
 
 interface HomeProps {
-  featuredProducts: Array<ProductType>
+  featuredProducts: ProductType[]
   sliderData: Array<Slide>
 }
 

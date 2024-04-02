@@ -8,42 +8,30 @@ import { useTranslation } from 'next-i18next'
 
 import styles from './Categories.module.scss'
 
-type categoryItemType = {
+const categoriesValues: Array<{
   img: string
   to: string
   i18n: string
-  backgroundColor: string
-  borderColor: string
-}
-
-const categoriesValues: categoryItemType[] = [
+}> = [
   {
     img: '/assets/rastr/suitcase.png',
     to: routeNames.catalog,
-    i18n: 'suitcases',
-    backgroundColor: '#edfdf1',
-    borderColor: '#c0e7ca'
+    i18n: 'suitcases'
   },
   {
     img: '/assets/rastr/wallet.png',
     to: routeNames.catalog,
-    i18n: 'wallets',
-    backgroundColor: '#fdfddc',
-    borderColor: '#dee0af'
+    i18n: 'wallets'
   },
   {
     img: '/assets/rastr/bag.png',
     to: routeNames.catalog,
-    i18n: 'bags',
-    backgroundColor: '#f4f4ff',
-    borderColor: '#dbdbfa'
+    i18n: 'bags'
   },
   {
     img: '/assets/rastr/backpack.png',
     to: routeNames.catalog,
-    i18n: 'backpacks',
-    backgroundColor: '#e4fffa',
-    borderColor: '#c2ebe3'
+    i18n: 'backpacks'
   }
 ]
 
@@ -72,13 +60,6 @@ export function Categories() {
                       height={360}
                       alt={`Изображение категории - ${t(`categories.${category.i18n}`)}`}
                       className={styles.image}
-                    />
-                    <div
-                      className={styles.fallback}
-                      style={{
-                        backgroundColor: category.backgroundColor,
-                        borderColor: category.borderColor
-                      }}
                     />
                   </div>
                   <div className={styles.details}>

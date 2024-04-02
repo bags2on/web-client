@@ -5,19 +5,19 @@ query GetProduct($id: ID!) {
       id
       sku
       title
-      instock
+      inStock
       currentPrice
       basePrice
       preview
-      gender
+      # gender
       category
-      details {
-        description
-        color
-        images
-        delivery
-        dimensions
-      }
+      # details {
+      #   description
+      #   color
+      #   images
+      #   delivery
+      #   dimensions
+      # }
     }
     ... on NotFound {
       message

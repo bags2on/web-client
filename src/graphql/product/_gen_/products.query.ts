@@ -4,20 +4,18 @@ import { gql } from '@apollo/client'
 import * as Apollo from '@apollo/client'
 const defaultOptions = {} as const
 export type AllProductsQueryVariables = Types.Exact<{
-  gender?: Types.InputMaybe<Array<Types.InputMaybe<Types.Gender>> | Types.InputMaybe<Types.Gender>>
+  gender?: Types.InputMaybe<Array<Types.Gender> | Types.Gender>
   isHidden?: Types.InputMaybe<Types.Scalars['Boolean']['input']>
   instock?: Types.InputMaybe<Types.Scalars['Boolean']['input']>
-  mainTag?: Types.InputMaybe<Types.MainTag>
+  tag?: Types.InputMaybe<Types.ProductTag>
   price?: Types.InputMaybe<Types.PriceRange>
-  category?: Types.InputMaybe<
-    Array<Types.InputMaybe<Types.CategoryType>> | Types.InputMaybe<Types.CategoryType>
-  >
+  category?: Types.InputMaybe<Array<Types.CategoryType> | Types.CategoryType>
   page: Types.Scalars['Int']['input']
 }>
 
 export type AllProductsQuery = {
   __typename?: 'Query'
-  allProducts: {
+  products: {
     __typename?: 'ProductsResponse'
     priceRange: { __typename?: 'PriceRangeType'; gt: number; lt: number }
     pagination: { __typename?: 'Pagination'; totalPages: number; currentPage: number }
@@ -26,10 +24,10 @@ export type AllProductsQuery = {
       id: string
       slug: string
       title: string
-      instock: boolean
+      inStock: boolean
       currentPrice: number
       basePrice: number
-      mainTag?: Types.MainTag | null
+      tag?: Types.ProductTag | null
       preview: string
     }>
   }
@@ -37,20 +35,20 @@ export type AllProductsQuery = {
 
 export const AllProductsDocument = gql`
   query AllProducts(
-    $gender: [Gender]
+    $gender: [Gender!]
     $isHidden: Boolean = false
     $instock: Boolean
-    $mainTag: MainTag
+    $tag: ProductTag
     $price: PriceRange
-    $category: [CategoryType]
+    $category: [CategoryType!]
     $page: Int!
   ) {
-    allProducts(
+    products(
       filter: {
         gender: $gender
         isHidden: $isHidden
         instock: $instock
-        mainTag: $mainTag
+        tag: $tag
         price: $price
         category: $category
         page: $page
@@ -68,10 +66,10 @@ export const AllProductsDocument = gql`
         id
         slug
         title
-        instock
+        inStock
         currentPrice
         basePrice
-        mainTag
+        tag
         preview
       }
     }
@@ -93,7 +91,7 @@ export const AllProductsDocument = gql`
  *      gender: // value for 'gender'
  *      isHidden: // value for 'isHidden'
  *      instock: // value for 'instock'
- *      mainTag: // value for 'mainTag'
+ *      tag: // value for 'tag'
  *      price: // value for 'price'
  *      category: // value for 'category'
  *      page: // value for 'page'

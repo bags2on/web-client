@@ -4,9 +4,7 @@ import { gql } from '@apollo/client'
 import * as Apollo from '@apollo/client'
 const defaultOptions = {} as const
 export type ProductsByIdQueryVariables = Types.Exact<{
-  input?: Types.InputMaybe<
-    Array<Types.Scalars['String']['input']> | Types.Scalars['String']['input']
-  >
+  ids: Array<Types.Scalars['ID']['input']> | Types.Scalars['ID']['input']
 }>
 
 export type ProductsByIdQuery = {
@@ -15,23 +13,23 @@ export type ProductsByIdQuery = {
     __typename?: 'Product'
     id: string
     title: string
-    instock: boolean
+    inStock: boolean
     currentPrice: number
     basePrice: number
-    mainTag?: Types.MainTag | null
+    tag?: Types.ProductTag | null
     preview: string
   }>
 }
 
 export const ProductsByIdDocument = gql`
-  query ProductsByID($input: [String!]) {
-    productsByID(input: $input) {
+  query ProductsByID($ids: [ID!]!) {
+    productsByID(ids: $ids) {
       id
       title
-      instock
+      inStock
       currentPrice
       basePrice
-      mainTag
+      tag
       preview
     }
   }
@@ -49,12 +47,12 @@ export const ProductsByIdDocument = gql`
  * @example
  * const { data, loading, error } = useProductsByIdQuery({
  *   variables: {
- *      input: // value for 'input'
+ *      ids: // value for 'ids'
  *   },
  * });
  */
 export function useProductsByIdQuery(
-  baseOptions?: Apollo.QueryHookOptions<ProductsByIdQuery, ProductsByIdQueryVariables>
+  baseOptions: Apollo.QueryHookOptions<ProductsByIdQuery, ProductsByIdQueryVariables>
 ) {
   const options = { ...defaultOptions, ...baseOptions }
   return Apollo.useQuery<ProductsByIdQuery, ProductsByIdQueryVariables>(

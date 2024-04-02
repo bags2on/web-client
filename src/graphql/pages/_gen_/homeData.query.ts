@@ -20,7 +20,7 @@ export type GetHomeDataQuery = {
       id: string
       title: string
       slug: string
-      mainTag?: Types.MainTag | null
+      tag?: Types.ProductTag | null
       currentPrice: number
       basePrice: number
       preview: string
@@ -40,7 +40,7 @@ export const GetHomeDataDocument = gql`
         id
         title
         slug
-        mainTag
+        tag
         currentPrice
         basePrice
         preview

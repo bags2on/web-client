@@ -1,11 +1,11 @@
-import React from 'react'
+import clsx from 'clsx'
 import { Button } from '@/components/ui/Button'
 import { ProductItem } from '@/components/ProductItem'
 import { Pagination } from '@/components/ui/Pagination'
-// import { routeNames } from '@/utils/navigation'
 import { useFavoriteStore } from '@/store/favorite'
+import type { ProductTag } from '@/types'
 
-import styles from './Products.module.scss'
+import styles from './styles.module.scss'
 
 interface ProductsProps {
   totalPages: number
@@ -15,22 +15,17 @@ interface ProductsProps {
         id: string
         slug: string
         title: string
-        instock: boolean
+        inStock: boolean
         currentPrice: number
         basePrice: number
-        mainTag?: string | null
+        tag?: keyof typeof ProductTag | null
         preview: string
       }>
     | undefined
-  onActionButtonClick(): void
+  onReset(): void
 }
 
-export function Products({
-  totalPages,
-  currentPage,
-  products,
-  onActionButtonClick
-}: ProductsProps) {
+export function ProductList({ totalPages, currentPage, products, onReset }: ProductsProps) {
   const favoriteItems = useFavoriteStore((state) => state.favoriteItems)
 
   const handlePagination = (page: number) => {
@@ -42,11 +37,11 @@ export function Products({
   if (!products.length) {
     return (
       <div className={styles.notFound}>
-        <div>
+        <div className={styles.notFoundInner}>
           <p className={styles.smile}>:(</p>
           <p className={styles.message}>Извините, но по вашему запросу ничего не найдено</p>
-          <Button fullWidth onClick={onActionButtonClick} className={styles.actionButton}>
-            посмотреть все
+          <Button color="primary" onClick={onReset} className={styles.actionButton}>
+            Смотреть все
           </Button>
         </div>
       </div>
@@ -55,7 +50,7 @@ export function Products({
 
   return (
     <div className={styles.container}>
-      <ul className={styles.productList}>
+      <ul className={styles.list}>
         {products.map((product) => {
           const isFavorite = favoriteItems.includes(product.id)
 
@@ -67,8 +62,8 @@ export function Products({
                 url={product.preview}
                 title={product.title}
                 price={product.currentPrice}
-                inStock={product.instock}
-                mainTag={product.mainTag || ''}
+                inStock={product.inStock}
+                tag={product.tag}
                 basePrice={product.basePrice}
                 isFavorite={isFavorite}
               />
@@ -76,7 +71,7 @@ export function Products({
           )
         })}
       </ul>
-      <div className={styles.paginationWrapper}>
+      <div className={clsx(styles.pagination, totalPages === 1 && styles.paginationHide)}>
         <Pagination total={totalPages} currentPage={currentPage} onChange={handlePagination} />
       </div>
     </div>

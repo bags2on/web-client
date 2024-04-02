@@ -1,7 +1,6 @@
 import React from 'react'
 import clsx from 'clsx'
-import { useField } from 'formik'
-
+import { useFormContext } from 'react-hook-form'
 import styles from './RadioGroup.module.scss'
 
 type option = {
@@ -16,8 +15,8 @@ interface RadioGroupProps {
   asRow?: boolean
 }
 
-export function RadioGroup({ asRow = false, options, ...restProps }: RadioGroupProps) {
-  const [field] = useField(restProps)
+export function RadioGroup({ name, asRow = false, options }: RadioGroupProps) {
+  const { register } = useFormContext()
 
   return (
     <div className={clsx(styles.container, asRow && styles.asRow)}>
@@ -29,12 +28,10 @@ export function RadioGroup({ asRow = false, options, ...restProps }: RadioGroupP
             <input
               id={inputId}
               type="radio"
-              {...field}
               value={value}
-              name={field.name}
-              checked={value === field.value}
               disabled={disabled}
               className={styles.radioInput}
+              {...register(name)}
             />
             <label
               htmlFor={inputId}

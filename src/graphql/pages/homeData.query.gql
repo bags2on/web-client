@@ -10,7 +10,7 @@ query GetHomeData {
       id
       title
       slug
-      mainTag
+      tag
       currentPrice
       basePrice
       preview

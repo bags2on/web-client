@@ -11,6 +11,7 @@ import { useTranslation } from 'next-i18next'
 import { useFavoriteStore } from '@/store/favorite'
 import { getProductMainTagColor } from '@/utils/styling'
 import { routeNames, generateProductLink } from '@/utils/navigation'
+import type { ProductTag } from '@/types'
 
 import styles from './ProductItem.module.scss'
 
@@ -22,7 +23,7 @@ interface ProductItemProps {
   price: number
   inStock: boolean
   basePrice: number
-  mainTag: string
+  tag?: keyof typeof ProductTag | null
   isFavorite: boolean
   withDelete?: boolean
 }
@@ -34,7 +35,7 @@ export function ProductItem({
   title,
   price,
   inStock,
-  mainTag,
+  tag,
   basePrice,
   isFavorite,
   withDelete = false
@@ -55,10 +56,10 @@ export function ProductItem({
     setLiked(!isLiked)
   }
 
-  function genTagView(tag: string): React.ReactElement | null {
-    switch (tag) {
+  function genTagView(productTag: string): React.ReactElement | null {
+    switch (productTag) {
       case 'new':
-        return <span>{t(`productTag.${mainTag}`)}</span>
+        return <span>{t(`productTag.${tag}`)}</span>
       case 'top':
         return <Image width={19} height={19} src="/assets/icons/fire.png" alt="смайлик - огонь" />
       case 'stock':
@@ -109,14 +110,14 @@ export function ProductItem({
           {title}
         </Link>
       </div>
-      {mainTag && (
+      {tag && (
         <div
           className={styles.tag}
           style={{
-            backgroundColor: getProductMainTagColor(mainTag)
+            backgroundColor: getProductMainTagColor(tag)
           }}
         >
-          {genTagView(mainTag)}
+          {genTagView(tag)}
         </div>
       )}
     </div>

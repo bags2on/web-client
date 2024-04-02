@@ -1,18 +1,18 @@
 query AllProducts(
-  $gender: [Gender]
+  $gender: [Gender!]
   $isHidden: Boolean = false
   $instock: Boolean
-  $mainTag: MainTag
+  $tag: ProductTag
   $price: PriceRange
-  $category: [CategoryType]
+  $category: [CategoryType!]
   $page: Int!
 ) {
-  allProducts(
+  products(
     filter: {
       gender: $gender
       isHidden: $isHidden
       instock: $instock
-      mainTag: $mainTag
+      tag: $tag
       price: $price
       category: $category
       page: $page
@@ -30,10 +30,10 @@ query AllProducts(
       id
       slug
       title
-      instock
+      inStock
       currentPrice
       basePrice
-      mainTag
+      tag
       preview
     }
   }
