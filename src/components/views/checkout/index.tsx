@@ -15,6 +15,22 @@ import { CheckoutOrderSchema, CheckoutOrderType } from '@/utils/formValidationSc
 import styles from './Checkout.module.scss'
 import { useCartStore } from '@/store/cart'
 
+import { useForm, FormProvider } from 'react-hook-form'
+
+export type FormValues = {
+  name: string
+  surname: string
+  phone: string
+  email: string
+}
+
+// initialValues={{
+
+//   supplier: 'nova-poshta',
+//   cityName: '',
+//   postOfficeName: '',
+//   '_np-delivery-type': 'department'
+
 export function CheckoutIndex() {
   const router = useRouter()
 
@@ -22,6 +38,17 @@ export function CheckoutIndex() {
     waitDataSyncing: true,
     isInfoOpen: false,
     isDeliveryOpen: false
+  })
+
+  const formMethods = useForm<FormValues>({
+    mode: 'onChange',
+    // resolver: valibotResolver(currentValidationSchema),
+    defaultValues: {
+      name: '',
+      surname: '',
+      phone: '',
+      email: ''
+    }
   })
 
   const [isOrderSuccess, setOrderSuccess] = useState<boolean>(false)
@@ -70,6 +97,14 @@ export function CheckoutIndex() {
     }
   }
 
+  const handleSubmit2 = () => {
+    // INFO: why getValues
+    // https://github.com/orgs/react-hook-form/discussions/4028#discussioncomment-7542160
+    const data = formMethods.getValues()
+
+    console.log('SubmitHandler', data)
+  }
+
   const hanldeModalClose = () => {
     router.replace(routeNames.root)
   }
@@ -80,42 +115,46 @@ export function CheckoutIndex() {
 
   return (
     <div className={styles.container}>
-      <Formik
-        validateOnBlur
-        validateOnChange={false}
-        onSubmit={handleSubmit}
-        validationSchema={CheckoutOrderSchema}
-        initialValues={{
-          name: '',
-          surname: '',
-          phone: '',
-          email: '',
-          supplier: 'nova-poshta',
-          cityName: '',
-          postOfficeName: '',
-          '_np-delivery-type': 'department'
-        }}
-      >
-        {() => (
-          <Form className={styles.pageForm}>
-            <div className={styles.formContent}>
-              <CustomerInfo
-                isEdit={state.isInfoOpen}
-                onEdit={handleInfoEditOpen}
-                onContinue={handleInfoChecked}
-              />
-              <Delivery
-                isEdit={state.isDeliveryOpen}
-                onEdit={handleDeliveryEditOpen}
-                onContinue={handleDeliveryChecked}
-              />
-            </div>
-            <div className={styles.preview}>
-              <Preview submitLoading={loading} orderCreationErr={orderErr} />
-            </div>
-          </Form>
-        )}
-      </Formik>
+      <FormProvider {...formMethods}>
+        <form onSubmit={formMethods.handleSubmit(handleSubmit2)}>
+          <Formik
+            validateOnBlur
+            validateOnChange={false}
+            onSubmit={handleSubmit}
+            // validationSchema={CheckoutOrderSchema}
+            initialValues={{
+              name: '',
+              surname: '',
+              phone: '',
+              email: '',
+              supplier: 'nova-poshta',
+              cityName: '',
+              postOfficeName: '',
+              '_np-delivery-type': 'department'
+            }}
+          >
+            {() => (
+              <div className={styles.pageForm}>
+                <div className={styles.formContent}>
+                  <CustomerInfo
+                    isEdit={state.isInfoOpen}
+                    onEdit={handleInfoEditOpen}
+                    onContinue={handleInfoChecked}
+                  />
+                  <Delivery
+                    isEdit={state.isDeliveryOpen}
+                    onEdit={handleDeliveryEditOpen}
+                    onContinue={handleDeliveryChecked}
+                  />
+                </div>
+                <div className={styles.preview}>
+                  <Preview submitLoading={loading} orderCreationErr={orderErr} />
+                </div>
+              </div>
+            )}
+          </Formik>
+        </form>
+      </FormProvider>
       <OrderSuccessModal open={isOrderSuccess} onClose={hanldeModalClose} />
     </div>
   )

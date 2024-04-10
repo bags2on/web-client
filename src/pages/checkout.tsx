@@ -1,7 +1,7 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'
 import { i18n } from 'next-i18next'
 import { GetStaticProps } from 'next/types'
-import { CheckoutIndex } from '@/components/pages/Checkout'
+import { CheckoutIndex } from '@/components/views/checkout'
 
 export const getStaticProps: GetStaticProps = async ({ locale }) => {
   if (process.env.NODE_ENV === 'development') {
