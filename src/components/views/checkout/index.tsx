@@ -1,35 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { PageLoader } from '@/shared/PageLoader'
 import { CustomerInfo } from './CustomerInfo/CustomerInfo'
 import { Delivery } from './Delivery/Delivery'
 import { Preview } from './Preview/Preview'
 import { OrderSuccessModal } from './Modals/OrderSuccess'
-import { Formik, Form } from 'formik'
 import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'
 import { useMutation } from '@apollo/client'
 import { CREATE_ORDER } from '@/graphql/order'
 import { usePageState } from './usePageState'
-import { CheckoutOrderSchema, CheckoutOrderType } from '@/utils/formValidationSchema'
-
-import styles from './Checkout.module.scss'
+import { FormValues, validationSchema } from './model/validation-schema'
+import { valibotResolver } from '@hookform/resolvers/valibot'
+import { useForm, FormProvider, SubmitHandler } from 'react-hook-form'
 import { useCartStore } from '@/store/cart'
 
-import { useForm, FormProvider } from 'react-hook-form'
-
-export type FormValues = {
-  name: string
-  surname: string
-  phone: string
-  email: string
-}
-
-// initialValues={{
-
-//   supplier: 'nova-poshta',
-//   cityName: '',
-//   postOfficeName: '',
-//   '_np-delivery-type': 'department'
+import styles from './Checkout.module.scss'
 
 export function CheckoutIndex() {
   const router = useRouter()
@@ -41,13 +26,13 @@ export function CheckoutIndex() {
   })
 
   const formMethods = useForm<FormValues>({
-    mode: 'onChange',
-    // resolver: valibotResolver(currentValidationSchema),
+    mode: 'onBlur',
+    resolver: valibotResolver(validationSchema),
     defaultValues: {
-      name: '',
-      surname: '',
-      phone: '',
-      email: ''
+      supplier: 'nova-poshta',
+      // todo: "optional" for now
+      cityName: 'todo',
+      postOfficeName: 'todo'
     }
   })
 
@@ -84,7 +69,7 @@ export function CheckoutIndex() {
     dispatch.closeDelivery()
   }
 
-  const handleSubmit = async (values: CheckoutOrderType): Promise<void> => {
+  const handleSubmit: SubmitHandler<FormValues> = async (values) => {
     console.log(values)
 
     try {
@@ -95,14 +80,6 @@ export function CheckoutIndex() {
     } catch (error) {
       setOrderErr(true)
     }
-  }
-
-  const handleSubmit2 = () => {
-    // INFO: why getValues
-    // https://github.com/orgs/react-hook-form/discussions/4028#discussioncomment-7542160
-    const data = formMethods.getValues()
-
-    console.log('SubmitHandler', data)
   }
 
   const hanldeModalClose = () => {
@@ -116,43 +93,24 @@ export function CheckoutIndex() {
   return (
     <div className={styles.container}>
       <FormProvider {...formMethods}>
-        <form onSubmit={formMethods.handleSubmit(handleSubmit2)}>
-          <Formik
-            validateOnBlur
-            validateOnChange={false}
-            onSubmit={handleSubmit}
-            // validationSchema={CheckoutOrderSchema}
-            initialValues={{
-              name: '',
-              surname: '',
-              phone: '',
-              email: '',
-              supplier: 'nova-poshta',
-              cityName: '',
-              postOfficeName: '',
-              '_np-delivery-type': 'department'
-            }}
-          >
-            {() => (
-              <div className={styles.pageForm}>
-                <div className={styles.formContent}>
-                  <CustomerInfo
-                    isEdit={state.isInfoOpen}
-                    onEdit={handleInfoEditOpen}
-                    onContinue={handleInfoChecked}
-                  />
-                  <Delivery
-                    isEdit={state.isDeliveryOpen}
-                    onEdit={handleDeliveryEditOpen}
-                    onContinue={handleDeliveryChecked}
-                  />
-                </div>
-                <div className={styles.preview}>
-                  <Preview submitLoading={loading} orderCreationErr={orderErr} />
-                </div>
-              </div>
-            )}
-          </Formik>
+        <form onSubmit={formMethods.handleSubmit(handleSubmit)}>
+          <div className={styles.pageForm}>
+            <div className={styles.formContent}>
+              <CustomerInfo
+                isEdit={state.isInfoOpen}
+                onEdit={handleInfoEditOpen}
+                onContinue={handleInfoChecked}
+              />
+              <Delivery
+                isEdit={state.isDeliveryOpen}
+                onEdit={handleDeliveryEditOpen}
+                onContinue={handleDeliveryChecked}
+              />
+            </div>
+            <div className={styles.preview}>
+              <Preview submitLoading={loading} orderCreationErr={orderErr} />
+            </div>
+          </div>
         </form>
       </FormProvider>
       <OrderSuccessModal open={isOrderSuccess} onClose={hanldeModalClose} />

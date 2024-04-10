@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { StepTitle } from '../common/StepTitle'
 import { Button } from '@/components/ui/Button'
 import { SomethingWrongModal } from '../Modals/SomethingWrong'
 import { useElementSize } from '@/hooks'
-import { Field, useFormikContext } from 'formik'
-import { CheckoutOrderType } from '@/utils/formValidationSchema'
 import { ShowService } from '../common/ShowService'
 import { NovaPoshta } from './NovaPoshta'
 import { UkrPoshta } from './UkrPoshta'
+import { useFormContext } from 'react-hook-form'
+import type { FormValues } from '../model/validation-schema'
 
 import styles from './Delivery.module.scss'
 
@@ -27,7 +27,9 @@ export type PopularCity = {
 }
 
 export function Delivery({ isEdit, onEdit, onContinue }: DeliveryProps) {
-  const { values } = useFormikContext<CheckoutOrderType>()
+  const { register, getValues } = useFormContext<FormValues>()
+
+  const values = getValues()
 
   // const [deliveryService, setDeliveryService] = useState<'nova' | 'ukr'>('nova')
 
@@ -85,11 +87,11 @@ export function Delivery({ isEdit, onEdit, onContinue }: DeliveryProps) {
           <ul className={styles.servicesList}>
             <li className={styles.servicesItem}>
               <label className={styles.serviceLabel}>
-                <Field
+                <input
                   type="radio"
-                  name="supplier"
                   value="nova-poshta"
                   className={clsx('hide', styles.deliveryInput)}
+                  {...register('supplier')}
                 />
                 <div className={styles.deliveryService}>
                   <div className={styles.serviceImageWrapper}>
@@ -100,12 +102,12 @@ export function Delivery({ isEdit, onEdit, onContinue }: DeliveryProps) {
             </li>
             <li className={styles.servicesItem}>
               <label className={styles.serviceLabel}>
-                <Field
+                <input
                   type="radio"
-                  name="supplier"
                   disabled
                   value="ukr-poshta"
                   className={clsx('hide', styles.deliveryInput)}
+                  {...register('supplier')}
                 />
                 <div className={styles.deliveryService}>
                   <div className={styles.serviceImageWrapper}>

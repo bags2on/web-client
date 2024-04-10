@@ -1,14 +1,14 @@
-import React, { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { Warehouses } from './Warehouses'
 import AsyncSelect from 'react-select/async'
 import { components, InputProps } from 'react-select'
 import { RadioGroup } from '@/shared/formFields/RadioGroup'
 import { pupularCities, novaDeliveryTypeOptions } from '../data'
 import type { PopularCity } from '../Delivery'
-import { useFormikContext } from 'formik'
-import { CheckoutOrderType } from '@/utils/formValidationSchema'
+import type { FormValues } from '../../model/validation-schema'
 
 import styles from './NovaPoshta.module.scss'
+import { useFormContext } from 'react-hook-form'
 
 interface NovaPoshtaProps {
   cities: PopularCity[]
@@ -27,7 +27,8 @@ const SelectInput = (props: InputProps<CityOption, false>) => {
 
 export function NovaPoshta({ cities }: NovaPoshtaProps) {
   const [selectValue, setSelectValue] = useState<CityOption | null>(null)
-  const { setFieldValue } = useFormikContext<CheckoutOrderType>()
+
+  const { setValue } = useFormContext<FormValues>()
 
   const [cityId, setCityId] = useState<string>('')
 
@@ -60,17 +61,17 @@ export function NovaPoshta({ cities }: NovaPoshtaProps) {
 
   const handleSelectChange = (cityId: string) => {
     setCityId(cityId)
-    setFieldValue('cityName', cityId)
+    setValue('cityName', cityId)
   }
 
   const handleWarehouseChange = (warehouse: string) => {
-    setFieldValue('postOfficeName', warehouse)
+    setValue('postOfficeName', warehouse)
   }
 
   const handleCityQuikSet = (city: CityOption) => {
     setSelectValue(city)
     setCityId(city.value)
-    setFieldValue('cityName', city.label)
+    setValue('cityName', city.label)
   }
 
   const selectedCities = pupularCities.map((baseCity) => {

@@ -4,11 +4,10 @@ import { StepTitle } from '../common/StepTitle'
 import { Button } from '@/components/ui/Button'
 import { TextInput } from '@/components/ui/text-input'
 import { PhoneInput } from '@/components/ui/phone-input'
-import { useFormikContext } from 'formik'
-import { CheckoutOrderType } from '@/utils/formValidationSchema'
+import { useFormContext } from 'react-hook-form'
+import type { FormValues } from '../model/validation-schema'
 
 import styles from './CustomerInfo.module.scss'
-import { useFormContext } from 'react-hook-form'
 
 interface CustomerInfoProps {
   isEdit: boolean
@@ -16,21 +15,15 @@ interface CustomerInfoProps {
   onContinue(): void
 }
 
-type FieldData = {
-  name: string
-  surname: string
-  phone: string
-  email: string
-}
-
 export function CustomerInfo({ isEdit, onEdit, onContinue }: CustomerInfoProps) {
-  const { values } = useFormikContext<CheckoutOrderType>()
-
   const {
     register,
     setValue,
-    formState: { errors }
-  } = useFormContext<FieldData>()
+    formState: { errors },
+    getValues
+  } = useFormContext<FormValues>()
+
+  const values = getValues()
 
   const isValuesValid = Boolean(values.surname && values.name && values.phone && values.email)
 
