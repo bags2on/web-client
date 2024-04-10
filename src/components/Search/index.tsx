@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import clsx from 'clsx'
 import { IconButton } from '@/shared/IconButton'
 // import {ScaleLoader} from '@/shared/loaders/ScaleLoader'
@@ -6,9 +6,7 @@ import { IconButton } from '@/shared/IconButton'
 // import { routeNames, generateLink } from '@/utils/navigation'
 // import { useLazyQuery } from '@apollo/client'
 import { useTranslation } from 'next-i18next'
-
-import { Formik, Form, Field } from 'formik'
-import { TopSearchSchema, TopSearchType } from '@/utils/formValidationSchema'
+import { useForm, SubmitHandler } from 'react-hook-form'
 import SearchIcon from '../../../public/assets/icons/search.svg'
 // import { getProductMainTagColor } from '@/utils/styling'
 // import {
@@ -19,10 +17,16 @@ import SearchIcon from '../../../public/assets/icons/search.svg'
 
 import styles from './Search.module.scss'
 
+type FormValues = {
+  searchQuery: string
+}
+
 export function Search() {
   const { t } = useTranslation()
   const [inputValue, setInputValue] = useState<string>('')
   const [withFocus, setWithFocus] = useState<boolean>(false)
+
+  const { register, handleSubmit } = useForm<FormValues>()
 
   // const [getProducts, { loading, data, error }] = useLazyQuery<
   //   SearchProductQuery,
@@ -31,23 +35,18 @@ export function Search() {
   //   fetchPolicy: 'network-only'
   // })
 
-  const handleSearch = (_values: TopSearchType): void => {
-    // const value = values.searchQuery.trim()
+  const onSubmit: SubmitHandler<FormValues> = (values) => {
+    console.log(values)
+    setInputValue(values.searchQuery)
 
-    setInputValue(_values.searchQuery || '')
-
-    // if (value && value !== inputValue) {
     //   getProducts({
     //     variables: {
     //       input: value
     //     }
     //   })
-    // }
   }
 
   // const removeFocus = (): void => setWithFocus(false)
-
-  const initialValues: TopSearchType = { searchQuery: '' }
 
   // const products = data?.searchProductByName
 
@@ -99,30 +98,28 @@ export function Search() {
 
   return (
     <div className={styles.container}>
-      <Formik
-        onSubmit={handleSearch}
-        initialValues={initialValues}
-        validationSchema={TopSearchSchema}
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={styles.form}
+        tabIndex={0}
+        onFocus={() => setWithFocus(true)}
+        noValidate
       >
-        {(): React.ReactElement => (
-          <Form className={styles.form} tabIndex={0} onFocus={() => setWithFocus(true)} noValidate>
-            <Field
-              name="searchQuery"
-              autoComplete="off"
-              placeholder={t('mySearch')}
-              className={clsx({
-                [styles['search-input']]: true,
-                [styles['with-data']]: withFocus && inputValue
-              })}
-            />
-            <IconButton type="submit" className={styles['search-button']}>
-              <div className={clsx('svg-icon', styles['search-icon'])}>
-                <SearchIcon />
-              </div>
-            </IconButton>
-          </Form>
-        )}
-      </Formik>
+        <input
+          autoComplete="off"
+          placeholder={t('mySearch')}
+          className={clsx({
+            [styles['search-input']]: true,
+            [styles['with-data']]: withFocus && inputValue
+          })}
+          {...register('searchQuery')}
+        />
+        <IconButton type="submit" className={styles['search-button']}>
+          <div className={clsx('svg-icon', styles['search-icon'])}>
+            <SearchIcon />
+          </div>
+        </IconButton>
+      </form>
       {/* {inputValue && withFocus && (
         <Results>
           {loading ? (
