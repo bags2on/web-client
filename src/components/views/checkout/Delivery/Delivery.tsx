@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import clsx from 'clsx'
 import Image from 'next/image'
-import { StepTitle } from '../common/StepTitle'
+import { StepTitle } from '../common/step-title'
 import { Button } from '@/components/ui/Button'
 import { SomethingWrongModal } from '../Modals/SomethingWrong'
 import { useElementSize } from '@/hooks'

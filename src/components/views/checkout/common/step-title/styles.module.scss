@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  background-color: #e1e1e1; // dark: #343434
+  background-color: #e1e1e1;
   padding: 20px 10px;
   border-radius: 10px;
   transition: background-color 300ms;
@@ -18,7 +18,7 @@
   justify-content: flex-start;
   margin-bottom: 0;
   padding-bottom: 0;
-  transition-delay: 0ms;
+  transition: none;
 }
 
 .titleBox {

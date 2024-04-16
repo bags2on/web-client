@@ -1,20 +1,26 @@
-import React from 'react'
+import { memo, ReactNode } from 'react'
 import clsx from 'clsx'
 import CheckIcon from '../../../../../../public/assets/icons/check.svg'
 import ExpandArrowIcon from '../../../../../../public/assets/icons/expand-arrow.svg'
 import { useWindowSize } from '@/hooks'
 
-import styles from './StepTitle.module.scss'
+import styles from './styles.module.scss'
 
 interface StepTitleProps {
   step: number
   valid: boolean
   isEdit: boolean
+  children: ReactNode
   onEdit(): void
-  children: React.ReactNode
 }
 
-export function StepTitle({ step, valid, isEdit, onEdit, children }: StepTitleProps) {
+export const StepTitle = memo(function StepTitle({
+  step,
+  valid,
+  isEdit,
+  children,
+  onEdit
+}: StepTitleProps) {
   const [width] = useWindowSize()
 
   const handleTitleClick = () => {
@@ -53,4 +59,4 @@ export function StepTitle({ step, valid, isEdit, onEdit, children }: StepTitlePr
       </div>
     </div>
   )
-}
+})

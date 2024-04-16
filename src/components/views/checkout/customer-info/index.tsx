@@ -1,6 +1,6 @@
 import clsx from 'clsx'
 import { parse } from 'valibot'
-import { StepTitle } from '../common/StepTitle'
+import { StepTitle } from '../common/step-title'
 import { Button } from '@/components/ui/Button'
 import { TextInput } from '@/components/ui/text-input'
 import { PhoneInput } from '@/components/ui/phone-input'
@@ -26,8 +26,6 @@ export function CustomerInfo({ isEdit, onEdit, onContinue }: CustomerInfoProps) 
   const values = useWatch({
     name: ['name', 'surname', 'phone', 'email']
   })
-
-  console.log(values)
 
   const obj = {
     name: values[0],
