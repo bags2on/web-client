@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { PageLoader } from '@/shared/PageLoader'
-import { CustomerInfo } from './CustomerInfo/CustomerInfo'
+import { CustomerInfo } from './customer-info'
 import { Delivery } from './Delivery/Delivery'
 import { Preview } from './Preview/Preview'
 import { OrderSuccessModal } from './Modals/OrderSuccess'
@@ -53,9 +53,9 @@ export function CheckoutIndex() {
     }
   }, [router, dispatch, cartItems])
 
-  const handleInfoEditOpen = (): void => {
+  const handleInfoEditOpen = useCallback(() => {
     dispatch.openInfo()
-  }
+  }, [dispatch])
 
   const handleDeliveryEditOpen = (): void => {
     dispatch.openDelivery()

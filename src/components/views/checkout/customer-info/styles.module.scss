@@ -1,7 +1,7 @@
 .container {
   margin-bottom: 30px;
   border-radius: 10px;
-  background-color: #fff; // dark #323232
+  background-color: #fff;
 
   @include _minLG {
     background-color: none;
@@ -58,6 +58,6 @@
   @include _minLG {
     margin-top: 15px;
     border-bottom: 2px solid;
-    border-bottom-color: #dcdcdc; // dark #646464
+    border-bottom-color: #dcdcdc;
   }
 }

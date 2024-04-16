@@ -1,13 +1,14 @@
-import React from 'react'
 import clsx from 'clsx'
+import { parse } from 'valibot'
 import { StepTitle } from '../common/StepTitle'
 import { Button } from '@/components/ui/Button'
 import { TextInput } from '@/components/ui/text-input'
 import { PhoneInput } from '@/components/ui/phone-input'
-import { useFormContext } from 'react-hook-form'
-import type { FormValues } from '../model/validation-schema'
+import { useFormContext, useWatch } from 'react-hook-form'
+import { customerInfoSchema } from '../model/validation-schema'
+import type { CustomerInfoValues } from '../model/validation-schema'
 
-import styles from './CustomerInfo.module.scss'
+import styles from './styles.module.scss'
 
 interface CustomerInfoProps {
   isEdit: boolean
@@ -19,13 +20,30 @@ export function CustomerInfo({ isEdit, onEdit, onContinue }: CustomerInfoProps) 
   const {
     register,
     setValue,
-    formState: { errors },
-    getValues
-  } = useFormContext<FormValues>()
+    formState: { errors }
+  } = useFormContext<CustomerInfoValues>()
 
-  const values = getValues()
+  const values = useWatch({
+    name: ['name', 'surname', 'phone', 'email']
+  })
 
-  const isValuesValid = Boolean(values.surname && values.name && values.phone && values.email)
+  console.log(values)
+
+  const obj = {
+    name: values[0],
+    surname: values[1],
+    phone: values[2],
+    email: values[3]
+  }
+
+  let isValid = false
+
+  try {
+    parse(customerInfoSchema, obj)
+    isValid = true
+  } catch (error) {
+    isValid = false
+  }
 
   const handleNextClick = () => {
     onContinue()
@@ -33,7 +51,7 @@ export function CustomerInfo({ isEdit, onEdit, onContinue }: CustomerInfoProps) 
 
   return (
     <section className={styles.container}>
-      <StepTitle step={1} isEdit={isEdit} onEdit={onEdit} valid={isValuesValid}>
+      <StepTitle step={1} isEdit={isEdit} onEdit={onEdit} valid={isValid}>
         Контактная информация
       </StepTitle>
 
@@ -66,7 +84,7 @@ export function CustomerInfo({ isEdit, onEdit, onContinue }: CustomerInfoProps) 
         <Button
           color="accept"
           fullWidth
-          disabled={!isValuesValid}
+          disabled={!isValid}
           onClick={handleNextClick}
           className={styles.continueButton}
         >
