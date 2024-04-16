@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import { PageLoader } from '@/shared/PageLoader'
 import { CustomerInfo } from './customer-info'
-import { Delivery } from './Delivery/Delivery'
+import { DeliveryInfo } from './delivery-info'
 import { Preview } from './Preview/Preview'
 import { OrderSuccessModal } from './Modals/OrderSuccess'
 import { useRouter } from 'next/router'
@@ -101,7 +101,7 @@ export function CheckoutIndex() {
                 onEdit={handleInfoEditOpen}
                 onContinue={handleInfoChecked}
               />
-              <Delivery
+              <DeliveryInfo
                 isEdit={state.isDeliveryOpen}
                 onEdit={handleDeliveryEditOpen}
                 onContinue={handleDeliveryChecked}

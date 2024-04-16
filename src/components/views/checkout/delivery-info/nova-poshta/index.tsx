@@ -1,13 +1,13 @@
 import { useEffect, useState, useMemo } from 'react'
-import { Warehouses } from './Warehouses'
+import { Warehouses } from './warehouses'
 import AsyncSelect from 'react-select/async'
 import { components, InputProps } from 'react-select'
 import { RadioGroup } from '@/shared/formFields/RadioGroup'
 import { pupularCities, novaDeliveryTypeOptions } from '../data'
-import type { PopularCity } from '../Delivery'
+import type { PopularCity } from '../index'
 import type { FormValues } from '../../model/validation-schema'
 
-import styles from './NovaPoshta.module.scss'
+import styles from './styles.module.scss'
 import { useFormContext } from 'react-hook-form'
 
 interface NovaPoshtaProps {

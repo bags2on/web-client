@@ -6,14 +6,14 @@ import { Button } from '@/components/ui/Button'
 import { SomethingWrongModal } from '../Modals/SomethingWrong'
 import { useElementSize } from '@/hooks'
 import { ShowService } from '../common/ShowService'
-import { NovaPoshta } from './NovaPoshta'
-import { UkrPoshta } from './UkrPoshta'
+import { NovaPoshta } from './nova-poshta'
+import { UkrPoshta } from './ukr-poshta'
 import { useFormContext } from 'react-hook-form'
 import type { FormValues } from '../model/validation-schema'
 
-import styles from './Delivery.module.scss'
+import styles from './styles.module.scss'
 
-interface DeliveryProps {
+interface DeliveryInfoProps {
   isEdit: boolean
   onEdit(): void
   onContinue(): void
@@ -26,7 +26,7 @@ export type PopularCity = {
   ukrposhta_id: string
 }
 
-export function Delivery({ isEdit, onEdit, onContinue }: DeliveryProps) {
+export function DeliveryInfo({ isEdit, onEdit, onContinue }: DeliveryInfoProps) {
   const { register, getValues } = useFormContext<FormValues>()
 
   const values = getValues()
