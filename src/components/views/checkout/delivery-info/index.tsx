@@ -8,8 +8,9 @@ import { useElementSize } from '@/hooks'
 import { ShowService } from '../common/ShowService'
 import { NovaPoshta } from './nova-poshta'
 import { UkrPoshta } from './ukr-poshta'
-import { useFormContext } from 'react-hook-form'
-import type { FormValues } from '../model/validation-schema'
+import { parse } from 'valibot'
+import { useFormContext, useWatch } from 'react-hook-form'
+import { type DeliveryValues, deliverySchema } from '../model/validation-schema'
 
 import styles from './styles.module.scss'
 
@@ -19,6 +20,7 @@ interface DeliveryInfoProps {
   onContinue(): void
 }
 
+// in model types
 export type PopularCity = {
   city_id: string
   city_name: string
@@ -27,19 +29,21 @@ export type PopularCity = {
 }
 
 export function DeliveryInfo({ isEdit, onEdit, onContinue }: DeliveryInfoProps) {
-  const { register, getValues } = useFormContext<FormValues>()
+  const { register } = useFormContext<DeliveryValues>()
 
-  const values = getValues()
+  const values = useWatch({
+    name: ['cityName', 'postOfficeName', 'supplier']
+  })
+
+  const supplier = values[2]
 
   // const [deliveryService, setDeliveryService] = useState<'nova' | 'ukr'>('nova')
 
   const [animatedRef, animatedEl] = useElementSize()
 
   const [popularCities, setPopularCities] = useState<PopularCity[]>([])
-  const [citieLoading, setCitieLoading] = useState<boolean>(true)
-  const [areasError, setAreasError] = useState<boolean>(false)
-
-  const isValuesValid = Boolean(values.cityName && values.postOfficeName)
+  const [citieLoading, setCitieLoading] = useState(true)
+  const [areasError, setAreasError] = useState(false)
 
   useEffect(() => {
     const controller = new AbortController()
@@ -68,6 +72,19 @@ export function DeliveryInfo({ isEdit, onEdit, onContinue }: DeliveryInfoProps) 
       controller.abort()
     }
   }, [])
+
+  let isValuesValid = false
+
+  try {
+    parse(deliverySchema, {
+      cityName: values[0],
+      postOfficeName: values[1],
+      supplier: values[2]
+    })
+    isValuesValid = true
+  } catch (error) {
+    isValuesValid = false
+  }
 
   return (
     <section className={styles.container}>
@@ -118,10 +135,10 @@ export function DeliveryInfo({ isEdit, onEdit, onContinue }: DeliveryInfoProps) 
             </li>
           </ul>
           {/*  */}
-          <ShowService as="nova-poshta" current={values.supplier}>
+          <ShowService as="nova-poshta" current={supplier}>
             <NovaPoshta cities={popularCities} />
           </ShowService>
-          <ShowService as="ukr-poshta" current={values.supplier}>
+          <ShowService as="ukr-poshta" current={supplier}>
             <UkrPoshta />
           </ShowService>
           {/*  */}

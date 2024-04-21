@@ -29,10 +29,7 @@ export function CheckoutIndex() {
     mode: 'onBlur',
     resolver: valibotResolver(validationSchema),
     defaultValues: {
-      supplier: 'nova-poshta',
-      // todo: "optional" for now
-      cityName: 'todo',
-      postOfficeName: 'todo'
+      supplier: 'nova-poshta'
     }
   })
 
@@ -57,9 +54,9 @@ export function CheckoutIndex() {
     dispatch.openInfo()
   }, [dispatch])
 
-  const handleDeliveryEditOpen = (): void => {
+  const handleDeliveryEditOpen = useCallback(() => {
     dispatch.openDelivery()
-  }
+  }, [dispatch])
 
   const handleInfoChecked = () => {
     dispatch.infoChecked()

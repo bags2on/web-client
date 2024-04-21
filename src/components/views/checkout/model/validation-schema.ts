@@ -7,8 +7,7 @@ import {
   toTrimmed,
   email,
   length,
-  merge,
-  optional
+  merge
 } from 'valibot'
 
 export const customerInfoSchema = object({
@@ -33,9 +32,8 @@ export const customerInfoSchema = object({
 
 export const deliverySchema = object({
   supplier: string(),
-  //   todo: it's not optional
-  cityName: optional(string()),
-  postOfficeName: optional(string())
+  cityName: string([minLength(1)]),
+  postOfficeName: string()
 })
 
 export const validationSchema = merge([customerInfoSchema, deliverySchema])
