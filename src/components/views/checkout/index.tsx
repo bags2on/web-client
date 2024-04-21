@@ -8,13 +8,13 @@ import { useRouter } from 'next/router'
 import { routeNames } from '@/utils/navigation'
 import { useMutation } from '@apollo/client'
 import { CREATE_ORDER } from '@/graphql/order'
-import { usePageState } from './usePageState'
+import { usePageState } from './model/usePageState'
 import { FormValues, validationSchema } from './model/validation-schema'
 import { valibotResolver } from '@hookform/resolvers/valibot'
 import { useForm, FormProvider, SubmitHandler } from 'react-hook-form'
 import { useCartStore } from '@/store/cart'
 
-import styles from './Checkout.module.scss'
+import styles from './styles.module.scss'
 
 export function CheckoutIndex() {
   const router = useRouter()
@@ -25,16 +25,8 @@ export function CheckoutIndex() {
     isDeliveryOpen: false
   })
 
-  const formMethods = useForm<FormValues>({
-    mode: 'onBlur',
-    resolver: valibotResolver(validationSchema),
-    defaultValues: {
-      supplier: 'nova-poshta'
-    }
-  })
-
-  const [isOrderSuccess, setOrderSuccess] = useState<boolean>(false)
-  const [orderErr, setOrderErr] = useState<boolean>(false)
+  const [isOrderSuccess, setOrderSuccess] = useState(false)
+  const [orderErr, setOrderErr] = useState(false)
 
   const cartItems = useCartStore((state) => state.cartItems)
 
@@ -49,6 +41,14 @@ export function CheckoutIndex() {
       dispatch.dataSynced()
     }
   }, [router, dispatch, cartItems])
+
+  const formMethods = useForm<FormValues>({
+    mode: 'onBlur',
+    resolver: valibotResolver(validationSchema),
+    defaultValues: {
+      supplier: 'nova-poshta'
+    }
+  })
 
   const handleInfoEditOpen = useCallback(() => {
     dispatch.openInfo()

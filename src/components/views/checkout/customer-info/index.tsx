@@ -27,17 +27,15 @@ export function CustomerInfo({ isEdit, onEdit, onContinue }: CustomerInfoProps) 
     name: ['name', 'surname', 'phone', 'email']
   })
 
-  const obj = {
-    name: values[0],
-    surname: values[1],
-    phone: values[2],
-    email: values[3]
-  }
-
   let isValid = false
 
   try {
-    parse(customerInfoSchema, obj)
+    parse(customerInfoSchema, {
+      name: values[0],
+      surname: values[1],
+      phone: values[2],
+      email: values[3]
+    })
     isValid = true
   } catch (error) {
     isValid = false

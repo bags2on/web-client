@@ -11,6 +11,7 @@ import { UkrPoshta } from './ukr-poshta'
 import { parse } from 'valibot'
 import { useFormContext, useWatch } from 'react-hook-form'
 import { type DeliveryValues, deliverySchema } from '../model/validation-schema'
+import type { PopularCity } from '../model/types'
 
 import styles from './styles.module.scss'
 
@@ -18,14 +19,6 @@ interface DeliveryInfoProps {
   isEdit: boolean
   onEdit(): void
   onContinue(): void
-}
-
-// in model types
-export type PopularCity = {
-  city_id: string
-  city_name: string
-  nova_poshta_id: string
-  ukrposhta_id: string
 }
 
 export function DeliveryInfo({ isEdit, onEdit, onContinue }: DeliveryInfoProps) {
